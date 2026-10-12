@@ -1,6 +1,6 @@
 ---
 title: "George Anthony Romero Cerdán"
-subtitle: Escuela de Medicina humana - UNMSM | Lima, Perú
+subtitle: Médico | Universidad Nacional Mayor de San Marcos | Lima, Perú
 # author: Anthony R.
 # author-title: Autor
 # date: today
@@ -24,7 +24,7 @@ about:
     - icon: linkedin
       href: https://www.linkedin.com/in/garomeroc/
     - icon: github
-      href: https://github.com/ganthonyr
+      href: https://github.com/ganthonyr19
 link-external-newwindow: TRUE
 ---
 
@@ -421,8 +421,7 @@ B2 <br>
 ::: {.d-flex .justify-content-between}
 ::: {}
 **Percy Soto Becerra, MD, MSc(c)**\
-Instituto de Evaluación de Tecnologías en Salud e Investigación - IETSI-EsSalud\
-\-  Email: percys1991\@gmail.com
+Instituto de Evaluación de Tecnologías en Salud e Investigación - IETSI-EsSalud
 :::
 ::: {text-end}
 Lima, PE <br> 
@@ -433,8 +432,7 @@ Research Associate
 ::: {.d-flex .justify-content-between}
 ::: {}
 **Paquita Crismalú Díaz Sánchez, MD, MSc(c)**\
-Instituto de Evaluación de Tecnologías en Salud e Investigación - IETSI-EsSalud\
-\-  Email: pcdiazs\@gmail.com
+Instituto de Evaluación de Tecnologías en Salud e Investigación - IETSI-EsSalud
 :::
 ::: {text-end}
 Lima, PE <br> 
@@ -445,8 +443,7 @@ Research Associate
 ::: {.d-flex .justify-content-between}
 ::: {}
 **Diego Urrunaga Pastor, MD, MSc(c)**\
-Universidad San Ignacio de Loyola\
-\-  Email: diego.urrunaga.pastor1\@gmail.com
+Universidad San Ignacio de Loyola
 :::
 ::: {text-end}
 Lima, PE <br> 
@@ -499,7 +496,7 @@ Here you will find the **R cheatsheets** that I have translated with [Percy Soto
 <!-- Boton para descargar el cheatsheet -->
 ```{=html}
 <p class="text-center">
-  <a class="btn btn-primary btn-lg cheatsheet-download" href="pdf-files/git-github-es.pdf" target="_blank">
+  <a class="btn btn-primary btn-lg cheatsheet-download" href="pdf-files/git-github_es.pdf" target="_blank">
     <i class="fa-solid fa-file-arrow-down"></i>Download PDF
   </a>
 </p>
@@ -973,8 +970,7 @@ B2 <br>
 ::: {.d-flex .justify-content-between}
 ::: {}
 **Percy Soto Becerra, MD, MSc(c)**\
-Instituto de Evaluación de Tecnologías en Salud e Investigación - IETSI-EsSalud\
-\-  Email: percys1991\@gmail.com
+Instituto de Evaluación de Tecnologías en Salud e Investigación - IETSI-EsSalud
 :::
 ::: {text-end}
 Lima, PE <br> 
@@ -985,8 +981,7 @@ Investigador asociado
 ::: {.d-flex .justify-content-between}
 ::: {}
 **Paquita Crismalú Díaz Sánchez, MD, MSc(c)**\
-Instituto de Evaluación de Tecnologías en Salud e Investigación - IETSI-EsSalud\
-\-  Email: pcdiazs\@gmail.com
+Instituto de Evaluación de Tecnologías en Salud e Investigación - IETSI-EsSalud
 :::
 ::: {text-end}
 Lima, PE <br> 
@@ -997,8 +992,7 @@ Investigadora asociada
 ::: {.d-flex .justify-content-between}
 ::: {}
 **Diego Urrunaga Pastor, MD, MSc(c)**\
-Universidad San Ignacio de Loyola\
-\-  Email: diego.urrunaga.pastor1\@gmail.com
+Universidad San Ignacio de Loyola
 :::
 ::: {text-end}
 Lima, PE <br> 
@@ -1050,7 +1044,7 @@ Aquí encontrarás los **Cheatsheets de R** que he traducido junto a [Percy Soto
 <!-- Boton para descargar el cheatsheet -->
 ```{=html}
 <p class="text-center">
-  <a class="btn btn-primary btn-lg cheatsheet-download" href="pdf-files/git-github-es.pdf" target="_blank">
+  <a class="btn btn-primary btn-lg cheatsheet-download" href="pdf-files/git-github_es.pdf" target="_blank">
     <i class="fa-solid fa-file-arrow-down"></i>Descargar PDF
   </a>
 </p>
