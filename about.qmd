@@ -1,6 +1,6 @@
 ---
 title: "George Anthony Romero Cerdán"
-subtitle: Médico | Universidad Nacional Mayor de San Marcos | Lima, Perú
+subtitle: Médico cirujano | Universidad Nacional Mayor de San Marcos | Lima, Perú
 # author: Anthony R.
 # author-title: Autor
 # date: today
@@ -52,11 +52,11 @@ pacman::p_load(tinytex, tidyverse, scholar, knitr)
 #### A few things about me
 
 ::: {.intro}
--   [RENACYT level
-    VII](https://ctivitae.concytec.gob.pe/appDirectorioCTI/VerDatosInvestigador.do?id_investigador=0138155) researcher.  
--   I have collaborated in research projects with the Instituto de
-    Evaluación de Tecnologías en Salud e Investigación - EsSalud for the last 12 months.  
--   I have basic skills in data management, analysis and visualization with R and Stata.  
+-   Physician (MD) graduated from the Universidad Nacional Mayor de San Marcos.  
+-   [RENACYT](https://servicio-renacyt.concytec.gob.pe/ficha-renacyt/?idInvestigador=138155) researcher.  
+-   I collaborated in research projects with the Instituto de
+    Evaluación de Tecnologías en Salud e Investigación - EsSalud from 2020 to 2025.  
+-   More than 5 years of experience in statistical analysis with R and Stata applied to health research.  
 -   I am part of the founding team of InkaStats Academy and a member of ADIECS since 2018.  
 -   I am interested in Health Data Science, clinical research and Epidemiology applied to public health.   
 :::
@@ -72,7 +72,7 @@ Facultad de Medicina humana "San Fernando", EA de Medicina humana
 :::
 ::: {text-end}
 Lima, PE\
-2018 - present
+2018 - 2025
 :::
 :::
 
@@ -84,7 +84,7 @@ Lima, PE\
     Stanford University, EE.UU
 :::
 ::: {text-end}
-Apr 2023 - present
+2023
 :::
 :::
 
@@ -94,7 +94,7 @@ Apr 2023 - present
     Oracle and Alura Latam Programming Training
 :::
 ::: {text-end}
-Apr 2023 - present
+2023 - 2024
 :::
 :::
 
@@ -580,13 +580,12 @@ scholar::get_publications(id) %>%
 #### Algunas cosas sobre mí
 
 ::: {.d-flex .justify-content-between}
--   Investigador [RENACYT nivel
-    VII](https://ctivitae.concytec.gob.pe/appDirectorioCTI/VerDatosInvestigador.do?id_investigador=0138155).
--   He colaborado en proyectos de investigación con el Instituto de
-    Evaluación de Tecnologías en Salud e Investigación - EsSalud durante
-    los últimos 12 meses. <br>
--   Tengo habilidades básicas en gestión, análisis y visualización de
-    datos con R y Stata.<br>
+-   Médico cirujano egresado de la Universidad Nacional Mayor de San Marcos.<br>
+-   Investigador [RENACYT](https://servicio-renacyt.concytec.gob.pe/ficha-renacyt/?idInvestigador=138155).<br>
+-   Colaboré en proyectos de investigación con el Instituto de
+    Evaluación de Tecnologías en Salud e Investigación - EsSalud entre 2020 y 2025.<br>
+-   Más de 5 años de experiencia en análisis estadístico con R y Stata
+    aplicado a investigación en salud.<br>
 -   Soy parte del equipo fundador de InkaStats Academy y miembro de ADIECS desde el 2018.<br>
 -   Me interesan la Ciencia de Datos en Salud, la Investigación clínica
     y la Epidemiología aplicada a la salud pública.<br>
@@ -603,7 +602,7 @@ Facultad de Medicina humana "San Fernando", EA de Medicina humana
 :::
 ::: {text-end}
 Lima, PE\
-2018 - actualidad
+2018 - 2025
 :::
 :::
 
@@ -615,7 +614,7 @@ Lima, PE\
     Universidad de Stanford, EE.UU
 :::
 ::: {text-end}
-Abr 2023 - Actualidad
+2023
 :::
 :::
 
@@ -625,7 +624,7 @@ Abr 2023 - Actualidad
     Formación en programación de Oracle y Alura Latam
 :::
 ::: {text-end}
-Abr 2023 - Actualidad
+2023 - 2024
 :::
 :::
 
