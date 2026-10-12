@@ -496,7 +496,7 @@ Here you will find the **R cheatsheets** that I have translated with [Percy Soto
 <!-- Boton para descargar el cheatsheet -->
 ```{=html}
 <p class="text-center">
-  <a class="btn btn-primary btn-lg cheatsheet-download" href="pdf-files/git-github-es.pdf" target="_blank">
+  <a class="btn btn-primary btn-lg cheatsheet-download" href="pdf-files/git-github_es.pdf" target="_blank">
     <i class="fa-solid fa-file-arrow-down"></i>Download PDF
   </a>
 </p>
@@ -1044,7 +1044,7 @@ Aquí encontrarás los **Cheatsheets de R** que he traducido junto a [Percy Soto
 <!-- Boton para descargar el cheatsheet -->
 ```{=html}
 <p class="text-center">
-  <a class="btn btn-primary btn-lg cheatsheet-download" href="pdf-files/git-github-es.pdf" target="_blank">
+  <a class="btn btn-primary btn-lg cheatsheet-download" href="pdf-files/git-github_es.pdf" target="_blank">
     <i class="fa-solid fa-file-arrow-down"></i>Descargar PDF
   </a>
 </p>

@@ -30,8 +30,8 @@ website:
         # text: My twitter account
   page-footer: 
     left: |
-      Creado con ![](images/ricon24.png) y [Quarto](https://quarto.org).  
-      Código fuente [![](images/github-icon.png)](https://github.com/ganthonyr19/myblog)
+      Creado con ![](/images/ricon24.png) y [Quarto](https://quarto.org).  
+      Código fuente [![](/images/github-icon.png)](https://github.com/ganthonyr19/myblog)
     background: light
     right: |
      &copy; 2023-2026 Anthony Romero Cerdán  
