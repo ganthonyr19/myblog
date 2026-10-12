@@ -28,7 +28,7 @@ format:
 
 ## EN
 
--  Hi there! My name is Anthony Romero, a 🇵🇪 **physician** who graduated from the Universidad Nacional Mayor de San Marcos.  
+-  Hi there! My name is Anthony Romero, a 🇵🇪 **physician (MD)** who graduated from the Universidad Nacional Mayor de San Marcos.  
 -  For more than 5 years I have been advising health sciences theses in **research methods** and **biostatistics**, and I have co-authored more than 10 scientific publications.  
 -  I enjoy experimenting with new technologies and participating in projects with **R**, **Stata** and **HTML/CSS** applied to **_Health_**, as well as **_medical research_**, **_biostatistics_** and **_clinical and public health epidemiology_**.
 -  In this blog I share **tutorials**, **resources** and **news** about R, RStudio and data science applied to health research.
@@ -36,7 +36,7 @@ format:
 
 ## ES
 
--  ¡Hola! Soy Anthony Romero, 🇵🇪 **médico** egresado de la Universidad Nacional Mayor de San Marcos.  
+-  ¡Hola! Soy Anthony Romero, 🇵🇪 **médico cirujano** egresado de la Universidad Nacional Mayor de San Marcos.  
 -  Desde hace más de 5 años asesoro tesis de ciencias de la salud en **metodología de la investigación** y **bioestadística**, y he participado en más de 10 publicaciones científicas.  
 -  Disfruto experimentando con nuevas tecnologías y participando en proyectos con **R**, **Stata** y **HTML/CSS** aplicados a la **_Salud_**, así como en **_investigación médica_**, **_bioestadística_** y **_Epidemiología clínica y de salud pública_**.  
 -  En este blog comparto **tutoriales**, **recursos** y **novedades** sobre R, RStudio y ciencia de datos aplicada a la investigación en salud.
