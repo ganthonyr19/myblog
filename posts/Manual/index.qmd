@@ -333,7 +333,7 @@ embed_youtube("LbezGA_Yle8") %>%
 4.  Manual de [Antoine Soetewey](https://statsandr.com/blog/how-to-install-r-and-rstudio/)
 :::
 
-<br> <br> \_\_\_ <br> **Manual elaborado por:** <br> [Anthony Romero Cerdán](https://github.com/ganthonyr) (anthony.romeromh\@gmail.com) <br>
+<br> <br> \_\_\_ <br> **Manual elaborado por:** <br> [Anthony Romero Cerdán](https://github.com/ganthonyr19) (anthony.romeromh\@gmail.com) <br>
 _La versión original de este manual fue tomada del manual elaborado para [InkaStats Academy](https://www.facebook.com/InkaStats.DSS)_  
 \_\_\_
 

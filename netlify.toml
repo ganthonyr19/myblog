@@ -1,0 +1,5 @@
+# Netlify publica el sitio ya generado por Quarto.
+# No hay comando de construcción: el sitio se genera localmente con `quarto render`
+# y se sube la carpeta _site al repositorio.
+[build]
+  publish = "_site"

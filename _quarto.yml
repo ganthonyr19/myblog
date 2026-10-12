@@ -22,19 +22,19 @@ website:
       - icon: github
         menu:
          - text: Source code
-           href: https://github.com/ganthonyr/myblog
+           href: https://github.com/ganthonyr19/myblog
          - text: Report a bug
-           href: https://github.com/ganthonyr/myblog/issues
+           href: https://github.com/ganthonyr19/myblog/issues
       - icon: twitter
         href: https://twitter.com/ganthonyr94
         # text: My twitter account
   page-footer: 
     left: |
       Creado con ![](images/ricon24.png) y [Quarto](https://quarto.org).  
-      Código fuente [![](images/github-icon.png)](https://github.com/ganthonyr/myblog)
+      Código fuente [![](images/github-icon.png)](https://github.com/ganthonyr19/myblog)
     background: light
     right: |
-     &copy; 2023 Anthony Romero Cerdán  
+     &copy; 2023-2026 Anthony Romero Cerdán  
       License: [CC BY NC SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0).
     border: false
   reader-mode: true
@@ -45,11 +45,13 @@ format:
     toc-title: "Contents"
     html-math-method: katex
     header-includes: |
-      <link rel="stylesheet" media="screen" href="https://fonts.google.com/specimen/Source+Sans+Pro" type="text/css"/>
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap">
     page-layout: full
     theme:
       light: flatly
       dark: darkly
     css: styles.css
-mainfont: Source Sans Pro
+mainfont: "Source Sans 3"
 link-external-newwindow: TRUE

@@ -14,7 +14,7 @@ about:
       href: https://www.linkedin.com/in/garomeroc/
     - icon: github
       text: Github
-      href: https://github.com/ganthonyr
+      href: https://github.com/ganthonyr19
     - icon: envelope 
       text: Email
       href: mailto:anthony.romeromh@gmail.com
@@ -28,23 +28,17 @@ format:
 
 ## EN
 
--  Hi there! My name is Anthony Romero, I am a  🇵🇪 student of **Human Medicine** at the Universidad Nacional Mayor de San Marcos.  
--  I am a constant learner who likes to work on **Health Data Science** projects.  
+-  Hi there! My name is Anthony Romero, a 🇵🇪 **physician** who graduated from the Universidad Nacional Mayor de San Marcos.  
+-  For more than 5 years I have been advising health sciences theses in **research methods** and **biostatistics**, and I have co-authored more than 10 scientific publications.  
 -  I enjoy experimenting with new technologies and participating in projects with **R**, **Stata** and **HTML/CSS** applied to **_Health_**, as well as **_medical research_**, **_biostatistics_** and **_clinical and public health epidemiology_**.
--  In this blog, **you will accompany me** on my way **to learn programming with R, Stata, etc** through tutorials or resources elaborated by me... and more... 
+-  In this blog I share **tutorials**, **resources** and **news** about R, RStudio and data science applied to health research.
 
-::: {.text}
-🧠 Current status: soon to learn **Python** :D
-:::  
 
 ## ES
 
--  Hola a todos! Mi nombre es Anthony Romero, 🇵🇪 studiante de **Medicina humana** en la Universidad Nacional Mayor de San Marcos.  
--  Soy un constante aprendiz que gusta de trabajar en proyectos de **Ciencia de Datos en Salud**.  
+-  ¡Hola! Soy Anthony Romero, 🇵🇪 **médico** egresado de la Universidad Nacional Mayor de San Marcos.  
+-  Desde hace más de 5 años asesoro tesis de ciencias de la salud en **metodología de la investigación** y **bioestadística**, y he participado en más de 10 publicaciones científicas.  
 -  Disfruto experimentando con nuevas tecnologías y participando en proyectos con **R**, **Stata** y **HTML/CSS** aplicados a la **_Salud_**, así como en **_investigación médica_**, **_bioestadística_** y **_Epidemiología clínica y de salud pública_**.  
--  En este blog, me acompañarás en mi camino a aprender a programar con R, Stata, etc a través de tutoriales o recursos elaborados por mí... y más...
+-  En este blog comparto **tutoriales**, **recursos** y **novedades** sobre R, RStudio y ciencia de datos aplicada a la investigación en salud.
 
-::: {.text}
-🧠 Estado actual: próximamente **Python** :D
-::: 
 :::
