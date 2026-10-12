@@ -96,8 +96,14 @@
 
 
 /****SECCION ABOUT****/
-.text-end{
-  margin-left: 440px;
+/* filas con fecha a la derecha: la fecha no se parte y el texto se ajusta */
+.d-flex.justify-content-between{
+  gap: 1rem;
+}
+.d-flex.justify-content-between > div:last-child{
+  flex: none;
+  text-align: right;
+  white-space: nowrap;
 }
 
 
@@ -182,8 +188,8 @@
 
 /*PAra el boton de descargar CV*/
 .text-center {
-  margin-top: 60px;
-  margin-bottom: -50px;
+  margin-top: 40px;
+  margin-bottom: 20px;
 }
 
 .text-center .btn {
@@ -205,10 +211,7 @@
   justify-content: center;
 }
 
-.cheatsheet-download{
-  margin-left: -200px;
-  margin-top: 80px;
-}
+
 
 /*para las columnas de habilidades tecnicas*/
 .column {
@@ -223,4 +226,78 @@
 
 .email {
   font-style: italic;
+}
+
+/****ADAPTACIÓN A CELULARES Y TABLETS****/
+
+/* tarjetas de cheatsheets y hexstickers: lado a lado en pantallas anchas, una debajo de otra en celular */
+.project-card{
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  width: min(100%, 300px);
+  margin: 0 20px 32px 0;
+  vertical-align: top;
+}
+.project-card p{
+  margin: 0;
+}
+.project-card img{
+  max-height: 230px;
+  width: auto;
+  max-width: 100%;
+}
+.project-btn{
+  background-color: steelblue;
+  border-color: steelblue;
+  color: white;
+}
+.project-btn:hover{
+  color: white;
+  font-weight: bold;
+}
+
+/* habilidades técnicas: grilla que se reacomoda sola */
+.skills-grid{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 24px;
+  text-align: center;
+  margin-bottom: 24px;
+}
+.skills-grid img{
+  max-width: 90px;
+  height: auto;
+}
+
+/* tablas anchas (publicaciones): se pueden deslizar sin romper la página */
+.cell-output-display, .table-responsive{
+  overflow-x: auto;
+}
+
+@media (max-width: 767.98px){
+  #quarto-document-content{
+    font-size: 16px;
+  }
+  .d-flex.justify-content-between > div:last-child{
+    white-space: normal;
+    max-width: 38%;
+  }
+  .project-card{
+    width: 100%;
+    margin-right: 0;
+  }
+  /* en celular la tabla de publicaciones muestra solo título, revista y año */
+  #publications table th:nth-child(2), #publications table td:nth-child(2),
+  #publications table th:nth-child(4), #publications table td:nth-child(4),
+  #publications table th:nth-child(5), #publications table td:nth-child(5),
+  #publicaciones table th:nth-child(2), #publicaciones table td:nth-child(2),
+  #publicaciones table th:nth-child(4), #publicaciones table td:nth-child(4),
+  #publicaciones table th:nth-child(5), #publicaciones table td:nth-child(5){
+    display: none;
+  }
+  #publications table, #publicaciones table{
+    font-size: 14px;
+  }
 }
