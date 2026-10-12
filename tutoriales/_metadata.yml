@@ -1,0 +1,8 @@
+# Opciones para todas las publicaciones de esta carpeta
+
+# Congela los resultados del código: no se vuelve a ejecutar al regenerar el sitio
+# (ver https://quarto.org/docs/projects/code-execution.html#freeze)
+freeze: true
+
+# Título con banner
+title-block-banner: true

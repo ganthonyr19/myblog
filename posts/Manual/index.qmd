@@ -2,7 +2,7 @@
 title: "Manual de instalación de R, RStudio y Rtools"
 author: "Anthony R."
 date: "2023-04-16"
-categories: [tutorials, R, ES]
+categories: [Tutorial, R, RStudio, Instalación]
 image: "/posts/Manual/imagenes_guia/r-rstudio.png"
 ---
 

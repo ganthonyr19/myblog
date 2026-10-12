@@ -1,7 +1,11 @@
 project:
   type: website
 
+lang: es
+
 website:
+  title: "Anthony Romero"
+  description: "Tutoriales, recursos y novedades sobre R y ciencia de datos aplicada a la investigación en salud."
   site-url: https://anthonyromero.netlify.app/
   favicon: images/logo-final2.png
   page-navigation: true
@@ -10,20 +14,22 @@ website:
     logo: images/icon.png
     collapse-below: lg
     left:
-      - text: Home
+      - text: Inicio
         href: index.qmd
-      - text: Posts
+      - text: Tutoriales
+        href: tutoriales.qmd
+      - text: Blog
         href: blog.qmd
-      # - text: Tutoriales
-      #   href: tutoriales.qmd
-      - text: About
+      - text: Recursos
+        href: recursos.qmd
+      - text: Sobre mí
         href: about.qmd
     right:
       - icon: github
         menu:
-         - text: Source code
+         - text: Código fuente
            href: https://github.com/ganthonyr19/myblog
-         - text: Report a bug
+         - text: Reportar un error
            href: https://github.com/ganthonyr19/myblog/issues
       - icon: twitter
         href: https://twitter.com/ganthonyr94

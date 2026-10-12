@@ -1,0 +1,31 @@
+---
+title: "Recursos"
+description: "Material gratuito para aprender y usar R en investigación en salud."
+title-block-banner: true
+page-layout: full
+---
+
+## Cheatsheets traducidos
+Aquí encontrarás los **Cheatsheets de R** que he traducido junto a [Percy Soto](https://github.com/psotob91) (*mi mentor en R*) y algunos amigos/as. (Pd: Puedes visitar estos y otros cheatsheets traducidos en la [web de Posit.](https://posit.co/resources/cheatsheets/?type=translations/))
+
+::: {.project-card}
+![](images/cheatsheet1.png)
+
+```{=html}
+<a class="btn btn-primary project-btn cheatsheet-download" href="pdf-files/base-r_es.pdf" target="_blank"><i class="fa-solid fa-file-arrow-down"></i> Descargar PDF</a>
+```
+:::
+
+
+::: {.project-card}
+![](images/github-cheatsheet.png)
+
+```{=html}
+<a class="btn btn-primary project-btn cheatsheet-download" href="pdf-files/git-github_es.pdf" target="_blank"><i class="fa-solid fa-file-arrow-down"></i> Descargar PDF</a>
+```
+:::
+
+
+## Manuales
+
+- [Manual de instalación de R, RStudio y Rtools](posts/Manual/index.qmd): guía paso a paso para dejar listo tu equipo.
