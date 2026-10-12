@@ -15,15 +15,17 @@ about:
     - icon: envelope
       text: anthony.romeromh@gmail.com
       href: mailto:anthony.romeromh@gmail.com
-    - text: "{{< ai google-scholar >}}"
+    - text: "{{< ai google-scholar >}} Google Scholar"
       href: https://scholar.google.com/citations?user=bSpylR0AAAAJ&hl=es
-    - text: "{{< ai researchgate >}}"
+    - text: "{{< ai researchgate >}} ResearchGate"
       href: https://www.researchgate.net/profile/Anthony-Romero-Cerdan-2
-    - text: "{{< ai orcid >}}"
+    - text: "{{< ai orcid >}} ORCID"
       href: https://orcid.org/0000-0001-6342-647X
     - icon: linkedin
+      text: LinkedIn
       href: https://www.linkedin.com/in/garomeroc/
     - icon: github
+      text: GitHub
       href: https://github.com/ganthonyr19
 link-external-newwindow: TRUE
 ---
@@ -321,19 +323,15 @@ Dec 2020
 
 #### Technologies
 
-::: columns
-::: {.column width="22%"}
+::: {.skills-grid}
+::: {.skill-group}
 ##### *Languages:*
 
 ![](images/r-icon.png){data-toggle="tooltip" title="R language"} ![](images/git-icon.png){data-toggle="tooltip" title="Git"}
 ![](images/html-icon.png){width="40" data-toggle="tooltip" title="HTML5"} ![](images/css-icon.png){data-toggle="tooltip" title="CSS3"}
 :::
 
-::: {.column width="4%"}
-<!-- espacio entre col -->
-:::
-
-::: {.column width="22%"}
+::: {.skill-group}
 ##### *Softwares:*
 
 ![](images/rstudio-icon.png){data-toggle="tooltip" title="RStudio"} ![](images/stata-icon.png){data-toggle="tooltip" title="Stata"}
@@ -341,21 +339,13 @@ Dec 2020
 ![](images/github-icon.png){data-toggle="tooltip" title="Github"} ![](images/vscode-icon.png){data-toggle="tooltip" title="VSCode"}
 :::
 
-::: {.column width="4%"}
-<!-- espacio entre col -->
-:::
-
-::: {.column width="22%"}
+::: {.skill-group}
 ##### *Reference managers:*
 
 ![](images/mendeley-icon.png){data-toggle="tooltip" title="Mendeley"} ![](images/zotero-icon.png){data-toggle="tooltip" title="Zotero"}
 :::
 
-::: {.column width="4%"}
-<!-- espacio entre col -->
-:::
-
-::: {.column width="22%"}
+::: {.skill-group}
 ##### *Academic search engines:*
 
 ![](images/pubmed-icon.jpg){width="90" data-toggle="tooltip" title="PubMed"}
@@ -366,55 +356,11 @@ Dec 2020
 
 #### Languages
 
-::: columns2
-::: {.column width="11%"}
-##### *Skill*
-
-**Reading** <br> 
-**Listening** <br> 
-**Writing** <br> 
-**Speaking** <br> 
-:::
-
-::: {.column width="2%"}
-<!-- espacio entre col -->
-:::
-
-::: {.column width="11%"}
-##### *Spanish*
-
-Native <br> 
-Native <br> 
-Native <br>
-Native <br>
-:::
-
-::: {.column width="2%"}
-<!-- espacio entre col -->
-:::
-
-::: {.column width="11%"}
-##### *English*
-
-B1 <br> 
-B1 <br> 
-B1 <br> 
-B1 <br>
-:::
-
-::: {.column width="2%"}
-<!-- espacio entre col -->
-:::
-
-::: {.column width="11%"}
-##### *Portuguese*
-
-B2 <br> 
-B2 <br> 
-B2 <br> 
-B2 <br>
-:::
-:::
+| Language | Level |
+|:--|:--|
+| Spanish | Native |
+| English | B1 |
+| Portuguese | B2 |
 
 ### References
 
@@ -466,85 +412,45 @@ Research Associate
 ### Traslated Cheatsheets
 Here you will find the **R cheatsheets** that I have translated with [Percy Soto](https://github.com/psotob91) (*my R mentor*) and some friends. (PS: You can visit these and many other translated cheatsheets on the [Posit website](https://posit.co/resources/cheatsheets/?type=translations/))
 
-::: {.columns .cheatsheet-col}
+::: {.project-card}
+![](images/cheatsheet1.png)
 
-::: {.column width="40%"}
-![](images/cheatsheet1.png){width="450"}
-:::
-
-::: {.column width="40%"}
-<!-- Boton para descargar el cheatsheet -->
 ```{=html}
-<p class="text-center">
-  <a class="btn btn-primary btn-lg cheatsheet-download" href="pdf-files/base-r_es.pdf" target="_blank">
-    <i class="fa-solid fa-file-arrow-down"></i>Download PDF
-  </a>
-</p>
+<a class="btn btn-primary project-btn cheatsheet-download" href="pdf-files/base-r_es.pdf" target="_blank"><i class="fa-solid fa-file-arrow-down"></i> Download PDF</a>
 ```
 :::
 
-::: 
 
 
-::: {.columns .cheatsheet-col}
+::: {.project-card}
+![](images/github-cheatsheet.png)
 
-::: {.column width="40%"}
-![](images/github-cheatsheet.png){width="450"}
-:::
-
-::: {.column width="40%"}
-<!-- Boton para descargar el cheatsheet -->
 ```{=html}
-<p class="text-center">
-  <a class="btn btn-primary btn-lg cheatsheet-download" href="pdf-files/git-github_es.pdf" target="_blank">
-    <i class="fa-solid fa-file-arrow-down"></i>Download PDF
-  </a>
-</p>
+<a class="btn btn-primary project-btn cheatsheet-download" href="pdf-files/git-github_es.pdf" target="_blank"><i class="fa-solid fa-file-arrow-down"></i> Download PDF</a>
 ```
 :::
 
-::: 
 
 ### HexStickers
 Here you will find **HexStickers** made with R that I have contributed to.
 
-::: {.columns .hex-col}
+::: {.project-card}
+![](images/logo-inkastats.png)
 
-::: {.column width="40%"}
-![](images/logo-inkastats.png){width="280"}
-:::
-
-::: {.column width="40%"}
-<!-- Boton para visitar la repo del hex -->
 ```{=html}
-<p class="text-center">
-  <a class="btn btn-primary btn-lg cheatsheet-download" href="https://github.com/psotob91/InkaStat_HexSticker" target="_blank">
-    <i class="fa-solid fa-file-arrow-down"></i>Visit the Github repo
-  </a>
-</p>
+<a class="btn btn-primary project-btn cheatsheet-download" href="https://github.com/psotob91/InkaStat_HexSticker" target="_blank"><i class="fa-brands fa-github"></i> Visit the Github repo</a>
 ```
 :::
 
-:::
 
-::: {.columns .hex-col}
+::: {.project-card}
+![](images/logo-redcap.png)
 
-::: {.column width="40%"}
-![](images/logo-redcap.png){width="300"}
-:::
-
-::: {.column width="40%"}
-<!-- Boton para visitar la repo del hex -->
 ```{=html}
-<p class="text-center">
-  <a class="btn btn-primary btn-lg cheatsheet-download" href="https://github.com/psotob91/redcap-curso-ietsi2023" target="_blank">
-    <i class="fa-solid fa-file-arrow-down"></i>Visit the Github repo
-  </a>
-</p>
+<a class="btn btn-primary project-btn cheatsheet-download" href="https://github.com/psotob91/redcap-curso-ietsi2023" target="_blank"><i class="fa-brands fa-github"></i> Visit the Github repo</a>
 ```
 :::
 
-:::
 
 ### Publications
 
@@ -579,7 +485,7 @@ scholar::get_publications(id) %>%
 
 #### Algunas cosas sobre mí
 
-::: {.d-flex .justify-content-between}
+::: {.intro}
 -   Médico cirujano egresado de la Universidad Nacional Mayor de San Marcos.<br>
 -   Investigador [RENACYT](https://servicio-renacyt.concytec.gob.pe/ficha-renacyt/?idInvestigador=138155).<br>
 -   Colaboré en proyectos de investigación con el Instituto de
@@ -869,19 +775,15 @@ periodo
 
 #### Tecnologías
 
-::: columns
-::: {.column width="22%"}
+::: {.skills-grid}
+::: {.skill-group}
 ##### *Lenguajes:*
 
 ![](images/r-icon.png){data-toggle="tooltip" title="R language"} ![](images/git-icon.png){data-toggle="tooltip" title="Git"}
 ![](images/html-icon.png){width="40" data-toggle="tooltip" title="HTML5"} ![](images/css-icon.png){data-toggle="tooltip" title="CSS3"}
 :::
 
-::: {.column width="4%"}
-<!-- espacio entre col -->
-:::
-
-::: {.column width="22%"}
+::: {.skill-group}
 ##### *Softwares:*
 
 ![](images/rstudio-icon.png){data-toggle="tooltip" title="RStudio"} ![](images/stata-icon.png){data-toggle="tooltip" title="Stata"}
@@ -889,21 +791,13 @@ periodo
 ![](images/github-icon.png){data-toggle="tooltip" title="Github"} ![](images/vscode-icon.png){data-toggle="tooltip" title="VSCode"}
 :::
 
-::: {.column width="4%"}
-<!-- espacio entre col -->
-:::
-
-::: {.column width="22%"}
+::: {.skill-group}
 ##### *Gestores de referencia:*
 
 ![](images/mendeley-icon.png){data-toggle="tooltip" title="Mendeley"} ![](images/zotero-icon.png){data-toggle="tooltip" title="Zotero"}
 :::
 
-::: {.column width="4%"}
-<!-- espacio entre col -->
-:::
-
-::: {.column width="22%"}
+::: {.skill-group}
 ##### *Buscadores académicos:*
 
 ![](images/pubmed-icon.jpg){width="90" data-toggle="tooltip" title="PubMed"}
@@ -914,55 +808,11 @@ periodo
 
 #### Idiomas
 
-::: columns2
-::: {.column width="11%"}
-##### *Skill*
-
-**Reading** <br> 
-**Listening** <br> 
-**Writing** <br> 
-**Speaking** <br> 
-:::
-
-::: {.column width="2%"}
-<!-- espacio entre col -->
-:::
-
-::: {.column width="11%"}
-##### *Español*
-
-Nativo <br> 
-Nativo <br> 
-Nativo <br>
-Nativo <br>
-:::
-
-::: {.column width="2%"}
-<!-- espacio entre col -->
-:::
-
-::: {.column width="11%"}
-##### *Inglés*
-
-B1 <br> 
-B1 <br> 
-B1 <br> 
-B1 <br>
-:::
-
-::: {.column width="2%"}
-<!-- espacio entre col -->
-:::
-
-::: {.column width="11%"}
-##### *Portugués*
-
-B2 <br> 
-B2 <br> 
-B2 <br> 
-B2 <br>
-:::
-:::
+| Idioma | Nivel |
+|:--|:--|
+| Español | Nativo |
+| Inglés | B1 |
+| Portugués | B2 |
 
 ### Referencias
 
@@ -1014,84 +864,44 @@ Investigador asociado
 ### Cheatsheets traducidos
 Aquí encontrarás los **Cheatsheets de R** que he traducido junto a [Percy Soto](https://github.com/psotob91) (*mi mentor en R*) y algunos amigos/as. (Pd: Puedes visitar estos y otros cheatsheets traducidos en la [web de Posit.](https://posit.co/resources/cheatsheets/?type=translations/))
 
-::: {.columns .cheatsheet-col}
+::: {.project-card}
+![](images/cheatsheet1.png)
 
-::: {.column width="40%"}
-![](images/cheatsheet1.png){width="450"}
-:::
-
-::: {.column width="40%"}
-<!-- Boton para descargar el cheatsheet -->
 ```{=html}
-<p class="text-center">
-  <a class="btn btn-primary btn-lg cheatsheet-download" href="pdf-files/base-r_es.pdf" target="_blank">
-    <i class="fa-solid fa-file-arrow-down"></i>Descargar PDF
-  </a>
-</p>
+<a class="btn btn-primary project-btn cheatsheet-download" href="pdf-files/base-r_es.pdf" target="_blank"><i class="fa-solid fa-file-arrow-down"></i> Descargar PDF</a>
 ```
 :::
 
-::: 
 
-::: {.columns .cheatsheet-col}
+::: {.project-card}
+![](images/github-cheatsheet.png)
 
-::: {.column width="40%"}
-![](images/github-cheatsheet.png){width="450"}
-:::
-
-::: {.column width="40%"}
-<!-- Boton para descargar el cheatsheet -->
 ```{=html}
-<p class="text-center">
-  <a class="btn btn-primary btn-lg cheatsheet-download" href="pdf-files/git-github_es.pdf" target="_blank">
-    <i class="fa-solid fa-file-arrow-down"></i>Descargar PDF
-  </a>
-</p>
+<a class="btn btn-primary project-btn cheatsheet-download" href="pdf-files/git-github_es.pdf" target="_blank"><i class="fa-solid fa-file-arrow-down"></i> Descargar PDF</a>
 ```
 :::
 
-::: 
 
 ### HexStickers
 Aquí encontrarás los **HexStickers** hechos con R en los que he contribuido.
 
-::: {.columns .hex-col}
+::: {.project-card}
+![](images/logo-inkastats.png)
 
-::: {.column width="40%"}
-![](images/logo-inkastats.png){width="280"}
-:::
-
-::: {.column width="40%"}
-<!-- Boton para visitar la repo del hex -->
 ```{=html}
-<p class="text-center">
-  <a class="btn btn-primary btn-lg cheatsheet-download" href="https://github.com/psotob91/InkaStat_HexSticker" target="_blank">
-    <i class="fa-solid fa-file-arrow-down"></i>Visitar la repo en Github
-  </a>
-</p>
+<a class="btn btn-primary project-btn cheatsheet-download" href="https://github.com/psotob91/InkaStat_HexSticker" target="_blank"><i class="fa-brands fa-github"></i> Visitar la repo en Github</a>
 ```
 :::
 
-:::
 
-::: {.columns .hex-col}
+::: {.project-card}
+![](images/logo-redcap.png)
 
-::: {.column width="40%"}
-![](images/logo-redcap.png){width="300"}
-:::
-
-::: {.column width="40%"}
-<!-- Boton para visitar la repo del hex -->
 ```{=html}
-<p class="text-center">
-  <a class="btn btn-primary btn-lg cheatsheet-download" href="https://github.com/psotob91/redcap-curso-ietsi2023" target="_blank">
-    <i class="fa-solid fa-file-arrow-down"></i>Visitar la repo en Github
-  </a>
-</p>
+<a class="btn btn-primary project-btn cheatsheet-download" href="https://github.com/psotob91/redcap-curso-ietsi2023" target="_blank"><i class="fa-brands fa-github"></i> Visitar la repo en Github</a>
 ```
 :::
 
-:::
 
 ### Publicaciones
 
