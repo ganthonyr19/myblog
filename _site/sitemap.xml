@@ -1,35 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://anthonyromero.netlify.app/index.html</loc>
-    <lastmod>2023-05-05T06:06:01.385Z</lastmod>
+    <loc>https://anthonyromero.netlify.app/tutoriales.html</loc>
+    <lastmod>2026-10-12T01:56:57.605Z</lastmod>
   </url>
   <url>
-    <loc>https://anthonyromero.netlify.app/cv.html</loc>
-    <lastmod>2023-03-29T00:48:05.262Z</lastmod>
+    <loc>https://anthonyromero.netlify.app/index.html</loc>
+    <lastmod>2026-10-12T01:59:54.793Z</lastmod>
   </url>
   <url>
     <loc>https://anthonyromero.netlify.app/about.html</loc>
-    <lastmod>2023-05-05T06:09:22.340Z</lastmod>
+    <lastmod>2026-10-12T01:59:54.791Z</lastmod>
   </url>
   <url>
     <loc>https://anthonyromero.netlify.app/blog.html</loc>
-    <lastmod>2023-05-05T06:05:53.403Z</lastmod>
-  </url>
-  <url>
-    <loc>https://anthonyromero.netlify.app/tutoriales.html</loc>
-    <lastmod>2023-05-05T05:22:29.120Z</lastmod>
-  </url>
-  <url>
-    <loc>https://anthonyromero.netlify.app/posts/post-with-code/index.html</loc>
-    <lastmod>2023-05-05T04:33:17.766Z</lastmod>
+    <lastmod>2026-10-12T01:56:57.478Z</lastmod>
   </url>
   <url>
     <loc>https://anthonyromero.netlify.app/posts/Manual/index.html</loc>
-    <lastmod>2023-05-05T05:22:26.478Z</lastmod>
-  </url>
-  <url>
-    <loc>https://anthonyromero.netlify.app/posts/Manual/Manual-install-basesR.html</loc>
-    <lastmod>2023-05-05T05:03:38.092Z</lastmod>
+    <lastmod>2026-10-12T01:59:54.797Z</lastmod>
   </url>
 </urlset>
