@@ -10,5 +10,11 @@
     "items": [
       "/posts/Manual/index.html"
     ]
+  },
+  {
+    "listing": "/prospecto/index.html",
+    "items": [
+      "/prospecto/or-vs-rp/index.html"
+    ]
   }
 ]

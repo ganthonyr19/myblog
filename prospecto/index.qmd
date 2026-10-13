@@ -1,0 +1,18 @@
+---
+title: "Prospecto R"
+description: "Minitutoriales de análisis de datos de salud en R. Cada entrega responde una pregunta concreta con datos reales del Perú: indicación, teoría mínima, pasos con código, resultados y errores frecuentes."
+listing:
+  contents: "*/index.qmd"
+  sort: "date desc"
+  type: grid
+  grid-columns: 3
+  image-height: 350px
+  fields: [image, title, description, date]
+  categories: true
+  sort-ui: false
+  filter-ui: false
+page-layout: full
+lang: es
+date-format: "D [de] MMMM [de] YYYY"
+title-block-banner: true
+---
