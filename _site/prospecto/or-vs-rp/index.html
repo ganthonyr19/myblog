@@ -442,32 +442,34 @@ Figura&nbsp;1: Para una misma razón de prevalencias, el OR crece a medida que e
 </tr>
 </tbody>
 </table>
-<p>Descomprime cada módulo dentro de una carpeta <code>ENDES/2024/</code>.</p>
+<p>Descomprime los tres archivos dentro de una carpeta <code>ENDES/2024/</code>, junto a tu archivo <code>.qmd</code>. Cada uno crea su propia subcarpeta; en la descarga de 2024 se llaman <code>968-Modulo1629</code>, <code>968-Modulo1632</code> y <code>968-Modulo1640</code>. Si tus datos están en otro lugar o las carpetas tienen otro nombre, cambia <code>ruta</code> en el siguiente bloque de código.</p>
 </section>
 <section id="paso-2.-lee-y-une-los-módulos" class="level3">
 <h3 class="anchored" data-anchor-id="paso-2.-lee-y-une-los-módulos">Paso 2. Lee y une los módulos</h3>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(data.table)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>ruta <span class="ot">&lt;-</span> <span class="st">"ENDES/2024"</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>salud <span class="ot">&lt;-</span> <span class="fu">fread</span>(<span class="fu">file.path</span>(ruta, <span class="st">"968-Modulo1640/CSALUD01_2024.csv"</span>), <span class="at">encoding =</span> <span class="st">"UTF-8"</span>)</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>hogar <span class="ot">&lt;-</span> <span class="fu">fread</span>(<span class="fu">file.path</span>(ruta, <span class="st">"968-Modulo1629/RECH0_2024.csv"</span>), <span class="at">encoding =</span> <span class="st">"UTF-8"</span>,</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>               <span class="at">select =</span> <span class="fu">c</span>(<span class="st">"HHID"</span>, <span class="st">"HV001"</span>, <span class="st">"HV022"</span>, <span class="st">"HV025"</span>))</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>mujer <span class="ot">&lt;-</span> <span class="fu">fread</span>(<span class="fu">file.path</span>(ruta, <span class="st">"968-Modulo1632/RE223132_2024.csv"</span>), <span class="at">encoding =</span> <span class="st">"UTF-8"</span>,</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>               <span class="at">select =</span> <span class="fu">c</span>(<span class="st">"CASEID"</span>, <span class="st">"V213"</span>))</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="co"># la llave del hogar trae espacios a la izquierda: hay que limpiarla</span></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>salud[, HHID <span class="sc">:</span><span class="er">=</span> <span class="fu">trimws</span>(HHID)]</span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>hogar[, HHID <span class="sc">:</span><span class="er">=</span> <span class="fu">trimws</span>(HHID)]</span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="co"># CASEID = hogar + número de línea de la mujer</span></span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>mujer[, <span class="st">`</span><span class="at">:=</span><span class="st">`</span>(<span class="at">HHID  =</span> <span class="fu">trimws</span>(<span class="fu">substr</span>(CASEID, <span class="dv">1</span>, <span class="fu">nchar</span>(CASEID) <span class="sc">-</span> <span class="dv">3</span>)),</span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>             <span class="at">linea =</span> <span class="fu">as.integer</span>(<span class="fu">substr</span>(CASEID, <span class="fu">nchar</span>(CASEID) <span class="sc">-</span> <span class="dv">1</span>, <span class="fu">nchar</span>(CASEID))))]</span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">merge</span>(salud, hogar, <span class="at">by =</span> <span class="st">"HHID"</span>)</span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">merge</span>(d, mujer[, .(HHID, linea, V213)],</span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>           <span class="at">by.x =</span> <span class="fu">c</span>(<span class="st">"HHID"</span>, <span class="st">"QS20C"</span>), <span class="at">by.y =</span> <span class="fu">c</span>(<span class="st">"HHID"</span>, <span class="st">"linea"</span>), <span class="at">all.x =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(d)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>ruta <span class="ot">&lt;-</span> <span class="st">"ENDES/2024"</span>   <span class="co"># carpeta con los módulos descomprimidos</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">dir.exists</span>(ruta)) <span class="fu">stop</span>(<span class="st">"No encuentro la carpeta '"</span>, ruta, <span class="st">"'. Revisa el Paso 1 o cambia `ruta`."</span>)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>salud <span class="ot">&lt;-</span> <span class="fu">fread</span>(<span class="fu">file.path</span>(ruta, <span class="st">"968-Modulo1640/CSALUD01_2024.csv"</span>), <span class="at">encoding =</span> <span class="st">"UTF-8"</span>)</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>hogar <span class="ot">&lt;-</span> <span class="fu">fread</span>(<span class="fu">file.path</span>(ruta, <span class="st">"968-Modulo1629/RECH0_2024.csv"</span>), <span class="at">encoding =</span> <span class="st">"UTF-8"</span>,</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>               <span class="at">select =</span> <span class="fu">c</span>(<span class="st">"HHID"</span>, <span class="st">"HV001"</span>, <span class="st">"HV022"</span>, <span class="st">"HV025"</span>))</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>mujer <span class="ot">&lt;-</span> <span class="fu">fread</span>(<span class="fu">file.path</span>(ruta, <span class="st">"968-Modulo1632/RE223132_2024.csv"</span>), <span class="at">encoding =</span> <span class="st">"UTF-8"</span>,</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>               <span class="at">select =</span> <span class="fu">c</span>(<span class="st">"CASEID"</span>, <span class="st">"V213"</span>))</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="co"># la llave del hogar trae espacios a la izquierda: hay que limpiarla</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>salud[, HHID <span class="sc">:</span><span class="er">=</span> <span class="fu">trimws</span>(HHID)]</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>hogar[, HHID <span class="sc">:</span><span class="er">=</span> <span class="fu">trimws</span>(HHID)]</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="co"># CASEID = hogar + número de línea de la mujer</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>mujer[, <span class="st">`</span><span class="at">:=</span><span class="st">`</span>(<span class="at">HHID  =</span> <span class="fu">trimws</span>(<span class="fu">substr</span>(CASEID, <span class="dv">1</span>, <span class="fu">nchar</span>(CASEID) <span class="sc">-</span> <span class="dv">3</span>)),</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>             <span class="at">linea =</span> <span class="fu">as.integer</span>(<span class="fu">substr</span>(CASEID, <span class="fu">nchar</span>(CASEID) <span class="sc">-</span> <span class="dv">1</span>, <span class="fu">nchar</span>(CASEID))))]</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">merge</span>(salud, hogar, <span class="at">by =</span> <span class="st">"HHID"</span>)</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">merge</span>(d, mujer[, .(HHID, linea, V213)],</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>           <span class="at">by.x =</span> <span class="fu">c</span>(<span class="st">"HHID"</span>, <span class="st">"QS20C"</span>), <span class="at">by.y =</span> <span class="fu">c</span>(<span class="st">"HHID"</span>, <span class="st">"linea"</span>), <span class="at">all.x =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(d)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>#&gt; [1] 34018</code></pre>
 </div>

@@ -101,7 +101,7 @@ En el portal de microdatos del INEI (<https://proyectos.inei.gob.pe/microdatos/>
 | 1632 | `RE223132_2024.csv` | Cuestionario individual de mujeres: embarazo actual |
 | 1640 | `CSALUD01_2024.csv` | Cuestionario de salud de personas de 15 y más años |
 
-Descomprime cada módulo dentro de una carpeta `ENDES/2024/`.
+Descomprime los tres archivos dentro de una carpeta `ENDES/2024/`, junto a tu archivo `.qmd`. Cada uno crea su propia subcarpeta; en la descarga de 2024 se llaman `968-Modulo1629`, `968-Modulo1632` y `968-Modulo1640`. Si tus datos están en otro lugar o las carpetas tienen otro nombre, cambia `ruta` en el siguiente bloque de código.
 
 ### Paso 2. Lee y une los módulos
 
@@ -109,7 +109,9 @@ Descomprime cada módulo dentro de una carpeta `ENDES/2024/`.
 #| label: lectura
 library(data.table)
 
-ruta <- "ENDES/2024"
+ruta <- "ENDES/2024"   # carpeta con los módulos descomprimidos
+if (!dir.exists(ruta)) stop("No encuentro la carpeta '", ruta, "'. Revisa el Paso 1 o cambia `ruta`.")
+
 salud <- fread(file.path(ruta, "968-Modulo1640/CSALUD01_2024.csv"), encoding = "UTF-8")
 hogar <- fread(file.path(ruta, "968-Modulo1629/RECH0_2024.csv"), encoding = "UTF-8",
                select = c("HHID", "HV001", "HV022", "HV025"))
