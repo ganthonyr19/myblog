@@ -152,14 +152,14 @@ window.Quarto = {
 <link rel="stylesheet" href="../styles.css">
 <meta property="og:title" content="Prospecto R">
 <meta property="og:description" content="Minitutoriales de análisis de datos de salud en R. Cada entrega responde una pregunta concreta con datos reales del Perú: indicación, teoría mínima, pasos con código, resultados y errores frecuentes.">
-<meta property="og:image" content="https://anthonyromero.netlify.app/prospecto/or-vs-rp/receta.png">
-<meta property="og:image:alt" content="Receta del Prospecto R n.º 1: en la ENDES 2024, la razón de prevalencias de obesidad abdominal entre mujeres y hombres es mucho menor que el odds ratio.">
+<meta property="og:image" content="https://anthonyromero.netlify.app/prospecto/or-vs-rp/receta_inicial.png">
+<meta property="og:image:alt" content="Receta del Prospecto R n.º 1, dosis inicial: en la muestra de la ENDES 2024, la razón de prevalencias de obesidad abdominal entre mujeres y hombres es mucho menor que el odds ratio.">
 <meta property="og:image:height" content="1350">
 <meta property="og:image:width" content="1080">
 <meta name="twitter:title" content="Prospecto R">
 <meta name="twitter:description" content="Minitutoriales de análisis de datos de salud en R. Cada entrega responde una pregunta concreta con datos reales del Perú: indicación, teoría mínima, pasos con código, resultados y errores frecuentes.">
-<meta name="twitter:image" content="https://anthonyromero.netlify.app/prospecto/or-vs-rp/receta.png">
-<meta name="twitter:image:alt" content="Receta del Prospecto R n.º 1: en la ENDES 2024, la razón de prevalencias de obesidad abdominal entre mujeres y hombres es mucho menor que el odds ratio.">
+<meta name="twitter:image" content="https://anthonyromero.netlify.app/prospecto/or-vs-rp/receta_inicial.png">
+<meta name="twitter:image:alt" content="Receta del Prospecto R n.º 1, dosis inicial: en la muestra de la ENDES 2024, la razón de prevalencias de obesidad abdominal entre mujeres y hombres es mucho menor que el odds ratio.">
 <meta name="twitter:image-height" content="1350">
 <meta name="twitter:image-width" content="1080">
 <meta name="twitter:card" content="summary_large_image">
@@ -262,7 +262,7 @@ window.Quarto = {
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         
-    <h5 class="quarto-listing-category-title">Categorías</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">Todas <span class="quarto-category-count">(1)</span></div><div class="category" data-category="RU5ERVM=">ENDES <span class="quarto-category-count">(1)</span></div><div class="category" data-category="ZW5jdWVzdGFzJTIwY29tcGxlamFz">encuestas complejas <span class="quarto-category-count">(1)</span></div><div class="category" data-category="ZXN0dWRpb3MlMjB0cmFuc3ZlcnNhbGVz">estudios transversales <span class="quarto-category-count">(1)</span></div><div class="category" data-category="bWVkaWRhcyUyMGRlJTIwYXNvY2lhY2klQzMlQjNu">medidas de asociación <span class="quarto-category-count">(1)</span></div></div></div>
+    <h5 class="quarto-listing-category-title">Categorías</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">Todas <span class="quarto-category-count">(2)</span></div><div class="category" data-category="RG9zaXMlMjBpbmljaWFs">Dosis inicial <span class="quarto-category-count">(1)</span></div><div class="category" data-category="RG9zaXMlMjBwbGVuYQ==">Dosis plena <span class="quarto-category-count">(1)</span></div><div class="category" data-category="RU5ERVM=">ENDES <span class="quarto-category-count">(2)</span></div><div class="category" data-category="ZW5jdWVzdGFzJTIwY29tcGxlamFz">encuestas complejas <span class="quarto-category-count">(1)</span></div><div class="category" data-category="ZXN0dWRpb3MlMjB0cmFuc3ZlcnNhbGVz">estudios transversales <span class="quarto-category-count">(2)</span></div><div class="category" data-category="bWVkaWRhcyUyMGRlJTIwYXNvY2lhY2klQzMlQjNu">medidas de asociación <span class="quarto-category-count">(2)</span></div></div></div>
 <!-- main -->
 <main class="content quarto-banner-title-block column-page-left" id="quarto-document-content">
 
@@ -270,24 +270,52 @@ window.Quarto = {
 
 
 
+<p>Cada tema viene en <strong>dos dosis</strong>:</p>
+<ul>
+<li><strong>Dosis inicial</strong>: lo indispensable para hacer el análisis e interpretarlo bien. Para quien da sus primeros pasos en R o en el tema.</li>
+<li><strong>Dosis plena</strong>: todo, incluido lo complejo (diseño muestral, alternativas de modelo, trampas de los datos). Para quien ya analiza datos.</li>
+</ul>
+<p>Al inicio de cada entrega hay tres preguntas para saber qué dosis te toca. Puedes filtrar por nivel con las categorías <em>Dosis inicial</em> y <em>Dosis plena</em>.</p>
 
 
 
 
 <div class="quarto-listing quarto-listing-container-grid" id="listing-listing">
 <div class="list grid quarto-listing-cols-3">
-<div class="g-col-1" data-index="0" data-categories="bWVkaWRhcyUyMGRlJTIwYXNvY2lhY2klQzMlQjNuJTJDZXN0dWRpb3MlMjB0cmFuc3ZlcnNhbGVzJTJDZW5jdWVzdGFzJTIwY29tcGxlamFzJTJDRU5ERVM=" data-listing-date-sort="1791867600000" data-listing-file-modified-sort="1791922926044" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="13" data-listing-word-count-sort="2537">
-<a href="../prospecto/or-vs-rp/index.html" class="quarto-grid-link">
+<div class="g-col-1" data-index="0" data-categories="RG9zaXMlMjBpbmljaWFsJTJDbWVkaWRhcyUyMGRlJTIwYXNvY2lhY2klQzMlQjNuJTJDZXN0dWRpb3MlMjB0cmFuc3ZlcnNhbGVzJTJDRU5ERVM=" data-listing-date-sort="1791867600000" data-listing-file-modified-sort="1791933493348" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="12" data-listing-word-count-sort="2236">
+<a href="../prospecto/or-vs-rp/inicial.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top">
-<img loading="lazy" src="../prospecto/or-vs-rp/receta.png" class="thumbnail-image card-img" style="height: 350px;" alt="Receta del Prospecto R n.º 1: en la ENDES 2024, la razón de prevalencias de obesidad abdominal entre mujeres y hombres es mucho menor que el odds ratio.">
+<img loading="lazy" src="../prospecto/or-vs-rp/receta_inicial.png" class="thumbnail-image card-img" style="height: 350px;" alt="Receta del Prospecto R n.º 1, dosis inicial: en la muestra de la ENDES 2024, la razón de prevalencias de obesidad abdominal entre mujeres y hombres es mucho menor que el odds ratio.">
 </p>
 <div class="card-body post-contents">
 <h5 class="no-anchor card-title listing-title">
 ¿OR o razón de prevalencias?
 </h5>
 <div class="card-text listing-description">
-Prospecto R n.º 1. Con datos de la ENDES 2024: por qué el odds ratio exagera la asociación cuando el desenlace es frecuente y cómo estimar la razón de prevalencias en R…
+Prospecto R n.º 1, dosis inicial. Con la ENDES 2024: por qué el odds ratio exagera la asociación cuando el desenlace es frecuente y cómo calcular la razón de prevalencias en…
+</div>
+<div class="card-attribution card-text-small end">
+<div class="listing-date">
+13 de octubre de 2026
+</div>
+</div>
+</div>
+</div>
+</a>
+</div>
+<div class="g-col-1" data-index="1" data-categories="RG9zaXMlMjBwbGVuYSUyQ21lZGlkYXMlMjBkZSUyMGFzb2NpYWNpJUMzJUIzbiUyQ2VzdHVkaW9zJTIwdHJhbnN2ZXJzYWxlcyUyQ2VuY3Vlc3RhcyUyMGNvbXBsZWphcyUyQ0VOREVT" data-listing-date-sort="1791867600000" data-listing-file-modified-sort="1791933500578" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="16" data-listing-word-count-sort="3189">
+<a href="../prospecto/or-vs-rp/plena.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img loading="lazy" src="../prospecto/or-vs-rp/receta_plena.png" class="thumbnail-image card-img" style="height: 350px;" alt="Receta del Prospecto R n.º 1, dosis plena: en la ENDES 2024, la razón de prevalencias de obesidad abdominal entre mujeres y hombres es mucho menor que el odds ratio.">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+¿OR o razón de prevalencias?
+</h5>
+<div class="card-text listing-description">
+Prospecto R n.º 1, dosis plena. Con la ENDES 2024: por qué el odds ratio exagera la asociación cuando el desenlace es frecuente, cómo estimar la razón de prevalencias con el…
 </div>
 <div class="card-attribution card-text-small end">
 <div class="listing-date">

@@ -10,6 +10,9 @@
 *{box-sizing:border-box;margin:0;padding:0}
 body{width:var(--w);height:var(--h);background:var(--navy);font-family:Inter;color:var(--txt);position:relative;overflow:hidden}
 .curve{position:absolute;right:-80px;bottom:-10px;opacity:.5}
+.niv{display:inline-block;font-weight:700;letter-spacing:.14em;font-size:var(--tag);padding:6px 14px;border-radius:8px;margin-left:12px;vertical-align:top}
+.niv.inicial{border:2px solid var(--txt);color:var(--txt)}
+.niv.plena{border:2px solid var(--acc);background:var(--paper);color:var(--navy)}
 .tag{display:inline-block;background:var(--acc);color:var(--navy);font-weight:700;letter-spacing:.14em;font-size:var(--tag);padding:8px 16px;border-radius:8px}
 h1{font-family:Fraunces;font-weight:700;line-height:1.05;font-size:var(--h1);margin-top:22px}
 h1 em{font-style:normal;color:var(--acc)}
@@ -33,14 +36,9 @@ code{font-family:Mono;font-size:.92em;background:#EFE7D6;padding:2px 6px;border-
 <script>
 const P = new URLSearchParams(location.search);
 const layout = P.get('layout') || 'web';
-const D = {
- n: "1", t1: "¿OR o razón de", t2: "prevalencias?",
- ind: "Estudio transversal con un desenlace frecuente (más del 10 %).",
- pos: 'svyglm(..., family = quasipoisson)',
- hal: 'Obesidad abdominal, mujeres vs. hombres', hal2: 'ENDES 2024',
- rp: P.get("rp"), or: P.get("or"),
- pre: `Un OR de ${P.get("or")} no significa «${P.get("or0")} veces más frecuente».`,
-};
+// todos los textos y cifras llegan desde receta_<nivel>.json (lo escribe el tutorial al compilarse)
+const D = JSON.parse(P.get('d'));
+const NIV = D.nivel === 'plena' ? {txt: 'DOSIS PLENA', cls: 'niv plena'} : {txt: 'DOSIS INICIAL', cls: 'niv inicial'};
 const card = `<div class="card">
   <div class="rp">Rp/<span>PRESCRIPCIÓN</span></div>
   <div class="row"><div class="lab">Indicación</div><div>${D.ind}</div></div>
@@ -54,14 +52,14 @@ const r = document.getElementById('root');
 if (layout === 'web') {
   document.documentElement.style.cssText = '--w:1200px;--h:630px;--tag:15px;--h1:52px;--cp:24px 30px 20px 38px;--rp:38px;--small:14px;--lab:118px;--body:18px;--rowp:10px;--big:30px;--logo:42px';
   r.innerHTML = `<div style="position:absolute;left:56px;top:48px;width:440px"><div>${logo}</div>
-     <div style="margin-top:40px"></div><div class="tag">PROSPECTO R · N.º ${D.n}</div><h1>${D.t1} <em>${D.t2}</em></h1>
+     <div style="margin-top:40px"></div><div class="tag">PROSPECTO R · N.º ${D.n}</div><div class="${NIV.cls}">${NIV.txt}</div><h1>${D.t1} <em>${D.t2}</em></h1>
      <p style="margin-top:18px;font-size:19px;color:var(--dim);line-height:1.4">Minitutorial en R con datos reales de salud del Perú.</p></div>
    <div style="position:absolute;left:56px;bottom:40px;width:440px">${sig}</div>
    <div style="position:absolute;right:52px;top:56px;width:600px">${card}</div>`;
 } else {
   document.documentElement.style.cssText = '--w:1080px;--h:1350px;--tag:20px;--h1:84px;--cp:40px 44px 34px 54px;--rp:60px;--small:19px;--lab:160px;--body:26px;--rowp:18px;--big:46px;--logo:62px';
   r.innerHTML = `<div style="position:absolute;left:72px;top:72px;right:72px"><div>${logo}</div>
-     <div style="margin-top:56px"></div><div class="tag">PROSPECTO R · N.º ${D.n}</div><h1>${D.t1} <em>${D.t2}</em></h1>
+     <div style="margin-top:56px"></div><div class="tag">PROSPECTO R · N.º ${D.n}</div><div class="${NIV.cls}">${NIV.txt}</div><h1>${D.t1} <em>${D.t2}</em></h1>
      <p style="margin-top:26px;font-size:28px;color:var(--dim);line-height:1.4">Minitutorial en R con datos reales de salud del Perú.</p></div>
    <div style="position:absolute;left:72px;right:72px;top:600px">${card}</div>
    <div style="position:absolute;left:72px;right:72px;bottom:64px;display:flex;justify-content:space-between;align-items:flex-end">${sig}

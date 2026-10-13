@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Anthony Romero Cerdán">
-<meta name="description" content="Prospecto R n.º 1. Con datos de la ENDES 2024: por qué el odds ratio exagera la asociación cuando el desenlace es frecuente y cómo estimar la razón de prevalencias en R respetando el diseño muestral.">
+<meta name="description" content="Prospecto R n.º 1, dosis inicial. Con la ENDES 2024: por qué el odds ratio exagera la asociación cuando el desenlace es frecuente y cómo calcular la razón de prevalencias en R, a mano, con epiR y con una regresión de Poisson.">
 
 <title>¿OR o razón de prevalencias?</title>
 <style>
@@ -155,17 +155,17 @@ window.Quarto = {
 
 <link rel="stylesheet" href="../../styles.css">
 <meta property="og:title" content="¿OR o razón de prevalencias?">
-<meta property="og:description" content="Prospecto R n.º 1. Con datos de la ENDES 2024: por qué el odds ratio exagera la asociación cuando el desenlace es frecuente y cómo estimar la razón de prevalencias en R respetando el diseño muestral.">
-<meta property="og:image" content="https://anthonyromero.netlify.app/prospecto/or-vs-rp/receta_web.png">
+<meta property="og:description" content="Prospecto R n.º 1, dosis inicial. Con la ENDES 2024: por qué el odds ratio exagera la asociación cuando el desenlace es frecuente y cómo calcular la razón de prevalencias en R, a mano, con epiR y con una regresión de Poisson.">
+<meta property="og:image" content="https://anthonyromero.netlify.app/prospecto/or-vs-rp/receta_inicial_web.png">
 <meta property="og:image:height" content="630">
 <meta property="og:image:width" content="1200">
-<meta property="og:image:alt" content="Receta del Prospecto R n.º 1: en la ENDES 2024, la razón de prevalencias de obesidad abdominal entre mujeres y hombres es mucho menor que el odds ratio.">
+<meta property="og:image:alt" content="Receta del Prospecto R n.º 1, dosis inicial: en la muestra de la ENDES 2024, la razón de prevalencias de obesidad abdominal entre mujeres y hombres es mucho menor que el odds ratio.">
 <meta name="twitter:title" content="¿OR o razón de prevalencias?">
-<meta name="twitter:description" content="Prospecto R n.º 1. Con datos de la ENDES 2024: por qué el odds ratio exagera la asociación cuando el desenlace es frecuente y cómo estimar la razón de prevalencias en R respetando el diseño muestral.">
-<meta name="twitter:image" content="https://anthonyromero.netlify.app/prospecto/or-vs-rp/receta_web.png">
+<meta name="twitter:description" content="Prospecto R n.º 1, dosis inicial. Con la ENDES 2024: por qué el odds ratio exagera la asociación cuando el desenlace es frecuente y cómo calcular la razón de prevalencias en R, a mano, con epiR y con una regresión de Poisson.">
+<meta name="twitter:image" content="https://anthonyromero.netlify.app/prospecto/or-vs-rp/receta_inicial_web.png">
 <meta name="twitter:image-height" content="630">
 <meta name="twitter:image-width" content="1200">
-<meta name="twitter:image:alt" content="Receta del Prospecto R n.º 1: en la ENDES 2024, la razón de prevalencias de obesidad abdominal entre mujeres y hombres es mucho menor que el odds ratio.">
+<meta name="twitter:image:alt" content="Receta del Prospecto R n.º 1, dosis inicial: en la muestra de la ENDES 2024, la razón de prevalencias de obesidad abdominal entre mujeres y hombres es mucho menor que el odds ratio.">
 <meta name="twitter:card" content="summary_large_image">
 </head>
 
@@ -244,16 +244,16 @@ window.Quarto = {
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-page-left">
       <h1 class="title">¿OR o razón de prevalencias?</h1>
-            <p class="subtitle lead">Cómo medir la asociación en un estudio transversal cuando el desenlace es frecuente</p>
+            <p class="subtitle lead">Dosis inicial: qué medida reportar en un estudio transversal con un desenlace frecuente</p>
                   <div>
         <div class="description">
-          Prospecto R n.º 1. Con datos de la ENDES 2024: por qué el odds ratio exagera la asociación cuando el desenlace es frecuente y cómo estimar la razón de prevalencias en R respetando el diseño muestral.
+          Prospecto R n.º 1, dosis inicial. Con la ENDES 2024: por qué el odds ratio exagera la asociación cuando el desenlace es frecuente y cómo calcular la razón de prevalencias en R, a mano, con epiR y con una regresión de Poisson.
         </div>
       </div>
                           <div class="quarto-categories">
+                <div class="quarto-category">Dosis inicial</div>
                 <div class="quarto-category">medidas de asociación</div>
                 <div class="quarto-category">estudios transversales</div>
-                <div class="quarto-category">encuestas complejas</div>
                 <div class="quarto-category">ENDES</div>
               </div>
                   </div>
@@ -293,18 +293,16 @@ window.Quarto = {
   <li><a href="#posología" id="toc-posología" class="nav-link" data-scroll-target="#posología">Posología</a>
   <ul>
   <li><a href="#paso-1.-descarga-los-datos" id="toc-paso-1.-descarga-los-datos" class="nav-link" data-scroll-target="#paso-1.-descarga-los-datos">Paso 1. Descarga los datos</a></li>
-  <li><a href="#paso-2.-lee-y-une-los-módulos" id="toc-paso-2.-lee-y-une-los-módulos" class="nav-link" data-scroll-target="#paso-2.-lee-y-une-los-módulos">Paso 2. Lee y une los módulos</a></li>
-  <li><a href="#paso-3.-construye-las-variables" id="toc-paso-3.-construye-las-variables" class="nav-link" data-scroll-target="#paso-3.-construye-las-variables">Paso 3. Construye las variables</a></li>
-  <li><a href="#paso-4.-declara-el-diseño-muestral" id="toc-paso-4.-declara-el-diseño-muestral" class="nav-link" data-scroll-target="#paso-4.-declara-el-diseño-muestral">Paso 4. Declara el diseño muestral</a></li>
-  <li><a href="#paso-5.-estima-las-prevalencias" id="toc-paso-5.-estima-las-prevalencias" class="nav-link" data-scroll-target="#paso-5.-estima-las-prevalencias">Paso 5. Estima las prevalencias</a></li>
-  <li><a href="#paso-6.-estima-la-razón-de-prevalencias" id="toc-paso-6.-estima-la-razón-de-prevalencias" class="nav-link" data-scroll-target="#paso-6.-estima-la-razón-de-prevalencias">Paso 6. Estima la razón de prevalencias</a></li>
-  <li><a href="#paso-7.-compáralo-con-el-odds-ratio" id="toc-paso-7.-compáralo-con-el-odds-ratio" class="nav-link" data-scroll-target="#paso-7.-compáralo-con-el-odds-ratio">Paso 7. Compáralo con el odds ratio</a></li>
+  <li><a href="#paso-2.-prepara-la-base" id="toc-paso-2.-prepara-la-base" class="nav-link" data-scroll-target="#paso-2.-prepara-la-base">Paso 2. Prepara la base</a></li>
+  <li><a href="#paso-3.-arma-la-tabla-22" id="toc-paso-3.-arma-la-tabla-22" class="nav-link" data-scroll-target="#paso-3.-arma-la-tabla-22">Paso 3. Arma la tabla 2×2</a></li>
+  <li><a href="#paso-4.-calcula-la-rp-y-el-or-a-mano" id="toc-paso-4.-calcula-la-rp-y-el-or-a-mano" class="nav-link" data-scroll-target="#paso-4.-calcula-la-rp-y-el-or-a-mano">Paso 4. Calcula la RP y el OR a mano</a></li>
+  <li><a href="#paso-5.-obtén-los-intervalos-de-confianza-con-epir" id="toc-paso-5.-obtén-los-intervalos-de-confianza-con-epir" class="nav-link" data-scroll-target="#paso-5.-obtén-los-intervalos-de-confianza-con-epir">Paso 5. Obtén los intervalos de confianza con <code>epiR</code></a></li>
+  <li><a href="#paso-6.-haz-lo-mismo-con-un-modelo" id="toc-paso-6.-haz-lo-mismo-con-un-modelo" class="nav-link" data-scroll-target="#paso-6.-haz-lo-mismo-con-un-modelo">Paso 6. Haz lo mismo con un modelo</a></li>
   </ul></li>
   <li><a href="#resultado" id="toc-resultado" class="nav-link" data-scroll-target="#resultado">Resultado</a></li>
-  <li><a href="#interacciones" id="toc-interacciones" class="nav-link" data-scroll-target="#interacciones">Interacciones</a></li>
   <li><a href="#contraindicaciones-y-reacciones-adversas" id="toc-contraindicaciones-y-reacciones-adversas" class="nav-link" data-scroll-target="#contraindicaciones-y-reacciones-adversas">Contraindicaciones y reacciones adversas</a></li>
   <li><a href="#cómo-reportarlo" id="toc-cómo-reportarlo" class="nav-link" data-scroll-target="#cómo-reportarlo">Cómo reportarlo</a></li>
-  <li><a href="#control-de-calidad" id="toc-control-de-calidad" class="nav-link" data-scroll-target="#control-de-calidad">Control de calidad</a></li>
+  <li><a href="#siguiente-dosis" id="toc-siguiente-dosis" class="nav-link" data-scroll-target="#siguiente-dosis">Siguiente dosis</a></li>
   <li><a href="#referencias" id="toc-referencias" class="nav-link" data-scroll-target="#referencias">Referencias</a></li>
   <li><a href="#reproducibilidad" id="toc-reproducibilidad" class="nav-link" data-scroll-target="#reproducibilidad">Reproducibilidad</a></li>
   </ul>
@@ -319,7 +317,7 @@ window.Quarto = {
 
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="receta.png" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="Receta del Prospecto R n.º 1 con la indicación, la posología, el hallazgo y la precaución" width="440"></p>
+<p><img src="receta_inicial.png" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="Receta del Prospecto R n.º 1, dosis inicial, con la indicación, la posología, el hallazgo y la precaución" width="440"></p>
 </figure>
 </div>
 <div class="callout callout-style-simple callout-note no-icon">
@@ -332,6 +330,35 @@ window.Quarto = {
 </div>
 </div>
 </div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+¿Qué dosis te toca?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Cada tema de Prospecto R viene en dos niveles. La <strong>dosis inicial</strong> tiene lo indispensable para hacer el análisis e interpretarlo bien. La <strong>dosis plena</strong> tiene todo, incluido lo complejo. Responde:</p>
+<ol type="1">
+<li>¿Has ajustado una regresión (logística o de Poisson) en R?</li>
+<li>¿Sabes para qué sirven los pesos, los conglomerados y los estratos de una encuesta?</li>
+<li>¿Unes dos bases de datos en R sin ayuda?</li>
+</ol>
+<p>Si respondiste «sí» a las tres, sigue con la <a href="../../prospecto/or-vs-rp/plena.html">dosis plena</a>. Si alguna fue «no», empieza por la <a href="../../prospecto/or-vs-rp/inicial.html">dosis inicial</a>.</p>
+</div>
+</div>
+<div class="callout callout-style-simple callout-important no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>Estás en la dosis inicial.</strong> Aquí va lo indispensable: elegir la medida, calcularla e interpretarla. Para que el foco esté en eso, se analiza la <strong>muestra</strong> de la ENDES sin su diseño muestral; al final verás qué cambia cuando se incluye, y la <a href="../../prospecto/or-vs-rp/plena.html">dosis plena</a> lo desarrolla completo.</p>
+</div>
+</div>
+</div>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 50%">
@@ -339,20 +366,24 @@ window.Quarto = {
 </colgroup>
 <tbody>
 <tr class="odd">
+<td><strong>Nivel</strong></td>
+<td>Dosis inicial</td>
+</tr>
+<tr class="even">
 <td><strong>Pregunta</strong></td>
 <td>¿Qué medida de asociación reporto en un estudio transversal con un desenlace frecuente?</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><strong>Datos</strong></td>
 <td>ENDES 2024, Cuestionario de Salud (INEI)</td>
 </tr>
-<tr class="odd">
-<td><strong>Paquetes</strong></td>
-<td><code>data.table</code>, <code>survey</code>, <code>ggplot2</code></td>
-</tr>
 <tr class="even">
+<td><strong>Paquetes</strong></td>
+<td><code>data.table</code>, <code>epiR</code>, <code>sandwich</code>, <code>lmtest</code>, <code>ggplot2</code></td>
+</tr>
+<tr class="odd">
 <td><strong>Requisitos</strong></td>
-<td>Saber qué es una prevalencia y haber ajustado una regresión logística</td>
+<td>Saber abrir un archivo en R y qué es una prevalencia</td>
 </tr>
 </tbody>
 </table>
@@ -362,17 +393,35 @@ window.Quarto = {
 </section>
 <section id="composición" class="level2">
 <h2 class="anchored" data-anchor-id="composición">Composición</h2>
-<p>En un estudio transversal mides la prevalencia del desenlace en expuestos (<span class="math inline">P_1</span>) y en no expuestos (<span class="math inline">P_0</span>). Con esas dos prevalencias puedes construir dos medidas:</p>
+<p>Todo parte de una tabla 2×2:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th></th>
+<th>Con desenlace</th>
+<th>Sin desenlace</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Expuestos</strong></td>
+<td><span class="math inline">a</span></td>
+<td><span class="math inline">b</span></td>
+</tr>
+<tr class="even">
+<td><strong>No expuestos</strong></td>
+<td><span class="math inline">c</span></td>
+<td><span class="math inline">d</span></td>
+</tr>
+</tbody>
+</table>
+<p>La prevalencia en expuestos es <span class="math inline">P_1 = a/(a+b)</span> y en no expuestos, <span class="math inline">P_0 = c/(c+d)</span>. Con ellas:</p>
 <p><span class="math display">
 \text{RP} = \frac{P_1}{P_0}
 \qquad\qquad
-\text{OR} = \frac{P_1/(1-P_1)}{P_0/(1-P_0)}
+\text{OR} = \frac{a\,d}{b\,c}
 </span></p>
-<p>La RP compara <strong>proporciones</strong>: “la prevalencia en expuestos es <em>k</em> veces la de no expuestos”. El OR compara <strong>odds</strong> (chances), una escala que casi nadie interpreta de forma intuitiva. Las dos medidas se relacionan así:</p>
-<p><span class="math display">
-\text{OR} = \text{RP} \times \frac{1-P_0}{1-P_1}
-</span></p>
-<p>Si el desenlace es raro, <span class="math inline">P_0</span> y <span class="math inline">P_1</span> están cerca de 0, la fracción vale casi 1 y el OR se parece a la RP. Si el desenlace es frecuente, la fracción crece y el OR <strong>se aleja de 1 más que la RP</strong>. La regresión logística estima un OR, así que en un estudio transversal con desenlace frecuente exagera la asociación si la lees como una razón de prevalencias.</p>
+<p>La RP se lee de forma directa: “la prevalencia en expuestos es <em>k</em> veces la de no expuestos”. El OR compara <strong>odds</strong> (chances: los que tienen el desenlace entre los que no lo tienen), una escala que casi nadie interpreta bien. Cuando el desenlace es raro, las dos cifras se parecen; cuando es frecuente, el OR se aleja de 1 mucho más que la RP:</p>
 <div class="cell" data-layout-align="center">
 <details class="code-fold">
 <summary>Código de la figura</summary>
@@ -384,7 +433,7 @@ window.Quarto = {
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="fu">aes</span>(<span class="at">yintercept =</span> rp, <span class="at">colour =</span> <span class="fu">factor</span>(rp)), <span class="at">linetype =</span> <span class="st">"dashed"</span>) <span class="sc">+</span></span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">linewidth =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="st">"Prevalencia en no expuestos (P0)"</span>,</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>                     <span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">label_percent</span>(<span class="at">decimal.mark =</span> <span class="st">","</span>, <span class="at">suffix =</span> <span class="st">"\u00a0%"</span>)) <span class="sc">+</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>                     <span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">label_percent</span>(<span class="at">decimal.mark =</span> <span class="st">","</span>, <span class="at">suffix =</span> <span class="st">"&nbsp;%"</span>)) <span class="sc">+</span></span>
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="st">"Odds ratio"</span>, <span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">label_number</span>(<span class="at">decimal.mark =</span> <span class="st">","</span>)) <span class="sc">+</span></span>
 <span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_manual</span>(<span class="st">"Razón de prevalencias"</span>, <span class="at">values =</span> <span class="fu">c</span>(<span class="st">"#4FC3C8"</span>, <span class="st">"#7FB2F0"</span>, <span class="st">"#E5636F"</span>)) <span class="sc">+</span></span>
 <span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">13</span>) <span class="sc">+</span></span>
@@ -394,7 +443,7 @@ window.Quarto = {
 <div id="fig-teoria" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-teoria-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="index_files/figure-html/fig-teoria-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672">
+<img src="inicial_files/figure-html/fig-teoria-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-teoria-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figura&nbsp;1: Para una misma razón de prevalencias, el OR crece a medida que el desenlace es más frecuente.
@@ -407,10 +456,10 @@ Figura&nbsp;1: Para una misma razón de prevalencias, el OR crece a medida que e
 </section>
 <section id="posología" class="level2">
 <h2 class="anchored" data-anchor-id="posología">Posología</h2>
-<p>El ejemplo usa la ENDES 2024 para responder: <strong>¿cuánto más frecuente es la obesidad abdominal en las mujeres que en los hombres?</strong> La ENDES es una encuesta con diseño muestral complejo, así que el análisis debe incluir los pesos, los conglomerados y los estratos.</p>
+<p>La pregunta del ejemplo: <strong>¿cuánto más frecuente es la obesidad abdominal en las mujeres que en los hombres?</strong></p>
 <section id="paso-1.-descarga-los-datos" class="level3">
 <h3 class="anchored" data-anchor-id="paso-1.-descarga-los-datos">Paso 1. Descarga los datos</h3>
-<p>En el portal de microdatos del INEI (<a href="https://proyectos.inei.gob.pe/microdatos/" class="uri">https://proyectos.inei.gob.pe/microdatos/</a>), elige <em>Consulta por encuestas</em>, luego ENDES y el año 2024, y descarga en formato CSV estos tres módulos:</p>
+<p>En el portal de microdatos del INEI (<a href="https://proyectos.inei.gob.pe/microdatos/" class="uri">https://proyectos.inei.gob.pe/microdatos/</a>), elige <em>Consulta por encuestas</em>, luego ENDES y el año 2024, y descarga en formato CSV estos dos módulos:</p>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 33%">
@@ -426,141 +475,151 @@ Figura&nbsp;1: Para una misma razón de prevalencias, el OR crece a medida que e
 </thead>
 <tbody>
 <tr class="odd">
-<td>1629</td>
-<td><code>RECH0_2024.csv</code></td>
-<td>Datos del hogar: conglomerado, estrato y área de residencia</td>
+<td>1640</td>
+<td><code>CSALUD01_2024.csv</code></td>
+<td>Cuestionario de salud de personas de 15 y más años (incluye el perímetro de cintura)</td>
 </tr>
 <tr class="even">
 <td>1632</td>
 <td><code>RE223132_2024.csv</code></td>
-<td>Cuestionario individual de mujeres: embarazo actual</td>
-</tr>
-<tr class="odd">
-<td>1640</td>
-<td><code>CSALUD01_2024.csv</code></td>
-<td>Cuestionario de salud de personas de 15 y más años</td>
+<td>Cuestionario individual de mujeres (incluye si está embarazada)</td>
 </tr>
 </tbody>
 </table>
-<p>Descomprime los tres archivos dentro de una carpeta <code>ENDES/2024/</code>, junto a tu archivo <code>.qmd</code>. Cada uno crea su propia subcarpeta; en la descarga de 2024 se llaman <code>968-Modulo1629</code>, <code>968-Modulo1632</code> y <code>968-Modulo1640</code>. Si tus datos están en otro lugar o las carpetas tienen otro nombre, cambia <code>ruta</code> en el siguiente bloque de código.</p>
+<p>Descomprime los dos archivos dentro de una carpeta <code>ENDES/2024/</code>, junto a tu archivo <code>.qmd</code>. Cada uno crea su propia subcarpeta; en la descarga de 2024 se llaman <code>968-Modulo1640</code> y <code>968-Modulo1632</code>. Si tus datos están en otro lugar o las carpetas tienen otro nombre, cambia <code>ruta</code> en el siguiente bloque de código.</p>
 </section>
-<section id="paso-2.-lee-y-une-los-módulos" class="level3">
-<h3 class="anchored" data-anchor-id="paso-2.-lee-y-une-los-módulos">Paso 2. Lee y une los módulos</h3>
+<section id="paso-2.-prepara-la-base" class="level3">
+<h3 class="anchored" data-anchor-id="paso-2.-prepara-la-base">Paso 2. Prepara la base</h3>
+<p>La obesidad abdominal se define con el perímetro de cintura y los puntos de corte del ATP III: más de 102 cm en hombres y más de 88 cm en mujeres. Hay que excluir a las gestantes, porque en ellas el perímetro abdominal no mide grasa; ese dato está en el cuestionario de mujeres, así que se unen los dos módulos.</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(data.table)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>ruta <span class="ot">&lt;-</span> <span class="st">"ENDES/2024"</span>   <span class="co"># carpeta con los módulos descomprimidos</span></span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">dir.exists</span>(ruta)) <span class="fu">stop</span>(<span class="st">"No encuentro la carpeta '"</span>, ruta, <span class="st">"'. Revisa el Paso 1 o cambia `ruta`."</span>)</span>
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>salud <span class="ot">&lt;-</span> <span class="fu">fread</span>(<span class="fu">file.path</span>(ruta, <span class="st">"968-Modulo1640/CSALUD01_2024.csv"</span>), <span class="at">encoding =</span> <span class="st">"UTF-8"</span>)</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>hogar <span class="ot">&lt;-</span> <span class="fu">fread</span>(<span class="fu">file.path</span>(ruta, <span class="st">"968-Modulo1629/RECH0_2024.csv"</span>), <span class="at">encoding =</span> <span class="st">"UTF-8"</span>,</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>               <span class="at">select =</span> <span class="fu">c</span>(<span class="st">"HHID"</span>, <span class="st">"HV001"</span>, <span class="st">"HV022"</span>, <span class="st">"HV025"</span>))</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. lee solo las columnas que se usan</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>salud <span class="ot">&lt;-</span> <span class="fu">fread</span>(<span class="fu">file.path</span>(ruta, <span class="st">"968-Modulo1640/CSALUD01_2024.csv"</span>), <span class="at">encoding =</span> <span class="st">"UTF-8"</span>,</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>               <span class="at">select =</span> <span class="fu">c</span>(<span class="st">"HHID"</span>, <span class="st">"QS20C"</span>, <span class="st">"QSSEXO"</span>, <span class="st">"QS23"</span>, <span class="st">"QS907"</span>, <span class="st">"QS908"</span>, <span class="st">"PESO15_AMAS"</span>))</span>
 <span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>mujer <span class="ot">&lt;-</span> <span class="fu">fread</span>(<span class="fu">file.path</span>(ruta, <span class="st">"968-Modulo1632/RE223132_2024.csv"</span>), <span class="at">encoding =</span> <span class="st">"UTF-8"</span>,</span>
 <span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>               <span class="at">select =</span> <span class="fu">c</span>(<span class="st">"CASEID"</span>, <span class="st">"V213"</span>))</span>
 <span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="co"># la llave del hogar trae espacios a la izquierda: hay que limpiarla</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. une los módulos: la mujer se identifica por su hogar (HHID) y su número de línea</span></span>
 <span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>salud[, HHID <span class="sc">:</span><span class="er">=</span> <span class="fu">trimws</span>(HHID)]</span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>hogar[, HHID <span class="sc">:</span><span class="er">=</span> <span class="fu">trimws</span>(HHID)]</span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="co"># CASEID = hogar + número de línea de la mujer</span></span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>mujer[, <span class="st">`</span><span class="at">:=</span><span class="st">`</span>(<span class="at">HHID  =</span> <span class="fu">trimws</span>(<span class="fu">substr</span>(CASEID, <span class="dv">1</span>, <span class="fu">nchar</span>(CASEID) <span class="sc">-</span> <span class="dv">3</span>)),</span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>             <span class="at">linea =</span> <span class="fu">as.integer</span>(<span class="fu">substr</span>(CASEID, <span class="fu">nchar</span>(CASEID) <span class="sc">-</span> <span class="dv">1</span>, <span class="fu">nchar</span>(CASEID))))]</span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">merge</span>(salud, hogar, <span class="at">by =</span> <span class="st">"HHID"</span>)</span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">merge</span>(d, mujer[, .(HHID, linea, V213)],</span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>           <span class="at">by.x =</span> <span class="fu">c</span>(<span class="st">"HHID"</span>, <span class="st">"QS20C"</span>), <span class="at">by.y =</span> <span class="fu">c</span>(<span class="st">"HHID"</span>, <span class="st">"linea"</span>), <span class="at">all.x =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(d)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>mujer[, <span class="st">`</span><span class="at">:=</span><span class="st">`</span>(<span class="at">HHID  =</span> <span class="fu">trimws</span>(<span class="fu">substr</span>(CASEID, <span class="dv">1</span>, <span class="fu">nchar</span>(CASEID) <span class="sc">-</span> <span class="dv">3</span>)),</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>             <span class="at">QS20C =</span> <span class="fu">as.integer</span>(<span class="fu">substr</span>(CASEID, <span class="fu">nchar</span>(CASEID) <span class="sc">-</span> <span class="dv">1</span>, <span class="fu">nchar</span>(CASEID))))]</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">merge</span>(salud, mujer[, .(HHID, QS20C, V213)], <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"HHID"</span>, <span class="st">"QS20C"</span>), <span class="at">all.x =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. crea las variables</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> d[<span class="sc">!</span><span class="fu">is.na</span>(PESO15_AMAS)]                                  <span class="co"># personas con entrevista de salud</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>d[, sexo <span class="sc">:</span><span class="er">=</span> <span class="fu">factor</span>(QSSEXO, <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>, <span class="fu">c</span>(<span class="st">"Hombre"</span>, <span class="st">"Mujer"</span>))]</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>d[, edad <span class="sc">:</span><span class="er">=</span> <span class="fu">cut</span>(QS23, <span class="fu">c</span>(<span class="dv">15</span>, <span class="dv">30</span>, <span class="dv">45</span>, <span class="dv">60</span>, <span class="cn">Inf</span>), <span class="at">right =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>                <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"15-29"</span>, <span class="st">"30-44"</span>, <span class="st">"45-59"</span>, <span class="st">"60+"</span>))]</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>d[, gestante <span class="sc">:</span><span class="er">=</span> <span class="sc">!</span><span class="fu">is.na</span>(V213) <span class="sc">&amp;</span> V213 <span class="sc">==</span> <span class="dv">1</span>]                    <span class="co"># V213 = 1: embarazada ahora</span></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>d[, cintura <span class="sc">:</span><span class="er">=</span> <span class="fu">fifelse</span>(QS908 <span class="sc">==</span> <span class="dv">1</span> <span class="sc">&amp;</span> QS907 <span class="sc">&gt;=</span> <span class="dv">55</span> <span class="sc">&amp;</span> QS907 <span class="sc">&lt;=</span> <span class="dv">170</span>, <span class="fu">as.numeric</span>(QS907), <span class="cn">NA_real_</span>)]</span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>d[gestante <span class="sc">==</span> <span class="cn">TRUE</span>, cintura <span class="sc">:</span><span class="er">=</span> <span class="cn">NA</span>]</span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>d[, obes_abd <span class="sc">:</span><span class="er">=</span> <span class="fu">as.integer</span>(<span class="fu">fifelse</span>(sexo <span class="sc">==</span> <span class="st">"Mujer"</span>, cintura <span class="sc">&gt;</span> <span class="dv">88</span>, cintura <span class="sc">&gt;</span> <span class="dv">102</span>))]</span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a><span class="co"># 4. quédate con quienes tienen la medición válida</span></span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>dc <span class="ot">&lt;-</span> d[<span class="sc">!</span><span class="fu">is.na</span>(obes_abd)]</span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(dc)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>#&gt; [1] 34018</code></pre>
+<pre><code>#&gt; [1] 30493</code></pre>
 </div>
 </div>
-<p><code>QS20C</code> es el número de línea de la persona que respondió el Cuestionario de Salud; con él se identifica a cada mujer en el cuestionario individual.</p>
+<p><code>QS908 = 1</code> indica que la cintura se midió; el rango de 55 a 170 cm descarta valores imposibles. Si quieres el detalle de cada variable, está en la <a href="../../prospecto/or-vs-rp/plena.html">dosis plena</a>.</p>
 </section>
-<section id="paso-3.-construye-las-variables" class="level3">
-<h3 class="anchored" data-anchor-id="paso-3.-construye-las-variables">Paso 3. Construye las variables</h3>
-<p>La obesidad abdominal se define con el perímetro de cintura y los puntos de corte del ATP III: más de 102 cm en hombres y más de 88 cm en mujeres. Se excluye a las gestantes, porque en ellas el perímetro abdominal no mide adiposidad.</p>
+<section id="paso-3.-arma-la-tabla-22" class="level3">
+<h3 class="anchored" data-anchor-id="paso-3.-arma-la-tabla-22">Paso 3. Arma la tabla 2×2</h3>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> d[<span class="sc">!</span><span class="fu">is.na</span>(PESO15_AMAS)]                     <span class="co"># personas con entrevista de salud</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>d[, peso  <span class="sc">:</span><span class="er">=</span> PESO15_AMAS <span class="sc">/</span> <span class="fl">1e6</span>]                 <span class="co"># el factor viene con 6 decimales implícitos</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>d[, mujer <span class="sc">:</span><span class="er">=</span> <span class="fu">factor</span>(QSSEXO, <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>, <span class="fu">c</span>(<span class="st">"Hombre"</span>, <span class="st">"Mujer"</span>))]</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>d[, area  <span class="sc">:</span><span class="er">=</span> <span class="fu">factor</span>(HV025, <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>, <span class="fu">c</span>(<span class="st">"Urbana"</span>, <span class="st">"Rural"</span>))]</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>d[, edad  <span class="sc">:</span><span class="er">=</span> <span class="fu">cut</span>(QS23, <span class="fu">c</span>(<span class="dv">15</span>, <span class="dv">30</span>, <span class="dv">45</span>, <span class="dv">60</span>, <span class="cn">Inf</span>), <span class="at">right =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>                 <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"15-29"</span>, <span class="st">"30-44"</span>, <span class="st">"45-59"</span>, <span class="st">"60+"</span>))]</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>d[, gestante <span class="sc">:</span><span class="er">=</span> <span class="sc">!</span><span class="fu">is.na</span>(V213) <span class="sc">&amp;</span> V213 <span class="sc">==</span> <span class="dv">1</span>]</span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="co"># perímetro abdominal válido: medido (QS908 = 1) y dentro del rango del diccionario</span></span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>d[, cintura <span class="sc">:</span><span class="er">=</span> <span class="fu">fifelse</span>(QS908 <span class="sc">==</span> <span class="dv">1</span> <span class="sc">&amp;</span> QS907 <span class="sc">&gt;=</span> <span class="dv">55</span> <span class="sc">&amp;</span> QS907 <span class="sc">&lt;=</span> <span class="dv">170</span>, <span class="fu">as.numeric</span>(QS907), <span class="cn">NA_real_</span>)]</span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>d[gestante <span class="sc">==</span> <span class="cn">TRUE</span>, cintura <span class="sc">:</span><span class="er">=</span> <span class="cn">NA</span>]</span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>d[, obes_abd <span class="sc">:</span><span class="er">=</span> <span class="fu">as.integer</span>(<span class="fu">fifelse</span>(mujer <span class="sc">==</span> <span class="st">"Mujer"</span>, cintura <span class="sc">&gt;</span> <span class="dv">88</span>, cintura <span class="sc">&gt;</span> <span class="dv">102</span>))]</span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>d[, .N, by <span class="ot">=</span> .(mujer, <span class="at">medida =</span> <span class="sc">!</span><span class="fu">is.na</span>(obes_abd))][<span class="fu">order</span>(mujer, medida)]</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>tab <span class="ot">&lt;-</span> <span class="fu">table</span>(<span class="at">Sexo =</span> <span class="fu">relevel</span>(dc<span class="sc">$</span>sexo, <span class="at">ref =</span> <span class="st">"Mujer"</span>),</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>             <span class="at">Obesidad =</span> <span class="fu">factor</span>(dc<span class="sc">$</span>obes_abd, <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">0</span>), <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Sí"</span>, <span class="st">"No"</span>)))</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>tab</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>#&gt;     mujer medida     N
-#&gt; 1: Hombre  FALSE   222
-#&gt; 2: Hombre   TRUE 12906
-#&gt; 3:  Mujer  FALSE   589
-#&gt; 4:  Mujer   TRUE 17587</code></pre>
+<pre><code>#&gt;         Obesidad
+#&gt; Sexo        Sí    No
+#&gt;   Mujer  10324  7263
+#&gt;   Hombre  2200 10706</code></pre>
 </div>
 </div>
+<p>El orden importa: los <strong>expuestos</strong> (mujeres) van en la primera fila y el desenlace <strong>presente</strong> en la primera columna. Así la tabla queda como la de la sección Composición. En el código, <code>c</code> y <code>d</code> se llaman <code>cc</code> y <code>dd</code> porque <code>c()</code> ya es una función de R y <code>d</code> es la base de datos.</p>
 </section>
-<section id="paso-4.-declara-el-diseño-muestral" class="level3">
-<h3 class="anchored" data-anchor-id="paso-4.-declara-el-diseño-muestral">Paso 4. Declara el diseño muestral</h3>
+<section id="paso-4.-calcula-la-rp-y-el-or-a-mano" class="level3">
+<h3 class="anchored" data-anchor-id="paso-4.-calcula-la-rp-y-el-or-a-mano">Paso 4. Calcula la RP y el OR a mano</h3>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(survey)</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">survey.lonely.psu =</span> <span class="st">"adjust"</span>)</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>diseno <span class="ot">&lt;-</span> <span class="fu">svydesign</span>(<span class="at">ids =</span> <span class="sc">~</span>HV001, <span class="at">strata =</span> <span class="sc">~</span>HV022, <span class="at">weights =</span> <span class="sc">~</span>peso,</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>                    <span class="at">data =</span> d, <span class="at">nest =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>dis_cint <span class="ot">&lt;-</span> <span class="fu">subset</span>(diseno, <span class="sc">!</span><span class="fu">is.na</span>(obes_abd))</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p><code>HV001</code> es el conglomerado, <code>HV022</code> el estrato y <code>peso</code> el factor de expansión del Cuestionario de Salud. Usar <code>subset()</code> sobre el diseño, y no filtrar la base antes, mantiene la información de todos los conglomerados para calcular bien los errores estándar.</p>
-</section>
-<section id="paso-5.-estima-las-prevalencias" class="level3">
-<h3 class="anchored" data-anchor-id="paso-5.-estima-las-prevalencias">Paso 5. Estima las prevalencias</h3>
-<div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>prev <span class="ot">&lt;-</span> <span class="fu">svyby</span>(<span class="sc">~</span>obes_abd, <span class="sc">~</span>mujer, dis_cint, svymean)</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>prev</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>a  <span class="ot">&lt;-</span> tab[<span class="st">"Mujer"</span>, <span class="st">"Sí"</span>];  b  <span class="ot">&lt;-</span> tab[<span class="st">"Mujer"</span>, <span class="st">"No"</span>]    <span class="co"># expuestas</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>cc <span class="ot">&lt;-</span> tab[<span class="st">"Hombre"</span>, <span class="st">"Sí"</span>]; dd <span class="ot">&lt;-</span> tab[<span class="st">"Hombre"</span>, <span class="st">"No"</span>]   <span class="co"># no expuestos</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> a <span class="sc">/</span> (a <span class="sc">+</span> b)     <span class="co"># prevalencia en mujeres</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>p0 <span class="ot">&lt;-</span> cc <span class="sc">/</span> (cc <span class="sc">+</span> dd)  <span class="co"># prevalencia en hombres</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="at">P1 =</span> p1, <span class="at">P0 =</span> p0, <span class="at">RP =</span> p1 <span class="sc">/</span> p0, <span class="at">OR =</span> (a <span class="sc">*</span> dd) <span class="sc">/</span> (b <span class="sc">*</span> cc))</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>#&gt;         mujer  obes_abd          se
-#&gt; Hombre Hombre 0,2032899 0,006169432
-#&gt; Mujer   Mujer 0,6195500 0,006145801</code></pre>
+<pre><code>#&gt;        P1        P0        RP        OR 
+#&gt; 0,5870245 0,1704634 3,4436992 6,9172984</code></pre>
 </div>
 </div>
-<p>La prevalencia de obesidad abdominal es 62,0&nbsp;% en mujeres y 20,3&nbsp;% en hombres (n = 30&nbsp;493).</p>
 </section>
-<section id="paso-6.-estima-la-razón-de-prevalencias" class="level3">
-<h3 class="anchored" data-anchor-id="paso-6.-estima-la-razón-de-prevalencias">Paso 6. Estima la razón de prevalencias</h3>
-<p>La RP se obtiene con un modelo lineal generalizado de familia Poisson y enlace logarítmico. En una encuesta compleja, <code>svyglm()</code> calcula errores estándar basados en el diseño, que además son robustos; por eso el modelo de Poisson no subestima la varianza aunque el desenlace sea binario. La familia <code>quasipoisson</code> evita el aviso por valores no enteros.</p>
+<section id="paso-5.-obtén-los-intervalos-de-confianza-con-epir" class="level3">
+<h3 class="anchored" data-anchor-id="paso-5.-obtén-los-intervalos-de-confianza-con-epir">Paso 5. Obtén los intervalos de confianza con <code>epiR</code></h3>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>m_rp <span class="ot">&lt;-</span> <span class="fu">svyglm</span>(obes_abd <span class="sc">~</span> mujer, <span class="at">design =</span> dis_cint, <span class="at">family =</span> <span class="fu">quasipoisson</span>(<span class="at">link =</span> <span class="st">"log"</span>))</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>rp <span class="ot">&lt;-</span> <span class="fu">exp</span>(<span class="fu">cbind</span>(<span class="at">RP =</span> <span class="fu">coef</span>(m_rp), <span class="fu">confint</span>(m_rp)))[<span class="st">"mujerMujer"</span>, ]</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>rp</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(epiR)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">epi.2by2</span>(tab, <span class="at">method =</span> <span class="st">"cross.sectional"</span>)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>res</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt;           Outcome+ Outcome- Total               Prev risk *
+#&gt; Exposure+    10324     7263 17587    58,70 (57,97 to 59,43)
+#&gt; Exposure-     2200    10706 12906    17,05 (16,40 to 17,71)
+#&gt; Total        12524    17969 30493    41,07 (40,52 to 41,63)
+#&gt; 
+#&gt; Point estimates and 95% CIs:
+#&gt; -------------------------------------------------------------------
+#&gt; Prev risk ratio                                3.44 (3.31, 3.58)
+#&gt; Prev odds ratio                                6.92 (6.55, 7.31)
+#&gt; Attrib prev in the exposed *                   41.66 (40.68, 42.63)
+#&gt; Attrib fraction in the exposed (%)            70.96 (69.78, 72.10)
+#&gt; Attrib prev in the population *                24.03 (23.17, 24.88)
+#&gt; Attrib fraction in the population (%)         58.50 (57.46, 59.52)
+#&gt; E-value                                        6.34 (6.07, NA)
+#&gt; -------------------------------------------------------------------
+#&gt; Uncorrected chi2 test that OR = 1: chi2(1) = 5336.717 Pr&gt;chi2 = &lt;0.001
+#&gt; Fisher exact test that OR = 1: Pr&gt;chi2 = &lt;0.001
+#&gt; Wald confidence limits
+#&gt; CI: confidence interval
+#&gt; * Outcomes per 100 population units</code></pre>
+</div>
+</div>
+<p>Con <code>method = "cross.sectional"</code>, <code>epiR</code> llama a la RP <em>Prev risk ratio</em> y al OR <em>Prev odds ratio</em>. Las otras filas (fracción atribuible, valor E) no se necesitan para esta pregunta.</p>
+</section>
+<section id="paso-6.-haz-lo-mismo-con-un-modelo" class="level3">
+<h3 class="anchored" data-anchor-id="paso-6.-haz-lo-mismo-con-un-modelo">Paso 6. Haz lo mismo con un modelo</h3>
+<p>La tabla 2×2 no permite ajustar por otras variables; un modelo sí. Para la RP se usa una <strong>regresión de Poisson con varianza robusta</strong>. El modelo de Poisson por sí solo da intervalos demasiado anchos con un desenlace binario; la varianza robusta lo corrige.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sandwich)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lmtest)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>m_rp <span class="ot">&lt;-</span> <span class="fu">glm</span>(obes_abd <span class="sc">~</span> sexo, <span class="at">data =</span> dc, <span class="at">family =</span> <span class="fu">poisson</span>(<span class="at">link =</span> <span class="st">"log"</span>))</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>ic_rp <span class="ot">&lt;-</span> <span class="fu">coefci</span>(m_rp, <span class="at">vcov. =</span> <span class="fu">vcovHC</span>(m_rp, <span class="at">type =</span> <span class="st">"HC0"</span>))</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="fu">exp</span>(<span class="fu">cbind</span>(<span class="at">RP =</span> <span class="fu">coef</span>(m_rp), ic_rp))[<span class="st">"sexoMujer"</span>, ]</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>#&gt;       RP    2,5 %   97,5 % 
-#&gt; 3,047618 2,863159 3,243960</code></pre>
+#&gt; 3,443699 3,308582 3,584335</code></pre>
 </div>
 </div>
-</section>
-<section id="paso-7.-compáralo-con-el-odds-ratio" class="level3">
-<h3 class="anchored" data-anchor-id="paso-7.-compáralo-con-el-odds-ratio">Paso 7. Compáralo con el odds ratio</h3>
+<p>La RP del modelo es la misma de la tabla. Ahora ajusta por edad, que podría confundir la asociación:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>m_or <span class="ot">&lt;-</span> <span class="fu">svyglm</span>(obes_abd <span class="sc">~</span> mujer, <span class="at">design =</span> dis_cint, <span class="at">family =</span> <span class="fu">quasibinomial</span>())</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>or <span class="ot">&lt;-</span> <span class="fu">exp</span>(<span class="fu">cbind</span>(<span class="at">OR =</span> <span class="fu">coef</span>(m_or), <span class="fu">confint</span>(m_or)))[<span class="st">"mujerMujer"</span>, ]</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>or</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>m_rp_aj <span class="ot">&lt;-</span> <span class="fu">glm</span>(obes_abd <span class="sc">~</span> sexo <span class="sc">+</span> edad, <span class="at">data =</span> dc, <span class="at">family =</span> <span class="fu">poisson</span>(<span class="at">link =</span> <span class="st">"log"</span>))</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>ic_aj <span class="ot">&lt;-</span> <span class="fu">coefci</span>(m_rp_aj, <span class="at">vcov. =</span> <span class="fu">vcovHC</span>(m_rp_aj, <span class="at">type =</span> <span class="st">"HC0"</span>))</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>rp_aj <span class="ot">&lt;-</span> <span class="fu">exp</span>(<span class="fu">cbind</span>(<span class="at">RP =</span> <span class="fu">coef</span>(m_rp_aj), ic_aj))[<span class="st">"sexoMujer"</span>, ]</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>rp_aj</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt;       RP    2,5 %   97,5 % 
+#&gt; 3,532350 3,396382 3,673762</code></pre>
+</div>
+</div>
+<p>Si en cambio usaras la regresión logística, obtendrías el OR:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>m_or <span class="ot">&lt;-</span> <span class="fu">glm</span>(obes_abd <span class="sc">~</span> sexo, <span class="at">data =</span> dc, <span class="at">family =</span> binomial)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">exp</span>(<span class="fu">cbind</span>(<span class="at">OR =</span> <span class="fu">coef</span>(m_or), <span class="fu">confint.default</span>(m_or)))[<span class="st">"sexoMujer"</span>, ]</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>#&gt;       OR    2,5 %   97,5 % 
-#&gt; 6,382095 5,832066 6,983997</code></pre>
-</div>
-</div>
-<p>Comprueba a mano que la RP es el cociente de las prevalencias del paso 5:</p>
-<div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>p_m <span class="sc">/</span> p_h</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>#&gt; [1] 3,047618</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>(p_m <span class="sc">/</span> (<span class="dv">1</span> <span class="sc">-</span> p_m)) <span class="sc">/</span> (p_h <span class="sc">/</span> (<span class="dv">1</span> <span class="sc">-</span> p_h))</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>#&gt; [1] 6,382095</code></pre>
+#&gt; 6,917298 6,548257 7,307138</code></pre>
 </div>
 </div>
 </section>
@@ -568,6 +627,10 @@ Figura&nbsp;1: Para una misma razón de prevalencias, el OR crece a medida que e
 <section id="resultado" class="level2">
 <h2 class="anchored" data-anchor-id="resultado">Resultado</h2>
 <table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
 <thead>
 <tr class="header">
 <th>Medida</th>
@@ -577,131 +640,75 @@ Figura&nbsp;1: Para una misma razón de prevalencias, el OR crece a medida que e
 <tbody>
 <tr class="odd">
 <td>Prevalencia en mujeres</td>
-<td>62,0&nbsp;%</td>
+<td>58,7&nbsp;%</td>
 </tr>
 <tr class="even">
 <td>Prevalencia en hombres</td>
-<td>20,3&nbsp;%</td>
+<td>17,0&nbsp;%</td>
 </tr>
 <tr class="odd">
 <td><strong>Razón de prevalencias</strong></td>
-<td><strong>3,05 (IC 95&nbsp;%: 2,86 a 3,24)</strong></td>
+<td><strong>3,44 (IC 95&nbsp;%: 3,31 a 3,58)</strong></td>
 </tr>
 <tr class="even">
+<td>Razón de prevalencias ajustada por edad</td>
+<td>3,53 (IC 95&nbsp;%: 3,40 a 3,67)</td>
+</tr>
+<tr class="odd">
 <td>Odds ratio</td>
-<td>6,38 (IC 95&nbsp;%: 5,83 a 6,98)</td>
+<td>6,92 (IC 95&nbsp;%: 6,55 a 7,31)</td>
 </tr>
 </tbody>
 </table>
-<p>Los dos modelos usan los mismos datos, pero cuentan historias distintas. La RP dice que la obesidad abdominal es 3,05 veces más frecuente en mujeres que en hombres. El OR, 6,38, es un cociente de odds y aquí es 2,1 veces la RP: si se lee como “6 veces más frecuente”, la asociación queda más que duplicada.</p>
-</section>
-<section id="interacciones" class="level2">
-<h2 class="anchored" data-anchor-id="interacciones">Interacciones</h2>
-<p><strong>Con variables de confusión.</strong> El ajuste se hace igual, agregando covariables al modelo. Aquí, edad y área de residencia:</p>
-<div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>m_rp_aj <span class="ot">&lt;-</span> <span class="fu">svyglm</span>(obes_abd <span class="sc">~</span> mujer <span class="sc">+</span> edad <span class="sc">+</span> area, <span class="at">design =</span> dis_cint,</span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>                  <span class="at">family =</span> <span class="fu">quasipoisson</span>(<span class="at">link =</span> <span class="st">"log"</span>))</span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>m_or_aj <span class="ot">&lt;-</span> <span class="fu">svyglm</span>(obes_abd <span class="sc">~</span> mujer <span class="sc">+</span> edad <span class="sc">+</span> area, <span class="at">design =</span> dis_cint,</span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>                  <span class="at">family =</span> <span class="fu">quasibinomial</span>())</span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>ajustados <span class="ot">&lt;-</span> <span class="fu">rbind</span>(</span>
-<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">RP =</span> <span class="fu">exp</span>(<span class="fu">c</span>(<span class="fu">coef</span>(m_rp_aj)[<span class="st">"mujerMujer"</span>], <span class="fu">confint</span>(m_rp_aj)[<span class="st">"mujerMujer"</span>, ])),</span>
-<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">OR =</span> <span class="fu">exp</span>(<span class="fu">c</span>(<span class="fu">coef</span>(m_or_aj)[<span class="st">"mujerMujer"</span>], <span class="fu">confint</span>(m_or_aj)[<span class="st">"mujerMujer"</span>, ]))</span>
-<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(ajustados) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Estimación"</span>, <span class="st">"IC 2,5 %"</span>, <span class="st">"IC 97,5 %"</span>)</span>
-<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(ajustados, <span class="dv">2</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>#&gt;    Estimación IC 2,5 % IC 97,5 %
-#&gt; RP       2,98     2,81      3,17
-#&gt; OR       7,61     6,91      8,38</code></pre>
-</div>
-</div>
-<p>La brecha no desaparece con el ajuste (RP ajustada 2,98; OR ajustado 7,61): depende de que el desenlace sea frecuente, no de la confusión.</p>
-<p><strong>Con el diseño muestral.</strong> Los pesos cambian la estimación puntual; los conglomerados y estratos, su precisión:</p>
-<div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>dc <span class="ot">&lt;-</span> d[<span class="sc">!</span><span class="fu">is.na</span>(obes_abd)]</span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. sin pesos: prevalencias de la muestra, no de la población</span></span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>sin_pesos <span class="ot">&lt;-</span> dc[, .(<span class="at">prevalencia =</span> <span class="fu">mean</span>(obes_abd)), by <span class="ot">=</span> mujer]</span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>sin_pesos</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>#&gt;     mujer prevalencia
-#&gt; 1:  Mujer   0,5870245
-#&gt; 2: Hombre   0,1704634</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. con pesos pero sin conglomerados ni estratos: el error estándar cambia</span></span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>dis_ingenuo <span class="ot">&lt;-</span> <span class="fu">svydesign</span>(<span class="at">ids =</span> <span class="sc">~</span><span class="dv">1</span>, <span class="at">weights =</span> <span class="sc">~</span>peso, <span class="at">data =</span> dc)</span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>m_ingenuo <span class="ot">&lt;-</span> <span class="fu">svyglm</span>(obes_abd <span class="sc">~</span> mujer, <span class="at">design =</span> dis_ingenuo, <span class="at">family =</span> <span class="fu">quasipoisson</span>(<span class="at">link =</span> <span class="st">"log"</span>))</span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="at">diseno_completo =</span> <span class="fu">SE</span>(m_rp)[[<span class="st">"mujerMujer"</span>]], <span class="at">solo_pesos =</span> <span class="fu">SE</span>(m_ingenuo)[[<span class="st">"mujerMujer"</span>]])</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>#&gt; diseno_completo      solo_pesos 
-#&gt;      0,03184214      0,03125443</code></pre>
-</div>
-</div>
-<p>Sin pesos, las prevalencias bajan a 58,7&nbsp;% en mujeres y 17,0&nbsp;% en hombres, porque la muestra no reproduce la composición de la población. En este desenlace, ignorar los conglomerados y estratos cambia poco el error estándar (0,0318 frente a 0,0313). En desenlaces más agrupados geográficamente la diferencia puede ser mucho mayor, y no se sabe de antemano: por eso se declara siempre el diseño completo.</p>
+<p>La RP dice que, en la muestra, la obesidad abdominal es 3,44 veces más frecuente en mujeres que en hombres. El OR, 6,92, es 2,0 veces la RP: si se leyera como “7 veces más frecuente”, la asociación quedaría más que duplicada.</p>
 </section>
 <section id="contraindicaciones-y-reacciones-adversas" class="level2">
 <h2 class="anchored" data-anchor-id="contraindicaciones-y-reacciones-adversas">Contraindicaciones y reacciones adversas</h2>
 <ul>
-<li><strong>Leer el OR como una razón de prevalencias.</strong> Es el error más frecuente. Un OR de 6,38 no significa “6 veces más frecuente”.</li>
-<li><strong>Usar la regresión logística por costumbre.</strong> En un estudio transversal con desenlace frecuente, el modelo de Poisson con errores robustos (o con diseño, en encuestas) estima la RP directamente.</li>
-<li><strong>Usar <code>glm(family = poisson)</code> sin errores robustos en datos que no son de encuesta.</strong> Los intervalos salen demasiado anchos. Calcula errores robustos, por ejemplo con <code>sandwich::vcovHC()</code> y <code>lmtest::coeftest()</code>.</li>
-<li><strong>Modelo log-binomial que no converge.</strong> <code>glm(family = binomial(link = "log"))</code> también estima la RP, pero a menudo falla cuando hay covariables continuas o prevalencias altas. El modelo de Poisson es la alternativa habitual.</li>
-<li><strong>Ignorar el diseño de la ENDES.</strong> Sin pesos, las prevalencias describen la muestra y no la población; sin conglomerados ni estratos, los intervalos de confianza son incorrectos.</li>
-<li><strong>Filtrar la base antes de declarar el diseño.</strong> Usa <code>subset()</code> sobre el objeto <code>svydesign</code>.</li>
+<li><strong>Leer el OR como una razón de prevalencias.</strong> Es el error más frecuente. Un OR de 6,92 no significa “7 veces más frecuente”.</li>
+<li><strong>Usar la regresión logística por costumbre.</strong> En un estudio transversal con desenlace frecuente, usa la regresión de Poisson con varianza robusta.</li>
+<li><strong>Olvidar la varianza robusta.</strong> Sin <code>vcovHC()</code>, el modelo de Poisson da la misma RP pero con intervalos demasiado anchos.</li>
 <li><strong>Desenlace raro.</strong> Si la prevalencia es baja (menos de 10&nbsp;%), el OR y la RP casi coinciden y la logística es aceptable.</li>
 </ul>
-<div class="callout callout-style-default callout-warning callout-titled">
+</section>
+<section id="cómo-reportarlo" class="level2">
+<h2 class="anchored" data-anchor-id="cómo-reportarlo">Cómo reportarlo</h2>
+<blockquote class="blockquote">
+<p>En la muestra de la ENDES 2024 (n = 30&nbsp;493 personas de 15 y más años), la prevalencia de obesidad abdominal fue 58,7&nbsp;% en mujeres y 17,0&nbsp;% en hombres; la razón de prevalencias fue 3,44 (IC 95&nbsp;%: 3,31 a 3,58), estimada con regresión de Poisson con varianza robusta.</p>
+</blockquote>
+<p>Si tus datos vienen de un hospital o de una muestra simple, este análisis es el completo. Si vienen de una encuesta con diseño complejo, como la ENDES, sigue leyendo.</p>
+</section>
+<section id="siguiente-dosis" class="level2">
+<h2 class="anchored" data-anchor-id="siguiente-dosis">Siguiente dosis</h2>
+<div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Precaución propia de la ENDES
+Lo que esta dosis dejó fuera
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>En el módulo de salud (<code>CSALUD01</code>), el peso y la talla de casi todas las mujeres de 15 a 49 años figuran como “evaluada en el cuestionario del hogar” (<code>QS902 = 4</code>): sus medidas están en otro módulo. Si calculas el índice de masa corporal solo con <code>CSALUD01</code>, comparas a casi todos los hombres con las mujeres que no están en edad fértil. Revisa siempre los códigos de resultado de cada medición antes de analizar.</p>
+<p>Las cifras de arriba describen a las personas <strong>entrevistadas</strong>, no a la población peruana. La ENDES es una muestra aleatoria, pero no simple: algunas zonas tienen en la muestra más peso del que tienen en la población, y los hogares se eligen agrupados en conglomerados. Para hablar de la población hay que usar su <strong>diseño muestral</strong> (pesos, conglomerados y estratos). Con él, la prevalencia es 62,0&nbsp;% en mujeres y 20,3&nbsp;% en hombres, y la RP es 3,05, no 3,44.</p>
+<p>La <a href="../../prospecto/or-vs-rp/plena.html">dosis plena</a> desarrolla todo eso:</p>
+<ul>
+<li>Cómo declarar el diseño muestral de la ENDES con el paquete <code>survey</code> y por qué cambia las cifras.</li>
+<li>Ajuste por confusión dentro del diseño (edad y área de residencia).</li>
+<li>Cómo obtener una RP desde una regresión logística (estandarización marginal).</li>
+<li>Por qué el modelo log-binomial suele fallar con desenlaces frecuentes.</li>
+<li>Una trampa de los datos de antropometría de la ENDES.</li>
+<li>Cómo comprobar el flujo reproduciendo una cifra oficial del INEI.</li>
+</ul>
 </div>
 </div>
-</section>
-<section id="cómo-reportarlo" class="level2">
-<h2 class="anchored" data-anchor-id="cómo-reportarlo">Cómo reportarlo</h2>
-<blockquote class="blockquote">
-<p>En la población peruana de 15 y más años (ENDES 2024), la prevalencia de obesidad abdominal fue 62,0&nbsp;% en mujeres y 20,3&nbsp;% en hombres; la razón de prevalencias fue 3,05 (IC 95&nbsp;%: 2,86 a 3,24). Las estimaciones consideraron el diseño muestral complejo de la encuesta.</p>
-</blockquote>
-<p>En métodos, indica el modelo (“regresión de Poisson con enlace logarítmico y varianza basada en el diseño muestral”) y la definición de cada variable.</p>
-</section>
-<section id="control-de-calidad" class="level2">
-<h2 class="anchored" data-anchor-id="control-de-calidad">Control de calidad</h2>
-<p>Antes de confiar en un flujo de análisis con la ENDES, conviene reproducir una cifra oficial. El INEI reporta que en 2024 el 14,2&nbsp;% de las personas de 15 y más años tenía presión arterial alta según medición, excluyendo a las gestantes (<em>Perú: Enfermedades No Transmisibles y Transmisibles, 2024</em>, cuadro 1.1).</p>
-<div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>d[, pas <span class="sc">:</span><span class="er">=</span> (QS903S <span class="sc">+</span> QS905S) <span class="sc">/</span> <span class="dv">2</span>][, pad <span class="sc">:</span><span class="er">=</span> (QS903D <span class="sc">+</span> QS905D) <span class="sc">/</span> <span class="dv">2</span>]</span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>d[QS906 <span class="sc">!=</span> <span class="dv">1</span> <span class="sc">|</span> <span class="fu">is.na</span>(QS906) <span class="sc">|</span> QS903S <span class="sc">&gt;=</span> <span class="dv">999</span> <span class="sc">|</span> QS905S <span class="sc">&gt;=</span> <span class="dv">999</span> <span class="sc">|</span></span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>    QS903D <span class="sc">&gt;=</span> <span class="dv">999</span> <span class="sc">|</span> QS905D <span class="sc">&gt;=</span> <span class="dv">999</span>, <span class="fu">c</span>(<span class="st">"pas"</span>, <span class="st">"pad"</span>) <span class="sc">:</span><span class="er">=</span> <span class="cn">NA</span>]</span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>d[, pa_alta <span class="sc">:</span><span class="er">=</span> <span class="fu">as.integer</span>(pas <span class="sc">&gt;=</span> <span class="dv">140</span> <span class="sc">|</span> pad <span class="sc">&gt;=</span> <span class="dv">90</span>)]</span>
-<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>diseno <span class="ot">&lt;-</span> <span class="fu">svydesign</span>(<span class="at">ids =</span> <span class="sc">~</span>HV001, <span class="at">strata =</span> <span class="sc">~</span>HV022, <span class="at">weights =</span> <span class="sc">~</span>peso, <span class="at">data =</span> d, <span class="at">nest =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>dis_pa <span class="ot">&lt;-</span> <span class="fu">subset</span>(diseno, <span class="sc">!</span><span class="fu">is.na</span>(pa_alta) <span class="sc">&amp;</span> <span class="sc">!</span>gestante)</span>
-<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a><span class="fu">svymean</span>(<span class="sc">~</span>pa_alta, dis_pa)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>#&gt;            mean     SE
-#&gt; pa_alta 0,14154 0,0036</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">svyby</span>(<span class="sc">~</span>pa_alta, <span class="sc">~</span>mujer, dis_pa, svymean)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>#&gt;         mujer   pa_alta          se
-#&gt; Hombre Hombre 0,1832841 0,005835153
-#&gt; Mujer   Mujer 0,1024955 0,004073737</code></pre>
-</div>
-</div>
-<p>El INEI publica 14,2&nbsp;% en total, 18,3&nbsp;% en hombres y 10,3&nbsp;% en mujeres. Nuestro flujo obtiene 14,2&nbsp;%, 18,3&nbsp;% y 10,2&nbsp;%. El total y los hombres coinciden; en mujeres hay una décima de diferencia. El cuadro oficial reporta 17 787 mujeres con medición y nuestra base tiene 17&nbsp;799, así que el INEI aplica algún criterio de exclusión adicional que no pudimos identificar en el informe.</p>
 </section>
 <section id="referencias" class="level2">
 <h2 class="anchored" data-anchor-id="referencias">Referencias</h2>
 <ol type="1">
 <li>Zou G. A modified Poisson regression approach to prospective studies with binary data. <em>Am J Epidemiol</em>. 2004;159(7):702-6.</li>
 <li>Barros AJD, Hirakata VN. Alternatives for logistic regression in cross-sectional studies: an empirical comparison of models that directly estimate the prevalence ratio. <em>BMC Med Res Methodol</em>. 2003;3:21.</li>
-<li>Lumley T. Analysis of complex survey samples. <em>J Stat Softw</em>. 2004;9(8):1-19.</li>
 <li>Expert Panel on Detection, Evaluation, and Treatment of High Blood Cholesterol in Adults. Executive summary of the third report of the National Cholesterol Education Program (NCEP) Adult Treatment Panel III. <em>JAMA</em>. 2001;285(19):2486-97.</li>
-<li>Instituto Nacional de Estadística e Informática. <em>Perú: Enfermedades No Transmisibles y Transmisibles, 2024</em>. Lima: INEI; 2025.</li>
 </ol>
 </section>
 <section id="reproducibilidad" class="level2">
@@ -712,7 +719,9 @@ Precaución propia de la ENDES
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>#&gt; data.table 1.14.10 
-#&gt; survey 4.2.1 
+#&gt; epiR 2.0.99 
+#&gt; sandwich 3.1.0 
+#&gt; lmtest 0.9.40 
 #&gt; ggplot2 3.4.4</code></pre>
 </div>
 </div>
