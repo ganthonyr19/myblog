@@ -23,3 +23,5 @@ Cada tema viene en **dos dosis**:
 - **Dosis plena**: todo, incluido lo complejo (diseño muestral, alternativas de modelo, trampas de los datos). Para quien ya analiza datos.
 
 Al inicio de cada entrega hay tres preguntas para saber qué dosis te toca. Puedes filtrar por nivel con las categorías *Dosis inicial* y *Dosis plena*.
+
+¿Un término no te queda claro? Está en el [diccionario de Prospecto R](diccionario.qmd), con sus fuentes.

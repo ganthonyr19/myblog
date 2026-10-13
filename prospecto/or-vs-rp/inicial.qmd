@@ -22,7 +22,15 @@ execute:
 #| label: configuracion
 #| include: false
 options(OutDec = ",")
-knitr::opts_chunk$set(comment = "#>", fig.align = "center")
+knitr::opts_chunk$set(comment = "#>", fig.align = "center", results = "hold")
+# cada resultado de R va en un bloque plegable «Mira el resultado»
+knitr::knit_hooks$set(output = local({
+  salida <- knitr::knit_hooks$get("output")
+  function(x, options) paste0(
+    '\n\n```{=html}\n<details class="salida" open><summary>Mira el resultado</summary>\n```\n\n',
+    salida(x, options),
+    '\n\n```{=html}\n</details>\n```\n\n')
+}))
 # formato de números para el texto: siempre con coma decimal
 fmt <- function(x, d = 2) formatC(x, format = "f", digits = d, decimal.mark = ",", big.mark = " ")
 pct <- function(x, d = 1) paste0(fmt(100 * x, d), " %")  # espacio que no se separa
@@ -60,18 +68,18 @@ Si respondiste «sí» a las tres, sigue con la [dosis plena](plena.qmd). Si alg
 
 ## Indicación
 
-Estás analizando un estudio **transversal** con un desenlace **binario** (sí/no) y quieres cuantificar su asociación con una exposición. Si el desenlace es frecuente (como regla práctica, más del 10&nbsp;%), la medida que responde directamente a tu pregunta es la **razón de prevalencias (RP)**, no el odds ratio (OR).
+Estás analizando un [estudio transversal](../diccionario.qmd#estudio-transversal){.dic} con un desenlace **binario** (sí/no) y quieres cuantificar su asociación con una exposición. Si el desenlace es frecuente (como regla práctica, más del 10&nbsp;%), la medida que responde directamente a tu pregunta es la **[razón de prevalencias](../diccionario.qmd#razon-de-prevalencias){.dic} (RP)**, no el [odds ratio](../diccionario.qmd#odds-ratio){.dic} (OR).
 
 ## Composición
 
-Todo parte de una tabla 2×2:
+Todo parte de una [tabla 2×2](../diccionario.qmd#tabla-2x2){.dic}:
 
 | | Con desenlace | Sin desenlace |
 |---|---|---|
 | **Expuestos** | $a$ | $b$ |
 | **No expuestos** | $c$ | $d$ |
 
-La prevalencia en expuestos es $P_1 = a/(a+b)$ y en no expuestos, $P_0 = c/(c+d)$. Con ellas:
+La [prevalencia](../diccionario.qmd#prevalencia){.dic} en expuestos es $P_1 = a/(a+b)$ y en no expuestos, $P_0 = c/(c+d)$. Con ellas:
 
 $$
 \text{RP} = \frac{P_1}{P_0}
@@ -79,7 +87,7 @@ $$
 \text{OR} = \frac{a\,d}{b\,c}
 $$
 
-La RP se lee de forma directa: "la prevalencia en expuestos es *k* veces la de no expuestos". El OR compara **odds** (chances: los que tienen el desenlace entre los que no lo tienen), una escala que casi nadie interpreta bien. Cuando el desenlace es raro, las dos cifras se parecen; cuando es frecuente, el OR se aleja de 1 mucho más que la RP:
+La RP se lee de forma directa: "la prevalencia en expuestos es *k* veces la de no expuestos". El OR compara **[odds](../diccionario.qmd#odds){.dic}** (chances: los que tienen el desenlace entre los que no lo tienen), una escala que casi nadie interpreta bien. Cuando el desenlace es raro, las dos cifras se parecen; cuando es frecuente, el OR se aleja de 1 mucho más que la RP:
 
 ```{r}
 #| label: fig-teoria
@@ -107,7 +115,7 @@ Las líneas punteadas marcan la RP real. Con una RP de 3 y una prevalencia de 20
 
 ## Posología
 
-La pregunta del ejemplo: **¿cuánto más frecuente es la obesidad abdominal en las mujeres que en los hombres?**
+La pregunta del ejemplo, con datos de la [ENDES](../diccionario.qmd#endes){.dic} 2024: **¿cuánto más frecuente es la [obesidad abdominal](../diccionario.qmd#obesidad-abdominal){.dic} en las mujeres que en los hombres?**
 
 ### Paso 1. Descarga los datos
 
@@ -158,6 +166,10 @@ dc <- d[!is.na(obes_abd)]
 nrow(dc)
 ```
 
+::: {.leer}
+Es el número de personas que entran al análisis: `r fmt(nrow(dc), 0)`. De las `r fmt(nrow(d), 0)` con entrevista de salud, quedan fuera quienes no tienen una medición válida de la cintura y las `r fmt(sum(d$gestante), 0)` gestantes. Anota siempre esta cifra: es la *n* que reportarás.
+:::
+
 `QS908 = 1` indica que la cintura se midió; el rango de 55 a 170 cm descarta valores imposibles. Si quieres el detalle de cada variable, está en la [dosis plena](plena.qmd).
 
 ### Paso 3. Arma la tabla 2×2
@@ -168,6 +180,12 @@ tab <- table(Sexo = relevel(dc$sexo, ref = "Mujer"),
              Obesidad = factor(dc$obes_abd, levels = c(1, 0), labels = c("Sí", "No")))
 tab
 ```
+
+::: {.leer}
+- **Filas:** mujeres arriba (expuestas) y hombres abajo (no expuestos).
+- **Columnas:** primero quienes tienen obesidad abdominal (`Sí`) y luego quienes no (`No`).
+- Así, `r fmt(tab["Mujer", "Sí"], 0)` es la celda *a* (mujeres con obesidad abdominal) y `r fmt(tab["Hombre", "No"], 0)` es la *d* (hombres sin ella).
+:::
 
 El orden importa: los **expuestos** (mujeres) van en la primera fila y el desenlace **presente** en la primera columna. Así la tabla queda como la de la sección Composición. En el código, `c` y `d` se llaman `cc` y `dd` porque `c()` ya es una función de R y `d` es la base de datos.
 
@@ -182,13 +200,20 @@ p0 <- cc / (cc + dd)  # prevalencia en hombres
 c(P1 = p1, P0 = p0, RP = p1 / p0, OR = (a * dd) / (b * cc))
 ```
 
+::: {.leer}
+- **`P1` y `P0`** son las prevalencias en proporción: `r fmt(p1, 4)` es `r pct(p1)` de mujeres con obesidad abdominal y `r fmt(p0, 4)`, `r pct(p0)` de hombres.
+- **`RP`** = `r fmt(p1 / p0)`: la prevalencia en mujeres es `r fmt(p1 / p0)` veces la de los hombres.
+- **`OR`** = `r fmt((a * dd) / (b * cc))`: el cociente de odds, casi el doble de la RP.
+:::
+
 ### Paso 5. Obtén los intervalos de confianza con `epiR`
 
 ```{r}
 #| label: epir
 library(epiR)
 res <- epi.2by2(tab, method = "cross.sectional")
-res
+# las dos medidas que interesan, redondeadas
+cbind(res$massoc.summary[1:2, "var", drop = FALSE], round(res$massoc.summary[1:2, -1], 2))
 ```
 
 ```{r}
@@ -198,11 +223,18 @@ rp <- unlist(res$massoc.summary[res$massoc.summary$var == "Prev risk ratio", c("
 or <- unlist(res$massoc.summary[res$massoc.summary$var == "Prev odds ratio", c("est", "lower", "upper")])
 ```
 
-Con `method = "cross.sectional"`, `epiR` llama a la RP *Prev risk ratio* y al OR *Prev odds ratio*. Las otras filas (fracción atribuible, valor E) no se necesitan para esta pregunta.
+
+::: {.leer}
+- **`var`** dice qué medida es: con `method = "cross.sectional"`, `epiR` llama *Prev risk ratio* a la RP y *Prev odds ratio* al OR.
+- **`est`** es la estimación; **`lower`** y **`upper`**, los límites del intervalo de confianza del 95&nbsp;%.
+- Si el intervalo no incluye el 1, los datos no son compatibles con la ausencia de asociación. Aquí la RP va de `r fmt(rp[2])` a `r fmt(rp[3])`.
+:::
+
+Si escribes solo `res`, `epiR` imprime un informe completo en inglés: la tabla con las prevalencias de cada fila (*Prev risk*, por cada 100 personas) y otras medidas que no hacen falta para esta pregunta, como la fracción atribuible y el valor E. Ese informe mezcla coma y punto decimal; por eso aquí se extraen solo las dos filas que importan.
 
 ### Paso 6. Haz lo mismo con un modelo
 
-La tabla 2×2 no permite ajustar por otras variables; un modelo sí. Para la RP se usa una **regresión de Poisson con varianza robusta**. El modelo de Poisson por sí solo da intervalos demasiado anchos con un desenlace binario; la varianza robusta lo corrige.
+La tabla 2×2 no permite ajustar por otras variables; un modelo sí. Para la RP se usa una **[regresión de Poisson](../diccionario.qmd#regresion-de-poisson){.dic} con [varianza robusta](../diccionario.qmd#varianza-robusta){.dic}**. El modelo de Poisson por sí solo da intervalos demasiado anchos con un desenlace binario; la varianza robusta lo corrige.
 
 ```{r}
 #| label: poisson
@@ -213,7 +245,13 @@ ic_rp <- coefci(m_rp, vcov. = vcovHC(m_rp, type = "HC0"))
 exp(cbind(RP = coef(m_rp), ic_rp))["sexoMujer", ]
 ```
 
-La RP del modelo es la misma de la tabla. Ahora ajusta por edad, que podría confundir la asociación:
+::: {.leer}
+- **`RP`** es la razón de prevalencias y los otros dos números, su intervalo de confianza del 95&nbsp;%.
+- Se toma la fila `sexoMujer`: el efecto de ser mujer frente a la categoría de referencia, el primer nivel del factor (`Hombre`).
+- `exp()` convierte los coeficientes del modelo, que están en escala logarítmica, en razones.
+:::
+
+La RP del modelo es la misma de la tabla. Ahora ajusta por edad, que podría [confundir](../diccionario.qmd#confusion){.dic} la asociación:
 
 ```{r}
 #| label: poisson-ajustado
@@ -223,13 +261,21 @@ rp_aj <- exp(cbind(RP = coef(m_rp_aj), ic_aj))["sexoMujer", ]
 rp_aj
 ```
 
-Si en cambio usaras la regresión logística, obtendrías el OR:
+::: {.leer}
+Se lee igual que el anterior, pero ahora la RP compara mujeres y hombres **de la misma edad**. Pasó de `r fmt(rp[1])` a `r fmt(rp_aj[1])`. `r if (abs(rp_aj[1] / rp[1] - 1) < 0.10) 'Cambió menos de 10 %, un criterio práctico habitual: la edad casi no confunde esta asociación.' else 'Cambió más de 10 %, un criterio práctico habitual: la edad confunde esta asociación y conviene reportar la RP ajustada.'`
+:::
+
+Si en cambio usaras la [regresión logística](../diccionario.qmd#regresion-logistica){.dic}, obtendrías el OR:
 
 ```{r}
 #| label: logistica
 m_or <- glm(obes_abd ~ sexo, data = dc, family = binomial)
 exp(cbind(OR = coef(m_or), confint.default(m_or)))["sexoMujer", ]
 ```
+
+::: {.leer}
+El mismo formato, pero el primer número es un OR: `r fmt(or[1])`, igual al de `epiR`. No lo leas como "veces más frecuente".
+:::
 
 ## Resultado
 
@@ -275,7 +321,7 @@ plena <- jsonlite::read_json("receta_plena.json")
 ::: {.callout-note}
 ## Lo que esta dosis dejó fuera
 
-Las cifras de arriba describen a las personas **entrevistadas**, no a la población peruana. La ENDES es una muestra aleatoria, pero no simple: algunas zonas tienen en la muestra más peso del que tienen en la población, y los hogares se eligen agrupados en conglomerados. Para hablar de la población hay que usar su **diseño muestral** (pesos, conglomerados y estratos). Con él, la prevalencia es `r plena$p_m` en mujeres y `r plena$p_h` en hombres, y la RP es `r plena$rp`, no `r fmt(rp[1])`.
+Las cifras de arriba describen a las personas **entrevistadas**, no a la población peruana. La ENDES es una muestra aleatoria, pero no simple: algunas zonas tienen en la muestra más peso del que tienen en la población, y los hogares se eligen agrupados en conglomerados. Para hablar de la población hay que usar su **[diseño muestral](../diccionario.qmd#diseno-muestral-complejo){.dic}** ([pesos](../diccionario.qmd#factor-de-expansion){.dic}, [conglomerados](../diccionario.qmd#conglomerado){.dic} y [estratos](../diccionario.qmd#estrato){.dic}). Con él, la prevalencia es `r plena$p_m` en mujeres y `r plena$p_h` en hombres, y la RP es `r plena$rp`, no `r fmt(rp[1])`.
 
 La [dosis plena](plena.qmd) desarrolla todo eso:
 

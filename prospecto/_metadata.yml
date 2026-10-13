@@ -1,3 +1,10 @@
 # opciones para todas las entregas de Prospecto R
-freeze: true
+freeze: auto
 title-block-banner: true
+format:
+  html:
+    css: estilo/prospecto.css
+    code-fold: true
+    code-summary: "Ver código"
+    toc-title: "En esta entrega"
+    smooth-scroll: true
