@@ -88,6 +88,14 @@ Rango de valores compatibles con los datos para el parámetro estimado. Un inter
 [Fuentes: [Kirkwood y Sterne, 2003](#fuente-kirkwood); [Rothman et al., 2008](#fuente-rothman).]{.fuente}
 :::
 
+::: {#mediana-y-ric .entrada}
+### Mediana y rango intercuartílico (RIC)
+
+La mediana es el valor que deja a la mitad de los datos por debajo y a la otra mitad por encima. El rango intercuartílico va del primer cuartil (Q1, el 25&nbsp;% más bajo) al tercero (Q3, el 75&nbsp;% más bajo) y contiene a la mitad central de los datos. Se usan para variables numéricas asimétricas, porque los valores extremos no los arrastran como a la media y la desviación estándar.
+
+[Fuentes: [Kirkwood y Sterne, 2003](#fuente-kirkwood).]{.fuente}
+:::
+
 ::: {#modelo-log-binomial .entrada}
 ### Modelo log-binomial
 
@@ -120,12 +128,28 @@ Cociente de dos odds: la del desenlace en expuestos entre la de no expuestos. En
 [Fuentes: [Kirkwood y Sterne, 2003](#fuente-kirkwood); [Rothman et al., 2008](#fuente-rothman).]{.fuente}
 :::
 
+::: {#porcentaje-por-columna .entrada}
+### Porcentaje por columna y por fila
+
+En una tabla que cruza dos variables, el porcentaje por columna se calcula dentro de cada columna (de las personas con presión alta, qué porcentaje son hombres) y el porcentaje por fila, dentro de cada fila (de los hombres, qué porcentaje tiene presión alta). La Tabla 1 de una tesis usa porcentajes por columna; la prevalencia de un desenlace por grupo es un porcentaje por fila.
+
+[Fuentes: [Kirkwood y Sterne, 2003](#fuente-kirkwood).]{.fuente}
+:::
+
 ::: {#prevalencia .entrada}
 ### Prevalencia
 
 Proporción de personas de una población que tienen una condición en un momento dado. Se expresa como proporción (0,62) o porcentaje (62&nbsp;%).
 
 [Fuentes: [Porta, 2014](#fuente-porta).]{.fuente}
+:::
+
+::: {#prueba-de-chi-cuadrado .entrada}
+### Prueba de chi cuadrado
+
+Prueba que compara las frecuencias observadas en una tabla de contingencia con las esperadas si las dos variables fueran independientes. Con datos de una encuesta compleja se usa la corrección de Rao-Scott, que ajusta el estadístico por el efecto del diseño muestral; en R, `survey::svychisq()`.
+
+[Fuentes: [Kirkwood y Sterne, 2003](#fuente-kirkwood); [Rao y Scott, 1984](#fuente-rao); [Lumley, 2010](#fuente-lumley).]{.fuente}
 :::
 
 ::: {#razon-de-prevalencias .entrada}
@@ -160,6 +184,14 @@ Tabla que cruza una exposición (sí/no) con un desenlace (sí/no). Por convenci
 [Fuentes: [Kirkwood y Sterne, 2003](#fuente-kirkwood).]{.fuente}
 :::
 
+::: {#valor-p .entrada}
+### Valor p
+
+Probabilidad de obtener un resultado igual o más extremo que el observado si la hipótesis nula fuera cierta. Un valor p pequeño indica que los datos son poco compatibles con esa hipótesis, pero no mide el tamaño ni la importancia de un efecto, ni la probabilidad de que la hipótesis sea cierta.
+
+[Fuentes: [Wasserstein y Lazar, 2016](#fuente-wasserstein); [Kirkwood y Sterne, 2003](#fuente-kirkwood).]{.fuente}
+:::
+
 ::: {#varianza-robusta .entrada}
 ### Varianza robusta
 
@@ -190,3 +222,7 @@ Forma de calcular los errores estándar de un modelo que no depende de que la di
 [Expert Panel on Detection, Evaluation, and Treatment of High Blood Cholesterol in Adults. Executive summary of the third report of the NCEP Adult Treatment Panel III. *JAMA*. 2001;285(19):2486-97.]{#fuente-atp}
 
 [Instituto Nacional de Estadística e Informática. *Ficha técnica. Encuesta Demográfica y de Salud Familiar 2024*. Lima: INEI.]{#fuente-inei}
+
+[Rao JNK, Scott AJ. On chi-squared tests for multiway contingency tables with cell proportions estimated from survey data. *Ann Stat*. 1984;12(1):46-60.]{#fuente-rao}
+
+[Wasserstein RL, Lazar NA. The ASA’s statement on p-values: context, process, and purpose. *Am Stat*. 2016;70(2):129-33.]{#fuente-wasserstein}

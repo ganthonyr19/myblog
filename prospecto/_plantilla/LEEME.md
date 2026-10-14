@@ -25,4 +25,4 @@ Cada dosis escribe al compilarse `receta_<nivel>.json` con todos los textos y ci
 2. Compila el tutorial: `quarto render prospecto/<tema>/plena.qmd` y luego `inicial.qmd`.
 3. `node render.js ../<tema>/receta_<nivel>.json`
 
-Se crean junto al JSON `receta_<nivel>.png` (1080 × 1350: portada e Instagram) y `receta_<nivel>_web.png` (1200 × 630: vista previa en X, LinkedIn y WhatsApp). El distintivo de nivel sale del campo `nivel`.
+Se crean junto al JSON `receta_<nivel>.png` (1080 × 1350: portada e Instagram) y `receta_<nivel>_web.png` (1200 × 630: vista previa en X, LinkedIn y WhatsApp). El distintivo de nivel sale del campo `nivel`. La cifra destacada del hallazgo sale del campo `big` (HTML, por ejemplo `"<b>36,7 %</b> → <b>17,9 %</b>"`); si no existe, se muestran `rp` y `or`.

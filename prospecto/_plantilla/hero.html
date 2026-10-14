@@ -43,7 +43,7 @@ const card = `<div class="card">
   <div class="rp">Rp/<span>PRESCRIPCIÓN</span></div>
   <div class="row"><div class="lab">Indicación</div><div>${D.ind}</div></div>
   <div class="row"><div class="lab">Posología</div><div><code>${D.pos}</code></div></div>
-  <div class="row"><div class="lab">Hallazgo</div><div>${D.hal}<div class="big">RP <b>${D.rp}</b> &nbsp;·&nbsp; OR <b>${D.or}</b></div><div class="note">${D.hal2}</div></div></div>
+  <div class="row"><div class="lab">Hallazgo</div><div>${D.hal}<div class="big">${D.big || `RP <b>${D.rp}</b> &nbsp;·&nbsp; OR <b>${D.or}</b>`}</div><div class="note">${D.hal2}</div></div></div>
   <div class="row"><div class="lab">Precaución</div><div>${D.pre}</div></div>
 </div>`;
 const sig = `<div class="sig"><b>Anthony Romero Cerdán</b> · Médico cirujano<br>anthonyromero.netlify.app</div>`;
