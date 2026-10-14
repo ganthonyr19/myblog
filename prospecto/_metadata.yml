@@ -1,8 +1,8 @@
 # opciones para todas las entregas de Prospecto R
 freeze: auto
 title-block-banner: true
-# enlace del botón de contacto al final de cada entrega (cámbialo por tu wa.link)
-contacto: "https://www.instagram.com/bioestadistica.en.linea/"
+# enlace del botón «Escríbeme» al final de cada entrega: WhatsApp con un mensaje que indica que el contacto viene de la web
+contacto: "https://api.whatsapp.com/send?phone=51955446754&text=Hola%2C%20vi%20tu%20tutorial%20Prospecto%20R%20en%20tu%20p%C3%A1gina%20web%20y%20quiero%20informaci%C3%B3n%20sobre%20asesor%C3%ADa%20para%20mi%20tesis"
 format:
   html:
     css: estilo/prospecto.css

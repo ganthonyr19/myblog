@@ -29,7 +29,9 @@ El sitio se renderiza con **Quarto 1.10.18**. Usar otra versión rompe el JavaSc
 
 ## 2. Prospecto R
 
-Serie de minitutoriales de análisis de datos de salud en R, al estilo de las *recipes* de Posit, con datos reales del Perú. Firma: Anthony Romero Cerdán + Bioestadística en línea (@bioestadistica.en.linea).
+Serie de minitutoriales de análisis de datos de salud en R, al estilo de las *recipes* de Posit, con datos reales del Perú. Firma: Anthony Romero Cerdán + Bioestadística en línea (@bioestadistica.en.linea). Nombres de los niveles: **Dosis inicial** y **Dosis plena** (decisión final de Anthony).
+
+El botón «Escríbeme» (`contacto:` en `prospecto/_metadata.yml`) abre WhatsApp (51955446754) con el mensaje «Hola, vi tu tutorial Prospecto R en tu página web y quiero información sobre asesoría para mi tesis», distinto del de Instagram, para saber de dónde llega cada contacto.
 
 ### Convenciones
 
@@ -69,6 +71,5 @@ Activados en `prospecto/_metadata.yml`: repositorio `ganthonyr19/myblog`, catego
 
 ### Pendientes de Prospecto R
 
-- **Enlace de WhatsApp**: el botón «Escríbeme» apunta por ahora a instagram.com/bioestadistica.en.linea. Cambiar `contacto:` en `prospecto/_metadata.yml` por el wa.link de Anthony.
 - Revisar en el sitio publicado que las fórmulas (KaTeX desde CDN) y los comentarios se vean bien.
 - Las imágenes y textos para redes de la entrega 1 (en `ig_asesorias\prospecto\p1` del equipo de Anthony) usan las cifras de la dosis plena y no llevan distintivo de nivel.
