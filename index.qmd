@@ -8,7 +8,7 @@ about:
   links:
     - icon: twitter
       text: Twitter
-      href: https://twitter.com/ganthonyr94
+      href: https://x.com/ganthonyrc
     - icon: linkedin
       text: LinkedIn
       href: https://www.linkedin.com/in/garomeroc/

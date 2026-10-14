@@ -1,0 +1,602 @@
+---
+title: "¿OR o razón de prevalencias?"
+subtitle: "Dosis plena: razón de prevalencias en una encuesta con diseño muestral complejo"
+description: "Prospecto R n.º 1, dosis plena. Con la ENDES 2024: por qué el odds ratio exagera la asociación cuando el desenlace es frecuente, cómo estimar la razón de prevalencias con el diseño muestral y cómo obtenerla también desde una regresión logística."
+author: "Anthony Romero Cerdán"
+date: "2026-10-13"
+categories: [Dosis plena, medidas de asociación, estudios transversales, encuestas complejas, ENDES]
+image: receta_plena.png
+open-graph:
+  image: receta_plena_web.png
+twitter-card:
+  image: receta_plena_web.png
+image-alt: "Receta del Prospecto R n.º 1, dosis plena: en la ENDES 2024, la razón de prevalencias de obesidad abdominal entre mujeres y hombres es mucho menor que el odds ratio."
+lang: es
+resources:
+  - plena.R
+  - ficha_plena.pdf
+execute:
+  echo: true
+  warning: false
+  message: false
+---
+
+```{r}
+#| label: configuracion
+#| include: false
+options(OutDec = ",")
+knitr::opts_chunk$set(comment = "#>", fig.align = "center", results = "hold")
+# cada resultado de R va en un bloque plegable «Mira el resultado»
+knitr::knit_hooks$set(output = local({
+  salida <- knitr::knit_hooks$get("output")
+  function(x, options) paste0(
+    '\n\n```{=html}\n<details class="salida" open><summary>Mira el resultado</summary>\n```\n\n',
+    salida(x, options),
+    '\n\n```{=html}\n</details>\n```\n\n')
+}))
+# formato de números para el texto: siempre con coma decimal
+fmt <- function(x, d = 2) formatC(x, format = "f", digits = d, decimal.mark = ",", big.mark = "\u00a0")
+pct <- function(x, d = 1) paste0(fmt(100 * x, d), "\u00a0%")  # espacio que no se separa
+```
+
+![](receta_plena.png){fig-alt="Receta del Prospecto R n.º 1, dosis plena, con la indicación, la posología, el hallazgo y la precaución" width="440" fig-align="center"}
+
+::: {.callout-note appearance="minimal"}
+**Prospecto R** es una serie de minitutoriales de análisis de datos de salud en R. Cada entrega responde una pregunta concreta con datos reales del Perú, explica la teoría mínima necesaria y muestra el código completo con sus resultados. Las cifras de este texto se calculan al compilar el documento: no se escriben a mano.
+:::
+
+::: {.callout-tip}
+## ¿Qué dosis te toca?
+
+Cada tema de Prospecto R viene en dos niveles. La **dosis inicial** tiene lo indispensable para hacer el análisis e interpretarlo bien. La **dosis plena** tiene todo, incluido lo complejo. Responde:
+
+1. ¿Has ajustado una regresión (logística o de Poisson) en R?
+2. ¿Sabes para qué sirven los pesos, los conglomerados y los estratos de una encuesta?
+3. ¿Unes dos bases de datos en R sin ayuda?
+
+Si respondiste «sí» a las tres, sigue con la [dosis plena](plena.qmd). Si alguna fue «no», empieza por la [dosis inicial](inicial.qmd).
+:::
+
+::: {.callout-important appearance="simple" icon=false}
+**Estás en la dosis plena.** Aquí va todo: el diseño muestral de la encuesta, el ajuste por confusión, la estandarización marginal y las trampas propias de la ENDES. Si es tu primer contacto con el tema, empieza por la [dosis inicial](inicial.qmd).
+:::
+
+| | |
+|---|---|
+| **Nivel** | Dosis plena |
+| **Pregunta** | ¿Qué medida de asociación reporto en un estudio transversal con un desenlace frecuente? |
+| **Datos** | ENDES 2024, Cuestionario de Salud (INEI) |
+| **Paquetes** | `data.table`, `survey`, `ggplot2`, `marginaleffects` |
+| **Requisitos** | Haber ajustado una regresión en R y conocer los pesos, conglomerados y estratos de una encuesta |
+
+::: {.descargas}
+[Script .R de esta dosis](plena.R){download="prospecto-r-01-plena.R"}
+[Ficha de una página (PDF)](ficha_plena.pdf){download="prospecto-r-01-plena.pdf"}
+:::
+
+## Indicación
+
+Estás analizando un [estudio transversal](../diccionario.qmd#estudio-transversal){.dic} con un desenlace **binario** (sí/no) y quieres cuantificar su asociación con una exposición. Si el desenlace es frecuente (como regla práctica, más del 10&nbsp;%), la medida que responde directamente a tu pregunta es la **[razón de prevalencias](../diccionario.qmd#razon-de-prevalencias){.dic} (RP)**, no el [odds ratio](../diccionario.qmd#odds-ratio){.dic} (OR).
+
+## Composición
+
+En un estudio transversal mides la [prevalencia](../diccionario.qmd#prevalencia){.dic} del desenlace en expuestos ($P_1$) y en no expuestos ($P_0$). Con los conteos de una [tabla 2×2](../diccionario.qmd#tabla-2x2){.dic}:
+
+| | Con desenlace | Sin desenlace |
+|---|---|---|
+| **Expuestos** | $a$ | $b$ |
+| **No expuestos** | $c$ | $d$ |
+
+$P_1 = a/(a+b)$ y $P_0 = c/(c+d)$. Con esas dos prevalencias puedes construir dos medidas:
+
+$$
+\text{RP} = \frac{P_1}{P_0}
+\qquad\qquad
+\text{OR} = \frac{P_1/(1-P_1)}{P_0/(1-P_0)} = \frac{a\,d}{b\,c}
+$$
+
+La RP compara **proporciones**: "la prevalencia en expuestos es *k* veces la de no expuestos". El OR compara **[odds](../diccionario.qmd#odds){.dic}** (chances), una escala que casi nadie interpreta de forma intuitiva. Las dos medidas se relacionan así:
+
+$$
+\text{OR} = \text{RP} \times \frac{1-P_0}{1-P_1}
+$$
+
+Si el desenlace es raro, $P_0$ y $P_1$ están cerca de 0, la fracción vale casi 1 y el OR se parece a la RP. Si el desenlace es frecuente, la fracción crece y el OR **se aleja de 1 más que la RP**. La [regresión logística](../diccionario.qmd#regresion-logistica){.dic} estima un OR, así que en un estudio transversal con desenlace frecuente exagera la asociación si la lees como una razón de prevalencias.
+
+```{r}
+#| label: fig-teoria
+#| fig-cap: "Para una misma razón de prevalencias, el OR crece a medida que el desenlace es más frecuente."
+#| fig-width: 7
+#| fig-height: 4
+#| code-fold: true
+#| code-summary: "Código de la figura"
+library(ggplot2)
+teoria <- expand.grid(p0 = seq(0.01, 0.30, by = 0.005), rp = c(1.5, 2, 3))
+teoria$p1 <- teoria$p0 * teoria$rp
+teoria$or <- with(teoria, (p1 / (1 - p1)) / (p0 / (1 - p0)))
+ggplot(teoria, aes(p0, or, colour = factor(rp))) +
+  geom_hline(aes(yintercept = rp, colour = factor(rp)), linetype = "dashed") +
+  geom_line(linewidth = 1) +
+  scale_x_continuous("Prevalencia en no expuestos (P0)",
+                     labels = scales::label_percent(decimal.mark = ",", suffix = "\u00a0%")) +
+  scale_y_continuous("Odds ratio", labels = scales::label_number(decimal.mark = ",")) +
+  scale_colour_manual("Razón de prevalencias", values = c("#4FC3C8", "#7FB2F0", "#E5636F")) +
+  theme_minimal(base_size = 13) +
+  theme(legend.position = "top")
+```
+
+Las líneas punteadas marcan la RP real. Con una RP de 3 y una prevalencia de 20&nbsp;% en no expuestos, el OR ya es `r fmt(with(subset(teoria, rp == 3 & abs(p0 - 0.20) < 1e-9), or), 1)`.
+
+## Posología
+
+El ejemplo usa la [ENDES](../diccionario.qmd#endes){.dic} 2024 para responder: **¿cuánto más frecuente es la [obesidad abdominal](../diccionario.qmd#obesidad-abdominal){.dic} en las mujeres que en los hombres?** La ENDES es una encuesta con [diseño muestral complejo](../diccionario.qmd#diseno-muestral-complejo){.dic}, así que el análisis debe incluir los [pesos](../diccionario.qmd#factor-de-expansion){.dic}, los [conglomerados](../diccionario.qmd#conglomerado){.dic} y los [estratos](../diccionario.qmd#estrato){.dic}.
+
+### Paso 1. Descarga los datos
+
+En el portal de microdatos del INEI (<https://proyectos.inei.gob.pe/microdatos/>), elige *Consulta por encuestas*, luego ENDES y el año 2024, y descarga en formato CSV estos tres módulos:
+
+| Módulo | Archivo | Contenido |
+|---|---|---|
+| 1629 | `RECH0_2024.csv` | Datos del hogar: conglomerado, estrato y área de residencia |
+| 1632 | `RE223132_2024.csv` | Cuestionario individual de mujeres: embarazo actual |
+| 1640 | `CSALUD01_2024.csv` | Cuestionario de salud de personas de 15 y más años |
+
+Descomprime los tres archivos dentro de una carpeta `ENDES/2024/`, junto a tu archivo `.qmd`. Cada uno crea su propia subcarpeta; en la descarga de 2024 se llaman `968-Modulo1629`, `968-Modulo1632` y `968-Modulo1640`. Si tus datos están en otro lugar o las carpetas tienen otro nombre, cambia `ruta` en el siguiente bloque de código.
+
+### Paso 2. Lee y une los módulos
+
+```{r}
+#| label: lectura
+library(data.table)
+
+ruta <- "ENDES/2024"   # carpeta con los módulos descomprimidos
+if (!dir.exists(ruta)) stop("No encuentro la carpeta '", ruta, "'. Revisa el Paso 1 o cambia `ruta`.")
+
+salud <- fread(file.path(ruta, "968-Modulo1640/CSALUD01_2024.csv"), encoding = "UTF-8")
+hogar <- fread(file.path(ruta, "968-Modulo1629/RECH0_2024.csv"), encoding = "UTF-8",
+               select = c("HHID", "HV001", "HV022", "HV025"))
+mujer <- fread(file.path(ruta, "968-Modulo1632/RE223132_2024.csv"), encoding = "UTF-8",
+               select = c("CASEID", "V213"))
+
+# la llave del hogar trae espacios a la izquierda: hay que limpiarla
+salud[, HHID := trimws(HHID)]
+hogar[, HHID := trimws(HHID)]
+
+# CASEID = hogar + número de línea de la mujer
+mujer[, `:=`(HHID  = trimws(substr(CASEID, 1, nchar(CASEID) - 3)),
+             linea = as.integer(substr(CASEID, nchar(CASEID) - 1, nchar(CASEID))))]
+
+d <- merge(salud, hogar, by = "HHID")
+d <- merge(d, mujer[, .(HHID, linea, V213)],
+           by.x = c("HHID", "QS20C"), by.y = c("HHID", "linea"), all.x = TRUE)
+nrow(d)
+n_union <- nrow(d)
+```
+
+::: {.leer}
+El número es la cantidad de filas tras unir los módulos: una por cada persona del Cuestionario de Salud que encontró su hogar (`r fmt(n_union, 0)`). Si te sale 0 o una cifra muy baja, la llave `HHID` no coincidió entre módulos; casi siempre es por los espacios que limpia `trimws()`.
+:::
+
+`QS20C` es el número de línea de la persona que respondió el Cuestionario de Salud; con él se identifica a cada mujer en el cuestionario individual.
+
+### Paso 3. Construye las variables
+
+La obesidad abdominal se define con el perímetro de cintura y los puntos de corte del ATP III: más de 102 cm en hombres y más de 88 cm en mujeres. Se excluye a las gestantes, porque en ellas el perímetro abdominal no mide adiposidad.
+
+```{r}
+#| label: variables
+d <- d[!is.na(PESO15_AMAS)]                     # personas con entrevista de salud
+d[, peso  := PESO15_AMAS / 1e6]                 # el factor viene con 6 decimales implícitos
+d[, mujer := factor(QSSEXO, 1:2, c("Hombre", "Mujer"))]
+d[, area  := factor(HV025, 1:2, c("Urbana", "Rural"))]
+d[, edad  := cut(QS23, c(15, 30, 45, 60, Inf), right = FALSE,
+                 labels = c("15-29", "30-44", "45-59", "60+"))]
+d[, gestante := !is.na(V213) & V213 == 1]
+
+# perímetro abdominal válido: medido (QS908 = 1) y dentro del rango del diccionario
+d[, cintura := fifelse(QS908 == 1 & QS907 >= 55 & QS907 <= 170, as.numeric(QS907), NA_real_)]
+d[gestante == TRUE, cintura := NA]
+d[, obes_abd := as.integer(fifelse(mujer == "Mujer", cintura > 88, cintura > 102))]
+
+d[, .N, by = .(mujer, medida = !is.na(obes_abd))][order(mujer, medida)]
+```
+
+::: {.leer}
+Cada fila cuenta personas por sexo. `medida = TRUE` son quienes tienen la obesidad abdominal calculable; `FALSE`, quienes no tienen una medición válida o están gestando. El análisis usa solo las filas `TRUE`: `r fmt(d[mujer == "Mujer" & !is.na(obes_abd), .N], 0)` mujeres y `r fmt(d[mujer == "Hombre" & !is.na(obes_abd), .N], 0)` hombres. Si los `FALSE` fueran muchos en un solo grupo, sería una alerta de sesgo de selección.
+:::
+
+### Paso 4. Declara el diseño muestral
+
+```{r}
+#| label: diseno
+library(survey)
+options(survey.lonely.psu = "adjust")
+
+diseno <- svydesign(ids = ~HV001, strata = ~HV022, weights = ~peso,
+                    data = d, nest = TRUE)
+dis_cint <- subset(diseno, !is.na(obes_abd))
+```
+
+`HV001` es el conglomerado, `HV022` el estrato y `peso` el factor de expansión del Cuestionario de Salud. Usar `subset()` sobre el diseño, y no filtrar la base antes, mantiene la información de todos los conglomerados para calcular bien los errores estándar.
+
+### Paso 5. Estima las prevalencias
+
+```{r}
+#| label: prevalencias
+prev <- svyby(~obes_abd, ~mujer, dis_cint, svymean)
+prev
+```
+
+::: {.leer}
+- **`obes_abd`** es la prevalencia como proporción: el promedio de una variable 0/1 es la proporción de unos. `r fmt(p_m_tmp <- coef(prev)[["Mujer"]], 4)` equivale a `r pct(p_m_tmp)`.
+- **`se`** es su error estándar, calculado con el diseño. Multiplicado por 1,96 da el margen del intervalo de confianza del 95&nbsp;%.
+:::
+
+```{r}
+#| label: prev-texto
+#| include: false
+p_h <- coef(prev)[["Hombre"]]; p_m <- coef(prev)[["Mujer"]]
+n_cint <- nrow(dis_cint)
+```
+
+La prevalencia de obesidad abdominal es `r pct(p_m)` en mujeres y `r pct(p_h)` en hombres (n = `r fmt(n_cint, 0)`).
+
+### Paso 6. Estima la razón de prevalencias
+
+La RP se obtiene con una [regresión de Poisson](../diccionario.qmd#regresion-de-poisson){.dic} con enlace logarítmico. Con un desenlace binario, el modelo de Poisson clásico da intervalos demasiado anchos; en una encuesta, `svyglm()` calcula [errores estándar](../diccionario.qmd#error-estandar){.dic} basados en el diseño, que además son [robustos](../diccionario.qmd#varianza-robusta){.dic}, y eso lo corrige. La familia `quasipoisson` evita el aviso por valores no enteros.
+
+```{r}
+#| label: rp
+m_rp <- svyglm(obes_abd ~ mujer, design = dis_cint, family = quasipoisson(link = "log"))
+rp <- exp(cbind(RP = coef(m_rp), confint(m_rp)))["mujerMujer", ]
+rp
+```
+
+::: {.leer}
+- **`RP`** es la razón de prevalencias: `r fmt(rp[1])`. Los otros dos números son los límites del intervalo de confianza del 95&nbsp;%.
+- Se toma la fila `mujerMujer`: el efecto de ser mujer frente a la categoría de referencia, que es el primer nivel del factor (`Hombre`).
+- Los coeficientes del modelo están en escala logarítmica; `exp()` los convierte en razones.
+- El intervalo no incluye el 1, así que los datos no son compatibles con la ausencia de asociación.
+:::
+
+### Paso 7. Compáralo con el odds ratio
+
+```{r}
+#| label: or
+m_or <- svyglm(obes_abd ~ mujer, design = dis_cint, family = quasibinomial())
+or <- exp(cbind(OR = coef(m_or), confint(m_or)))["mujerMujer", ]
+or
+```
+
+::: {.leer}
+Se lee igual que la RP, pero la cifra es un odds ratio: `r fmt(or[1])`. Mismos datos, mismo intervalo de confianza en la forma, distinta medida.
+:::
+
+Comprueba a mano que la RP es el cociente de las prevalencias del paso 5:
+
+```{r}
+#| label: comprobacion
+p_m / p_h
+(p_m / (1 - p_m)) / (p_h / (1 - p_h))
+```
+
+::: {.leer}
+El primer número debe coincidir con la RP del paso 6 y el segundo con el OR del paso 7. Si no coinciden, el modelo y las prevalencias no se calcularon sobre la misma población.
+:::
+
+## Resultado
+
+```{r}
+#| label: resultado-texto
+#| include: false
+rp_txt <- sprintf("%s (IC 95\u00a0%%: %s a %s)", fmt(rp[1]), fmt(rp[2]), fmt(rp[3]))
+or_txt <- sprintf("%s (IC 95\u00a0%%: %s a %s)", fmt(or[1]), fmt(or[2]), fmt(or[3]))
+```
+
+| Medida | Estimación |
+|---|---|
+| Prevalencia en mujeres | `r pct(p_m)` |
+| Prevalencia en hombres | `r pct(p_h)` |
+| **Razón de prevalencias** | **`r rp_txt`** |
+| Odds ratio | `r or_txt` |
+
+Los dos modelos usan los mismos datos, pero cuentan historias distintas. La RP dice que la obesidad abdominal es `r fmt(rp[1])` veces más frecuente en mujeres que en hombres. El OR, `r fmt(or[1])`, es un cociente de odds y aquí es `r fmt(or[1] / rp[1], 1)` veces la RP: si se lee como "`r fmt(or[1], 0)` veces más frecuente", la asociación queda más que duplicada.
+
+## Interacciones
+
+**Con variables de [confusión](../diccionario.qmd#confusion){.dic}.** El ajuste se hace igual, agregando covariables al modelo. Aquí, edad y área de residencia:
+
+```{r}
+#| label: ajuste
+m_rp_aj <- svyglm(obes_abd ~ mujer + edad + area, design = dis_cint,
+                  family = quasipoisson(link = "log"))
+m_or_aj <- svyglm(obes_abd ~ mujer + edad + area, design = dis_cint,
+                  family = quasibinomial())
+ajustados <- rbind(
+  RP = exp(c(coef(m_rp_aj)["mujerMujer"], confint(m_rp_aj)["mujerMujer", ])),
+  OR = exp(c(coef(m_or_aj)["mujerMujer"], confint(m_or_aj)["mujerMujer", ]))
+)
+colnames(ajustados) <- c("Estimación", "IC 2,5 %", "IC 97,5 %")
+round(ajustados, 2)
+```
+
+::: {.leer}
+Cada fila es la medida ajustada por edad y área, con su intervalo de confianza. Compárala con la cruda: la RP pasa de `r fmt(rp[1])` a `r fmt(ajustados["RP", 1])` y el OR de `r fmt(or[1])` a `r fmt(ajustados["OR", 1])`. `r if (abs(ajustados['RP', 1] / rp[1] - 1) < 0.10) 'La RP cambió menos de 10 %: la edad y el área casi no confunden esta asociación.' else 'La RP cambió más de 10 %: la edad y el área confunden esta asociación.'`
+:::
+
+La brecha no desaparece con el ajuste (RP ajustada `r fmt(ajustados["RP", 1])`; OR ajustado `r fmt(ajustados["OR", 1])`): depende de que el desenlace sea frecuente, no de la confusión.
+
+**Con el diseño muestral.** Los pesos cambian la estimación puntual; los conglomerados y estratos, su precisión:
+
+```{r}
+#| label: sin-diseno
+dc <- d[!is.na(obes_abd)]
+# 1. sin pesos: prevalencias de la muestra, no de la población
+sin_pesos <- dc[, .(prevalencia = mean(obes_abd)), by = mujer]
+sin_pesos
+rp_sp <- sin_pesos[mujer == "Mujer", prevalencia] / sin_pesos[mujer == "Hombre", prevalencia]
+rp_sp
+# 2. con pesos pero sin conglomerados ni estratos: el error estándar cambia
+dis_ingenuo <- svydesign(ids = ~1, weights = ~peso, data = dc)
+m_ingenuo <- svyglm(obes_abd ~ mujer, design = dis_ingenuo, family = quasipoisson(link = "log"))
+c(diseno_completo = SE(m_rp)[["mujerMujer"]], solo_pesos = SE(m_ingenuo)[["mujerMujer"]])
+```
+
+::: {.leer}
+Son tres resultados seguidos. La tabla muestra la prevalencia **sin pesos** en cada sexo; el número que le sigue es la RP sin pesos; el último par compara el error estándar del coeficiente con el diseño completo y solo con pesos.
+:::
+
+```{r}
+#| label: sin-diseno-texto
+#| include: false
+pm_sp <- sin_pesos[mujer == "Mujer", prevalencia]; ph_sp <- sin_pesos[mujer == "Hombre", prevalencia]
+```
+
+Sin pesos, las prevalencias bajan a `r pct(pm_sp)` en mujeres y `r pct(ph_sp)` en hombres, y la RP sube a `r fmt(rp_sp)` (es la cifra que obtiene la [dosis inicial](inicial.qmd)), porque la muestra no reproduce la composición de la población. En este desenlace, ignorar los conglomerados y estratos cambia poco el error estándar (`r fmt(SE(m_rp)[["mujerMujer"]], 4)` frente a `r fmt(SE(m_ingenuo)[["mujerMujer"]], 4)`). En desenlaces más agrupados geográficamente la diferencia puede ser mucho mayor, y no se sabe de antemano: por eso se declara siempre el diseño completo.
+
+**Con la regresión logística.** Si tu protocolo exige un modelo logístico, igual puedes reportar una RP ajustada: predice la probabilidad del desenlace para toda la población como si todos fueran mujeres y luego como si todos fueran hombres, y divide los promedios ponderados. Es la **[estandarización marginal](../diccionario.qmd#estandarizacion-marginal){.dic}**. A mano:
+
+```{r}
+#| label: estandarizacion
+mf <- model.frame(m_or_aj)
+w  <- weights(dis_cint)
+todas_mujeres  <- transform(mf, mujer = factor("Mujer",  levels(mf$mujer)))
+todos_hombres  <- transform(mf, mujer = factor("Hombre", levels(mf$mujer)))
+p1 <- predict(m_or_aj, newdata = todas_mujeres, type = "response")
+p0 <- predict(m_or_aj, newdata = todos_hombres, type = "response")
+weighted.mean(p1, w) / weighted.mean(p0, w)
+```
+
+::: {.leer}
+Un solo número: la RP estandarizada, `r fmt(weighted.mean(p1, w) / weighted.mean(p0, w))`. Es la prevalencia que tendría la población si todos fueran mujeres dividida entre la que tendría si todos fueran hombres, con la misma edad y área que tienen en la realidad.
+:::
+
+El paquete `marginaleffects` hace lo mismo y añade el intervalo de confianza con la matriz de varianzas del diseño:
+
+```{r}
+#| label: estandarizacion-me
+library(marginaleffects)
+rp_std <- avg_comparisons(m_or_aj, variables = "mujer",
+                          comparison = "ratioavg", wts = "(weights)")
+as.data.frame(rp_std)[, c("contrast", "estimate", "conf.low", "conf.high")]
+```
+
+::: {.leer}
+`contrast` indica qué se divide entre qué (`mean(Mujer) / mean(Hombre)`), `estimate` es la RP y `conf.low` y `conf.high` son los límites del intervalo de confianza del 95&nbsp;%.
+:::
+
+```{r}
+#| label: estandarizacion-texto
+#| include: false
+rp_mal <- avg_comparisons(m_or_aj, variables = "mujer", comparison = "ratio", wts = "(weights)")$estimate
+```
+
+La RP estandarizada, `r fmt(rp_std$estimate)` (IC 95&nbsp;%: `r fmt(rp_std$conf.low)` a `r fmt(rp_std$conf.high)`), coincide con la del modelo de Poisson ajustado (`r fmt(ajustados["RP", 1])`). El modelo es logístico, pero la medida que se reporta es una razón de prevalencias.
+
+::: {.callout-warning}
+## `"ratioavg"`, no `"ratio"`
+
+`comparison = "ratio"` calcula el cociente de cada persona y luego lo promedia; `"ratioavg"` divide los promedios, que es la definición de la RP. Aquí `"ratio"` da `r fmt(rp_mal)`, una cifra que no es la razón de prevalencias de la población.
+:::
+
+**Con el [modelo log-binomial](../diccionario.qmd#modelo-log-binomial){.dic}.** Es la otra forma de estimar la RP directamente, pero con desenlaces frecuentes suele fallar:
+
+```{r}
+#| label: log-binomial
+m_lb <- tryCatch(
+  svyglm(obes_abd ~ mujer + edad + area, design = dis_cint,
+         family = quasibinomial(link = "log")),
+  error = function(e) conditionMessage(e))
+m_lb
+```
+
+::: {.leer}
+No es un fallo de tu código. El mensaje *no valid set of coefficients has been found* significa que el algoritmo no encontró coeficientes que den probabilidades entre 0 y 1 para todas las personas.
+:::
+
+El enlace logarítmico no impide que una probabilidad predicha supere 1, y el algoritmo no encuentra coeficientes válidos. Darle valores iniciales (`start =`) a veces lo resuelve y a veces no; el modelo de Poisson y la estandarización marginal no tienen ese problema.
+
+## Contraindicaciones y reacciones adversas
+
+- **Leer el OR como una razón de prevalencias.** Es el error más frecuente. Un OR de `r fmt(or[1])` no significa "`r fmt(or[1], 0)` veces más frecuente".
+- **Usar la regresión logística por costumbre.** En un estudio transversal con desenlace frecuente, el modelo de Poisson con errores robustos (o con diseño, en encuestas) estima la RP directamente.
+- **Usar `glm(family = poisson)` sin errores robustos en datos que no son de encuesta.** Los intervalos salen demasiado anchos. Calcula errores robustos, por ejemplo con `sandwich::vcovHC()` y `lmtest::coeftest()`.
+- **Modelo log-binomial que no converge.** También estima la RP, pero falla a menudo con prevalencias altas, como se vio arriba. Usa el modelo de Poisson o la estandarización marginal.
+- **Reportar el OR de la logística como si fuera RP.** Si usas un modelo logístico, convierte el resultado con estandarización marginal.
+- **Ignorar el diseño de la ENDES.** Sin pesos, las prevalencias describen la muestra y no la población; sin conglomerados ni estratos, los intervalos de confianza son incorrectos.
+- **Filtrar la base antes de declarar el diseño.** Usa `subset()` sobre el objeto `svydesign`.
+- **Desenlace raro.** Si la prevalencia es baja (menos de 10&nbsp;%), el OR y la RP casi coinciden y la logística es aceptable.
+
+::: {.callout-warning}
+## Precaución propia de la ENDES
+
+En el módulo de salud (`CSALUD01`), el peso y la talla de casi todas las mujeres de 15 a 49 años figuran como "evaluada en el cuestionario del hogar" (`QS902 = 4`): sus medidas están en otro módulo. Si calculas el índice de masa corporal solo con `CSALUD01`, comparas a casi todos los hombres con las mujeres que no están en edad fértil. Revisa siempre los códigos de resultado de cada medición antes de analizar.
+:::
+
+## Cómo reportarlo
+
+::: {.reporte}
+> En la población peruana de 15 y más años (ENDES 2024), la prevalencia de obesidad abdominal fue `r pct(p_m)` en mujeres y `r pct(p_h)` en hombres; la razón de prevalencias fue `r fmt(rp[1])` (IC 95&nbsp;%: `r fmt(rp[2])` a `r fmt(rp[3])`). Las estimaciones consideraron el diseño muestral complejo de la encuesta.
+:::
+
+En métodos, indica el modelo ("regresión de Poisson con enlace logarítmico y varianza basada en el diseño muestral") y la definición de cada variable.
+
+## Autoevaluación
+
+::: {.autoeval}
+::: {.pregunta}
+**1.** Filtras la base a las personas con cintura válida y recién después declaras `svydesign()`. ¿Qué cambia?
+
+<details><summary>Ver respuesta</summary>
+
+Las estimaciones puntuales no cambian, pero los errores estándar pueden quedar mal: el diseño pierde la información de los conglomerados y estratos sin observaciones. Declara el diseño con toda la base y usa `subset()` sobre él, como en el Paso 4.
+
+</details>
+:::
+
+::: {.pregunta}
+**2.** Tu jurado exige regresión logística, pero el desenlace es frecuente. ¿Cómo reportas una razón de prevalencias?
+
+<details><summary>Ver respuesta</summary>
+
+Con estandarización marginal: `avg_comparisons(modelo, variables = "mujer", comparison = "ratioavg", wts = "(weights)")`. No uses `comparison = "ratio"`, que promedia cocientes individuales.
+
+</details>
+:::
+
+::: {.pregunta}
+**3.** Sin pesos la RP fue `r fmt(rp_sp)`; con el diseño, `r fmt(rp[1])`. ¿Cuál reportas para la población peruana?
+
+<details><summary>Ver respuesta</summary>
+
+`r fmt(rp[1])`. Sin pesos, la cifra describe a las personas entrevistadas; los pesos devuelven a cada grupo su tamaño real en la población.
+
+</details>
+:::
+:::
+
+## Control de calidad
+
+Antes de confiar en un flujo de análisis con la ENDES, conviene reproducir una cifra oficial. El INEI reporta que en 2024 el 14,2&nbsp;% de las personas de 15 y más años tenía presión arterial alta según medición, excluyendo a las gestantes (*Perú: Enfermedades No Transmisibles y Transmisibles, 2024*, cuadro 1.1).
+
+```{r}
+#| label: control
+d[, pas := (QS903S + QS905S) / 2][, pad := (QS903D + QS905D) / 2]
+d[QS906 != 1 | is.na(QS906) | QS903S >= 999 | QS905S >= 999 |
+    QS903D >= 999 | QS905D >= 999, c("pas", "pad") := NA]
+d[, pa_alta := as.integer(pas >= 140 | pad >= 90)]
+diseno <- svydesign(ids = ~HV001, strata = ~HV022, weights = ~peso, data = d, nest = TRUE)
+dis_pa <- subset(diseno, !is.na(pa_alta) & !gestante)
+svymean(~pa_alta, dis_pa)
+svyby(~pa_alta, ~mujer, dis_pa, svymean)
+```
+
+::: {.leer}
+El primer bloque es la prevalencia de presión arterial alta en toda la población (columna `mean`) y el segundo, por sexo (columna `pa_alta`). Las dos están en proporciones: multiplica por 100 para compararlas con el informe del INEI.
+:::
+
+```{r}
+#| label: control-texto
+#| include: false
+ctrl <- coef(svymean(~pa_alta, dis_pa)); ctrl_s <- coef(svyby(~pa_alta, ~mujer, dis_pa, svymean))
+```
+
+El INEI publica 14,2&nbsp;% en total, 18,3&nbsp;% en hombres y 10,3&nbsp;% en mujeres. Nuestro flujo obtiene `r pct(ctrl)`, `r pct(ctrl_s[["Hombre"]])` y `r pct(ctrl_s[["Mujer"]])`. El total y los hombres coinciden; en mujeres hay una décima de diferencia. El cuadro oficial reporta 17 787 mujeres con medición y nuestra base tiene `r fmt(sum(!is.na(d$pa_alta) & !d$gestante & d$mujer == "Mujer"), 0)`, así que el INEI aplica algún criterio de exclusión adicional que no pudimos identificar en el informe.
+
+::: {.cta}
+**¿Tu tesis usa la ENDES u otra encuesta?**
+
+Te ayudo a declarar el diseño muestral, correr el análisis en R y redactar los resultados.
+
+[Escríbeme]({{< meta contacto >}})
+:::
+
+## Referencias
+
+1. Zou G. A modified Poisson regression approach to prospective studies with binary data. *Am J Epidemiol*. 2004;159(7):702-6.
+2. Barros AJD, Hirakata VN. Alternatives for logistic regression in cross-sectional studies: an empirical comparison of models that directly estimate the prevalence ratio. *BMC Med Res Methodol*. 2003;3:21.
+3. Lumley T. Analysis of complex survey samples. *J Stat Softw*. 2004;9(8):1-19.
+4. Expert Panel on Detection, Evaluation, and Treatment of High Blood Cholesterol in Adults. Executive summary of the third report of the National Cholesterol Education Program (NCEP) Adult Treatment Panel III. *JAMA*. 2001;285(19):2486-97.
+5. Muller CJ, MacLehose RF. Estimating predicted probabilities from logistic regression: different methods correspond to different target populations. *Int J Epidemiol*. 2014;43(3):962-70.
+6. Arel-Bundock V, Greifer N, Heiss A. How to interpret statistical models using marginaleffects for R and Python. *J Stat Softw*. 2024;111(9):1-32.
+7. Instituto Nacional de Estadística e Informática. *Perú: Enfermedades No Transmisibles y Transmisibles, 2024*. Lima: INEI; 2025.
+
+## Reproducibilidad
+
+```{r}
+#| label: sesion
+#| echo: false
+cat(R.version.string, "\n")
+for (p in c("data.table", "survey", "ggplot2", "marginaleffects")) cat(p, as.character(packageVersion(p)), "\n")
+```
+
+```{r}
+#| label: receta-datos
+#| include: false
+# cifras que usa la imagen de la receta (se generan aquí para que coincidan con el texto)
+jsonlite::write_json(list(
+  nivel = "plena", n = "1", t1 = "¿OR o razón de", t2 = "prevalencias?",
+  ind = "Estudio transversal con un desenlace frecuente (más del 10\u00a0%).",
+  pos = "svyglm(..., family = quasipoisson)",
+  hal = "Obesidad abdominal, mujeres vs. hombres",
+  hal2 = "ENDES 2024, con el diseño muestral",
+  rp = fmt(rp[1]), or = fmt(or[1]), or0 = fmt(or[1], 0), p_m = pct(p_m), p_h = pct(p_h),
+  pre = sprintf("Un OR de %s no significa «%s veces más frecuente».", fmt(or[1]), fmt(or[1], 0)),
+  ficha = list(
+    usar = c("Estudio transversal con desenlace binario frecuente (más del 10\u00a0%).",
+             "Encuesta con diseño muestral complejo: pesos, conglomerados y estratos (ENDES, ENAHO).",
+             "Protocolo con regresión logística: reporta la RP por estandarización marginal."),
+    codigo = paste(c(
+      'library(survey); options(survey.lonely.psu = "adjust")',
+      'dis <- svydesign(ids = ~HV001, strata = ~HV022, weights = ~peso,',
+      '                 data = d, nest = TRUE)',
+      'dis_a <- subset(dis, !is.na(desenlace))        # no filtres antes',
+      'm <- svyglm(desenlace ~ exposicion + edad, design = dis_a,',
+      '            family = quasipoisson(link = "log"))',
+      'exp(cbind(RP = coef(m), confint(m)))',
+      '# desde una logística (m_logit):',
+      'marginaleffects::avg_comparisons(m_logit, variables = "exposicion",',
+      '  comparison = "ratioavg", wts = "(weights)")'), collapse = "\n"),
+    leer = c("svyby(): la columna del desenlace es la prevalencia en proporción; se, su error estándar con el diseño.",
+             "svyglm(): exp(coef) es la RP; el IC usa la varianza del diseño.",
+             "avg_comparisons(): estimate es la RP estandarizada; conf.low y conf.high, su IC 95\u00a0%."),
+    hallazgo = sprintf("Obesidad abdominal, mujeres vs. hombres (ENDES 2024, con diseño): RP %s (IC 95\u00a0%%: %s a %s); OR %s. RP estandarizada desde la logística ajustada: %s.",
+                       fmt(rp[1]), fmt(rp[2]), fmt(rp[3]), fmt(or[1]), fmt(rp_std$estimate)),
+    reporte = sprintf("En la población peruana de 15 y más años (ENDES 2024), la prevalencia de obesidad abdominal fue %s en mujeres y %s en hombres; la razón de prevalencias fue %s (IC 95\u00a0%%: %s a %s). Las estimaciones consideraron el diseño muestral complejo de la encuesta.",
+                      pct(p_m), pct(p_h), fmt(rp[1]), fmt(rp[2]), fmt(rp[3])),
+    evitar = c("Filtrar la base antes de svydesign(): usa subset() sobre el diseño.",
+               "comparison = \"ratio\" en marginaleffects: promedia cocientes individuales.",
+               "Esperar que el log-binomial converja con desenlaces frecuentes.",
+               "Usar el peso y la talla de CSALUD01 en mujeres de 15 a 49 años: están en otro módulo.")
+  )
+), "receta_plena.json", auto_unbox = TRUE)
+```
+
+```{r}
+#| label: script-r
+#| include: false
+# script .R descargable: todo el código de la página, en orden, listo para correr
+escribir_script <- function(qmd, salida, titulo) {
+  x <- readLines(qmd, encoding = "UTF-8")
+  omitir <- c("configuracion", "receta-datos", "script-r", "sesion", "plena")
+  out <- c(paste("#", titulo),
+           "# Prospecto R · Anthony Romero Cerdán · anthonyromero.netlify.app/prospecto",
+           "# Datos: ENDES 2024 (INEI). Descárgalos como indica el Paso 1 del tutorial.",
+           "",
+           "options(OutDec = \",\")",
+           "fmt <- function(x, d = 2) formatC(x, format = \"f\", digits = d, decimal.mark = \",\", big.mark = \"\\u00a0\")",
+           "pct <- function(x, d = 1) paste0(fmt(100 * x, d), \"\\u00a0%\")")
+  inicios <- grep("^```\\{r", x)
+  for (i in inicios) {
+    fin <- i + which(x[(i + 1):length(x)] == "```")[1]
+    cuerpo <- x[(i + 1):(fin - 1)]
+    opciones <- grep("^#\\|", cuerpo, value = TRUE)
+    etiqueta <- sub("^#\\| label: *", "", grep("^#\\| label:", opciones, value = TRUE))
+    if (length(etiqueta) && etiqueta %in% omitir) next
+    nota <- if (any(grepl("include: false", opciones))) " (cifras auxiliares para el texto)" else ""
+    out <- c(out, "", paste0("# ---- ", etiqueta, nota, " ----"), cuerpo[!grepl("^#\\|", cuerpo)])
+  }
+  writeLines(enc2utf8(out), salida, useBytes = TRUE)
+}
+escribir_script(knitr::current_input(), "plena.R", "¿OR o razón de prevalencias? · Prospecto R n.º 1 · dosis plena")
+```

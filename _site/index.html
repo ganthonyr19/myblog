@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es"><head>
 
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.10.18">
@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Welcome to my website!👋</title>
+<title>¡Hola! 👋 – Anthony Romero</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -37,6 +37,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
 <link href="./images/logo-final2.png" rel="icon" type="image/png">
+<script src="site_libs/quarto-listing/list.min.js"></script>
+<script src="site_libs/quarto-listing/quarto-listing.js"></script>
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -47,9 +49,9 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-f546d6278a7fe63a888be9443735f898.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-5fd2d996c0150a3a1fed98b14a8f705c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="site_libs/bootstrap/bootstrap-f546d6278a7fe63a888be9443735f898.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-749f0c35d8da38091077ec74fca69a22.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-02237a22ee455bad83aece42a6742289.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-749f0c35d8da38091077ec74fca69a22.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -64,25 +66,103 @@ ul.task-list li input[type="checkbox"] {
   ],
   "show-item-context": false,
   "language": {
-    "search-no-results-text": "No results",
-    "search-matching-documents-text": "matching documents",
-    "search-copy-link-title": "Copy link to search",
-    "search-hide-matches-text": "Hide additional matches",
-    "search-more-match-text": "more match in this document",
-    "search-more-matches-text": "more matches in this document",
-    "search-clear-button-title": "Clear",
+    "search-no-results-text": "No se han encontrado resultados",
+    "search-matching-documents-text": "documentos encontrados",
+    "search-copy-link-title": "Copiar el enlace en la búsqueda",
+    "search-hide-matches-text": "Ocultar resultados adicionales",
+    "search-more-match-text": "resultado adicional en este documento",
+    "search-more-matches-text": "resultados adicionales en este documento",
+    "search-clear-button-title": "Borrar",
     "search-text-placeholder": "",
-    "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit",
-    "search-label": "Search"
+    "search-detached-cancel-button-title": "Cancelar",
+    "search-submit-button-title": "Enviar",
+    "search-label": "Buscar"
   }
 }</script>
+<script>
+
+  window.document.addEventListener("DOMContentLoaded", function (_event) {
+    const listingTargetEl = window.document.querySelector('#listing-recientes .list');
+    if (!listingTargetEl) {
+      // No listing discovered, do not attach.
+      return; 
+    }
+
+    const options = {
+      valueNames: ['listing-image','listing-date','listing-title','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
+      
+      searchColumns: ["listing-title","listing-author","listing-date","listing-image","listing-description"],
+    };
+
+    window['quarto-listings'] = window['quarto-listings'] || {};
+    window['quarto-listings']['listing-recientes'] = new List('listing-recientes', options);
+
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  });
+
+  window.addEventListener('hashchange',() => {
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  })
+  </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&amp;display=swap">
 
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css">
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="styles.css">
+<meta property="og:title" content="¡Hola! 👋 – Anthony Romero">
+<meta property="og:image" content="https://anthonyromero.netlify.app/images/myphoto.jpg">
+<meta property="og:site_name" content="Anthony Romero">
+<meta name="twitter:title" content="¡Hola! 👋 – Anthony Romero">
+<meta name="twitter:image" content="https://anthonyromero.netlify.app/images/myphoto.jpg">
+<meta name="twitter:card" content="summary_large_image">
 </head>
 
 <body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
@@ -259,23 +339,35 @@ ul.task-list li input[type="checkbox"] {
     <img src="./images/icon.png" alt="" class="navbar-logo dark-content">
     </a>
   </div>
-            <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+            <div id="quarto-search" class="" title="Buscar"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Navegación de palanca" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
     <a class="nav-link active" href="./index.html" aria-current="page"> 
-<span class="menu-text">Home</span></a>
+<span class="menu-text">Inicio</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./tutoriales.html"> 
+<span class="menu-text">Tutoriales</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="./blog.html"> 
-<span class="menu-text">Posts</span></a>
+<span class="menu-text">Blog</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./prospecto/index.html"> 
+<span class="menu-text">Prospecto R</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./recursos.html"> 
+<span class="menu-text">Recursos</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="./about.html"> 
-<span class="menu-text">About</span></a>
+<span class="menu-text">Sobre mí</span></a>
   </li>  
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
@@ -288,24 +380,24 @@ ul.task-list li input[type="checkbox"] {
     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-bi-github">    
         <li>
     <a class="dropdown-item" href="https://github.com/ganthonyr19/myblog">
- <span class="dropdown-text">Source code</span></a>
+ <span class="dropdown-text">Código fuente</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="https://github.com/ganthonyr19/myblog/issues">
- <span class="dropdown-text">Report a bug</span></a>
+ <span class="dropdown-text">Reportar un error</span></a>
   </li>  
     </ul>
   </li>
   <li class="nav-item compact">
-    <a class="nav-link" href="https://twitter.com/ganthonyr94"> <i class="bi bi-twitter" role="img">
+    <a class="nav-link" href="https://x.com/ganthonyrc"> <i class="bi bi-twitter" role="img">
 </i> 
 <span class="menu-text"></span></a>
   </li>  
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
-  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
-  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Alternar modo oscuro"><i class="bi"></i></a>
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Alternar modo lector">
   <div class="quarto-reader-toggle-btn">
   <i class="bi"></i>
   </div>
@@ -318,51 +410,76 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Contents</h2>
+  <ul>
+  <li><a href="#lo-más-reciente" id="toc-lo-más-reciente" class="nav-link active" data-scroll-target="#lo-más-reciente">Lo más reciente</a></li>
+  </ul>
+</nav>
+    </div>
 <!-- main -->
-<div class="quarto-about-jolla column-page">
+<div class="quarto-about-jolla column-page-left">
   <img src="images/myphoto.jpg" class="about-image
   rounded " style="width: 15em;">
  <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Welcome to my website!👋</h1>
+<h1 class="title">¡Hola! 👋</h1>
 </div>
-<div class="quarto-title-meta column-page">
+<div class="quarto-title-meta column-page-left">
   </div>
-</header><main class="content column-page" id="quarto-document-content">
+</header><main class="content column-page-left" id="quarto-document-content">
 
-<div class="tabset-margin-container"></div><div class="panel-tabset presentation">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" href="">EN</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false" href="">ES</a></li></ul>
-<div class="tab-content presentation">
-<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+
+<div class="presentation">
 <ul>
-<li>Hi there! My name is Anthony Romero, a 🇵🇪 <strong>physician (MD)</strong> who graduated from the Universidad Nacional Mayor de San Marcos.<br>
-</li>
-<li>For more than 5 years I have been advising health sciences theses in <strong>research methods</strong> and <strong>biostatistics</strong>, and I have co-authored more than 10 scientific publications.<br>
-</li>
-<li>I enjoy experimenting with new technologies and participating in projects with <strong>R</strong>, <strong>Stata</strong> and <strong>HTML/CSS</strong> applied to <strong><em>Health</em></strong>, as well as <strong><em>medical research</em></strong>, <strong><em>biostatistics</em></strong> and <strong><em>clinical and public health epidemiology</em></strong>.</li>
-<li>In this blog I share <strong>tutorials</strong>, <strong>resources</strong> and <strong>news</strong> about R, RStudio and data science applied to health research.</li>
-</ul>
-</div>
-<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
-<ul>
-<li>¡Hola! Soy Anthony Romero, 🇵🇪 <strong>médico cirujano</strong> egresado de la Universidad Nacional Mayor de San Marcos.<br>
+<li>Soy Anthony Romero, 🇵🇪 <strong>médico cirujano</strong> egresado de la Universidad Nacional Mayor de San Marcos.<br>
 </li>
 <li>Desde hace más de 5 años asesoro tesis de ciencias de la salud en <strong>metodología de la investigación</strong> y <strong>bioestadística</strong>, y he participado en más de 10 publicaciones científicas.<br>
 </li>
 <li>Disfruto experimentando con nuevas tecnologías y participando en proyectos con <strong>R</strong>, <strong>Stata</strong> y <strong>HTML/CSS</strong> aplicados a la <strong><em>Salud</em></strong>, así como en <strong><em>investigación médica</em></strong>, <strong><em>bioestadística</em></strong> y <strong><em>Epidemiología clínica y de salud pública</em></strong>.<br>
 </li>
-<li>En este blog comparto <strong>tutoriales</strong>, <strong>recursos</strong> y <strong>novedades</strong> sobre R, RStudio y ciencia de datos aplicada a la investigación en salud.</li>
+<li>En este sitio comparto <strong>tutoriales</strong>, <strong>recursos</strong> y <strong>novedades</strong> sobre R, RStudio y ciencia de datos aplicada a la investigación en salud.</li>
 </ul>
 </div>
+<section id="lo-más-reciente" class="level2">
+<h2 data-anchor-id="lo-más-reciente">Lo más reciente</h2>
+<div id="listing-recientes" class="quarto-listing quarto-listing-container-grid">
+<div class="list grid quarto-listing-cols-3">
+<div class="g-col-1" data-index="0" data-categories="VHV0b3JpYWwlMkNSJTJDUlN0dWRpbyUyQ0luc3RhbGFjaSVDMyVCM24=" data-listing-date-sort="1681621200000" data-listing-file-modified-sort="1791939747519" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="725">
+<a href="./posts/Manual/index.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img loading="lazy" src="./posts/Manual/imagenes_guia/r-rstudio.png" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Manual de instalación de R, RStudio y Rtools
+</h5>
+<div class="listing-categories">
+<div class="listing-category" onclick="window.quartoListingCategory('VHV0b3JpYWw='); return false;">Tutorial</div>
+<div class="listing-category" onclick="window.quartoListingCategory('Ug=='); return false;">R</div>
+<div class="listing-category" onclick="window.quartoListingCategory('UlN0dWRpbw=='); return false;">RStudio</div>
+<div class="listing-category" onclick="window.quartoListingCategory('SW5zdGFsYWNpJUMzJUIzbg=='); return false;">Instalación</div>
 </div>
+<div class="card-attribution card-text-small end">
+<div class="listing-date">
+16 abr 2023
+</div>
+</div>
+</div>
+</div></a>
+</div>
+</div>
+<div class="listing-no-matching d-none">No hay resultados</div>
 </div>
 
 
+</section>
 </main> 
   <hr class="about-sep">
    <div class="about-links">
-  <a href="https://twitter.com/ganthonyr94" class="about-link" rel="" target="">
+  <a href="https://x.com/ganthonyrc" class="about-link" rel="" target="">
     <i class="bi bi-twitter"></i>
      <span class="about-link-text">Twitter</span>
   </a>
@@ -372,7 +489,7 @@ ul.task-list li input[type="checkbox"] {
   </a>
   <a href="https://github.com/ganthonyr19" class="about-link" rel="" target="">
     <i class="bi bi-github"></i>
-     <span class="about-link-text">Github</span>
+     <span class="about-link-text">GitHub</span>
   </a>
   <a href="mailto:anthony.romeromh@gmail.com" class="about-link" rel="" target="">
     <i class="bi bi-envelope"></i>
@@ -412,12 +529,12 @@ ul.task-list li input[type="checkbox"] {
       // flash "checked"
       button.classList.add('code-copy-button-checked');
       var currentTitle = button.getAttribute("title");
-      button.setAttribute("title", "Copied!");
+      button.setAttribute("title", "Copiado");
       let tooltip;
       if (window.bootstrap) {
         button.setAttribute("data-bs-toggle", "tooltip");
         button.setAttribute("data-bs-placement", "left");
-        button.setAttribute("data-bs-title", "Copied!");
+        button.setAttribute("data-bs-title", "Copiado");
         tooltip = new bootstrap.Tooltip(button, 
           { trigger: "manual", 
             customClass: "code-copy-button-tooltip",

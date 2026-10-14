@@ -9,6 +9,8 @@ website:
   site-url: https://anthonyromero.netlify.app/
   favicon: images/logo-final2.png
   page-navigation: true
+  open-graph: true
+  twitter-card: true
   navbar:
     title: false
     logo: images/icon.png
@@ -20,6 +22,8 @@ website:
         href: tutoriales.qmd
       - text: Blog
         href: blog.qmd
+      - text: Prospecto R
+        href: prospecto/index.qmd
       - text: Recursos
         href: recursos.qmd
       - text: Sobre mí
@@ -32,7 +36,7 @@ website:
          - text: Reportar un error
            href: https://github.com/ganthonyr19/myblog/issues
       - icon: twitter
-        href: https://twitter.com/ganthonyr94
+        href: https://x.com/ganthonyrc
         # text: My twitter account
   page-footer: 
     left: |

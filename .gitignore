@@ -9,3 +9,9 @@
 .DS_Store
 
 **/*.quarto_ipynb
+
+# datos de la ENDES: cada lector los descarga del INEI
+prospecto/**/ENDES
+
+# dependencias de la plantilla de la receta (se instalan con npm install)
+node_modules
