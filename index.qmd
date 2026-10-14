@@ -24,6 +24,7 @@ listing:
     - tutoriales
     - blog
     - posts
+    - prospecto/*/inicial.qmd   # de Prospecto R, solo la dosis inicial: enlaza a la plena
   sort: "date desc"
   type: grid
   max-items: 3
