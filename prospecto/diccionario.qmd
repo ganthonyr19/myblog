@@ -1,0 +1,192 @@
+---
+title: "Diccionario de Prospecto R"
+subtitle: "Los términos de bioestadística y epidemiología que usan los tutoriales, explicados en pocas líneas"
+lang: es
+toc: false
+---
+
+Cada término de los tutoriales con un subrayado punteado lleva aquí. Las definiciones son resúmenes propios, escritos para un lector de ciencias de la salud; para profundizar, cada una indica las fuentes de referencia en las que se basa.
+
+
+::: {#confusion .entrada}
+### Confusión
+
+Distorsión de la asociación entre una exposición y un desenlace causada por una tercera variable que se asocia con ambas y no es consecuencia de la exposición. Se controla en el diseño (restricción, emparejamiento) o en el análisis (estratificación, ajuste en un modelo de regresión).
+
+[Fuentes: [Rothman et al., 2008](#fuente-rothman); [Porta, 2014](#fuente-porta).]{.fuente}
+:::
+
+::: {#conglomerado .entrada}
+### Conglomerado
+
+Grupo de unidades vecinas (por ejemplo, un conjunto de viviendas de una zona) que se selecciona como un todo en la primera etapa de una muestra. Las personas de un mismo conglomerado se parecen entre sí más que dos personas al azar, y eso aumenta el error estándar. En la ENDES es la unidad primaria de muestreo y se identifica con la variable `HV001`.
+
+[Fuentes: [Lumley, 2010](#fuente-lumley); [INEI, ficha técnica ENDES 2024](#fuente-inei).]{.fuente}
+:::
+
+::: {#diseno-muestral-complejo .entrada}
+### Diseño muestral complejo
+
+Forma de seleccionar una muestra que no es aleatoria simple: combina estratos, conglomerados y probabilidades de selección distintas. Para estimar bien hay que declarar el diseño (en R, con `survey::svydesign()`); si se ignora, las cifras describen a la muestra y los intervalos de confianza son incorrectos.
+
+[Fuentes: [Lumley, 2010](#fuente-lumley).]{.fuente}
+:::
+
+::: {#endes .entrada}
+### ENDES
+
+Encuesta Demográfica y de Salud Familiar del Perú, a cargo del INEI. Mide la dinámica demográfica, la salud materno-infantil y las enfermedades no transmisibles y transmisibles. Su muestra es bietápica, probabilística de tipo equilibrado y estratificada, representativa por departamento y área urbana y rural. En el Cuestionario de Salud se entrevista a una persona de 15 y más años por hogar. Los microdatos se descargan en <https://proyectos.inei.gob.pe/microdatos/>.
+
+[Fuentes: [INEI, ficha técnica ENDES 2024](#fuente-inei).]{.fuente}
+:::
+
+::: {#error-estandar .entrada}
+### Error estándar
+
+Medida de cuánto variaría una estimación (una prevalencia, un coeficiente) si se repitiera el estudio con otras muestras del mismo tamaño. Es la base para calcular intervalos de confianza y valores p.
+
+[Fuentes: [Kirkwood y Sterne, 2003](#fuente-kirkwood).]{.fuente}
+:::
+
+::: {#estandarizacion-marginal .entrada}
+### Estandarización marginal
+
+Procedimiento para obtener una medida de asociación para toda la población a partir de un modelo: se predice el desenlace para todas las personas como si todas estuvieran expuestas y luego como si ninguna lo estuviera, y se comparan los promedios. Permite, por ejemplo, reportar una razón de prevalencias ajustada desde una regresión logística.
+
+[Fuentes: [Muller y MacLehose, 2014](#fuente-muller); [Rothman et al., 2008](#fuente-rothman).]{.fuente}
+:::
+
+::: {#estrato .entrada}
+### Estrato
+
+Subgrupo de la población, definido antes del muestreo (por ejemplo, departamento y área urbana o rural), dentro del cual se selecciona una muestra independiente. La estratificación suele reducir el error estándar. En la ENDES se identifica con la variable `HV022`.
+
+[Fuentes: [Lumley, 2010](#fuente-lumley); [INEI, ficha técnica ENDES 2024](#fuente-inei).]{.fuente}
+:::
+
+::: {#estudio-transversal .entrada}
+### Estudio transversal
+
+Estudio que mide la exposición y el desenlace en el mismo momento en una población definida. Estima prevalencias, no incidencias, por lo que no permite establecer qué ocurrió primero.
+
+[Fuentes: [Porta, 2014](#fuente-porta); [Rothman et al., 2008](#fuente-rothman).]{.fuente}
+:::
+
+::: {#factor-de-expansion .entrada}
+### Factor de expansión (peso)
+
+Número de personas de la población que representa cada persona de la muestra. Es la inversa de su probabilidad de selección, ajustada por la falta de respuesta. Usarlo corrige que algunos grupos estén sobrerrepresentados en la muestra. En el Cuestionario de Salud de la ENDES es la variable `PESO15_AMAS`, que viene con seis decimales implícitos.
+
+[Fuentes: [Lumley, 2010](#fuente-lumley); [INEI, ficha técnica ENDES 2024](#fuente-inei).]{.fuente}
+:::
+
+::: {#intervalo-de-confianza .entrada}
+### Intervalo de confianza
+
+Rango de valores compatibles con los datos para el parámetro estimado. Un intervalo del 95&nbsp;% se construye con un método que, en repeticiones del estudio, contendría el valor real el 95&nbsp;% de las veces. Su amplitud refleja la precisión de la estimación.
+
+[Fuentes: [Kirkwood y Sterne, 2003](#fuente-kirkwood); [Rothman et al., 2008](#fuente-rothman).]{.fuente}
+:::
+
+::: {#modelo-log-binomial .entrada}
+### Modelo log-binomial
+
+Modelo lineal generalizado con distribución binomial y enlace logarítmico. Sus coeficientes exponenciados son razones de prevalencias (o de riesgos). Con desenlaces frecuentes o covariables continuas suele no converger, porque algunas probabilidades predichas superarían 1.
+
+[Fuentes: [Barros y Hirakata, 2003](#fuente-barros); [Zou, 2004](#fuente-zou).]{.fuente}
+:::
+
+::: {#obesidad-abdominal .entrada}
+### Obesidad abdominal
+
+Exceso de grasa en el abdomen, que se estima con el perímetro de cintura. Con los criterios del ATP III se define como un perímetro mayor de 102&nbsp;cm en hombres y mayor de 88&nbsp;cm en mujeres. No se evalúa en gestantes.
+
+[Fuentes: [ATP III, 2001](#fuente-atp).]{.fuente}
+:::
+
+::: {#odds .entrada}
+### Odds (chance)
+
+Cociente entre la probabilidad de que ocurra un evento y la probabilidad de que no ocurra: p/(1 − p). Una prevalencia de 50&nbsp;% equivale a una odds de 1; una de 80&nbsp;%, a una odds de 4.
+
+[Fuentes: [Kirkwood y Sterne, 2003](#fuente-kirkwood); [Porta, 2014](#fuente-porta).]{.fuente}
+:::
+
+::: {#odds-ratio .entrada}
+### Odds ratio (OR)
+
+Cociente de dos odds: la del desenlace en expuestos entre la de no expuestos. En una tabla 2×2 es ad/bc. Se parece a la razón de prevalencias solo cuando el desenlace es raro; cuando es frecuente se aleja de 1 mucho más. Es la medida que estima la regresión logística.
+
+[Fuentes: [Kirkwood y Sterne, 2003](#fuente-kirkwood); [Rothman et al., 2008](#fuente-rothman).]{.fuente}
+:::
+
+::: {#prevalencia .entrada}
+### Prevalencia
+
+Proporción de personas de una población que tienen una condición en un momento dado. Se expresa como proporción (0,62) o porcentaje (62&nbsp;%).
+
+[Fuentes: [Porta, 2014](#fuente-porta).]{.fuente}
+:::
+
+::: {#razon-de-prevalencias .entrada}
+### Razón de prevalencias (RP)
+
+Cociente entre la prevalencia del desenlace en expuestos y en no expuestos: P₁/P₀. Una RP de 3 significa que la condición es tres veces más frecuente en los expuestos. Es la medida de asociación natural de los estudios transversales.
+
+[Fuentes: [Rothman et al., 2008](#fuente-rothman); [Barros y Hirakata, 2003](#fuente-barros).]{.fuente}
+:::
+
+::: {#regresion-de-poisson .entrada}
+### Regresión de Poisson
+
+Modelo lineal generalizado para conteos, con enlace logarítmico. Aplicado a un desenlace binario (0/1), sus coeficientes exponenciados son razones de prevalencias; para que los intervalos de confianza sean correctos debe usarse con varianza robusta.
+
+[Fuentes: [Zou, 2004](#fuente-zou); [Barros y Hirakata, 2003](#fuente-barros).]{.fuente}
+:::
+
+::: {#regresion-logistica .entrada}
+### Regresión logística
+
+Modelo para desenlaces binarios que relaciona las covariables con el logaritmo de la odds del desenlace. Sus coeficientes exponenciados son odds ratios.
+
+[Fuentes: [Hosmer et al., 2013](#fuente-hosmer).]{.fuente}
+:::
+
+::: {#tabla-2x2 .entrada}
+### Tabla 2×2
+
+Tabla que cruza una exposición (sí/no) con un desenlace (sí/no). Por convención, los expuestos van en la primera fila y el desenlace presente en la primera columna; las celdas se llaman *a*, *b* (expuestos) y *c*, *d* (no expuestos).
+
+[Fuentes: [Kirkwood y Sterne, 2003](#fuente-kirkwood).]{.fuente}
+:::
+
+::: {#varianza-robusta .entrada}
+### Varianza robusta
+
+Forma de calcular los errores estándar de un modelo que no depende de que la distribución supuesta sea correcta (también llamada estimador sándwich). Corrige los intervalos demasiado anchos de la regresión de Poisson aplicada a un desenlace binario. En R se obtiene con `sandwich::vcovHC()`.
+
+[Fuentes: [Zou, 2004](#fuente-zou).]{.fuente}
+:::
+
+
+## Fuentes {#fuentes}
+
+[Porta M, editor. *A Dictionary of Epidemiology*. 6.ª ed. Nueva York: Oxford University Press; 2014.]{#fuente-porta}
+
+[Rothman KJ, Greenland S, Lash TL. *Modern Epidemiology*. 3.ª ed. Filadelfia: Lippincott Williams & Wilkins; 2008.]{#fuente-rothman}
+
+[Kirkwood BR, Sterne JAC. *Essential Medical Statistics*. 2.ª ed. Oxford: Blackwell Science; 2003.]{#fuente-kirkwood}
+
+[Hosmer DW, Lemeshow S, Sturdivant RX. *Applied Logistic Regression*. 3.ª ed. Hoboken: Wiley; 2013.]{#fuente-hosmer}
+
+[Lumley T. *Complex Surveys: A Guide to Analysis Using R*. Hoboken: Wiley; 2010.]{#fuente-lumley}
+
+[Zou G. A modified Poisson regression approach to prospective studies with binary data. *Am J Epidemiol*. 2004;159(7):702-6.]{#fuente-zou}
+
+[Barros AJD, Hirakata VN. Alternatives for logistic regression in cross-sectional studies: an empirical comparison of models that directly estimate the prevalence ratio. *BMC Med Res Methodol*. 2003;3:21.]{#fuente-barros}
+
+[Muller CJ, MacLehose RF. Estimating predicted probabilities from logistic regression: different methods correspond to different target populations. *Int J Epidemiol*. 2014;43(3):962-70.]{#fuente-muller}
+
+[Expert Panel on Detection, Evaluation, and Treatment of High Blood Cholesterol in Adults. Executive summary of the third report of the NCEP Adult Treatment Panel III. *JAMA*. 2001;285(19):2486-97.]{#fuente-atp}
+
+[Instituto Nacional de Estadística e Informática. *Ficha técnica. Encuesta Demográfica y de Salud Familiar 2024*. Lima: INEI.]{#fuente-inei}

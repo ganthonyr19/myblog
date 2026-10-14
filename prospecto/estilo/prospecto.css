@@ -1,0 +1,128 @@
+/* Prospecto R: estilo de los tutoriales. Tipografías autoalojadas (SIL OFL 1.1, ver fuentes/LICENSE-*) */
+@font-face{font-family:'Inter';font-style:normal;font-weight:400;font-display:swap;src:url(fuentes/inter-latin-400-normal.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:'Inter';font-style:normal;font-weight:400;font-display:swap;src:url(fuentes/inter-latin-ext-400-normal.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF}
+@font-face{font-family:'Inter';font-style:normal;font-weight:500;font-display:swap;src:url(fuentes/inter-latin-500-normal.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:'Inter';font-style:normal;font-weight:500;font-display:swap;src:url(fuentes/inter-latin-ext-500-normal.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF}
+@font-face{font-family:'Inter';font-style:normal;font-weight:600;font-display:swap;src:url(fuentes/inter-latin-600-normal.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:'Inter';font-style:normal;font-weight:600;font-display:swap;src:url(fuentes/inter-latin-ext-600-normal.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF}
+@font-face{font-family:'Inter';font-style:normal;font-weight:700;font-display:swap;src:url(fuentes/inter-latin-700-normal.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:'Inter';font-style:normal;font-weight:700;font-display:swap;src:url(fuentes/inter-latin-ext-700-normal.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF}
+@font-face{font-family:'Inter';font-style:italic;font-weight:400;font-display:swap;src:url(fuentes/inter-latin-400-italic.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:'Inter';font-style:italic;font-weight:400;font-display:swap;src:url(fuentes/inter-latin-ext-400-italic.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF}
+@font-face{font-family:'Fraunces';font-style:normal;font-weight:600;font-display:swap;src:url(fuentes/fraunces-latin-600-normal.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:'Fraunces';font-style:normal;font-weight:600;font-display:swap;src:url(fuentes/fraunces-latin-ext-600-normal.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF}
+@font-face{font-family:'JetBrains Mono';font-style:normal;font-weight:400;font-display:swap;src:url(fuentes/jetbrains-mono-latin-400-normal.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:'JetBrains Mono';font-style:normal;font-weight:400;font-display:swap;src:url(fuentes/jetbrains-mono-latin-ext-400-normal.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF}
+@font-face{font-family:'JetBrains Mono';font-style:normal;font-weight:600;font-display:swap;src:url(fuentes/jetbrains-mono-latin-600-normal.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:'JetBrains Mono';font-style:normal;font-weight:600;font-display:swap;src:url(fuentes/jetbrains-mono-latin-ext-600-normal.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF}
+
+:root{
+  --pr-navy:#0B1F3A; --pr-acento:#E5636F; --pr-turquesa:#2A9DA3; --pr-papel:#FBF7EE;
+  --pr-texto:#1F2A37; --pr-suave:#5B6B80; --pr-borde:#E3E7ED; --pr-fondo-sal:#F6F8FA;
+}
+body.quarto-dark{
+  --pr-texto:#E6EAF0; --pr-suave:#A9B8CC; --pr-borde:#33404F; --pr-fondo-sal:#1B2430; --pr-papel:#1E2733;
+}
+
+/* --- tipografía --- */
+body{font-family:'Inter',system-ui,-apple-system,'Segoe UI',sans-serif;font-size:1.04rem;color:var(--pr-texto);
+  font-feature-settings:"cv11","ss01";-webkit-font-smoothing:antialiased}
+main p, main li{line-height:1.78}
+main p{ text-align:justify; hyphens:auto; -webkit-hyphens:auto; text-wrap:pretty }
+main li{ text-align:left }
+h1.title{font-family:'Fraunces',Georgia,serif;font-weight:600;letter-spacing:-.015em;line-height:1.12}
+.quarto-title .subtitle{font-family:'Inter',sans-serif;font-weight:400;opacity:.9;line-height:1.45}
+main h2, main h3, main h4{font-family:'Inter',sans-serif;font-weight:700;letter-spacing:-.018em;color:var(--pr-texto)}
+main h2{font-size:1.65rem;margin-top:2.6rem;padding-bottom:.35rem;border-bottom:none;position:relative}
+main h2::after{content:"";display:block;width:44px;height:4px;border-radius:2px;background:var(--pr-acento);margin-top:.5rem}
+main h3{font-size:1.2rem;margin-top:2rem}
+code, pre, .sourceCode{font-family:'JetBrains Mono',ui-monospace,monospace;font-variant-ligatures:none}
+p code, li code, td code{font-size:.86em;padding:.1em .35em;border-radius:5px;background:var(--pr-fondo-sal);color:var(--pr-texto)}
+main table{font-size:.95rem}
+main table p{text-align:left}
+
+/* --- palabras clave: discretas y enlazadas al listado --- */
+.quarto-title .quarto-categories{gap:.35rem;margin-top:.6rem}
+.quarto-title .quarto-category{font-family:'Inter',sans-serif;font-size:.7rem;font-weight:500;letter-spacing:.02em;
+  text-transform:none !important;padding:.15rem .55rem;border-radius:999px;border:1px solid rgba(255,255,255,.35);
+  background:transparent;opacity:.85;margin:0}
+.quarto-title .quarto-category:hover{opacity:1;border-color:var(--pr-acento)}
+.quarto-title .quarto-categories a{text-decoration:none}
+
+/* --- código plegable --- */
+details.code-fold > summary, .cell details > summary{font-family:'Inter',sans-serif;font-size:.85rem;font-weight:600;
+  color:var(--pr-suave);cursor:pointer;padding:.3rem 0}
+details.code-fold > summary:hover{color:var(--pr-acento)}
+
+/* --- resultado plegable --- */
+details.salida{margin:.4rem 0 1.1rem;border:1px solid var(--pr-borde);border-radius:10px;background:var(--pr-fondo-sal);overflow:hidden}
+details.salida > summary{list-style:none;cursor:pointer;padding:.45rem .9rem;font-family:'Inter',sans-serif;font-size:.85rem;
+  font-weight:600;color:var(--pr-turquesa);display:flex;align-items:center;gap:.5rem;user-select:none}
+details.salida > summary::-webkit-details-marker{display:none}
+details.salida > summary::before{content:"▸";transition:transform .15s ease;display:inline-block}
+details.salida[open] > summary::before{transform:rotate(90deg)}
+details.salida > summary:hover{color:var(--pr-acento)}
+details.salida pre{margin:0;border:none;border-top:1px solid var(--pr-borde);border-radius:0;background:transparent;font-size:.84rem;line-height:1.5}
+details.salida .cell-output{margin:0}
+
+/* --- cómo leerlo --- */
+.leer{position:relative;margin:.2rem 0 1.6rem;padding:1rem 1.2rem .4rem 1.2rem;border-left:4px solid var(--pr-turquesa);
+  background:linear-gradient(90deg,rgba(42,157,163,.08),rgba(42,157,163,0));border-radius:0 10px 10px 0}
+.leer::before{content:"CÓMO LEERLO";display:block;font-family:'Inter',sans-serif;font-size:.7rem;font-weight:700;letter-spacing:.14em;
+  color:var(--pr-turquesa);margin-bottom:.35rem}
+.leer p, .leer li{font-size:.98rem}
+
+/* --- enlaces al diccionario --- */
+a.dic{color:inherit;text-decoration:underline dotted;text-decoration-color:var(--pr-turquesa);text-decoration-thickness:2px;
+  text-underline-offset:3px}
+a.dic:hover{color:var(--pr-turquesa);text-decoration-style:solid}
+
+/* --- callouts --- */
+.callout{border-radius:10px}
+.callout .callout-title-container{font-family:'Inter',sans-serif;font-weight:700}
+
+/* --- diccionario --- */
+.entrada{max-width:46rem;padding:1rem 0 .4rem;border-bottom:1px solid var(--pr-borde);scroll-margin-top:90px}
+.entrada:target{background:rgba(229,99,111,.07);border-radius:8px;padding-left:.8rem}
+.entrada .fuente{font-size:.88rem;color:var(--pr-suave)}
+
+.entrada p{text-align:left}
+
+/* --- definiciones emergentes --- */
+.tippy-box[data-theme~='prospecto']{background:var(--pr-navy);color:#F5F7FA;border-radius:10px;box-shadow:0 10px 30px rgba(11,31,58,.25)}
+.tippy-box[data-theme~='prospecto'] .tippy-arrow{color:var(--pr-navy)}
+.dic-tip{padding:.35rem .2rem;font-family:'Inter',sans-serif;font-size:.86rem;line-height:1.5;text-align:left}
+.dic-tip strong{display:block;margin-bottom:.25rem;color:#fff}
+.dic-tip p{margin:0 0 .35rem;text-align:left}
+.dic-tip code{background:rgba(255,255,255,.12);color:#fff}
+.dic-tip span{font-size:.75rem;color:#A9B8CC}
+
+/* --- copiar para mi tesis --- */
+.reporte blockquote{border-left:4px solid var(--pr-acento);background:var(--pr-fondo-sal);padding:1rem 1.2rem;border-radius:0 10px 10px 0;
+  color:var(--pr-texto);font-size:1rem;margin-bottom:.5rem}
+.btn-copiar{font-family:'Inter',sans-serif;font-size:.82rem;font-weight:600;border:1px solid var(--pr-acento);color:var(--pr-acento);
+  background:transparent;border-radius:999px;padding:.3rem .9rem;cursor:pointer;margin:0 0 1.2rem}
+.btn-copiar:hover{background:var(--pr-acento);color:#fff}
+
+/* --- botones de descarga --- */
+.descargas{display:flex;flex-wrap:wrap;gap:.6rem;margin:1rem 0 1.6rem}
+.descargas a{display:inline-flex;align-items:center;gap:.45rem;font-family:'Inter',sans-serif;font-size:.88rem;font-weight:600;
+  text-decoration:none;padding:.5rem 1rem;border-radius:10px;border:1px solid var(--pr-borde);color:var(--pr-texto);background:var(--pr-fondo-sal)}
+.descargas a:hover{border-color:var(--pr-turquesa);color:var(--pr-turquesa)}
+.descargas a::before{content:"↓";font-weight:700;color:var(--pr-turquesa)}
+
+/* --- autoevaluación --- */
+.autoeval{display:grid;gap:.8rem;margin:1rem 0 1.6rem}
+.autoeval .pregunta{border:1px solid var(--pr-borde);border-radius:12px;padding:1rem 1.2rem .3rem}
+.autoeval .pregunta > p:first-child{font-weight:600;text-align:left}
+.autoeval details{margin:.2rem 0 .8rem}
+.autoeval summary{cursor:pointer;font-size:.86rem;font-weight:600;color:var(--pr-turquesa)}
+.autoeval details p{margin:.5rem 0 0;text-align:left}
+
+/* --- llamada a la asesoría --- */
+.cta{margin:2.4rem 0 1rem;padding:1.4rem 1.6rem;border-radius:14px;background:var(--pr-navy);color:#F5F7FA}
+.cta p{margin:.2rem 0;text-align:left;color:#F5F7FA}
+.cta strong{font-family:'Fraunces',Georgia,serif;font-weight:600;font-size:1.3rem;color:#fff}
+.cta a{display:inline-block;margin-top:.8rem;padding:.5rem 1.1rem;border-radius:999px;background:var(--pr-acento);color:#fff;
+  font-weight:600;text-decoration:none}
+.cta a:hover{filter:brightness(1.08)}

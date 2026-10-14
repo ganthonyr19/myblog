@@ -1,14 +1,17 @@
 ---
 title: "Tutoriales"
+description: "Guías paso a paso para aprender R, RStudio y Quarto aplicados a la investigación en salud."
 listing:
-  contents: posts
+  contents:
+    - tutoriales
+    - posts
   sort: "date desc"
-  type: default
+  type: grid
   categories: true
   sort-ui: false
   filter-ui: false
+  feed: true
+  date-format: "D MMM YYYY"
 page-layout: full
 title-block-banner: true
-description: Bienvenido a esta sección :D. Aquí encontrarás diversas publicaciones que te servirán en tu camino a aprender R, HTML, CSS o Stata. Sugerencias y comentarios son bienvenidos! ;) 
 ---
-

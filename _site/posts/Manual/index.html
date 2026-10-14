@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es"><head>
 
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.10.18">
@@ -7,9 +7,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Anthony R.">
-<meta name="dcterms.date" content="2023-04-16">
 
-<title>Manual de instalación de R, RStudio y Rtools</title>
+<title>Manual de instalación de R, RStudio y Rtools – Anthony Romero</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -67,17 +66,17 @@ ul.task-list li input[type="checkbox"] {
   ],
   "show-item-context": false,
   "language": {
-    "search-no-results-text": "No results",
-    "search-matching-documents-text": "matching documents",
-    "search-copy-link-title": "Copy link to search",
-    "search-hide-matches-text": "Hide additional matches",
-    "search-more-match-text": "more match in this document",
-    "search-more-matches-text": "more matches in this document",
-    "search-clear-button-title": "Clear",
+    "search-no-results-text": "No se han encontrado resultados",
+    "search-matching-documents-text": "documentos encontrados",
+    "search-copy-link-title": "Copiar el enlace en la búsqueda",
+    "search-hide-matches-text": "Ocultar resultados adicionales",
+    "search-more-match-text": "resultado adicional en este documento",
+    "search-more-matches-text": "resultados adicionales en este documento",
+    "search-clear-button-title": "Borrar",
     "search-text-placeholder": "",
-    "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit",
-    "search-label": "Search"
+    "search-detached-cancel-button-title": "Cancelar",
+    "search-submit-button-title": "Enviar",
+    "search-label": "Buscar"
   }
 }</script>
 <link href="../../site_libs/vembedr-0.1.5/css/vembedr.css" rel="stylesheet">
@@ -88,6 +87,18 @@ ul.task-list li input[type="checkbox"] {
 
 
 <link rel="stylesheet" href="../../styles.css">
+<meta property="og:title" content="Manual de instalación de R, RStudio y Rtools – Anthony Romero">
+<meta property="og:description" content="Tutoriales, recursos y novedades sobre R y ciencia de datos aplicada a la investigación en salud.">
+<meta property="og:image" content="https://anthonyromero.netlify.app//posts/Manual/imagenes_guia/r-rstudio.png">
+<meta property="og:site_name" content="Anthony Romero">
+<meta property="og:image:height" content="628">
+<meta property="og:image:width" content="2000">
+<meta name="twitter:title" content="Manual de instalación de R, RStudio y Rtools – Anthony Romero">
+<meta name="twitter:description" content="Tutoriales, recursos y novedades sobre R y ciencia de datos aplicada a la investigación en salud.">
+<meta name="twitter:image" content="https://anthonyromero.netlify.app//posts/Manual/imagenes_guia/r-rstudio.png">
+<meta name="twitter:image-height" content="628">
+<meta name="twitter:image-width" content="2000">
+<meta name="twitter:card" content="summary_large_image">
 </head>
 
 <body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
@@ -264,23 +275,42 @@ ul.task-list li input[type="checkbox"] {
     <img src="../../images/icon.png" alt="" class="navbar-logo dark-content">
     </a>
   </div>
-            <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+            <div id="quarto-search" class="" title="Buscar"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Navegación de palanca" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
     <a class="nav-link" href="../../index.html"> 
-<span class="menu-text">Home</span></a>
+<span class="menu-text">Inicio</span></a>
   </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-aprende" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Aprende</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-aprende">    
+        <li>
+    <a class="dropdown-item" href="../../prospecto/index.html">
+ <span class="dropdown-text">Prospecto R</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../tutoriales.html">
+ <span class="dropdown-text">Tutoriales</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../blog.html">
+ <span class="dropdown-text">Blog</span></a>
+  </li>  
+    </ul>
+  </li>
   <li class="nav-item">
-    <a class="nav-link" href="../../blog.html"> 
-<span class="menu-text">Posts</span></a>
+    <a class="nav-link" href="../../recursos.html"> 
+<span class="menu-text">Recursos</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="../../about.html"> 
-<span class="menu-text">About</span></a>
+<span class="menu-text">Sobre mí</span></a>
   </li>  
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
@@ -293,11 +323,11 @@ ul.task-list li input[type="checkbox"] {
     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-bi-github">    
         <li>
     <a class="dropdown-item" href="https://github.com/ganthonyr19/myblog">
- <span class="dropdown-text">Source code</span></a>
+ <span class="dropdown-text">Código fuente</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="https://github.com/ganthonyr19/myblog/issues">
- <span class="dropdown-text">Report a bug</span></a>
+ <span class="dropdown-text">Reportar un error</span></a>
   </li>  
     </ul>
   </li>
@@ -309,8 +339,8 @@ ul.task-list li input[type="checkbox"] {
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
-  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
-  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Alternar modo oscuro"><i class="bi"></i></a>
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Alternar modo lector">
   <div class="quarto-reader-toggle-btn">
   <i class="bi"></i>
   </div>
@@ -325,9 +355,10 @@ ul.task-list li input[type="checkbox"] {
     <div class="quarto-title column-page-left">
       <h1 class="title">Manual de instalación de R, RStudio y Rtools</h1>
                                 <div class="quarto-categories">
-                <div class="quarto-category">tutorials</div>
+                <div class="quarto-category">Tutorial</div>
                 <div class="quarto-category">R</div>
-                <div class="quarto-category">ES</div>
+                <div class="quarto-category">RStudio</div>
+                <div class="quarto-category">Instalación</div>
               </div>
                   </div>
   </div>
@@ -336,16 +367,16 @@ ul.task-list li input[type="checkbox"] {
   <div class="quarto-title-meta column-page-left">
 
       <div>
-      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-heading">Autor/a</div>
       <div class="quarto-title-meta-contents">
                <p>Anthony R. </p>
             </div>
     </div>
       
       <div>
-      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-heading">Fecha de publicación</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">April 16, 2023</p>
+        <p class="date">16 de abril de 2023</p>
       </div>
     </div>
     
@@ -820,12 +851,12 @@ ___</p>
       // flash "checked"
       button.classList.add('code-copy-button-checked');
       var currentTitle = button.getAttribute("title");
-      button.setAttribute("title", "Copied!");
+      button.setAttribute("title", "Copiado");
       let tooltip;
       if (window.bootstrap) {
         button.setAttribute("data-bs-toggle", "tooltip");
         button.setAttribute("data-bs-placement", "left");
-        button.setAttribute("data-bs-title", "Copied!");
+        button.setAttribute("data-bs-title", "Copiado");
         tooltip = new bootstrap.Tooltip(button, 
           { trigger: "manual", 
             customClass: "code-copy-button-tooltip",

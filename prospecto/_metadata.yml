@@ -1,0 +1,28 @@
+# opciones para todas las entregas de Prospecto R
+freeze: auto
+title-block-banner: true
+# enlace del botón «Escríbeme» al final de cada entrega: WhatsApp con un mensaje que indica que el contacto viene de la web
+contacto: "https://api.whatsapp.com/send?phone=51955446754&text=Hola%2C%20vi%20tu%20tutorial%20Prospecto%20R%20en%20tu%20p%C3%A1gina%20web%20y%20quiero%20informaci%C3%B3n%20sobre%20asesor%C3%ADa%20para%20mi%20tesis"
+format:
+  html:
+    css: estilo/prospecto.css
+    include-after-body: estilo/prospecto.html
+    code-fold: true
+    code-summary: "Ver código"
+    toc-title: "En esta entrega"
+    smooth-scroll: true
+# comentarios con giscus (se guardan en las Discussions de ganthonyr19/myblog, categoría «Prospecto R»)
+comments:
+  giscus:
+    repo: ganthonyr19/myblog
+    repo-id: "R_kgDOVFWTfQ"
+    category: "Prospecto R"
+    category-id: "DIC_kwDOVFWTfc4DIXEF"
+    mapping: pathname
+    reactions-enabled: true
+    loading: lazy
+    input-position: top
+    theme:
+      light: light
+      dark: dark
+    language: es

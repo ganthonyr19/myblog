@@ -1,0 +1,68 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8">
+<style>
+@font-face{font-family:Fraunces;src:url(node_modules/@fontsource/fraunces/files/fraunces-latin-600-normal.woff2);font-weight:600}
+@font-face{font-family:Fraunces;src:url(node_modules/@fontsource/fraunces/files/fraunces-latin-700-normal.woff2);font-weight:700}
+@font-face{font-family:Inter;src:url(node_modules/@fontsource/inter/files/inter-latin-400-normal.woff2);font-weight:400}
+@font-face{font-family:Inter;src:url(node_modules/@fontsource/inter/files/inter-latin-600-normal.woff2);font-weight:600}
+@font-face{font-family:Inter;src:url(node_modules/@fontsource/inter/files/inter-latin-700-normal.woff2);font-weight:700}
+@font-face{font-family:Mono;src:url(node_modules/@fontsource/jetbrains-mono/files/jetbrains-mono-latin-400-normal.woff2)}
+:root{--navy:#0B1F3A;--navy2:#12305A;--paper:#FBF7EE;--ink:#0B1F3A;--muted:#5B6B80;--txt:#F5F7FA;--dim:#A9B8CC;--acc:#E5636F}
+*{box-sizing:border-box;margin:0;padding:0}
+body{width:var(--w);height:var(--h);background:var(--navy);font-family:Inter;color:var(--txt);position:relative;overflow:hidden}
+.curve{position:absolute;right:-80px;bottom:-10px;opacity:.5}
+.niv{display:inline-block;font-weight:700;letter-spacing:.14em;font-size:var(--tag);padding:6px 14px;border-radius:8px;margin-left:12px;vertical-align:top}
+.niv.inicial{border:2px solid var(--txt);color:var(--txt)}
+.niv.plena{border:2px solid var(--acc);background:var(--paper);color:var(--navy)}
+.tag{display:inline-block;background:var(--acc);color:var(--navy);font-weight:700;letter-spacing:.14em;font-size:var(--tag);padding:8px 16px;border-radius:8px}
+h1{font-family:Fraunces;font-weight:700;line-height:1.05;font-size:var(--h1);margin-top:22px}
+h1 em{font-style:normal;color:var(--acc)}
+.card{background:var(--paper);color:var(--ink);border-radius:14px;padding:var(--cp);box-shadow:0 20px 50px rgba(0,0,0,.35);position:relative}
+.card:before{content:"";position:absolute;left:0;top:0;bottom:0;width:8px;background:var(--acc);border-radius:14px 0 0 14px}
+.rp{font-family:Fraunces;font-weight:700;font-size:var(--rp);line-height:1;color:var(--ink)}
+.rp span{font-family:Inter;font-size:var(--small);font-weight:600;color:var(--muted);letter-spacing:.12em;margin-left:12px;vertical-align:middle}
+.row{display:grid;grid-template-columns:var(--lab) 1fr;gap:14px;padding:var(--rowp) 0;border-top:1px dashed #CBBFA6;font-size:var(--body);line-height:1.3}
+.row:first-of-type{border-top:none}
+.lab{font-weight:700;color:var(--acc);text-transform:uppercase;letter-spacing:.08em;font-size:var(--small);padding-top:3px}
+code{font-family:Mono;font-variant-ligatures:none;font-size:.92em;background:#EFE7D6;padding:2px 6px;border-radius:5px}
+.big{font-family:Fraunces;font-weight:700;font-size:var(--big);line-height:1.1}
+.big b{color:var(--acc)}
+.note{color:var(--muted);font-size:var(--small)}
+.sig{font-size:var(--small);color:var(--dim);line-height:1.5}
+.sig b{color:var(--txt);font-weight:600}
+.logo{height:var(--logo)}
+</style></head><body>
+<svg class="curve" width="700" height="360" viewBox="0 0 700 360"><path d="M0 355 C200 355 250 40 350 40 C450 40 500 355 700 355" fill="#12305A" stroke="#1E4A72" stroke-width="2"/></svg>
+<div id="root"></div>
+<script>
+const P = new URLSearchParams(location.search);
+const layout = P.get('layout') || 'web';
+// todos los textos y cifras llegan desde receta_<nivel>.json (lo escribe el tutorial al compilarse)
+const D = JSON.parse(P.get('d'));
+const NIV = D.nivel === 'plena' ? {txt: 'DOSIS PLENA', cls: 'niv plena'} : {txt: 'DOSIS INICIAL', cls: 'niv inicial'};
+const card = `<div class="card">
+  <div class="rp">Rp/<span>PRESCRIPCIÓN</span></div>
+  <div class="row"><div class="lab">Indicación</div><div>${D.ind}</div></div>
+  <div class="row"><div class="lab">Posología</div><div><code>${D.pos}</code></div></div>
+  <div class="row"><div class="lab">Hallazgo</div><div>${D.hal}<div class="big">RP <b>${D.rp}</b> &nbsp;·&nbsp; OR <b>${D.or}</b></div><div class="note">${D.hal2}</div></div></div>
+  <div class="row"><div class="lab">Precaución</div><div>${D.pre}</div></div>
+</div>`;
+const sig = `<div class="sig"><b>Anthony Romero Cerdán</b> · Médico cirujano<br>anthonyromero.netlify.app</div>`;
+const logo = `<img class="logo" src="logo-transparente.png">`;
+const r = document.getElementById('root');
+if (layout === 'web') {
+  document.documentElement.style.cssText = '--w:1200px;--h:630px;--tag:15px;--h1:52px;--cp:24px 30px 20px 38px;--rp:38px;--small:14px;--lab:118px;--body:18px;--rowp:10px;--big:30px;--logo:42px';
+  r.innerHTML = `<div style="position:absolute;left:56px;top:48px;width:440px"><div>${logo}</div>
+     <div style="margin-top:40px"></div><div class="tag">PROSPECTO R · N.º ${D.n}</div><div class="${NIV.cls}">${NIV.txt}</div><h1>${D.t1} <em>${D.t2}</em></h1>
+     <p style="margin-top:18px;font-size:19px;color:var(--dim);line-height:1.4">Minitutorial en R con datos reales de salud del Perú.</p></div>
+   <div style="position:absolute;left:56px;bottom:40px;width:440px">${sig}</div>
+   <div style="position:absolute;right:52px;top:56px;width:600px">${card}</div>`;
+} else {
+  document.documentElement.style.cssText = '--w:1080px;--h:1350px;--tag:20px;--h1:84px;--cp:40px 44px 34px 54px;--rp:60px;--small:19px;--lab:160px;--body:26px;--rowp:18px;--big:46px;--logo:62px';
+  r.innerHTML = `<div style="position:absolute;left:72px;top:72px;right:72px"><div>${logo}</div>
+     <div style="margin-top:56px"></div><div class="tag">PROSPECTO R · N.º ${D.n}</div><div class="${NIV.cls}">${NIV.txt}</div><h1>${D.t1} <em>${D.t2}</em></h1>
+     <p style="margin-top:26px;font-size:28px;color:var(--dim);line-height:1.4">Minitutorial en R con datos reales de salud del Perú.</p></div>
+   <div style="position:absolute;left:72px;right:72px;top:600px">${card}</div>
+   <div style="position:absolute;left:72px;right:72px;bottom:64px;display:flex;justify-content:space-between;align-items:flex-end">${sig}
+     <div style="font-size:19px;color:var(--acc);font-weight:600;text-align:right">Tutorial completo y código:<br>anthonyromero.netlify.app/prospecto</div></div>`;
+}
+</script></body></html>
