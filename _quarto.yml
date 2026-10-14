@@ -18,12 +18,14 @@ website:
     left:
       - text: Inicio
         href: index.qmd
-      - text: Tutoriales
-        href: tutoriales.qmd
-      - text: Blog
-        href: blog.qmd
-      - text: Prospecto R
-        href: prospecto/index.qmd
+      - text: Aprende
+        menu:
+          - text: Prospecto R
+            href: prospecto/index.qmd
+          - text: Tutoriales
+            href: tutoriales.qmd
+          - text: Blog
+            href: blog.qmd
       - text: Recursos
         href: recursos.qmd
       - text: Sobre mí

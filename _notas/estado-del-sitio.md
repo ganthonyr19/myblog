@@ -11,7 +11,7 @@
 | `prospecto-r` | Sin unir | Toda la serie Prospecto R (ver sección 2). Parte de `master`. |
 | **`integracion-web`** | **Lista para revisar** | `fase-2-estructura` + `prospecto-r`. Es la rama a publicar. |
 
-En `integracion-web` el menú queda: **Inicio, Tutoriales, Blog, Prospecto R, Recursos, Sobre mí** (Prospecto R con ítem propio, decisión de Anthony). El enlace de X es `https://x.com/ganthonyrc` (en `fase-2-estructura` estaba el antiguo `twitter.com/ganthonyr94`; la integración usa el correcto).
+En `integracion-web` el menú queda: **Inicio · Aprende ▾ (Prospecto R, Tutoriales, Blog) · Recursos · Sobre mí** (decisión de Anthony: Prospecto R con entrada propia, agrupada con Tutoriales y Blog en el menú desplegable «Aprende»). El enlace de X es `https://x.com/ganthonyrc` (en `fase-2-estructura` estaba el antiguo `twitter.com/ganthonyr94`; la integración usa el correcto).
 
 ### Antes de publicar (pendiente)
 

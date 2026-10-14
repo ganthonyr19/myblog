@@ -504,7 +504,7 @@ ctrl <- coef(svymean(~pa_alta, dis_pa)); ctrl_s <- coef(svyby(~pa_alta, ~mujer, 
 El INEI publica 14,2&nbsp;% en total, 18,3&nbsp;% en hombres y 10,3&nbsp;% en mujeres. Nuestro flujo obtiene `r pct(ctrl)`, `r pct(ctrl_s[["Hombre"]])` y `r pct(ctrl_s[["Mujer"]])`. El total y los hombres coinciden; en mujeres hay una décima de diferencia. El cuadro oficial reporta 17 787 mujeres con medición y nuestra base tiene `r fmt(sum(!is.na(d$pa_alta) & !d$gestante & d$mujer == "Mujer"), 0)`, así que el INEI aplica algún criterio de exclusión adicional que no pudimos identificar en el informe.
 
 ::: {.cta}
-**¿Tu tesis usa la ENDES u otra encuesta?**
+**¿Tu tesis usa la ENDES u otra encuesta nacional?**
 
 Te ayudo a declarar el diseño muestral, correr el análisis en R y redactar los resultados.
 
