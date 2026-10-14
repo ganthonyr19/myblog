@@ -74,6 +74,16 @@ Cada dosis empieza con la casilla «¿Qué dosis te toca?» (3 preguntas de sí 
   - Dosis plena (con diseño): prevalencias 62,0 % y 20,3 %; RP 3,05 (2,86 a 3,24); OR 6,38; RP estandarizada desde la logística 2,97.
   - Cada dosis genera al compilar su script descargable (`inicial.R`, `plena.R`, verificados de principio a fin) y su JSON de receta y ficha. Compilar primero `plena.qmd`, porque `inicial.qmd` lee `receta_plena.json`.
 
+### Entrega n.º 2: «La Tabla 1 de tu tesis» (`prospecto/tabla-1/`)
+
+- Pregunta: características de las personas de 15 y más años con y sin presión arterial alta (criterio del INEI: promedio de dos mediciones ≥ 140/90, sin gestantes). Módulos ENDES 2024: 1640 (CSALUD01), 1629 (RECH0, RECH1), 1630 (RECH23) y 1632 (RE223132).
+- Dosis inicial: `tbl_summary()` sin diseño, formato de tesis, exportación a Word (`tabla1_inicial.docx`).
+- Dosis plena: `tbl_svysummary()` con el diseño; n sin ponderar con % ponderado (la N ponderada es suma de pesos); nota al pie de las pruebas en español; tabla de prevalencias por fila con `svyciprop()` (advertencia: `add_ci()` con `percent = "row"` da intervalos por columna); Word (`tabla1_plena.docx`, `tabla2_plena.docx`).
+- Cifras: n = 30 825; presión alta 14,2 % (IC 95 %: 13,5 a 14,9), hombres 18,3 %, mujeres 10,2 % (INEI: 14,2; 18,3; 10,3). Zona rural: 36,7 % en la muestra y 17,9 % en la población.
+- Paquetes usados al compilar: gtsummary 2.6.1, gt 1.3.0, flextable 0.10.1, survey 4.5, broom 1.0.13, knitr 1.52. Para volver a ejecutar las páginas en otra computadora hacen falta versiones recientes de esos paquetes (gtsummary 2.x exige survey ≥ 4.5 y flextable ≥ 0.9.11).
+- El diccionario sumó: mediana y RIC, porcentaje por columna y por fila, prueba de chi cuadrado (Rao-Scott) y valor p.
+- La plantilla de la receta acepta el campo `big` (cifra destacada en HTML); si falta, muestra RP y OR como en la entrega 1.
+
 ### Elementos de cada página
 
 Código plegado («Ver código»), resultados en bloques «Mira el resultado», guía «Cómo leerlo» tras cada salida, enlaces punteados al diccionario con definición al pasar el mouse, botones de descarga (.R y ficha PDF), botón «Copiar para mi tesis», autoevaluación de 3 preguntas, llamada a la asesoría y comentarios.
