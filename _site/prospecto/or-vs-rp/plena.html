@@ -480,6 +480,7 @@ window.Quarto = {
   <li><a href="#interacciones" id="toc-interacciones" class="nav-link" data-scroll-target="#interacciones">Interacciones</a></li>
   <li><a href="#contraindicaciones-y-reacciones-adversas" id="toc-contraindicaciones-y-reacciones-adversas" class="nav-link" data-scroll-target="#contraindicaciones-y-reacciones-adversas">Contraindicaciones y reacciones adversas</a></li>
   <li><a href="#cómo-reportarlo" id="toc-cómo-reportarlo" class="nav-link" data-scroll-target="#cómo-reportarlo">Cómo reportarlo</a></li>
+  <li><a href="#autoevaluación" id="toc-autoevaluación" class="nav-link" data-scroll-target="#autoevaluación">Autoevaluación</a></li>
   <li><a href="#control-de-calidad" id="toc-control-de-calidad" class="nav-link" data-scroll-target="#control-de-calidad">Control de calidad</a></li>
   <li><a href="#referencias" id="toc-referencias" class="nav-link" data-scroll-target="#referencias">Referencias</a></li>
   <li><a href="#reproducibilidad" id="toc-reproducibilidad" class="nav-link" data-scroll-target="#reproducibilidad">Reproducibilidad</a></li>
@@ -566,6 +567,9 @@ window.Quarto = {
 </tr>
 </tbody>
 </table>
+<div class="descargas">
+<p><a href="plena.R" download="prospecto-r-01-plena.R">Script .R de esta dosis</a> <a href="ficha_plena.pdf" download="prospecto-r-01-plena.pdf">Ficha de una página (PDF)</a></p>
+</div>
 <section id="indicación" class="level2">
 <h2 class="anchored" data-anchor-id="indicación">Indicación</h2>
 <p>Estás analizando un <a href="../../prospecto/diccionario.html#estudio-transversal" class="dic">estudio transversal</a> con un desenlace <strong>binario</strong> (sí/no) y quieres cuantificar su asociación con una exposición. Si el desenlace es frecuente (como regla práctica, más del 10&nbsp;%), la medida que responde directamente a tu pregunta es la <strong><a href="../../prospecto/diccionario.html#razon-de-prevalencias" class="dic">razón de prevalencias</a> (RP)</strong>, no el <a href="../../prospecto/diccionario.html#odds-ratio" class="dic">odds ratio</a> (OR).</p>
@@ -1047,10 +1051,44 @@ Figura&nbsp;1: Para una misma razón de prevalencias, el OR crece a medida que e
 </section>
 <section id="cómo-reportarlo" class="level2">
 <h2 class="anchored" data-anchor-id="cómo-reportarlo">Cómo reportarlo</h2>
+<div class="reporte">
 <blockquote class="blockquote">
 <p>En la población peruana de 15 y más años (ENDES 2024), la prevalencia de obesidad abdominal fue 62,0&nbsp;% en mujeres y 20,3&nbsp;% en hombres; la razón de prevalencias fue 3,05 (IC 95&nbsp;%: 2,86 a 3,24). Las estimaciones consideraron el diseño muestral complejo de la encuesta.</p>
 </blockquote>
+</div>
 <p>En métodos, indica el modelo (“regresión de Poisson con enlace logarítmico y varianza basada en el diseño muestral”) y la definición de cada variable.</p>
+</section>
+<section id="autoevaluación" class="level2">
+<h2 class="anchored" data-anchor-id="autoevaluación">Autoevaluación</h2>
+<div class="autoeval">
+<div class="pregunta">
+<p><strong>1.</strong> Filtras la base a las personas con cintura válida y recién después declaras <code>svydesign()</code>. ¿Qué cambia?</p>
+<details>
+<summary>
+Ver respuesta
+</summary>
+<p>Las estimaciones puntuales no cambian, pero los errores estándar pueden quedar mal: el diseño pierde la información de los conglomerados y estratos sin observaciones. Declara el diseño con toda la base y usa <code>subset()</code> sobre él, como en el Paso 4.</p>
+</details>
+</div>
+<div class="pregunta">
+<p><strong>2.</strong> Tu jurado exige regresión logística, pero el desenlace es frecuente. ¿Cómo reportas una razón de prevalencias?</p>
+<details>
+<summary>
+Ver respuesta
+</summary>
+<p>Con estandarización marginal: <code>avg_comparisons(modelo, variables = "mujer", comparison = "ratioavg", wts = "(weights)")</code>. No uses <code>comparison = "ratio"</code>, que promedia cocientes individuales.</p>
+</details>
+</div>
+<div class="pregunta">
+<p><strong>3.</strong> Sin pesos la RP fue 3,44; con el diseño, 3,05. ¿Cuál reportas para la población peruana?</p>
+<details>
+<summary>
+Ver respuesta
+</summary>
+<p>3,05. Sin pesos, la cifra describe a las personas entrevistadas; los pesos devuelven a cada grupo su tamaño real en la población.</p>
+</details>
+</div>
+</div>
 </section>
 <section id="control-de-calidad" class="level2">
 <h2 class="anchored" data-anchor-id="control-de-calidad">Control de calidad</h2>
@@ -1081,6 +1119,11 @@ Figura&nbsp;1: Para una misma razón de prevalencias, el OR crece a medida que e
 <p>El primer bloque es la prevalencia de presión arterial alta en toda la población (columna <code>mean</code>) y el segundo, por sexo (columna <code>pa_alta</code>). Las dos están en proporciones: multiplica por 100 para compararlas con el informe del INEI.</p>
 </div>
 <p>El INEI publica 14,2&nbsp;% en total, 18,3&nbsp;% en hombres y 10,3&nbsp;% en mujeres. Nuestro flujo obtiene 14,2&nbsp;%, 18,3&nbsp;% y 10,2&nbsp;%. El total y los hombres coinciden; en mujeres hay una décima de diferencia. El cuadro oficial reporta 17 787 mujeres con medición y nuestra base tiene 17&nbsp;799, así que el INEI aplica algún criterio de exclusión adicional que no pudimos identificar en el informe.</p>
+<div class="cta">
+<p><strong>¿Tu tesis usa la ENDES u otra encuesta?</strong></p>
+<p>Te ayudo a declarar el diseño muestral, correr el análisis en R y redactar los resultados.</p>
+<p><a href="https://www.instagram.com/bioestadistica.en.linea/">Escríbeme</a></p>
+</div>
 </section>
 <section id="referencias" class="level2">
 <h2 class="anchored" data-anchor-id="referencias">Referencias</h2>
@@ -1112,6 +1155,58 @@ Figura&nbsp;1: Para una misma razón de prevalencias, el OR crece a medida que e
 </section>
 
 </main> <!-- /main -->
+<script>
+/* Prospecto R: definiciones emergentes del diccionario y botón «Copiar para mi tesis» */
+(function () {
+  function iniciar() {
+    // 1. definiciones al pasar el mouse sobre los términos enlazados al diccionario
+    var enlaces = Array.prototype.slice.call(document.querySelectorAll("a.dic"));
+    if (enlaces.length && typeof tippy === "function") {
+      var poner = function (defs) {
+        enlaces.forEach(function (a) {
+          var id = (a.getAttribute("href") || "").split("#")[1];
+          var x = defs[id];
+          if (!x) return;
+          tippy(a, {
+            content: '<div class="dic-tip"><strong>' + x.t + '</strong><p>' + x.d + '</p><span>Clic para ver las fuentes</span></div>',
+            allowHTML: true, maxWidth: 380, placement: "top", delay: [120, 0], theme: "prospecto"
+          });
+        });
+      };
+      if (window.PROSPECTO_DIC) { poner(window.PROSPECTO_DIC); }
+      else {
+        var url = new URL(enlaces[0].getAttribute("href").split("#")[0], location.href);
+        fetch(url).then(function (r) { return r.text(); }).then(function (html) {
+          var doc = new DOMParser().parseFromString(html, "text/html"), defs = {};
+          doc.querySelectorAll(".entrada").forEach(function (e) {
+            var h = e.querySelector("h3"), p = e.querySelector("p");
+            if (h && p) defs[e.id] = { t: h.textContent.trim(), d: p.innerHTML };
+          });
+          poner(defs);
+        }).catch(function () {});
+      }
+    }
+    // 2. botón para copiar el párrafo de reporte
+    document.querySelectorAll(".reporte blockquote").forEach(function (bq) {
+      var b = document.createElement("button");
+      var etiqueta = "Copiar para mi tesis";
+      b.type = "button"; b.className = "btn-copiar"; b.textContent = etiqueta;
+      b.addEventListener("click", function () {
+        var texto = bq.innerText.replace(/ /g, " ").trim();
+        var listo = function () { b.textContent = "¡Copiado!"; setTimeout(function () { b.textContent = etiqueta; }, 1800); };
+        if (navigator.clipboard && window.isSecureContext) {
+          navigator.clipboard.writeText(texto).then(listo);
+        } else {
+          var t = document.createElement("textarea"); t.value = texto; document.body.appendChild(t);
+          t.select(); document.execCommand("copy"); document.body.removeChild(t); listo();
+        }
+      });
+      bq.parentNode.insertBefore(b, bq.nextSibling);
+    });
+  }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", iniciar); else iniciar();
+})();
+</script>
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     // Ensure there is a toggle, if there isn't float one in the top right

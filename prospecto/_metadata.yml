@@ -1,10 +1,26 @@
 # opciones para todas las entregas de Prospecto R
 freeze: auto
 title-block-banner: true
+# enlace del botón de contacto al final de cada entrega (cámbialo por tu wa.link)
+contacto: "https://www.instagram.com/bioestadistica.en.linea/"
 format:
   html:
     css: estilo/prospecto.css
+    include-after-body: estilo/prospecto.html
     code-fold: true
     code-summary: "Ver código"
     toc-title: "En esta entrega"
     smooth-scroll: true
+# comentarios con giscus: descomenta cuando completes los pasos de la guía
+# comments:
+#   giscus:
+#     repo: ganthonyr19/myblog
+#     category: "Prospecto R"
+#     mapping: pathname
+#     reactions-enabled: true
+#     loading: lazy
+#     input-position: top
+#     theme:
+#       light: light
+#       dark: dark
+#     language: es

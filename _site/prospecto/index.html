@@ -91,7 +91,7 @@ ul.task-list li input[type="checkbox"] {
     }
 
     const options = {
-      valueNames: ['listing-image','listing-title','listing-description','listing-date',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
+      valueNames: ['listing-image','listing-title','listing-subtitle','listing-reading-time',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
       
       searchColumns: ["listing-title","listing-author","listing-date","listing-image","listing-description","listing-categories"],
     };
@@ -458,7 +458,7 @@ window.Quarto = {
 
 <div class="quarto-listing quarto-listing-container-grid" id="listing-listing">
 <div class="list grid quarto-listing-cols-3">
-<div class="g-col-1" data-index="0" data-categories="RG9zaXMlMjBpbmljaWFsJTJDbWVkaWRhcyUyMGRlJTIwYXNvY2lhY2klQzMlQjNuJTJDZXN0dWRpb3MlMjB0cmFuc3ZlcnNhbGVzJTJDRU5ERVM=" data-listing-date-sort="1791867600000" data-listing-file-modified-sort="1791935103764" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="14" data-listing-word-count-sort="2697">
+<div class="g-col-1" data-index="0" data-categories="RG9zaXMlMjBpbmljaWFsJTJDbWVkaWRhcyUyMGRlJTIwYXNvY2lhY2klQzMlQjNuJTJDZXN0dWRpb3MlMjB0cmFuc3ZlcnNhbGVzJTJDRU5ERVM=" data-listing-date-sort="1791867600000" data-listing-file-modified-sort="1791936318337" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="19" data-listing-word-count-sort="3609">
 <a href="../prospecto/or-vs-rp/inicial.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top">
@@ -468,18 +468,14 @@ window.Quarto = {
 <h5 class="no-anchor card-title listing-title">
 ¿OR o razón de prevalencias?
 </h5>
-<div class="card-text listing-description delink">
-<p>Prospecto R n.º 1, dosis inicial. Con la ENDES 2024: por qué el odds ratio exagera la asociación cuando el desenlace es frecuente y cómo calcular la razón de prevalencias en…</p>
+<div class="card-subtitle listing-subtitle">
+Dosis inicial: qué medida reportar en un estudio transversal con un desenlace frecuente
 </div>
-<div class="card-attribution card-text-small end">
-<div class="listing-date">
-13 de octubre de 2026
-</div>
-</div>
+<div class="listing-reading-time card-text text-muted">19 minutos</div>
 </div>
 </div></a>
 </div>
-<div class="g-col-1" data-index="1" data-categories="RG9zaXMlMjBwbGVuYSUyQ21lZGlkYXMlMjBkZSUyMGFzb2NpYWNpJUMzJUIzbiUyQ2VzdHVkaW9zJTIwdHJhbnN2ZXJzYWxlcyUyQ2VuY3Vlc3RhcyUyMGNvbXBsZWphcyUyQ0VOREVT" data-listing-date-sort="1791867600000" data-listing-file-modified-sort="1791935103765" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="19" data-listing-word-count-sort="3798">
+<div class="g-col-1" data-index="1" data-categories="RG9zaXMlMjBwbGVuYSUyQ21lZGlkYXMlMjBkZSUyMGFzb2NpYWNpJUMzJUIzbiUyQ2VzdHVkaW9zJTIwdHJhbnN2ZXJzYWxlcyUyQ2VuY3Vlc3RhcyUyMGNvbXBsZWphcyUyQ0VOREVT" data-listing-date-sort="1791867600000" data-listing-file-modified-sort="1791936318337" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="24" data-listing-word-count-sort="4786">
 <a href="../prospecto/or-vs-rp/plena.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top">
@@ -489,20 +485,68 @@ window.Quarto = {
 <h5 class="no-anchor card-title listing-title">
 ¿OR o razón de prevalencias?
 </h5>
-<div class="card-text listing-description delink">
-<p>Prospecto R n.º 1, dosis plena. Con la ENDES 2024: por qué el odds ratio exagera la asociación cuando el desenlace es frecuente, cómo estimar la razón de prevalencias con el…</p>
+<div class="card-subtitle listing-subtitle">
+Dosis plena: razón de prevalencias en una encuesta con diseño muestral complejo
 </div>
-<div class="card-attribution card-text-small end">
-<div class="listing-date">
-13 de octubre de 2026
-</div>
-</div>
+<div class="listing-reading-time card-text text-muted">24 minutos</div>
 </div>
 </div></a>
 </div>
 </div>
 <div class="listing-no-matching d-none">No hay resultados</div>
 </div></main> <!-- /main -->
+<script>
+/* Prospecto R: definiciones emergentes del diccionario y botón «Copiar para mi tesis» */
+(function () {
+  function iniciar() {
+    // 1. definiciones al pasar el mouse sobre los términos enlazados al diccionario
+    var enlaces = Array.prototype.slice.call(document.querySelectorAll("a.dic"));
+    if (enlaces.length && typeof tippy === "function") {
+      var poner = function (defs) {
+        enlaces.forEach(function (a) {
+          var id = (a.getAttribute("href") || "").split("#")[1];
+          var x = defs[id];
+          if (!x) return;
+          tippy(a, {
+            content: '<div class="dic-tip"><strong>' + x.t + '</strong><p>' + x.d + '</p><span>Clic para ver las fuentes</span></div>',
+            allowHTML: true, maxWidth: 380, placement: "top", delay: [120, 0], theme: "prospecto"
+          });
+        });
+      };
+      if (window.PROSPECTO_DIC) { poner(window.PROSPECTO_DIC); }
+      else {
+        var url = new URL(enlaces[0].getAttribute("href").split("#")[0], location.href);
+        fetch(url).then(function (r) { return r.text(); }).then(function (html) {
+          var doc = new DOMParser().parseFromString(html, "text/html"), defs = {};
+          doc.querySelectorAll(".entrada").forEach(function (e) {
+            var h = e.querySelector("h3"), p = e.querySelector("p");
+            if (h && p) defs[e.id] = { t: h.textContent.trim(), d: p.innerHTML };
+          });
+          poner(defs);
+        }).catch(function () {});
+      }
+    }
+    // 2. botón para copiar el párrafo de reporte
+    document.querySelectorAll(".reporte blockquote").forEach(function (bq) {
+      var b = document.createElement("button");
+      var etiqueta = "Copiar para mi tesis";
+      b.type = "button"; b.className = "btn-copiar"; b.textContent = etiqueta;
+      b.addEventListener("click", function () {
+        var texto = bq.innerText.replace(/ /g, " ").trim();
+        var listo = function () { b.textContent = "¡Copiado!"; setTimeout(function () { b.textContent = etiqueta; }, 1800); };
+        if (navigator.clipboard && window.isSecureContext) {
+          navigator.clipboard.writeText(texto).then(listo);
+        } else {
+          var t = document.createElement("textarea"); t.value = texto; document.body.appendChild(t);
+          t.select(); document.execCommand("copy"); document.body.removeChild(t); listo();
+        }
+      });
+      bq.parentNode.insertBefore(b, bq.nextSibling);
+    });
+  }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", iniciar); else iniciar();
+})();
+</script>
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     // Ensure there is a toggle, if there isn't float one in the top right

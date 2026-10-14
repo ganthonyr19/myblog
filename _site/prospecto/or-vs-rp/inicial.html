@@ -477,6 +477,7 @@ window.Quarto = {
   <li><a href="#resultado" id="toc-resultado" class="nav-link" data-scroll-target="#resultado">Resultado</a></li>
   <li><a href="#contraindicaciones-y-reacciones-adversas" id="toc-contraindicaciones-y-reacciones-adversas" class="nav-link" data-scroll-target="#contraindicaciones-y-reacciones-adversas">Contraindicaciones y reacciones adversas</a></li>
   <li><a href="#cómo-reportarlo" id="toc-cómo-reportarlo" class="nav-link" data-scroll-target="#cómo-reportarlo">Cómo reportarlo</a></li>
+  <li><a href="#autoevaluación" id="toc-autoevaluación" class="nav-link" data-scroll-target="#autoevaluación">Autoevaluación</a></li>
   <li><a href="#siguiente-dosis" id="toc-siguiente-dosis" class="nav-link" data-scroll-target="#siguiente-dosis">Siguiente dosis</a></li>
   <li><a href="#referencias" id="toc-referencias" class="nav-link" data-scroll-target="#referencias">Referencias</a></li>
   <li><a href="#reproducibilidad" id="toc-reproducibilidad" class="nav-link" data-scroll-target="#reproducibilidad">Reproducibilidad</a></li>
@@ -563,6 +564,9 @@ window.Quarto = {
 </tr>
 </tbody>
 </table>
+<div class="descargas">
+<p><a href="inicial.R" download="prospecto-r-01-inicial.R">Script .R de esta dosis</a> <a href="ficha_inicial.pdf" download="prospecto-r-01-inicial.pdf">Ficha de una página (PDF)</a></p>
+</div>
 <section id="indicación" class="level2">
 <h2 class="anchored" data-anchor-id="indicación">Indicación</h2>
 <p>Estás analizando un <a href="../../prospecto/diccionario.html#estudio-transversal" class="dic">estudio transversal</a> con un desenlace <strong>binario</strong> (sí/no) y quieres cuantificar su asociación con una exposición. Si el desenlace es frecuente (como regla práctica, más del 10&nbsp;%), la medida que responde directamente a tu pregunta es la <strong><a href="../../prospecto/diccionario.html#razon-de-prevalencias" class="dic">razón de prevalencias</a> (RP)</strong>, no el <a href="../../prospecto/diccionario.html#odds-ratio" class="dic">odds ratio</a> (OR).</p>
@@ -905,10 +909,44 @@ Figura&nbsp;1: Para una misma razón de prevalencias, el OR crece a medida que e
 </section>
 <section id="cómo-reportarlo" class="level2">
 <h2 class="anchored" data-anchor-id="cómo-reportarlo">Cómo reportarlo</h2>
+<div class="reporte">
 <blockquote class="blockquote">
 <p>En la muestra de la ENDES 2024 (n = 30&nbsp;493 personas de 15 y más años), la prevalencia de obesidad abdominal fue 58,7&nbsp;% en mujeres y 17,0&nbsp;% en hombres; la razón de prevalencias fue 3,44 (IC 95&nbsp;%: 3,31 a 3,58), estimada con regresión de Poisson con varianza robusta.</p>
 </blockquote>
+</div>
 <p>Si tus datos vienen de un hospital o de una muestra simple, este análisis es el completo. Si vienen de una encuesta con diseño complejo, como la ENDES, sigue leyendo.</p>
+</section>
+<section id="autoevaluación" class="level2">
+<h2 class="anchored" data-anchor-id="autoevaluación">Autoevaluación</h2>
+<div class="autoeval">
+<div class="pregunta">
+<p><strong>1.</strong> En un estudio transversal, la anemia está presente en el 40&nbsp;% de los expuestos y en el 20&nbsp;% de los no expuestos. ¿Cuánto valen la RP y el OR?</p>
+<details>
+<summary>
+Ver respuesta
+</summary>
+<p>RP = 0,40 / 0,20 = 2,0. OR = (0,40 / 0,60) / (0,20 / 0,80) = 2,67. Con un desenlace tan frecuente, el OR ya se aleja bastante de la RP.</p>
+</details>
+</div>
+<div class="pregunta">
+<p><strong>2.</strong> Tu regresión logística da un OR de 2,5 para un desenlace con una prevalencia del 35&nbsp;%. ¿Puedes escribir “es 2,5 veces más frecuente”?</p>
+<details>
+<summary>
+Ver respuesta
+</summary>
+<p>No.&nbsp;Con un desenlace frecuente, el OR exagera la asociación si se lee como razón de prevalencias. Estima la RP con regresión de Poisson y varianza robusta, o reporta el OR como lo que es: un cociente de odds.</p>
+</details>
+</div>
+<div class="pregunta">
+<p><strong>3.</strong> Ajustaste una regresión de Poisson a un desenlace 0/1 sin varianza robusta. ¿Qué parte del resultado está mal?</p>
+<details>
+<summary>
+Ver respuesta
+</summary>
+<p>La RP puntual está bien; lo que falla es el intervalo de confianza, que sale demasiado ancho (y el valor p, demasiado grande). Se corrige con <code>vcovHC()</code>, como en el Paso 6.</p>
+</details>
+</div>
+</div>
 </section>
 <section id="siguiente-dosis" class="level2">
 <h2 class="anchored" data-anchor-id="siguiente-dosis">Siguiente dosis</h2>
@@ -933,6 +971,11 @@ Figura&nbsp;1: Para una misma razón de prevalencias, el OR crece a medida que e
 <li>Cómo comprobar el flujo reproduciendo una cifra oficial del INEI.</li>
 </ul>
 </div>
+</div>
+<div class="cta">
+<p><strong>¿Tu tesis tiene un estudio transversal?</strong></p>
+<p>Te ayudo a elegir la medida de asociación, correr el análisis en R y redactar los resultados.</p>
+<p><a href="https://www.instagram.com/bioestadistica.en.linea/">Escríbeme</a></p>
 </div>
 </section>
 <section id="referencias" class="level2">
@@ -962,6 +1005,58 @@ Figura&nbsp;1: Para una misma razón de prevalencias, el OR crece a medida que e
 </section>
 
 </main> <!-- /main -->
+<script>
+/* Prospecto R: definiciones emergentes del diccionario y botón «Copiar para mi tesis» */
+(function () {
+  function iniciar() {
+    // 1. definiciones al pasar el mouse sobre los términos enlazados al diccionario
+    var enlaces = Array.prototype.slice.call(document.querySelectorAll("a.dic"));
+    if (enlaces.length && typeof tippy === "function") {
+      var poner = function (defs) {
+        enlaces.forEach(function (a) {
+          var id = (a.getAttribute("href") || "").split("#")[1];
+          var x = defs[id];
+          if (!x) return;
+          tippy(a, {
+            content: '<div class="dic-tip"><strong>' + x.t + '</strong><p>' + x.d + '</p><span>Clic para ver las fuentes</span></div>',
+            allowHTML: true, maxWidth: 380, placement: "top", delay: [120, 0], theme: "prospecto"
+          });
+        });
+      };
+      if (window.PROSPECTO_DIC) { poner(window.PROSPECTO_DIC); }
+      else {
+        var url = new URL(enlaces[0].getAttribute("href").split("#")[0], location.href);
+        fetch(url).then(function (r) { return r.text(); }).then(function (html) {
+          var doc = new DOMParser().parseFromString(html, "text/html"), defs = {};
+          doc.querySelectorAll(".entrada").forEach(function (e) {
+            var h = e.querySelector("h3"), p = e.querySelector("p");
+            if (h && p) defs[e.id] = { t: h.textContent.trim(), d: p.innerHTML };
+          });
+          poner(defs);
+        }).catch(function () {});
+      }
+    }
+    // 2. botón para copiar el párrafo de reporte
+    document.querySelectorAll(".reporte blockquote").forEach(function (bq) {
+      var b = document.createElement("button");
+      var etiqueta = "Copiar para mi tesis";
+      b.type = "button"; b.className = "btn-copiar"; b.textContent = etiqueta;
+      b.addEventListener("click", function () {
+        var texto = bq.innerText.replace(/ /g, " ").trim();
+        var listo = function () { b.textContent = "¡Copiado!"; setTimeout(function () { b.textContent = etiqueta; }, 1800); };
+        if (navigator.clipboard && window.isSecureContext) {
+          navigator.clipboard.writeText(texto).then(listo);
+        } else {
+          var t = document.createElement("textarea"); t.value = texto; document.body.appendChild(t);
+          t.select(); document.execCommand("copy"); document.body.removeChild(t); listo();
+        }
+      });
+      bq.parentNode.insertBefore(b, bq.nextSibling);
+    });
+  }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", iniciar); else iniciar();
+})();
+</script>
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     // Ensure there is a toggle, if there isn't float one in the top right

@@ -12,6 +12,9 @@ twitter-card:
   image: receta_plena_web.png
 image-alt: "Receta del Prospecto R n.º 1, dosis plena: en la ENDES 2024, la razón de prevalencias de obesidad abdominal entre mujeres y hombres es mucho menor que el odds ratio."
 lang: es
+resources:
+  - plena.R
+  - ficha_plena.pdf
 execute:
   echo: true
   warning: false
@@ -65,6 +68,11 @@ Si respondiste «sí» a las tres, sigue con la [dosis plena](plena.qmd). Si alg
 | **Datos** | ENDES 2024, Cuestionario de Salud (INEI) |
 | **Paquetes** | `data.table`, `survey`, `ggplot2`, `marginaleffects` |
 | **Requisitos** | Haber ajustado una regresión en R y conocer los pesos, conglomerados y estratos de una encuesta |
+
+::: {.descargas}
+[Script .R de esta dosis](plena.R){download="prospecto-r-01-plena.R"}
+[Ficha de una página (PDF)](ficha_plena.pdf){download="prospecto-r-01-plena.pdf"}
+:::
 
 ## Indicación
 
@@ -427,9 +435,45 @@ En el módulo de salud (`CSALUD01`), el peso y la talla de casi todas las mujere
 
 ## Cómo reportarlo
 
+::: {.reporte}
 > En la población peruana de 15 y más años (ENDES 2024), la prevalencia de obesidad abdominal fue `r pct(p_m)` en mujeres y `r pct(p_h)` en hombres; la razón de prevalencias fue `r fmt(rp[1])` (IC 95&nbsp;%: `r fmt(rp[2])` a `r fmt(rp[3])`). Las estimaciones consideraron el diseño muestral complejo de la encuesta.
+:::
 
 En métodos, indica el modelo ("regresión de Poisson con enlace logarítmico y varianza basada en el diseño muestral") y la definición de cada variable.
+
+## Autoevaluación
+
+::: {.autoeval}
+::: {.pregunta}
+**1.** Filtras la base a las personas con cintura válida y recién después declaras `svydesign()`. ¿Qué cambia?
+
+<details><summary>Ver respuesta</summary>
+
+Las estimaciones puntuales no cambian, pero los errores estándar pueden quedar mal: el diseño pierde la información de los conglomerados y estratos sin observaciones. Declara el diseño con toda la base y usa `subset()` sobre él, como en el Paso 4.
+
+</details>
+:::
+
+::: {.pregunta}
+**2.** Tu jurado exige regresión logística, pero el desenlace es frecuente. ¿Cómo reportas una razón de prevalencias?
+
+<details><summary>Ver respuesta</summary>
+
+Con estandarización marginal: `avg_comparisons(modelo, variables = "mujer", comparison = "ratioavg", wts = "(weights)")`. No uses `comparison = "ratio"`, que promedia cocientes individuales.
+
+</details>
+:::
+
+::: {.pregunta}
+**3.** Sin pesos la RP fue `r fmt(rp_sp)`; con el diseño, `r fmt(rp[1])`. ¿Cuál reportas para la población peruana?
+
+<details><summary>Ver respuesta</summary>
+
+`r fmt(rp[1])`. Sin pesos, la cifra describe a las personas entrevistadas; los pesos devuelven a cada grupo su tamaño real en la población.
+
+</details>
+:::
+:::
 
 ## Control de calidad
 
@@ -458,6 +502,14 @@ ctrl <- coef(svymean(~pa_alta, dis_pa)); ctrl_s <- coef(svyby(~pa_alta, ~mujer, 
 ```
 
 El INEI publica 14,2&nbsp;% en total, 18,3&nbsp;% en hombres y 10,3&nbsp;% en mujeres. Nuestro flujo obtiene `r pct(ctrl)`, `r pct(ctrl_s[["Hombre"]])` y `r pct(ctrl_s[["Mujer"]])`. El total y los hombres coinciden; en mujeres hay una décima de diferencia. El cuadro oficial reporta 17 787 mujeres con medición y nuestra base tiene `r fmt(sum(!is.na(d$pa_alta) & !d$gestante & d$mujer == "Mujer"), 0)`, así que el INEI aplica algún criterio de exclusión adicional que no pudimos identificar en el informe.
+
+::: {.cta}
+**¿Tu tesis usa la ENDES u otra encuesta?**
+
+Te ayudo a declarar el diseño muestral, correr el análisis en R y redactar los resultados.
+
+[Escríbeme]({{< meta contacto >}})
+:::
 
 ## Referencias
 
@@ -489,6 +541,62 @@ jsonlite::write_json(list(
   hal = "Obesidad abdominal, mujeres vs. hombres",
   hal2 = "ENDES 2024, con el diseño muestral",
   rp = fmt(rp[1]), or = fmt(or[1]), or0 = fmt(or[1], 0), p_m = pct(p_m), p_h = pct(p_h),
-  pre = sprintf("Un OR de %s no significa «%s veces más frecuente».", fmt(or[1]), fmt(or[1], 0))
+  pre = sprintf("Un OR de %s no significa «%s veces más frecuente».", fmt(or[1]), fmt(or[1], 0)),
+  ficha = list(
+    usar = c("Estudio transversal con desenlace binario frecuente (más del 10\u00a0%).",
+             "Encuesta con diseño muestral complejo: pesos, conglomerados y estratos (ENDES, ENAHO).",
+             "Protocolo con regresión logística: reporta la RP por estandarización marginal."),
+    codigo = paste(c(
+      'library(survey); options(survey.lonely.psu = "adjust")',
+      'dis <- svydesign(ids = ~HV001, strata = ~HV022, weights = ~peso,',
+      '                 data = d, nest = TRUE)',
+      'dis_a <- subset(dis, !is.na(desenlace))        # no filtres antes',
+      'm <- svyglm(desenlace ~ exposicion + edad, design = dis_a,',
+      '            family = quasipoisson(link = "log"))',
+      'exp(cbind(RP = coef(m), confint(m)))',
+      '# desde una logística (m_logit):',
+      'marginaleffects::avg_comparisons(m_logit, variables = "exposicion",',
+      '  comparison = "ratioavg", wts = "(weights)")'), collapse = "\n"),
+    leer = c("svyby(): la columna del desenlace es la prevalencia en proporción; se, su error estándar con el diseño.",
+             "svyglm(): exp(coef) es la RP; el IC usa la varianza del diseño.",
+             "avg_comparisons(): estimate es la RP estandarizada; conf.low y conf.high, su IC 95\u00a0%."),
+    hallazgo = sprintf("Obesidad abdominal, mujeres vs. hombres (ENDES 2024, con diseño): RP %s (IC 95\u00a0%%: %s a %s); OR %s. RP estandarizada desde la logística ajustada: %s.",
+                       fmt(rp[1]), fmt(rp[2]), fmt(rp[3]), fmt(or[1]), fmt(rp_std$estimate)),
+    reporte = sprintf("En la población peruana de 15 y más años (ENDES 2024), la prevalencia de obesidad abdominal fue %s en mujeres y %s en hombres; la razón de prevalencias fue %s (IC 95\u00a0%%: %s a %s). Las estimaciones consideraron el diseño muestral complejo de la encuesta.",
+                      pct(p_m), pct(p_h), fmt(rp[1]), fmt(rp[2]), fmt(rp[3])),
+    evitar = c("Filtrar la base antes de svydesign(): usa subset() sobre el diseño.",
+               "comparison = \"ratio\" en marginaleffects: promedia cocientes individuales.",
+               "Esperar que el log-binomial converja con desenlaces frecuentes.",
+               "Usar el peso y la talla de CSALUD01 en mujeres de 15 a 49 años: están en otro módulo.")
+  )
 ), "receta_plena.json", auto_unbox = TRUE)
+```
+
+```{r}
+#| label: script-r
+#| include: false
+# script .R descargable: todo el código de la página, en orden, listo para correr
+escribir_script <- function(qmd, salida, titulo) {
+  x <- readLines(qmd, encoding = "UTF-8")
+  omitir <- c("configuracion", "receta-datos", "script-r", "sesion", "plena")
+  out <- c(paste("#", titulo),
+           "# Prospecto R · Anthony Romero Cerdán · anthonyromero.netlify.app/prospecto",
+           "# Datos: ENDES 2024 (INEI). Descárgalos como indica el Paso 1 del tutorial.",
+           "",
+           "options(OutDec = \",\")",
+           "fmt <- function(x, d = 2) formatC(x, format = \"f\", digits = d, decimal.mark = \",\", big.mark = \"\\u00a0\")",
+           "pct <- function(x, d = 1) paste0(fmt(100 * x, d), \"\\u00a0%\")")
+  inicios <- grep("^```\\{r", x)
+  for (i in inicios) {
+    fin <- i + which(x[(i + 1):length(x)] == "```")[1]
+    cuerpo <- x[(i + 1):(fin - 1)]
+    opciones <- grep("^#\\|", cuerpo, value = TRUE)
+    etiqueta <- sub("^#\\| label: *", "", grep("^#\\| label:", opciones, value = TRUE))
+    if (length(etiqueta) && etiqueta %in% omitir) next
+    nota <- if (any(grepl("include: false", opciones))) " (cifras auxiliares para el texto)" else ""
+    out <- c(out, "", paste0("# ---- ", etiqueta, nota, " ----"), cuerpo[!grepl("^#\\|", cuerpo)])
+  }
+  writeLines(enc2utf8(out), salida, useBytes = TRUE)
+}
+escribir_script(knitr::current_input(), "plena.R", "¿OR o razón de prevalencias? · Prospecto R n.º 1 · dosis plena")
 ```

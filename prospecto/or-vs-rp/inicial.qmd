@@ -12,6 +12,9 @@ twitter-card:
   image: receta_inicial_web.png
 image-alt: "Receta del Prospecto R n.º 1, dosis inicial: en la muestra de la ENDES 2024, la razón de prevalencias de obesidad abdominal entre mujeres y hombres es mucho menor que el odds ratio."
 lang: es
+resources:
+  - inicial.R
+  - ficha_inicial.pdf
 execute:
   echo: true
   warning: false
@@ -65,6 +68,11 @@ Si respondiste «sí» a las tres, sigue con la [dosis plena](plena.qmd). Si alg
 | **Datos** | ENDES 2024, Cuestionario de Salud (INEI) |
 | **Paquetes** | `data.table`, `epiR`, `sandwich`, `lmtest`, `ggplot2` |
 | **Requisitos** | Saber abrir un archivo en R y qué es una prevalencia |
+
+::: {.descargas}
+[Script .R de esta dosis](inicial.R){download="prospecto-r-01-inicial.R"}
+[Ficha de una página (PDF)](ficha_inicial.pdf){download="prospecto-r-01-inicial.pdf"}
+:::
 
 ## Indicación
 
@@ -304,9 +312,45 @@ La RP dice que, en la muestra, la obesidad abdominal es `r fmt(rp[1])` veces má
 
 ## Cómo reportarlo
 
+::: {.reporte}
 > En la muestra de la ENDES 2024 (n = `r fmt(nrow(dc), 0)` personas de 15 y más años), la prevalencia de obesidad abdominal fue `r pct(p1)` en mujeres y `r pct(p0)` en hombres; la razón de prevalencias fue `r ic(rp)`, estimada con regresión de Poisson con varianza robusta.
+:::
 
 Si tus datos vienen de un hospital o de una muestra simple, este análisis es el completo. Si vienen de una encuesta con diseño complejo, como la ENDES, sigue leyendo.
+
+## Autoevaluación
+
+::: {.autoeval}
+::: {.pregunta}
+**1.** En un estudio transversal, la anemia está presente en el 40&nbsp;% de los expuestos y en el 20&nbsp;% de los no expuestos. ¿Cuánto valen la RP y el OR?
+
+<details><summary>Ver respuesta</summary>
+
+RP = 0,40 / 0,20 = `r fmt(0.40 / 0.20, 1)`. OR = (0,40 / 0,60) / (0,20 / 0,80) = `r fmt((0.40 / 0.60) / (0.20 / 0.80))`. Con un desenlace tan frecuente, el OR ya se aleja bastante de la RP.
+
+</details>
+:::
+
+::: {.pregunta}
+**2.** Tu regresión logística da un OR de 2,5 para un desenlace con una prevalencia del 35&nbsp;%. ¿Puedes escribir "es 2,5 veces más frecuente"?
+
+<details><summary>Ver respuesta</summary>
+
+No. Con un desenlace frecuente, el OR exagera la asociación si se lee como razón de prevalencias. Estima la RP con regresión de Poisson y varianza robusta, o reporta el OR como lo que es: un cociente de odds.
+
+</details>
+:::
+
+::: {.pregunta}
+**3.** Ajustaste una regresión de Poisson a un desenlace 0/1 sin varianza robusta. ¿Qué parte del resultado está mal?
+
+<details><summary>Ver respuesta</summary>
+
+La RP puntual está bien; lo que falla es el intervalo de confianza, que sale demasiado ancho (y el valor p, demasiado grande). Se corrige con `vcovHC()`, como en el Paso 6.
+
+</details>
+:::
+:::
 
 ## Siguiente dosis
 
@@ -331,6 +375,14 @@ La [dosis plena](plena.qmd) desarrolla todo eso:
 - Por qué el modelo log-binomial suele fallar con desenlaces frecuentes.
 - Una trampa de los datos de antropometría de la ENDES.
 - Cómo comprobar el flujo reproduciendo una cifra oficial del INEI.
+:::
+
+::: {.cta}
+**¿Tu tesis tiene un estudio transversal?**
+
+Te ayudo a elegir la medida de asociación, correr el análisis en R y redactar los resultados.
+
+[Escríbeme]({{< meta contacto >}})
 :::
 
 ## Referencias
@@ -358,6 +410,56 @@ jsonlite::write_json(list(
   hal = "Obesidad abdominal, mujeres vs. hombres",
   hal2 = "Muestra de la ENDES 2024, sin diseño muestral",
   rp = fmt(rp[1]), or = fmt(or[1]), or0 = fmt(or[1], 0), p_m = pct(p1), p_h = pct(p0),
-  pre = sprintf("Un OR de %s no significa «%s veces más frecuente».", fmt(or[1]), fmt(or[1], 0))
+  pre = sprintf("Un OR de %s no significa «%s veces más frecuente».", fmt(or[1]), fmt(or[1], 0)),
+  ficha = list(
+    usar = c("Estudio transversal.", "Desenlace binario (sí/no) y frecuente: más del 10\u00a0%.",
+             "Datos sin diseño muestral complejo (hospital, muestra simple)."),
+    codigo = paste(c(
+      'library(epiR); library(sandwich); library(lmtest)',
+      'epi.2by2(tab, method = "cross.sectional")   # RP y OR con IC 95 %',
+      'm <- glm(desenlace ~ exposicion + edad, data = d,',
+      '         family = poisson(link = "log"))',
+      'exp(cbind(RP = coef(m),',
+      '          coefci(m, vcov. = vcovHC(m, type = "HC0"))))'), collapse = "\n"),
+    leer = c("RP: cuántas veces más frecuente es el desenlace en los expuestos.",
+             "Si el IC 95\u00a0% no incluye el 1, los datos no son compatibles con la ausencia de asociación.",
+             "El OR se parece a la RP solo si el desenlace es raro (menos del 10\u00a0%)."),
+    hallazgo = sprintf("Obesidad abdominal, mujeres vs. hombres (muestra de la ENDES 2024, n = %s): RP %s; OR %s.",
+                       fmt(nrow(dc), 0), ic(rp), fmt(or[1])),
+    reporte = sprintf("En la muestra de la ENDES 2024 (n = %s personas de 15 y más años), la prevalencia de obesidad abdominal fue %s en mujeres y %s en hombres; la razón de prevalencias fue %s, estimada con regresión de Poisson con varianza robusta.",
+                      fmt(nrow(dc), 0), pct(p1), pct(p0), ic(rp)),
+    evitar = c("Leer el OR como «veces más frecuente».",
+               "Usar Poisson sin varianza robusta: los intervalos salen demasiado anchos.",
+               "Analizar una encuesta compleja sin su diseño: ver la dosis plena.")
+  )
 ), "receta_inicial.json", auto_unbox = TRUE)
+```
+
+```{r}
+#| label: script-r
+#| include: false
+# script .R descargable: todo el código de la página, en orden, listo para correr
+escribir_script <- function(qmd, salida, titulo) {
+  x <- readLines(qmd, encoding = "UTF-8")
+  omitir <- c("configuracion", "receta-datos", "script-r", "sesion", "plena")
+  out <- c(paste("#", titulo),
+           "# Prospecto R · Anthony Romero Cerdán · anthonyromero.netlify.app/prospecto",
+           "# Datos: ENDES 2024 (INEI). Descárgalos como indica el Paso 1 del tutorial.",
+           "",
+           "options(OutDec = \",\")",
+           "fmt <- function(x, d = 2) formatC(x, format = \"f\", digits = d, decimal.mark = \",\", big.mark = \"\\u00a0\")",
+           "pct <- function(x, d = 1) paste0(fmt(100 * x, d), \"\\u00a0%\")")
+  inicios <- grep("^```\\{r", x)
+  for (i in inicios) {
+    fin <- i + which(x[(i + 1):length(x)] == "```")[1]
+    cuerpo <- x[(i + 1):(fin - 1)]
+    opciones <- grep("^#\\|", cuerpo, value = TRUE)
+    etiqueta <- sub("^#\\| label: *", "", grep("^#\\| label:", opciones, value = TRUE))
+    if (length(etiqueta) && etiqueta %in% omitir) next
+    nota <- if (any(grepl("include: false", opciones))) " (cifras auxiliares para el texto)" else ""
+    out <- c(out, "", paste0("# ---- ", etiqueta, nota, " ----"), cuerpo[!grepl("^#\\|", cuerpo)])
+  }
+  writeLines(enc2utf8(out), salida, useBytes = TRUE)
+}
+escribir_script(knitr::current_input(), "inicial.R", "¿OR o razón de prevalencias? · Prospecto R n.º 1 · dosis inicial")
 ```

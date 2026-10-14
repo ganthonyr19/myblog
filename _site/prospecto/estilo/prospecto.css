@@ -36,7 +36,7 @@ main h2, main h3, main h4{font-family:'Inter',sans-serif;font-weight:700;letter-
 main h2{font-size:1.65rem;margin-top:2.6rem;padding-bottom:.35rem;border-bottom:none;position:relative}
 main h2::after{content:"";display:block;width:44px;height:4px;border-radius:2px;background:var(--pr-acento);margin-top:.5rem}
 main h3{font-size:1.2rem;margin-top:2rem}
-code, pre, .sourceCode{font-family:'JetBrains Mono',ui-monospace,monospace}
+code, pre, .sourceCode{font-family:'JetBrains Mono',ui-monospace,monospace;font-variant-ligatures:none}
 p code, li code, td code{font-size:.86em;padding:.1em .35em;border-radius:5px;background:var(--pr-fondo-sal);color:var(--pr-texto)}
 main table{font-size:.95rem}
 main table p{text-align:left}
@@ -87,3 +87,42 @@ a.dic:hover{color:var(--pr-turquesa);text-decoration-style:solid}
 .entrada .fuente{font-size:.88rem;color:var(--pr-suave)}
 
 .entrada p{text-align:left}
+
+/* --- definiciones emergentes --- */
+.tippy-box[data-theme~='prospecto']{background:var(--pr-navy);color:#F5F7FA;border-radius:10px;box-shadow:0 10px 30px rgba(11,31,58,.25)}
+.tippy-box[data-theme~='prospecto'] .tippy-arrow{color:var(--pr-navy)}
+.dic-tip{padding:.35rem .2rem;font-family:'Inter',sans-serif;font-size:.86rem;line-height:1.5;text-align:left}
+.dic-tip strong{display:block;margin-bottom:.25rem;color:#fff}
+.dic-tip p{margin:0 0 .35rem;text-align:left}
+.dic-tip code{background:rgba(255,255,255,.12);color:#fff}
+.dic-tip span{font-size:.75rem;color:#A9B8CC}
+
+/* --- copiar para mi tesis --- */
+.reporte blockquote{border-left:4px solid var(--pr-acento);background:var(--pr-fondo-sal);padding:1rem 1.2rem;border-radius:0 10px 10px 0;
+  color:var(--pr-texto);font-size:1rem;margin-bottom:.5rem}
+.btn-copiar{font-family:'Inter',sans-serif;font-size:.82rem;font-weight:600;border:1px solid var(--pr-acento);color:var(--pr-acento);
+  background:transparent;border-radius:999px;padding:.3rem .9rem;cursor:pointer;margin:0 0 1.2rem}
+.btn-copiar:hover{background:var(--pr-acento);color:#fff}
+
+/* --- botones de descarga --- */
+.descargas{display:flex;flex-wrap:wrap;gap:.6rem;margin:1rem 0 1.6rem}
+.descargas a{display:inline-flex;align-items:center;gap:.45rem;font-family:'Inter',sans-serif;font-size:.88rem;font-weight:600;
+  text-decoration:none;padding:.5rem 1rem;border-radius:10px;border:1px solid var(--pr-borde);color:var(--pr-texto);background:var(--pr-fondo-sal)}
+.descargas a:hover{border-color:var(--pr-turquesa);color:var(--pr-turquesa)}
+.descargas a::before{content:"↓";font-weight:700;color:var(--pr-turquesa)}
+
+/* --- autoevaluación --- */
+.autoeval{display:grid;gap:.8rem;margin:1rem 0 1.6rem}
+.autoeval .pregunta{border:1px solid var(--pr-borde);border-radius:12px;padding:1rem 1.2rem .3rem}
+.autoeval .pregunta > p:first-child{font-weight:600;text-align:left}
+.autoeval details{margin:.2rem 0 .8rem}
+.autoeval summary{cursor:pointer;font-size:.86rem;font-weight:600;color:var(--pr-turquesa)}
+.autoeval details p{margin:.5rem 0 0;text-align:left}
+
+/* --- llamada a la asesoría --- */
+.cta{margin:2.4rem 0 1rem;padding:1.4rem 1.6rem;border-radius:14px;background:var(--pr-navy);color:#F5F7FA}
+.cta p{margin:.2rem 0;text-align:left;color:#F5F7FA}
+.cta strong{font-family:'Fraunces',Georgia,serif;font-weight:600;font-size:1.3rem;color:#fff}
+.cta a{display:inline-block;margin-top:.8rem;padding:.5rem 1.1rem;border-radius:999px;background:var(--pr-acento);color:#fff;
+  font-weight:600;text-decoration:none}
+.cta a:hover{filter:brightness(1.08)}
