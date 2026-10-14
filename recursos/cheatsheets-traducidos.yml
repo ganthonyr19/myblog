@@ -1,0 +1,45 @@
+# Traducciones al español de cheatsheets de Posit. Para agregar el enlace a la página
+# de Posit, escribe la URL en «posit:»; si queda vacío, el botón no aparece.
+- title: "Tablas analíticas y de resumen con gtsummary"
+  tipo: "Traducción"
+  descripcion: "Tablas de resumen y de regresión listas para publicar."
+  imagen: images/cheatsheets/gtsummary_es.jpg
+  es: pdf-files/gtsummary_es.pdf
+  posit: ""
+- title: "Análisis de encuestas con srvyr"
+  tipo: "Traducción"
+  descripcion: "Diseños muestrales complejos con la sintaxis de dplyr: medias, proporciones y totales con sus errores."
+  imagen: images/cheatsheets/srvyr_es.jpg
+  es: pdf-files/srvyr_es.pdf
+  posit: ""
+- title: "Datos etiquetados con labelled"
+  tipo: "Traducción"
+  descripcion: "Etiquetas de variables y de valores, como las de los datos importados de SPSS o Stata con haven."
+  imagen: images/cheatsheets/labelled_es.jpg
+  es: pdf-files/labelled_es.pdf
+  posit: ""
+- title: "De Stata a R"
+  tipo: "Traducción"
+  descripcion: "Equivalencias entre los comandos de Stata y R para quien da el salto."
+  imagen: images/cheatsheets/stata2r_es.jpg
+  es: pdf-files/stata2r_es.pdf
+  posit: ""
+- title: "Expresiones regulares básicas"
+  tipo: "Traducción"
+  descripcion: "Patrones para buscar, extraer y reemplazar texto."
+  imagen: images/cheatsheets/regex_es.jpg
+  es: pdf-files/regex_es.pdf
+  posit: ""
+- title: "R base"
+  tipo: "Traducción"
+  descripcion: "Lo esencial de R sin paquetes: vectores, tablas, programación y estadística básica."
+  credito: "Traducido con Thatiane Ramírez Porras."
+  imagen: images/cheatsheets/base-r_es.jpg
+  es: pdf-files/base-r_es.pdf
+  posit: ""
+- title: "Git y GitHub desde RStudio"
+  tipo: "Traducción"
+  descripcion: "Control de versiones para tus proyectos de R."
+  imagen: images/cheatsheets/git-github_es.jpg
+  es: pdf-files/git-github_es.pdf
+  posit: ""
