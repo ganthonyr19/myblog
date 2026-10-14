@@ -85,9 +85,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-749f0c35d8da38091077ec74fca69a22.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark-02237a22ee455bad83aece42a6742289.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../../site_libs/bootstrap/bootstrap-749f0c35d8da38091077ec74fca69a22.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-f546d6278a7fe63a888be9443735f898.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-5fd2d996c0150a3a1fed98b14a8f705c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-f546d6278a7fe63a888be9443735f898.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -1172,57 +1172,109 @@ Ver respuesta
 
 </main> <!-- /main -->
 <script>
+
 /* Prospecto R: definiciones emergentes del diccionario y botón «Copiar para mi tesis» */
+
 (function () {
+
   function iniciar() {
+
     // 1. definiciones al pasar el mouse sobre los términos enlazados al diccionario
+
     var enlaces = Array.prototype.slice.call(document.querySelectorAll("a.dic"));
+
     if (enlaces.length && typeof tippy === "function") {
+
       var poner = function (defs) {
+
         enlaces.forEach(function (a) {
+
           var id = (a.getAttribute("href") || "").split("#")[1];
+
           var x = defs[id];
+
           if (!x) return;
+
           tippy(a, {
+
             content: '<div class="dic-tip"><strong>' + x.t + '</strong><p>' + x.d + '</p><span>Clic para ver las fuentes</span></div>',
+
             allowHTML: true, maxWidth: 380, placement: "top", delay: [120, 0], theme: "prospecto"
+
           });
+
         });
+
       };
+
       if (window.PROSPECTO_DIC) { poner(window.PROSPECTO_DIC); }
+
       else {
+
         var url = new URL(enlaces[0].getAttribute("href").split("#")[0], location.href);
+
         fetch(url).then(function (r) { return r.text(); }).then(function (html) {
+
           var doc = new DOMParser().parseFromString(html, "text/html"), defs = {};
+
           doc.querySelectorAll(".entrada").forEach(function (e) {
+
             var h = e.querySelector("h3"), p = e.querySelector("p");
+
             if (h && p) defs[e.id] = { t: h.textContent.trim(), d: p.innerHTML };
+
           });
+
           poner(defs);
+
         }).catch(function () {});
+
       }
+
     }
+
     // 2. botón para copiar el párrafo de reporte
+
     document.querySelectorAll(".reporte blockquote").forEach(function (bq) {
+
       var b = document.createElement("button");
+
       var etiqueta = "Copiar para mi tesis";
+
       b.type = "button"; b.className = "btn-copiar"; b.textContent = etiqueta;
+
       b.addEventListener("click", function () {
+
         var texto = bq.innerText.replace(/ /g, " ").trim();
+
         var listo = function () { b.textContent = "¡Copiado!"; setTimeout(function () { b.textContent = etiqueta; }, 1800); };
+
         if (navigator.clipboard && window.isSecureContext) {
+
           navigator.clipboard.writeText(texto).then(listo);
+
         } else {
+
           var t = document.createElement("textarea"); t.value = texto; document.body.appendChild(t);
+
           t.select(); document.execCommand("copy"); document.body.removeChild(t); listo();
+
         }
+
       });
+
       bq.parentNode.insertBefore(b, bq.nextSibling);
+
     });
+
   }
+
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", iniciar); else iniciar();
+
 })();
+
 </script>
+
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     // Ensure there is a toggle, if there isn't float one in the top right

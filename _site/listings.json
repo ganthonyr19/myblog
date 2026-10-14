@@ -6,15 +6,15 @@
     ]
   },
   {
-    "listing": "/blog.html",
-    "items": []
-  },
-  {
     "listing": "/prospecto/index.html",
     "items": [
       "/prospecto/or-vs-rp/inicial.html",
       "/prospecto/or-vs-rp/plena.html"
     ]
+  },
+  {
+    "listing": "/blog.html",
+    "items": []
   },
   {
     "listing": "/index.html",
