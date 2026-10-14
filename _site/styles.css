@@ -404,3 +404,34 @@
   background: #12305A;
   color: #fff;
 }
+
+/****TEXTO JUSTIFICADO EN TODO EL SITIO****/
+/* párrafos y listas de texto corrido; con división de palabras en español (lang: es) */
+#quarto-document-content p,
+#quarto-document-content li,
+.presentation li{
+  text-align: justify;
+  hyphens: auto;
+  -webkit-hyphens: auto;
+}
+/* excepciones: tarjetas, tablas, listados, títulos de tarjetas y pies de figura, donde la columna es angosta */
+#quarto-document-content .cs-card p,
+#quarto-document-content .project-card p,
+#quarto-document-content table p,
+#quarto-document-content table li,
+#quarto-document-content .quarto-grid-item p,
+#quarto-document-content .listing-description,
+#quarto-document-content figcaption,
+#quarto-document-content .callout-title-container,
+#quarto-document-content .autoeval .pregunta > p:first-child,
+#quarto-document-content nav li,
+#quarto-document-content .skills-grid p{
+  text-align: left;
+  hyphens: manual;
+  -webkit-hyphens: manual;
+}
+
+/* inicio: en las miniaturas verticales (recetas de Prospecto R) se muestra la parte superior, con el título */
+#listing-recientes img.thumbnail-image{
+  object-position: top;
+}
