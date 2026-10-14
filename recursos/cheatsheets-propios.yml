@@ -1,0 +1,23 @@
+# Cheatsheets originales de Anthony. Para agregar el enlace a la página de Posit,
+# escribe la URL en «posit:»; si queda vacío, el botón no aparece.
+- title: "Epidemiología con epiR"
+  tipo: "Original"
+  descripcion: "Medidas de frecuencia y de asociación, pruebas diagnósticas y tamaño de muestra a partir de conteos."
+  imagen: images/cheatsheets/epiR_es.jpg
+  es: pdf-files/epiR_es.pdf
+  en: pdf-files/epiR.pdf
+  posit: ""
+- title: "Análisis de supervivencia con survival"
+  tipo: "Original"
+  descripcion: "Kaplan–Meier, comparación de grupos y regresión de Cox, con sus supuestos y extensiones."
+  imagen: images/cheatsheets/survival_es.jpg
+  es: pdf-files/survival_es.pdf
+  en: pdf-files/survival.pdf
+  posit: ""
+- title: "Pruebas estadísticas con rstatix"
+  tipo: "Original"
+  descripcion: "Cómo elegir la prueba, revisar supuestos, comparar grupos y medir el tamaño del efecto, con resultados en tablas ordenadas."
+  imagen: images/cheatsheets/rstatix_es.jpg
+  es: pdf-files/rstatix_es.pdf
+  en: pdf-files/rstatix.pdf
+  posit: ""

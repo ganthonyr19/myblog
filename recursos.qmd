@@ -3,28 +3,38 @@ title: "Recursos"
 description: "Material gratuito para aprender y usar R en investigación en salud."
 title-block-banner: true
 page-layout: full
+toc-title: "En esta página"
+resources:
+  - pdf-files/*.pdf
+  - images/cheatsheets/*.jpg
+listing:
+  - id: cs-propios
+    contents: recursos/cheatsheets-propios.yml
+    template: recursos/cheatsheets.ejs
+    sort: false
+  - id: cs-traducidos
+    contents: recursos/cheatsheets-traducidos.yml
+    template: recursos/cheatsheets.ejs
+    sort: false
 ---
 
-## Cheatsheets traducidos
-Aquí encontrarás los **Cheatsheets de R** que he traducido junto a algunos amigos/as. (Pd: Puedes visitar estos y otros cheatsheets traducidos en la [web de Posit.](https://posit.co/resources/cheatsheets/?type=translations/))
+## Cheatsheets
 
-::: {.project-card}
-![](images/cheatsheet1.png)
+Hojas de referencia de una o dos páginas para tener a la mano mientras analizas en R. Todas son gratuitas y tienen licencia [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/).
 
-```{=html}
-<a class="btn btn-primary project-btn cheatsheet-download" href="pdf-files/base-r_es.pdf" target="_blank"><i class="fa-solid fa-file-arrow-down"></i> Descargar PDF</a>
-```
+### Creados por mí
+
+Escritos desde cero con el formato de los cheatsheets de Posit. Todo el código está verificado en R y cada hoja tiene versión en español y en inglés.
+
+::: {#cs-propios}
 :::
 
+### Traducidos al español
 
-::: {.project-card}
-![](images/github-cheatsheet.png)
+Traducciones de cheatsheets publicados en el repositorio de Posit, hechas junto a algunos amigos/as. Puedes ver estos y otros cheatsheets traducidos en la [web de Posit](https://posit.co/resources/cheatsheets/?type=translations/).
 
-```{=html}
-<a class="btn btn-primary project-btn cheatsheet-download" href="pdf-files/git-github_es.pdf" target="_blank"><i class="fa-solid fa-file-arrow-down"></i> Descargar PDF</a>
-```
+::: {#cs-traducidos}
 :::
-
 
 ## Manuales
 

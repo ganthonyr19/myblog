@@ -1,0 +1,20 @@
+```{=html}
+<div class="cs-grid">
+<% for (const item of items) { %>
+<article class="cs-card">
+<a class="cs-thumb" href="<%- item.es %>" target="_blank" rel="noopener"><img src="<%- item.imagen %>" alt="Vista previa del cheatsheet <%= item.title %>" loading="lazy"></a>
+<div class="cs-body">
+<span class="cs-tag <%= item.tipo === 'Original' ? 'cs-tag-original' : '' %>"><%= item.tipo %></span>
+<h3 class="cs-title"><%= item.title %></h3>
+<p class="cs-desc"><%= item.descripcion %></p>
+<% if (item.credito) { %><p class="cs-credit"><%= item.credito %></p><% } %>
+<div class="cs-actions">
+<a class="cs-btn cs-btn-main" href="<%- item.es %>" download><i class="bi bi-download"></i> PDF en español</a>
+<% if (item.en) { %><a class="cs-btn" href="<%- item.en %>" download><i class="bi bi-download"></i> PDF en inglés</a><% } %>
+<% if (item.posit) { %><a class="cs-btn" href="<%- item.posit %>" target="_blank" rel="noopener"><i class="bi bi-box-arrow-up-right"></i> Ver en Posit</a><% } %>
+</div>
+</div>
+</article>
+<% } %>
+</div>
+```

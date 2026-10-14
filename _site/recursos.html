@@ -38,6 +38,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
 <link href="./images/logo-final2.png" rel="icon" type="image/png">
+<script src="site_libs/quarto-listing/list.min.js"></script>
+<script src="site_libs/quarto-listing/quarto-listing.js"></script>
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -49,9 +51,9 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-f546d6278a7fe63a888be9443735f898.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-5fd2d996c0150a3a1fed98b14a8f705c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="site_libs/bootstrap/bootstrap-f546d6278a7fe63a888be9443735f898.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-749f0c35d8da38091077ec74fca69a22.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-02237a22ee455bad83aece42a6742289.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-749f0c35d8da38091077ec74fca69a22.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -79,23 +81,121 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Buscar"
   }
 }</script>
+<script>
+
+  window.document.addEventListener("DOMContentLoaded", function (_event) {
+    const listingTargetEl = window.document.querySelector('#listing-cs-propios .list');
+    if (!listingTargetEl) {
+      // No listing discovered, do not attach.
+      return; 
+    }
+
+    const options = {
+      valueNames: ['listing-title','listing-tipo','listing-descripcion','listing-imagen','listing-es','listing-en','listing-posit',{ data: ['index'] },{ data: ['categories'] }],
+      
+      searchColumns: ["listing-title","listing-tipo","listing-descripcion","listing-imagen","listing-es","listing-en","listing-posit"],
+    };
+
+    window['quarto-listings'] = window['quarto-listings'] || {};
+    window['quarto-listings']['listing-cs-propios'] = new List('listing-cs-propios', options);
+
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  });
+
+  window.addEventListener('hashchange',() => {
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  })
+  
+
+  window.document.addEventListener("DOMContentLoaded", function (_event) {
+    const listingTargetEl = window.document.querySelector('#listing-cs-traducidos .list');
+    if (!listingTargetEl) {
+      // No listing discovered, do not attach.
+      return; 
+    }
+
+    const options = {
+      valueNames: ['listing-title','listing-tipo','listing-descripcion','listing-imagen','listing-es','listing-posit','listing-credito',{ data: ['index'] },{ data: ['categories'] }],
+      
+      searchColumns: ["listing-title","listing-tipo","listing-descripcion","listing-imagen","listing-es","listing-posit","listing-credito"],
+    };
+
+    window['quarto-listings'] = window['quarto-listings'] || {};
+    window['quarto-listings']['listing-cs-traducidos'] = new List('listing-cs-traducidos', options);
+
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  });
+
+  window.addEventListener('hashchange',() => {
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  })
+  </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&amp;display=swap">
 
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css">
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="styles.css">
 <meta property="og:title" content="Recursos – Anthony Romero">
 <meta property="og:description" content="Material gratuito para aprender y usar R en investigación en salud.">
-<meta property="og:image" content="https://anthonyromero.netlify.app/images/cheatsheet1.png">
+<meta property="og:image" content="https://anthonyromero.netlify.app/images/cheatsheets/epiR_es.jpg">
 <meta property="og:site_name" content="Anthony Romero">
-<meta property="og:image:height" content="810">
-<meta property="og:image:width" content="1041">
+<meta property="og:image:alt" content="Vista previa del cheatsheet Epidemiología con epiR">
 <meta name="twitter:title" content="Recursos – Anthony Romero">
 <meta name="twitter:description" content="Material gratuito para aprender y usar R en investigación en salud.">
-<meta name="twitter:image" content="https://anthonyromero.netlify.app/images/cheatsheet1.png">
-<meta name="twitter:image-height" content="810">
-<meta name="twitter:image-width" content="1041">
+<meta name="twitter:image" content="https://anthonyromero.netlify.app/images/cheatsheets/epiR_es.jpg">
+<meta name="twitter:image:alt" content="Vista previa del cheatsheet Epidemiología con epiR">
 <meta name="twitter:card" content="summary_large_image">
 </head>
 
@@ -374,10 +474,14 @@ ul.task-list li input[type="checkbox"] {
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">Contents</h2>
+    <h2 id="toc-title">En esta página</h2>
    
   <ul>
-  <li><a href="#cheatsheets-traducidos" id="toc-cheatsheets-traducidos" class="nav-link active" data-scroll-target="#cheatsheets-traducidos">Cheatsheets traducidos</a></li>
+  <li><a href="#cheatsheets" id="toc-cheatsheets" class="nav-link active" data-scroll-target="#cheatsheets">Cheatsheets</a>
+  <ul>
+  <li><a href="#creados-por-mí" id="toc-creados-por-mí" class="nav-link" data-scroll-target="#creados-por-mí">Creados por mí</a></li>
+  <li><a href="#traducidos-al-español" id="toc-traducidos-al-español" class="nav-link" data-scroll-target="#traducidos-al-español">Traducidos al español</a></li>
+  </ul></li>
   <li><a href="#manuales" id="toc-manuales" class="nav-link" data-scroll-target="#manuales">Manuales</a></li>
   </ul>
 </nav>
@@ -390,23 +494,179 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<section id="cheatsheets-traducidos" class="level2">
-<h2 class="anchored" data-anchor-id="cheatsheets-traducidos">Cheatsheets traducidos</h2>
-<p>Aquí encontrarás los <strong>Cheatsheets de R</strong> que he traducido junto a algunos amigos/as. (Pd: Puedes visitar estos y otros cheatsheets traducidos en la <a href="https://posit.co/resources/cheatsheets/?type=translations/">web de Posit.</a>)</p>
-<div class="project-card">
-<p><img src="images/cheatsheet1.png" class="img-fluid"></p>
-<a class="btn btn-primary project-btn cheatsheet-download" href="pdf-files/base-r_es.pdf" target="_blank"><i class="fa-solid fa-file-arrow-down"></i> Descargar PDF</a>
+<section id="cheatsheets" class="level2">
+<h2 class="anchored" data-anchor-id="cheatsheets">Cheatsheets</h2>
+<p>Hojas de referencia de una o dos páginas para tener a la mano mientras analizas en R. Todas son gratuitas y tienen licencia <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>.</p>
+<section id="creados-por-mí" class="level3">
+<h3 class="anchored" data-anchor-id="creados-por-mí">Creados por mí</h3>
+<p>Escritos desde cero con el formato de los cheatsheets de Posit. Todo el código está verificado en R y cada hoja tiene versión en español y en inglés.</p>
+<div id="listing-cs-propios" class="quarto-listing quarto-listing-container-custom">
+<div class="cs-grid">
+
+<article class="cs-card">
+<a class="cs-thumb" href="pdf-files/epiR_es.pdf" target="_blank" rel="noopener"><img src="images/cheatsheets/epiR_es.jpg" alt="Vista previa del cheatsheet Epidemiología con epiR" loading="lazy"></a>
+<div class="cs-body">
+<span class="cs-tag cs-tag-original">Original</span>
+<h3 class="cs-title anchored">Epidemiología con epiR</h3>
+<p class="cs-desc">Medidas de frecuencia y de asociación, pruebas diagnósticas y tamaño de muestra a partir de conteos.</p>
+
+<div class="cs-actions">
+<a class="cs-btn cs-btn-main" href="pdf-files/epiR_es.pdf" download=""><i class="bi bi-download"></i> PDF en español</a>
+<a class="cs-btn" href="pdf-files/epiR.pdf" download=""><i class="bi bi-download"></i> PDF en inglés</a>
+
 </div>
-<div class="project-card">
-<p><img src="images/github-cheatsheet.png" class="img-fluid"></p>
-<a class="btn btn-primary project-btn cheatsheet-download" href="pdf-files/git-github_es.pdf" target="_blank"><i class="fa-solid fa-file-arrow-down"></i> Descargar PDF</a>
 </div>
+</article>
+
+<article class="cs-card">
+<a class="cs-thumb" href="pdf-files/survival_es.pdf" target="_blank" rel="noopener"><img src="images/cheatsheets/survival_es.jpg" alt="Vista previa del cheatsheet Análisis de supervivencia con survival" loading="lazy"></a>
+<div class="cs-body">
+<span class="cs-tag cs-tag-original">Original</span>
+<h3 class="cs-title anchored">Análisis de supervivencia con survival</h3>
+<p class="cs-desc">Kaplan–Meier, comparación de grupos y regresión de Cox, con sus supuestos y extensiones.</p>
+
+<div class="cs-actions">
+<a class="cs-btn cs-btn-main" href="pdf-files/survival_es.pdf" download=""><i class="bi bi-download"></i> PDF en español</a>
+<a class="cs-btn" href="pdf-files/survival.pdf" download=""><i class="bi bi-download"></i> PDF en inglés</a>
+
+</div>
+</div>
+</article>
+
+<article class="cs-card">
+<a class="cs-thumb" href="pdf-files/rstatix_es.pdf" target="_blank" rel="noopener"><img src="images/cheatsheets/rstatix_es.jpg" alt="Vista previa del cheatsheet Pruebas estadísticas con rstatix" loading="lazy"></a>
+<div class="cs-body">
+<span class="cs-tag cs-tag-original">Original</span>
+<h3 class="cs-title anchored">Pruebas estadísticas con rstatix</h3>
+<p class="cs-desc">Cómo elegir la prueba, revisar supuestos, comparar grupos y medir el tamaño del efecto, con resultados en tablas ordenadas.</p>
+
+<div class="cs-actions">
+<a class="cs-btn cs-btn-main" href="pdf-files/rstatix_es.pdf" download=""><i class="bi bi-download"></i> PDF en español</a>
+<a class="cs-btn" href="pdf-files/rstatix.pdf" download=""><i class="bi bi-download"></i> PDF en inglés</a>
+
+</div>
+</div>
+</article>
+
+</div>
+<div class="listing-no-matching d-none">No hay resultados</div>
+</div>
+</section>
+<section id="traducidos-al-español" class="level3">
+<h3 class="anchored" data-anchor-id="traducidos-al-español">Traducidos al español</h3>
+<p>Traducciones de cheatsheets publicados en el repositorio de Posit, hechas junto a algunos amigos/as. Puedes ver estos y otros cheatsheets traducidos en la <a href="https://posit.co/resources/cheatsheets/?type=translations/">web de Posit</a>.</p>
+<div id="listing-cs-traducidos" class="quarto-listing quarto-listing-container-custom">
+<div class="cs-grid">
+
+<article class="cs-card">
+<a class="cs-thumb" href="pdf-files/gtsummary_es.pdf" target="_blank" rel="noopener"><img src="images/cheatsheets/gtsummary_es.jpg" alt="Vista previa del cheatsheet Tablas analíticas y de resumen con gtsummary" loading="lazy"></a>
+<div class="cs-body">
+<span class="cs-tag ">Traducción</span>
+<h3 class="cs-title anchored">Tablas analíticas y de resumen con gtsummary</h3>
+<p class="cs-desc">Tablas de resumen y de regresión listas para publicar.</p>
+
+<div class="cs-actions">
+<a class="cs-btn cs-btn-main" href="pdf-files/gtsummary_es.pdf" download=""><i class="bi bi-download"></i> PDF en español</a>
+
+</div>
+</div>
+</article>
+
+<article class="cs-card">
+<a class="cs-thumb" href="pdf-files/srvyr_es.pdf" target="_blank" rel="noopener"><img src="images/cheatsheets/srvyr_es.jpg" alt="Vista previa del cheatsheet Análisis de encuestas con srvyr" loading="lazy"></a>
+<div class="cs-body">
+<span class="cs-tag ">Traducción</span>
+<h3 class="cs-title anchored">Análisis de encuestas con srvyr</h3>
+<p class="cs-desc">Diseños muestrales complejos con la sintaxis de dplyr: medias, proporciones y totales con sus errores.</p>
+
+<div class="cs-actions">
+<a class="cs-btn cs-btn-main" href="pdf-files/srvyr_es.pdf" download=""><i class="bi bi-download"></i> PDF en español</a>
+
+</div>
+</div>
+</article>
+
+<article class="cs-card">
+<a class="cs-thumb" href="pdf-files/labelled_es.pdf" target="_blank" rel="noopener"><img src="images/cheatsheets/labelled_es.jpg" alt="Vista previa del cheatsheet Datos etiquetados con labelled" loading="lazy"></a>
+<div class="cs-body">
+<span class="cs-tag ">Traducción</span>
+<h3 class="cs-title anchored">Datos etiquetados con labelled</h3>
+<p class="cs-desc">Etiquetas de variables y de valores, como las de los datos importados de SPSS o Stata con haven.</p>
+
+<div class="cs-actions">
+<a class="cs-btn cs-btn-main" href="pdf-files/labelled_es.pdf" download=""><i class="bi bi-download"></i> PDF en español</a>
+
+</div>
+</div>
+</article>
+
+<article class="cs-card">
+<a class="cs-thumb" href="pdf-files/stata2r_es.pdf" target="_blank" rel="noopener"><img src="images/cheatsheets/stata2r_es.jpg" alt="Vista previa del cheatsheet De Stata a R" loading="lazy"></a>
+<div class="cs-body">
+<span class="cs-tag ">Traducción</span>
+<h3 class="cs-title anchored">De Stata a R</h3>
+<p class="cs-desc">Equivalencias entre los comandos de Stata y R para quien da el salto.</p>
+
+<div class="cs-actions">
+<a class="cs-btn cs-btn-main" href="pdf-files/stata2r_es.pdf" download=""><i class="bi bi-download"></i> PDF en español</a>
+
+</div>
+</div>
+</article>
+
+<article class="cs-card">
+<a class="cs-thumb" href="pdf-files/regex_es.pdf" target="_blank" rel="noopener"><img src="images/cheatsheets/regex_es.jpg" alt="Vista previa del cheatsheet Expresiones regulares básicas" loading="lazy"></a>
+<div class="cs-body">
+<span class="cs-tag ">Traducción</span>
+<h3 class="cs-title anchored">Expresiones regulares básicas</h3>
+<p class="cs-desc">Patrones para buscar, extraer y reemplazar texto.</p>
+
+<div class="cs-actions">
+<a class="cs-btn cs-btn-main" href="pdf-files/regex_es.pdf" download=""><i class="bi bi-download"></i> PDF en español</a>
+
+</div>
+</div>
+</article>
+
+<article class="cs-card">
+<a class="cs-thumb" href="pdf-files/base-r_es.pdf" target="_blank" rel="noopener"><img src="images/cheatsheets/base-r_es.jpg" alt="Vista previa del cheatsheet R base" loading="lazy"></a>
+<div class="cs-body">
+<span class="cs-tag ">Traducción</span>
+<h3 class="cs-title anchored">R base</h3>
+<p class="cs-desc">Lo esencial de R sin paquetes: vectores, tablas, programación y estadística básica.</p>
+<p class="cs-credit">Traducido con Thatiane Ramírez Porras.</p>
+<div class="cs-actions">
+<a class="cs-btn cs-btn-main" href="pdf-files/base-r_es.pdf" download=""><i class="bi bi-download"></i> PDF en español</a>
+
+</div>
+</div>
+</article>
+
+<article class="cs-card">
+<a class="cs-thumb" href="pdf-files/git-github_es.pdf" target="_blank" rel="noopener"><img src="images/cheatsheets/git-github_es.jpg" alt="Vista previa del cheatsheet Git y GitHub desde RStudio" loading="lazy"></a>
+<div class="cs-body">
+<span class="cs-tag ">Traducción</span>
+<h3 class="cs-title anchored">Git y GitHub desde RStudio</h3>
+<p class="cs-desc">Control de versiones para tus proyectos de R.</p>
+
+<div class="cs-actions">
+<a class="cs-btn cs-btn-main" href="pdf-files/git-github_es.pdf" download=""><i class="bi bi-download"></i> PDF en español</a>
+
+</div>
+</div>
+</article>
+
+</div>
+<div class="listing-no-matching d-none">No hay resultados</div>
+</div>
+</section>
 </section>
 <section id="manuales" class="level2">
 <h2 class="anchored" data-anchor-id="manuales">Manuales</h2>
 <ul>
 <li><a href="./posts/Manual/index.html">Manual de instalación de R, RStudio y Rtools</a>: guía paso a paso para dejar listo tu equipo.</li>
 </ul>
+
 
 
 </section>

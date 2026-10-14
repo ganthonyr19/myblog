@@ -21,5 +21,9 @@
     "items": [
       "/posts/Manual/index.html"
     ]
+  },
+  {
+    "listing": "/recursos.html",
+    "items": []
   }
 ]
