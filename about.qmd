@@ -414,14 +414,6 @@ Investigador asociado
 :::
 
 
-<!-- Boton para descargar el cv en pdf -->
-```{=html}
-<p class="text-center">
-  <a class="btn btn-primary btn-lg cv-download" href="cv_anthony.pdf" target="_blank">
-    <i class="fa-solid fa-file-arrow-down"></i>Descargar CV en PDF
-  </a>
-</p>
-```
 
 ## Proyectos y publicaciones
 

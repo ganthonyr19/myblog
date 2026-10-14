@@ -6,7 +6,7 @@ page-layout: full
 ---
 
 ## Cheatsheets traducidos
-Aquí encontrarás los **Cheatsheets de R** que he traducido junto a [Percy Soto](https://github.com/psotob91) (*mi mentor en R*) y algunos amigos/as. (Pd: Puedes visitar estos y otros cheatsheets traducidos en la [web de Posit.](https://posit.co/resources/cheatsheets/?type=translations/))
+Aquí encontrarás los **Cheatsheets de R** que he traducido junto a algunos amigos/as. (Pd: Puedes visitar estos y otros cheatsheets traducidos en la [web de Posit.](https://posit.co/resources/cheatsheets/?type=translations/))
 
 ::: {.project-card}
 ![](images/cheatsheet1.png)
