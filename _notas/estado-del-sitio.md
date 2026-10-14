@@ -13,6 +13,8 @@
 
 En `integracion-web` el menú queda: **Inicio · Aprende ▾ (Prospecto R, Tutoriales, Blog) · Recursos · Sobre mí** (decisión de Anthony: Prospecto R con entrada propia, agrupada con Tutoriales y Blog en el menú desplegable «Aprende»). El enlace de X es `https://x.com/ganthonyrc` (en `fase-2-estructura` estaba el antiguo `twitter.com/ganthonyr94`; la integración usa el correcto).
 
+Otros cambios en `integracion-web` pedidos por Anthony: se quitó el botón «Descargar CV en PDF» de Sobre mí y la mención a Percy Soto en Recursos (se mantiene en las referencias del CV, que no pidió cambiar). La sección Blog (`blog/`) está vacía: queda reservada para entradas de opinión y novedades, distintas de los tutoriales.
+
 ### Antes de publicar (pendiente)
 
 1. Renderizar el sitio completo **en local** con Quarto 1.10.18: `quarto render`. Aquí no se pudo porque:
