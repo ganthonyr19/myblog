@@ -15,6 +15,17 @@ En `integracion-web` el menú queda: **Inicio · Aprende ▾ (Prospecto R, Tutor
 
 Otros cambios en `integracion-web` pedidos por Anthony: se quitó el botón «Descargar CV en PDF» de Sobre mí y la mención a Percy Soto en Recursos (se mantiene en las referencias del CV, que no pidió cambiar). La sección Blog (`blog/`) está vacía: queda reservada para entradas de opinión y novedades, distintas de los tutoriales.
 
+### Recursos: cheatsheets (rama `recursos-cheatsheets`)
+
+`recursos.qmd` muestra los cheatsheets en tarjetas, con dos listados que se alimentan de archivos YAML:
+
+- `recursos/cheatsheets-propios.yml`: epiR, survival y rstatix (originales de Anthony, PDF en español e inglés).
+- `recursos/cheatsheets-traducidos.yml`: gtsummary, srvyr, labelled, stata2r, regex, R base (con Thatiane Ramírez Porras) y Git y GitHub.
+- `recursos/cheatsheets.ejs`: plantilla de las tarjetas. Los estilos están al final de `styles.css` (sección CHEATSHEETS).
+- PDF en `pdf-files/` y miniaturas (primera página, JPEG de 800 px) en `images/cheatsheets/`.
+- Cada tarjeta tiene el campo `posit:`. Cuando Anthony tenga el enlace de Posit, se escribe ahí y aparece el botón «Ver en Posit»; si está vacío, no aparece.
+- Origen de los archivos: `F:\OneDrive\R\My R projects\contribuciones\cheatsheets` en el equipo de Anthony (estado de cada envío a Posit en su `README.md`).
+
 ### Antes de publicar (pendiente)
 
 1. Renderizar el sitio completo **en local** con Quarto 1.10.18: `quarto render`. Aquí no se pudo porque:
