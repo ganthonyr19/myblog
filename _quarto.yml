@@ -24,8 +24,12 @@ website:
             href: prospecto/index.qmd
           - text: Tutoriales
             href: tutoriales.qmd
+          - text: Diseños de estudio
+            href: disenos/index.qmd
           - text: Blog
             href: blog.qmd
+      - text: Consultorio
+        href: herramientas/index.qmd
       - text: Recursos
         href: recursos.qmd
       - text: Sobre mí
@@ -37,13 +41,16 @@ website:
            href: https://github.com/ganthonyr19/myblog
          - text: Reportar un error
            href: https://github.com/ganthonyr19/myblog/issues
+      - icon: instagram
+        href: https://www.instagram.com/bioestadistica.en.linea/
+        aria-label: Instagram de Bioestadística en línea
       - icon: twitter
         href: https://x.com/ganthonyrc
         # text: My twitter account
   page-footer: 
     left: |
       Creado con ![](/images/ricon24.png) y [Quarto](https://quarto.org).  
-      Código fuente [![](/images/github-icon.png)](https://github.com/ganthonyr19/myblog)
+      Código fuente [![](/images/github-icon.png)](https://github.com/ganthonyr19/myblog) · [Instagram @bioestadistica.en.linea](https://www.instagram.com/bioestadistica.en.linea/)
     background: light
     right: |
      &copy; 2023-2026 Anthony Romero Cerdán  
@@ -65,5 +72,6 @@ format:
       light: flatly
       dark: darkly
     css: styles.css
+    include-after-body: _includes/sigue.html
 mainfont: "Source Sans 3"
 link-external-newwindow: TRUE

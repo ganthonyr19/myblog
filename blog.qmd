@@ -1,8 +1,10 @@
 ---
 title: "Blog"
-description: "Novedades del ecosistema R, RStudio y la ciencia de datos, y notas cortas sobre investigación en salud."
+description: "Entradas para entender y hacer mejor la investigación en salud: diseños de estudio, elección de pruebas estadísticas y novedades del ecosistema R."
 listing:
-  contents: blog
+  contents:
+    - blog
+    - "disenos/*/index.qmd"   # la serie Diseños de estudio también aparece en el blog
   sort: "date desc"
   type: grid
   categories: true

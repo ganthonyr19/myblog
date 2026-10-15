@@ -18,13 +18,21 @@ listing:
     sort: false
 ---
 
-## Herramientas
+## Consultorio estadístico
 
 ::: {.herramienta}
 [**¿Cuántos participantes necesito?**](herramientas/muestra/index.qmd)
 
 Calculadora de tamaño de muestra para tesis de salud: prevalencia, casos y controles, cohortes, dos medias, pruebas diagnósticas y correlación. Te da el número, el párrafo para tu proyecto, el código en R y las observaciones que podría hacerte el jurado.
 :::
+
+::: {.herramienta}
+[**¿Qué prueba estadística uso?**](blog/que-prueba-estadistica/index.qmd)
+
+Un triaje en cuatro preguntas que te lleva a la prueba adecuada para tu objetivo, con su código en R y cómo reportarla.
+:::
+
+Todos los módulos están en el [Consultorio estadístico](herramientas/index.qmd).
 
 ## Cheatsheets
 

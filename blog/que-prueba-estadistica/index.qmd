@@ -1,0 +1,204 @@
+---
+title: "¿Qué prueba estadística uso?"
+description: "Cómo elegir la prueba estadística de tu tesis de salud: un triaje interactivo en cuatro preguntas, el mapa completo de pruebas, cinco mitos y el código en R de cada una."
+date: 2026-10-15
+lang: es
+image: portada.png
+categories: [Consultorio estadístico, Pruebas estadísticas, Tesis]
+title-block-banner: true
+toc: true
+toc-title: "En esta entrada"
+format:
+  html:
+    css:
+      - ../../prospecto/estilo/prospecto.css
+      - ../../estilo/editorial.css
+    include-after-body:
+      - ../../prospecto/estilo/prospecto.html
+      - text: |
+          <script src="triaje.js"></script>
+resources:
+  - triaje.js
+---
+
+[![](../../images/marcas/triaje.svg)<span><b>Consultorio estadístico</b><em>Módulo Triaje</em></span>](../../herramientas/index.qmd){.sello}
+
+En emergencia nadie empieza pidiendo exámenes al azar: primero se pregunta qué le pasa al paciente, cuánto urge y qué se necesita descartar. Con la estadística de una tesis pasa lo mismo. La pregunta «¿qué prueba uso?» casi siempre se responde mirando una tabla de tipos de variables, y por eso termina en errores que el jurado detecta rápido: un chi cuadrado donde las mediciones eran de las mismas personas, una t de Student con tres grupos o un odds ratio en un estudio transversal con un desenlace frecuente.
+
+::: {.en-una-frase}
+La prueba no se elige por el tipo de variable: se elige por **lo que quieres responder**, y luego por cómo son tus datos.
+:::
+
+## Las cuatro preguntas del triaje
+
+::: {.tarjetas}
+<div>
+
+**¿Qué quieres hacer?**
+
+Describir, comparar grupos, medir una asociación ajustada o evaluar una prueba diagnóstica. Sale de tu objetivo específico.
+
+</div>
+<div>
+
+**¿Qué tipo de desenlace tienes?**
+
+Categórico (sí/no, varias categorías), numérico, un conteo o el tiempo hasta un evento.
+
+</div>
+<div>
+
+**¿Los grupos son independientes?**
+
+Personas distintas, o las mismas personas medidas más de una vez (antes y después, pares emparejados).
+
+</div>
+<div>
+
+**¿Necesitas ajustar?**
+
+Si hay [confusores](../../prospecto/diccionario.qmd#confusion){.dic}, una prueba bivariada no basta: necesitas un modelo de regresión.
+
+</div>
+:::
+
+## Haz tu triaje
+
+Responde las preguntas. Al final obtienes una «receta» con la prueba, cuándo usarla, con qué se suele confundir, el código en R y un ejemplo de cómo reportarla. Puedes volver a cualquier paso tocando tu respuesta.
+
+```{=html}
+<div id="triaje" class="triaje" aria-live="polite"><noscript>Activa JavaScript para usar el triaje. El mapa completo está en la siguiente sección.</noscript></div>
+```
+
+## El mapa completo
+
+Si prefieres verlo todo de una vez, esta es la ruta del triaje resumida. La columna de la derecha es la alternativa cuando la variable numérica es muy sesgada, tiene valores extremos o es ordinal.
+
+```{=html}
+<div style="overflow-x:auto">
+<table class="mapa">
+<thead><tr><th>Quiero…</th><th>Desenlace</th><th>Grupos</th><th>Prueba</th><th>Alternativa</th></tr></thead>
+<tbody>
+<tr><th rowspan="2">Describir</th><td>Categórico</td><td>—</td><td>Frecuencias, % e IC 95 %</td><td>—</td></tr>
+<tr><td>Numérico</td><td>—</td><td>Media (DE)</td><td>Mediana (RIC)</td></tr>
+<tr><th rowspan="9">Comparar</th><td rowspan="3">Categórico</td><td>Independientes</td><td>Chi cuadrado</td><td>Exacta de Fisher <small>(esperadas &lt; 5)</small></td></tr>
+<tr><td>Mismas personas, 2 veces</td><td>McNemar</td><td>—</td></tr>
+<tr><td>Mismas personas, 3+ veces</td><td>Q de Cochran</td><td>—</td></tr>
+<tr><td rowspan="5">Numérico</td><td>2 independientes</td><td>t de Welch</td><td>U de Mann-Whitney</td></tr>
+<tr><td>3+ independientes</td><td>ANOVA</td><td>Kruskal-Wallis</td></tr>
+<tr><td>Mismas personas, 2 veces</td><td>t pareada</td><td>Rangos con signo de Wilcoxon</td></tr>
+<tr><td>Mismas personas, 3+ veces</td><td>ANOVA de medidas repetidas</td><td>Friedman</td></tr>
+<tr><td>Otra variable numérica</td><td>Correlación de Pearson</td><td>Correlación de Spearman</td></tr>
+<tr><td>Tiempo al evento</td><td>Independientes</td><td>Kaplan-Meier y log-rank</td><td>—</td></tr>
+<tr><th rowspan="4">Ajustar</th><td>Binario</td><td>—</td><td>Poisson robusta (RP, RR) <small>o logística (OR) en casos y controles</small></td><td>—</td></tr>
+<tr><td>Numérico</td><td>—</td><td>Regresión lineal</td><td>—</td></tr>
+<tr><td>Conteo</td><td>—</td><td>Poisson o binomial negativa</td><td>—</td></tr>
+<tr><td>Tiempo al evento</td><td>—</td><td>Regresión de Cox</td><td>—</td></tr>
+<tr><th rowspan="3">Diagnóstico y concordancia</th><td>Prueba vs. estándar</td><td>—</td><td>Sensibilidad, especificidad, curva ROC</td><td>—</td></tr>
+<tr><td>Categórico, 2 observadores</td><td>—</td><td>Kappa de Cohen</td><td>Kappa ponderado <small>(ordinal)</small></td></tr>
+<tr><td>Numérico, 2 métodos</td><td>—</td><td>CCI y Bland-Altman</td><td>—</td></tr>
+</tbody></table>
+</div>
+```
+
+## Cinco mitos que el jurado sí detecta
+
+::: {.mitos}
+<div class="mito"><div>
+<p class="et">Mito 1</p>
+<p>«Antes de elegir la prueba hay que aplicar Shapiro-Wilk a todas las variables».</p>
+</div><div>
+<p class="et">Realidad</p>
+<p>Con muestras grandes, Shapiro-Wilk rechaza la normalidad por desviaciones mínimas, y con muestras pequeñas casi nunca la rechaza. La prueba t es robusta con tamaños moderados (Lumley et al., 2002). Decide mirando el histograma, la presencia de valores extremos y el tamaño de cada grupo.</p>
+</div></div>
+
+<div class="mito"><div>
+<p class="et">Mito 2</p>
+<p>«Si una celda de la tabla tiene menos de 5 personas, uso Fisher».</p>
+</div><div>
+<p class="et">Realidad</p>
+<p>El criterio se refiere a las frecuencias <em>esperadas</em>, no a las observadas: el chi cuadrado es adecuado si ninguna esperada es menor que 1 y no más de 20 % es menor que 5 (Cochran, 1954). En R: <code>chisq.test(tabla)$expected</code>.</p>
+</div></div>
+
+<div class="mito"><div>
+<p class="et">Mito 3</p>
+<p>«Si tengo tres grupos, hago tres pruebas t».</p>
+</div><div>
+<p class="et">Realidad</p>
+<p>Cada prueba adicional aumenta la probabilidad de un falso positivo. Con tres o más grupos se usa ANOVA o Kruskal-Wallis y, solo si resultan significativos, comparaciones múltiples con ajuste.</p>
+</div></div>
+
+<div class="mito"><div>
+<p class="et">Mito 4</p>
+<p>«Un chi cuadrado por cada variable y ya tengo los factores asociados».</p>
+</div><div>
+<p class="et">Realidad</p>
+<p>El análisis bivariado no controla la <a class="dic" href="../../prospecto/diccionario.html#confusion">confusión</a>. Si tu objetivo habla de «factores asociados», necesitas un modelo de regresión y reportar la medida de asociación ajustada con su intervalo de confianza.</p>
+</div></div>
+
+<div class="mito"><div>
+<p class="et">Mito 5</p>
+<p>«p &lt; 0,05 significa que el efecto es importante».</p>
+</div><div>
+<p class="et">Realidad</p>
+<p>El <a class="dic" href="../../prospecto/diccionario.html#valor-p">valor p</a> no mide el tamaño ni la relevancia clínica de un efecto (Wasserstein y Lazar, 2016). Reporta siempre la diferencia o la medida de asociación con su IC 95 %.</p>
+</div></div>
+:::
+
+## Cómo escribirlo en tu proyecto
+
+En la sección de análisis de datos, cada prueba debe estar ligada a un objetivo. Por ejemplo:
+
+::: {.reporte}
+> Las variables categóricas se describirán con frecuencias y porcentajes, y las numéricas con media y desviación estándar o mediana y rango intercuartílico, según su distribución. Para comparar las características entre los grupos se usará la prueba de chi cuadrado de Pearson (o la exacta de Fisher si más de 20 % de las frecuencias esperadas es menor que 5) y la prueba t de Welch (o la U de Mann-Whitney). Para el objetivo general se estimarán razones de prevalencias crudas y ajustadas con regresión de Poisson con varianza robusta. Se considerará un nivel de significancia de 0,05 y se reportarán intervalos de confianza al 95 %. El análisis se realizará en R.
+:::
+
+Ajusta el párrafo a tus objetivos: si no vas a ajustar por confusores, retira la última parte; si tu estudio es de casos y controles, cambia la regresión de Poisson por la logística y la RP por el OR.
+
+## Antes de elegir la prueba
+
+La prueba depende del diseño. Si todavía dudas de si tu estudio es transversal, de casos y controles o de cohortes, revisa la serie [Diseños de estudio](../../disenos/index.qmd). Y si estás en la etapa del proyecto, calcula tu tamaño de muestra con el [módulo Muestra del Consultorio estadístico](../../herramientas/muestra/index.qmd).
+
+## Autoevaluación
+
+::: {.autoeval}
+::: {.pregunta}
+Mides la hemoglobina de 40 gestantes antes y después de tres meses de suplementación con hierro. ¿Qué prueba usas?
+
+<details><summary>Ver respuesta</summary>
+Una t pareada, porque son las mismas personas medidas dos veces. Si las diferencias estuvieran muy sesgadas, la prueba de rangos con signo de Wilcoxon. La t para muestras independientes sería un error.
+</details>
+:::
+
+::: {.pregunta}
+En una tabla 2 × 2 una celda tiene 3 personas, pero todas las frecuencias esperadas son mayores que 5. ¿Chi cuadrado o Fisher?
+
+<details><summary>Ver respuesta</summary>
+Chi cuadrado. El criterio de Cochran se basa en las frecuencias esperadas, no en las observadas.
+</details>
+:::
+
+::: {.pregunta}
+Tu objetivo es «determinar los factores asociados a la anemia» en un estudio transversal con la ENDES, y la anemia es frecuente (30 %). ¿Qué análisis corresponde?
+
+<details><summary>Ver respuesta</summary>
+Una regresión de Poisson con varianza robusta para estimar razones de prevalencias ajustadas, con el diseño muestral de la encuesta. Un chi cuadrado por variable no controla la confusión, y el OR de una regresión logística exageraría la asociación porque el desenlace es frecuente. Lo explica el [Prospecto R n.º 1](../../prospecto/or-vs-rp/inicial.qmd).
+</details>
+:::
+:::
+
+## Referencias
+
+- Kirkwood BR, Sterne JAC. *Essential Medical Statistics*. 2.ª ed. Oxford: Blackwell Science; 2003.
+- Lumley T, Diehr P, Emerson S, Chen L. The importance of the normality assumption in large public health data sets. *Annu Rev Public Health*. 2002;23:151-69.
+- Cochran WG. Some methods for strengthening the common χ² tests. *Biometrics*. 1954;10(4):417-51.
+- Wasserstein RL, Lazar NA. The ASA's statement on p-values: context, process, and purpose. *Am Stat*. 2016;70(2):129-33.
+- Zou G. A modified Poisson regression approach to prospective studies with binary data. *Am J Epidemiol*. 2004;159(7):702-6.
+
+::: {.cta}
+**¿Tu caso no encaja en el triaje?**
+
+Diseños complejos, encuestas nacionales, modelos con muchas variables: te ayudo a elegir y justificar el análisis de tu tesis.
+
+[Escríbeme por WhatsApp](https://api.whatsapp.com/send?phone=51955446754&text=Hola%2C%20le%C3%AD%20tu%20triaje%20estad%C3%ADstico%20y%20quiero%20informaci%C3%B3n%20sobre%20asesor%C3%ADa%20para%20mi%20tesis)
+:::

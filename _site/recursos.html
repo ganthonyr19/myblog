@@ -397,11 +397,19 @@ window.Quarto = {
  <span class="dropdown-text">Tutoriales</span></a>
   </li>  
         <li>
+    <a class="dropdown-item" href="./disenos/index.html">
+ <span class="dropdown-text">Diseños de estudio</span></a>
+  </li>  
+        <li>
     <a class="dropdown-item" href="./blog.html">
  <span class="dropdown-text">Blog</span></a>
   </li>  
     </ul>
   </li>
+  <li class="nav-item">
+    <a class="nav-link" href="./herramientas/index.html"> 
+<span class="menu-text">Consultorio</span></a>
+  </li>  
   <li class="nav-item">
     <a class="nav-link active" href="./recursos.html" aria-current="page"> 
 <span class="menu-text">Recursos</span></a>
@@ -429,6 +437,11 @@ window.Quarto = {
   </li>  
     </ul>
   </li>
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://www.instagram.com/bioestadistica.en.linea/"> <i class="bi bi-instagram" role="img" aria-label="Instagram de Bioestadística en línea">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
   <li class="nav-item compact">
     <a class="nav-link" href="https://x.com/ganthonyrc"> <i class="bi bi-twitter" role="img">
 </i> 
@@ -477,7 +490,7 @@ window.Quarto = {
     <h2 id="toc-title">En esta página</h2>
    
   <ul>
-  <li><a href="#herramientas" id="toc-herramientas" class="nav-link active" data-scroll-target="#herramientas">Herramientas</a></li>
+  <li><a href="#consultorio-estadístico" id="toc-consultorio-estadístico" class="nav-link active" data-scroll-target="#consultorio-estadístico">Consultorio estadístico</a></li>
   <li><a href="#cheatsheets" id="toc-cheatsheets" class="nav-link" data-scroll-target="#cheatsheets">Cheatsheets</a>
   <ul>
   <li><a href="#creados-por-mí" id="toc-creados-por-mí" class="nav-link" data-scroll-target="#creados-por-mí">Creados por mí</a></li>
@@ -495,12 +508,17 @@ window.Quarto = {
 
 
 
-<section id="herramientas" class="level2">
-<h2 class="anchored" data-anchor-id="herramientas">Herramientas</h2>
+<section id="consultorio-estadístico" class="level2">
+<h2 class="anchored" data-anchor-id="consultorio-estadístico">Consultorio estadístico</h2>
 <div class="herramienta">
 <p><a href="./herramientas/muestra/index.html"><strong>¿Cuántos participantes necesito?</strong></a></p>
 <p>Calculadora de tamaño de muestra para tesis de salud: prevalencia, casos y controles, cohortes, dos medias, pruebas diagnósticas y correlación. Te da el número, el párrafo para tu proyecto, el código en R y las observaciones que podría hacerte el jurado.</p>
 </div>
+<div class="herramienta">
+<p><a href="./blog/que-prueba-estadistica/index.html"><strong>¿Qué prueba estadística uso?</strong></a></p>
+<p>Un triaje en cuatro preguntas que te lleva a la prueba adecuada para tu objetivo, con su código en R y cómo reportarla.</p>
+</div>
+<p>Todos los módulos están en el <a href="./herramientas/index.html">Consultorio estadístico</a>.</p>
 </section>
 <section id="cheatsheets" class="level2">
 <h2 class="anchored" data-anchor-id="cheatsheets">Cheatsheets</h2>
@@ -680,6 +698,26 @@ window.Quarto = {
 </section>
 
 </main> <!-- /main -->
+<script>
+/* Tarjeta «Síguenos en Instagram» al final de cada entrada (no en listados ni en el inicio). */
+(function () {
+  var IG = "https://www.instagram.com/bioestadistica.en.linea/";
+  function poner() {
+    var main = document.querySelector("main#quarto-document-content") || document.querySelector("main");
+    if (!main || document.querySelector(".quarto-listing") || document.querySelector(".quarto-about-jolla, .about-entity")) return;
+    if (!document.querySelector(".quarto-title") || document.body.classList.contains("sin-sigue")) return;
+    var d = document.createElement("aside");
+    d.className = "sigue-ig";
+    d.innerHTML =
+      '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.3" cy="6.7" r="1.2" fill="currentColor"/></svg>' +
+      '<div><p class="sigue-t">¿Te sirvió?</p><p>En Instagram comparto tips de bioestadística y R para tesis de salud, y aviso cuando sale una entrega nueva.</p></div>' +
+      '<a href="' + IG + '" target="_blank" rel="noopener">Seguir @bioestadistica.en.linea</a>';
+    var ap = main.querySelector("#quarto-appendix, .quarto-appendix-contents");
+    if (ap) ap.parentNode.insertBefore(d, ap); else main.appendChild(d);
+  }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", poner); else poner();
+})();
+</script>
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     // Ensure there is a toggle, if there isn't float one in the top right
@@ -1103,7 +1141,7 @@ window.Quarto = {
   <div class="nav-footer">
     <div class="nav-footer-left">
 <p>Creado con <img src="./images/ricon24.png" class="img-fluid"> y <a href="https://quarto.org">Quarto</a>.<br>
-Código fuente <a href="https://github.com/ganthonyr19/myblog"><img src="./images/github-icon.png" class="img-fluid"></a></p>
+Código fuente <a href="https://github.com/ganthonyr19/myblog"><img src="./images/github-icon.png" class="img-fluid"></a> · <a href="https://www.instagram.com/bioestadistica.en.linea/">Instagram <span class="citation" data-cites="bioestadistica.en.linea">@bioestadistica.en.linea</span></a></p>
 </div>   
     <div class="nav-footer-center">
       &nbsp;

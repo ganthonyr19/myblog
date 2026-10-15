@@ -1,0 +1,190 @@
+---
+title: "El estudio transversal"
+description: "El estudio transversal explicado con diagramas y ejemplos: prevalencia, razón de prevalencias, sesgos, análisis en R y tamaño de muestra."
+date: 2026-10-15
+image: portada.png
+categories: [Diseños de estudio, Epidemiología, Tesis]
+---
+
+[![](../../images/marcas/disenos.svg)<span><b>Diseños de estudio</b><em>Diseño n.º 1</em></span>](../index.qmd){.sello}
+
+::: {.en-una-frase}
+Un estudio transversal mide la exposición y el desenlace **en el mismo momento**, como una fotografía de la población.
+:::
+
+Es el diseño más usado en las tesis de pregrado y el que sostiene a las grandes encuestas nacionales, como la [ENDES](../../prospecto/diccionario.qmd#endes){.dic}. Su fortaleza es la rapidez y su límite es el tiempo: como todo se mide a la vez, rara vez permite saber qué ocurrió primero.
+
+## Cómo se ve
+
+```{=html}
+<div class="diagrama">
+<svg viewBox="0 0 760 250" role="img" aria-label="Esquema del estudio transversal">
+  <g font-size="13">
+    <text x="20" y="28" class="dg-t" font-weight="700">Población</text>
+    <g>
+      <circle cx="50" cy="70" r="9" fill="#E5636F"/><circle cx="80" cy="70" r="9" fill="#0B1F3A" opacity=".75"/><circle cx="110" cy="70" r="9" fill="#0B1F3A" opacity=".75"/><circle cx="140" cy="70" r="9" fill="#E5636F"/>
+      <circle cx="50" cy="100" r="9" fill="#0B1F3A" opacity=".75"/><circle cx="80" cy="100" r="9" fill="#E5636F"/><circle cx="110" cy="100" r="9" fill="#0B1F3A" opacity=".75"/><circle cx="140" cy="100" r="9" fill="#0B1F3A" opacity=".75"/>
+      <circle cx="50" cy="130" r="9" fill="#0B1F3A" opacity=".75"/><circle cx="80" cy="130" r="9" fill="#0B1F3A" opacity=".75"/><circle cx="110" cy="130" r="9" fill="#E5636F"/><circle cx="140" cy="130" r="9" fill="#0B1F3A" opacity=".75"/>
+    </g>
+    <path d="M170 100 L250 100" stroke="#5B6B80" stroke-width="2.5" marker-end="url(#ft)"/>
+    <defs><marker id="ft" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#5B6B80"/></marker></defs>
+    <rect x="260" y="50" width="200" height="100" rx="14" fill="#0B1F3A"/>
+    <text x="360" y="85" text-anchor="middle" fill="#fff" font-weight="700">Una sola medición</text>
+    <text x="360" y="108" text-anchor="middle" fill="#A9B8CC" font-size="12">¿Expuesto? ¿Tiene el desenlace?</text>
+    <text x="360" y="128" text-anchor="middle" fill="#A9B8CC" font-size="12">Las dos preguntas a la vez</text>
+    <path d="M470 100 L550 100" stroke="#5B6B80" stroke-width="2.5" marker-end="url(#ft)"/>
+    <rect x="560" y="45" width="180" height="110" rx="14" fill="none" stroke="#E5636F" stroke-width="2"/>
+    <text x="650" y="78" text-anchor="middle" class="dg-t" font-weight="700">Prevalencias</text>
+    <text x="650" y="102" text-anchor="middle" class="dg-s" font-size="12">en expuestos y</text>
+    <text x="650" y="118" text-anchor="middle" class="dg-s" font-size="12">no expuestos</text>
+    <text x="650" y="142" text-anchor="middle" fill="#E5636F" font-weight="700">→ RP</text>
+    <line x1="40" y1="200" x2="740" y2="200" class="dg-l" stroke-width="1.5"/>
+    <line x1="360" y1="188" x2="360" y2="212" stroke="#E5636F" stroke-width="3"/>
+    <text x="360" y="232" text-anchor="middle" fill="#E5636F" font-weight="700">Un momento en el tiempo</text>
+    <text x="40" y="232" class="dg-s" font-size="12">Pasado</text><text x="740" y="232" text-anchor="end" class="dg-s" font-size="12">Futuro</text>
+  </g>
+</svg>
+<p class="cap">Los puntos rojos son personas con el desenlace. No hay seguimiento: se observa lo que hay en un momento dado.</p>
+</div>
+```
+
+## Cuándo elegirlo
+
+- Para **estimar la frecuencia** de una enfermedad o de un factor: la [prevalencia](../../prospecto/diccionario.qmd#prevalencia){.dic} de anemia en gestantes, de depresión en internos de medicina.
+- Para **explorar asociaciones** cuando el seguimiento no es factible: ¿la prevalencia de obesidad abdominal es mayor en mujeres que en hombres?
+- Para **planificar servicios**: cuántas personas necesitan atención hoy.
+- Para **generar hipótesis** que luego se estudiarán con una cohorte o un ensayo.
+
+Existen dos variantes. El **transversal descriptivo** solo estima frecuencias. El **transversal analítico** compara la prevalencia del desenlace entre expuestos y no expuestos.
+
+## Cómo se analiza
+
+La medida natural del transversal analítico es la [razón de prevalencias](../../prospecto/diccionario.qmd#razon-de-prevalencias){.dic} (RP): cuántas veces más frecuente es el desenlace en los expuestos. Se calcula con una [tabla 2 × 2](../../prospecto/diccionario.qmd#tabla-2x2){.dic}.
+
+```{=html}
+<div style="overflow-x:auto">
+<table class="mapa" style="max-width:560px">
+<thead><tr><th></th><th>Con desenlace</th><th>Sin desenlace</th><th>Total</th></tr></thead>
+<tbody>
+<tr><th>Expuestos</th><td><b>a</b> = 90</td><td><b>b</b> = 210</td><td>300</td></tr>
+<tr><th>No expuestos</th><td><b>c</b> = 105</td><td><b>d</b> = 595</td><td>700</td></tr>
+</tbody></table>
+</div>
+```
+
+Con estos datos ilustrativos, la prevalencia es 90/300 = 30 % en los expuestos y 105/700 = 15 % en los no expuestos:
+
+$$RP = \frac{a/(a+b)}{c/(c+d)} = \frac{0{,}30}{0{,}15} = 2{,}0 \qquad OR = \frac{a \times d}{b \times c} = \frac{90 \times 595}{210 \times 105} = 2{,}43$$
+
+El [odds ratio](../../prospecto/diccionario.qmd#odds-ratio){.dic} da 2,43 cuando el desenlace es «solo» el doble de frecuente. Esa diferencia crece cuanto más frecuente es el desenlace: en la ENDES 2024, la obesidad abdominal fue de 62,0 % en mujeres y de 20,3 % en hombres, con una RP de 3,05 y un OR de 6,38. Por eso, en un transversal con un desenlace frecuente (más de 10 %), se recomienda reportar la RP, estimada con [regresión de Poisson](../../prospecto/diccionario.qmd#regresion-de-poisson){.dic} con [varianza robusta](../../prospecto/diccionario.qmd#varianza-robusta){.dic} cuando hay que ajustar por [confusión](../../prospecto/diccionario.qmd#confusion){.dic} (Barros y Hirakata, 2003).
+
+::: {.usa-calc}
+![](../../images/marcas/prospecto.svg)
+
+El análisis completo, paso a paso en R y con datos reales de la ENDES, está en el **Prospecto R n.º 1**: [¿OR o razón de prevalencias?](../../prospecto/or-vs-rp/inicial.qmd)
+:::
+
+```r
+# RP cruda y ajustada con Poisson y varianza robusta
+m <- glm(desenlace ~ exposicion + edad + sexo, family = poisson(link = "log"), data = datos)
+lmtest::coeftest(m, vcov = sandwich::vcovHC(m, type = "HC0"))
+```
+
+Si tus datos vienen de una encuesta con conglomerados y estratos, como la ENDES o la ENAHO, el análisis debe declarar el [diseño muestral complejo](../../prospecto/diccionario.qmd#diseno-muestral-complejo){.dic}; lo explica la dosis plena del mismo Prospecto R.
+
+## Fortalezas y límites
+
+::: {.pros-contras}
+<div>
+
+**Fortalezas**
+
+- Rápido y de bajo costo.
+- Estima la prevalencia directamente.
+- Permite estudiar muchas exposiciones y desenlaces a la vez.
+- Es la base de las encuestas nacionales, con muestras representativas.
+
+</div>
+<div>
+
+**Límites**
+
+- No establece la secuencia temporal: ¿la exposición vino antes que el desenlace?
+- Sobrerrepresenta los casos de larga duración (sesgo de prevalencia-incidencia).
+- No sirve para desenlaces raros ni de corta duración.
+- No mide incidencia ni riesgo.
+
+</div>
+:::
+
+## Los sesgos que más se observan
+
+- **Causalidad inversa.** En un transversal sobre actividad física y depresión, ¿la inactividad lleva a la depresión o la depresión lleva a la inactividad? El diseño no permite saberlo.
+- **Sesgo de prevalencia-incidencia.** Las personas que mueren pronto o se curan rápido no están en la fotografía; los factores asociados a una enfermedad de larga duración pueden confundirse con factores de riesgo.
+- **Sesgo de selección y de no respuesta.** Si quienes no participan son diferentes de quienes sí, la prevalencia queda sesgada. Reporta la tasa de respuesta.
+- **[Confusión](../../prospecto/diccionario.qmd#confusion){.dic}.** Como en todo diseño observacional, controla los confusores en el análisis.
+
+## Errores frecuentes en las tesis
+
+1. **Llamarlo «casos y controles»** porque se compara a quienes tienen el desenlace con quienes no lo tienen. Si tomaste a toda la población (o una muestra de ella) y luego la dividiste según el desenlace, el estudio es transversal.
+2. **Llamarlo «cohorte retrospectiva»** cuando se revisan historias clínicas y la exposición y el desenlace se registran al mismo tiempo. Sin seguimiento no hay cohorte.
+3. **Reportar el OR con un desenlace frecuente** y leerlo como si fuera una RP: «los expuestos tienen 6 veces más obesidad».
+4. **Concluir causalidad.** Escribe «se asoció con», no «causa» ni «es un factor de riesgo».
+5. **Olvidar el diseño muestral** cuando los datos son de una encuesta nacional.
+
+## Tu tamaño de muestra
+
+Para un transversal descriptivo, el tamaño se calcula para **estimar una proporción**; para uno analítico, para **comparar dos proporciones**.
+
+::: {.usa-calc}
+![](../../images/marcas/muestra.svg)
+
+Calcúlalo en el Consultorio estadístico: [estimar una prevalencia](../../herramientas/muestra/index.qmd#mod=prop) o [comparar la prevalencia entre expuestos y no expuestos](../../herramientas/muestra/index.qmd#mod=dprop&dis=tr).
+:::
+
+## Cómo reportarlo
+
+Sigue la guía **STROBE** para estudios observacionales (von Elm et al., 2007): describe el muestreo, la tasa de respuesta, cómo se midieron la exposición y el desenlace, y reporta las medidas de asociación crudas y ajustadas con su intervalo de confianza al 95 %.
+
+## Autoevaluación
+
+::: {.autoeval}
+::: {.pregunta}
+Revisas 400 historias clínicas de pacientes con diabetes atendidos en 2025 y registras, de la misma historia, si tenían control glucémico y si asistían a sus consultas. ¿Qué diseño es?
+
+<details><summary>Ver respuesta</summary>
+Transversal analítico. Ambas variables corresponden al mismo periodo y no hay seguimiento desde la exposición hacia el desenlace; que los datos sean del pasado no lo convierte en una cohorte retrospectiva.
+</details>
+:::
+
+::: {.pregunta}
+La prevalencia de anemia es 40 % en un grupo y 20 % en otro. ¿Qué es más fácil de explicar al lector, la RP o el OR?
+
+<details><summary>Ver respuesta</summary>
+La RP: el desenlace es dos veces más frecuente (RP = 2,0). El OR sería 2,67 y suele leerse, por error, como si fuera una razón de prevalencias.
+</details>
+:::
+
+::: {.pregunta}
+¿Por qué un transversal no es el mejor diseño para estudiar si el estrés causa hipertensión?
+
+<details><summary>Ver respuesta</summary>
+Porque mide ambos a la vez y no establece qué ocurrió primero; además, el diagnóstico de hipertensión podría aumentar el estrés (causalidad inversa). Una cohorte que siga a personas sin hipertensión sería más adecuada.
+</details>
+:::
+:::
+
+## Referencias
+
+- Rothman KJ, Greenland S, Lash TL. *Modern Epidemiology*. 3.ª ed. Filadelfia: Lippincott Williams & Wilkins; 2008.
+- Barros AJD, Hirakata VN. Alternatives for logistic regression in cross-sectional studies: an empirical comparison of models that directly estimate the prevalence ratio. *BMC Med Res Methodol*. 2003;3:21.
+- von Elm E, Altman DG, Egger M, Pocock SJ, Gøtzsche PC, Vandenbroucke JP. The Strengthening the Reporting of Observational Studies in Epidemiology (STROBE) statement: guidelines for reporting observational studies. *Lancet*. 2007;370(9596):1453-7.
+- Instituto Nacional de Estadística e Informática. *Ficha técnica. Encuesta Demográfica y de Salud Familiar 2024*. Lima: INEI.
+
+::: {.cta}
+**¿Tu estudio es transversal y no sabes cómo analizarlo?**
+
+Te ayudo a plantear el análisis, desde la Tabla 1 hasta el modelo ajustado.
+
+[Escríbeme por WhatsApp](https://api.whatsapp.com/send?phone=51955446754&text=Hola%2C%20le%C3%AD%20tu%20entrada%20sobre%20estudios%20transversales%20y%20quiero%20informaci%C3%B3n%20sobre%20asesor%C3%ADa%20para%20mi%20tesis)
+:::

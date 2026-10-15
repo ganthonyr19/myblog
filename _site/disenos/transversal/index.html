@@ -1,0 +1,1209 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="description" content="El estudio transversal explicado con diagramas y ejemplos: prevalencia, razón de prevalencias, sesgos, análisis en R y tamaño de muestra.">
+
+<title>El estudio transversal – Anthony Romero</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../images/logo-final2.png" rel="icon" type="image/png">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-b85bc7c33db8c58e0ec93c3465666fed.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-749f0c35d8da38091077ec74fca69a22.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-02237a22ee455bad83aece42a6742289.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-749f0c35d8da38091077ec74fca69a22.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No se han encontrado resultados",
+    "search-matching-documents-text": "documentos encontrados",
+    "search-copy-link-title": "Copiar el enlace en la búsqueda",
+    "search-hide-matches-text": "Ocultar resultados adicionales",
+    "search-more-match-text": "resultado adicional en este documento",
+    "search-more-matches-text": "resultados adicionales en este documento",
+    "search-clear-button-title": "Borrar",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancelar",
+    "search-submit-button-title": "Enviar",
+    "search-label": "Buscar"
+  }
+}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&amp;display=swap">
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css">
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../../styles.css">
+<link rel="stylesheet" href="../../prospecto/estilo/prospecto.css">
+<link rel="stylesheet" href="../../estilo/editorial.css">
+<meta property="og:title" content="El estudio transversal – Anthony Romero">
+<meta property="og:description" content="El estudio transversal explicado con diagramas y ejemplos: prevalencia, razón de prevalencias, sesgos, análisis en R y tamaño de muestra.">
+<meta property="og:image" content="https://anthonyromero.netlify.app/disenos/transversal/portada.png">
+<meta property="og:site_name" content="Anthony Romero">
+<meta property="og:image:height" content="630">
+<meta property="og:image:width" content="1200">
+<meta name="twitter:title" content="El estudio transversal – Anthony Romero">
+<meta name="twitter:description" content="El estudio transversal explicado con diagramas y ejemplos: prevalencia, razón de prevalencias, sesgos, análisis en R y tamaño de muestra.">
+<meta name="twitter:image" content="https://anthonyromero.netlify.app/disenos/transversal/portada.png">
+<meta name="twitter:image-height" content="630">
+<meta name="twitter:image-width" content="1200">
+<meta name="twitter:card" content="summary_large_image">
+</head>
+
+<body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../images/icon.png" alt="" class="navbar-logo light-content">
+    <img src="../../images/icon.png" alt="" class="navbar-logo dark-content">
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Buscar"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Navegación de palanca" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">Inicio</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-aprende" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Aprende</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-aprende">    
+        <li>
+    <a class="dropdown-item" href="../../prospecto/index.html">
+ <span class="dropdown-text">Prospecto R</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../tutoriales.html">
+ <span class="dropdown-text">Tutoriales</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../disenos/index.html">
+ <span class="dropdown-text">Diseños de estudio</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../blog.html">
+ <span class="dropdown-text">Blog</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../../herramientas/index.html"> 
+<span class="menu-text">Consultorio</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../recursos.html"> 
+<span class="menu-text">Recursos</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html"> 
+<span class="menu-text">Sobre mí</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-bi-github" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+      <i class="bi bi-github" role="img">
+</i> 
+ <span class="menu-text"></span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-bi-github">    
+        <li>
+    <a class="dropdown-item" href="https://github.com/ganthonyr19/myblog">
+ <span class="dropdown-text">Código fuente</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="https://github.com/ganthonyr19/myblog/issues">
+ <span class="dropdown-text">Reportar un error</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://www.instagram.com/bioestadistica.en.linea/"> <i class="bi bi-instagram" role="img" aria-label="Instagram de Bioestadística en línea">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://x.com/ganthonyrc"> <i class="bi bi-twitter" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Alternar modo oscuro"><i class="bi"></i></a>
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Alternar modo lector">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-page-left">
+      <h1 class="title">El estudio transversal</h1>
+                  <div>
+        <div class="description">
+          El estudio transversal explicado con diagramas y ejemplos: prevalencia, razón de prevalencias, sesgos, análisis en R y tamaño de muestra.
+        </div>
+      </div>
+                          <div class="quarto-categories">
+                <div class="quarto-category">Diseños de estudio</div>
+                <div class="quarto-category">Epidemiología</div>
+                <div class="quarto-category">Tesis</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta column-page-left">
+
+      
+      <div>
+      <div class="quarto-title-meta-heading">Fecha de publicación</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">15 de octubre de 2026</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">En esta entrada</h2>
+   
+  <ul>
+  <li><a href="#cómo-se-ve" id="toc-cómo-se-ve" class="nav-link active" data-scroll-target="#cómo-se-ve">Cómo se ve</a></li>
+  <li><a href="#cuándo-elegirlo" id="toc-cuándo-elegirlo" class="nav-link" data-scroll-target="#cuándo-elegirlo">Cuándo elegirlo</a></li>
+  <li><a href="#cómo-se-analiza" id="toc-cómo-se-analiza" class="nav-link" data-scroll-target="#cómo-se-analiza">Cómo se analiza</a></li>
+  <li><a href="#fortalezas-y-límites" id="toc-fortalezas-y-límites" class="nav-link" data-scroll-target="#fortalezas-y-límites">Fortalezas y límites</a></li>
+  <li><a href="#los-sesgos-que-más-se-observan" id="toc-los-sesgos-que-más-se-observan" class="nav-link" data-scroll-target="#los-sesgos-que-más-se-observan">Los sesgos que más se observan</a></li>
+  <li><a href="#errores-frecuentes-en-las-tesis" id="toc-errores-frecuentes-en-las-tesis" class="nav-link" data-scroll-target="#errores-frecuentes-en-las-tesis">Errores frecuentes en las tesis</a></li>
+  <li><a href="#tu-tamaño-de-muestra" id="toc-tu-tamaño-de-muestra" class="nav-link" data-scroll-target="#tu-tamaño-de-muestra">Tu tamaño de muestra</a></li>
+  <li><a href="#cómo-reportarlo" id="toc-cómo-reportarlo" class="nav-link" data-scroll-target="#cómo-reportarlo">Cómo reportarlo</a></li>
+  <li><a href="#autoevaluación" id="toc-autoevaluación" class="nav-link" data-scroll-target="#autoevaluación">Autoevaluación</a></li>
+  <li><a href="#referencias" id="toc-referencias" class="nav-link" data-scroll-target="#referencias">Referencias</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content quarto-banner-title-block column-page-left" id="quarto-document-content">
+
+
+
+
+
+
+<p><a href="../../disenos/index.html" class="sello"><img src="../../images/marcas/disenos.svg" class="img-fluid"><span><b>Diseños de estudio</b><em>Diseño n.º 1</em></span></a></p>
+<div class="en-una-frase">
+<p>Un estudio transversal mide la exposición y el desenlace <strong>en el mismo momento</strong>, como una fotografía de la población.</p>
+</div>
+<p>Es el diseño más usado en las tesis de pregrado y el que sostiene a las grandes encuestas nacionales, como la <a href="../../prospecto/diccionario.html#endes" class="dic">ENDES</a>. Su fortaleza es la rapidez y su límite es el tiempo: como todo se mide a la vez, rara vez permite saber qué ocurrió primero.</p>
+<section id="cómo-se-ve" class="level2">
+<h2 class="anchored" data-anchor-id="cómo-se-ve">Cómo se ve</h2>
+<div class="diagrama">
+<svg viewbox="0 0 760 250" role="img" aria-label="Esquema del estudio transversal">
+  <g font-size="13">
+    <text x="20" y="28" class="dg-t" font-weight="700">Población</text>
+    <g>
+      <circle cx="50" cy="70" r="9" fill="#E5636F"></circle><circle cx="80" cy="70" r="9" fill="#0B1F3A" opacity=".75"></circle><circle cx="110" cy="70" r="9" fill="#0B1F3A" opacity=".75"></circle><circle cx="140" cy="70" r="9" fill="#E5636F"></circle>
+      <circle cx="50" cy="100" r="9" fill="#0B1F3A" opacity=".75"></circle><circle cx="80" cy="100" r="9" fill="#E5636F"></circle><circle cx="110" cy="100" r="9" fill="#0B1F3A" opacity=".75"></circle><circle cx="140" cy="100" r="9" fill="#0B1F3A" opacity=".75"></circle>
+      <circle cx="50" cy="130" r="9" fill="#0B1F3A" opacity=".75"></circle><circle cx="80" cy="130" r="9" fill="#0B1F3A" opacity=".75"></circle><circle cx="110" cy="130" r="9" fill="#E5636F"></circle><circle cx="140" cy="130" r="9" fill="#0B1F3A" opacity=".75"></circle>
+    </g>
+    <path d="M170 100 L250 100" stroke="#5B6B80" stroke-width="2.5" marker-end="url(#ft)"></path>
+    <defs><marker id="ft" viewbox="0 0 10 10" refx="9" refy="5" markerwidth="7" markerheight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#5B6B80"></path></marker></defs>
+    <rect x="260" y="50" width="200" height="100" rx="14" fill="#0B1F3A"></rect>
+    <text x="360" y="85" text-anchor="middle" fill="#fff" font-weight="700">Una sola medición</text>
+    <text x="360" y="108" text-anchor="middle" fill="#A9B8CC" font-size="12">¿Expuesto? ¿Tiene el desenlace?</text>
+    <text x="360" y="128" text-anchor="middle" fill="#A9B8CC" font-size="12">Las dos preguntas a la vez</text>
+    <path d="M470 100 L550 100" stroke="#5B6B80" stroke-width="2.5" marker-end="url(#ft)"></path>
+    <rect x="560" y="45" width="180" height="110" rx="14" fill="none" stroke="#E5636F" stroke-width="2"></rect>
+    <text x="650" y="78" text-anchor="middle" class="dg-t" font-weight="700">Prevalencias</text>
+    <text x="650" y="102" text-anchor="middle" class="dg-s" font-size="12">en expuestos y</text>
+    <text x="650" y="118" text-anchor="middle" class="dg-s" font-size="12">no expuestos</text>
+    <text x="650" y="142" text-anchor="middle" fill="#E5636F" font-weight="700">→ RP</text>
+    <line x1="40" y1="200" x2="740" y2="200" class="dg-l" stroke-width="1.5"></line>
+    <line x1="360" y1="188" x2="360" y2="212" stroke="#E5636F" stroke-width="3"></line>
+    <text x="360" y="232" text-anchor="middle" fill="#E5636F" font-weight="700">Un momento en el tiempo</text>
+    <text x="40" y="232" class="dg-s" font-size="12">Pasado</text><text x="740" y="232" text-anchor="end" class="dg-s" font-size="12">Futuro</text>
+  </g>
+</svg>
+<p class="cap">Los puntos rojos son personas con el desenlace. No hay seguimiento: se observa lo que hay en un momento dado.</p>
+</div>
+</section>
+<section id="cuándo-elegirlo" class="level2">
+<h2 class="anchored" data-anchor-id="cuándo-elegirlo">Cuándo elegirlo</h2>
+<ul>
+<li>Para <strong>estimar la frecuencia</strong> de una enfermedad o de un factor: la <a href="../../prospecto/diccionario.html#prevalencia" class="dic">prevalencia</a> de anemia en gestantes, de depresión en internos de medicina.</li>
+<li>Para <strong>explorar asociaciones</strong> cuando el seguimiento no es factible: ¿la prevalencia de obesidad abdominal es mayor en mujeres que en hombres?</li>
+<li>Para <strong>planificar servicios</strong>: cuántas personas necesitan atención hoy.</li>
+<li>Para <strong>generar hipótesis</strong> que luego se estudiarán con una cohorte o un ensayo.</li>
+</ul>
+<p>Existen dos variantes. El <strong>transversal descriptivo</strong> solo estima frecuencias. El <strong>transversal analítico</strong> compara la prevalencia del desenlace entre expuestos y no expuestos.</p>
+</section>
+<section id="cómo-se-analiza" class="level2">
+<h2 class="anchored" data-anchor-id="cómo-se-analiza">Cómo se analiza</h2>
+<p>La medida natural del transversal analítico es la <a href="../../prospecto/diccionario.html#razon-de-prevalencias" class="dic">razón de prevalencias</a> (RP): cuántas veces más frecuente es el desenlace en los expuestos. Se calcula con una <a href="../../prospecto/diccionario.html#tabla-2x2" class="dic">tabla 2 × 2</a>.</p>
+<div style="overflow-x:auto">
+
+<table class="mapa caption-top table">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Con desenlace</th>
+<th data-quarto-table-cell-role="th">Sin desenlace</th>
+<th data-quarto-table-cell-role="th">Total</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">Expuestos</th>
+<td><strong>a</strong> = 90</td>
+<td><strong>b</strong> = 210</td>
+<td>300</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">No expuestos</th>
+<td><strong>c</strong> = 105</td>
+<td><strong>d</strong> = 595</td>
+<td>700</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+<p>Con estos datos ilustrativos, la prevalencia es 90/300 = 30 % en los expuestos y 105/700 = 15 % en los no expuestos:</p>
+<p><span class="math display">RP = \frac{a/(a+b)}{c/(c+d)} = \frac{0{,}30}{0{,}15} = 2{,}0 \qquad OR = \frac{a \times d}{b \times c} = \frac{90 \times 595}{210 \times 105} = 2{,}43</span></p>
+<p>El <a href="../../prospecto/diccionario.html#odds-ratio" class="dic">odds ratio</a> da 2,43 cuando el desenlace es «solo» el doble de frecuente. Esa diferencia crece cuanto más frecuente es el desenlace: en la ENDES 2024, la obesidad abdominal fue de 62,0 % en mujeres y de 20,3 % en hombres, con una RP de 3,05 y un OR de 6,38. Por eso, en un transversal con un desenlace frecuente (más de 10 %), se recomienda reportar la RP, estimada con <a href="../../prospecto/diccionario.html#regresion-de-poisson" class="dic">regresión de Poisson</a> con <a href="../../prospecto/diccionario.html#varianza-robusta" class="dic">varianza robusta</a> cuando hay que ajustar por <a href="../../prospecto/diccionario.html#confusion" class="dic">confusión</a> (Barros y Hirakata, 2003).</p>
+<div class="usa-calc">
+<p><img src="../../images/marcas/prospecto.svg" class="img-fluid"></p>
+<p>El análisis completo, paso a paso en R y con datos reales de la ENDES, está en el <strong>Prospecto R n.º 1</strong>: <a href="../../prospecto/or-vs-rp/inicial.html">¿OR o razón de prevalencias?</a></p>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># RP cruda y ajustada con Poisson y varianza robusta</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>m <span class="ot">&lt;-</span> <span class="fu">glm</span>(desenlace <span class="sc">~</span> exposicion <span class="sc">+</span> edad <span class="sc">+</span> sexo, <span class="at">family =</span> <span class="fu">poisson</span>(<span class="at">link =</span> <span class="st">"log"</span>), <span class="at">data =</span> datos)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>lmtest<span class="sc">::</span><span class="fu">coeftest</span>(m, <span class="at">vcov =</span> sandwich<span class="sc">::</span><span class="fu">vcovHC</span>(m, <span class="at">type =</span> <span class="st">"HC0"</span>))</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Si tus datos vienen de una encuesta con conglomerados y estratos, como la ENDES o la ENAHO, el análisis debe declarar el <a href="../../prospecto/diccionario.html#diseno-muestral-complejo" class="dic">diseño muestral complejo</a>; lo explica la dosis plena del mismo Prospecto R.</p>
+</section>
+<section id="fortalezas-y-límites" class="level2">
+<h2 class="anchored" data-anchor-id="fortalezas-y-límites">Fortalezas y límites</h2>
+<div class="pros-contras">
+<div>
+<p><strong>Fortalezas</strong></p>
+<ul>
+<li>Rápido y de bajo costo.</li>
+<li>Estima la prevalencia directamente.</li>
+<li>Permite estudiar muchas exposiciones y desenlaces a la vez.</li>
+<li>Es la base de las encuestas nacionales, con muestras representativas.</li>
+</ul>
+</div>
+<div>
+<p><strong>Límites</strong></p>
+<ul>
+<li>No establece la secuencia temporal: ¿la exposición vino antes que el desenlace?</li>
+<li>Sobrerrepresenta los casos de larga duración (sesgo de prevalencia-incidencia).</li>
+<li>No sirve para desenlaces raros ni de corta duración.</li>
+<li>No mide incidencia ni riesgo.</li>
+</ul>
+</div>
+</div>
+</section>
+<section id="los-sesgos-que-más-se-observan" class="level2">
+<h2 class="anchored" data-anchor-id="los-sesgos-que-más-se-observan">Los sesgos que más se observan</h2>
+<ul>
+<li><strong>Causalidad inversa.</strong> En un transversal sobre actividad física y depresión, ¿la inactividad lleva a la depresión o la depresión lleva a la inactividad? El diseño no permite saberlo.</li>
+<li><strong>Sesgo de prevalencia-incidencia.</strong> Las personas que mueren pronto o se curan rápido no están en la fotografía; los factores asociados a una enfermedad de larga duración pueden confundirse con factores de riesgo.</li>
+<li><strong>Sesgo de selección y de no respuesta.</strong> Si quienes no participan son diferentes de quienes sí, la prevalencia queda sesgada. Reporta la tasa de respuesta.</li>
+<li><strong><a href="../../prospecto/diccionario.html#confusion" class="dic">Confusión</a>.</strong> Como en todo diseño observacional, controla los confusores en el análisis.</li>
+</ul>
+</section>
+<section id="errores-frecuentes-en-las-tesis" class="level2">
+<h2 class="anchored" data-anchor-id="errores-frecuentes-en-las-tesis">Errores frecuentes en las tesis</h2>
+<ol type="1">
+<li><strong>Llamarlo «casos y controles»</strong> porque se compara a quienes tienen el desenlace con quienes no lo tienen. Si tomaste a toda la población (o una muestra de ella) y luego la dividiste según el desenlace, el estudio es transversal.</li>
+<li><strong>Llamarlo «cohorte retrospectiva»</strong> cuando se revisan historias clínicas y la exposición y el desenlace se registran al mismo tiempo. Sin seguimiento no hay cohorte.</li>
+<li><strong>Reportar el OR con un desenlace frecuente</strong> y leerlo como si fuera una RP: «los expuestos tienen 6 veces más obesidad».</li>
+<li><strong>Concluir causalidad.</strong> Escribe «se asoció con», no «causa» ni «es un factor de riesgo».</li>
+<li><strong>Olvidar el diseño muestral</strong> cuando los datos son de una encuesta nacional.</li>
+</ol>
+</section>
+<section id="tu-tamaño-de-muestra" class="level2">
+<h2 class="anchored" data-anchor-id="tu-tamaño-de-muestra">Tu tamaño de muestra</h2>
+<p>Para un transversal descriptivo, el tamaño se calcula para <strong>estimar una proporción</strong>; para uno analítico, para <strong>comparar dos proporciones</strong>.</p>
+<div class="usa-calc">
+<p><img src="../../images/marcas/muestra.svg" class="img-fluid"></p>
+<p>Calcúlalo en el Consultorio estadístico: <a href="../../herramientas/muestra/index.html#mod=prop">estimar una prevalencia</a> o <a href="../../herramientas/muestra/index.html#mod=dprop&amp;dis=tr">comparar la prevalencia entre expuestos y no expuestos</a>.</p>
+</div>
+</section>
+<section id="cómo-reportarlo" class="level2">
+<h2 class="anchored" data-anchor-id="cómo-reportarlo">Cómo reportarlo</h2>
+<p>Sigue la guía <strong>STROBE</strong> para estudios observacionales (von Elm et al., 2007): describe el muestreo, la tasa de respuesta, cómo se midieron la exposición y el desenlace, y reporta las medidas de asociación crudas y ajustadas con su intervalo de confianza al 95 %.</p>
+</section>
+<section id="autoevaluación" class="level2">
+<h2 class="anchored" data-anchor-id="autoevaluación">Autoevaluación</h2>
+<div class="autoeval">
+<div class="pregunta">
+<p>Revisas 400 historias clínicas de pacientes con diabetes atendidos en 2025 y registras, de la misma historia, si tenían control glucémico y si asistían a sus consultas. ¿Qué diseño es?</p>
+<details>
+<summary>
+Ver respuesta
+</summary>
+Transversal analítico. Ambas variables corresponden al mismo periodo y no hay seguimiento desde la exposición hacia el desenlace; que los datos sean del pasado no lo convierte en una cohorte retrospectiva.
+</details>
+</div>
+<div class="pregunta">
+<p>La prevalencia de anemia es 40 % en un grupo y 20 % en otro. ¿Qué es más fácil de explicar al lector, la RP o el OR?</p>
+<details>
+<summary>
+Ver respuesta
+</summary>
+La RP: el desenlace es dos veces más frecuente (RP = 2,0). El OR sería 2,67 y suele leerse, por error, como si fuera una razón de prevalencias.
+</details>
+</div>
+<div class="pregunta">
+<p>¿Por qué un transversal no es el mejor diseño para estudiar si el estrés causa hipertensión?</p>
+<details>
+<summary>
+Ver respuesta
+</summary>
+Porque mide ambos a la vez y no establece qué ocurrió primero; además, el diagnóstico de hipertensión podría aumentar el estrés (causalidad inversa). Una cohorte que siga a personas sin hipertensión sería más adecuada.
+</details>
+</div>
+</div>
+</section>
+<section id="referencias" class="level2">
+<h2 class="anchored" data-anchor-id="referencias">Referencias</h2>
+<ul>
+<li>Rothman KJ, Greenland S, Lash TL. <em>Modern Epidemiology</em>. 3.ª ed.&nbsp;Filadelfia: Lippincott Williams &amp; Wilkins; 2008.</li>
+<li>Barros AJD, Hirakata VN. Alternatives for logistic regression in cross-sectional studies: an empirical comparison of models that directly estimate the prevalence ratio. <em>BMC Med Res Methodol</em>. 2003;3:21.</li>
+<li>von Elm E, Altman DG, Egger M, Pocock SJ, Gøtzsche PC, Vandenbroucke JP. The Strengthening the Reporting of Observational Studies in Epidemiology (STROBE) statement: guidelines for reporting observational studies. <em>Lancet</em>. 2007;370(9596):1453-7.</li>
+<li>Instituto Nacional de Estadística e Informática. <em>Ficha técnica. Encuesta Demográfica y de Salud Familiar 2024</em>. Lima: INEI.</li>
+</ul>
+<div class="cta">
+<p><strong>¿Tu estudio es transversal y no sabes cómo analizarlo?</strong></p>
+<p>Te ayudo a plantear el análisis, desde la Tabla 1 hasta el modelo ajustado.</p>
+<p><a href="https://api.whatsapp.com/send?phone=51955446754&amp;text=Hola%2C%20le%C3%AD%20tu%20entrada%20sobre%20estudios%20transversales%20y%20quiero%20informaci%C3%B3n%20sobre%20asesor%C3%ADa%20para%20mi%20tesis">Escríbeme por WhatsApp</a></p>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script>
+/* Tarjeta «Síguenos en Instagram» al final de cada entrada (no en listados ni en el inicio). */
+(function () {
+  var IG = "https://www.instagram.com/bioestadistica.en.linea/";
+  function poner() {
+    var main = document.querySelector("main#quarto-document-content") || document.querySelector("main");
+    if (!main || document.querySelector(".quarto-listing") || document.querySelector(".quarto-about-jolla, .about-entity")) return;
+    if (!document.querySelector(".quarto-title") || document.body.classList.contains("sin-sigue")) return;
+    var d = document.createElement("aside");
+    d.className = "sigue-ig";
+    d.innerHTML =
+      '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.3" cy="6.7" r="1.2" fill="currentColor"/></svg>' +
+      '<div><p class="sigue-t">¿Te sirvió?</p><p>En Instagram comparto tips de bioestadística y R para tesis de salud, y aviso cuando sale una entrega nueva.</p></div>' +
+      '<a href="' + IG + '" target="_blank" rel="noopener">Seguir @bioestadistica.en.linea</a>';
+    var ap = main.querySelector("#quarto-appendix, .quarto-appendix-contents");
+    if (ap) ap.parentNode.insertBefore(d, ap); else main.appendChild(d);
+  }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", poner); else poner();
+})();
+</script>
+<script>
+/* Prospecto R: definiciones emergentes del diccionario y botón «Copiar para mi tesis» */
+(function () {
+  function iniciar() {
+    // 1. definiciones al pasar el mouse sobre los términos enlazados al diccionario
+    var enlaces = Array.prototype.slice.call(document.querySelectorAll("a.dic"));
+    if (enlaces.length && typeof tippy === "function") {
+      var poner = function (defs) {
+        enlaces.forEach(function (a) {
+          var id = (a.getAttribute("href") || "").split("#")[1];
+          var x = defs[id];
+          if (!x) return;
+          tippy(a, {
+            content: '<div class="dic-tip"><strong>' + x.t + '</strong><p>' + x.d + '</p><span>Clic para ver las fuentes</span></div>',
+            allowHTML: true, maxWidth: 380, placement: "top", delay: [120, 0], theme: "prospecto"
+          });
+        });
+      };
+      if (window.PROSPECTO_DIC) { poner(window.PROSPECTO_DIC); }
+      else {
+        var url = new URL(enlaces[0].getAttribute("href").split("#")[0], location.href);
+        fetch(url).then(function (r) { return r.text(); }).then(function (html) {
+          var doc = new DOMParser().parseFromString(html, "text/html"), defs = {};
+          doc.querySelectorAll(".entrada").forEach(function (e) {
+            var h = e.querySelector("h3"), p = e.querySelector("p");
+            if (h && p) defs[e.id] = { t: h.textContent.trim(), d: p.innerHTML };
+          });
+          poner(defs);
+        }).catch(function () {});
+      }
+    }
+    // 2. botón para copiar el párrafo de reporte
+    document.querySelectorAll(".reporte blockquote").forEach(function (bq) {
+      var b = document.createElement("button");
+      var etiqueta = "Copiar para mi tesis";
+      b.type = "button"; b.className = "btn-copiar"; b.textContent = etiqueta;
+      b.addEventListener("click", function () {
+        var texto = bq.innerText.replace(/ /g, " ").trim();
+        var listo = function () { b.textContent = "¡Copiado!"; setTimeout(function () { b.textContent = etiqueta; }, 1800); };
+        if (navigator.clipboard && window.isSecureContext) {
+          navigator.clipboard.writeText(texto).then(listo);
+        } else {
+          var t = document.createElement("textarea"); t.value = texto; document.body.appendChild(t);
+          t.select(); document.execCommand("copy"); document.body.removeChild(t); listo();
+        }
+      });
+      bq.parentNode.insertBefore(b, bq.nextSibling);
+    });
+  }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", iniciar); else iniciar();
+})();
+</script>
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copiado");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copiado");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/anthonyromero\.netlify\.app\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>Creado con <img src="../../images/ricon24.png" class="img-fluid"> y <a href="https://quarto.org">Quarto</a>.<br>
+Código fuente <a href="https://github.com/ganthonyr19/myblog"><img src="../../images/github-icon.png" class="img-fluid"></a> · <a href="https://www.instagram.com/bioestadistica.en.linea/">Instagram <span class="citation" data-cites="bioestadistica.en.linea">@bioestadistica.en.linea</span></a></p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+<p>© 2023-2026 Anthony Romero Cerdán<br>
+License: <a href="https://creativecommons.org/licenses/by-nc-sa/4.0">CC BY NC SA 4.0</a>.</p>
+</div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

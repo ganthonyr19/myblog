@@ -6,11 +6,13 @@ lang: es
 title-block-banner: true
 toc: false
 page-layout: article
-categories: [Tamaño de muestra, Herramientas]
+image: portada.png
+categories: [Consultorio estadístico, Tamaño de muestra]
 format:
   html:
     css:
       - ../../prospecto/estilo/prospecto.css
+      - ../../estilo/editorial.css
       - muestra.css
     include-after-body:
       - ../../prospecto/estilo/prospecto.html
@@ -29,6 +31,10 @@ La interfaz está escrita aquí en HTML fijo (para que los enlaces al diccionari
 tengan su definición emergente); los cálculos están en motor.js y la lógica de
 la página en app.js. verificacion.R compara el motor con R.
 -->
+
+[![](../../images/marcas/muestra.svg)<span><b>Consultorio estadístico</b><em>Módulo Muestra</em></span>](../index.qmd){.sello}
+
+¿No tienes claro cuál es tu diseño? Antes de calcular, revisa la serie [Diseños de estudio](../../disenos/index.qmd): [transversal](../../disenos/transversal/index.qmd), [casos y controles](../../disenos/casos-y-controles/index.qmd) y [cohortes](../../disenos/cohortes/index.qmd).
 
 ```{=html}
 <div id="calc" class="calc" aria-live="polite">
@@ -224,6 +230,8 @@ la página en app.js. verificacion.R compara el motor con R.
     <pre class="codigo"><code id="r-codigo"></code></pre>
   </div>
 
+  <p class="nota-campo" id="r-lee"></p>
+
   <div class="bloque">
     <p class="bloque-t" id="g-titulo">¿Qué tan frágil es tu supuesto?</p>
     <p class="nota-campo" id="g-sub"></p>
@@ -288,6 +296,8 @@ Fuente: Hulley et al. (2013). `pwr::pwr.r.test()` usa una corrección adicional 
 ## ¿Puedo confiar en los resultados?
 
 Cada fórmula se comparó con R en decenas de combinaciones de supuestos. El tamaño para dos proporciones coincide con `EnvStats::propTestN()` (con y sin corrección de continuidad) y con `power.prop.test()`; el de dos medias, con `power.t.test()`; el de una prevalencia, con `epiR::epi.sssimpleestb()` cuando no hay población finita. El código de la verificación está disponible: [verificacion.R](verificacion.R).
+
+Cuando ya tengas tus datos, el módulo [Triaje](../../blog/que-prueba-estadistica/index.qmd) te ayuda a elegir la prueba estadística, y [Prospecto R](../../prospecto/index.qmd) te enseña a hacer el análisis en R.
 
 Si no necesitas calcular la muestra porque vas a incluir a **toda la población** (un censo) o a todas las historias clínicas de un periodo, igual debes decirlo y justificarlo en el proyecto, y conviene indicar qué diferencia podrás detectar con ese número.
 

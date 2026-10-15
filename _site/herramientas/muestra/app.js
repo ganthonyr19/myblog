@@ -334,6 +334,7 @@
     $("r-parrafo").innerHTML = R.parrafo;
     $("r-codigo").textContent = R.codigo;
     $("g-titulo").textContent = R.graf.titulo; $("g-sub").textContent = R.graf.sub;
+    $("r-lee").innerHTML = LEE[mod === "dprop" ? "dprop_" + $("dp-dis").value : mod] || "";
     graficar(R.graf);
   }
 
@@ -353,8 +354,32 @@
     $("dp-r-box").hidden = dis === "tr"; $("dp-e-box").hidden = dis !== "tr";
   }
 
+  // ---------- lecturas recomendadas según el diseño ----------
+  var D = "../../disenos/", P = "../../prospecto/";
+  var LEE = {
+    prop: 'Lee más: <a href="' + D + 'transversal/index.html">el estudio transversal</a> y <a href="' + P + 'tabla-1/inicial.html">La Tabla 1 de tu tesis</a> (Prospecto R).',
+    dprop_cc: 'Lee más: <a href="' + D + 'casos-y-controles/index.html">el estudio de casos y controles</a> y por qué ahí solo se estima el OR.',
+    dprop_co: 'Lee más: <a href="' + D + 'cohortes/index.html">el estudio de cohortes</a> y cómo se calcula el riesgo relativo.',
+    dprop_tr: 'Lee más: <a href="' + D + 'transversal/index.html">el estudio transversal</a> y <a href="' + P + 'or-vs-rp/inicial.html">¿OR o razón de prevalencias?</a> (Prospecto R).',
+    med: '¿Qué prueba usarás después? Míralo en el <a href="../../blog/que-prueba-estadistica/index.html#haz-tu-triaje">Triaje estadístico</a>.',
+    dx: 'Para analizar tu prueba diagnóstica, revisa la receta de validez en el <a href="../../blog/que-prueba-estadistica/index.html#haz-tu-triaje">Triaje estadístico</a>.',
+    cor: 'Pearson o Spearman: decídelo en el <a href="../../blog/que-prueba-estadistica/index.html#haz-tu-triaje">Triaje estadístico</a>.'
+  };
+
+  // abre la calculadora ya configurada desde un enlace: #mod=dprop&dis=cc
+  function desdeEnlace() {
+    var h = new URLSearchParams(location.hash.replace(/^#/, ""));
+    var mod = h.get("mod");
+    if (mod && document.querySelector('input[name="mod"][value="' + mod + '"]')) {
+      document.querySelector('input[name="mod"][value="' + mod + '"]').checked = true;
+      var dis = h.get("dis");
+      if (dis && document.querySelector('#dp-dis option[value="' + dis + '"]')) $("dp-dis").value = dis;
+    }
+  }
+
   // ---------- eventos ----------
   function iniciar() {
+    desdeEnlace();
     // deslizadores sincronizados con su casilla numérica
     document.querySelectorAll('input[type=range][data-par]').forEach(function (rg) {
       var nb = $(rg.getAttribute("data-par"));
@@ -374,6 +399,7 @@
         else { var ta = document.createElement("textarea"); ta.value = t; document.body.appendChild(ta); ta.select(); document.execCommand("copy"); document.body.removeChild(ta); listo(); }
       });
     });
+    window.addEventListener("hashchange", function () { desdeEnlace(); actualizar(); });
     actualizar();
   }
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", iniciar); else iniciar();

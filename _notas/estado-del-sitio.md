@@ -97,15 +97,44 @@ Activados en `prospecto/_metadata.yml`: repositorio `ganthonyr19/myblog`, catego
 - Revisar en el sitio publicado que las fórmulas (KaTeX desde CDN) y los comentarios se vean bien.
 - Las imágenes y textos para redes de la entrega 1 (en `ig_asesorias\prospecto\p1` del equipo de Anthony) usan las cifras de la dosis plena y no llevan distintivo de nivel.
 
-## Herramientas (`herramientas/`)
+## Consultorio estadístico (`herramientas/`)
 
-Producto acordado con Anthony (15 oct 2026): una sola línea de herramientas con dos módulos que comparten diseño, diccionario y formato de «receta»: **Muestra** (calculadora de tamaño de muestra, hecha) y **Triaje** (elegir la prueba estadística empezando por el objetivo de la tesis, pendiente, acompañado de una entrada de blog). El nombre del conjunto aún no está decidido. Aparece en `recursos.qmd`, sección «Herramientas».
+Nombre elegido por Anthony (15 oct 2026): **Consultorio estadístico**. Menú superior: «Consultorio» (`herramientas/index.qmd`, portada con los módulos). Módulos: **Muestra** (`herramientas/muestra/`) y **Triaje** (vive dentro de la entrada de blog `blog/que-prueba-estadistica/`, sección «Haz tu triaje»). También aparece en `recursos.qmd`.
 
 ### Calculadora de tamaño de muestra (`herramientas/muestra/`)
 
 - `index.qmd`: interfaz en HTML fijo (para que los enlaces `a.dic` tengan definición emergente con `prospecto/estilo/prospecto.html`), fórmulas, verificación, referencias y llamada a WhatsApp.
 - `motor.js`: cálculos. Una proporción (Lwanga y Lemeshow 1991, con DEFF y población finita n0/(1+(n0−1)/N)); dos proporciones (Fleiss con y sin corrección de continuidad, casos y controles con OR, cohorte con RR, transversal con RP y r = (1−e)/e); dos medias (t no central, Lenth AS 243, igual a `power.t.test`); diagnóstica (Buderer 1996); correlación (z de Fisher, Hulley 2013). Pérdidas: ceiling(n/(1−L)) por grupo.
-- `app.js`: lee supuestos, escribe n con desglose, observaciones del jurado, párrafo para la tesis (con marcas amarillas para completar), código R y curva de sensibilidad SVG.
+- `app.js`: lee supuestos, escribe n con desglose, observaciones del jurado, párrafo para la tesis (con marcas amarillas para completar), código R, curva de sensibilidad SVG y enlaces de lectura según el diseño. Acepta enlaces preconfigurados: `#mod=prop`, `#mod=dprop&dis=cc|co|tr`, `#mod=med`, `#mod=dx`, `#mod=cor`.
 - `verificacion.R`: compara el motor con R. Resultado al 15 oct 2026: dos proporciones = `EnvStats::propTestN` (dif. máx. 2,6e-7) y `power.prop.test`; dos medias = `power.t.test` (r = 1) y potencia exacta en R para r ≠ 1; una proporción = fórmula en R y `epiR::epi.sssimpleestb` sin N (con N epiR usa n0/(1+n0/N) y puede dar 1 menos); `epiR::epi.sscc(fleiss = TRUE)` devuelve NA en epiR 2.0.99.
-- El diccionario de Prospecto R sumó 13 términos de tamaño de muestra (nivel de confianza, potencia, precisión, efecto de diseño, población finita, pérdidas, corrección de continuidad, tamaño del efecto, desviación estándar, sensibilidad, especificidad, riesgo relativo, coeficiente de correlación) y 6 fuentes.
-- Pendiente: imagen para redes y para la tarjeta del listado; módulo Triaje y la entrada de blog.
+
+### Triaje (`blog/que-prueba-estadistica/`)
+
+- `index.qmd`: entrada «¿Qué prueba estadística uso?»: las cuatro preguntas, triaje interactivo, mapa completo, cinco mitos, párrafo para el proyecto, autoevaluación y referencias verificadas.
+- `triaje.js`: árbol de preguntas (`Q`) y recetas (`R`) con indicación, posología, diagnóstico diferencial, código R (funciones verificadas: epiR::epi.tests, irr::kappa2/icc, rstatix::cochran_qtest/dunn_test/games_howell_test/anova_test) y ejemplo de reporte (cifras ilustrativas).
+
+## Serie «Diseños de estudio» (`disenos/`)
+
+- Una entrada por diseño (decisión de Anthony, para generar volumen). Hechas: `transversal/`, `casos-y-controles/`, `cohortes/`. Anunciadas como «Próximamente» en la portada `disenos/index.qmd`: ensayo clínico, pruebas diagnósticas, ecológico, reporte y serie de casos.
+- Estructura de cada entrada: sello, frase central, diagrama SVG, cuándo elegirlo, cómo se analiza (tabla 2×2 con cifras ilustrativas y código R), fortalezas y límites, sesgos, errores frecuentes en tesis, tamaño de muestra (enlace a la calculadora ya configurada), STROBE, autoevaluación, referencias, llamada a WhatsApp.
+- El transversal usa cifras reales del Prospecto R n.º 1 (ENDES 2024: obesidad abdominal 62,0 % vs. 20,3 %; RP 3,05; OR 6,38).
+- `disenos/_metadata.yml` aplica `prospecto.css`, `estilo/editorial.css` y el script del diccionario.
+- Las entradas aparecen en el listado del blog y en «Lo más reciente» del inicio (`"disenos/*/index.qmd"`).
+
+## Identidad visual
+
+- Emblemas SVG propios en `images/marcas/`: `prospecto`, `consultorio`, `muestra`, `triaje`, `disenos`, `blog`. Se muestran como «sello» al inicio de cada página (clase `.sello` en `estilo/editorial.css`).
+- Portadas 1200 × 630 de cada entrada: `node images/marcas/tarjeta.js salida.png '{"emblema":"disenos","serie":"…","subserie":"…","titulo":"…","bajada":"…"}'` (con `CHROMIUM=/ruta/a/chromium` si hace falta). Usa `tarjeta.html`, las fuentes de Prospecto R y el logo `logo-bel.png`.
+- Componentes editoriales nuevos en `estilo/editorial.css`: tarjetas numeradas, triaje, mapa de pruebas, mitos, diagramas, pros y contras, llamada a la calculadora, rejilla de serie.
+
+## Instagram (@bioestadistica.en.linea)
+
+- Ícono en el menú superior, enlace en el pie de página, en el inicio y en «Sobre mí».
+- Tarjeta «¿Te sirvió? Seguir @bioestadistica.en.linea» al final de cada página con título que no sea listado ni el inicio: `_includes/sigue.html` (incluido en `_quarto.yml`), estilos en `styles.css`. Para ocultarla en una página: clase `sin-sigue` en el body.
+
+## Cómo renderizar aquí (lecciones del 15 oct 2026)
+
+- No usar `quarto render` del proyecto completo en el contenedor: limpia `_site/`, falla en `about.qmd` (scholar) y deja el sitio a medias. Si pasa, `git restore _site`.
+- Renderizar archivo por archivo. Las páginas de Prospecto R con `--use-freezer` y `LANG=C.UTF-8` (si no, se re-ejecutan y cambian `_freeze`).
+- Al renderizar un archivo suelto, Quarto no siempre actualiza los recursos copiados (`styles.css`, `.js`): compararlos con `cmp` y copiarlos a `_site/`.
+- `about.qmd` (ahora con el enlace a Instagram) y `posts/Manual/index.qmd` deben renderizarse en la computadora de Anthony; mientras tanto conservan el menú anterior.

@@ -1,0 +1,190 @@
+---
+title: "El estudio de casos y controles"
+description: "El estudio de casos y controles explicado con diagramas y ejemplos: selección de controles, odds ratio, sesgo de recuerdo, análisis en R y tamaño de muestra."
+date: 2026-10-15
+image: portada.png
+categories: [Diseños de estudio, Epidemiología, Tesis]
+---
+
+[![](../../images/marcas/disenos.svg)<span><b>Diseños de estudio</b><em>Diseño n.º 2</em></span>](../index.qmd){.sello}
+
+::: {.en-una-frase}
+Un estudio de casos y controles parte de personas **con** y **sin** la enfermedad, y mira hacia atrás para comparar cuántas estuvieron expuestas.
+:::
+
+Es el diseño más eficiente para estudiar **enfermedades raras** o con un periodo de latencia largo: en lugar de esperar años a que aparezcan los casos, se empieza por ellos. Uno de los estudios que cambió la historia de la salud pública fue de este tipo: Doll y Hill (1950) compararon pacientes con cáncer de pulmón y pacientes sin él en hospitales de Londres, y encontraron que fumar era mucho más frecuente entre los casos.
+
+## Cómo se ve
+
+```{=html}
+<div class="diagrama">
+<svg viewBox="0 0 760 270" role="img" aria-label="Esquema del estudio de casos y controles">
+  <defs><marker id="fc" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#5B6B80"/></marker></defs>
+  <g font-size="13">
+    <rect x="540" y="30" width="190" height="70" rx="14" fill="#E5636F"/>
+    <text x="635" y="60" text-anchor="middle" fill="#fff" font-weight="700">Casos</text>
+    <text x="635" y="80" text-anchor="middle" fill="#fff" font-size="12">Con la enfermedad</text>
+    <rect x="540" y="130" width="190" height="70" rx="14" fill="#0B1F3A"/>
+    <text x="635" y="160" text-anchor="middle" fill="#fff" font-weight="700">Controles</text>
+    <text x="635" y="180" text-anchor="middle" fill="#A9B8CC" font-size="12">Sin la enfermedad</text>
+    <path d="M530 65 L330 65" stroke="#5B6B80" stroke-width="2.5" stroke-dasharray="7 5" marker-end="url(#fc)"/>
+    <path d="M530 165 L330 165" stroke="#5B6B80" stroke-width="2.5" stroke-dasharray="7 5" marker-end="url(#fc)"/>
+    <text x="430" y="55" text-anchor="middle" class="dg-s" font-size="12">se mira hacia atrás</text>
+    <rect x="40" y="30" width="280" height="170" rx="14" fill="none" stroke="#2A9DA3" stroke-width="2"/>
+    <text x="180" y="60" text-anchor="middle" class="dg-t" font-weight="700">¿Estuvieron expuestos?</text>
+    <text x="180" y="95" text-anchor="middle" class="dg-s" font-size="12">Entrevista, historia clínica,</text>
+    <text x="180" y="112" text-anchor="middle" class="dg-s" font-size="12">registros previos</text>
+    <text x="180" y="150" text-anchor="middle" fill="#E5636F" font-weight="700">Expuestos en casos: 40 %</text>
+    <text x="180" y="172" text-anchor="middle" fill="#2A9DA3" font-weight="700">Expuestos en controles: 25 %</text>
+    <line x1="40" y1="232" x2="740" y2="232" class="dg-l" stroke-width="1.5" marker-start="url(#fc)"/>
+    <text x="40" y="256" class="dg-s" font-size="12">Pasado: la exposición</text>
+    <text x="740" y="256" text-anchor="end" class="dg-s" font-size="12">Presente: el diagnóstico</text>
+  </g>
+</svg>
+<p class="cap">El investigador decide cuántos casos y cuántos controles incluir. Por eso no puede calcular la frecuencia de la enfermedad.</p>
+</div>
+```
+
+## Cuándo elegirlo
+
+- La enfermedad es **rara**: una cohorte necesitaría seguir a miles de personas para observar unos pocos casos.
+- La enfermedad tarda **mucho en aparecer** después de la exposición.
+- Quieres explorar **varias exposiciones** para un mismo desenlace.
+- Necesitas una respuesta **rápida**, por ejemplo, ante un brote.
+
+No es el diseño adecuado si la exposición es rara (pocos casos o controles expuestos) o si quieres estimar cuántas personas enferman.
+
+## La pieza clave: los controles
+
+Los controles deben representar a la población de la que salieron los casos: personas que, si hubieran desarrollado la enfermedad, habrían sido incluidas como casos. Un control mal elegido arruina el estudio aunque todo lo demás esté bien.
+
+- **Controles de la misma población:** del mismo hospital y con la misma área de influencia, de la misma comunidad, del mismo registro.
+- **Controles hospitalarios:** son prácticos, pero no deben tener enfermedades relacionadas con la exposición. Si estudias tabaco y cáncer de pulmón, un control con EPOC no sirve.
+- **Emparejamiento:** puedes elegir controles parecidos a cada caso en edad o sexo, pero entonces el análisis también debe ser emparejado, y ya no podrás evaluar esas variables como factores asociados.
+- **Más de un control por caso:** aumenta la potencia, pero más allá de cuatro controles por caso la ganancia es pequeña.
+
+## Cómo se analiza
+
+Como el investigador fijó cuántos casos y controles hay, la proporción de enfermos en la muestra no refleja la de la población. Por eso **no se puede calcular la prevalencia, la incidencia, la RP ni el riesgo relativo**. Lo que sí se puede comparar es la odds de exposición en casos y controles: el [odds ratio](../../prospecto/diccionario.qmd#odds-ratio){.dic}.
+
+```{=html}
+<div style="overflow-x:auto">
+<table class="mapa" style="max-width:560px">
+<thead><tr><th></th><th>Casos</th><th>Controles</th></tr></thead>
+<tbody>
+<tr><th>Expuestos</th><td><b>a</b> = 80</td><td><b>b</b> = 50</td></tr>
+<tr><th>No expuestos</th><td><b>c</b> = 120</td><td><b>d</b> = 150</td></tr>
+<tr><th>Total</th><td>200</td><td>200</td></tr>
+</tbody></table>
+</div>
+```
+
+$$OR = \frac{a/c}{b/d} = \frac{a \times d}{b \times c} = \frac{80 \times 150}{50 \times 120} = 2{,}0$$
+
+Con estos datos ilustrativos, la odds de haber estado expuesto es el doble en los casos que en los controles. Cuando la enfermedad es rara en la población, el OR se aproxima al riesgo relativo. Para ajustar por [confusores](../../prospecto/diccionario.qmd#confusion){.dic} se usa [regresión logística](../../prospecto/diccionario.qmd#regresion-logistica){.dic}; si los controles fueron emparejados, regresión logística condicional.
+
+```r
+# OR crudo y ajustado
+m <- glm(caso ~ exposicion + edad + sexo, family = binomial, data = datos)
+gtsummary::tbl_regression(m, exponentiate = TRUE)
+
+# Con emparejamiento (un conjunto por caso y sus controles)
+survival::clogit(caso ~ exposicion + strata(conjunto), data = datos)
+```
+
+## Fortalezas y límites
+
+::: {.pros-contras}
+<div>
+
+**Fortalezas**
+
+- Eficiente para enfermedades raras o de latencia larga.
+- Rápido y de menor costo que una cohorte.
+- Permite estudiar varias exposiciones a la vez.
+- Necesita menos participantes.
+
+</div>
+<div>
+
+**Límites**
+
+- No estima la frecuencia de la enfermedad ni el riesgo.
+- La exposición se mide después del diagnóstico: hay riesgo de sesgo de recuerdo.
+- La selección de controles es difícil y es la fuente principal de sesgo.
+- No sirve para exposiciones raras.
+
+</div>
+:::
+
+## Los sesgos que más se observan
+
+- **Sesgo de selección.** Los controles no provienen de la misma población que los casos, o los casos incluidos no representan a todos los casos (por ejemplo, solo los graves de un hospital de referencia).
+- **Sesgo de Berkson.** Con controles hospitalarios, las combinaciones de enfermedades que llevan a hospitalizarse pueden crear asociaciones que no existen en la población.
+- **Sesgo de recuerdo.** Quien tiene la enfermedad suele recordar mejor (o buscar más) sus exposiciones. Se reduce midiendo la exposición con registros previos al diagnóstico.
+- **Sesgo del entrevistador.** Si quien pregunta sabe quién es caso, puede insistir más. Lo ideal es que no lo sepa.
+
+## Errores frecuentes en las tesis
+
+1. **Llamar «casos y controles» a un transversal.** Si tomaste a todos los pacientes de un periodo y después los separaste según tuvieran o no el desenlace, el diseño es transversal y la proporción de casos sí refleja la población.
+2. **Calcular la prevalencia o el riesgo relativo.** En casos y controles solo es válido el OR.
+3. **Elegir los controles por conveniencia,** de otro servicio o de otra población, sin justificar que representan a la población de origen de los casos.
+4. **Emparejar y analizar como si no hubiera emparejamiento.**
+5. **Confundir los supuestos del tamaño de muestra:** se necesita la frecuencia de la exposición en los controles, no la prevalencia de la enfermedad.
+
+## Tu tamaño de muestra
+
+Necesitas tres supuestos: la proporción de expuestos entre los controles, el OR mínimo que quieres detectar y cuántos controles tendrás por caso.
+
+::: {.usa-calc}
+![](../../images/marcas/muestra.svg)
+
+Calcúlalo en el Consultorio estadístico, ya configurado para este diseño: [tamaño de muestra para casos y controles](../../herramientas/muestra/index.qmd#mod=dprop&dis=cc).
+:::
+
+## Cómo reportarlo
+
+Sigue la guía **STROBE** (von Elm et al., 2007): explica cómo se definieron y seleccionaron los casos y los controles, la proporción de controles por caso, si hubo emparejamiento y cómo se midió la exposición. Reporta los OR crudos y ajustados con su intervalo de confianza al 95 %.
+
+## Autoevaluación
+
+::: {.autoeval}
+::: {.pregunta}
+En tu estudio incluiste 100 niños con neumonía y 200 sin neumonía del mismo hospital. Escribiste: «la prevalencia de neumonía fue 33,3 %». ¿Qué está mal?
+
+<details><summary>Ver respuesta</summary>
+Esa cifra la decidiste tú al elegir uno a dos casos por control; no es la prevalencia de neumonía en ninguna población. En casos y controles no se reporta la prevalencia del desenlace.
+</details>
+:::
+
+::: {.pregunta}
+Emparejaste cada caso con dos controles de la misma edad y sexo. ¿Puedes reportar el sexo como factor asociado?
+
+<details><summary>Ver respuesta</summary>
+No. Al emparejar por sexo, lo hiciste igual en casos y controles; su asociación queda anulada por diseño. Además, el análisis debe ser emparejado (regresión logística condicional).
+</details>
+:::
+
+::: {.pregunta}
+¿Por qué conviene medir la exposición con registros anteriores al diagnóstico y no solo con una entrevista?
+
+<details><summary>Ver respuesta</summary>
+Para reducir el sesgo de recuerdo: los casos tienden a recordar o reportar sus exposiciones de forma distinta que los controles.
+</details>
+:::
+:::
+
+## Referencias
+
+- Doll R, Hill AB. Smoking and carcinoma of the lung: preliminary report. *Br Med J*. 1950;2(4682):739-48.
+- Rothman KJ, Greenland S, Lash TL. *Modern Epidemiology*. 3.ª ed. Filadelfia: Lippincott Williams & Wilkins; 2008.
+- Grimes DA, Schulz KF. Compared to what? Finding controls for case-control studies. *Lancet*. 2005;365(9468):1429-33.
+- von Elm E, Altman DG, Egger M, Pocock SJ, Gøtzsche PC, Vandenbroucke JP. The Strengthening the Reporting of Observational Studies in Epidemiology (STROBE) statement: guidelines for reporting observational studies. *Lancet*. 2007;370(9596):1453-7.
+
+::: {.cta}
+**¿Estás armando un estudio de casos y controles?**
+
+Te ayudo a definir los controles, calcular la muestra y plantear el análisis.
+
+[Escríbeme por WhatsApp](https://api.whatsapp.com/send?phone=51955446754&text=Hola%2C%20le%C3%AD%20tu%20entrada%20sobre%20casos%20y%20controles%20y%20quiero%20informaci%C3%B3n%20sobre%20asesor%C3%ADa%20para%20mi%20tesis)
+:::
