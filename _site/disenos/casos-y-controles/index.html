@@ -85,9 +85,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-749f0c35d8da38091077ec74fca69a22.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark-02237a22ee455bad83aece42a6742289.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../../site_libs/bootstrap/bootstrap-749f0c35d8da38091077ec74fca69a22.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-f546d6278a7fe63a888be9443735f898.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-5fd2d996c0150a3a1fed98b14a8f705c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-f546d6278a7fe63a888be9443735f898.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -711,143 +711,281 @@ Para reducir el sesgo de recuerdo: los casos tienden a recordar o reportar sus e
 
 </main> <!-- /main -->
 <script>
+
 /* Tarjeta «Síguenos en Instagram» al final de cada entrada (no en listados ni en el inicio). */
+
 (function () {
+
   var IG = "https://www.instagram.com/bioestadistica.en.linea/";
+
   function poner() {
+
     var main = document.querySelector("main#quarto-document-content") || document.querySelector("main");
+
     if (!main || document.querySelector(".quarto-listing") || document.querySelector(".quarto-about-jolla, .about-entity")) return;
+
     if (!document.querySelector(".quarto-title") || document.body.classList.contains("sin-sigue")) return;
+
     var d = document.createElement("aside");
+
     d.className = "sigue-ig";
+
     d.innerHTML =
+
       '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.3" cy="6.7" r="1.2" fill="currentColor"/></svg>' +
+
       '<div><p class="sigue-t">¿Te sirvió?</p><p>En Instagram comparto tips de bioestadística y R para tesis de salud, y aviso cuando sale una entrega nueva.</p></div>' +
+
       '<a href="' + IG + '" target="_blank" rel="noopener">Seguir @bioestadistica.en.linea</a>';
+
     var ap = main.querySelector("#quarto-appendix, .quarto-appendix-contents");
+
     if (ap) ap.parentNode.insertBefore(d, ap); else main.appendChild(d);
+
   }
+
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", poner); else poner();
+
 })();
+
 </script>
+
 <script>
+
 /* En cada entrada: 1) tiempo de lectura junto a la fecha; 2) palabras clave que llevan a temas.html,
+
    donde se ven solo las entradas con esa misma palabra clave. */
+
 (function () {
+
   function raiz() {
+
     // ruta relativa a la raíz del sitio, a partir del enlace al inicio del menú
+
     var a = document.querySelector(".navbar-brand, a.navbar-brand");
+
     var h = a ? a.getAttribute("href") : "/index.html";
+
     return h.replace(/index\.html$/, "");
+
   }
+
   function iniciar() {
+
     var titulo = document.querySelector("#title-block-header, .quarto-title-block");
+
     if (!titulo || document.querySelector(".quarto-listing")) return;
+
     var main = document.querySelector("main#quarto-document-content") || document.querySelector("main");
+
+
 
     // 1. tiempo de lectura: el mismo valor que muestran los listados (lo calcula Quarto
+
     //    y queda en temas.html); si la página no está ahí, se estima con 200 palabras/min.
+
     var meta = document.querySelector(".quarto-title-meta");
+
     var poner = function (min) {
+
       if (!meta || document.querySelector(".tiempo-lectura") || !(min > 0)) return;
+
       var d = document.createElement("div");
+
       d.className = "tiempo-lectura";
+
       d.innerHTML = '<div class="quarto-title-meta-heading">Lectura</div><div class="quarto-title-meta-contents"><p>' + min + " min</p></div>";
+
       meta.appendChild(d);
+
     };
+
     var estimar = function () {
+
       if (!main) return;
+
       var copia = main.cloneNode(true);
+
       copia.querySelectorAll("script, style, svg, .sigue-ig, #quarto-appendix").forEach(function (e) { e.remove(); });
+
       var palabras = (copia.textContent || "").split(/\s+/).filter(function (w) { return /[\wáéíóúñ]/i.test(w); }).length;
+
       if (palabras > 150) poner(Math.ceil(palabras / 200));
+
     };
+
     if (meta) {
+
       var url = new URL(raiz() + "temas.html", location.href);
+
       fetch(url).then(function (r) { return r.text(); }).then(function (html) {
+
         var doc = new DOMParser().parseFromString(html, "text/html"), min = null;
+
         doc.querySelectorAll("[data-listing-reading-time-sort]").forEach(function (el) {
+
           var a = el.querySelector("a[href]");
+
           if (!a) return;
+
           var destino = new URL(a.getAttribute("href"), url).pathname.replace(/index\.html$/, "");
+
           if (destino === location.pathname.replace(/index\.html$/, "")) min = +el.getAttribute("data-listing-reading-time-sort");
+
         });
+
         if (min) poner(min); else estimar();
+
       }).catch(estimar);
+
     }
 
+
+
     // 2. palabras clave enlazadas (en fase de captura, antes que el enlace propio de Quarto)
+
     var base = raiz();
+
     var ir = function (c) { location.href = base + "temas.html#tema=" + encodeURIComponent(c.textContent.trim()); };
+
     titulo.querySelectorAll(".quarto-category").forEach(function (c) {
+
       c.setAttribute("role", "link"); c.tabIndex = 0; c.style.cursor = "pointer";
+
       c.title = "Ver todas las entradas sobre «" + c.textContent.trim() + "»";
+
     });
+
     document.addEventListener("click", function (e) {
+
       var c = e.target.closest && e.target.closest("#title-block-header .quarto-category, .quarto-title-block .quarto-category");
+
       if (!c) return;
+
       e.preventDefault(); e.stopImmediatePropagation(); ir(c);
+
     }, true);
+
     document.addEventListener("keydown", function (e) {
+
       var c = e.target.closest && e.target.closest("#title-block-header .quarto-category, .quarto-title-block .quarto-category");
+
       if (c && e.key === "Enter") { e.preventDefault(); ir(c); }
+
     }, true);
+
   }
+
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", iniciar); else iniciar();
+
 })();
+
 </script>
+
 <script>
+
 /* Prospecto R: definiciones emergentes del diccionario y botón «Copiar para mi tesis» */
+
 (function () {
+
   function iniciar() {
+
     // 1. definiciones al pasar el mouse sobre los términos enlazados al diccionario
+
     var enlaces = Array.prototype.slice.call(document.querySelectorAll("a.dic"));
+
     if (enlaces.length && typeof tippy === "function") {
+
       var poner = function (defs) {
+
         enlaces.forEach(function (a) {
+
           var id = (a.getAttribute("href") || "").split("#")[1];
+
           var x = defs[id];
+
           if (!x) return;
+
           tippy(a, {
+
             content: '<div class="dic-tip"><strong>' + x.t + '</strong><p>' + x.d + '</p><span>Clic para ver las fuentes</span></div>',
+
             allowHTML: true, maxWidth: 380, placement: "top", delay: [120, 0], theme: "prospecto"
+
           });
+
         });
+
       };
+
       if (window.PROSPECTO_DIC) { poner(window.PROSPECTO_DIC); }
+
       else {
+
         var url = new URL(enlaces[0].getAttribute("href").split("#")[0], location.href);
+
         fetch(url).then(function (r) { return r.text(); }).then(function (html) {
+
           var doc = new DOMParser().parseFromString(html, "text/html"), defs = {};
+
           doc.querySelectorAll(".entrada").forEach(function (e) {
+
             var h = e.querySelector("h3"), p = e.querySelector("p");
+
             if (h && p) defs[e.id] = { t: h.textContent.trim(), d: p.innerHTML };
+
           });
+
           poner(defs);
+
         }).catch(function () {});
+
       }
+
     }
+
     // 2. botón para copiar el párrafo de reporte
+
     document.querySelectorAll(".reporte blockquote").forEach(function (bq) {
+
       var b = document.createElement("button");
+
       var etiqueta = "Copiar para mi tesis";
+
       b.type = "button"; b.className = "btn-copiar"; b.textContent = etiqueta;
+
       b.addEventListener("click", function () {
+
         var texto = bq.innerText.replace(/ /g, " ").trim();
+
         var listo = function () { b.textContent = "¡Copiado!"; setTimeout(function () { b.textContent = etiqueta; }, 1800); };
+
         if (navigator.clipboard && window.isSecureContext) {
+
           navigator.clipboard.writeText(texto).then(listo);
+
         } else {
+
           var t = document.createElement("textarea"); t.value = texto; document.body.appendChild(t);
+
           t.select(); document.execCommand("copy"); document.body.removeChild(t); listo();
+
         }
+
       });
+
       bq.parentNode.insertBefore(b, bq.nextSibling);
+
     });
+
   }
+
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", iniciar); else iniciar();
+
 })();
+
 </script>
+
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     // Ensure there is a toggle, if there isn't float one in the top right

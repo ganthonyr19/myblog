@@ -8,7 +8,7 @@
 
 <meta name="author" content="Anthony R.">
 
-<title>Manual de instalación de R, RStudio y Rtools – Anthony Romero</title>
+<title>Manual de instalación de R, RStudio y Rtools – Anthony Romero · Bioestadística en línea</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -87,13 +87,13 @@ ul.task-list li input[type="checkbox"] {
 
 
 <link rel="stylesheet" href="../../styles.css">
-<meta property="og:title" content="Manual de instalación de R, RStudio y Rtools – Anthony Romero">
+<meta property="og:title" content="Manual de instalación de R, RStudio y Rtools – Anthony Romero · Bioestadística en línea">
 <meta property="og:description" content="Tutoriales, recursos y novedades sobre R y ciencia de datos aplicada a la investigación en salud.">
 <meta property="og:image" content="https://anthonyromero.netlify.app//posts/Manual/imagenes_guia/r-rstudio.png">
-<meta property="og:site_name" content="Anthony Romero">
+<meta property="og:site_name" content="Anthony Romero · Bioestadística en línea">
 <meta property="og:image:height" content="628">
 <meta property="og:image:width" content="2000">
-<meta name="twitter:title" content="Manual de instalación de R, RStudio y Rtools – Anthony Romero">
+<meta name="twitter:title" content="Manual de instalación de R, RStudio y Rtools – Anthony Romero · Bioestadística en línea">
 <meta name="twitter:description" content="Tutoriales, recursos y novedades sobre R y ciencia de datos aplicada a la investigación en salud.">
 <meta name="twitter:image" content="https://anthonyromero.netlify.app//posts/Manual/imagenes_guia/r-rstudio.png">
 <meta name="twitter:image-height" content="628">
@@ -299,11 +299,19 @@ ul.task-list li input[type="checkbox"] {
  <span class="dropdown-text">Tutoriales</span></a>
   </li>  
         <li>
+    <a class="dropdown-item" href="../../disenos/index.html">
+ <span class="dropdown-text">Diseños de estudio</span></a>
+  </li>  
+        <li>
     <a class="dropdown-item" href="../../blog.html">
  <span class="dropdown-text">Blog</span></a>
   </li>  
     </ul>
   </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../../herramientas/index.html"> 
+<span class="menu-text">Consultorio</span></a>
+  </li>  
   <li class="nav-item">
     <a class="nav-link" href="../../recursos.html"> 
 <span class="menu-text">Recursos</span></a>
@@ -331,6 +339,11 @@ ul.task-list li input[type="checkbox"] {
   </li>  
     </ul>
   </li>
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://www.instagram.com/bioestadistica.en.linea/"> <i class="bi bi-instagram" role="img" aria-label="Instagram de Bioestadística en línea">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
   <li class="nav-item compact">
     <a class="nav-link" href="https://x.com/ganthonyrc"> <i class="bi bi-twitter" role="img">
 </i> 
@@ -803,7 +816,7 @@ Video de <a href="http://www.repidemicsconsortium.org/">R Epidemics Consortium (
 <li>Manual de <a href="https://statsandr.com/blog/how-to-install-r-and-rstudio/">Antoine Soetewey</a></li>
 </ol>
 </div>
-<p><br> <br> ___ <br> <strong>Manual elaborado por:</strong> <br> <a href="https://github.com/ganthonyr">Anthony Romero Cerdán</a> (anthony.romeromh@gmail.com) <br> <em>La versión original de este manual fue tomada del manual elaborado para <a href="https://www.facebook.com/InkaStats.DSS">InkaStats Academy</a></em><br>
+<p><br> <br> ___ <br> <strong>Manual elaborado por:</strong> <br> <a href="https://github.com/ganthonyr19">Anthony Romero Cerdán</a> (anthony.romeromh@gmail.com) <br> <em>La versión original de este manual fue tomada del manual elaborado para <a href="https://www.facebook.com/InkaStats.DSS">InkaStats Academy</a></em><br>
 ___</p>
 
 
@@ -813,6 +826,178 @@ ___</p>
 </div></div></section>
 
 </main> <!-- /main -->
+<script>
+
+/* Tarjeta «Síguenos en Instagram» al final de cada entrada (no en listados ni en el inicio). */
+
+(function () {
+
+  var IG = "https://www.instagram.com/bioestadistica.en.linea/";
+
+  function poner() {
+
+    var main = document.querySelector("main#quarto-document-content") || document.querySelector("main");
+
+    if (!main || document.querySelector(".quarto-listing") || document.querySelector(".quarto-about-jolla, .about-entity")) return;
+
+    if (!document.querySelector(".quarto-title") || document.body.classList.contains("sin-sigue")) return;
+
+    var d = document.createElement("aside");
+
+    d.className = "sigue-ig";
+
+    d.innerHTML =
+
+      '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.3" cy="6.7" r="1.2" fill="currentColor"/></svg>' +
+
+      '<div><p class="sigue-t">¿Te sirvió?</p><p>En Instagram comparto tips de bioestadística y R para tesis de salud, y aviso cuando sale una entrega nueva.</p></div>' +
+
+      '<a href="' + IG + '" target="_blank" rel="noopener">Seguir @bioestadistica.en.linea</a>';
+
+    var ap = main.querySelector("#quarto-appendix, .quarto-appendix-contents");
+
+    if (ap) ap.parentNode.insertBefore(d, ap); else main.appendChild(d);
+
+  }
+
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", poner); else poner();
+
+})();
+
+</script>
+
+<script>
+
+/* En cada entrada: 1) tiempo de lectura junto a la fecha; 2) palabras clave que llevan a temas.html,
+
+   donde se ven solo las entradas con esa misma palabra clave. */
+
+(function () {
+
+  function raiz() {
+
+    // ruta relativa a la raíz del sitio, a partir del enlace al inicio del menú
+
+    var a = document.querySelector(".navbar-brand, a.navbar-brand");
+
+    var h = a ? a.getAttribute("href") : "/index.html";
+
+    return h.replace(/index\.html$/, "");
+
+  }
+
+  function iniciar() {
+
+    var titulo = document.querySelector("#title-block-header, .quarto-title-block");
+
+    if (!titulo || document.querySelector(".quarto-listing")) return;
+
+    var main = document.querySelector("main#quarto-document-content") || document.querySelector("main");
+
+
+
+    // 1. tiempo de lectura: el mismo valor que muestran los listados (lo calcula Quarto
+
+    //    y queda en temas.html); si la página no está ahí, se estima con 200 palabras/min.
+
+    var meta = document.querySelector(".quarto-title-meta");
+
+    var poner = function (min) {
+
+      if (!meta || document.querySelector(".tiempo-lectura") || !(min > 0)) return;
+
+      var d = document.createElement("div");
+
+      d.className = "tiempo-lectura";
+
+      d.innerHTML = '<div class="quarto-title-meta-heading">Lectura</div><div class="quarto-title-meta-contents"><p>' + min + " min</p></div>";
+
+      meta.appendChild(d);
+
+    };
+
+    var estimar = function () {
+
+      if (!main) return;
+
+      var copia = main.cloneNode(true);
+
+      copia.querySelectorAll("script, style, svg, .sigue-ig, #quarto-appendix").forEach(function (e) { e.remove(); });
+
+      var palabras = (copia.textContent || "").split(/\s+/).filter(function (w) { return /[\wáéíóúñ]/i.test(w); }).length;
+
+      if (palabras > 150) poner(Math.ceil(palabras / 200));
+
+    };
+
+    if (meta) {
+
+      var url = new URL(raiz() + "temas.html", location.href);
+
+      fetch(url).then(function (r) { return r.text(); }).then(function (html) {
+
+        var doc = new DOMParser().parseFromString(html, "text/html"), min = null;
+
+        doc.querySelectorAll("[data-listing-reading-time-sort]").forEach(function (el) {
+
+          var a = el.querySelector("a[href]");
+
+          if (!a) return;
+
+          var destino = new URL(a.getAttribute("href"), url).pathname.replace(/index\.html$/, "");
+
+          if (destino === location.pathname.replace(/index\.html$/, "")) min = +el.getAttribute("data-listing-reading-time-sort");
+
+        });
+
+        if (min) poner(min); else estimar();
+
+      }).catch(estimar);
+
+    }
+
+
+
+    // 2. palabras clave enlazadas (en fase de captura, antes que el enlace propio de Quarto)
+
+    var base = raiz();
+
+    var ir = function (c) { location.href = base + "temas.html#tema=" + encodeURIComponent(c.textContent.trim()); };
+
+    titulo.querySelectorAll(".quarto-category").forEach(function (c) {
+
+      c.setAttribute("role", "link"); c.tabIndex = 0; c.style.cursor = "pointer";
+
+      c.title = "Ver todas las entradas sobre «" + c.textContent.trim() + "»";
+
+    });
+
+    document.addEventListener("click", function (e) {
+
+      var c = e.target.closest && e.target.closest("#title-block-header .quarto-category, .quarto-title-block .quarto-category");
+
+      if (!c) return;
+
+      e.preventDefault(); e.stopImmediatePropagation(); ir(c);
+
+    }, true);
+
+    document.addEventListener("keydown", function (e) {
+
+      var c = e.target.closest && e.target.closest("#title-block-header .quarto-category, .quarto-title-block .quarto-category");
+
+      if (c && e.key === "Enter") { e.preventDefault(); ir(c); }
+
+    }, true);
+
+  }
+
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", iniciar); else iniciar();
+
+})();
+
+</script>
+
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     // Ensure there is a toggle, if there isn't float one in the top right
@@ -1236,7 +1421,7 @@ ___</p>
   <div class="nav-footer">
     <div class="nav-footer-left">
 <p>Creado con <img src="../../images/ricon24.png" class="img-fluid"> y <a href="https://quarto.org">Quarto</a>.<br>
-Código fuente <a href="https://github.com/ganthonyr19/myblog"><img src="../../images/github-icon.png" class="img-fluid"></a></p>
+Código fuente <a href="https://github.com/ganthonyr19/myblog"><img src="../../images/github-icon.png" class="img-fluid"></a> · <a href="https://www.instagram.com/bioestadistica.en.linea/">Instagram <span class="citation" data-cites="bioestadistica.en.linea">@bioestadistica.en.linea</span></a></p>
 </div>   
     <div class="nav-footer-center">
       &nbsp;
