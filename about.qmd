@@ -31,6 +31,8 @@ about:
       text: GitHub
       href: https://github.com/ganthonyr19
 link-external-newwindow: TRUE
+resources:
+  - colaboraciones/sia/*
 ---
 
 ```{r}
@@ -421,7 +423,33 @@ Investigador asociado
 
 
 
-## Proyectos y publicaciones
+## Colaboraciones y publicaciones
+
+### Colaboraciones con instituciones
+
+```{=html}
+<div class="colab">
+  <div class="colab-cab">
+    <div>
+      <p class="colab-org">Selva in Action (SIA) · Peruvian American Medical Society (PAMS)</p>
+      <h4>Reportes estadísticos de la misión SIA</h4>
+    </div>
+    <span class="colab-desde">Desde 2024</span>
+  </div>
+  <p>SIA es una misión de salud que atiende a comunidades de la Amazonía peruana, organizada con la Peruvian American Medical Society. Desde 2024 estoy a cargo del análisis estadístico y de los reportes de cada misión, que elaboro en R y Quarto junto a <b>Anita Soluna</b>, directora de la misión: perfil de los pacientes atendidos, diagnósticos más frecuentes, comunidades de procedencia y cobertura del SIS.</p>
+  <div class="colab-reportes">
+    <a class="colab-rep" href="colaboraciones/sia/reporte-sia-2025.html" target="_blank" rel="noopener">
+      <img src="colaboraciones/sia/portada-2025.jpg" alt="Portada del reporte estadístico de la misión SIA 2025" loading="lazy">
+      <span><b>Misión 2025</b>716 pacientes · 28 comunidades</span>
+    </a>
+    <a class="colab-rep" href="colaboraciones/sia/reporte-sia-2024.html" target="_blank" rel="noopener">
+      <img src="colaboraciones/sia/portada-2024.jpg" alt="Portada del reporte estadístico de la misión SIA 2024" loading="lazy">
+      <span><b>Misión 2024</b>910 pacientes · 32 comunidades</span>
+    </a>
+  </div>
+  <p class="colab-nota">Reportes publicados con autorización de la dirección de la misión. Contienen solo datos agregados.</p>
+</div>
+```
 
 ### HexStickers
 Aquí encontrarás los **HexStickers** hechos con R en los que he contribuido.

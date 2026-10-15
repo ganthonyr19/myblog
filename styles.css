@@ -485,3 +485,19 @@
 .libro .info p{margin:0 0 .45rem;font-size:.95rem;line-height:1.5;text-align:left !important}
 .libro .comp a{font-weight:600}
 @media (max-width:576px){ .libro{grid-template-columns:96px 1fr;gap:1rem} .libro .tapa .t{font-size:.72rem} .libro .tapa .a{display:none} }
+
+/* Sobre mí: colaboraciones con instituciones */
+.colab{border:1px solid #E3E7ED;border-left:5px solid #2A9DA3;border-radius:14px;padding:1.1rem 1.3rem .6rem;margin:.6rem 0 1.8rem;max-width:52rem}
+.colab-cab{display:flex;justify-content:space-between;align-items:flex-start;gap:1rem;flex-wrap:wrap}
+.colab-org{margin:0;font-size:.78rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#2A9DA3;text-align:left !important}
+.colab h4{margin:.2rem 0 .6rem;font-size:1.2rem}
+.colab-desde{font-size:.8rem;font-weight:600;padding:.2rem .7rem;border-radius:999px;background:rgba(42,157,163,.12);color:#1F7A7F;white-space:nowrap}
+.colab-reportes{display:flex;gap:1rem;flex-wrap:wrap;margin:.9rem 0 .4rem}
+.colab-rep{display:flex;flex-direction:column;gap:.45rem;width:170px;text-decoration:none !important;color:inherit !important}
+.colab-rep img{width:170px;height:221px;object-fit:cover;object-position:top;border-radius:8px;border:1px solid #E3E7ED;
+  box-shadow:0 8px 18px rgba(11,31,58,.14);transition:transform .15s}
+.colab-rep:hover img{transform:translateY(-3px)}
+.colab-rep span{font-size:.85rem;line-height:1.35;color:#5B6B80}
+.colab-rep span b{display:block;color:#1F2A37;font-size:.95rem}
+.colab-nota{font-size:.8rem;color:#5B6B80;text-align:left !important}
+@media (max-width:576px){ .colab-rep{width:calc(50% - .5rem)} .colab-rep img{width:100%;height:auto;aspect-ratio:500/650} }
