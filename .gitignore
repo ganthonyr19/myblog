@@ -15,3 +15,6 @@ prospecto/**/ENDES
 
 # dependencias de la plantilla de la receta (se instalan con npm install)
 node_modules
+
+# PDF de referencia personales (derechos de autor de terceros): no se publican
+P. SEDGWICK/
