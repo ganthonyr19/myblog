@@ -450,3 +450,19 @@
 .sigue-ig a{white-space:nowrap;padding:.5rem 1rem;border-radius:999px;background:#E5636F;color:#fff !important;font-weight:600;text-decoration:none;font-size:.9rem}
 .sigue-ig a:hover{filter:brightness(1.08)}
 @media (max-width:640px){ .sigue-ig{grid-template-columns:auto 1fr} .sigue-ig a{grid-column:1 / -1;text-align:center;white-space:normal} }
+
+/* Sobre mí: idiomas como escala de puntos (A1 a C2) */
+.idiomas{display:grid;gap:.45rem;max-width:30rem;margin:.4rem 0 1rem}
+.idioma{display:grid;grid-template-columns:6.5rem 1fr 3.5rem;align-items:center;gap:.8rem}
+.idioma .nom{font-weight:600}
+.idioma .escala{display:flex;gap:.35rem}
+.idioma .escala i{width:1.35rem;height:.55rem;border-radius:999px;background:#E3E7ED}
+.idioma .escala i.on{background:#E5636F}
+.idioma .niv{font-size:.9rem;color:#5B6B80;text-align:right}
+.idiomas-nota{font-size:.8rem;color:#5B6B80;margin:.2rem 0 0;text-align:left !important}
+/* Recursos: tarjetas con imagen a la izquierda */
+.herramienta{display:grid;grid-template-columns:64px 1fr;column-gap:1.1rem;align-items:start}
+.herramienta > :first-child{grid-column:1;grid-row:1 / span 4;margin:0 !important}
+.herramienta > :first-child figure, .herramienta > :first-child p{margin:0}
+.herramienta img{width:64px;height:64px;border-radius:15px;max-width:none}
+.herramienta > :not(:first-child){grid-column:2}

@@ -2,8 +2,8 @@
 title: "La Tabla 1 de tu tesis"
 subtitle: "Dosis inicial: describe a tus participantes con gtsummary y llévalos a Word"
 description: "Prospecto R n.º 2, dosis inicial. Con la ENDES 2024: cómo armar la tabla de características de los participantes con gtsummary, leerla, reportarla y exportarla a Word."
-author: "Anthony Romero Cerdán"
-date: "2026-10-13"
+author: "Anthony Romero-Cerdán, MD"
+date: "2026-09-17"
 categories: [Dosis inicial, tablas, estadística descriptiva, gtsummary, ENDES]
 image: receta_inicial.png
 open-graph:

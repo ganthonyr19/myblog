@@ -1,6 +1,6 @@
-# <U+00BF>OR o raz<U+00F3>n de prevalencias? <U+00B7> Prospecto R n.<U+00BA> 1 <U+00B7> dosis inicial
-# Prospecto R <U+00B7> Anthony Romero Cerd<U+00E1>n <U+00B7> anthonyromero.netlify.app/prospecto
-# Datos: ENDES 2024 (INEI). Desc<U+00E1>rgalos como indica el Paso 1 del tutorial.
+# ¿OR o razón de prevalencias? · Prospecto R n.º 1 · dosis inicial
+# Prospecto R · Anthony Romero Cerdán · anthonyromero.netlify.app/prospecto
+# Datos: ENDES 2024 (INEI). Descárgalos como indica el Paso 1 del tutorial.
 
 options(OutDec = ",")
 fmt <- function(x, d = 2) formatC(x, format = "f", digits = d, decimal.mark = ",", big.mark = "\u00a0")

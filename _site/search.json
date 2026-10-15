@@ -81,14 +81,14 @@
     "href": "prospecto/or-vs-rp/plena.html#reproducibilidad",
     "title": "¿OR o razón de prevalencias?",
     "section": "Reproducibilidad",
-    "text": "Reproducibilidad\n\nMira el resultado\n\n#&gt; R version 4.3.3 (2024-02-29) \n#&gt; data.table 1.14.10 \n#&gt; survey 4.2.1 \n#&gt; ggplot2 3.4.4 \n#&gt; marginaleffects 0.18.0"
+    "text": "Reproducibilidad\n\nMira el resultado\n\n#&gt; R version 4.3.3 (2024-02-29) \n#&gt; data.table 1.14.10 \n#&gt; survey 4.5 \n#&gt; ggplot2 3.4.4 \n#&gt; marginaleffects 0.18.0"
   },
   {
     "objectID": "prospecto/index.html",
     "href": "prospecto/index.html",
     "title": "Prospecto R",
     "section": "",
-    "text": "Cada tema viene en dos dosis:\n\nDosis inicial: lo indispensable para hacer el análisis e interpretarlo bien. Para quien da sus primeros pasos en R o en el tema.\nDosis plena: todo, incluido lo complejo (diseño muestral, alternativas de modelo, trampas de los datos). Para quien ya analiza datos.\n\nAl inicio de cada entrega hay tres preguntas para saber qué dosis te toca. Puedes filtrar por nivel con las categorías Dosis inicial y Dosis plena.\n¿Un término no te queda claro? Está en el diccionario de Prospecto R, con sus fuentes.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n¿OR o razón de prevalencias?\n\n\nDosis inicial: qué medida reportar en un estudio transversal con un desenlace frecuente\n\n19 minutos\n\n\n\n\n\n\n\n\n\n\n\n¿OR o razón de prevalencias?\n\n\nDosis plena: razón de prevalencias en una encuesta con diseño muestral complejo\n\n24 minutos\n\n\n\n\n\n\n\n\n\n\n\nLa Tabla 1 de tu tesis\n\n\nDosis inicial: describe a tus participantes con gtsummary y llévalos a Word\n\n19 minutos\n\n\n\n\n\n\n\n\n\n\n\nLa Tabla 1 de tu tesis\n\n\nDosis plena: la Tabla 1 con el diseño muestral de una encuesta nacional\n\n23 minutos\n\n\n\n\nNo hay resultados"
+    "text": "Cada tema viene en dos dosis:\n\nDosis inicial: lo indispensable para hacer el análisis e interpretarlo bien. Para quien da sus primeros pasos en R o en el tema.\nDosis plena: todo, incluido lo complejo (diseño muestral, alternativas de modelo, trampas de los datos). Para quien ya analiza datos.\n\nAl inicio de cada entrega hay tres preguntas para saber qué dosis te toca. Puedes filtrar por nivel con las categorías Dosis inicial y Dosis plena.\n¿Un término no te queda claro? Está en el diccionario de Prospecto R, con sus fuentes.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nLa Tabla 1 de tu tesis\n\n\nDosis inicial: describe a tus participantes con gtsummary y llévalos a Word\n\n19 minutos\n\n\n\n\n\n\n\n\n\n\n\nLa Tabla 1 de tu tesis\n\n\nDosis plena: la Tabla 1 con el diseño muestral de una encuesta nacional\n\n23 minutos\n\n\n\n\n\n\n\n\n\n\n\n¿OR o razón de prevalencias?\n\n\nDosis inicial: qué medida reportar en un estudio transversal con un desenlace frecuente\n\n19 minutos\n\n\n\n\n\n\n\n\n\n\n\n¿OR o razón de prevalencias?\n\n\nDosis plena: razón de prevalencias en una encuesta con diseño muestral complejo\n\n24 minutos\n\n\n\n\nNo hay resultados"
   },
   {
     "objectID": "posts/Manual/index.html#instalando-r",
@@ -130,7 +130,7 @@
     "href": "blog.html",
     "title": "Blog",
     "section": "",
-    "text": "¿Qué prueba estadística uso?\n\n6 minutos\n\n\nConsultorio estadístico\n\nPruebas estadísticas\n\nTesis\n\n\n\nCómo elegir la prueba estadística de tu tesis de salud: un triaje interactivo en cuatro preguntas, el mapa completo de pruebas, cinco mitos y el código en R de cada una.\n\n\n\n15 oct 2026\n\n\n\n\n\n\n\n\n\n\n\n\n\nEl estudio de cohortes\n\n7 minutos\n\n\nDiseños de estudio\n\nEpidemiología\n\nTesis\n\n\n\nEl estudio de cohortes explicado con diagramas y ejemplos: prospectivo y retrospectivo, incidencia, riesgo relativo, persona-tiempo, pérdidas en el seguimiento, análisis en…\n\n\n\n15 oct 2026\n\n\n\n\n\n\n\n\n\n\n\n\n\nEl estudio de casos y controles\n\n7 minutos\n\n\nDiseños de estudio\n\nEpidemiología\n\nTesis\n\n\n\nEl estudio de casos y controles explicado con diagramas y ejemplos: selección de controles, odds ratio, sesgo de recuerdo, análisis en R y tamaño de muestra.\n\n\n\n15 oct 2026\n\n\n\n\n\n\n\n\n\n\n\n\n\nEl estudio transversal\n\n7 minutos\n\n\nDiseños de estudio\n\nEpidemiología\n\nTesis\n\n\n\nEl estudio transversal explicado con diagramas y ejemplos: prevalencia, razón de prevalencias, sesgos, análisis en R y tamaño de muestra.\n\n\n\n15 oct 2026\n\n\n\n\n\n\nNo hay resultados"
+    "text": "El estudio de cohortes\n\n7 minutos\n\n\nDiseños de estudio\n\nEpidemiología\n\nTesis\n\n\n\nEl estudio de cohortes explicado con diagramas y ejemplos: prospectivo y retrospectivo, incidencia, riesgo relativo, persona-tiempo, pérdidas en el seguimiento, análisis en…\n\n\n\n8 oct 2026\n\n\n\n\n\n\n\n\n\n\n\n\n\nEl estudio de casos y controles\n\n7 minutos\n\n\nDiseños de estudio\n\nEpidemiología\n\nTesis\n\n\n\nEl estudio de casos y controles explicado con diagramas y ejemplos: selección de controles, odds ratio, sesgo de recuerdo, análisis en R y tamaño de muestra.\n\n\n\n1 oct 2026\n\n\n\n\n\n\n\n\n\n\n\n\n\nEl estudio transversal\n\n7 minutos\n\n\nDiseños de estudio\n\nEpidemiología\n\nTesis\n\n\n\nEl estudio transversal explicado con diagramas y ejemplos: prevalencia, razón de prevalencias, sesgos, análisis en R y tamaño de muestra.\n\n\n\n24 sep 2026\n\n\n\n\n\n\n\n\n\n\n\n\n\n¿Qué prueba estadística uso?\n\n6 minutos\n\n\nConsultorio estadístico\n\nPruebas estadísticas\n\nTesis\n\n\n\nCómo elegir la prueba estadística de tu tesis de salud: un triaje interactivo en cuatro preguntas, el mapa completo de pruebas, cinco mitos y el código en R de cada una.\n\n\n\n10 sep 2026\n\n\n\n\n\n\nNo hay resultados"
   },
   {
     "objectID": "about.html",
@@ -144,14 +144,14 @@
     "href": "index.html",
     "title": "¡Hola! 👋",
     "section": "",
-    "text": "Soy Anthony Romero, 🇵🇪 médico cirujano egresado de la Universidad Nacional Mayor de San Marcos.\n\nDesde hace más de 5 años asesoro tesis de ciencias de la salud en metodología de la investigación y bioestadística, y he participado en más de 10 publicaciones científicas.\n\nDisfruto experimentando con nuevas tecnologías y participando en proyectos con R, Stata y HTML/CSS aplicados a la Salud, así como en investigación médica, bioestadística y Epidemiología clínica y de salud pública.\n\nEn este sitio comparto tutoriales, recursos y novedades sobre R, RStudio y ciencia de datos aplicada a la investigación en salud."
+    "text": "Soy Anthony Romero, 🇵🇪 médico cirujano colegiado, egresado de la Universidad Nacional Mayor de San Marcos.\n\nDesde hace más de 5 años asesoro tesis de ciencias de la salud en metodología de la investigación y bioestadística, y he participado en más de 10 publicaciones científicas.\n\nDisfruto experimentando con nuevas tecnologías y participando en proyectos con R, Stata y HTML/CSS aplicados a la Salud, así como en investigación médica, bioestadística y Epidemiología clínica y de salud pública.\n\nEn este sitio comparto tutoriales, recursos y novedades sobre R, RStudio y ciencia de datos aplicada a la investigación en salud."
   },
   {
     "objectID": "index.html#lo-más-reciente",
     "href": "index.html#lo-más-reciente",
     "title": "¡Hola! 👋",
     "section": "Lo más reciente",
-    "text": "Lo más reciente\n\n\n\n\n\n\n\n\n\n\n¿Qué prueba estadística uso?\n\n\nConsultorio estadístico\nPruebas estadísticas\nTesis\n\n\n\n15 oct 2026\n\n\n\n\n\n\n\n\n\n\n\n\n\nEl estudio de cohortes\n\n\nDiseños de estudio\nEpidemiología\nTesis\n\n\n\n15 oct 2026\n\n\n\n\n\n\n\n\n\n\n\n\n\nEl estudio de casos y controles\n\n\nDiseños de estudio\nEpidemiología\nTesis\n\n\n\n15 oct 2026\n\n\n\n\n\n\nNo hay resultados"
+    "text": "Lo más reciente\n\n\n\n\n\n\n\n\n\n\nEl estudio de cohortes\n\n\nDiseños de estudio\nEpidemiología\nTesis\n\n\n\n8 oct 2026\n\n\n\n\n\n\n\n\n\n\n\n\n\nEl estudio de casos y controles\n\n\nDiseños de estudio\nEpidemiología\nTesis\n\n\n\n1 oct 2026\n\n\n\n\n\n\n\n\n\n\n\n\n\nEl estudio transversal\n\n\nDiseños de estudio\nEpidemiología\nTesis\n\n\n\n24 sep 2026\n\n\n\n\n\n\nNo hay resultados"
   },
   {
     "objectID": "prospecto/diccionario.html",
@@ -242,7 +242,7 @@
     "href": "recursos.html",
     "title": "Recursos",
     "section": "",
-    "text": "¿Cuántos participantes necesito?\nCalculadora de tamaño de muestra para tesis de salud: prevalencia, casos y controles, cohortes, dos medias, pruebas diagnósticas y correlación. Te da el número, el párrafo para tu proyecto, el código en R y las observaciones que podría hacerte el jurado.\n\n\n¿Qué prueba estadística uso?\nUn triaje en cuatro preguntas que te lleva a la prueba adecuada para tu objetivo, con su código en R y cómo reportarla.\n\nTodos los módulos están en el Consultorio estadístico."
+    "text": "¿Cuántos participantes necesito?\nCalculadora de tamaño de muestra para tesis de salud: prevalencia, casos y controles, cohortes, dos medias, pruebas diagnósticas y correlación. Te da el número, el párrafo para tu proyecto, el código en R y las observaciones que podría hacerte el jurado.\n\n\n\n¿Qué prueba estadística uso?\nUn triaje en cuatro preguntas que te lleva a la prueba adecuada para tu objetivo, con su código en R y cómo reportarla.\n\nTodos los módulos están en el Consultorio estadístico."
   },
   {
     "objectID": "recursos.html#cheatsheets-traducidos",
@@ -767,7 +767,7 @@
     "href": "blog/que-prueba-estadistica/index.html#el-mapa-completo",
     "title": "¿Qué prueba estadística uso?",
     "section": "El mapa completo",
-    "text": "El mapa completo\nSi prefieres verlo todo de una vez, esta es la ruta del triaje resumida. La columna de la derecha es la alternativa cuando la variable numérica es muy sesgada, tiene valores extremos o es ordinal.\n\n\n\n\n\nQuiero…\nDesenlace\nGrupos\nPrueba\nAlternativa\n\n\n\n\nDescribir\nCategórico\n—\nFrecuencias, % e IC 95 %\n—\n\n\nNumérico\n—\nMedia (DE)\nMediana (RIC)\n\n\nComparar\nCategórico\nIndependientes\nChi cuadrado\nExacta de Fisher (esperadas &lt; 5)\n\n\nMismas personas, 2 veces\nMcNemar\n—\n\n\nMismas personas, 3+ veces\nQ de Cochran\n—\n\n\nNumérico\n2 independientes\nt de Welch\nU de Mann-Whitney\n\n\n3+ independientes\nANOVA\nKruskal-Wallis\n\n\nMismas personas, 2 veces\nt pareada\nRangos con signo de Wilcoxon\n\n\nMismas personas, 3+ veces\nANOVA de medidas repetidas\nFriedman\n\n\nOtra variable numérica\nCorrelación de Pearson\nCorrelación de Spearman\n\n\nTiempo al evento\nIndependientes\nKaplan-Meier y log-rank\n—\n\n\nAjustar\nBinario\n—\nPoisson robusta (RP, RR) o logística (OR) en casos y controles\n—\n\n\nNumérico\n—\nRegresión lineal\n—\n\n\nConteo\n—\nPoisson o binomial negativa\n—\n\n\nTiempo al evento\n—\nRegresión de Cox\n—\n\n\nDiagnóstico y concordancia\nPrueba vs. estándar\n—\nSensibilidad, especificidad, curva ROC\n—\n\n\nCategórico, 2 observadores\n—\nKappa de Cohen\nKappa ponderado (ordinal)\n\n\nNumérico, 2 métodos\n—\nCCI y Bland-Altman\n—"
+    "text": "El mapa completo\nSi prefieres verlo todo de una vez, esta es la ruta del triaje resumida. La columna de la derecha es la alternativa cuando la variable numérica es muy sesgada, tiene valores extremos o es ordinal.\nDescargar para repasar después (PDF)\n\n\n\n\n\nQuiero…\nDesenlace\nGrupos\nPrueba\nAlternativa\n\n\n\n\nDescribir\nCategórico\n—\nFrecuencias, % e IC 95 %\n—\n\n\nNumérico\n—\nMedia (DE)\nMediana (RIC)\n\n\nComparar\nCategórico\nIndependientes\nChi cuadrado\nExacta de Fisher (esperadas &lt; 5)\n\n\nMismas personas, 2 veces\nMcNemar\n—\n\n\nMismas personas, 3+ veces\nQ de Cochran\n—\n\n\nNumérico\n2 independientes\nt de Welch\nU de Mann-Whitney\n\n\n3+ independientes\nANOVA\nKruskal-Wallis\n\n\nMismas personas, 2 veces\nt pareada\nRangos con signo de Wilcoxon\n\n\nMismas personas, 3+ veces\nANOVA de medidas repetidas\nFriedman\n\n\nOtra variable numérica\nCorrelación de Pearson\nCorrelación de Spearman\n\n\nTiempo al evento\nIndependientes\nKaplan-Meier y log-rank\n—\n\n\nAjustar\nBinario\n—\nPoisson robusta (RP, RR) o logística (OR) en casos y controles\n—\n\n\nNumérico\n—\nRegresión lineal\n—\n\n\nConteo\n—\nPoisson o binomial negativa\n—\n\n\nTiempo al evento\n—\nRegresión de Cox\n—\n\n\nDiagnóstico y concordancia\nPrueba vs. estándar\n—\nSensibilidad, especificidad, curva ROC\n—\n\n\nCategórico, 2 observadores\n—\nKappa de Cohen\nKappa ponderado (ordinal)\n\n\nNumérico, 2 métodos\n—\nCCI y Bland-Altman\n—"
   },
   {
     "objectID": "blog/que-prueba-estadistica/index.html#cinco-mitos-que-el-jurado-sí-detecta",
@@ -809,6 +809,6 @@
     "href": "recursos.html#consultorio-estadístico",
     "title": "Recursos",
     "section": "",
-    "text": "¿Cuántos participantes necesito?\nCalculadora de tamaño de muestra para tesis de salud: prevalencia, casos y controles, cohortes, dos medias, pruebas diagnósticas y correlación. Te da el número, el párrafo para tu proyecto, el código en R y las observaciones que podría hacerte el jurado.\n\n\n¿Qué prueba estadística uso?\nUn triaje en cuatro preguntas que te lleva a la prueba adecuada para tu objetivo, con su código en R y cómo reportarla.\n\nTodos los módulos están en el Consultorio estadístico."
+    "text": "¿Cuántos participantes necesito?\nCalculadora de tamaño de muestra para tesis de salud: prevalencia, casos y controles, cohortes, dos medias, pruebas diagnósticas y correlación. Te da el número, el párrafo para tu proyecto, el código en R y las observaciones que podría hacerte el jurado.\n\n\n\n¿Qué prueba estadística uso?\nUn triaje en cuatro preguntas que te lleva a la prueba adecuada para tu objetivo, con su código en R y cómo reportarla.\n\nTodos los módulos están en el Consultorio estadístico."
   }
 ]

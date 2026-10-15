@@ -1,6 +1,6 @@
 ---
 title: "George Anthony Romero Cerdán"
-subtitle: Médico cirujano | Universidad Nacional Mayor de San Marcos | Lima, Perú
+subtitle: Médico cirujano colegiado | Universidad Nacional Mayor de San Marcos | Lima, Perú
 # author: Anthony R.
 # author-title: Autor
 # date: today
@@ -53,7 +53,7 @@ pacman::p_load(tinytex, tidyverse, scholar, knitr)
 #### Algunas cosas sobre mí
 
 ::: {.intro}
--   Médico cirujano egresado de la Universidad Nacional Mayor de San Marcos.<br>
+-   Médico cirujano colegiado, egresado de la Universidad Nacional Mayor de San Marcos.<br>
 -   Investigador [RENACYT](https://servicio-renacyt.concytec.gob.pe/ficha-renacyt/?idInvestigador=138155).<br>
 -   Colaboré en proyectos de investigación con el Instituto de
     Evaluación de Tecnologías en Salud e Investigación - EsSalud entre 2020 y 2025.<br>
@@ -375,11 +375,14 @@ periodo
 
 #### Idiomas
 
-| Idioma | Nivel |
-|:--|:--|
-| Español | Nativo |
-| Inglés | B1 |
-| Portugués | B2 |
+```{=html}
+<div class="idiomas" aria-label="Idiomas y nivel según el Marco Común Europeo">
+  <div class="idioma"><span class="nom">Español</span><span class="escala"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span><span class="niv">Nativo</span></div>
+  <div class="idioma"><span class="nom">Portugués</span><span class="escala"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></span><span class="niv">B2</span></div>
+  <div class="idioma"><span class="nom">Inglés</span><span class="escala"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i><i></i></span><span class="niv">B1</span></div>
+  <p class="idiomas-nota">Escala del Marco Común Europeo: A1 · A2 · B1 · B2 · C1 · C2</p>
+</div>
+```
 
 ### Referencias
 

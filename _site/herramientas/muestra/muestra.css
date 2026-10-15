@@ -83,3 +83,8 @@ pre.codigo{margin:0;padding:.9rem 1rem;border-radius:10px;background:var(--pr-fo
 .calc p, .calc li{text-align:left !important;hyphens:none}
 .calc .parrafo{text-align:justify}
 @media (max-width:576px){ .calc .parrafo{text-align:left} }
+
+/* sección 3: separación entre los bloques del resultado */
+#r-avisos{margin-top:1.1rem}
+.paso .bloque{margin-top:1.4rem}
+#r-lee{margin-top:1rem}

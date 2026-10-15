@@ -8,30 +8,30 @@
   {
     "listing": "/prospecto/index.html",
     "items": [
-      "/prospecto/or-vs-rp/inicial.html",
-      "/prospecto/or-vs-rp/plena.html",
       "/prospecto/tabla-1/inicial.html",
-      "/prospecto/tabla-1/plena.html"
+      "/prospecto/tabla-1/plena.html",
+      "/prospecto/or-vs-rp/inicial.html",
+      "/prospecto/or-vs-rp/plena.html"
     ]
   },
   {
     "listing": "/blog.html",
     "items": [
-      "/blog/que-prueba-estadistica/index.html",
       "/disenos/cohortes/index.html",
       "/disenos/casos-y-controles/index.html",
-      "/disenos/transversal/index.html"
+      "/disenos/transversal/index.html",
+      "/blog/que-prueba-estadistica/index.html"
     ]
   },
   {
     "listing": "/index.html",
     "items": [
-      "/blog/que-prueba-estadistica/index.html",
       "/disenos/cohortes/index.html",
       "/disenos/casos-y-controles/index.html",
       "/disenos/transversal/index.html",
-      "/prospecto/or-vs-rp/inicial.html",
       "/prospecto/tabla-1/inicial.html",
+      "/blog/que-prueba-estadistica/index.html",
+      "/prospecto/or-vs-rp/inicial.html",
       "/posts/Manual/index.html"
     ]
   },
@@ -42,15 +42,15 @@
   {
     "listing": "/temas.html",
     "items": [
+      "/herramientas/muestra/index.html",
       "/disenos/cohortes/index.html",
       "/disenos/casos-y-controles/index.html",
       "/disenos/transversal/index.html",
-      "/blog/que-prueba-estadistica/index.html",
-      "/herramientas/muestra/index.html",
-      "/prospecto/or-vs-rp/plena.html",
-      "/prospecto/or-vs-rp/inicial.html",
       "/prospecto/tabla-1/plena.html",
       "/prospecto/tabla-1/inicial.html",
+      "/blog/que-prueba-estadistica/index.html",
+      "/prospecto/or-vs-rp/plena.html",
+      "/prospecto/or-vs-rp/inicial.html",
       "/posts/Manual/index.html"
     ]
   }

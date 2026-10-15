@@ -4,7 +4,7 @@ project:
 lang: es
 
 website:
-  title: "Anthony Romero"
+  title: "Anthony Romero · Bioestadística en línea"
   description: "Tutoriales, recursos y novedades sobre R y ciencia de datos aplicada a la investigación en salud."
   site-url: https://anthonyromero.netlify.app/
   favicon: images/logo-final2.png

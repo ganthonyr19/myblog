@@ -2,8 +2,8 @@
 title: "¿OR o razón de prevalencias?"
 subtitle: "Dosis plena: razón de prevalencias en una encuesta con diseño muestral complejo"
 description: "Prospecto R n.º 1, dosis plena. Con la ENDES 2024: por qué el odds ratio exagera la asociación cuando el desenlace es frecuente, cómo estimar la razón de prevalencias con el diseño muestral y cómo obtenerla también desde una regresión logística."
-author: "Anthony Romero Cerdán"
-date: "2026-10-13"
+author: "Anthony Romero-Cerdán, MD"
+date: "2026-09-03"
 categories: [Dosis plena, medidas de asociación, estudios transversales, encuestas complejas, ENDES]
 image: receta_plena.png
 open-graph:

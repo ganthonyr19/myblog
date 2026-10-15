@@ -2,8 +2,8 @@
 title: "La Tabla 1 de tu tesis"
 subtitle: "Dosis plena: la Tabla 1 con el diseño muestral de una encuesta nacional"
 description: "Prospecto R n.º 2, dosis plena. Con la ENDES 2024: la Tabla 1 con tbl_svysummary(), qué n reportar con porcentajes ponderados, la tabla de prevalencias con sus intervalos y la comprobación con una cifra oficial del INEI."
-author: "Anthony Romero Cerdán"
-date: "2026-10-13"
+author: "Anthony Romero-Cerdán, MD"
+date: "2026-09-17"
 categories: [Dosis plena, tablas, estadística descriptiva, gtsummary, encuestas complejas, ENDES]
 image: receta_plena.png
 open-graph:

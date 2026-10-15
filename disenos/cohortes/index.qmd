@@ -1,7 +1,7 @@
 ---
 title: "El estudio de cohortes"
 description: "El estudio de cohortes explicado con diagramas y ejemplos: prospectivo y retrospectivo, incidencia, riesgo relativo, persona-tiempo, pérdidas en el seguimiento, análisis en R y tamaño de muestra."
-date: 2026-10-15
+date: 2026-10-08
 image: portada.png
 categories: [Diseños de estudio, Epidemiología, Tesis]
 ---

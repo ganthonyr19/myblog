@@ -1,7 +1,7 @@
 ---
 title: "¿Qué prueba estadística uso?"
 description: "Cómo elegir la prueba estadística de tu tesis de salud: un triaje interactivo en cuatro preguntas, el mapa completo de pruebas, cinco mitos y el código en R de cada una."
-date: 2026-10-15
+date: 2026-09-10
 lang: es
 image: portada.png
 categories: [Consultorio estadístico, Pruebas estadísticas, Tesis]
@@ -19,6 +19,7 @@ format:
           <script src="triaje.js"></script>
 resources:
   - triaje.js
+  - mapa-pruebas-estadisticas.pdf
 ---
 
 [![](../../images/marcas/triaje.svg)<span><b>Consultorio estadístico</b><em>Módulo Triaje</em></span>](../../herramientas/index.qmd){.sello}
@@ -73,6 +74,8 @@ Responde las preguntas. Al final obtienes una «receta» con la prueba, cuándo 
 ## El mapa completo
 
 Si prefieres verlo todo de una vez, esta es la ruta del triaje resumida. La columna de la derecha es la alternativa cuando la variable numérica es muy sesgada, tiene valores extremos o es ordinal.
+
+[Descargar para repasar después (PDF)](mapa-pruebas-estadisticas.pdf){.btn-descarga download=""}
 
 ```{=html}
 <div style="overflow-x:auto">

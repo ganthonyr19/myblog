@@ -1,8 +1,9 @@
 ---
 title: "¿Cuántos participantes necesito?"
 description: "Calculadora de tamaño de muestra para tesis de salud: te da el número, el párrafo para tu proyecto y el código en R para comprobarlo."
-date: 2026-10-15
+date: 2026-10-13
 lang: es
+author: "Anthony Romero-Cerdán, MD"
 title-block-banner: true
 toc: false
 page-layout: article

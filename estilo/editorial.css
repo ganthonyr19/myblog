@@ -110,3 +110,14 @@ a.serie-item:hover{border-color:var(--pr-acento);transform:translateY(-2px)}
   .mapa tbody th{white-space:normal}
   .en-una-frase{font-size:1.2rem}
 }
+
+/* triaje: supuestos plegables */
+details.tri-sup{margin:.9rem 0 .2rem;border:1px solid var(--pr-borde);border-radius:10px;background:var(--bs-body-bg)}
+details.tri-sup summary{cursor:pointer;padding:.5rem .9rem;font-weight:600;font-size:.88rem;color:var(--pr-turquesa)}
+details.tri-sup ul{margin:0 0 .6rem;padding:0 1rem 0 2.1rem}
+details.tri-sup li{font-size:.92rem;text-align:left !important}
+/* botón de descarga del mapa */
+.btn-descarga{display:inline-flex;align-items:center;gap:.45rem;font-weight:600;font-size:.88rem;text-decoration:none !important;
+  padding:.45rem 1rem;border-radius:999px;border:1px solid var(--pr-acento);color:var(--pr-acento) !important;margin:.2rem 0 1rem}
+.btn-descarga:hover{background:var(--pr-acento);color:#fff !important}
+.btn-descarga::before{content:"↓";font-weight:700}
