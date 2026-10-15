@@ -192,6 +192,14 @@ Proporción de participantes que se espera perder: personas que no aceptan parti
 [Fuentes: [Hulley et al., 2013](#fuente-hulley).]{.fuente}
 :::
 
+::: {#persona-tiempo .entrada}
+### Persona-tiempo
+
+Suma del tiempo que cada participante estuvo en observación y en riesgo de presentar el desenlace. Si una persona fue seguida 2 años y otra 6 meses, aportan 2,5 persona-años. Se usa como denominador de la tasa de incidencia cuando el seguimiento no es igual para todos: la tasa es el número de eventos dividido entre la persona-tiempo total.
+
+[Fuentes: [Rothman et al., 2008](#fuente-rothman); [Kirkwood y Sterne, 2003](#fuente-kirkwood).]{.fuente}
+:::
+
 ::: {#porcentaje-por-columna .entrada}
 ### Porcentaje por columna y por fila
 
@@ -238,6 +246,14 @@ Prueba que compara las frecuencias observadas en una tabla de contingencia con l
 Cociente entre la prevalencia del desenlace en expuestos y en no expuestos: P₁/P₀. Una RP de 3 significa que la condición es tres veces más frecuente en los expuestos. Es la medida de asociación natural de los estudios transversales.
 
 [Fuentes: [Rothman et al., 2008](#fuente-rothman); [Barros y Hirakata, 2003](#fuente-barros).]{.fuente}
+:::
+
+::: {#regresion-de-cox .entrada}
+### Regresión de Cox
+
+Modelo para el tiempo hasta un evento que estima el *hazard ratio* (HR): cuántas veces mayor es el riesgo instantáneo del evento en un grupo frente a otro, ajustando por otras variables. Aprovecha a los participantes que no tuvieron el evento durante el seguimiento (datos censurados). Supone que esa razón se mantiene constante en el tiempo (riesgos proporcionales), lo que se revisa en R con `survival::cox.zph()`.
+
+[Fuentes: [Kirkwood y Sterne, 2003](#fuente-kirkwood); [Rothman et al., 2008](#fuente-rothman).]{.fuente}
 :::
 
 ::: {#regresion-de-poisson .entrada}

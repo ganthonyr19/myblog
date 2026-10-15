@@ -484,6 +484,72 @@ ul.task-list li input[type="checkbox"] {
 })();
 </script>
 <script>
+/* En cada entrada: 1) tiempo de lectura junto a la fecha; 2) palabras clave que llevan a temas.html,
+   donde se ven solo las entradas con esa misma palabra clave. */
+(function () {
+  function raiz() {
+    // ruta relativa a la raíz del sitio, a partir del enlace al inicio del menú
+    var a = document.querySelector(".navbar-brand, a.navbar-brand");
+    var h = a ? a.getAttribute("href") : "/index.html";
+    return h.replace(/index\.html$/, "");
+  }
+  function iniciar() {
+    var titulo = document.querySelector("#title-block-header, .quarto-title-block");
+    if (!titulo || document.querySelector(".quarto-listing")) return;
+    var main = document.querySelector("main#quarto-document-content") || document.querySelector("main");
+
+    // 1. tiempo de lectura: el mismo valor que muestran los listados (lo calcula Quarto
+    //    y queda en temas.html); si la página no está ahí, se estima con 200 palabras/min.
+    var meta = document.querySelector(".quarto-title-meta");
+    var poner = function (min) {
+      if (!meta || document.querySelector(".tiempo-lectura") || !(min > 0)) return;
+      var d = document.createElement("div");
+      d.className = "tiempo-lectura";
+      d.innerHTML = '<div class="quarto-title-meta-heading">Lectura</div><div class="quarto-title-meta-contents"><p>' + min + " min</p></div>";
+      meta.appendChild(d);
+    };
+    var estimar = function () {
+      if (!main) return;
+      var copia = main.cloneNode(true);
+      copia.querySelectorAll("script, style, svg, .sigue-ig, #quarto-appendix").forEach(function (e) { e.remove(); });
+      var palabras = (copia.textContent || "").split(/\s+/).filter(function (w) { return /[\wáéíóúñ]/i.test(w); }).length;
+      if (palabras > 150) poner(Math.ceil(palabras / 200));
+    };
+    if (meta) {
+      var url = new URL(raiz() + "temas.html", location.href);
+      fetch(url).then(function (r) { return r.text(); }).then(function (html) {
+        var doc = new DOMParser().parseFromString(html, "text/html"), min = null;
+        doc.querySelectorAll("[data-listing-reading-time-sort]").forEach(function (el) {
+          var a = el.querySelector("a[href]");
+          if (!a) return;
+          var destino = new URL(a.getAttribute("href"), url).pathname.replace(/index\.html$/, "");
+          if (destino === location.pathname.replace(/index\.html$/, "")) min = +el.getAttribute("data-listing-reading-time-sort");
+        });
+        if (min) poner(min); else estimar();
+      }).catch(estimar);
+    }
+
+    // 2. palabras clave enlazadas (en fase de captura, antes que el enlace propio de Quarto)
+    var base = raiz();
+    var ir = function (c) { location.href = base + "temas.html#tema=" + encodeURIComponent(c.textContent.trim()); };
+    titulo.querySelectorAll(".quarto-category").forEach(function (c) {
+      c.setAttribute("role", "link"); c.tabIndex = 0; c.style.cursor = "pointer";
+      c.title = "Ver todas las entradas sobre «" + c.textContent.trim() + "»";
+    });
+    document.addEventListener("click", function (e) {
+      var c = e.target.closest && e.target.closest("#title-block-header .quarto-category, .quarto-title-block .quarto-category");
+      if (!c) return;
+      e.preventDefault(); e.stopImmediatePropagation(); ir(c);
+    }, true);
+    document.addEventListener("keydown", function (e) {
+      var c = e.target.closest && e.target.closest("#title-block-header .quarto-category, .quarto-title-block .quarto-category");
+      if (c && e.key === "Enter") { e.preventDefault(); ir(c); }
+    }, true);
+  }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", iniciar); else iniciar();
+})();
+</script>
+<script>
 /* Prospecto R: definiciones emergentes del diccionario y botón «Copiar para mi tesis» */
 (function () {
   function iniciar() {

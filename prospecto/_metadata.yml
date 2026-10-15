@@ -11,18 +11,3 @@ format:
     code-summary: "Ver código"
     toc-title: "En esta entrega"
     smooth-scroll: true
-# comentarios con giscus (se guardan en las Discussions de ganthonyr19/myblog, categoría «Prospecto R»)
-comments:
-  giscus:
-    repo: ganthonyr19/myblog
-    repo-id: "R_kgDOVFWTfQ"
-    category: "Prospecto R"
-    category-id: "DIC_kwDOVFWTfc4DIXEF"
-    mapping: pathname
-    reactions-enabled: true
-    loading: lazy
-    input-position: top
-    theme:
-      light: light
-      dark: dark
-    language: es

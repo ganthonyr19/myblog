@@ -72,6 +72,10 @@ format:
       light: flatly
       dark: darkly
     css: styles.css
-    include-after-body: _includes/sigue.html
+    code-fold: true            # código plegado en todas las entradas
+    code-summary: "Ver código"
+    include-after-body:
+      - _includes/sigue.html
+      - _includes/entradas.html  # tiempo de lectura y palabras clave enlazadas a temas.html
 mainfont: "Source Sans 3"
 link-external-newwindow: TRUE
