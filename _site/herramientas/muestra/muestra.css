@@ -1,0 +1,85 @@
+/* Calculadora de tamaño de muestra: usa las variables y tipografías de Prospecto R */
+.calc{margin:1.5rem 0 2.5rem;display:grid;grid-template-columns:minmax(0,1fr);gap:1.4rem}
+.paso, .bloque, .modulo{min-width:0}
+.paso{border:1px solid var(--pr-borde);border-radius:16px;padding:1.2rem 1.3rem 1.3rem;background:var(--bs-body-bg)}
+.paso-n{font-family:'Inter',sans-serif;font-size:.74rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--pr-acento);margin:0 0 .9rem;text-align:left}
+
+/* tarjetas de diseño */
+.disenos{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:.6rem}
+.diseno{position:relative;display:flex;flex-direction:column;gap:.25rem;padding:.8rem .9rem;border:1.5px solid var(--pr-borde);
+  border-radius:12px;cursor:pointer;transition:border-color .15s,background .15s}
+.diseno input{position:absolute;opacity:0;pointer-events:none}
+.diseno:hover{border-color:var(--pr-turquesa)}
+.diseno:has(input:checked){border-color:var(--pr-acento);background:rgba(229,99,111,.06)}
+.diseno:has(input:focus-visible){outline:2px solid var(--pr-turquesa);outline-offset:2px}
+.d-t{font-weight:700;font-size:.95rem;line-height:1.3;color:var(--pr-texto)}
+.d-s{font-size:.8rem;line-height:1.4;color:var(--pr-suave)}
+
+/* campos */
+.modulo{display:grid;gap:1rem}
+.campo{display:flex;flex-direction:column;gap:.35rem}
+.campo > label, .campo.dos label{font-size:.92rem;font-weight:600;color:var(--pr-texto)}
+.campo.dos{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.campo.dos > div{display:flex;flex-direction:column;gap:.35rem}
+.calc input[type=number], .calc select{font-family:'Inter',sans-serif;font-size:1rem;padding:.45rem .6rem;border:1px solid var(--pr-borde);
+  border-radius:9px;background:var(--pr-fondo-sal);color:var(--pr-texto);max-width:100%}
+.calc input[type=number]:focus, .calc select:focus{outline:2px solid var(--pr-turquesa);outline-offset:1px}
+.entrada-doble{display:grid;grid-template-columns:1fr 6.5rem;gap:.8rem;align-items:center}
+.calc input[type=range]{accent-color:var(--pr-acento);width:100%}
+.campo-check label{font-weight:500;display:flex;gap:.5rem;align-items:center}
+.campo .sub{display:flex;flex-direction:column;gap:.35rem;margin:.4rem 0 0 1.6rem}
+.nota-campo{font-size:.8rem;color:var(--pr-suave);margin:.1rem 0 0;text-align:left !important}
+details.ayuda summary{font-size:.8rem;font-weight:600;color:var(--pr-turquesa);cursor:pointer;width:fit-content}
+details.ayuda p{font-size:.86rem;line-height:1.55;margin:.35rem 0 0;padding:.6rem .8rem;background:var(--pr-fondo-sal);border-radius:8px;text-align:left}
+.ajustes{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1rem;margin-top:1.2rem;padding-top:1.1rem;
+  border-top:1px dashed var(--pr-borde)}
+
+/* resultado tipo receta */
+.receta-n{position:relative;background:var(--pr-papel);border-radius:14px;padding:1.1rem 1.3rem 1rem 1.6rem;color:#0B1F3A}
+body.quarto-dark .receta-n{color:var(--pr-texto)}
+.receta-n::before{content:"";position:absolute;left:0;top:0;bottom:0;width:7px;background:var(--pr-acento);border-radius:14px 0 0 14px}
+.rp{font-family:'Fraunces',Georgia,serif;font-weight:600;font-size:1.5rem;line-height:1}
+.cifra{display:flex;align-items:baseline;gap:.6rem;flex-wrap:wrap;margin:.3rem 0 .2rem}
+#r-n{font-family:'Fraunces',Georgia,serif;font-weight:600;font-size:3.4rem;line-height:1.05;color:var(--pr-acento)}
+.cifra-u{font-size:1rem;font-weight:600}
+.grupos{display:flex;flex-wrap:wrap;gap:.5rem;margin:.2rem 0 .6rem}
+.grupos span{font-size:.85rem;font-weight:600;padding:.2rem .65rem;border-radius:999px;border:1px solid #CBBFA6}
+.desglose{margin:.3rem 0 0;padding-left:1.2rem;font-size:.88rem;line-height:1.6}
+.desglose li{text-align:left}
+.error{color:var(--pr-acento);font-weight:600;margin:.5rem 0 0;text-align:left !important}
+
+/* avisos del jurado */
+.avisos{border-left:4px solid #E0A526;background:rgba(224,165,38,.09);border-radius:0 12px 12px 0;padding:.8rem 1.1rem .4rem}
+.avisos-t{font-size:.72rem;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:#B7801A;margin:0 0 .3rem;text-align:left !important}
+.avisos ul{margin:0;padding-left:1.1rem}
+.avisos li{font-size:.9rem;line-height:1.55;margin-bottom:.4rem}
+
+/* bloques: párrafo, código, gráfico */
+.bloque{display:flex;flex-direction:column;gap:.4rem}
+.bloque-cab{display:flex;justify-content:space-between;align-items:center;gap:.8rem;flex-wrap:wrap}
+.bloque-t{font-weight:700;font-size:1rem;margin:0;text-align:left !important}
+.bloque .btn-copiar{margin:0}
+.parrafo{border-left:4px solid var(--pr-acento);background:var(--pr-fondo-sal);padding:.9rem 1.1rem;border-radius:0 10px 10px 0;
+  font-size:.97rem;line-height:1.7;text-align:justify}
+.parrafo mark, .nota-campo mark{background:#FFF1A8;color:#1F2A37;padding:0 .15em;border-radius:3px}
+pre.codigo{margin:0;padding:.9rem 1rem;border-radius:10px;background:var(--pr-fondo-sal);border:1px solid var(--pr-borde);
+  font-size:.82rem;line-height:1.55;overflow-x:auto;white-space:pre}
+.grafico svg{width:100%;height:auto;display:block}
+.grafico text{font-family:'Inter',sans-serif;fill:var(--pr-suave)}
+.grafico .eje{stroke:var(--pr-borde)}
+.grafico .linea{fill:none;stroke:var(--pr-turquesa);stroke-width:2.5}
+.grafico .punto{fill:var(--pr-acento);stroke:var(--bs-body-bg);stroke-width:2}
+.grafico .etq{fill:var(--pr-texto);font-weight:700}
+
+@media (max-width:576px){
+  .paso{padding:1rem .9rem}
+  .campo.dos{grid-template-columns:1fr}
+  .entrada-doble{grid-template-columns:1fr 5.5rem}
+  #r-n{font-size:2.8rem}
+}
+
+/* el sitio justifica el texto; dentro de la calculadora se alinea a la izquierda */
+.calc p, .calc li{text-align:left !important;hyphens:none}
+.calc .parrafo{text-align:justify}
+@media (max-width:576px){ .calc .parrafo{text-align:left} }

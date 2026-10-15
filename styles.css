@@ -435,3 +435,8 @@
 #listing-recientes img.thumbnail-image{
   object-position: top;
 }
+
+/* Recursos: tarjeta de herramienta */
+.herramienta{border:1px solid #E3E7ED;border-left:5px solid #E5636F;border-radius:12px;padding:1rem 1.2rem .3rem;margin:.5rem 0 1.5rem;max-width:46rem}
+.herramienta p:first-child a{font-size:1.15rem;text-decoration:none}
+.herramienta p{text-align:left}

@@ -1,12 +1,20 @@
 ---
 title: "Diccionario de Prospecto R"
-subtitle: "Los términos de bioestadística y epidemiología que usan los tutoriales, explicados en pocas líneas"
+subtitle: "Los términos de bioestadística y epidemiología que usan los tutoriales y las herramientas, explicados en pocas líneas"
 lang: es
 toc: false
 ---
 
-Cada término de los tutoriales con un subrayado punteado lleva aquí. Las definiciones son resúmenes propios, escritos para un lector de ciencias de la salud; para profundizar, cada una indica las fuentes de referencia en las que se basa.
+Cada término de los tutoriales y de las herramientas con un subrayado punteado lleva aquí. Las definiciones son resúmenes propios, escritos para un lector de ciencias de la salud; para profundizar, cada una indica las fuentes de referencia en las que se basa.
 
+
+::: {#coeficiente-de-correlacion .entrada}
+### Coeficiente de correlación
+
+Número entre −1 y 1 que mide qué tan fuerte es la relación lineal entre dos variables numéricas (r de Pearson) o entre sus rangos (rho de Spearman). Cero indica ausencia de relación lineal; el signo indica la dirección. Para calcular el tamaño de muestra se usa el valor mínimo de r que sería importante detectar.
+
+[Fuentes: [Kirkwood y Sterne, 2003](#fuente-kirkwood); [Hulley et al., 2013](#fuente-hulley).]{.fuente}
+:::
 
 ::: {#confusion .entrada}
 ### Confusión
@@ -24,12 +32,44 @@ Grupo de unidades vecinas (por ejemplo, un conjunto de viviendas de una zona) qu
 [Fuentes: [Lumley, 2010](#fuente-lumley); [INEI, ficha técnica ENDES 2024](#fuente-inei).]{.fuente}
 :::
 
+::: {#correccion-de-continuidad .entrada}
+### Corrección de continuidad
+
+Ajuste que se aplica cuando una distribución continua (la normal) aproxima datos que en realidad son conteos. En el cálculo del tamaño de muestra para comparar dos proporciones aumenta un poco el n y lo acerca al que exigiría una prueba exacta; por eso suele recomendarse.
+
+[Fuentes: [Fleiss et al., 2003](#fuente-fleiss).]{.fuente}
+:::
+
+::: {#correccion-por-poblacion-finita .entrada}
+### Corrección por población finita
+
+Reducción del tamaño de muestra cuando la población es pequeña y conocida (por ejemplo, los 400 internos de un hospital). Con la fórmula clásica, *n* = *N z² p q* / [*d²* (*N* − 1) + *z² p q*]. Solo cambia el resultado de forma apreciable cuando la muestra es más de 5 % de la población.
+
+[Fuentes: [Cochran, 1977](#fuente-cochran); [Lwanga y Lemeshow, 1991](#fuente-lwanga).]{.fuente}
+:::
+
+::: {#desviacion-estandar .entrada}
+### Desviación estándar
+
+Medida de cuánto se dispersan los valores alrededor de su media, en las mismas unidades que la variable. Para el tamaño de muestra se toma de un estudio previo o de un piloto en una población parecida.
+
+[Fuentes: [Kirkwood y Sterne, 2003](#fuente-kirkwood).]{.fuente}
+:::
+
 ::: {#diseno-muestral-complejo .entrada}
 ### Diseño muestral complejo
 
 Forma de seleccionar una muestra que no es aleatoria simple: combina estratos, conglomerados y probabilidades de selección distintas. Para estimar bien hay que declarar el diseño (en R, con `survey::svydesign()`); si se ignora, las cifras describen a la muestra y los intervalos de confianza son incorrectos.
 
 [Fuentes: [Lumley, 2010](#fuente-lumley).]{.fuente}
+:::
+
+::: {#efecto-de-diseno .entrada}
+### Efecto de diseño
+
+Cuántas veces mayor es la varianza de una estimación con un muestreo complejo (por conglomerados, por ejemplo) que con un muestreo aleatorio simple del mismo tamaño. Se abrevia DEFF; el tamaño de muestra calculado para un muestreo simple se multiplica por él. Lo ideal es tomarlo de un estudio previo con el mismo diseño; si no lo hay, en encuestas por conglomerados suele asumirse un DEFF de 2.
+
+[Fuentes: [Kish, 1965](#fuente-kish); [Lwanga y Lemeshow, 1991](#fuente-lwanga).]{.fuente}
 :::
 
 ::: {#endes .entrada}
@@ -46,6 +86,14 @@ Encuesta Demográfica y de Salud Familiar del Perú, a cargo del INEI. Mide la d
 Medida de cuánto variaría una estimación (una prevalencia, un coeficiente) si se repitiera el estudio con otras muestras del mismo tamaño. Es la base para calcular intervalos de confianza y valores p.
 
 [Fuentes: [Kirkwood y Sterne, 2003](#fuente-kirkwood).]{.fuente}
+:::
+
+::: {#especificidad .entrada}
+### Especificidad
+
+Proporción de personas sin la enfermedad en las que la prueba da negativo. Una prueba muy específica rara vez da falsos positivos.
+
+[Fuentes: [Kirkwood y Sterne, 2003](#fuente-kirkwood); [Buderer, 1996](#fuente-buderer).]{.fuente}
 :::
 
 ::: {#estandarizacion-marginal .entrada}
@@ -104,6 +152,14 @@ Modelo lineal generalizado con distribución binomial y enlace logarítmico. Sus
 [Fuentes: [Barros y Hirakata, 2003](#fuente-barros); [Zou, 2004](#fuente-zou).]{.fuente}
 :::
 
+::: {#nivel-de-confianza .entrada}
+### Nivel de confianza
+
+Porcentaje de intervalos de confianza que, si se repitiera el estudio muchas veces, contendrían el valor real. Es 1 − α, donde α es la probabilidad de error tipo I (concluir que hay diferencia cuando no la hay). Lo habitual es 95 % (α = 0,05), que corresponde a *z* = 1,96.
+
+[Fuentes: [Kirkwood y Sterne, 2003](#fuente-kirkwood); [Hulley et al., 2013](#fuente-hulley).]{.fuente}
+:::
+
 ::: {#obesidad-abdominal .entrada}
 ### Obesidad abdominal
 
@@ -128,12 +184,36 @@ Cociente de dos odds: la del desenlace en expuestos entre la de no expuestos. En
 [Fuentes: [Kirkwood y Sterne, 2003](#fuente-kirkwood); [Rothman et al., 2008](#fuente-rothman).]{.fuente}
 :::
 
+::: {#perdidas .entrada}
+### Pérdidas o no respuesta
+
+Proporción de participantes que se espera perder: personas que no aceptan participar, abandonan el seguimiento o tienen historias clínicas incompletas. El tamaño de muestra se divide entre (1 − proporción de pérdidas) para que, al final, queden suficientes datos.
+
+[Fuentes: [Hulley et al., 2013](#fuente-hulley).]{.fuente}
+:::
+
 ::: {#porcentaje-por-columna .entrada}
 ### Porcentaje por columna y por fila
 
 En una tabla que cruza dos variables, el porcentaje por columna se calcula dentro de cada columna (de las personas con presión alta, qué porcentaje son hombres) y el porcentaje por fila, dentro de cada fila (de los hombres, qué porcentaje tiene presión alta). La Tabla 1 de una tesis usa porcentajes por columna; la prevalencia de un desenlace por grupo es un porcentaje por fila.
 
 [Fuentes: [Kirkwood y Sterne, 2003](#fuente-kirkwood).]{.fuente}
+:::
+
+::: {#potencia-estadistica .entrada}
+### Potencia estadística
+
+Probabilidad de que el estudio detecte una diferencia o asociación si realmente existe con el tamaño que se planteó. Es 1 − β, donde β es la probabilidad de error tipo II (no encontrar una diferencia que sí existe). Lo habitual es 80 % o 90 %.
+
+[Fuentes: [Hulley et al., 2013](#fuente-hulley); [Kirkwood y Sterne, 2003](#fuente-kirkwood).]{.fuente}
+:::
+
+::: {#precision .entrada}
+### Precisión
+
+En el cálculo del tamaño de muestra, la mitad del ancho que se acepta para el intervalo de confianza (también llamada error o margen de error, *d*). Si la prevalencia esperada es 20 % y la precisión 5 %, se busca un intervalo de aproximadamente 15 % a 25 %. Puede ser absoluta (en puntos porcentuales) o relativa (como fracción de la prevalencia).
+
+[Fuentes: [Lwanga y Lemeshow, 1991](#fuente-lwanga).]{.fuente}
 :::
 
 ::: {#prevalencia .entrada}
@@ -176,12 +256,36 @@ Modelo para desenlaces binarios que relaciona las covariables con el logaritmo d
 [Fuentes: [Hosmer et al., 2013](#fuente-hosmer).]{.fuente}
 :::
 
+::: {#riesgo-relativo .entrada}
+### Riesgo relativo
+
+Cociente entre el riesgo (la incidencia acumulada) del desenlace en los expuestos y en los no expuestos. Se usa en estudios de cohortes. Un RR de 2 significa que los expuestos tienen el doble de riesgo.
+
+[Fuentes: [Rothman et al., 2008](#fuente-rothman); [Porta, 2014](#fuente-porta).]{.fuente}
+:::
+
+::: {#sensibilidad .entrada}
+### Sensibilidad
+
+Proporción de personas con la enfermedad en las que la prueba da positivo. Una prueba muy sensible rara vez da falsos negativos.
+
+[Fuentes: [Kirkwood y Sterne, 2003](#fuente-kirkwood); [Buderer, 1996](#fuente-buderer).]{.fuente}
+:::
+
 ::: {#tabla-2x2 .entrada}
 ### Tabla 2×2
 
 Tabla que cruza una exposición (sí/no) con un desenlace (sí/no). Por convención, los expuestos van en la primera fila y el desenlace presente en la primera columna; las celdas se llaman *a*, *b* (expuestos) y *c*, *d* (no expuestos).
 
 [Fuentes: [Kirkwood y Sterne, 2003](#fuente-kirkwood).]{.fuente}
+:::
+
+::: {#tamano-del-efecto .entrada}
+### Tamaño del efecto
+
+Magnitud de la diferencia o asociación que el estudio quiere poder detectar: una diferencia de medias, un OR, un RR, una correlación. No es la que uno espera ver, sino la mínima que tendría importancia clínica. Cuanto más pequeño es, más grande debe ser la muestra.
+
+[Fuentes: [Hulley et al., 2013](#fuente-hulley).]{.fuente}
 :::
 
 ::: {#valor-p .entrada}
@@ -199,7 +303,6 @@ Forma de calcular los errores estándar de un modelo que no depende de que la di
 
 [Fuentes: [Zou, 2004](#fuente-zou).]{.fuente}
 :::
-
 
 ## Fuentes {#fuentes}
 
@@ -226,3 +329,15 @@ Forma de calcular los errores estándar de un modelo que no depende de que la di
 [Rao JNK, Scott AJ. On chi-squared tests for multiway contingency tables with cell proportions estimated from survey data. *Ann Stat*. 1984;12(1):46-60.]{#fuente-rao}
 
 [Wasserstein RL, Lazar NA. The ASA’s statement on p-values: context, process, and purpose. *Am Stat*. 2016;70(2):129-33.]{#fuente-wasserstein}
+
+[Lwanga SK, Lemeshow S. *Sample size determination in health studies: a practical manual*. Ginebra: Organización Mundial de la Salud; 1991.]{#fuente-lwanga}
+
+[Cochran WG. *Sampling Techniques*. 3.ª ed. Nueva York: Wiley; 1977.]{#fuente-cochran}
+
+[Kish L. *Survey Sampling*. Nueva York: Wiley; 1965.]{#fuente-kish}
+
+[Fleiss JL, Levin B, Paik MC. *Statistical Methods for Rates and Proportions*. 3.ª ed. Hoboken: Wiley; 2003.]{#fuente-fleiss}
+
+[Hulley SB, Cummings SR, Browner WS, Grady DG, Newman TB. *Designing Clinical Research*. 4.ª ed. Filadelfia: Lippincott Williams & Wilkins; 2013.]{#fuente-hulley}
+
+[Buderer NM. Statistical methodology: I. Incorporating the prevalence of disease into the sample size calculation for sensitivity and specificity. *Acad Emerg Med*. 1996;3(9):895-900.]{#fuente-buderer}

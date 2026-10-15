@@ -96,3 +96,16 @@ Activados en `prospecto/_metadata.yml`: repositorio `ganthonyr19/myblog`, catego
 
 - Revisar en el sitio publicado que las fórmulas (KaTeX desde CDN) y los comentarios se vean bien.
 - Las imágenes y textos para redes de la entrega 1 (en `ig_asesorias\prospecto\p1` del equipo de Anthony) usan las cifras de la dosis plena y no llevan distintivo de nivel.
+
+## Herramientas (`herramientas/`)
+
+Producto acordado con Anthony (15 oct 2026): una sola línea de herramientas con dos módulos que comparten diseño, diccionario y formato de «receta»: **Muestra** (calculadora de tamaño de muestra, hecha) y **Triaje** (elegir la prueba estadística empezando por el objetivo de la tesis, pendiente, acompañado de una entrada de blog). El nombre del conjunto aún no está decidido. Aparece en `recursos.qmd`, sección «Herramientas».
+
+### Calculadora de tamaño de muestra (`herramientas/muestra/`)
+
+- `index.qmd`: interfaz en HTML fijo (para que los enlaces `a.dic` tengan definición emergente con `prospecto/estilo/prospecto.html`), fórmulas, verificación, referencias y llamada a WhatsApp.
+- `motor.js`: cálculos. Una proporción (Lwanga y Lemeshow 1991, con DEFF y población finita n0/(1+(n0−1)/N)); dos proporciones (Fleiss con y sin corrección de continuidad, casos y controles con OR, cohorte con RR, transversal con RP y r = (1−e)/e); dos medias (t no central, Lenth AS 243, igual a `power.t.test`); diagnóstica (Buderer 1996); correlación (z de Fisher, Hulley 2013). Pérdidas: ceiling(n/(1−L)) por grupo.
+- `app.js`: lee supuestos, escribe n con desglose, observaciones del jurado, párrafo para la tesis (con marcas amarillas para completar), código R y curva de sensibilidad SVG.
+- `verificacion.R`: compara el motor con R. Resultado al 15 oct 2026: dos proporciones = `EnvStats::propTestN` (dif. máx. 2,6e-7) y `power.prop.test`; dos medias = `power.t.test` (r = 1) y potencia exacta en R para r ≠ 1; una proporción = fórmula en R y `epiR::epi.sssimpleestb` sin N (con N epiR usa n0/(1+n0/N) y puede dar 1 menos); `epiR::epi.sscc(fleiss = TRUE)` devuelve NA en epiR 2.0.99.
+- El diccionario de Prospecto R sumó 13 términos de tamaño de muestra (nivel de confianza, potencia, precisión, efecto de diseño, población finita, pérdidas, corrección de continuidad, tamaño del efecto, desviación estándar, sensibilidad, especificidad, riesgo relativo, coeficiente de correlación) y 6 fuentes.
+- Pendiente: imagen para redes y para la tarjeta del listado; módulo Triaje y la entrada de blog.
