@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Diccionario de Prospecto R – Anthony Romero</title>
+<title>Diccionario de Prospecto R – Anthony Romero · Bioestadística en línea</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -86,10 +86,10 @@ ul.task-list li input[type="checkbox"] {
 
 <link rel="stylesheet" href="../styles.css">
 <link rel="stylesheet" href="estilo/prospecto.css">
-<meta property="og:title" content="Diccionario de Prospecto R – Anthony Romero">
+<meta property="og:title" content="Diccionario de Prospecto R – Anthony Romero · Bioestadística en línea">
 <meta property="og:description" content="Los términos de bioestadística y epidemiología que usan los tutoriales y las herramientas, explicados en pocas líneas">
-<meta property="og:site_name" content="Anthony Romero">
-<meta name="twitter:title" content="Diccionario de Prospecto R – Anthony Romero">
+<meta property="og:site_name" content="Anthony Romero · Bioestadística en línea">
+<meta name="twitter:title" content="Diccionario de Prospecto R – Anthony Romero · Bioestadística en línea">
 <meta name="twitter:description" content="Los términos de bioestadística y epidemiología que usan los tutoriales y las herramientas, explicados en pocas líneas">
 <meta name="twitter:card" content="summary">
 </head>
@@ -529,6 +529,11 @@ ul.task-list li input[type="checkbox"] {
 <p><span class="fuente">Fuentes: <a href="#fuente-hulley">Hulley et al., 2013</a>.</span></p>
 </section>
 </div>
+<section id="persona-tiempo" class="level3 entrada">
+<h3 class="anchored" data-anchor-id="persona-tiempo">Persona-tiempo</h3>
+<p>Suma del tiempo que cada participante estuvo en observación y en riesgo de presentar el desenlace. Si una persona fue seguida 2 años y otra 6 meses, aportan 2,5 persona-años. Se usa como denominador de la tasa de incidencia cuando el seguimiento no es igual para todos: la tasa es el número de eventos dividido entre la persona-tiempo total.</p>
+<p><span class="fuente">Fuentes: <a href="#fuente-rothman">Rothman et al., 2008</a>; <a href="#fuente-kirkwood">Kirkwood y Sterne, 2003</a>.</span></p>
+</section>
 <div id="porcentaje-por-columna" class="entrada">
 <section id="porcentaje-por-columna-y-por-fila" class="level3">
 <h3 class="anchored" data-anchor-id="porcentaje-por-columna-y-por-fila">Porcentaje por columna y por fila</h3>
@@ -565,6 +570,13 @@ ul.task-list li input[type="checkbox"] {
 <h3 class="anchored" data-anchor-id="razón-de-prevalencias-rp">Razón de prevalencias (RP)</h3>
 <p>Cociente entre la prevalencia del desenlace en expuestos y en no expuestos: P₁/P₀. Una RP de 3 significa que la condición es tres veces más frecuente en los expuestos. Es la medida de asociación natural de los estudios transversales.</p>
 <p><span class="fuente">Fuentes: <a href="#fuente-rothman">Rothman et al., 2008</a>; <a href="#fuente-barros">Barros y Hirakata, 2003</a>.</span></p>
+</section>
+</div>
+<div id="regresion-de-cox" class="entrada">
+<section id="regresión-de-cox" class="level3">
+<h3 class="anchored" data-anchor-id="regresión-de-cox">Regresión de Cox</h3>
+<p>Modelo para el tiempo hasta un evento que estima el <em>hazard ratio</em> (HR): cuántas veces mayor es el riesgo instantáneo del evento en un grupo frente a otro, ajustando por otras variables. Aprovecha a los participantes que no tuvieron el evento durante el seguimiento (datos censurados). Supone que esa razón se mantiene constante en el tiempo (riesgos proporcionales), lo que se revisa en R con <code>survival::cox.zph()</code>.</p>
+<p><span class="fuente">Fuentes: <a href="#fuente-kirkwood">Kirkwood y Sterne, 2003</a>; <a href="#fuente-rothman">Rothman et al., 2008</a>.</span></p>
 </section>
 </div>
 <div id="regresion-de-poisson" class="entrada">
@@ -658,6 +670,72 @@ ul.task-list li input[type="checkbox"] {
     if (ap) ap.parentNode.insertBefore(d, ap); else main.appendChild(d);
   }
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", poner); else poner();
+})();
+</script>
+<script>
+/* En cada entrada: 1) tiempo de lectura junto a la fecha; 2) palabras clave que llevan a temas.html,
+   donde se ven solo las entradas con esa misma palabra clave. */
+(function () {
+  function raiz() {
+    // ruta relativa a la raíz del sitio, a partir del enlace al inicio del menú
+    var a = document.querySelector(".navbar-brand, a.navbar-brand");
+    var h = a ? a.getAttribute("href") : "/index.html";
+    return h.replace(/index\.html$/, "");
+  }
+  function iniciar() {
+    var titulo = document.querySelector("#title-block-header, .quarto-title-block");
+    if (!titulo || document.querySelector(".quarto-listing")) return;
+    var main = document.querySelector("main#quarto-document-content") || document.querySelector("main");
+
+    // 1. tiempo de lectura: el mismo valor que muestran los listados (lo calcula Quarto
+    //    y queda en temas.html); si la página no está ahí, se estima con 200 palabras/min.
+    var meta = document.querySelector(".quarto-title-meta");
+    var poner = function (min) {
+      if (!meta || document.querySelector(".tiempo-lectura") || !(min > 0)) return;
+      var d = document.createElement("div");
+      d.className = "tiempo-lectura";
+      d.innerHTML = '<div class="quarto-title-meta-heading">Lectura</div><div class="quarto-title-meta-contents"><p>' + min + " min</p></div>";
+      meta.appendChild(d);
+    };
+    var estimar = function () {
+      if (!main) return;
+      var copia = main.cloneNode(true);
+      copia.querySelectorAll("script, style, svg, .sigue-ig, #quarto-appendix").forEach(function (e) { e.remove(); });
+      var palabras = (copia.textContent || "").split(/\s+/).filter(function (w) { return /[\wáéíóúñ]/i.test(w); }).length;
+      if (palabras > 150) poner(Math.ceil(palabras / 200));
+    };
+    if (meta) {
+      var url = new URL(raiz() + "temas.html", location.href);
+      fetch(url).then(function (r) { return r.text(); }).then(function (html) {
+        var doc = new DOMParser().parseFromString(html, "text/html"), min = null;
+        doc.querySelectorAll("[data-listing-reading-time-sort]").forEach(function (el) {
+          var a = el.querySelector("a[href]");
+          if (!a) return;
+          var destino = new URL(a.getAttribute("href"), url).pathname.replace(/index\.html$/, "");
+          if (destino === location.pathname.replace(/index\.html$/, "")) min = +el.getAttribute("data-listing-reading-time-sort");
+        });
+        if (min) poner(min); else estimar();
+      }).catch(estimar);
+    }
+
+    // 2. palabras clave enlazadas (en fase de captura, antes que el enlace propio de Quarto)
+    var base = raiz();
+    var ir = function (c) { location.href = base + "temas.html#tema=" + encodeURIComponent(c.textContent.trim()); };
+    titulo.querySelectorAll(".quarto-category").forEach(function (c) {
+      c.setAttribute("role", "link"); c.tabIndex = 0; c.style.cursor = "pointer";
+      c.title = "Ver todas las entradas sobre «" + c.textContent.trim() + "»";
+    });
+    document.addEventListener("click", function (e) {
+      var c = e.target.closest && e.target.closest("#title-block-header .quarto-category, .quarto-title-block .quarto-category");
+      if (!c) return;
+      e.preventDefault(); e.stopImmediatePropagation(); ir(c);
+    }, true);
+    document.addEventListener("keydown", function (e) {
+      var c = e.target.closest && e.target.closest("#title-block-header .quarto-category, .quarto-title-block .quarto-category");
+      if (c && e.key === "Enter") { e.preventDefault(); ir(c); }
+    }, true);
+  }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", iniciar); else iniciar();
 })();
 </script>
 <script>
@@ -1130,38 +1208,6 @@ ul.task-list li input[type="checkbox"] {
     }
   });
   </script>
-<input type="hidden" id="giscus-base-theme" value="light">
-<input type="hidden" id="giscus-alt-theme" value="dark">
-<script>
-  function loadGiscus() {
-    // Function to get the theme based on body class
-    const getTheme = () => {
-      let baseTheme = document.getElementById('giscus-base-theme').value;
-      let altTheme = document.getElementById('giscus-alt-theme').value;
-      if (authorPrefersDark) {
-          [baseTheme, altTheme] = [altTheme, baseTheme];
-      }
-      return document.body.classList.contains('quarto-dark') ? altTheme : baseTheme;
-    };
-    const script = document.createElement("script");
-    script.src = "https://giscus.app/client.js";
-    script.async = true;
-    script.dataset.repo = "ganthonyr19/myblog";
-    script.dataset.repoId = "R_kgDOVFWTfQ";
-    script.dataset.category = "Prospecto R";
-    script.dataset.categoryId = "DIC_kwDOVFWTfc4DIXEF";
-    script.dataset.mapping = "pathname";
-    script.dataset.reactionsEnabled = "1";
-    script.dataset.emitMetadata = "0";
-    script.dataset.inputPosition = "top";
-    script.dataset.theme = getTheme();
-    script.dataset.lang = "es";
-    script.crossOrigin = "anonymous";
-    // Append the script to the desired div instead of at the end of the body
-    document.getElementById("quarto-content").appendChild(script);
-  }
-  loadGiscus();
-</script>
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">

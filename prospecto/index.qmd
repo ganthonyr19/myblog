@@ -15,7 +15,6 @@ page-layout: full
 lang: es
 date-format: "D [de] MMMM [de] YYYY"
 title-block-banner: true
-comments: false
 ---
 
 Cada tema viene en **dos dosis**:

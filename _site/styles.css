@@ -450,3 +450,54 @@
 .sigue-ig a{white-space:nowrap;padding:.5rem 1rem;border-radius:999px;background:#E5636F;color:#fff !important;font-weight:600;text-decoration:none;font-size:.9rem}
 .sigue-ig a:hover{filter:brightness(1.08)}
 @media (max-width:640px){ .sigue-ig{grid-template-columns:auto 1fr} .sigue-ig a{grid-column:1 / -1;text-align:center;white-space:normal} }
+
+/* Sobre mí: idiomas como escala de puntos (A1 a C2) */
+.idiomas{display:grid;gap:.45rem;max-width:30rem;margin:.4rem 0 1rem}
+.idioma{display:grid;grid-template-columns:6.5rem 1fr 3.5rem;align-items:center;gap:.8rem}
+.idioma .nom{font-weight:600}
+.idioma .escala{display:flex;gap:.35rem}
+.idioma .escala i{width:1.35rem;height:.55rem;border-radius:999px;background:#E3E7ED}
+.idioma .escala i.on{background:#E5636F}
+.idioma .niv{font-size:.9rem;color:#5B6B80;text-align:right}
+.idiomas-nota{font-size:.8rem;color:#5B6B80;margin:.2rem 0 0;text-align:left !important}
+/* Recursos: tarjetas con imagen a la izquierda */
+.herramienta{display:grid;grid-template-columns:64px 1fr;column-gap:1.1rem;align-items:start}
+.herramienta > :first-child{grid-column:1;grid-row:1 / span 4;margin:0 !important}
+.herramienta > :first-child figure, .herramienta > :first-child p{margin:0}
+.herramienta img{width:64px;height:64px;border-radius:15px;max-width:none}
+.herramienta > :not(:first-child){grid-column:2}
+
+/* Recursos: libros recomendados (portada ilustrada a la izquierda) */
+.libros{display:grid;gap:1.2rem;margin:1rem 0 2rem;max-width:52rem}
+.libro{display:grid;grid-template-columns:132px 1fr;gap:1.4rem;align-items:start;padding:1.1rem;border:1px solid #E3E7ED;border-radius:16px}
+.libro .tapa{position:relative;display:flex;flex-direction:column;justify-content:flex-start;aspect-ratio:3/4.3;padding:1rem .8rem .8rem 1.15rem;
+  border-radius:4px 10px 10px 4px;color:#fff !important;text-decoration:none !important;overflow:hidden;
+  background:linear-gradient(160deg,var(--c1) 0%,var(--c1) 62%,var(--c2) 62%,var(--c2) 100%);
+  box-shadow:0 10px 22px rgba(11,31,58,.22),inset -3px 0 0 rgba(255,255,255,.08);transition:transform .15s}
+.libro .tapa:hover{transform:translateY(-3px) rotate(-1deg)}
+.libro .tapa .lomo{position:absolute;left:0;top:0;bottom:0;width:8px;background:rgba(0,0,0,.25)}
+.libro .tapa .t{font-family:Georgia,serif;font-weight:700;font-size:.92rem;line-height:1.2;text-align:left}
+.libro .tapa .a{margin-top:.5rem;font-size:.62rem;opacity:.85;line-height:1.3;text-align:left}
+.libro .tapa .r{position:absolute;right:.6rem;bottom:.4rem;font-family:Georgia,serif;font-weight:700;font-size:1.9rem;opacity:.9}
+.libro h3{margin:0 0 .15rem;font-size:1.12rem;line-height:1.3}
+.libro h3 a{text-decoration:none}
+.libro .autor{margin:0 0 .6rem;color:#5B6B80;font-size:.9rem;text-align:left !important}
+.libro .info p{margin:0 0 .45rem;font-size:.95rem;line-height:1.5;text-align:left !important}
+.libro .comp a{font-weight:600}
+@media (max-width:576px){ .libro{grid-template-columns:96px 1fr;gap:1rem} .libro .tapa .t{font-size:.72rem} .libro .tapa .a{display:none} }
+
+/* Sobre mí: colaboraciones con instituciones */
+.colab{border:1px solid #E3E7ED;border-left:5px solid #2A9DA3;border-radius:14px;padding:1.1rem 1.3rem .6rem;margin:.6rem 0 1.8rem;max-width:52rem}
+.colab-cab{display:flex;justify-content:space-between;align-items:flex-start;gap:1rem;flex-wrap:wrap}
+.colab-org{margin:0;font-size:.78rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#2A9DA3;text-align:left !important}
+.colab h4{margin:.2rem 0 .6rem;font-size:1.2rem}
+.colab-desde{font-size:.8rem;font-weight:600;padding:.2rem .7rem;border-radius:999px;background:rgba(42,157,163,.12);color:#1F7A7F;white-space:nowrap}
+.colab-reportes{display:flex;gap:1rem;flex-wrap:wrap;margin:.9rem 0 .4rem}
+.colab-rep{display:flex;flex-direction:column;gap:.45rem;width:170px;text-decoration:none !important;color:inherit !important}
+.colab-rep img{width:170px;height:221px;object-fit:cover;object-position:top;border-radius:8px;border:1px solid #E3E7ED;
+  box-shadow:0 8px 18px rgba(11,31,58,.14);transition:transform .15s}
+.colab-rep:hover img{transform:translateY(-3px)}
+.colab-rep span{font-size:.85rem;line-height:1.35;color:#5B6B80}
+.colab-rep span b{display:block;color:#1F2A37;font-size:.95rem}
+.colab-nota{font-size:.8rem;color:#5B6B80;text-align:left !important}
+@media (max-width:576px){ .colab-rep{width:calc(50% - .5rem)} .colab-rep img{width:100%;height:auto;aspect-ratio:500/650} }

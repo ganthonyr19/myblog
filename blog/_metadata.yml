@@ -6,3 +6,5 @@ freeze: true
 
 # Título con banner
 title-block-banner: true
+
+author: "Anthony Romero-Cerdán, MD"

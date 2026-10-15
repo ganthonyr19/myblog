@@ -1,7 +1,7 @@
 ---
 title: "El estudio de casos y controles"
 description: "El estudio de casos y controles explicado con diagramas y ejemplos: selección de controles, odds ratio, sesgo de recuerdo, análisis en R y tamaño de muestra."
-date: 2026-10-15
+date: 2026-10-01
 image: portada.png
 categories: [Diseños de estudio, Epidemiología, Tesis]
 ---

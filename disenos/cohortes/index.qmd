@@ -1,7 +1,7 @@
 ---
 title: "El estudio de cohortes"
 description: "El estudio de cohortes explicado con diagramas y ejemplos: prospectivo y retrospectivo, incidencia, riesgo relativo, persona-tiempo, pérdidas en el seguimiento, análisis en R y tamaño de muestra."
-date: 2026-10-15
+date: 2026-10-08
 image: portada.png
 categories: [Diseños de estudio, Epidemiología, Tesis]
 ---
@@ -84,7 +84,7 @@ Si todos tienen el mismo tiempo de seguimiento, se compara la **incidencia acumu
 
 $$RR = \frac{a/(a+b)}{c/(c+d)} = \frac{60/1000}{60/2000} = 2{,}0$$
 
-Si el seguimiento difiere entre las personas (unas entran o salen antes que otras), se usa la **tasa de incidencia**, que divide los eventos entre la suma de persona-tiempo. Por ejemplo, 60 eventos en 2800 persona-años en los expuestos (21,4 por 1000 persona-años) y 60 en 5800 persona-años en los no expuestos (10,3 por 1000) dan una **razón de tasas** de 2,07. Cuando interesa el tiempo hasta el evento, se usan curvas de **Kaplan-Meier** y la **regresión de Cox**, que estima el *hazard ratio* aprovechando a quienes no tuvieron el evento (datos censurados).
+Si el seguimiento difiere entre las personas (unas entran o salen antes que otras), se usa la **tasa de incidencia**, que divide los eventos entre la suma de [persona-tiempo](../../prospecto/diccionario.qmd#persona-tiempo){.dic}. Por ejemplo, 60 eventos en 2800 persona-años en los expuestos (21,4 por 1000 persona-años) y 60 en 5800 persona-años en los no expuestos (10,3 por 1000) dan una **razón de tasas** de 2,07. Cuando interesa el tiempo hasta el evento, se usan curvas de **Kaplan-Meier** y la **[regresión de Cox](../../prospecto/diccionario.qmd#regresion-de-cox){.dic}**, que estima el *hazard ratio* aprovechando a quienes no tuvieron el evento (datos censurados).
 
 ```r
 # RR ajustado (seguimiento fijo): Poisson con varianza robusta

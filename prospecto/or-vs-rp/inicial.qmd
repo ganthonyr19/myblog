@@ -2,8 +2,8 @@
 title: "¿OR o razón de prevalencias?"
 subtitle: "Dosis inicial: qué medida reportar en un estudio transversal con un desenlace frecuente"
 description: "Prospecto R n.º 1, dosis inicial. Con la ENDES 2024: por qué el odds ratio exagera la asociación cuando el desenlace es frecuente y cómo calcular la razón de prevalencias en R, a mano, con epiR y con una regresión de Poisson."
-author: "Anthony Romero Cerdán"
-date: "2026-10-13"
+author: "Anthony Romero-Cerdán, MD"
+date: "2026-09-03"
 categories: [Dosis inicial, medidas de asociación, estudios transversales, ENDES]
 image: receta_inicial.png
 open-graph:

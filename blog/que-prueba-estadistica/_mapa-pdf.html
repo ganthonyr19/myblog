@@ -1,0 +1,57 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8">
+<style>
+@font-face{font-family:Fraunces;src:url(../../prospecto/estilo/fuentes/fraunces-latin-600-normal.woff2);font-weight:600}
+@font-face{font-family:Inter;src:url(../../prospecto/estilo/fuentes/inter-latin-400-normal.woff2);font-weight:400}
+@font-face{font-family:Inter;src:url(../../prospecto/estilo/fuentes/inter-latin-600-normal.woff2);font-weight:600}
+@font-face{font-family:Inter;src:url(../../prospecto/estilo/fuentes/inter-latin-700-normal.woff2);font-weight:700}
+@page{size:A4 landscape;margin:0}
+*{box-sizing:border-box;margin:0;padding:0}
+body{width:297mm;height:210mm;font-family:Inter;color:#1F2A37;position:relative;overflow:hidden;background:#fff}
+.marca{position:absolute;left:50%;top:56%;width:150mm;transform:translate(-50%,-50%) rotate(-18deg);opacity:.06}
+header{background:#0B1F3A;color:#F5F7FA;padding:7mm 12mm 6mm;display:flex;align-items:center;gap:6mm}
+header img.emb{width:15mm;height:15mm;border-radius:3.5mm;box-shadow:0 0 0 .5mm #2A4D74}
+header .t{flex:1}
+header .serie{font-size:8pt;font-weight:700;letter-spacing:.16em;color:#E5636F;text-transform:uppercase}
+header h1{font-family:Fraunces;font-weight:600;font-size:20pt;line-height:1.1;margin-top:1mm}
+header p{font-size:9pt;color:#A9B8CC;margin-top:1mm}
+header img.logo{height:11mm}
+main{padding:5mm 12mm 0}
+table{width:100%;border-collapse:separate;border-spacing:0;font-size:8.6pt;position:relative}
+th,td{padding:1.55mm 2.2mm;border-bottom:.25mm solid #E3E7ED;text-align:left;vertical-align:top}
+thead th{background:#E5636F;color:#fff;font-weight:600}
+thead th:first-child{border-radius:2mm 0 0 0} thead th:last-child{border-radius:0 2mm 0 0}
+tbody th{font-weight:700;color:#0B1F3A;background:#FBF7EE}
+td small{color:#5B6B80}
+.nota{font-size:7.6pt;color:#5B6B80;margin-top:2.5mm}
+footer{position:absolute;left:0;right:0;bottom:0;padding:3.5mm 12mm;border-top:.6mm solid #E5636F;display:flex;justify-content:space-between;font-size:8pt;color:#5B6B80;background:#fff}
+footer b{color:#0B1F3A}
+</style></head><body>
+<img class="marca" src="../../images/marcas/logo-bel.png">
+<header><img class="emb" src="../../images/marcas/triaje.svg"><div class="t"><div class="serie">Consultorio estadístico · Módulo Triaje</div>
+<h1>Mapa de pruebas estadísticas</h1><p>Elige la prueba por tu objetivo: qué quieres hacer, qué tipo de desenlace tienes y si tus grupos son independientes.</p></div>
+<img class="logo" src="../../images/marcas/logo-bel.png" style="filter:none"></header>
+<main><table class="mapa">
+<thead><tr><th>Quiero…</th><th>Desenlace</th><th>Grupos</th><th>Prueba</th><th>Alternativa</th></tr></thead>
+<tbody>
+<tr><th rowspan="2">Describir</th><td>Categórico</td><td>—</td><td>Frecuencias, % e IC 95 %</td><td>—</td></tr>
+<tr><td>Numérico</td><td>—</td><td>Media (DE)</td><td>Mediana (RIC)</td></tr>
+<tr><th rowspan="9">Comparar</th><td rowspan="3">Categórico</td><td>Independientes</td><td>Chi cuadrado</td><td>Exacta de Fisher <small>(esperadas &lt; 5)</small></td></tr>
+<tr><td>Mismas personas, 2 veces</td><td>McNemar</td><td>—</td></tr>
+<tr><td>Mismas personas, 3+ veces</td><td>Q de Cochran</td><td>—</td></tr>
+<tr><td rowspan="5">Numérico</td><td>2 independientes</td><td>t de Welch</td><td>U de Mann-Whitney</td></tr>
+<tr><td>3+ independientes</td><td>ANOVA</td><td>Kruskal-Wallis</td></tr>
+<tr><td>Mismas personas, 2 veces</td><td>t pareada</td><td>Rangos con signo de Wilcoxon</td></tr>
+<tr><td>Mismas personas, 3+ veces</td><td>ANOVA de medidas repetidas</td><td>Friedman</td></tr>
+<tr><td>Otra variable numérica</td><td>Correlación de Pearson</td><td>Correlación de Spearman</td></tr>
+<tr><td>Tiempo al evento</td><td>Independientes</td><td>Kaplan-Meier y log-rank</td><td>—</td></tr>
+<tr><th rowspan="4">Ajustar</th><td>Binario</td><td>—</td><td>Poisson robusta (RP, RR) <small>o logística (OR) en casos y controles</small></td><td>—</td></tr>
+<tr><td>Numérico</td><td>—</td><td>Regresión lineal</td><td>—</td></tr>
+<tr><td>Conteo</td><td>—</td><td>Poisson o binomial negativa</td><td>—</td></tr>
+<tr><td>Tiempo al evento</td><td>—</td><td>Regresión de Cox</td><td>—</td></tr>
+<tr><th rowspan="3">Diagnóstico y concordancia</th><td>Prueba vs. estándar</td><td>—</td><td>Sensibilidad, especificidad, curva ROC</td><td>—</td></tr>
+<tr><td>Categórico, 2 observadores</td><td>—</td><td>Kappa de Cohen</td><td>Kappa ponderado <small>(ordinal)</small></td></tr>
+<tr><td>Numérico, 2 métodos</td><td>—</td><td>CCI y Bland-Altman</td><td>—</td></tr>
+</tbody></table>
+<p class="nota">Alternativa: cuando la variable numérica es muy sesgada, tiene valores extremos o es ordinal. Fisher: si más de 20 % de las frecuencias esperadas es menor que 5 o alguna es menor que 1 (Cochran, 1954). Triaje interactivo, código en R y cómo reportar cada prueba: anthonyromero.netlify.app/blog/que-prueba-estadistica</p></main>
+<footer><span><b>Anthony Romero-Cerdán, MD</b> · anthonyromero.netlify.app</span><span>Instagram <b>@bioestadistica.en.linea</b></span></footer>
+</body></html>

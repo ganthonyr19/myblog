@@ -1,0 +1,55 @@
+---
+title: "Entradas por tema"
+description: "Todas las entradas del sitio que comparten una palabra clave."
+listing:
+  contents:
+    - prospecto/*/*.qmd
+    - "disenos/*/index.qmd"
+    - blog
+    - tutoriales
+    - posts
+    - herramientas/muestra/index.qmd
+  sort: "date desc"
+  type: grid
+  categories: true
+  sort-ui: false
+  filter-ui: false
+  fields: [image, date, title, description, categories, reading-time]
+  date-format: "D MMM YYYY"
+page-layout: full
+title-block-banner: true
+search: false
+format:
+  html:
+    include-after-body:
+      text: |
+        <style>.quarto-listing-category-title, .quarto-listing-category{display:none !important}</style>
+        <script>
+        /* Página fuera del menú: se llega desde una palabra clave (temas.html#tema=...).
+           Muestra solo las entradas que tienen esa palabra clave. */
+        (function () {
+          function filtrar() {
+            var m = location.hash.match(/tema=([^&]+)/);
+            var t = m ? decodeURIComponent(m[1]) : "";
+            var n = 0;
+            document.querySelectorAll("[data-categories]").forEach(function (el) {
+              var cats = [];
+              try { cats = decodeURIComponent(atob(el.getAttribute("data-categories"))).split(","); } catch (e) {}
+              var ok = !t || cats.indexOf(t) >= 0;
+              el.style.display = ok ? "" : "none";
+              if (ok) n++;
+            });
+            var h = document.querySelector("h1.title");
+            var d = document.querySelector(".quarto-title .description, .description");
+            if (h) h.textContent = t ? "Entradas sobre «" + t + "»" : "Entradas por tema";
+            if (d) d.innerHTML = t ? n + (n === 1 ? " entrada" : " entradas") + ' con esta palabra clave. <a href="temas.html" style="color:inherit;text-decoration:underline">Ver todas</a>' : "Todas las entradas del sitio.";
+          }
+          window.addEventListener("hashchange", filtrar);
+          window.addEventListener("load", filtrar);
+        })();
+        </script>
+---
+
+::: {.callout-tip appearance="minimal"}
+¿Buscabas otra cosa? Explora [Prospecto R](prospecto/index.qmd), los [Diseños de estudio](disenos/index.qmd) o el [Consultorio estadístico](herramientas/index.qmd).
+:::

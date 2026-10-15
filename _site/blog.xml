@@ -5,14 +5,804 @@
       xmlns:dc="http://purl.org/dc/elements/1.1/" 
       version="2.0">
 <channel>
-<title>Anthony Romero</title>
+<title>Anthony Romero · Bioestadística en línea</title>
 <link>https://anthonyromero.netlify.app/blog.html</link>
 <atom:link href="https://anthonyromero.netlify.app/blog.xml" rel="self" type="application/rss+xml"/>
 <description>Entradas para entender y hacer mejor la investigación en salud: diseños de estudio, elección de pruebas estadísticas y novedades del ecosistema R.</description>
 <generator>quarto-1.10.18</generator>
-<lastBuildDate>Thu, 15 Oct 2026 05:00:00 GMT</lastBuildDate>
+<lastBuildDate>Thu, 08 Oct 2026 05:00:00 GMT</lastBuildDate>
+<item>
+  <title>El estudio de cohortes</title>
+  <dc:creator>Anthony Romero-Cerdán, MD</dc:creator>
+  <link>https://anthonyromero.netlify.app/disenos/cohortes/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+
+<p><a href="../../disenos/index.html" class="sello"><img src="https://anthonyromero.netlify.app/images/marcas/disenos.svg" class="img-fluid"><span><b>Diseños de estudio</b><em>Diseño n.º 3</em></span></a></p>
+<div class="en-una-frase">
+<p>Un estudio de cohortes sigue a personas <strong>sin el desenlace</strong>, expuestas y no expuestas, para ver en cuál de los grupos aparece más.</p>
+</div>
+<p>Es el diseño observacional que mejor respeta el orden de los hechos: primero la exposición y después el desenlace. Algunas de las cohortes más conocidas son el estudio de Framingham, que desde 1948 sigue a los habitantes de esa ciudad de Estados Unidos para entender la enfermedad cardiovascular, y la cohorte de médicos británicos de Doll y Hill, que siguió durante 50 años la mortalidad según el hábito de fumar (Doll et al., 2004).</p>
+<section id="cómo-se-ve" class="level2">
+<h2 class="anchored" data-anchor-id="cómo-se-ve">Cómo se ve</h2>
+<div class="diagrama">
+<svg viewbox="0 0 760 290" aria-label="Esquema del estudio de cohortes">
+  <defs><marker id="fo" viewbox="0 0 10 10" refx="9" refy="5" markerwidth="7" markerheight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#5B6B80"></path></marker></defs>
+  <g font-size="13">
+    <rect x="20" y="95" width="150" height="70" rx="14" fill="#0B1F3A"></rect>
+    <text x="95" y="125" text-anchor="middle" fill="#fff" font-weight="700">Personas sin</text>
+    <text x="95" y="143" text-anchor="middle" fill="#fff" font-weight="700">el desenlace</text>
+    <path d="M170 115 L230 70" stroke="#5B6B80" stroke-width="2.5" marker-end="url(#fo)"></path>
+    <path d="M170 145 L230 190" stroke="#5B6B80" stroke-width="2.5" marker-end="url(#fo)"></path>
+    <rect x="235" y="40" width="150" height="56" rx="12" fill="#E5636F"></rect>
+    <text x="310" y="73" text-anchor="middle" fill="#fff" font-weight="700">Expuestos</text>
+    <rect x="235" y="165" width="150" height="56" rx="12" fill="#2A9DA3"></rect>
+    <text x="310" y="198" text-anchor="middle" fill="#fff" font-weight="700">No expuestos</text>
+    <path d="M390 68 L560 68" stroke="#5B6B80" stroke-width="2.5" stroke-dasharray="7 5" marker-end="url(#fo)"></path>
+    <path d="M390 193 L560 193" stroke="#5B6B80" stroke-width="2.5" stroke-dasharray="7 5" marker-end="url(#fo)"></path>
+    <text x="475" y="58" text-anchor="middle" class="dg-s" font-size="12">seguimiento</text>
+    <text x="475" y="183" text-anchor="middle" class="dg-s" font-size="12">seguimiento</text>
+    <rect x="570" y="40" width="170" height="56" rx="12" fill="none" stroke="#E5636F" stroke-width="2"></rect>
+    <text x="655" y="64" text-anchor="middle" class="dg-t" font-weight="700">Enferman: 6 %</text>
+    <text x="655" y="83" text-anchor="middle" class="dg-s" font-size="12">60 de 1000</text>
+    <rect x="570" y="165" width="170" height="56" rx="12" fill="none" stroke="#2A9DA3" stroke-width="2"></rect>
+    <text x="655" y="189" text-anchor="middle" class="dg-t" font-weight="700">Enferman: 3 %</text>
+    <text x="655" y="208" text-anchor="middle" class="dg-s" font-size="12">60 de 2000</text>
+    <line x1="20" y1="252" x2="740" y2="252" class="dg-l" stroke-width="1.5" marker-end="url(#fo)"></line>
+    <text x="20" y="276" class="dg-s" font-size="12">Inicio: se mide la exposición</text>
+    <text x="740" y="276" text-anchor="end" class="dg-s" font-size="12">Final: aparecen los desenlaces</text>
+  </g>
+</svg>
+<p class="cap">Datos ilustrativos. La comparación de la incidencia entre ambos grupos da el riesgo relativo: 6 % / 3 % = 2,0.</p>
+</div>
+</section>
+<section id="prospectiva-o-retrospectiva" class="level2">
+<h2 class="anchored" data-anchor-id="prospectiva-o-retrospectiva">Prospectiva o retrospectiva</h2>
+<p>La diferencia no es la dirección de la mirada, que siempre va de la exposición al desenlace, sino <strong>cuándo</strong> ocurre el seguimiento respecto al momento en que se hace el estudio.</p>
+<ul>
+<li><strong>Cohorte prospectiva (concurrente):</strong> se mide la exposición hoy y se sigue a las personas hacia el futuro. Se controla mejor la calidad de los datos, pero toma tiempo.</li>
+<li><strong>Cohorte retrospectiva (histórica):</strong> se reconstruye con registros del pasado una exposición medida antes del desenlace, y se sigue en esos registros hasta hoy. Es rápida, pero depende de la calidad de las historias clínicas.</li>
+</ul>
+<p>En ambos casos debe existir un <strong>seguimiento real</strong>: un punto de partida en el que las personas no tenían el desenlace y un periodo durante el cual podía aparecer.</p>
+</section>
+<section id="cuándo-elegirlo" class="level2">
+<h2 class="anchored" data-anchor-id="cuándo-elegirlo">Cuándo elegirlo</h2>
+<ul>
+<li>Quieres medir la <strong>incidencia</strong> (cuántos enferman) y el <strong>riesgo</strong>.</li>
+<li>La <strong>exposición es rara</strong>: puedes seleccionar a los expuestos a propósito (trabajadores de una mina, por ejemplo).</li>
+<li>Quieres estudiar <strong>varios desenlaces</strong> de una misma exposición.</li>
+<li>Necesitas que la secuencia temporal sea clara.</li>
+</ul>
+<p>No es el diseño adecuado para enfermedades muy raras o de latencia muy larga: tendrías que seguir a demasiadas personas durante demasiado tiempo.</p>
+</section>
+<section id="cómo-se-analiza" class="level2">
+<h2 class="anchored" data-anchor-id="cómo-se-analiza">Cómo se analiza</h2>
+<p>Si todos tienen el mismo tiempo de seguimiento, se compara la <strong>incidencia acumulada</strong> (el riesgo) con el <a href="../../prospecto/diccionario.html#riesgo-relativo" class="dic">riesgo relativo</a> (RR):</p>
+<div style="overflow-x:auto">
+
+<table class="mapa caption-top table">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Enferman</th>
+<th data-quarto-table-cell-role="th">No enferman</th>
+<th data-quarto-table-cell-role="th">Total</th>
+<th data-quarto-table-cell-role="th">Incidencia</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">Expuestos</th>
+<td><strong>a</strong> = 60</td>
+<td><strong>b</strong> = 940</td>
+<td>1000</td>
+<td>6 %</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">No expuestos</th>
+<td><strong>c</strong> = 60</td>
+<td><strong>d</strong> = 1940</td>
+<td>2000</td>
+<td>3 %</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+<p><img src="https://latex.codecogs.com/png.latex?RR%20=%20%5Cfrac%7Ba/(a+b)%7D%7Bc/(c+d)%7D%20=%20%5Cfrac%7B60/1000%7D%7B60/2000%7D%20=%202%7B,%7D0"></p>
+<p>Si el seguimiento difiere entre las personas (unas entran o salen antes que otras), se usa la <strong>tasa de incidencia</strong>, que divide los eventos entre la suma de <a href="../../prospecto/diccionario.html#persona-tiempo" class="dic">persona-tiempo</a>. Por ejemplo, 60 eventos en 2800 persona-años en los expuestos (21,4 por 1000 persona-años) y 60 en 5800 persona-años en los no expuestos (10,3 por 1000) dan una <strong>razón de tasas</strong> de 2,07. Cuando interesa el tiempo hasta el evento, se usan curvas de <strong>Kaplan-Meier</strong> y la <strong><a href="../../prospecto/diccionario.html#regresion-de-cox" class="dic">regresión de Cox</a></strong>, que estima el <em>hazard ratio</em> aprovechando a quienes no tuvieron el evento (datos censurados).</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># RR ajustado (seguimiento fijo): Poisson con varianza robusta</span></span>
+<span id="cb1-2">m <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">glm</span>(evento <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">~</span> exposicion <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> edad <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> sexo, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">family =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">poisson</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">link =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"log"</span>), <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">data =</span> datos)</span>
+<span id="cb1-3">lmtest<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">coeftest</span>(m, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">vcov =</span> sandwich<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">vcovHC</span>(m, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">type =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"HC0"</span>))</span>
+<span id="cb1-4"></span>
+<span id="cb1-5"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Tiempo hasta el evento: Kaplan-Meier y Cox</span></span>
+<span id="cb1-6"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">library</span>(survival)</span>
+<span id="cb1-7"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">survfit</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">Surv</span>(tiempo, evento) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">~</span> exposicion, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">data =</span> datos)</span>
+<span id="cb1-8"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">coxph</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">Surv</span>(tiempo, evento) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">~</span> exposicion <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> edad <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> sexo, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">data =</span> datos)</span></code></pre></div></div>
+<p>¿Dudas sobre qué prueba corresponde a tu objetivo? Pásalo por el <a href="../../blog/que-prueba-estadistica/index.html">Triaje estadístico</a>.</p>
+</section>
+<section id="fortalezas-y-límites" class="level2">
+<h2 class="anchored" data-anchor-id="fortalezas-y-límites">Fortalezas y límites</h2>
+<div class="pros-contras">
+<div>
+<p><strong>Fortalezas</strong></p>
+<ul>
+<li>La exposición se mide antes del desenlace: secuencia temporal clara.</li>
+<li>Mide incidencia y riesgo directamente.</li>
+<li>Permite estudiar varios desenlaces.</li>
+<li>Menos sesgo de recuerdo que casos y controles.</li>
+</ul>
+</div>
+<div>
+<p><strong>Límites</strong></p>
+<ul>
+<li>Costosa y lenta, sobre todo si es prospectiva.</li>
+<li>Poco eficiente para desenlaces raros.</li>
+<li>Las pérdidas en el seguimiento pueden sesgar los resultados.</li>
+<li>La exposición puede cambiar con el tiempo.</li>
+</ul>
+</div>
+</div>
+</section>
+<section id="los-sesgos-que-más-se-observan" class="level2">
+<h2 class="anchored" data-anchor-id="los-sesgos-que-más-se-observan">Los sesgos que más se observan</h2>
+<ul>
+<li><strong>Pérdidas en el seguimiento.</strong> Si quienes se pierden son distintos de quienes se quedan (por ejemplo, los más enfermos), el riesgo queda sesgado. Reporta cuántos se perdieron en cada grupo.</li>
+<li><strong><a href="../../prospecto/diccionario.html#confusion" class="dic">Confusión</a>.</strong> Expuestos y no expuestos pueden diferir en otras características: controla los confusores en el análisis.</li>
+<li><strong>Sesgo de información.</strong> Si los desenlaces se buscan con más cuidado en los expuestos, se encuentran más. Lo ideal es que quien evalúa el desenlace no conozca la exposición.</li>
+<li><strong>Desenlace presente al inicio.</strong> Si se incluye a personas que ya tenían la enfermedad, se mezcla prevalencia con incidencia.</li>
+</ul>
+</section>
+<section id="errores-frecuentes-en-las-tesis" class="level2">
+<h2 class="anchored" data-anchor-id="errores-frecuentes-en-las-tesis">Errores frecuentes en las tesis</h2>
+<ol type="1">
+<li><strong>Llamar «cohorte retrospectiva» a una revisión de historias</strong> en la que la exposición y el desenlace se registraron al mismo tiempo. Sin seguimiento desde la exposición, el estudio es transversal.</li>
+<li><strong>No verificar que nadie tenía el desenlace al inicio.</strong></li>
+<li><strong>No reportar el tiempo de seguimiento ni las pérdidas</strong> de cada grupo.</li>
+<li><strong>Usar el RR con seguimientos muy distintos</strong> entre personas, en lugar de tasas o regresión de Cox.</li>
+<li><strong>Reportar solo el OR de una regresión logística</strong> cuando el desenlace es frecuente: en una cohorte puedes estimar directamente el RR.</li>
+</ol>
+</section>
+<section id="tu-tamaño-de-muestra" class="level2">
+<h2 class="anchored" data-anchor-id="tu-tamaño-de-muestra">Tu tamaño de muestra</h2>
+<p>Necesitas la incidencia esperada en los no expuestos, el RR mínimo que quieres detectar y cuántos no expuestos tendrás por cada expuesto.</p>
+<div class="usa-calc">
+<p><img src="https://anthonyromero.netlify.app/images/marcas/muestra.svg" class="img-fluid"></p>
+<p>Calcúlalo en el Consultorio estadístico, ya configurado para este diseño: <a href="../../herramientas/muestra/index.html#mod=dprop&amp;dis=co">tamaño de muestra para una cohorte</a>.</p>
+</div>
+</section>
+<section id="cómo-reportarlo" class="level2">
+<h2 class="anchored" data-anchor-id="cómo-reportarlo">Cómo reportarlo</h2>
+<p>Sigue la guía <strong>STROBE</strong> (von Elm et al., 2007): describe cómo se definió la cohorte, cómo y cuándo se midió la exposición, la duración del seguimiento, las pérdidas en cada grupo y cómo se confirmó el desenlace. Reporta las medidas de asociación crudas y ajustadas con su intervalo de confianza al 95 %.</p>
+</section>
+<section id="autoevaluación" class="level2">
+<h2 class="anchored" data-anchor-id="autoevaluación">Autoevaluación</h2>
+<div class="autoeval">
+<div class="pregunta">
+<p>Seleccionas gestantes atendidas en 2023 según tuvieran o no anemia en el primer trimestre, y revisas en sus historias si sus recién nacidos tuvieron bajo peso al nacer. ¿Qué diseño es?</p>
+<details>
+<summary>
+Ver respuesta
+</summary>
+Una cohorte retrospectiva: la exposición (anemia en el primer trimestre) se registró antes del desenlace (bajo peso al nacer), y se sigue en los registros hasta el parto.
+</details>
+</div>
+<div class="pregunta">
+<p>En tu cohorte, unos pacientes fueron seguidos 2 meses y otros 24. ¿Por qué no basta con comparar el porcentaje de eventos?</p>
+<details>
+<summary>
+Ver respuesta
+</summary>
+Porque quien fue seguido más tiempo tuvo más oportunidad de presentar el evento. Hay que usar tasas por persona-tiempo o métodos de supervivencia (Kaplan-Meier, regresión de Cox).
+</details>
+</div>
+<div class="pregunta">
+<p>El 25 % de los expuestos y el 5 % de los no expuestos abandonaron el seguimiento. ¿Qué problema puede haber?</p>
+<details>
+<summary>
+Ver respuesta
+</summary>
+Un sesgo por pérdidas diferenciales: si quienes se fueron tenían un riesgo distinto, la comparación queda sesgada. Hay que reportarlo y, si es posible, comparar las características de quienes se perdieron.
+</details>
+</div>
+</div>
+</section>
+<section id="referencias" class="level2">
+<h2 class="anchored" data-anchor-id="referencias">Referencias</h2>
+<ul>
+<li>Doll R, Peto R, Boreham J, Sutherland I. Mortality in relation to smoking: 50 years’ observations on male British doctors. <em>BMJ</em>. 2004;328(7455):1519.</li>
+<li>Rothman KJ, Greenland S, Lash TL. <em>Modern Epidemiology</em>. 3.ª ed.&nbsp;Filadelfia: Lippincott Williams &amp; Wilkins; 2008.</li>
+<li>Grimes DA, Schulz KF. Cohort studies: marching towards outcomes. <em>Lancet</em>. 2002;359(9303):341-5.</li>
+<li>von Elm E, Altman DG, Egger M, Pocock SJ, Gøtzsche PC, Vandenbroucke JP. The Strengthening the Reporting of Observational Studies in Epidemiology (STROBE) statement: guidelines for reporting observational studies. <em>Lancet</em>. 2007;370(9596):1453-7.</li>
+</ul>
+<div class="cta">
+<p><strong>¿Tu tesis es una cohorte?</strong></p>
+<p>Te ayudo con el diseño, el seguimiento y el análisis de supervivencia.</p>
+<p><a href="https://api.whatsapp.com/send?phone=51955446754&amp;text=Hola%2C%20le%C3%AD%20tu%20entrada%20sobre%20estudios%20de%20cohortes%20y%20quiero%20informaci%C3%B3n%20sobre%20asesor%C3%ADa%20para%20mi%20tesis">Escríbeme por WhatsApp</a></p>
+</div>
+
+
+</section>
+
+ ]]></description>
+  <category>Diseños de estudio</category>
+  <category>Epidemiología</category>
+  <category>Tesis</category>
+  <guid>https://anthonyromero.netlify.app/disenos/cohortes/</guid>
+  <pubDate>Thu, 08 Oct 2026 05:00:00 GMT</pubDate>
+  <media:content url="https://anthonyromero.netlify.app/disenos/cohortes/portada.png" medium="image" type="image/png" height="76" width="144"/>
+</item>
+<item>
+  <title>El estudio de casos y controles</title>
+  <dc:creator>Anthony Romero-Cerdán, MD</dc:creator>
+  <link>https://anthonyromero.netlify.app/disenos/casos-y-controles/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+
+<p><a href="../../disenos/index.html" class="sello"><img src="https://anthonyromero.netlify.app/images/marcas/disenos.svg" class="img-fluid"><span><b>Diseños de estudio</b><em>Diseño n.º 2</em></span></a></p>
+<div class="en-una-frase">
+<p>Un estudio de casos y controles parte de personas <strong>con</strong> y <strong>sin</strong> la enfermedad, y mira hacia atrás para comparar cuántas estuvieron expuestas.</p>
+</div>
+<p>Es el diseño más eficiente para estudiar <strong>enfermedades raras</strong> o con un periodo de latencia largo: en lugar de esperar años a que aparezcan los casos, se empieza por ellos. Uno de los estudios que cambió la historia de la salud pública fue de este tipo: Doll y Hill (1950) compararon pacientes con cáncer de pulmón y pacientes sin él en hospitales de Londres, y encontraron que fumar era mucho más frecuente entre los casos.</p>
+<section id="cómo-se-ve" class="level2">
+<h2 class="anchored" data-anchor-id="cómo-se-ve">Cómo se ve</h2>
+<div class="diagrama">
+<svg viewbox="0 0 760 270" aria-label="Esquema del estudio de casos y controles">
+  <defs><marker id="fc" viewbox="0 0 10 10" refx="9" refy="5" markerwidth="7" markerheight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#5B6B80"></path></marker></defs>
+  <g font-size="13">
+    <rect x="540" y="30" width="190" height="70" rx="14" fill="#E5636F"></rect>
+    <text x="635" y="60" text-anchor="middle" fill="#fff" font-weight="700">Casos</text>
+    <text x="635" y="80" text-anchor="middle" fill="#fff" font-size="12">Con la enfermedad</text>
+    <rect x="540" y="130" width="190" height="70" rx="14" fill="#0B1F3A"></rect>
+    <text x="635" y="160" text-anchor="middle" fill="#fff" font-weight="700">Controles</text>
+    <text x="635" y="180" text-anchor="middle" fill="#A9B8CC" font-size="12">Sin la enfermedad</text>
+    <path d="M530 65 L330 65" stroke="#5B6B80" stroke-width="2.5" stroke-dasharray="7 5" marker-end="url(#fc)"></path>
+    <path d="M530 165 L330 165" stroke="#5B6B80" stroke-width="2.5" stroke-dasharray="7 5" marker-end="url(#fc)"></path>
+    <text x="430" y="55" text-anchor="middle" class="dg-s" font-size="12">se mira hacia atrás</text>
+    <rect x="40" y="30" width="280" height="170" rx="14" fill="none" stroke="#2A9DA3" stroke-width="2"></rect>
+    <text x="180" y="60" text-anchor="middle" class="dg-t" font-weight="700">¿Estuvieron expuestos?</text>
+    <text x="180" y="95" text-anchor="middle" class="dg-s" font-size="12">Entrevista, historia clínica,</text>
+    <text x="180" y="112" text-anchor="middle" class="dg-s" font-size="12">registros previos</text>
+    <text x="180" y="150" text-anchor="middle" fill="#E5636F" font-weight="700">Expuestos en casos: 40 %</text>
+    <text x="180" y="172" text-anchor="middle" fill="#2A9DA3" font-weight="700">Expuestos en controles: 25 %</text>
+    <line x1="40" y1="232" x2="740" y2="232" class="dg-l" stroke-width="1.5" marker-start="url(#fc)"></line>
+    <text x="40" y="256" class="dg-s" font-size="12">Pasado: la exposición</text>
+    <text x="740" y="256" text-anchor="end" class="dg-s" font-size="12">Presente: el diagnóstico</text>
+  </g>
+</svg>
+<p class="cap">El investigador decide cuántos casos y cuántos controles incluir. Por eso no puede calcular la frecuencia de la enfermedad.</p>
+</div>
+</section>
+<section id="cuándo-elegirlo" class="level2">
+<h2 class="anchored" data-anchor-id="cuándo-elegirlo">Cuándo elegirlo</h2>
+<ul>
+<li>La enfermedad es <strong>rara</strong>: una cohorte necesitaría seguir a miles de personas para observar unos pocos casos.</li>
+<li>La enfermedad tarda <strong>mucho en aparecer</strong> después de la exposición.</li>
+<li>Quieres explorar <strong>varias exposiciones</strong> para un mismo desenlace.</li>
+<li>Necesitas una respuesta <strong>rápida</strong>, por ejemplo, ante un brote.</li>
+</ul>
+<p>No es el diseño adecuado si la exposición es rara (pocos casos o controles expuestos) o si quieres estimar cuántas personas enferman.</p>
+</section>
+<section id="la-pieza-clave-los-controles" class="level2">
+<h2 class="anchored" data-anchor-id="la-pieza-clave-los-controles">La pieza clave: los controles</h2>
+<p>Los controles deben representar a la población de la que salieron los casos: personas que, si hubieran desarrollado la enfermedad, habrían sido incluidas como casos. Un control mal elegido arruina el estudio aunque todo lo demás esté bien.</p>
+<ul>
+<li><strong>Controles de la misma población:</strong> del mismo hospital y con la misma área de influencia, de la misma comunidad, del mismo registro.</li>
+<li><strong>Controles hospitalarios:</strong> son prácticos, pero no deben tener enfermedades relacionadas con la exposición. Si estudias tabaco y cáncer de pulmón, un control con EPOC no sirve.</li>
+<li><strong>Emparejamiento:</strong> puedes elegir controles parecidos a cada caso en edad o sexo, pero entonces el análisis también debe ser emparejado, y ya no podrás evaluar esas variables como factores asociados.</li>
+<li><strong>Más de un control por caso:</strong> aumenta la potencia, pero más allá de cuatro controles por caso la ganancia es pequeña.</li>
+</ul>
+</section>
+<section id="cómo-se-analiza" class="level2">
+<h2 class="anchored" data-anchor-id="cómo-se-analiza">Cómo se analiza</h2>
+<p>Como el investigador fijó cuántos casos y controles hay, la proporción de enfermos en la muestra no refleja la de la población. Por eso <strong>no se puede calcular la prevalencia, la incidencia, la RP ni el riesgo relativo</strong>. Lo que sí se puede comparar es la odds de exposición en casos y controles: el <a href="../../prospecto/diccionario.html#odds-ratio" class="dic">odds ratio</a>.</p>
+<div style="overflow-x:auto">
+
+<table class="mapa caption-top table">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Casos</th>
+<th data-quarto-table-cell-role="th">Controles</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">Expuestos</th>
+<td><strong>a</strong> = 80</td>
+<td><strong>b</strong> = 50</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">No expuestos</th>
+<td><strong>c</strong> = 120</td>
+<td><strong>d</strong> = 150</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">Total</th>
+<td>200</td>
+<td>200</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+<p><img src="https://latex.codecogs.com/png.latex?OR%20=%20%5Cfrac%7Ba/c%7D%7Bb/d%7D%20=%20%5Cfrac%7Ba%20%5Ctimes%20d%7D%7Bb%20%5Ctimes%20c%7D%20=%20%5Cfrac%7B80%20%5Ctimes%20150%7D%7B50%20%5Ctimes%20120%7D%20=%202%7B,%7D0"></p>
+<p>Con estos datos ilustrativos, la odds de haber estado expuesto es el doble en los casos que en los controles. Cuando la enfermedad es rara en la población, el OR se aproxima al riesgo relativo. Para ajustar por <a href="../../prospecto/diccionario.html#confusion" class="dic">confusores</a> se usa <a href="../../prospecto/diccionario.html#regresion-logistica" class="dic">regresión logística</a>; si los controles fueron emparejados, regresión logística condicional.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># OR crudo y ajustado</span></span>
+<span id="cb1-2">m <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">glm</span>(caso <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">~</span> exposicion <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> edad <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> sexo, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">family =</span> binomial, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">data =</span> datos)</span>
+<span id="cb1-3">gtsummary<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">tbl_regression</span>(m, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">exponentiate =</span> <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">TRUE</span>)</span>
+<span id="cb1-4"></span>
+<span id="cb1-5"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Con emparejamiento (un conjunto por caso y sus controles)</span></span>
+<span id="cb1-6">survival<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">clogit</span>(caso <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">~</span> exposicion <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">strata</span>(conjunto), <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">data =</span> datos)</span></code></pre></div></div>
+</section>
+<section id="fortalezas-y-límites" class="level2">
+<h2 class="anchored" data-anchor-id="fortalezas-y-límites">Fortalezas y límites</h2>
+<div class="pros-contras">
+<div>
+<p><strong>Fortalezas</strong></p>
+<ul>
+<li>Eficiente para enfermedades raras o de latencia larga.</li>
+<li>Rápido y de menor costo que una cohorte.</li>
+<li>Permite estudiar varias exposiciones a la vez.</li>
+<li>Necesita menos participantes.</li>
+</ul>
+</div>
+<div>
+<p><strong>Límites</strong></p>
+<ul>
+<li>No estima la frecuencia de la enfermedad ni el riesgo.</li>
+<li>La exposición se mide después del diagnóstico: hay riesgo de sesgo de recuerdo.</li>
+<li>La selección de controles es difícil y es la fuente principal de sesgo.</li>
+<li>No sirve para exposiciones raras.</li>
+</ul>
+</div>
+</div>
+</section>
+<section id="los-sesgos-que-más-se-observan" class="level2">
+<h2 class="anchored" data-anchor-id="los-sesgos-que-más-se-observan">Los sesgos que más se observan</h2>
+<ul>
+<li><strong>Sesgo de selección.</strong> Los controles no provienen de la misma población que los casos, o los casos incluidos no representan a todos los casos (por ejemplo, solo los graves de un hospital de referencia).</li>
+<li><strong>Sesgo de Berkson.</strong> Con controles hospitalarios, las combinaciones de enfermedades que llevan a hospitalizarse pueden crear asociaciones que no existen en la población.</li>
+<li><strong>Sesgo de recuerdo.</strong> Quien tiene la enfermedad suele recordar mejor (o buscar más) sus exposiciones. Se reduce midiendo la exposición con registros previos al diagnóstico.</li>
+<li><strong>Sesgo del entrevistador.</strong> Si quien pregunta sabe quién es caso, puede insistir más. Lo ideal es que no lo sepa.</li>
+</ul>
+</section>
+<section id="errores-frecuentes-en-las-tesis" class="level2">
+<h2 class="anchored" data-anchor-id="errores-frecuentes-en-las-tesis">Errores frecuentes en las tesis</h2>
+<ol type="1">
+<li><strong>Llamar «casos y controles» a un transversal.</strong> Si tomaste a todos los pacientes de un periodo y después los separaste según tuvieran o no el desenlace, el diseño es transversal y la proporción de casos sí refleja la población.</li>
+<li><strong>Calcular la prevalencia o el riesgo relativo.</strong> En casos y controles solo es válido el OR.</li>
+<li><strong>Elegir los controles por conveniencia,</strong> de otro servicio o de otra población, sin justificar que representan a la población de origen de los casos.</li>
+<li><strong>Emparejar y analizar como si no hubiera emparejamiento.</strong></li>
+<li><strong>Confundir los supuestos del tamaño de muestra:</strong> se necesita la frecuencia de la exposición en los controles, no la prevalencia de la enfermedad.</li>
+</ol>
+</section>
+<section id="tu-tamaño-de-muestra" class="level2">
+<h2 class="anchored" data-anchor-id="tu-tamaño-de-muestra">Tu tamaño de muestra</h2>
+<p>Necesitas tres supuestos: la proporción de expuestos entre los controles, el OR mínimo que quieres detectar y cuántos controles tendrás por caso.</p>
+<div class="usa-calc">
+<p><img src="https://anthonyromero.netlify.app/images/marcas/muestra.svg" class="img-fluid"></p>
+<p>Calcúlalo en el Consultorio estadístico, ya configurado para este diseño: <a href="../../herramientas/muestra/index.html#mod=dprop&amp;dis=cc">tamaño de muestra para casos y controles</a>.</p>
+</div>
+</section>
+<section id="cómo-reportarlo" class="level2">
+<h2 class="anchored" data-anchor-id="cómo-reportarlo">Cómo reportarlo</h2>
+<p>Sigue la guía <strong>STROBE</strong> (von Elm et al., 2007): explica cómo se definieron y seleccionaron los casos y los controles, la proporción de controles por caso, si hubo emparejamiento y cómo se midió la exposición. Reporta los OR crudos y ajustados con su intervalo de confianza al 95 %.</p>
+</section>
+<section id="autoevaluación" class="level2">
+<h2 class="anchored" data-anchor-id="autoevaluación">Autoevaluación</h2>
+<div class="autoeval">
+<div class="pregunta">
+<p>En tu estudio incluiste 100 niños con neumonía y 200 sin neumonía del mismo hospital. Escribiste: «la prevalencia de neumonía fue 33,3 %». ¿Qué está mal?</p>
+<details>
+<summary>
+Ver respuesta
+</summary>
+Esa cifra la decidiste tú al elegir uno a dos casos por control; no es la prevalencia de neumonía en ninguna población. En casos y controles no se reporta la prevalencia del desenlace.
+</details>
+</div>
+<div class="pregunta">
+<p>Emparejaste cada caso con dos controles de la misma edad y sexo. ¿Puedes reportar el sexo como factor asociado?</p>
+<details>
+<summary>
+Ver respuesta
+</summary>
+No.&nbsp;Al emparejar por sexo, lo hiciste igual en casos y controles; su asociación queda anulada por diseño. Además, el análisis debe ser emparejado (regresión logística condicional).
+</details>
+</div>
+<div class="pregunta">
+<p>¿Por qué conviene medir la exposición con registros anteriores al diagnóstico y no solo con una entrevista?</p>
+<details>
+<summary>
+Ver respuesta
+</summary>
+Para reducir el sesgo de recuerdo: los casos tienden a recordar o reportar sus exposiciones de forma distinta que los controles.
+</details>
+</div>
+</div>
+</section>
+<section id="referencias" class="level2">
+<h2 class="anchored" data-anchor-id="referencias">Referencias</h2>
+<ul>
+<li>Doll R, Hill AB. Smoking and carcinoma of the lung: preliminary report. <em>Br Med J</em>. 1950;2(4682):739-48.</li>
+<li>Rothman KJ, Greenland S, Lash TL. <em>Modern Epidemiology</em>. 3.ª ed.&nbsp;Filadelfia: Lippincott Williams &amp; Wilkins; 2008.</li>
+<li>Grimes DA, Schulz KF. Compared to what? Finding controls for case-control studies. <em>Lancet</em>. 2005;365(9468):1429-33.</li>
+<li>von Elm E, Altman DG, Egger M, Pocock SJ, Gøtzsche PC, Vandenbroucke JP. The Strengthening the Reporting of Observational Studies in Epidemiology (STROBE) statement: guidelines for reporting observational studies. <em>Lancet</em>. 2007;370(9596):1453-7.</li>
+</ul>
+<div class="cta">
+<p><strong>¿Estás armando un estudio de casos y controles?</strong></p>
+<p>Te ayudo a definir los controles, calcular la muestra y plantear el análisis.</p>
+<p><a href="https://api.whatsapp.com/send?phone=51955446754&amp;text=Hola%2C%20le%C3%AD%20tu%20entrada%20sobre%20casos%20y%20controles%20y%20quiero%20informaci%C3%B3n%20sobre%20asesor%C3%ADa%20para%20mi%20tesis">Escríbeme por WhatsApp</a></p>
+</div>
+
+
+</section>
+
+ ]]></description>
+  <category>Diseños de estudio</category>
+  <category>Epidemiología</category>
+  <category>Tesis</category>
+  <guid>https://anthonyromero.netlify.app/disenos/casos-y-controles/</guid>
+  <pubDate>Thu, 01 Oct 2026 05:00:00 GMT</pubDate>
+  <media:content url="https://anthonyromero.netlify.app/disenos/casos-y-controles/portada.png" medium="image" type="image/png" height="76" width="144"/>
+</item>
+<item>
+  <title>El estudio transversal</title>
+  <dc:creator>Anthony Romero-Cerdán, MD</dc:creator>
+  <link>https://anthonyromero.netlify.app/disenos/transversal/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+
+<p><a href="../../disenos/index.html" class="sello"><img src="https://anthonyromero.netlify.app/images/marcas/disenos.svg" class="img-fluid"><span><b>Diseños de estudio</b><em>Diseño n.º 1</em></span></a></p>
+<div class="en-una-frase">
+<p>Un estudio transversal mide la exposición y el desenlace <strong>en el mismo momento</strong>, como una fotografía de la población.</p>
+</div>
+<p>Es el diseño más usado en las tesis de pregrado y el que sostiene a las grandes encuestas nacionales, como la <a href="../../prospecto/diccionario.html#endes" class="dic">ENDES</a>. Su fortaleza es la rapidez y su límite es el tiempo: como todo se mide a la vez, rara vez permite saber qué ocurrió primero.</p>
+<section id="cómo-se-ve" class="level2">
+<h2 class="anchored" data-anchor-id="cómo-se-ve">Cómo se ve</h2>
+<div class="diagrama">
+<svg viewbox="0 0 760 250" aria-label="Esquema del estudio transversal">
+  <g font-size="13">
+    <text x="20" y="28" class="dg-t" font-weight="700">Población</text>
+    <g>
+      <circle cx="50" cy="70" r="9" fill="#E5636F"></circle><circle cx="80" cy="70" r="9" fill="#0B1F3A" opacity=".75"></circle><circle cx="110" cy="70" r="9" fill="#0B1F3A" opacity=".75"></circle><circle cx="140" cy="70" r="9" fill="#E5636F"></circle>
+      <circle cx="50" cy="100" r="9" fill="#0B1F3A" opacity=".75"></circle><circle cx="80" cy="100" r="9" fill="#E5636F"></circle><circle cx="110" cy="100" r="9" fill="#0B1F3A" opacity=".75"></circle><circle cx="140" cy="100" r="9" fill="#0B1F3A" opacity=".75"></circle>
+      <circle cx="50" cy="130" r="9" fill="#0B1F3A" opacity=".75"></circle><circle cx="80" cy="130" r="9" fill="#0B1F3A" opacity=".75"></circle><circle cx="110" cy="130" r="9" fill="#E5636F"></circle><circle cx="140" cy="130" r="9" fill="#0B1F3A" opacity=".75"></circle>
+    </g>
+    <path d="M170 100 L250 100" stroke="#5B6B80" stroke-width="2.5" marker-end="url(#ft)"></path>
+    <defs><marker id="ft" viewbox="0 0 10 10" refx="9" refy="5" markerwidth="7" markerheight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#5B6B80"></path></marker></defs>
+    <rect x="260" y="50" width="200" height="100" rx="14" fill="#0B1F3A"></rect>
+    <text x="360" y="85" text-anchor="middle" fill="#fff" font-weight="700">Una sola medición</text>
+    <text x="360" y="108" text-anchor="middle" fill="#A9B8CC" font-size="12">¿Expuesto? ¿Tiene el desenlace?</text>
+    <text x="360" y="128" text-anchor="middle" fill="#A9B8CC" font-size="12">Las dos preguntas a la vez</text>
+    <path d="M470 100 L550 100" stroke="#5B6B80" stroke-width="2.5" marker-end="url(#ft)"></path>
+    <rect x="560" y="45" width="180" height="110" rx="14" fill="none" stroke="#E5636F" stroke-width="2"></rect>
+    <text x="650" y="78" text-anchor="middle" class="dg-t" font-weight="700">Prevalencias</text>
+    <text x="650" y="102" text-anchor="middle" class="dg-s" font-size="12">en expuestos y</text>
+    <text x="650" y="118" text-anchor="middle" class="dg-s" font-size="12">no expuestos</text>
+    <text x="650" y="142" text-anchor="middle" fill="#E5636F" font-weight="700">→ RP</text>
+    <line x1="40" y1="200" x2="740" y2="200" class="dg-l" stroke-width="1.5"></line>
+    <line x1="360" y1="188" x2="360" y2="212" stroke="#E5636F" stroke-width="3"></line>
+    <text x="360" y="232" text-anchor="middle" fill="#E5636F" font-weight="700">Un momento en el tiempo</text>
+    <text x="40" y="232" class="dg-s" font-size="12">Pasado</text><text x="740" y="232" text-anchor="end" class="dg-s" font-size="12">Futuro</text>
+  </g>
+</svg>
+<p class="cap">Los puntos rojos son personas con el desenlace. No hay seguimiento: se observa lo que hay en un momento dado.</p>
+</div>
+</section>
+<section id="cuándo-elegirlo" class="level2">
+<h2 class="anchored" data-anchor-id="cuándo-elegirlo">Cuándo elegirlo</h2>
+<ul>
+<li>Para <strong>estimar la frecuencia</strong> de una enfermedad o de un factor: la <a href="../../prospecto/diccionario.html#prevalencia" class="dic">prevalencia</a> de anemia en gestantes, de depresión en internos de medicina.</li>
+<li>Para <strong>explorar asociaciones</strong> cuando el seguimiento no es factible: ¿la prevalencia de obesidad abdominal es mayor en mujeres que en hombres?</li>
+<li>Para <strong>planificar servicios</strong>: cuántas personas necesitan atención hoy.</li>
+<li>Para <strong>generar hipótesis</strong> que luego se estudiarán con una cohorte o un ensayo.</li>
+</ul>
+<p>Existen dos variantes. El <strong>transversal descriptivo</strong> solo estima frecuencias. El <strong>transversal analítico</strong> compara la prevalencia del desenlace entre expuestos y no expuestos.</p>
+</section>
+<section id="cómo-se-analiza" class="level2">
+<h2 class="anchored" data-anchor-id="cómo-se-analiza">Cómo se analiza</h2>
+<p>La medida natural del transversal analítico es la <a href="../../prospecto/diccionario.html#razon-de-prevalencias" class="dic">razón de prevalencias</a> (RP): cuántas veces más frecuente es el desenlace en los expuestos. Se calcula con una <a href="../../prospecto/diccionario.html#tabla-2x2" class="dic">tabla 2 × 2</a>.</p>
+<div style="overflow-x:auto">
+
+<table class="mapa caption-top table">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Con desenlace</th>
+<th data-quarto-table-cell-role="th">Sin desenlace</th>
+<th data-quarto-table-cell-role="th">Total</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">Expuestos</th>
+<td><strong>a</strong> = 90</td>
+<td><strong>b</strong> = 210</td>
+<td>300</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">No expuestos</th>
+<td><strong>c</strong> = 105</td>
+<td><strong>d</strong> = 595</td>
+<td>700</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+<p>Con estos datos ilustrativos, la prevalencia es 90/300 = 30 % en los expuestos y 105/700 = 15 % en los no expuestos:</p>
+<p><img src="https://latex.codecogs.com/png.latex?RP%20=%20%5Cfrac%7Ba/(a+b)%7D%7Bc/(c+d)%7D%20=%20%5Cfrac%7B0%7B,%7D30%7D%7B0%7B,%7D15%7D%20=%202%7B,%7D0%20%5Cqquad%20OR%20=%20%5Cfrac%7Ba%20%5Ctimes%20d%7D%7Bb%20%5Ctimes%20c%7D%20=%20%5Cfrac%7B90%20%5Ctimes%20595%7D%7B210%20%5Ctimes%20105%7D%20=%202%7B,%7D43"></p>
+<p>El <a href="../../prospecto/diccionario.html#odds-ratio" class="dic">odds ratio</a> da 2,43 cuando el desenlace es «solo» el doble de frecuente. Esa diferencia crece cuanto más frecuente es el desenlace: en la ENDES 2024, la obesidad abdominal fue de 62,0 % en mujeres y de 20,3 % en hombres, con una RP de 3,05 y un OR de 6,38. Por eso, en un transversal con un desenlace frecuente (más de 10 %), se recomienda reportar la RP, estimada con <a href="../../prospecto/diccionario.html#regresion-de-poisson" class="dic">regresión de Poisson</a> con <a href="../../prospecto/diccionario.html#varianza-robusta" class="dic">varianza robusta</a> cuando hay que ajustar por <a href="../../prospecto/diccionario.html#confusion" class="dic">confusión</a> (Barros y Hirakata, 2003).</p>
+<div class="usa-calc">
+<p><img src="https://anthonyromero.netlify.app/images/marcas/prospecto.svg" class="img-fluid"></p>
+<p>El análisis completo, paso a paso en R y con datos reales de la ENDES, está en el <strong>Prospecto R n.º 1</strong>: <a href="../../prospecto/or-vs-rp/inicial.html">¿OR o razón de prevalencias?</a></p>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># RP cruda y ajustada con Poisson y varianza robusta</span></span>
+<span id="cb1-2">m <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">glm</span>(desenlace <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">~</span> exposicion <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> edad <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> sexo, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">family =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">poisson</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">link =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"log"</span>), <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">data =</span> datos)</span>
+<span id="cb1-3">lmtest<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">coeftest</span>(m, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">vcov =</span> sandwich<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">vcovHC</span>(m, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">type =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"HC0"</span>))</span></code></pre></div></div>
+<p>Si tus datos vienen de una encuesta con conglomerados y estratos, como la ENDES o la ENAHO, el análisis debe declarar el <a href="../../prospecto/diccionario.html#diseno-muestral-complejo" class="dic">diseño muestral complejo</a>; lo explica la dosis plena del mismo Prospecto R.</p>
+</section>
+<section id="fortalezas-y-límites" class="level2">
+<h2 class="anchored" data-anchor-id="fortalezas-y-límites">Fortalezas y límites</h2>
+<div class="pros-contras">
+<div>
+<p><strong>Fortalezas</strong></p>
+<ul>
+<li>Rápido y de bajo costo.</li>
+<li>Estima la prevalencia directamente.</li>
+<li>Permite estudiar muchas exposiciones y desenlaces a la vez.</li>
+<li>Es la base de las encuestas nacionales, con muestras representativas.</li>
+</ul>
+</div>
+<div>
+<p><strong>Límites</strong></p>
+<ul>
+<li>No establece la secuencia temporal: ¿la exposición vino antes que el desenlace?</li>
+<li>Sobrerrepresenta los casos de larga duración (sesgo de prevalencia-incidencia).</li>
+<li>No sirve para desenlaces raros ni de corta duración.</li>
+<li>No mide incidencia ni riesgo.</li>
+</ul>
+</div>
+</div>
+</section>
+<section id="los-sesgos-que-más-se-observan" class="level2">
+<h2 class="anchored" data-anchor-id="los-sesgos-que-más-se-observan">Los sesgos que más se observan</h2>
+<ul>
+<li><strong>Causalidad inversa.</strong> En un transversal sobre actividad física y depresión, ¿la inactividad lleva a la depresión o la depresión lleva a la inactividad? El diseño no permite saberlo.</li>
+<li><strong>Sesgo de prevalencia-incidencia.</strong> Las personas que mueren pronto o se curan rápido no están en la fotografía; los factores asociados a una enfermedad de larga duración pueden confundirse con factores de riesgo.</li>
+<li><strong>Sesgo de selección y de no respuesta.</strong> Si quienes no participan son diferentes de quienes sí, la prevalencia queda sesgada. Reporta la tasa de respuesta.</li>
+<li><strong><a href="../../prospecto/diccionario.html#confusion" class="dic">Confusión</a>.</strong> Como en todo diseño observacional, controla los confusores en el análisis.</li>
+</ul>
+</section>
+<section id="errores-frecuentes-en-las-tesis" class="level2">
+<h2 class="anchored" data-anchor-id="errores-frecuentes-en-las-tesis">Errores frecuentes en las tesis</h2>
+<ol type="1">
+<li><strong>Llamarlo «casos y controles»</strong> porque se compara a quienes tienen el desenlace con quienes no lo tienen. Si tomaste a toda la población (o una muestra de ella) y luego la dividiste según el desenlace, el estudio es transversal.</li>
+<li><strong>Llamarlo «cohorte retrospectiva»</strong> cuando se revisan historias clínicas y la exposición y el desenlace se registran al mismo tiempo. Sin seguimiento no hay cohorte.</li>
+<li><strong>Reportar el OR con un desenlace frecuente</strong> y leerlo como si fuera una RP: «los expuestos tienen 6 veces más obesidad».</li>
+<li><strong>Concluir causalidad.</strong> Escribe «se asoció con», no «causa» ni «es un factor de riesgo».</li>
+<li><strong>Olvidar el diseño muestral</strong> cuando los datos son de una encuesta nacional.</li>
+</ol>
+</section>
+<section id="tu-tamaño-de-muestra" class="level2">
+<h2 class="anchored" data-anchor-id="tu-tamaño-de-muestra">Tu tamaño de muestra</h2>
+<p>Para un transversal descriptivo, el tamaño se calcula para <strong>estimar una proporción</strong>; para uno analítico, para <strong>comparar dos proporciones</strong>.</p>
+<div class="usa-calc">
+<p><img src="https://anthonyromero.netlify.app/images/marcas/muestra.svg" class="img-fluid"></p>
+<p>Calcúlalo en el Consultorio estadístico: <a href="../../herramientas/muestra/index.html#mod=prop">estimar una prevalencia</a> o <a href="../../herramientas/muestra/index.html#mod=dprop&amp;dis=tr">comparar la prevalencia entre expuestos y no expuestos</a>.</p>
+</div>
+</section>
+<section id="cómo-reportarlo" class="level2">
+<h2 class="anchored" data-anchor-id="cómo-reportarlo">Cómo reportarlo</h2>
+<p>Sigue la guía <strong>STROBE</strong> para estudios observacionales (von Elm et al., 2007): describe el muestreo, la tasa de respuesta, cómo se midieron la exposición y el desenlace, y reporta las medidas de asociación crudas y ajustadas con su intervalo de confianza al 95 %.</p>
+</section>
+<section id="autoevaluación" class="level2">
+<h2 class="anchored" data-anchor-id="autoevaluación">Autoevaluación</h2>
+<div class="autoeval">
+<div class="pregunta">
+<p>Revisas 400 historias clínicas de pacientes con diabetes atendidos en 2025 y registras, de la misma historia, si tenían control glucémico y si asistían a sus consultas. ¿Qué diseño es?</p>
+<details>
+<summary>
+Ver respuesta
+</summary>
+Transversal analítico. Ambas variables corresponden al mismo periodo y no hay seguimiento desde la exposición hacia el desenlace; que los datos sean del pasado no lo convierte en una cohorte retrospectiva.
+</details>
+</div>
+<div class="pregunta">
+<p>La prevalencia de anemia es 40 % en un grupo y 20 % en otro. ¿Qué es más fácil de explicar al lector, la RP o el OR?</p>
+<details>
+<summary>
+Ver respuesta
+</summary>
+La RP: el desenlace es dos veces más frecuente (RP = 2,0). El OR sería 2,67 y suele leerse, por error, como si fuera una razón de prevalencias.
+</details>
+</div>
+<div class="pregunta">
+<p>¿Por qué un transversal no es el mejor diseño para estudiar si el estrés causa hipertensión?</p>
+<details>
+<summary>
+Ver respuesta
+</summary>
+Porque mide ambos a la vez y no establece qué ocurrió primero; además, el diagnóstico de hipertensión podría aumentar el estrés (causalidad inversa). Una cohorte que siga a personas sin hipertensión sería más adecuada.
+</details>
+</div>
+</div>
+</section>
+<section id="referencias" class="level2">
+<h2 class="anchored" data-anchor-id="referencias">Referencias</h2>
+<ul>
+<li>Rothman KJ, Greenland S, Lash TL. <em>Modern Epidemiology</em>. 3.ª ed.&nbsp;Filadelfia: Lippincott Williams &amp; Wilkins; 2008.</li>
+<li>Barros AJD, Hirakata VN. Alternatives for logistic regression in cross-sectional studies: an empirical comparison of models that directly estimate the prevalence ratio. <em>BMC Med Res Methodol</em>. 2003;3:21.</li>
+<li>von Elm E, Altman DG, Egger M, Pocock SJ, Gøtzsche PC, Vandenbroucke JP. The Strengthening the Reporting of Observational Studies in Epidemiology (STROBE) statement: guidelines for reporting observational studies. <em>Lancet</em>. 2007;370(9596):1453-7.</li>
+<li>Instituto Nacional de Estadística e Informática. <em>Ficha técnica. Encuesta Demográfica y de Salud Familiar 2024</em>. Lima: INEI.</li>
+</ul>
+<div class="cta">
+<p><strong>¿Tu estudio es transversal y no sabes cómo analizarlo?</strong></p>
+<p>Te ayudo a plantear el análisis, desde la Tabla 1 hasta el modelo ajustado.</p>
+<p><a href="https://api.whatsapp.com/send?phone=51955446754&amp;text=Hola%2C%20le%C3%AD%20tu%20entrada%20sobre%20estudios%20transversales%20y%20quiero%20informaci%C3%B3n%20sobre%20asesor%C3%ADa%20para%20mi%20tesis">Escríbeme por WhatsApp</a></p>
+</div>
+
+
+</section>
+
+ ]]></description>
+  <category>Diseños de estudio</category>
+  <category>Epidemiología</category>
+  <category>Tesis</category>
+  <guid>https://anthonyromero.netlify.app/disenos/transversal/</guid>
+  <pubDate>Thu, 24 Sep 2026 05:00:00 GMT</pubDate>
+  <media:content url="https://anthonyromero.netlify.app/disenos/transversal/portada.png" medium="image" type="image/png" height="76" width="144"/>
+</item>
 <item>
   <title>¿Qué prueba estadística uso?</title>
+  <dc:creator>Anthony Romero-Cerdán, MD</dc:creator>
   <link>https://anthonyromero.netlify.app/blog/que-prueba-estadistica/</link>
   <description><![CDATA[ 
 
@@ -55,6 +845,7 @@
 <section id="el-mapa-completo" class="level2">
 <h2 class="anchored" data-anchor-id="el-mapa-completo">El mapa completo</h2>
 <p>Si prefieres verlo todo de una vez, esta es la ruta del triaje resumida. La columna de la derecha es la alternativa cuando la variable numérica es muy sesgada, tiene valores extremos o es ordinal.</p>
+<p><a href="mapa-pruebas-estadisticas.pdf" class="btn-descarga" download="">Descargar para repasar después (PDF)</a></p>
 <div style="overflow-x:auto">
 
 <table class="mapa caption-top table">
@@ -343,794 +1134,8 @@ Una regresión de Poisson con varianza robusta para estimar razones de prevalenc
   <category>Pruebas estadísticas</category>
   <category>Tesis</category>
   <guid>https://anthonyromero.netlify.app/blog/que-prueba-estadistica/</guid>
-  <pubDate>Thu, 15 Oct 2026 05:00:00 GMT</pubDate>
+  <pubDate>Thu, 10 Sep 2026 05:00:00 GMT</pubDate>
   <media:content url="https://anthonyromero.netlify.app/blog/que-prueba-estadistica/portada.png" medium="image" type="image/png" height="76" width="144"/>
-</item>
-<item>
-  <title>El estudio de cohortes</title>
-  <link>https://anthonyromero.netlify.app/disenos/cohortes/</link>
-  <description><![CDATA[ 
-
-
-
-
-
-
-<p><a href="../../disenos/index.html" class="sello"><img src="https://anthonyromero.netlify.app/images/marcas/disenos.svg" class="img-fluid"><span><b>Diseños de estudio</b><em>Diseño n.º 3</em></span></a></p>
-<div class="en-una-frase">
-<p>Un estudio de cohortes sigue a personas <strong>sin el desenlace</strong>, expuestas y no expuestas, para ver en cuál de los grupos aparece más.</p>
-</div>
-<p>Es el diseño observacional que mejor respeta el orden de los hechos: primero la exposición y después el desenlace. Algunas de las cohortes más conocidas son el estudio de Framingham, que desde 1948 sigue a los habitantes de esa ciudad de Estados Unidos para entender la enfermedad cardiovascular, y la cohorte de médicos británicos de Doll y Hill, que siguió durante 50 años la mortalidad según el hábito de fumar (Doll et al., 2004).</p>
-<section id="cómo-se-ve" class="level2">
-<h2 class="anchored" data-anchor-id="cómo-se-ve">Cómo se ve</h2>
-<div class="diagrama">
-<svg viewbox="0 0 760 290" aria-label="Esquema del estudio de cohortes">
-  <defs><marker id="fo" viewbox="0 0 10 10" refx="9" refy="5" markerwidth="7" markerheight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#5B6B80"></path></marker></defs>
-  <g font-size="13">
-    <rect x="20" y="95" width="150" height="70" rx="14" fill="#0B1F3A"></rect>
-    <text x="95" y="125" text-anchor="middle" fill="#fff" font-weight="700">Personas sin</text>
-    <text x="95" y="143" text-anchor="middle" fill="#fff" font-weight="700">el desenlace</text>
-    <path d="M170 115 L230 70" stroke="#5B6B80" stroke-width="2.5" marker-end="url(#fo)"></path>
-    <path d="M170 145 L230 190" stroke="#5B6B80" stroke-width="2.5" marker-end="url(#fo)"></path>
-    <rect x="235" y="40" width="150" height="56" rx="12" fill="#E5636F"></rect>
-    <text x="310" y="73" text-anchor="middle" fill="#fff" font-weight="700">Expuestos</text>
-    <rect x="235" y="165" width="150" height="56" rx="12" fill="#2A9DA3"></rect>
-    <text x="310" y="198" text-anchor="middle" fill="#fff" font-weight="700">No expuestos</text>
-    <path d="M390 68 L560 68" stroke="#5B6B80" stroke-width="2.5" stroke-dasharray="7 5" marker-end="url(#fo)"></path>
-    <path d="M390 193 L560 193" stroke="#5B6B80" stroke-width="2.5" stroke-dasharray="7 5" marker-end="url(#fo)"></path>
-    <text x="475" y="58" text-anchor="middle" class="dg-s" font-size="12">seguimiento</text>
-    <text x="475" y="183" text-anchor="middle" class="dg-s" font-size="12">seguimiento</text>
-    <rect x="570" y="40" width="170" height="56" rx="12" fill="none" stroke="#E5636F" stroke-width="2"></rect>
-    <text x="655" y="64" text-anchor="middle" class="dg-t" font-weight="700">Enferman: 6 %</text>
-    <text x="655" y="83" text-anchor="middle" class="dg-s" font-size="12">60 de 1000</text>
-    <rect x="570" y="165" width="170" height="56" rx="12" fill="none" stroke="#2A9DA3" stroke-width="2"></rect>
-    <text x="655" y="189" text-anchor="middle" class="dg-t" font-weight="700">Enferman: 3 %</text>
-    <text x="655" y="208" text-anchor="middle" class="dg-s" font-size="12">60 de 2000</text>
-    <line x1="20" y1="252" x2="740" y2="252" class="dg-l" stroke-width="1.5" marker-end="url(#fo)"></line>
-    <text x="20" y="276" class="dg-s" font-size="12">Inicio: se mide la exposición</text>
-    <text x="740" y="276" text-anchor="end" class="dg-s" font-size="12">Final: aparecen los desenlaces</text>
-  </g>
-</svg>
-<p class="cap">Datos ilustrativos. La comparación de la incidencia entre ambos grupos da el riesgo relativo: 6 % / 3 % = 2,0.</p>
-</div>
-</section>
-<section id="prospectiva-o-retrospectiva" class="level2">
-<h2 class="anchored" data-anchor-id="prospectiva-o-retrospectiva">Prospectiva o retrospectiva</h2>
-<p>La diferencia no es la dirección de la mirada, que siempre va de la exposición al desenlace, sino <strong>cuándo</strong> ocurre el seguimiento respecto al momento en que se hace el estudio.</p>
-<ul>
-<li><strong>Cohorte prospectiva (concurrente):</strong> se mide la exposición hoy y se sigue a las personas hacia el futuro. Se controla mejor la calidad de los datos, pero toma tiempo.</li>
-<li><strong>Cohorte retrospectiva (histórica):</strong> se reconstruye con registros del pasado una exposición medida antes del desenlace, y se sigue en esos registros hasta hoy. Es rápida, pero depende de la calidad de las historias clínicas.</li>
-</ul>
-<p>En ambos casos debe existir un <strong>seguimiento real</strong>: un punto de partida en el que las personas no tenían el desenlace y un periodo durante el cual podía aparecer.</p>
-</section>
-<section id="cuándo-elegirlo" class="level2">
-<h2 class="anchored" data-anchor-id="cuándo-elegirlo">Cuándo elegirlo</h2>
-<ul>
-<li>Quieres medir la <strong>incidencia</strong> (cuántos enferman) y el <strong>riesgo</strong>.</li>
-<li>La <strong>exposición es rara</strong>: puedes seleccionar a los expuestos a propósito (trabajadores de una mina, por ejemplo).</li>
-<li>Quieres estudiar <strong>varios desenlaces</strong> de una misma exposición.</li>
-<li>Necesitas que la secuencia temporal sea clara.</li>
-</ul>
-<p>No es el diseño adecuado para enfermedades muy raras o de latencia muy larga: tendrías que seguir a demasiadas personas durante demasiado tiempo.</p>
-</section>
-<section id="cómo-se-analiza" class="level2">
-<h2 class="anchored" data-anchor-id="cómo-se-analiza">Cómo se analiza</h2>
-<p>Si todos tienen el mismo tiempo de seguimiento, se compara la <strong>incidencia acumulada</strong> (el riesgo) con el <a href="../../prospecto/diccionario.html#riesgo-relativo" class="dic">riesgo relativo</a> (RR):</p>
-<div style="overflow-x:auto">
-
-<table class="mapa caption-top table">
-<thead>
-<tr class="header">
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th">Enferman</th>
-<th data-quarto-table-cell-role="th">No enferman</th>
-<th data-quarto-table-cell-role="th">Total</th>
-<th data-quarto-table-cell-role="th">Incidencia</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<th data-quarto-table-cell-role="th">Expuestos</th>
-<td><strong>a</strong> = 60</td>
-<td><strong>b</strong> = 940</td>
-<td>1000</td>
-<td>6 %</td>
-</tr>
-<tr class="even">
-<th data-quarto-table-cell-role="th">No expuestos</th>
-<td><strong>c</strong> = 60</td>
-<td><strong>d</strong> = 1940</td>
-<td>2000</td>
-<td>3 %</td>
-</tr>
-</tbody>
-</table>
-
-</div>
-<p><img src="https://latex.codecogs.com/png.latex?RR%20=%20%5Cfrac%7Ba/(a+b)%7D%7Bc/(c+d)%7D%20=%20%5Cfrac%7B60/1000%7D%7B60/2000%7D%20=%202%7B,%7D0"></p>
-<p>Si el seguimiento difiere entre las personas (unas entran o salen antes que otras), se usa la <strong>tasa de incidencia</strong>, que divide los eventos entre la suma de persona-tiempo. Por ejemplo, 60 eventos en 2800 persona-años en los expuestos (21,4 por 1000 persona-años) y 60 en 5800 persona-años en los no expuestos (10,3 por 1000) dan una <strong>razón de tasas</strong> de 2,07. Cuando interesa el tiempo hasta el evento, se usan curvas de <strong>Kaplan-Meier</strong> y la <strong>regresión de Cox</strong>, que estima el <em>hazard ratio</em> aprovechando a quienes no tuvieron el evento (datos censurados).</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;"># RR ajustado (seguimiento fijo): Poisson con varianza robusta</span></span>
-<span id="cb1-2">m <span class="ot" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">glm</span>(evento <span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">~</span> exposicion <span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">+</span> edad <span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">+</span> sexo, <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">family =</span> <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">poisson</span>(<span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">link =</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"log"</span>), <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">data =</span> datos)</span>
-<span id="cb1-3">lmtest<span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">coeftest</span>(m, <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">vcov =</span> sandwich<span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">vcovHC</span>(m, <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">type =</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"HC0"</span>))</span>
-<span id="cb1-4"></span>
-<span id="cb1-5"><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;"># Tiempo hasta el evento: Kaplan-Meier y Cox</span></span>
-<span id="cb1-6"><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">library</span>(survival)</span>
-<span id="cb1-7"><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">survfit</span>(<span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">Surv</span>(tiempo, evento) <span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">~</span> exposicion, <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">data =</span> datos)</span>
-<span id="cb1-8"><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">coxph</span>(<span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">Surv</span>(tiempo, evento) <span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">~</span> exposicion <span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">+</span> edad <span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">+</span> sexo, <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">data =</span> datos)</span></code></pre></div></div>
-<p>¿Dudas sobre qué prueba corresponde a tu objetivo? Pásalo por el <a href="../../blog/que-prueba-estadistica/index.html">Triaje estadístico</a>.</p>
-</section>
-<section id="fortalezas-y-límites" class="level2">
-<h2 class="anchored" data-anchor-id="fortalezas-y-límites">Fortalezas y límites</h2>
-<div class="pros-contras">
-<div>
-<p><strong>Fortalezas</strong></p>
-<ul>
-<li>La exposición se mide antes del desenlace: secuencia temporal clara.</li>
-<li>Mide incidencia y riesgo directamente.</li>
-<li>Permite estudiar varios desenlaces.</li>
-<li>Menos sesgo de recuerdo que casos y controles.</li>
-</ul>
-</div>
-<div>
-<p><strong>Límites</strong></p>
-<ul>
-<li>Costosa y lenta, sobre todo si es prospectiva.</li>
-<li>Poco eficiente para desenlaces raros.</li>
-<li>Las pérdidas en el seguimiento pueden sesgar los resultados.</li>
-<li>La exposición puede cambiar con el tiempo.</li>
-</ul>
-</div>
-</div>
-</section>
-<section id="los-sesgos-que-más-se-observan" class="level2">
-<h2 class="anchored" data-anchor-id="los-sesgos-que-más-se-observan">Los sesgos que más se observan</h2>
-<ul>
-<li><strong>Pérdidas en el seguimiento.</strong> Si quienes se pierden son distintos de quienes se quedan (por ejemplo, los más enfermos), el riesgo queda sesgado. Reporta cuántos se perdieron en cada grupo.</li>
-<li><strong><a href="../../prospecto/diccionario.html#confusion" class="dic">Confusión</a>.</strong> Expuestos y no expuestos pueden diferir en otras características: controla los confusores en el análisis.</li>
-<li><strong>Sesgo de información.</strong> Si los desenlaces se buscan con más cuidado en los expuestos, se encuentran más. Lo ideal es que quien evalúa el desenlace no conozca la exposición.</li>
-<li><strong>Desenlace presente al inicio.</strong> Si se incluye a personas que ya tenían la enfermedad, se mezcla prevalencia con incidencia.</li>
-</ul>
-</section>
-<section id="errores-frecuentes-en-las-tesis" class="level2">
-<h2 class="anchored" data-anchor-id="errores-frecuentes-en-las-tesis">Errores frecuentes en las tesis</h2>
-<ol type="1">
-<li><strong>Llamar «cohorte retrospectiva» a una revisión de historias</strong> en la que la exposición y el desenlace se registraron al mismo tiempo. Sin seguimiento desde la exposición, el estudio es transversal.</li>
-<li><strong>No verificar que nadie tenía el desenlace al inicio.</strong></li>
-<li><strong>No reportar el tiempo de seguimiento ni las pérdidas</strong> de cada grupo.</li>
-<li><strong>Usar el RR con seguimientos muy distintos</strong> entre personas, en lugar de tasas o regresión de Cox.</li>
-<li><strong>Reportar solo el OR de una regresión logística</strong> cuando el desenlace es frecuente: en una cohorte puedes estimar directamente el RR.</li>
-</ol>
-</section>
-<section id="tu-tamaño-de-muestra" class="level2">
-<h2 class="anchored" data-anchor-id="tu-tamaño-de-muestra">Tu tamaño de muestra</h2>
-<p>Necesitas la incidencia esperada en los no expuestos, el RR mínimo que quieres detectar y cuántos no expuestos tendrás por cada expuesto.</p>
-<div class="usa-calc">
-<p><img src="https://anthonyromero.netlify.app/images/marcas/muestra.svg" class="img-fluid"></p>
-<p>Calcúlalo en el Consultorio estadístico, ya configurado para este diseño: <a href="../../herramientas/muestra/index.html#mod=dprop&amp;dis=co">tamaño de muestra para una cohorte</a>.</p>
-</div>
-</section>
-<section id="cómo-reportarlo" class="level2">
-<h2 class="anchored" data-anchor-id="cómo-reportarlo">Cómo reportarlo</h2>
-<p>Sigue la guía <strong>STROBE</strong> (von Elm et al., 2007): describe cómo se definió la cohorte, cómo y cuándo se midió la exposición, la duración del seguimiento, las pérdidas en cada grupo y cómo se confirmó el desenlace. Reporta las medidas de asociación crudas y ajustadas con su intervalo de confianza al 95 %.</p>
-</section>
-<section id="autoevaluación" class="level2">
-<h2 class="anchored" data-anchor-id="autoevaluación">Autoevaluación</h2>
-<div class="autoeval">
-<div class="pregunta">
-<p>Seleccionas gestantes atendidas en 2023 según tuvieran o no anemia en el primer trimestre, y revisas en sus historias si sus recién nacidos tuvieron bajo peso al nacer. ¿Qué diseño es?</p>
-<details>
-<summary>
-Ver respuesta
-</summary>
-Una cohorte retrospectiva: la exposición (anemia en el primer trimestre) se registró antes del desenlace (bajo peso al nacer), y se sigue en los registros hasta el parto.
-</details>
-</div>
-<div class="pregunta">
-<p>En tu cohorte, unos pacientes fueron seguidos 2 meses y otros 24. ¿Por qué no basta con comparar el porcentaje de eventos?</p>
-<details>
-<summary>
-Ver respuesta
-</summary>
-Porque quien fue seguido más tiempo tuvo más oportunidad de presentar el evento. Hay que usar tasas por persona-tiempo o métodos de supervivencia (Kaplan-Meier, regresión de Cox).
-</details>
-</div>
-<div class="pregunta">
-<p>El 25 % de los expuestos y el 5 % de los no expuestos abandonaron el seguimiento. ¿Qué problema puede haber?</p>
-<details>
-<summary>
-Ver respuesta
-</summary>
-Un sesgo por pérdidas diferenciales: si quienes se fueron tenían un riesgo distinto, la comparación queda sesgada. Hay que reportarlo y, si es posible, comparar las características de quienes se perdieron.
-</details>
-</div>
-</div>
-</section>
-<section id="referencias" class="level2">
-<h2 class="anchored" data-anchor-id="referencias">Referencias</h2>
-<ul>
-<li>Doll R, Peto R, Boreham J, Sutherland I. Mortality in relation to smoking: 50 years’ observations on male British doctors. <em>BMJ</em>. 2004;328(7455):1519.</li>
-<li>Rothman KJ, Greenland S, Lash TL. <em>Modern Epidemiology</em>. 3.ª ed.&nbsp;Filadelfia: Lippincott Williams &amp; Wilkins; 2008.</li>
-<li>Grimes DA, Schulz KF. Cohort studies: marching towards outcomes. <em>Lancet</em>. 2002;359(9303):341-5.</li>
-<li>von Elm E, Altman DG, Egger M, Pocock SJ, Gøtzsche PC, Vandenbroucke JP. The Strengthening the Reporting of Observational Studies in Epidemiology (STROBE) statement: guidelines for reporting observational studies. <em>Lancet</em>. 2007;370(9596):1453-7.</li>
-</ul>
-<div class="cta">
-<p><strong>¿Tu tesis es una cohorte?</strong></p>
-<p>Te ayudo con el diseño, el seguimiento y el análisis de supervivencia.</p>
-<p><a href="https://api.whatsapp.com/send?phone=51955446754&amp;text=Hola%2C%20le%C3%AD%20tu%20entrada%20sobre%20estudios%20de%20cohortes%20y%20quiero%20informaci%C3%B3n%20sobre%20asesor%C3%ADa%20para%20mi%20tesis">Escríbeme por WhatsApp</a></p>
-</div>
-
-
-</section>
-
- ]]></description>
-  <category>Diseños de estudio</category>
-  <category>Epidemiología</category>
-  <category>Tesis</category>
-  <guid>https://anthonyromero.netlify.app/disenos/cohortes/</guid>
-  <pubDate>Thu, 15 Oct 2026 05:00:00 GMT</pubDate>
-  <media:content url="https://anthonyromero.netlify.app/disenos/cohortes/portada.png" medium="image" type="image/png" height="76" width="144"/>
-</item>
-<item>
-  <title>El estudio de casos y controles</title>
-  <link>https://anthonyromero.netlify.app/disenos/casos-y-controles/</link>
-  <description><![CDATA[ 
-
-
-
-
-
-
-<p><a href="../../disenos/index.html" class="sello"><img src="https://anthonyromero.netlify.app/images/marcas/disenos.svg" class="img-fluid"><span><b>Diseños de estudio</b><em>Diseño n.º 2</em></span></a></p>
-<div class="en-una-frase">
-<p>Un estudio de casos y controles parte de personas <strong>con</strong> y <strong>sin</strong> la enfermedad, y mira hacia atrás para comparar cuántas estuvieron expuestas.</p>
-</div>
-<p>Es el diseño más eficiente para estudiar <strong>enfermedades raras</strong> o con un periodo de latencia largo: en lugar de esperar años a que aparezcan los casos, se empieza por ellos. Uno de los estudios que cambió la historia de la salud pública fue de este tipo: Doll y Hill (1950) compararon pacientes con cáncer de pulmón y pacientes sin él en hospitales de Londres, y encontraron que fumar era mucho más frecuente entre los casos.</p>
-<section id="cómo-se-ve" class="level2">
-<h2 class="anchored" data-anchor-id="cómo-se-ve">Cómo se ve</h2>
-<div class="diagrama">
-<svg viewbox="0 0 760 270" aria-label="Esquema del estudio de casos y controles">
-  <defs><marker id="fc" viewbox="0 0 10 10" refx="9" refy="5" markerwidth="7" markerheight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#5B6B80"></path></marker></defs>
-  <g font-size="13">
-    <rect x="540" y="30" width="190" height="70" rx="14" fill="#E5636F"></rect>
-    <text x="635" y="60" text-anchor="middle" fill="#fff" font-weight="700">Casos</text>
-    <text x="635" y="80" text-anchor="middle" fill="#fff" font-size="12">Con la enfermedad</text>
-    <rect x="540" y="130" width="190" height="70" rx="14" fill="#0B1F3A"></rect>
-    <text x="635" y="160" text-anchor="middle" fill="#fff" font-weight="700">Controles</text>
-    <text x="635" y="180" text-anchor="middle" fill="#A9B8CC" font-size="12">Sin la enfermedad</text>
-    <path d="M530 65 L330 65" stroke="#5B6B80" stroke-width="2.5" stroke-dasharray="7 5" marker-end="url(#fc)"></path>
-    <path d="M530 165 L330 165" stroke="#5B6B80" stroke-width="2.5" stroke-dasharray="7 5" marker-end="url(#fc)"></path>
-    <text x="430" y="55" text-anchor="middle" class="dg-s" font-size="12">se mira hacia atrás</text>
-    <rect x="40" y="30" width="280" height="170" rx="14" fill="none" stroke="#2A9DA3" stroke-width="2"></rect>
-    <text x="180" y="60" text-anchor="middle" class="dg-t" font-weight="700">¿Estuvieron expuestos?</text>
-    <text x="180" y="95" text-anchor="middle" class="dg-s" font-size="12">Entrevista, historia clínica,</text>
-    <text x="180" y="112" text-anchor="middle" class="dg-s" font-size="12">registros previos</text>
-    <text x="180" y="150" text-anchor="middle" fill="#E5636F" font-weight="700">Expuestos en casos: 40 %</text>
-    <text x="180" y="172" text-anchor="middle" fill="#2A9DA3" font-weight="700">Expuestos en controles: 25 %</text>
-    <line x1="40" y1="232" x2="740" y2="232" class="dg-l" stroke-width="1.5" marker-start="url(#fc)"></line>
-    <text x="40" y="256" class="dg-s" font-size="12">Pasado: la exposición</text>
-    <text x="740" y="256" text-anchor="end" class="dg-s" font-size="12">Presente: el diagnóstico</text>
-  </g>
-</svg>
-<p class="cap">El investigador decide cuántos casos y cuántos controles incluir. Por eso no puede calcular la frecuencia de la enfermedad.</p>
-</div>
-</section>
-<section id="cuándo-elegirlo" class="level2">
-<h2 class="anchored" data-anchor-id="cuándo-elegirlo">Cuándo elegirlo</h2>
-<ul>
-<li>La enfermedad es <strong>rara</strong>: una cohorte necesitaría seguir a miles de personas para observar unos pocos casos.</li>
-<li>La enfermedad tarda <strong>mucho en aparecer</strong> después de la exposición.</li>
-<li>Quieres explorar <strong>varias exposiciones</strong> para un mismo desenlace.</li>
-<li>Necesitas una respuesta <strong>rápida</strong>, por ejemplo, ante un brote.</li>
-</ul>
-<p>No es el diseño adecuado si la exposición es rara (pocos casos o controles expuestos) o si quieres estimar cuántas personas enferman.</p>
-</section>
-<section id="la-pieza-clave-los-controles" class="level2">
-<h2 class="anchored" data-anchor-id="la-pieza-clave-los-controles">La pieza clave: los controles</h2>
-<p>Los controles deben representar a la población de la que salieron los casos: personas que, si hubieran desarrollado la enfermedad, habrían sido incluidas como casos. Un control mal elegido arruina el estudio aunque todo lo demás esté bien.</p>
-<ul>
-<li><strong>Controles de la misma población:</strong> del mismo hospital y con la misma área de influencia, de la misma comunidad, del mismo registro.</li>
-<li><strong>Controles hospitalarios:</strong> son prácticos, pero no deben tener enfermedades relacionadas con la exposición. Si estudias tabaco y cáncer de pulmón, un control con EPOC no sirve.</li>
-<li><strong>Emparejamiento:</strong> puedes elegir controles parecidos a cada caso en edad o sexo, pero entonces el análisis también debe ser emparejado, y ya no podrás evaluar esas variables como factores asociados.</li>
-<li><strong>Más de un control por caso:</strong> aumenta la potencia, pero más allá de cuatro controles por caso la ganancia es pequeña.</li>
-</ul>
-</section>
-<section id="cómo-se-analiza" class="level2">
-<h2 class="anchored" data-anchor-id="cómo-se-analiza">Cómo se analiza</h2>
-<p>Como el investigador fijó cuántos casos y controles hay, la proporción de enfermos en la muestra no refleja la de la población. Por eso <strong>no se puede calcular la prevalencia, la incidencia, la RP ni el riesgo relativo</strong>. Lo que sí se puede comparar es la odds de exposición en casos y controles: el <a href="../../prospecto/diccionario.html#odds-ratio" class="dic">odds ratio</a>.</p>
-<div style="overflow-x:auto">
-
-<table class="mapa caption-top table">
-<thead>
-<tr class="header">
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th">Casos</th>
-<th data-quarto-table-cell-role="th">Controles</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<th data-quarto-table-cell-role="th">Expuestos</th>
-<td><strong>a</strong> = 80</td>
-<td><strong>b</strong> = 50</td>
-</tr>
-<tr class="even">
-<th data-quarto-table-cell-role="th">No expuestos</th>
-<td><strong>c</strong> = 120</td>
-<td><strong>d</strong> = 150</td>
-</tr>
-<tr class="odd">
-<th data-quarto-table-cell-role="th">Total</th>
-<td>200</td>
-<td>200</td>
-</tr>
-</tbody>
-</table>
-
-</div>
-<p><img src="https://latex.codecogs.com/png.latex?OR%20=%20%5Cfrac%7Ba/c%7D%7Bb/d%7D%20=%20%5Cfrac%7Ba%20%5Ctimes%20d%7D%7Bb%20%5Ctimes%20c%7D%20=%20%5Cfrac%7B80%20%5Ctimes%20150%7D%7B50%20%5Ctimes%20120%7D%20=%202%7B,%7D0"></p>
-<p>Con estos datos ilustrativos, la odds de haber estado expuesto es el doble en los casos que en los controles. Cuando la enfermedad es rara en la población, el OR se aproxima al riesgo relativo. Para ajustar por <a href="../../prospecto/diccionario.html#confusion" class="dic">confusores</a> se usa <a href="../../prospecto/diccionario.html#regresion-logistica" class="dic">regresión logística</a>; si los controles fueron emparejados, regresión logística condicional.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;"># OR crudo y ajustado</span></span>
-<span id="cb1-2">m <span class="ot" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">glm</span>(caso <span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">~</span> exposicion <span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">+</span> edad <span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">+</span> sexo, <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">family =</span> binomial, <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">data =</span> datos)</span>
-<span id="cb1-3">gtsummary<span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">tbl_regression</span>(m, <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">exponentiate =</span> <span class="cn" style="color: #8f5902;
-background-color: null;
-font-style: inherit;">TRUE</span>)</span>
-<span id="cb1-4"></span>
-<span id="cb1-5"><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;"># Con emparejamiento (un conjunto por caso y sus controles)</span></span>
-<span id="cb1-6">survival<span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">clogit</span>(caso <span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">~</span> exposicion <span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">+</span> <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">strata</span>(conjunto), <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">data =</span> datos)</span></code></pre></div></div>
-</section>
-<section id="fortalezas-y-límites" class="level2">
-<h2 class="anchored" data-anchor-id="fortalezas-y-límites">Fortalezas y límites</h2>
-<div class="pros-contras">
-<div>
-<p><strong>Fortalezas</strong></p>
-<ul>
-<li>Eficiente para enfermedades raras o de latencia larga.</li>
-<li>Rápido y de menor costo que una cohorte.</li>
-<li>Permite estudiar varias exposiciones a la vez.</li>
-<li>Necesita menos participantes.</li>
-</ul>
-</div>
-<div>
-<p><strong>Límites</strong></p>
-<ul>
-<li>No estima la frecuencia de la enfermedad ni el riesgo.</li>
-<li>La exposición se mide después del diagnóstico: hay riesgo de sesgo de recuerdo.</li>
-<li>La selección de controles es difícil y es la fuente principal de sesgo.</li>
-<li>No sirve para exposiciones raras.</li>
-</ul>
-</div>
-</div>
-</section>
-<section id="los-sesgos-que-más-se-observan" class="level2">
-<h2 class="anchored" data-anchor-id="los-sesgos-que-más-se-observan">Los sesgos que más se observan</h2>
-<ul>
-<li><strong>Sesgo de selección.</strong> Los controles no provienen de la misma población que los casos, o los casos incluidos no representan a todos los casos (por ejemplo, solo los graves de un hospital de referencia).</li>
-<li><strong>Sesgo de Berkson.</strong> Con controles hospitalarios, las combinaciones de enfermedades que llevan a hospitalizarse pueden crear asociaciones que no existen en la población.</li>
-<li><strong>Sesgo de recuerdo.</strong> Quien tiene la enfermedad suele recordar mejor (o buscar más) sus exposiciones. Se reduce midiendo la exposición con registros previos al diagnóstico.</li>
-<li><strong>Sesgo del entrevistador.</strong> Si quien pregunta sabe quién es caso, puede insistir más. Lo ideal es que no lo sepa.</li>
-</ul>
-</section>
-<section id="errores-frecuentes-en-las-tesis" class="level2">
-<h2 class="anchored" data-anchor-id="errores-frecuentes-en-las-tesis">Errores frecuentes en las tesis</h2>
-<ol type="1">
-<li><strong>Llamar «casos y controles» a un transversal.</strong> Si tomaste a todos los pacientes de un periodo y después los separaste según tuvieran o no el desenlace, el diseño es transversal y la proporción de casos sí refleja la población.</li>
-<li><strong>Calcular la prevalencia o el riesgo relativo.</strong> En casos y controles solo es válido el OR.</li>
-<li><strong>Elegir los controles por conveniencia,</strong> de otro servicio o de otra población, sin justificar que representan a la población de origen de los casos.</li>
-<li><strong>Emparejar y analizar como si no hubiera emparejamiento.</strong></li>
-<li><strong>Confundir los supuestos del tamaño de muestra:</strong> se necesita la frecuencia de la exposición en los controles, no la prevalencia de la enfermedad.</li>
-</ol>
-</section>
-<section id="tu-tamaño-de-muestra" class="level2">
-<h2 class="anchored" data-anchor-id="tu-tamaño-de-muestra">Tu tamaño de muestra</h2>
-<p>Necesitas tres supuestos: la proporción de expuestos entre los controles, el OR mínimo que quieres detectar y cuántos controles tendrás por caso.</p>
-<div class="usa-calc">
-<p><img src="https://anthonyromero.netlify.app/images/marcas/muestra.svg" class="img-fluid"></p>
-<p>Calcúlalo en el Consultorio estadístico, ya configurado para este diseño: <a href="../../herramientas/muestra/index.html#mod=dprop&amp;dis=cc">tamaño de muestra para casos y controles</a>.</p>
-</div>
-</section>
-<section id="cómo-reportarlo" class="level2">
-<h2 class="anchored" data-anchor-id="cómo-reportarlo">Cómo reportarlo</h2>
-<p>Sigue la guía <strong>STROBE</strong> (von Elm et al., 2007): explica cómo se definieron y seleccionaron los casos y los controles, la proporción de controles por caso, si hubo emparejamiento y cómo se midió la exposición. Reporta los OR crudos y ajustados con su intervalo de confianza al 95 %.</p>
-</section>
-<section id="autoevaluación" class="level2">
-<h2 class="anchored" data-anchor-id="autoevaluación">Autoevaluación</h2>
-<div class="autoeval">
-<div class="pregunta">
-<p>En tu estudio incluiste 100 niños con neumonía y 200 sin neumonía del mismo hospital. Escribiste: «la prevalencia de neumonía fue 33,3 %». ¿Qué está mal?</p>
-<details>
-<summary>
-Ver respuesta
-</summary>
-Esa cifra la decidiste tú al elegir uno a dos casos por control; no es la prevalencia de neumonía en ninguna población. En casos y controles no se reporta la prevalencia del desenlace.
-</details>
-</div>
-<div class="pregunta">
-<p>Emparejaste cada caso con dos controles de la misma edad y sexo. ¿Puedes reportar el sexo como factor asociado?</p>
-<details>
-<summary>
-Ver respuesta
-</summary>
-No.&nbsp;Al emparejar por sexo, lo hiciste igual en casos y controles; su asociación queda anulada por diseño. Además, el análisis debe ser emparejado (regresión logística condicional).
-</details>
-</div>
-<div class="pregunta">
-<p>¿Por qué conviene medir la exposición con registros anteriores al diagnóstico y no solo con una entrevista?</p>
-<details>
-<summary>
-Ver respuesta
-</summary>
-Para reducir el sesgo de recuerdo: los casos tienden a recordar o reportar sus exposiciones de forma distinta que los controles.
-</details>
-</div>
-</div>
-</section>
-<section id="referencias" class="level2">
-<h2 class="anchored" data-anchor-id="referencias">Referencias</h2>
-<ul>
-<li>Doll R, Hill AB. Smoking and carcinoma of the lung: preliminary report. <em>Br Med J</em>. 1950;2(4682):739-48.</li>
-<li>Rothman KJ, Greenland S, Lash TL. <em>Modern Epidemiology</em>. 3.ª ed.&nbsp;Filadelfia: Lippincott Williams &amp; Wilkins; 2008.</li>
-<li>Grimes DA, Schulz KF. Compared to what? Finding controls for case-control studies. <em>Lancet</em>. 2005;365(9468):1429-33.</li>
-<li>von Elm E, Altman DG, Egger M, Pocock SJ, Gøtzsche PC, Vandenbroucke JP. The Strengthening the Reporting of Observational Studies in Epidemiology (STROBE) statement: guidelines for reporting observational studies. <em>Lancet</em>. 2007;370(9596):1453-7.</li>
-</ul>
-<div class="cta">
-<p><strong>¿Estás armando un estudio de casos y controles?</strong></p>
-<p>Te ayudo a definir los controles, calcular la muestra y plantear el análisis.</p>
-<p><a href="https://api.whatsapp.com/send?phone=51955446754&amp;text=Hola%2C%20le%C3%AD%20tu%20entrada%20sobre%20casos%20y%20controles%20y%20quiero%20informaci%C3%B3n%20sobre%20asesor%C3%ADa%20para%20mi%20tesis">Escríbeme por WhatsApp</a></p>
-</div>
-
-
-</section>
-
- ]]></description>
-  <category>Diseños de estudio</category>
-  <category>Epidemiología</category>
-  <category>Tesis</category>
-  <guid>https://anthonyromero.netlify.app/disenos/casos-y-controles/</guid>
-  <pubDate>Thu, 15 Oct 2026 05:00:00 GMT</pubDate>
-  <media:content url="https://anthonyromero.netlify.app/disenos/casos-y-controles/portada.png" medium="image" type="image/png" height="76" width="144"/>
-</item>
-<item>
-  <title>El estudio transversal</title>
-  <link>https://anthonyromero.netlify.app/disenos/transversal/</link>
-  <description><![CDATA[ 
-
-
-
-
-
-
-<p><a href="../../disenos/index.html" class="sello"><img src="https://anthonyromero.netlify.app/images/marcas/disenos.svg" class="img-fluid"><span><b>Diseños de estudio</b><em>Diseño n.º 1</em></span></a></p>
-<div class="en-una-frase">
-<p>Un estudio transversal mide la exposición y el desenlace <strong>en el mismo momento</strong>, como una fotografía de la población.</p>
-</div>
-<p>Es el diseño más usado en las tesis de pregrado y el que sostiene a las grandes encuestas nacionales, como la <a href="../../prospecto/diccionario.html#endes" class="dic">ENDES</a>. Su fortaleza es la rapidez y su límite es el tiempo: como todo se mide a la vez, rara vez permite saber qué ocurrió primero.</p>
-<section id="cómo-se-ve" class="level2">
-<h2 class="anchored" data-anchor-id="cómo-se-ve">Cómo se ve</h2>
-<div class="diagrama">
-<svg viewbox="0 0 760 250" aria-label="Esquema del estudio transversal">
-  <g font-size="13">
-    <text x="20" y="28" class="dg-t" font-weight="700">Población</text>
-    <g>
-      <circle cx="50" cy="70" r="9" fill="#E5636F"></circle><circle cx="80" cy="70" r="9" fill="#0B1F3A" opacity=".75"></circle><circle cx="110" cy="70" r="9" fill="#0B1F3A" opacity=".75"></circle><circle cx="140" cy="70" r="9" fill="#E5636F"></circle>
-      <circle cx="50" cy="100" r="9" fill="#0B1F3A" opacity=".75"></circle><circle cx="80" cy="100" r="9" fill="#E5636F"></circle><circle cx="110" cy="100" r="9" fill="#0B1F3A" opacity=".75"></circle><circle cx="140" cy="100" r="9" fill="#0B1F3A" opacity=".75"></circle>
-      <circle cx="50" cy="130" r="9" fill="#0B1F3A" opacity=".75"></circle><circle cx="80" cy="130" r="9" fill="#0B1F3A" opacity=".75"></circle><circle cx="110" cy="130" r="9" fill="#E5636F"></circle><circle cx="140" cy="130" r="9" fill="#0B1F3A" opacity=".75"></circle>
-    </g>
-    <path d="M170 100 L250 100" stroke="#5B6B80" stroke-width="2.5" marker-end="url(#ft)"></path>
-    <defs><marker id="ft" viewbox="0 0 10 10" refx="9" refy="5" markerwidth="7" markerheight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#5B6B80"></path></marker></defs>
-    <rect x="260" y="50" width="200" height="100" rx="14" fill="#0B1F3A"></rect>
-    <text x="360" y="85" text-anchor="middle" fill="#fff" font-weight="700">Una sola medición</text>
-    <text x="360" y="108" text-anchor="middle" fill="#A9B8CC" font-size="12">¿Expuesto? ¿Tiene el desenlace?</text>
-    <text x="360" y="128" text-anchor="middle" fill="#A9B8CC" font-size="12">Las dos preguntas a la vez</text>
-    <path d="M470 100 L550 100" stroke="#5B6B80" stroke-width="2.5" marker-end="url(#ft)"></path>
-    <rect x="560" y="45" width="180" height="110" rx="14" fill="none" stroke="#E5636F" stroke-width="2"></rect>
-    <text x="650" y="78" text-anchor="middle" class="dg-t" font-weight="700">Prevalencias</text>
-    <text x="650" y="102" text-anchor="middle" class="dg-s" font-size="12">en expuestos y</text>
-    <text x="650" y="118" text-anchor="middle" class="dg-s" font-size="12">no expuestos</text>
-    <text x="650" y="142" text-anchor="middle" fill="#E5636F" font-weight="700">→ RP</text>
-    <line x1="40" y1="200" x2="740" y2="200" class="dg-l" stroke-width="1.5"></line>
-    <line x1="360" y1="188" x2="360" y2="212" stroke="#E5636F" stroke-width="3"></line>
-    <text x="360" y="232" text-anchor="middle" fill="#E5636F" font-weight="700">Un momento en el tiempo</text>
-    <text x="40" y="232" class="dg-s" font-size="12">Pasado</text><text x="740" y="232" text-anchor="end" class="dg-s" font-size="12">Futuro</text>
-  </g>
-</svg>
-<p class="cap">Los puntos rojos son personas con el desenlace. No hay seguimiento: se observa lo que hay en un momento dado.</p>
-</div>
-</section>
-<section id="cuándo-elegirlo" class="level2">
-<h2 class="anchored" data-anchor-id="cuándo-elegirlo">Cuándo elegirlo</h2>
-<ul>
-<li>Para <strong>estimar la frecuencia</strong> de una enfermedad o de un factor: la <a href="../../prospecto/diccionario.html#prevalencia" class="dic">prevalencia</a> de anemia en gestantes, de depresión en internos de medicina.</li>
-<li>Para <strong>explorar asociaciones</strong> cuando el seguimiento no es factible: ¿la prevalencia de obesidad abdominal es mayor en mujeres que en hombres?</li>
-<li>Para <strong>planificar servicios</strong>: cuántas personas necesitan atención hoy.</li>
-<li>Para <strong>generar hipótesis</strong> que luego se estudiarán con una cohorte o un ensayo.</li>
-</ul>
-<p>Existen dos variantes. El <strong>transversal descriptivo</strong> solo estima frecuencias. El <strong>transversal analítico</strong> compara la prevalencia del desenlace entre expuestos y no expuestos.</p>
-</section>
-<section id="cómo-se-analiza" class="level2">
-<h2 class="anchored" data-anchor-id="cómo-se-analiza">Cómo se analiza</h2>
-<p>La medida natural del transversal analítico es la <a href="../../prospecto/diccionario.html#razon-de-prevalencias" class="dic">razón de prevalencias</a> (RP): cuántas veces más frecuente es el desenlace en los expuestos. Se calcula con una <a href="../../prospecto/diccionario.html#tabla-2x2" class="dic">tabla 2 × 2</a>.</p>
-<div style="overflow-x:auto">
-
-<table class="mapa caption-top table">
-<thead>
-<tr class="header">
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th">Con desenlace</th>
-<th data-quarto-table-cell-role="th">Sin desenlace</th>
-<th data-quarto-table-cell-role="th">Total</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<th data-quarto-table-cell-role="th">Expuestos</th>
-<td><strong>a</strong> = 90</td>
-<td><strong>b</strong> = 210</td>
-<td>300</td>
-</tr>
-<tr class="even">
-<th data-quarto-table-cell-role="th">No expuestos</th>
-<td><strong>c</strong> = 105</td>
-<td><strong>d</strong> = 595</td>
-<td>700</td>
-</tr>
-</tbody>
-</table>
-
-</div>
-<p>Con estos datos ilustrativos, la prevalencia es 90/300 = 30 % en los expuestos y 105/700 = 15 % en los no expuestos:</p>
-<p><img src="https://latex.codecogs.com/png.latex?RP%20=%20%5Cfrac%7Ba/(a+b)%7D%7Bc/(c+d)%7D%20=%20%5Cfrac%7B0%7B,%7D30%7D%7B0%7B,%7D15%7D%20=%202%7B,%7D0%20%5Cqquad%20OR%20=%20%5Cfrac%7Ba%20%5Ctimes%20d%7D%7Bb%20%5Ctimes%20c%7D%20=%20%5Cfrac%7B90%20%5Ctimes%20595%7D%7B210%20%5Ctimes%20105%7D%20=%202%7B,%7D43"></p>
-<p>El <a href="../../prospecto/diccionario.html#odds-ratio" class="dic">odds ratio</a> da 2,43 cuando el desenlace es «solo» el doble de frecuente. Esa diferencia crece cuanto más frecuente es el desenlace: en la ENDES 2024, la obesidad abdominal fue de 62,0 % en mujeres y de 20,3 % en hombres, con una RP de 3,05 y un OR de 6,38. Por eso, en un transversal con un desenlace frecuente (más de 10 %), se recomienda reportar la RP, estimada con <a href="../../prospecto/diccionario.html#regresion-de-poisson" class="dic">regresión de Poisson</a> con <a href="../../prospecto/diccionario.html#varianza-robusta" class="dic">varianza robusta</a> cuando hay que ajustar por <a href="../../prospecto/diccionario.html#confusion" class="dic">confusión</a> (Barros y Hirakata, 2003).</p>
-<div class="usa-calc">
-<p><img src="https://anthonyromero.netlify.app/images/marcas/prospecto.svg" class="img-fluid"></p>
-<p>El análisis completo, paso a paso en R y con datos reales de la ENDES, está en el <strong>Prospecto R n.º 1</strong>: <a href="../../prospecto/or-vs-rp/inicial.html">¿OR o razón de prevalencias?</a></p>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;"># RP cruda y ajustada con Poisson y varianza robusta</span></span>
-<span id="cb1-2">m <span class="ot" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">glm</span>(desenlace <span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">~</span> exposicion <span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">+</span> edad <span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">+</span> sexo, <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">family =</span> <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">poisson</span>(<span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">link =</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"log"</span>), <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">data =</span> datos)</span>
-<span id="cb1-3">lmtest<span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">coeftest</span>(m, <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">vcov =</span> sandwich<span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">vcovHC</span>(m, <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">type =</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"HC0"</span>))</span></code></pre></div></div>
-<p>Si tus datos vienen de una encuesta con conglomerados y estratos, como la ENDES o la ENAHO, el análisis debe declarar el <a href="../../prospecto/diccionario.html#diseno-muestral-complejo" class="dic">diseño muestral complejo</a>; lo explica la dosis plena del mismo Prospecto R.</p>
-</section>
-<section id="fortalezas-y-límites" class="level2">
-<h2 class="anchored" data-anchor-id="fortalezas-y-límites">Fortalezas y límites</h2>
-<div class="pros-contras">
-<div>
-<p><strong>Fortalezas</strong></p>
-<ul>
-<li>Rápido y de bajo costo.</li>
-<li>Estima la prevalencia directamente.</li>
-<li>Permite estudiar muchas exposiciones y desenlaces a la vez.</li>
-<li>Es la base de las encuestas nacionales, con muestras representativas.</li>
-</ul>
-</div>
-<div>
-<p><strong>Límites</strong></p>
-<ul>
-<li>No establece la secuencia temporal: ¿la exposición vino antes que el desenlace?</li>
-<li>Sobrerrepresenta los casos de larga duración (sesgo de prevalencia-incidencia).</li>
-<li>No sirve para desenlaces raros ni de corta duración.</li>
-<li>No mide incidencia ni riesgo.</li>
-</ul>
-</div>
-</div>
-</section>
-<section id="los-sesgos-que-más-se-observan" class="level2">
-<h2 class="anchored" data-anchor-id="los-sesgos-que-más-se-observan">Los sesgos que más se observan</h2>
-<ul>
-<li><strong>Causalidad inversa.</strong> En un transversal sobre actividad física y depresión, ¿la inactividad lleva a la depresión o la depresión lleva a la inactividad? El diseño no permite saberlo.</li>
-<li><strong>Sesgo de prevalencia-incidencia.</strong> Las personas que mueren pronto o se curan rápido no están en la fotografía; los factores asociados a una enfermedad de larga duración pueden confundirse con factores de riesgo.</li>
-<li><strong>Sesgo de selección y de no respuesta.</strong> Si quienes no participan son diferentes de quienes sí, la prevalencia queda sesgada. Reporta la tasa de respuesta.</li>
-<li><strong><a href="../../prospecto/diccionario.html#confusion" class="dic">Confusión</a>.</strong> Como en todo diseño observacional, controla los confusores en el análisis.</li>
-</ul>
-</section>
-<section id="errores-frecuentes-en-las-tesis" class="level2">
-<h2 class="anchored" data-anchor-id="errores-frecuentes-en-las-tesis">Errores frecuentes en las tesis</h2>
-<ol type="1">
-<li><strong>Llamarlo «casos y controles»</strong> porque se compara a quienes tienen el desenlace con quienes no lo tienen. Si tomaste a toda la población (o una muestra de ella) y luego la dividiste según el desenlace, el estudio es transversal.</li>
-<li><strong>Llamarlo «cohorte retrospectiva»</strong> cuando se revisan historias clínicas y la exposición y el desenlace se registran al mismo tiempo. Sin seguimiento no hay cohorte.</li>
-<li><strong>Reportar el OR con un desenlace frecuente</strong> y leerlo como si fuera una RP: «los expuestos tienen 6 veces más obesidad».</li>
-<li><strong>Concluir causalidad.</strong> Escribe «se asoció con», no «causa» ni «es un factor de riesgo».</li>
-<li><strong>Olvidar el diseño muestral</strong> cuando los datos son de una encuesta nacional.</li>
-</ol>
-</section>
-<section id="tu-tamaño-de-muestra" class="level2">
-<h2 class="anchored" data-anchor-id="tu-tamaño-de-muestra">Tu tamaño de muestra</h2>
-<p>Para un transversal descriptivo, el tamaño se calcula para <strong>estimar una proporción</strong>; para uno analítico, para <strong>comparar dos proporciones</strong>.</p>
-<div class="usa-calc">
-<p><img src="https://anthonyromero.netlify.app/images/marcas/muestra.svg" class="img-fluid"></p>
-<p>Calcúlalo en el Consultorio estadístico: <a href="../../herramientas/muestra/index.html#mod=prop">estimar una prevalencia</a> o <a href="../../herramientas/muestra/index.html#mod=dprop&amp;dis=tr">comparar la prevalencia entre expuestos y no expuestos</a>.</p>
-</div>
-</section>
-<section id="cómo-reportarlo" class="level2">
-<h2 class="anchored" data-anchor-id="cómo-reportarlo">Cómo reportarlo</h2>
-<p>Sigue la guía <strong>STROBE</strong> para estudios observacionales (von Elm et al., 2007): describe el muestreo, la tasa de respuesta, cómo se midieron la exposición y el desenlace, y reporta las medidas de asociación crudas y ajustadas con su intervalo de confianza al 95 %.</p>
-</section>
-<section id="autoevaluación" class="level2">
-<h2 class="anchored" data-anchor-id="autoevaluación">Autoevaluación</h2>
-<div class="autoeval">
-<div class="pregunta">
-<p>Revisas 400 historias clínicas de pacientes con diabetes atendidos en 2025 y registras, de la misma historia, si tenían control glucémico y si asistían a sus consultas. ¿Qué diseño es?</p>
-<details>
-<summary>
-Ver respuesta
-</summary>
-Transversal analítico. Ambas variables corresponden al mismo periodo y no hay seguimiento desde la exposición hacia el desenlace; que los datos sean del pasado no lo convierte en una cohorte retrospectiva.
-</details>
-</div>
-<div class="pregunta">
-<p>La prevalencia de anemia es 40 % en un grupo y 20 % en otro. ¿Qué es más fácil de explicar al lector, la RP o el OR?</p>
-<details>
-<summary>
-Ver respuesta
-</summary>
-La RP: el desenlace es dos veces más frecuente (RP = 2,0). El OR sería 2,67 y suele leerse, por error, como si fuera una razón de prevalencias.
-</details>
-</div>
-<div class="pregunta">
-<p>¿Por qué un transversal no es el mejor diseño para estudiar si el estrés causa hipertensión?</p>
-<details>
-<summary>
-Ver respuesta
-</summary>
-Porque mide ambos a la vez y no establece qué ocurrió primero; además, el diagnóstico de hipertensión podría aumentar el estrés (causalidad inversa). Una cohorte que siga a personas sin hipertensión sería más adecuada.
-</details>
-</div>
-</div>
-</section>
-<section id="referencias" class="level2">
-<h2 class="anchored" data-anchor-id="referencias">Referencias</h2>
-<ul>
-<li>Rothman KJ, Greenland S, Lash TL. <em>Modern Epidemiology</em>. 3.ª ed.&nbsp;Filadelfia: Lippincott Williams &amp; Wilkins; 2008.</li>
-<li>Barros AJD, Hirakata VN. Alternatives for logistic regression in cross-sectional studies: an empirical comparison of models that directly estimate the prevalence ratio. <em>BMC Med Res Methodol</em>. 2003;3:21.</li>
-<li>von Elm E, Altman DG, Egger M, Pocock SJ, Gøtzsche PC, Vandenbroucke JP. The Strengthening the Reporting of Observational Studies in Epidemiology (STROBE) statement: guidelines for reporting observational studies. <em>Lancet</em>. 2007;370(9596):1453-7.</li>
-<li>Instituto Nacional de Estadística e Informática. <em>Ficha técnica. Encuesta Demográfica y de Salud Familiar 2024</em>. Lima: INEI.</li>
-</ul>
-<div class="cta">
-<p><strong>¿Tu estudio es transversal y no sabes cómo analizarlo?</strong></p>
-<p>Te ayudo a plantear el análisis, desde la Tabla 1 hasta el modelo ajustado.</p>
-<p><a href="https://api.whatsapp.com/send?phone=51955446754&amp;text=Hola%2C%20le%C3%AD%20tu%20entrada%20sobre%20estudios%20transversales%20y%20quiero%20informaci%C3%B3n%20sobre%20asesor%C3%ADa%20para%20mi%20tesis">Escríbeme por WhatsApp</a></p>
-</div>
-
-
-</section>
-
- ]]></description>
-  <category>Diseños de estudio</category>
-  <category>Epidemiología</category>
-  <category>Tesis</category>
-  <guid>https://anthonyromero.netlify.app/disenos/transversal/</guid>
-  <pubDate>Thu, 15 Oct 2026 05:00:00 GMT</pubDate>
-  <media:content url="https://anthonyromero.netlify.app/disenos/transversal/portada.png" medium="image" type="image/png" height="76" width="144"/>
 </item>
 </channel>
 </rss>

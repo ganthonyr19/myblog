@@ -8,7 +8,7 @@
 
 <meta name="description" content="Entradas para entender y hacer mejor la investigación en salud: diseños de estudio, elección de pruebas estadísticas y novedades del ecosistema R.">
 
-<title>Blog – Anthony Romero</title>
+<title>Blog – Anthony Romero · Bioestadística en línea</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -51,9 +51,9 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-749f0c35d8da38091077ec74fca69a22.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-02237a22ee455bad83aece42a6742289.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="site_libs/bootstrap/bootstrap-749f0c35d8da38091077ec74fca69a22.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-f546d6278a7fe63a888be9443735f898.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-5fd2d996c0150a3a1fed98b14a8f705c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-f546d6278a7fe63a888be9443735f898.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -91,7 +91,7 @@ ul.task-list li input[type="checkbox"] {
     }
 
     const options = {
-      valueNames: ['listing-title','listing-author','listing-date','listing-image','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
+      valueNames: ['listing-image','listing-date','listing-title','listing-description','listing-categories','listing-reading-time',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
       
       searchColumns: ["listing-title","listing-author","listing-date","listing-image","listing-description","listing-categories"],
     };
@@ -159,15 +159,15 @@ window.Quarto = {
 </script>
 
 <link rel="stylesheet" href="styles.css">
-<link rel="alternate" type="application/rss+xml" title="Anthony Romero" href="blog.xml" data-external="1"><meta property="og:title" content="Blog – Anthony Romero">
+<link rel="alternate" type="application/rss+xml" title="Anthony Romero · Bioestadística en línea" href="blog.xml" data-external="1"><meta property="og:title" content="Blog – Anthony Romero · Bioestadística en línea">
 <meta property="og:description" content="Entradas para entender y hacer mejor la investigación en salud: diseños de estudio, elección de pruebas estadísticas y novedades del ecosistema R.">
-<meta property="og:image" content="https://anthonyromero.netlify.app/blog/que-prueba-estadistica/portada.png">
-<meta property="og:site_name" content="Anthony Romero">
+<meta property="og:image" content="https://anthonyromero.netlify.app/disenos/cohortes/portada.png">
+<meta property="og:site_name" content="Anthony Romero · Bioestadística en línea">
 <meta property="og:image:height" content="630">
 <meta property="og:image:width" content="1200">
-<meta name="twitter:title" content="Blog – Anthony Romero">
+<meta name="twitter:title" content="Blog – Anthony Romero · Bioestadística en línea">
 <meta name="twitter:description" content="Entradas para entender y hacer mejor la investigación en salud: diseños de estudio, elección de pruebas estadísticas y novedades del ecosistema R.">
-<meta name="twitter:image" content="https://anthonyromero.netlify.app/blog/que-prueba-estadistica/portada.png">
+<meta name="twitter:image" content="https://anthonyromero.netlify.app/disenos/cohortes/portada.png">
 <meta name="twitter:image-height" content="630">
 <meta name="twitter:image-width" content="1200">
 <meta name="twitter:card" content="summary_large_image">
@@ -476,40 +476,7 @@ window.Quarto = {
 
 <div class="quarto-listing quarto-listing-container-grid" id="listing-listing">
 <div class="list grid quarto-listing-cols-3">
-<div class="g-col-1" data-index="0" data-categories="Q29uc3VsdG9yaW8lMjBlc3RhZCVDMyVBRHN0aWNvJTJDUHJ1ZWJhcyUyMGVzdGFkJUMzJUFEc3RpY2FzJTJDVGVzaXM=" data-listing-date-sort="1792040400000" data-listing-file-modified-sort="1792083666900" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="6" data-listing-word-count-sort="1125">
-<a href="./blog/que-prueba-estadistica/index.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top">
-<img loading="lazy" src="./blog/que-prueba-estadistica/portada.png" class="thumbnail-image card-img" style="height: 150px;">
-</p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-¿Qué prueba estadística uso?
-</h5>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('Q29uc3VsdG9yaW8lMjBlc3RhZCVDMyVBRHN0aWNv'); return false;">Consultorio estadístico</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('UHJ1ZWJhcyUyMGVzdGFkJUMzJUFEc3RpY2Fz'); return false;">Pruebas estadísticas</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('VGVzaXM='); return false;">Tesis</div>
-
-</div>
-<div class="card-text listing-description delink">
-<p>Cómo elegir la prueba estadística de tu tesis de salud: un triaje interactivo en cuatro preguntas, el mapa completo de pruebas, cinco mitos y el código en R de cada una.</p>
-</div>
-<div class="card-attribution card-text-small justify">
-<div class="listing-author">
-
-</div>
-<div class="listing-date">
-15 oct 2026
-</div>
-</div>
-</div>
-</div></a>
-</div>
-<div class="g-col-1" data-index="1" data-categories="RGlzZSVDMyVCMW9zJTIwZGUlMjBlc3R1ZGlvJTJDRXBpZGVtaW9sb2clQzMlQURhJTJDVGVzaXM=" data-listing-date-sort="1792040400000" data-listing-file-modified-sort="1792083666904" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="7" data-listing-word-count-sort="1394">
+<div class="g-col-1" data-index="0" data-categories="RGlzZSVDMyVCMW9zJTIwZGUlMjBlc3R1ZGlvJTJDRXBpZGVtaW9sb2clQzMlQURhJTJDVGVzaXM=" data-listing-date-sort="1791435600000" data-listing-file-modified-sort="1792105805322" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="7" data-listing-word-count-sort="1394">
 <a href="./disenos/cohortes/index.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top">
@@ -519,6 +486,7 @@ window.Quarto = {
 <h5 class="no-anchor card-title listing-title">
 El estudio de cohortes
 </h5>
+<div class="listing-reading-time card-text text-muted">7 minutos</div>
 <div class="listing-categories">
 
 <div class="listing-category" onclick="window.quartoListingCategory('RGlzZSVDMyVCMW9zJTIwZGUlMjBlc3R1ZGlv'); return false;">Diseños de estudio</div>
@@ -531,18 +499,15 @@ El estudio de cohortes
 <div class="card-text listing-description delink">
 <p>El estudio de cohortes explicado con diagramas y ejemplos: prospectivo y retrospectivo, incidencia, riesgo relativo, persona-tiempo, pérdidas en el seguimiento, análisis en…</p>
 </div>
-<div class="card-attribution card-text-small justify">
-<div class="listing-author">
-
-</div>
+<div class="card-attribution card-text-small end">
 <div class="listing-date">
-15 oct 2026
+8 oct 2026
 </div>
 </div>
 </div>
 </div></a>
 </div>
-<div class="g-col-1" data-index="2" data-categories="RGlzZSVDMyVCMW9zJTIwZGUlMjBlc3R1ZGlvJTJDRXBpZGVtaW9sb2clQzMlQURhJTJDVGVzaXM=" data-listing-date-sort="1792040400000" data-listing-file-modified-sort="1792083666903" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="7" data-listing-word-count-sort="1370">
+<div class="g-col-1" data-index="1" data-categories="RGlzZSVDMyVCMW9zJTIwZGUlMjBlc3R1ZGlvJTJDRXBpZGVtaW9sb2clQzMlQURhJTJDVGVzaXM=" data-listing-date-sort="1790830800000" data-listing-file-modified-sort="1792105805318" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="7" data-listing-word-count-sort="1370">
 <a href="./disenos/casos-y-controles/index.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top">
@@ -552,6 +517,7 @@ El estudio de cohortes
 <h5 class="no-anchor card-title listing-title">
 El estudio de casos y controles
 </h5>
+<div class="listing-reading-time card-text text-muted">7 minutos</div>
 <div class="listing-categories">
 
 <div class="listing-category" onclick="window.quartoListingCategory('RGlzZSVDMyVCMW9zJTIwZGUlMjBlc3R1ZGlv'); return false;">Diseños de estudio</div>
@@ -564,18 +530,15 @@ El estudio de casos y controles
 <div class="card-text listing-description delink">
 <p>El estudio de casos y controles explicado con diagramas y ejemplos: selección de controles, odds ratio, sesgo de recuerdo, análisis en R y tamaño de muestra.</p>
 </div>
-<div class="card-attribution card-text-small justify">
-<div class="listing-author">
-
-</div>
+<div class="card-attribution card-text-small end">
 <div class="listing-date">
-15 oct 2026
+1 oct 2026
 </div>
 </div>
 </div>
 </div></a>
 </div>
-<div class="g-col-1" data-index="3" data-categories="RGlzZSVDMyVCMW9zJTIwZGUlMjBlc3R1ZGlvJTJDRXBpZGVtaW9sb2clQzMlQURhJTJDVGVzaXM=" data-listing-date-sort="1792040400000" data-listing-file-modified-sort="1792083666903" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="7" data-listing-word-count-sort="1394">
+<div class="g-col-1" data-index="2" data-categories="RGlzZSVDMyVCMW9zJTIwZGUlMjBlc3R1ZGlvJTJDRXBpZGVtaW9sb2clQzMlQURhJTJDVGVzaXM=" data-listing-date-sort="1790226000000" data-listing-file-modified-sort="1792105805335" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="7" data-listing-word-count-sort="1394">
 <a href="./disenos/transversal/index.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top">
@@ -585,6 +548,7 @@ El estudio de casos y controles
 <h5 class="no-anchor card-title listing-title">
 El estudio transversal
 </h5>
+<div class="listing-reading-time card-text text-muted">7 minutos</div>
 <div class="listing-categories">
 
 <div class="listing-category" onclick="window.quartoListingCategory('RGlzZSVDMyVCMW9zJTIwZGUlMjBlc3R1ZGlv'); return false;">Diseños de estudio</div>
@@ -597,12 +561,40 @@ El estudio transversal
 <div class="card-text listing-description delink">
 <p>El estudio transversal explicado con diagramas y ejemplos: prevalencia, razón de prevalencias, sesgos, análisis en R y tamaño de muestra.</p>
 </div>
-<div class="card-attribution card-text-small justify">
-<div class="listing-author">
+<div class="card-attribution card-text-small end">
+<div class="listing-date">
+24 sep 2026
+</div>
+</div>
+</div>
+</div></a>
+</div>
+<div class="g-col-1" data-index="3" data-categories="Q29uc3VsdG9yaW8lMjBlc3RhZCVDMyVBRHN0aWNvJTJDUHJ1ZWJhcyUyMGVzdGFkJUMzJUFEc3RpY2FzJTJDVGVzaXM=" data-listing-date-sort="1789016400000" data-listing-file-modified-sort="1792105805212" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="6" data-listing-word-count-sort="1130">
+<a href="./blog/que-prueba-estadistica/index.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img loading="lazy" src="./blog/que-prueba-estadistica/portada.png" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+¿Qué prueba estadística uso?
+</h5>
+<div class="listing-reading-time card-text text-muted">6 minutos</div>
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('Q29uc3VsdG9yaW8lMjBlc3RhZCVDMyVBRHN0aWNv'); return false;">Consultorio estadístico</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('UHJ1ZWJhcyUyMGVzdGFkJUMzJUFEc3RpY2Fz'); return false;">Pruebas estadísticas</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('VGVzaXM='); return false;">Tesis</div>
 
 </div>
+<div class="card-text listing-description delink">
+<p>Cómo elegir la prueba estadística de tu tesis de salud: un triaje interactivo en cuatro preguntas, el mapa completo de pruebas, cinco mitos y el código en R de cada una.</p>
+</div>
+<div class="card-attribution card-text-small end">
 <div class="listing-date">
-15 oct 2026
+10 sep 2026
 </div>
 </div>
 </div>
@@ -612,25 +604,177 @@ El estudio transversal
 <div class="listing-no-matching d-none">No hay resultados</div>
 </div></main> <!-- /main -->
 <script>
+
 /* Tarjeta «Síguenos en Instagram» al final de cada entrada (no en listados ni en el inicio). */
+
 (function () {
+
   var IG = "https://www.instagram.com/bioestadistica.en.linea/";
+
   function poner() {
+
     var main = document.querySelector("main#quarto-document-content") || document.querySelector("main");
+
     if (!main || document.querySelector(".quarto-listing") || document.querySelector(".quarto-about-jolla, .about-entity")) return;
+
     if (!document.querySelector(".quarto-title") || document.body.classList.contains("sin-sigue")) return;
+
     var d = document.createElement("aside");
+
     d.className = "sigue-ig";
+
     d.innerHTML =
+
       '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.3" cy="6.7" r="1.2" fill="currentColor"/></svg>' +
+
       '<div><p class="sigue-t">¿Te sirvió?</p><p>En Instagram comparto tips de bioestadística y R para tesis de salud, y aviso cuando sale una entrega nueva.</p></div>' +
+
       '<a href="' + IG + '" target="_blank" rel="noopener">Seguir @bioestadistica.en.linea</a>';
+
     var ap = main.querySelector("#quarto-appendix, .quarto-appendix-contents");
+
     if (ap) ap.parentNode.insertBefore(d, ap); else main.appendChild(d);
+
   }
+
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", poner); else poner();
+
 })();
+
 </script>
+
+<script>
+
+/* En cada entrada: 1) tiempo de lectura junto a la fecha; 2) palabras clave que llevan a temas.html,
+
+   donde se ven solo las entradas con esa misma palabra clave. */
+
+(function () {
+
+  function raiz() {
+
+    // ruta relativa a la raíz del sitio, a partir del enlace al inicio del menú
+
+    var a = document.querySelector(".navbar-brand, a.navbar-brand");
+
+    var h = a ? a.getAttribute("href") : "/index.html";
+
+    return h.replace(/index\.html$/, "");
+
+  }
+
+  function iniciar() {
+
+    var titulo = document.querySelector("#title-block-header, .quarto-title-block");
+
+    if (!titulo || document.querySelector(".quarto-listing")) return;
+
+    var main = document.querySelector("main#quarto-document-content") || document.querySelector("main");
+
+
+
+    // 1. tiempo de lectura: el mismo valor que muestran los listados (lo calcula Quarto
+
+    //    y queda en temas.html); si la página no está ahí, se estima con 200 palabras/min.
+
+    var meta = document.querySelector(".quarto-title-meta");
+
+    var poner = function (min) {
+
+      if (!meta || document.querySelector(".tiempo-lectura") || !(min > 0)) return;
+
+      var d = document.createElement("div");
+
+      d.className = "tiempo-lectura";
+
+      d.innerHTML = '<div class="quarto-title-meta-heading">Lectura</div><div class="quarto-title-meta-contents"><p>' + min + " min</p></div>";
+
+      meta.appendChild(d);
+
+    };
+
+    var estimar = function () {
+
+      if (!main) return;
+
+      var copia = main.cloneNode(true);
+
+      copia.querySelectorAll("script, style, svg, .sigue-ig, #quarto-appendix").forEach(function (e) { e.remove(); });
+
+      var palabras = (copia.textContent || "").split(/\s+/).filter(function (w) { return /[\wáéíóúñ]/i.test(w); }).length;
+
+      if (palabras > 150) poner(Math.ceil(palabras / 200));
+
+    };
+
+    if (meta) {
+
+      var url = new URL(raiz() + "temas.html", location.href);
+
+      fetch(url).then(function (r) { return r.text(); }).then(function (html) {
+
+        var doc = new DOMParser().parseFromString(html, "text/html"), min = null;
+
+        doc.querySelectorAll("[data-listing-reading-time-sort]").forEach(function (el) {
+
+          var a = el.querySelector("a[href]");
+
+          if (!a) return;
+
+          var destino = new URL(a.getAttribute("href"), url).pathname.replace(/index\.html$/, "");
+
+          if (destino === location.pathname.replace(/index\.html$/, "")) min = +el.getAttribute("data-listing-reading-time-sort");
+
+        });
+
+        if (min) poner(min); else estimar();
+
+      }).catch(estimar);
+
+    }
+
+
+
+    // 2. palabras clave enlazadas (en fase de captura, antes que el enlace propio de Quarto)
+
+    var base = raiz();
+
+    var ir = function (c) { location.href = base + "temas.html#tema=" + encodeURIComponent(c.textContent.trim()); };
+
+    titulo.querySelectorAll(".quarto-category").forEach(function (c) {
+
+      c.setAttribute("role", "link"); c.tabIndex = 0; c.style.cursor = "pointer";
+
+      c.title = "Ver todas las entradas sobre «" + c.textContent.trim() + "»";
+
+    });
+
+    document.addEventListener("click", function (e) {
+
+      var c = e.target.closest && e.target.closest("#title-block-header .quarto-category, .quarto-title-block .quarto-category");
+
+      if (!c) return;
+
+      e.preventDefault(); e.stopImmediatePropagation(); ir(c);
+
+    }, true);
+
+    document.addEventListener("keydown", function (e) {
+
+      var c = e.target.closest && e.target.closest("#title-block-header .quarto-category, .quarto-title-block .quarto-category");
+
+      if (c && e.key === "Enter") { e.preventDefault(); ir(c); }
+
+    }, true);
+
+  }
+
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", iniciar); else iniciar();
+
+})();
+
+</script>
+
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     // Ensure there is a toggle, if there isn't float one in the top right

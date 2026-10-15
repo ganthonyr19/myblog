@@ -1,6 +1,6 @@
-# La Tabla 1 de tu tesis <U+00B7> Prospecto R n.<U+00BA> 2 <U+00B7> dosis inicial
-# Prospecto R <U+00B7> Anthony Romero Cerd<U+00E1>n <U+00B7> anthonyromero.netlify.app/prospecto
-# Datos: ENDES 2024 (INEI). Desc<U+00E1>rgalos como indica el Paso 1 del tutorial.
+# La Tabla 1 de tu tesis · Prospecto R n.º 2 · dosis inicial
+# Prospecto R · Anthony Romero Cerdán · anthonyromero.netlify.app/prospecto
+# Datos: ENDES 2024 (INEI). Descárgalos como indica el Paso 1 del tutorial.
 
 options(OutDec = ",")
 fmt <- function(x, d = 2) formatC(x, format = "f", digits = d, decimal.mark = ",", big.mark = "\u00a0")

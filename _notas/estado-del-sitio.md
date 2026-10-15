@@ -138,3 +138,11 @@ Nombre elegido por Anthony (15 oct 2026): **Consultorio estadístico**. Menú su
 - Renderizar archivo por archivo. Las páginas de Prospecto R con `--use-freezer` y `LANG=C.UTF-8` (si no, se re-ejecutan y cambian `_freeze`).
 - Al renderizar un archivo suelto, Quarto no siempre actualiza los recursos copiados (`styles.css`, `.js`): compararlos con `cmp` y copiarlos a `_site/`.
 - `about.qmd` (ahora con el enlace a Instagram) y `posts/Manual/index.qmd` deben renderizarse en la computadora de Anthony; mientras tanto conservan el menú anterior.
+
+## Mejoras del 15 oct 2026 (rama `mejoras-entradas`)
+
+- Tiempo de lectura en todas las entradas: `_includes/entradas.html` toma el valor que calcula Quarto en `temas.html` (el mismo de los listados) y, si la página no está ahí, lo estima con 200 palabras/min. Los listados del blog, tutoriales y temas muestran también `reading-time`.
+- Código plegado en todo el sitio (`code-fold: true` en `_quarto.yml`).
+- Diccionario: persona-tiempo y regresión de Cox, enlazados desde la entrada de cohortes y el triaje.
+- Comentarios: retirados de todo el sitio por decisión de Anthony (basta con Instagram y WhatsApp). Se quitó giscus de `prospecto/_metadata.yml`.
+- Palabras clave: al hacer clic en una palabra clave de una entrada se abre `temas.html#tema=<palabra>`, página fuera del menú que muestra solo las entradas con esa palabra clave (filtro propio en JavaScript; el filtro `#category=` de Quarto 1.10 no funciona con categorías múltiples). Si se agrega una sección nueva, sumar su ruta a `contents` de `temas.qmd`.
