@@ -1,0 +1,12 @@
+# Opciones comunes de la serie «Diseños de estudio»
+lang: es
+title-block-banner: true
+toc: true
+toc-title: "En esta entrada"
+date-format: "D [de] MMMM [de] YYYY"
+format:
+  html:
+    css:
+      - ../prospecto/estilo/prospecto.css
+      - ../estilo/editorial.css
+    include-after-body: ../prospecto/estilo/prospecto.html

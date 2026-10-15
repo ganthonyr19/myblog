@@ -6,6 +6,9 @@ about:
   image-shape: rounded
   image-width: 15em
   links:
+    - icon: instagram
+      text: Instagram
+      href: https://www.instagram.com/bioestadistica.en.linea/
     - icon: twitter
       text: Twitter
       href: https://x.com/ganthonyrc
@@ -25,6 +28,7 @@ listing:
     - blog
     - posts
     - prospecto/*/inicial.qmd   # de Prospecto R, solo la dosis inicial: enlaza a la plena
+    - "disenos/*/index.qmd"     # serie Diseños de estudio (sin su portada)
   sort: "date desc"
   type: grid
   max-items: 3

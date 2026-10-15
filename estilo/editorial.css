@@ -1,0 +1,112 @@
+/* Componentes editoriales del blog, la serie Diseños de estudio y el Consultorio estadístico.
+   Se usa junto con prospecto/estilo/prospecto.css (tipografías, colores, diccionario, autoevaluación). */
+
+/* sello de la sección al inicio de cada página */
+.sello{display:flex;align-items:center;gap:.8rem;margin:.2rem 0 1.6rem;text-decoration:none !important}
+.sello img{width:52px;height:52px;border-radius:13px;flex:none}
+.sello span{display:flex;flex-direction:column;line-height:1.25}
+.sello b{font-size:.74rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--pr-acento)}
+.sello em{font-style:normal;font-size:.95rem;color:var(--pr-suave)}
+a.sello:hover b{text-decoration:underline}
+
+/* frase destacada */
+.en-una-frase{font-family:'Fraunces',Georgia,serif;font-size:1.45rem;line-height:1.35;margin:1.2rem 0 1.6rem;padding-left:1.1rem;
+  border-left:5px solid var(--pr-acento);text-align:left !important}
+.en-una-frase p{text-align:left !important;margin:0}
+
+/* tarjetas numeradas (las 4 preguntas, pasos) */
+.tarjetas{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:.8rem;margin:1rem 0 1.6rem;counter-reset:t}
+.tarjetas > div{border:1px solid var(--pr-borde);border-radius:14px;padding:1rem 1rem .4rem;background:var(--pr-fondo-sal);counter-increment:t;position:relative}
+.tarjetas > div::before{content:counter(t);display:inline-flex;width:30px;height:30px;border-radius:50%;align-items:center;justify-content:center;
+  background:var(--pr-navy);color:#fff;font-weight:700;font-size:.9rem;margin-bottom:.4rem}
+.tarjetas p{text-align:left !important;font-size:.95rem;line-height:1.55}
+.tarjetas p strong{display:block;font-size:1.02rem;margin-bottom:.2rem}
+
+/* triaje interactivo */
+.triaje{border:1px solid var(--pr-borde);border-radius:18px;padding:1.2rem 1.3rem;margin:1rem 0 2rem;background:var(--bs-body-bg);
+  box-shadow:0 10px 30px rgba(11,31,58,.06)}
+.tri-ruta{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:.6rem}
+.tri-paso{display:inline-flex;align-items:center;gap:.4rem;border:1px solid var(--pr-borde);background:var(--pr-fondo-sal);color:var(--pr-texto);
+  border-radius:999px;padding:.2rem .7rem .2rem .25rem;font-size:.8rem;cursor:pointer;text-align:left}
+.tri-paso span{display:inline-flex;width:20px;height:20px;border-radius:50%;background:var(--pr-turquesa);color:#fff;font-weight:700;
+  align-items:center;justify-content:center;font-size:.72rem;flex:none}
+.tri-paso:hover{border-color:var(--pr-acento)}
+.tri-num{font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--pr-acento);margin:.4rem 0 .2rem;text-align:left !important}
+.tri-pregunta h3, .tri-receta h3{margin:.2rem 0 .9rem;font-size:1.25rem;line-height:1.35}
+.tri-opciones{display:grid;gap:.5rem}
+.tri-op{text-align:left;border:1.5px solid var(--pr-borde);border-radius:12px;padding:.75rem 1rem;background:transparent;color:var(--pr-texto);
+  font-size:.98rem;cursor:pointer;transition:border-color .15s,background .15s}
+.tri-op:hover, .tri-op:focus-visible{border-color:var(--pr-acento);background:rgba(229,99,111,.06);outline:none}
+.tri-nota{font-size:.85rem;color:var(--pr-suave);margin:.7rem 0 0;text-align:left !important}
+.tri-receta{position:relative;background:var(--pr-papel);border-radius:14px;padding:1rem 1.3rem 1.2rem 1.6rem}
+.tri-receta::before{content:"";position:absolute;left:0;top:0;bottom:0;width:7px;background:var(--pr-acento);border-radius:14px 0 0 14px}
+.tri-rp{font-family:'Fraunces',Georgia,serif;font-weight:600;font-size:1.4rem;margin:0;text-align:left !important}
+.tri-et{font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--pr-acento);margin:1rem 0 .2rem;text-align:left !important}
+.tri-receta p, .tri-receta li{text-align:left !important;font-size:.96rem}
+.tri-receta blockquote{border-left:3px solid var(--pr-turquesa);margin:.2rem 0;padding:.4rem .9rem;font-size:.95rem;color:var(--pr-texto)}
+.tri-receta pre.codigo, .codigo{margin:.2rem 0;padding:.8rem 1rem;border-radius:10px;background:var(--pr-fondo-sal);border:1px solid var(--pr-borde);
+  font-size:.8rem;line-height:1.55;overflow-x:auto;white-space:pre}
+.tri-reinicio{margin-top:1rem;border:1px solid var(--pr-acento);color:var(--pr-acento);background:transparent;border-radius:999px;padding:.35rem 1rem;
+  font-weight:600;font-size:.85rem;cursor:pointer}
+.tri-reinicio:hover{background:var(--pr-acento);color:#fff}
+
+/* mapa de pruebas */
+.mapa{width:100%;border-collapse:separate;border-spacing:0;font-size:.9rem;margin:1rem 0 1.6rem}
+.mapa th, .mapa td{padding:.55rem .7rem;border-bottom:1px solid var(--pr-borde);text-align:left;vertical-align:top}
+.mapa thead th{background:var(--pr-navy);color:#fff;font-weight:600}
+.mapa thead th:first-child{border-radius:10px 0 0 0}.mapa thead th:last-child{border-radius:0 10px 0 0}
+.mapa tbody th{font-weight:700;color:var(--pr-acento);white-space:nowrap}
+.mapa td small{color:var(--pr-suave)}
+
+/* mitos */
+.mitos{display:grid;gap:.8rem;margin:1rem 0 1.6rem}
+.mito{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--pr-borde);border-radius:14px;overflow:hidden}
+.mito > div{padding:.9rem 1rem}
+.mito > div:first-child{background:rgba(229,99,111,.08)}
+.mito > div:last-child{background:rgba(42,157,163,.07)}
+.mito p{margin:0;text-align:left !important;font-size:.95rem;line-height:1.55}
+.mito .et{font-size:.7rem;font-weight:700;letter-spacing:.13em;text-transform:uppercase;margin-bottom:.3rem}
+.mito > div:first-child .et{color:var(--pr-acento)}
+.mito > div:last-child .et{color:var(--pr-turquesa)}
+
+/* diagramas SVG */
+.diagrama{margin:1.2rem 0 1.8rem;padding:1rem;border-radius:14px;background:var(--pr-fondo-sal);border:1px solid var(--pr-borde)}
+.diagrama svg{width:100%;height:auto;display:block}
+.diagrama .cap{font-size:.85rem;color:var(--pr-suave);margin:.6rem 0 0;text-align:center !important}
+.diagrama text{font-family:'Inter',sans-serif}
+.dg-t{fill:var(--pr-texto)}
+.dg-s{fill:var(--pr-suave)}
+.dg-l{stroke:var(--pr-suave)}
+
+/* ficha comparativa */
+.pros-contras{display:grid;grid-template-columns:1fr 1fr;gap:.8rem;margin:1rem 0 1.6rem}
+.pros-contras > div{border-radius:14px;padding:.9rem 1.1rem .3rem;border:1px solid var(--pr-borde)}
+.pros-contras > div:first-child{border-top:4px solid var(--pr-turquesa)}
+.pros-contras > div:last-child{border-top:4px solid var(--pr-acento)}
+.pros-contras p:first-child{font-weight:700;margin-bottom:.3rem}
+.pros-contras li, .pros-contras p{text-align:left !important;font-size:.95rem}
+
+/* llamada a la herramienta */
+.usa-calc{display:flex;gap:1rem;align-items:center;margin:1.2rem 0 1.6rem;padding:1rem 1.2rem;border-radius:14px;
+  background:var(--pr-navy);color:#F5F7FA}
+.usa-calc img{width:48px;height:48px;border-radius:12px;flex:none;box-shadow:0 0 0 2px #2A4D74}
+.usa-calc p{margin:0;text-align:left !important;color:#F5F7FA}
+.usa-calc a{color:#fff;font-weight:700}
+
+/* tarjetas de la portada de una serie */
+.serie-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1rem;margin:1rem 0 2rem}
+.serie-item{display:flex;flex-direction:column;gap:.4rem;border:1px solid var(--pr-borde);border-radius:16px;padding:1.1rem 1.1rem 1rem;
+  text-decoration:none !important;color:var(--pr-texto) !important;transition:border-color .15s,transform .15s}
+a.serie-item:hover{border-color:var(--pr-acento);transform:translateY(-2px)}
+.serie-item .n{font-size:.72rem;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--pr-acento)}
+.serie-item strong{font-size:1.12rem;line-height:1.3}
+.serie-item span.d{font-size:.9rem;line-height:1.5;color:var(--pr-suave)}
+.serie-item.pronto{opacity:.6;border-style:dashed}
+.serie-item img{width:44px;height:44px;border-radius:11px}
+
+@media (max-width:640px){
+  .mito, .pros-contras{grid-template-columns:1fr}
+  .mapa{font-size:.82rem}
+  .mapa tbody th{white-space:normal}
+  .en-una-frase{font-size:1.2rem}
+}

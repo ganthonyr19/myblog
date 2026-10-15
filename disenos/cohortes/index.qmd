@@ -1,0 +1,197 @@
+---
+title: "El estudio de cohortes"
+description: "El estudio de cohortes explicado con diagramas y ejemplos: prospectivo y retrospectivo, incidencia, riesgo relativo, persona-tiempo, pérdidas en el seguimiento, análisis en R y tamaño de muestra."
+date: 2026-10-15
+image: portada.png
+categories: [Diseños de estudio, Epidemiología, Tesis]
+---
+
+[![](../../images/marcas/disenos.svg)<span><b>Diseños de estudio</b><em>Diseño n.º 3</em></span>](../index.qmd){.sello}
+
+::: {.en-una-frase}
+Un estudio de cohortes sigue a personas **sin el desenlace**, expuestas y no expuestas, para ver en cuál de los grupos aparece más.
+:::
+
+Es el diseño observacional que mejor respeta el orden de los hechos: primero la exposición y después el desenlace. Algunas de las cohortes más conocidas son el estudio de Framingham, que desde 1948 sigue a los habitantes de esa ciudad de Estados Unidos para entender la enfermedad cardiovascular, y la cohorte de médicos británicos de Doll y Hill, que siguió durante 50 años la mortalidad según el hábito de fumar (Doll et al., 2004).
+
+## Cómo se ve
+
+```{=html}
+<div class="diagrama">
+<svg viewBox="0 0 760 290" role="img" aria-label="Esquema del estudio de cohortes">
+  <defs><marker id="fo" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#5B6B80"/></marker></defs>
+  <g font-size="13">
+    <rect x="20" y="95" width="150" height="70" rx="14" fill="#0B1F3A"/>
+    <text x="95" y="125" text-anchor="middle" fill="#fff" font-weight="700">Personas sin</text>
+    <text x="95" y="143" text-anchor="middle" fill="#fff" font-weight="700">el desenlace</text>
+    <path d="M170 115 L230 70" stroke="#5B6B80" stroke-width="2.5" marker-end="url(#fo)"/>
+    <path d="M170 145 L230 190" stroke="#5B6B80" stroke-width="2.5" marker-end="url(#fo)"/>
+    <rect x="235" y="40" width="150" height="56" rx="12" fill="#E5636F"/>
+    <text x="310" y="73" text-anchor="middle" fill="#fff" font-weight="700">Expuestos</text>
+    <rect x="235" y="165" width="150" height="56" rx="12" fill="#2A9DA3"/>
+    <text x="310" y="198" text-anchor="middle" fill="#fff" font-weight="700">No expuestos</text>
+    <path d="M390 68 L560 68" stroke="#5B6B80" stroke-width="2.5" stroke-dasharray="7 5" marker-end="url(#fo)"/>
+    <path d="M390 193 L560 193" stroke="#5B6B80" stroke-width="2.5" stroke-dasharray="7 5" marker-end="url(#fo)"/>
+    <text x="475" y="58" text-anchor="middle" class="dg-s" font-size="12">seguimiento</text>
+    <text x="475" y="183" text-anchor="middle" class="dg-s" font-size="12">seguimiento</text>
+    <rect x="570" y="40" width="170" height="56" rx="12" fill="none" stroke="#E5636F" stroke-width="2"/>
+    <text x="655" y="64" text-anchor="middle" class="dg-t" font-weight="700">Enferman: 6 %</text>
+    <text x="655" y="83" text-anchor="middle" class="dg-s" font-size="12">60 de 1000</text>
+    <rect x="570" y="165" width="170" height="56" rx="12" fill="none" stroke="#2A9DA3" stroke-width="2"/>
+    <text x="655" y="189" text-anchor="middle" class="dg-t" font-weight="700">Enferman: 3 %</text>
+    <text x="655" y="208" text-anchor="middle" class="dg-s" font-size="12">60 de 2000</text>
+    <line x1="20" y1="252" x2="740" y2="252" class="dg-l" stroke-width="1.5" marker-end="url(#fo)"/>
+    <text x="20" y="276" class="dg-s" font-size="12">Inicio: se mide la exposición</text>
+    <text x="740" y="276" text-anchor="end" class="dg-s" font-size="12">Final: aparecen los desenlaces</text>
+  </g>
+</svg>
+<p class="cap">Datos ilustrativos. La comparación de la incidencia entre ambos grupos da el riesgo relativo: 6 % / 3 % = 2,0.</p>
+</div>
+```
+
+## Prospectiva o retrospectiva
+
+La diferencia no es la dirección de la mirada, que siempre va de la exposición al desenlace, sino **cuándo** ocurre el seguimiento respecto al momento en que se hace el estudio.
+
+- **Cohorte prospectiva (concurrente):** se mide la exposición hoy y se sigue a las personas hacia el futuro. Se controla mejor la calidad de los datos, pero toma tiempo.
+- **Cohorte retrospectiva (histórica):** se reconstruye con registros del pasado una exposición medida antes del desenlace, y se sigue en esos registros hasta hoy. Es rápida, pero depende de la calidad de las historias clínicas.
+
+En ambos casos debe existir un **seguimiento real**: un punto de partida en el que las personas no tenían el desenlace y un periodo durante el cual podía aparecer.
+
+## Cuándo elegirlo
+
+- Quieres medir la **incidencia** (cuántos enferman) y el **riesgo**.
+- La **exposición es rara**: puedes seleccionar a los expuestos a propósito (trabajadores de una mina, por ejemplo).
+- Quieres estudiar **varios desenlaces** de una misma exposición.
+- Necesitas que la secuencia temporal sea clara.
+
+No es el diseño adecuado para enfermedades muy raras o de latencia muy larga: tendrías que seguir a demasiadas personas durante demasiado tiempo.
+
+## Cómo se analiza
+
+Si todos tienen el mismo tiempo de seguimiento, se compara la **incidencia acumulada** (el riesgo) con el [riesgo relativo](../../prospecto/diccionario.qmd#riesgo-relativo){.dic} (RR):
+
+```{=html}
+<div style="overflow-x:auto">
+<table class="mapa" style="max-width:600px">
+<thead><tr><th></th><th>Enferman</th><th>No enferman</th><th>Total</th><th>Incidencia</th></tr></thead>
+<tbody>
+<tr><th>Expuestos</th><td><b>a</b> = 60</td><td><b>b</b> = 940</td><td>1000</td><td>6 %</td></tr>
+<tr><th>No expuestos</th><td><b>c</b> = 60</td><td><b>d</b> = 1940</td><td>2000</td><td>3 %</td></tr>
+</tbody></table>
+</div>
+```
+
+$$RR = \frac{a/(a+b)}{c/(c+d)} = \frac{60/1000}{60/2000} = 2{,}0$$
+
+Si el seguimiento difiere entre las personas (unas entran o salen antes que otras), se usa la **tasa de incidencia**, que divide los eventos entre la suma de persona-tiempo. Por ejemplo, 60 eventos en 2800 persona-años en los expuestos (21,4 por 1000 persona-años) y 60 en 5800 persona-años en los no expuestos (10,3 por 1000) dan una **razón de tasas** de 2,07. Cuando interesa el tiempo hasta el evento, se usan curvas de **Kaplan-Meier** y la **regresión de Cox**, que estima el *hazard ratio* aprovechando a quienes no tuvieron el evento (datos censurados).
+
+```r
+# RR ajustado (seguimiento fijo): Poisson con varianza robusta
+m <- glm(evento ~ exposicion + edad + sexo, family = poisson(link = "log"), data = datos)
+lmtest::coeftest(m, vcov = sandwich::vcovHC(m, type = "HC0"))
+
+# Tiempo hasta el evento: Kaplan-Meier y Cox
+library(survival)
+survfit(Surv(tiempo, evento) ~ exposicion, data = datos)
+coxph(Surv(tiempo, evento) ~ exposicion + edad + sexo, data = datos)
+```
+
+¿Dudas sobre qué prueba corresponde a tu objetivo? Pásalo por el [Triaje estadístico](../../blog/que-prueba-estadistica/index.qmd).
+
+## Fortalezas y límites
+
+::: {.pros-contras}
+<div>
+
+**Fortalezas**
+
+- La exposición se mide antes del desenlace: secuencia temporal clara.
+- Mide incidencia y riesgo directamente.
+- Permite estudiar varios desenlaces.
+- Menos sesgo de recuerdo que casos y controles.
+
+</div>
+<div>
+
+**Límites**
+
+- Costosa y lenta, sobre todo si es prospectiva.
+- Poco eficiente para desenlaces raros.
+- Las pérdidas en el seguimiento pueden sesgar los resultados.
+- La exposición puede cambiar con el tiempo.
+
+</div>
+:::
+
+## Los sesgos que más se observan
+
+- **Pérdidas en el seguimiento.** Si quienes se pierden son distintos de quienes se quedan (por ejemplo, los más enfermos), el riesgo queda sesgado. Reporta cuántos se perdieron en cada grupo.
+- **[Confusión](../../prospecto/diccionario.qmd#confusion){.dic}.** Expuestos y no expuestos pueden diferir en otras características: controla los confusores en el análisis.
+- **Sesgo de información.** Si los desenlaces se buscan con más cuidado en los expuestos, se encuentran más. Lo ideal es que quien evalúa el desenlace no conozca la exposición.
+- **Desenlace presente al inicio.** Si se incluye a personas que ya tenían la enfermedad, se mezcla prevalencia con incidencia.
+
+## Errores frecuentes en las tesis
+
+1. **Llamar «cohorte retrospectiva» a una revisión de historias** en la que la exposición y el desenlace se registraron al mismo tiempo. Sin seguimiento desde la exposición, el estudio es transversal.
+2. **No verificar que nadie tenía el desenlace al inicio.**
+3. **No reportar el tiempo de seguimiento ni las pérdidas** de cada grupo.
+4. **Usar el RR con seguimientos muy distintos** entre personas, en lugar de tasas o regresión de Cox.
+5. **Reportar solo el OR de una regresión logística** cuando el desenlace es frecuente: en una cohorte puedes estimar directamente el RR.
+
+## Tu tamaño de muestra
+
+Necesitas la incidencia esperada en los no expuestos, el RR mínimo que quieres detectar y cuántos no expuestos tendrás por cada expuesto.
+
+::: {.usa-calc}
+![](../../images/marcas/muestra.svg)
+
+Calcúlalo en el Consultorio estadístico, ya configurado para este diseño: [tamaño de muestra para una cohorte](../../herramientas/muestra/index.qmd#mod=dprop&dis=co).
+:::
+
+## Cómo reportarlo
+
+Sigue la guía **STROBE** (von Elm et al., 2007): describe cómo se definió la cohorte, cómo y cuándo se midió la exposición, la duración del seguimiento, las pérdidas en cada grupo y cómo se confirmó el desenlace. Reporta las medidas de asociación crudas y ajustadas con su intervalo de confianza al 95 %.
+
+## Autoevaluación
+
+::: {.autoeval}
+::: {.pregunta}
+Seleccionas gestantes atendidas en 2023 según tuvieran o no anemia en el primer trimestre, y revisas en sus historias si sus recién nacidos tuvieron bajo peso al nacer. ¿Qué diseño es?
+
+<details><summary>Ver respuesta</summary>
+Una cohorte retrospectiva: la exposición (anemia en el primer trimestre) se registró antes del desenlace (bajo peso al nacer), y se sigue en los registros hasta el parto.
+</details>
+:::
+
+::: {.pregunta}
+En tu cohorte, unos pacientes fueron seguidos 2 meses y otros 24. ¿Por qué no basta con comparar el porcentaje de eventos?
+
+<details><summary>Ver respuesta</summary>
+Porque quien fue seguido más tiempo tuvo más oportunidad de presentar el evento. Hay que usar tasas por persona-tiempo o métodos de supervivencia (Kaplan-Meier, regresión de Cox).
+</details>
+:::
+
+::: {.pregunta}
+El 25 % de los expuestos y el 5 % de los no expuestos abandonaron el seguimiento. ¿Qué problema puede haber?
+
+<details><summary>Ver respuesta</summary>
+Un sesgo por pérdidas diferenciales: si quienes se fueron tenían un riesgo distinto, la comparación queda sesgada. Hay que reportarlo y, si es posible, comparar las características de quienes se perdieron.
+</details>
+:::
+:::
+
+## Referencias
+
+- Doll R, Peto R, Boreham J, Sutherland I. Mortality in relation to smoking: 50 years' observations on male British doctors. *BMJ*. 2004;328(7455):1519.
+- Rothman KJ, Greenland S, Lash TL. *Modern Epidemiology*. 3.ª ed. Filadelfia: Lippincott Williams & Wilkins; 2008.
+- Grimes DA, Schulz KF. Cohort studies: marching towards outcomes. *Lancet*. 2002;359(9303):341-5.
+- von Elm E, Altman DG, Egger M, Pocock SJ, Gøtzsche PC, Vandenbroucke JP. The Strengthening the Reporting of Observational Studies in Epidemiology (STROBE) statement: guidelines for reporting observational studies. *Lancet*. 2007;370(9596):1453-7.
+
+::: {.cta}
+**¿Tu tesis es una cohorte?**
+
+Te ayudo con el diseño, el seguimiento y el análisis de supervivencia.
+
+[Escríbeme por WhatsApp](https://api.whatsapp.com/send?phone=51955446754&text=Hola%2C%20le%C3%AD%20tu%20entrada%20sobre%20estudios%20de%20cohortes%20y%20quiero%20informaci%C3%B3n%20sobre%20asesor%C3%ADa%20para%20mi%20tesis)
+:::

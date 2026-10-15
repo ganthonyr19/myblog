@@ -1,0 +1,318 @@
+---
+title: "¿Cuántos participantes necesito?"
+description: "Calculadora de tamaño de muestra para tesis de salud: te da el número, el párrafo para tu proyecto y el código en R para comprobarlo."
+date: 2026-10-15
+lang: es
+title-block-banner: true
+toc: false
+page-layout: article
+image: portada.png
+categories: [Consultorio estadístico, Tamaño de muestra]
+format:
+  html:
+    css:
+      - ../../prospecto/estilo/prospecto.css
+      - ../../estilo/editorial.css
+      - muestra.css
+    include-after-body:
+      - ../../prospecto/estilo/prospecto.html
+      - text: |
+          <script src="motor.js"></script>
+          <script src="app.js"></script>
+resources:
+  - motor.js
+  - app.js
+  - verificacion.R
+---
+
+<!--
+Calculadora de tamaño de muestra · Anthony Romero Cerdán
+La interfaz está escrita aquí en HTML fijo (para que los enlaces al diccionario
+tengan su definición emergente); los cálculos están en motor.js y la lógica de
+la página en app.js. verificacion.R compara el motor con R.
+-->
+
+[![](../../images/marcas/muestra.svg)<span><b>Consultorio estadístico</b><em>Módulo Muestra</em></span>](../index.qmd){.sello}
+
+¿No tienes claro cuál es tu diseño? Antes de calcular, revisa la serie [Diseños de estudio](../../disenos/index.qmd): [transversal](../../disenos/transversal/index.qmd), [casos y controles](../../disenos/casos-y-controles/index.qmd) y [cohortes](../../disenos/cohortes/index.qmd).
+
+```{=html}
+<div id="calc" class="calc" aria-live="polite">
+
+<!-- ======================= 1. ¿QUÉ QUIERES HACER? ======================= -->
+<section class="paso">
+  <p class="paso-n">1 · ¿Qué quieres hacer en tu estudio?</p>
+  <div class="disenos" role="radiogroup" aria-label="Tipo de estudio">
+    <label class="diseno"><input type="radio" name="mod" value="prop" checked>
+      <span class="d-t">Estimar una prevalencia</span>
+      <span class="d-s">«¿Qué porcentaje de gestantes tiene anemia?»</span></label>
+    <label class="diseno"><input type="radio" name="mod" value="dprop">
+      <span class="d-t">Comparar dos grupos: un desenlace sí/no</span>
+      <span class="d-s">Casos y controles, cohortes o transversal analítico</span></label>
+    <label class="diseno"><input type="radio" name="mod" value="med">
+      <span class="d-t">Comparar dos promedios</span>
+      <span class="d-s">«¿La hemoglobina media difiere entre dos grupos?»</span></label>
+    <label class="diseno"><input type="radio" name="mod" value="dx">
+      <span class="d-t">Validar una prueba diagnóstica</span>
+      <span class="d-s">Sensibilidad y especificidad frente a un estándar</span></label>
+    <label class="diseno"><input type="radio" name="mod" value="cor">
+      <span class="d-t">Correlacionar dos variables numéricas</span>
+      <span class="d-s">«¿Se relaciona la edad con la presión arterial?»</span></label>
+  </div>
+</section>
+
+<!-- ======================= 2. LOS DATOS ======================= -->
+<section class="paso">
+  <p class="paso-n">2 · Tus supuestos</p>
+
+  <!-- 2.1 una proporción -->
+  <div class="modulo" data-mod="prop">
+    <div class="campo">
+      <label for="prop-p"><a class="dic" href="../../prospecto/diccionario.html#prevalencia">Prevalencia</a> esperada (%)</label>
+      <div class="entrada-doble"><input type="range" id="prop-p-r" min="1" max="99" step="1" value="20" data-par="prop-p">
+        <input type="number" id="prop-p" min="0.1" max="99.9" step="0.1" value="20"></div>
+      <details class="ayuda"><summary>¿De dónde saco este dato?</summary>
+        <p>Del antecedente más parecido a tu estudio (misma población, lugar y época), o de una encuesta nacional como la ENDES. Si de verdad no existe ningún dato, se usa 50 %, que da el tamaño máximo, pero debes justificarlo en el texto.</p></details>
+    </div>
+    <div class="campo">
+      <label for="prop-d"><a class="dic" href="../../prospecto/diccionario.html#precision">Precisión</a> absoluta (± puntos %)</label>
+      <div class="entrada-doble"><input type="range" id="prop-d-r" min="1" max="15" step="0.5" value="5" data-par="prop-d">
+        <input type="number" id="prop-d" min="0.1" max="30" step="0.1" value="5"></div>
+      <details class="ayuda"><summary>¿Qué valor elijo?</summary>
+        <p>Es la mitad del ancho del intervalo de confianza que aceptas. Con una prevalencia de 20 % y precisión de 5 %, esperas un intervalo de 15 % a 25 %. Para prevalencias bajas (menores de 10 %) la precisión debe ser bastante menor que la prevalencia.</p></details>
+    </div>
+    <div class="campo">
+      <label for="prop-N">Tamaño de la población (opcional, aplica la <a class="dic" href="../../prospecto/diccionario.html#correccion-por-poblacion-finita">corrección por población finita</a>)</label>
+      <input type="number" id="prop-N" min="0" step="1" placeholder="Déjalo vacío si es grande o desconocida">
+    </div>
+    <div class="campo campo-check">
+      <label><input type="checkbox" id="prop-clu"> Muestreo por conglomerados o encuesta compleja</label>
+      <div class="sub" id="prop-deff-box" hidden>
+        <label for="prop-deff"><a class="dic" href="../../prospecto/diccionario.html#efecto-de-diseno">Efecto de diseño</a> (DEFF)</label>
+        <input type="number" id="prop-deff" min="1" max="10" step="0.1" value="2">
+      </div>
+    </div>
+  </div>
+
+  <!-- 2.2 dos proporciones -->
+  <div class="modulo" data-mod="dprop" hidden>
+    <div class="campo">
+      <label for="dp-dis">Diseño</label>
+      <select id="dp-dis">
+        <option value="cc">Casos y controles (odds ratio)</option>
+        <option value="co">Cohorte (riesgo relativo)</option>
+        <option value="tr">Transversal analítico (razón de prevalencias)</option>
+      </select>
+    </div>
+    <div class="campo">
+      <label for="dp-p0" id="dp-p0-lab">% de expuestos entre los controles</label>
+      <div class="entrada-doble"><input type="range" id="dp-p0-r" min="1" max="90" step="1" value="20" data-par="dp-p0">
+        <input type="number" id="dp-p0" min="0.1" max="99" step="0.1" value="20"></div>
+      <details class="ayuda"><summary>¿De dónde saco este dato?</summary>
+        <p id="dp-p0-ayuda">En casos y controles es la frecuencia de la exposición en personas sin la enfermedad. Tómala de un antecedente o de una encuesta poblacional. No es la prevalencia de la enfermedad.</p></details>
+    </div>
+    <div class="campo">
+      <label for="dp-ef" id="dp-ef-lab">Mínimo <a class="dic" href="../../prospecto/diccionario.html#odds-ratio">odds ratio</a> que quieres detectar</label>
+      <div class="entrada-doble"><input type="range" id="dp-ef-r" min="0.1" max="5" step="0.05" value="2" data-par="dp-ef">
+        <input type="number" id="dp-ef" min="0.05" max="50" step="0.01" value="2"></div>
+      <details class="ayuda"><summary>¿Qué valor elijo?</summary>
+        <p>El <a class="dic" href="../../prospecto/diccionario.html#tamano-del-efecto">tamaño del efecto</a> más pequeño que tendría importancia clínica, apoyado en antecedentes. Si los estudios previos reportan un OR de 2,5, puedes plantear 2 para ser conservador. Valores cercanos a 1 exigen muestras enormes.</p></details>
+    </div>
+    <div class="campo" id="dp-r-box">
+      <label for="dp-r" id="dp-r-lab">Controles por cada caso</label>
+      <input type="number" id="dp-r" min="0.25" max="10" step="0.25" value="1">
+    </div>
+    <div class="campo" id="dp-e-box" hidden>
+      <label for="dp-e">% de expuestos en la población</label>
+      <input type="number" id="dp-e" min="1" max="99" step="0.1" value="30">
+      <p class="nota-campo">En un estudio transversal no eliges cuántos expuestos entran: depende de su frecuencia en la población.</p>
+    </div>
+    <div class="campo campo-check">
+      <label><input type="checkbox" id="dp-cc" checked> Aplicar <a class="dic" href="../../prospecto/diccionario.html#correccion-de-continuidad">corrección de continuidad</a> (recomendado)</label>
+    </div>
+  </div>
+
+  <!-- 2.3 dos medias -->
+  <div class="modulo" data-mod="med" hidden>
+    <div class="campo">
+      <label for="med-dif">Diferencia mínima entre las medias que quieres detectar</label>
+      <input type="number" id="med-dif" min="0.001" step="any" value="1">
+      <details class="ayuda"><summary>¿Qué valor elijo?</summary>
+        <p>La diferencia más pequeña que tendría importancia clínica, en las unidades de tu variable (por ejemplo, 1 g/dL de hemoglobina). No es la diferencia que esperas encontrar, sino la mínima que valdría la pena detectar.</p></details>
+    </div>
+    <div class="campo">
+      <label for="med-sd"><a class="dic" href="../../prospecto/diccionario.html#desviacion-estandar">Desviación estándar</a> de la variable</label>
+      <input type="number" id="med-sd" min="0.001" step="any" value="2">
+      <details class="ayuda"><summary>¿De dónde saco este dato?</summary>
+        <p>De un antecedente con una población parecida o de un estudio piloto. Si el antecedente reporta dos desviaciones estándar (una por grupo), usa la mayor.</p></details>
+    </div>
+    <div class="campo">
+      <label for="med-r">Participantes del grupo 2 por cada uno del grupo 1</label>
+      <input type="number" id="med-r" min="0.25" max="10" step="0.25" value="1">
+    </div>
+  </div>
+
+  <!-- 2.4 diagnóstica -->
+  <div class="modulo" data-mod="dx" hidden>
+    <div class="campo dos">
+      <div><label for="dx-se"><a class="dic" href="../../prospecto/diccionario.html#sensibilidad">Sensibilidad</a> esperada (%)</label>
+        <input type="number" id="dx-se" min="1" max="99.9" step="0.1" value="85"></div>
+      <div><label for="dx-sp"><a class="dic" href="../../prospecto/diccionario.html#especificidad">Especificidad</a> esperada (%)</label>
+        <input type="number" id="dx-sp" min="1" max="99.9" step="0.1" value="80"></div>
+    </div>
+    <div class="campo">
+      <label for="dx-prev">Prevalencia de la enfermedad en tu población (%)</label>
+      <div class="entrada-doble"><input type="range" id="dx-prev-r" min="1" max="90" step="1" value="20" data-par="dx-prev">
+        <input type="number" id="dx-prev" min="0.1" max="99" step="0.1" value="20"></div>
+      <details class="ayuda"><summary>¿Por qué importa la prevalencia?</summary>
+        <p>Porque la sensibilidad solo se estima en los enfermos. Si la enfermedad es poco frecuente, necesitas reclutar a muchas personas para tener suficientes enfermos.</p></details>
+    </div>
+    <div class="campo">
+      <label for="dx-d"><a class="dic" href="../../prospecto/diccionario.html#precision">Precisión</a> absoluta (± puntos %)</label>
+      <input type="number" id="dx-d" min="0.5" max="30" step="0.5" value="5">
+    </div>
+  </div>
+
+  <!-- 2.5 correlación -->
+  <div class="modulo" data-mod="cor" hidden>
+    <div class="campo">
+      <label for="cor-r">Mínimo <a class="dic" href="../../prospecto/diccionario.html#coeficiente-de-correlacion">coeficiente de correlación</a> que quieres detectar</label>
+      <div class="entrada-doble"><input type="range" id="cor-r-r" min="0.05" max="0.9" step="0.01" value="0.3" data-par="cor-r">
+        <input type="number" id="cor-r" min="0.01" max="0.99" step="0.01" value="0.3"></div>
+      <details class="ayuda"><summary>¿Qué valor elijo?</summary>
+        <p>Usa el valor reportado por un antecedente o, si no hay, el mínimo que consideres relevante. Como referencia general, 0,1 es una correlación débil, 0,3 moderada y 0,5 fuerte.</p></details>
+    </div>
+  </div>
+
+  <!-- ajustes comunes -->
+  <div class="ajustes">
+    <div class="campo">
+      <label for="conf"><a class="dic" href="../../prospecto/diccionario.html#nivel-de-confianza">Nivel de confianza</a></label>
+      <select id="conf"><option value="0.90">90 %</option><option value="0.95" selected>95 %</option><option value="0.99">99 %</option></select>
+    </div>
+    <div class="campo" id="pot-box">
+      <label for="pot"><a class="dic" href="../../prospecto/diccionario.html#potencia-estadistica">Potencia</a></label>
+      <select id="pot"><option value="0.80" selected>80 %</option><option value="0.85">85 %</option><option value="0.90">90 %</option><option value="0.95">95 %</option></select>
+    </div>
+    <div class="campo">
+      <label for="perd"><a class="dic" href="../../prospecto/diccionario.html#perdidas">Pérdidas o no respuesta</a> (%)</label>
+      <input type="number" id="perd" min="0" max="80" step="1" value="10">
+    </div>
+  </div>
+</section>
+
+<!-- ======================= 3. LA RECETA ======================= -->
+<section class="paso">
+  <p class="paso-n">3 · Tu resultado</p>
+  <div class="receta-n">
+    <div class="rp">Rp/</div>
+    <div class="cifra"><span id="r-n">—</span><span class="cifra-u" id="r-u">participantes</span></div>
+    <div class="grupos" id="r-grupos"></div>
+    <ol class="desglose" id="r-desglose"></ol>
+    <p class="error" id="r-error" hidden></p>
+  </div>
+
+  <div class="avisos" id="r-avisos" hidden>
+    <p class="avisos-t">Lo que te podría observar el jurado</p>
+    <ul id="r-avisos-l"></ul>
+  </div>
+
+  <div class="bloque">
+    <div class="bloque-cab"><p class="bloque-t">Párrafo para tu proyecto</p>
+      <button type="button" class="btn-copiar" data-copiar="r-parrafo">Copiar para mi tesis</button></div>
+    <div class="parrafo" id="r-parrafo"></div>
+    <p class="nota-campo">Completa lo que está <mark>resaltado</mark> antes de pegarlo.</p>
+  </div>
+
+  <div class="bloque">
+    <div class="bloque-cab"><p class="bloque-t">Receta en R: compruébalo tú mismo</p>
+      <button type="button" class="btn-copiar" data-copiar="r-codigo">Copiar código</button></div>
+    <pre class="codigo"><code id="r-codigo"></code></pre>
+  </div>
+
+  <p class="nota-campo" id="r-lee"></p>
+
+  <div class="bloque">
+    <p class="bloque-t" id="g-titulo">¿Qué tan frágil es tu supuesto?</p>
+    <p class="nota-campo" id="g-sub"></p>
+    <div id="grafico" class="grafico" role="img" aria-label="Curva de sensibilidad del tamaño de muestra"></div>
+  </div>
+</div>
+```
+
+## Por qué esta calculadora es distinta
+
+La mayoría de calculadoras te devuelven un número y nada más. En el proyecto de tesis ese número es lo de menos: el jurado revisa **de dónde salió cada supuesto** y si la fórmula corresponde al diseño. Por eso esta calculadora te entrega cuatro cosas:
+
+1. **El tamaño de muestra**, con cada ajuste a la vista: fórmula, población finita, efecto de diseño y pérdidas.
+2. **El párrafo para tu proyecto**, con la fórmula y su referencia, listo para completar y pegar.
+3. **El código en R** para que tú (o tu asesor) pueda reproducir el cálculo.
+4. **Las observaciones típicas del jurado** según tus supuestos, y una curva que muestra cuánto cambia el tamaño si tu supuesto estaba un poco equivocado.
+
+Los términos con subrayado punteado tienen su definición en el [diccionario](../../prospecto/diccionario.qmd).
+
+## Las fórmulas
+
+::: {.callout-note collapse="true"}
+## Estimar una prevalencia
+
+$$n_0 = \frac{z_{1-\alpha/2}^2\, p\,(1-p)}{d^2}\times \text{DEFF}$$
+
+Con población finita *N*: $n = \dfrac{n_0}{1 + (n_0 - 1)/N}$, que es la misma fórmula clásica $n = \dfrac{N z^2 p q}{d^2 (N-1) + z^2 p q}$. Fuente: Lwanga y Lemeshow (1991).
+:::
+
+::: {.callout-note collapse="true"}
+## Comparar dos proporciones (casos y controles, cohortes, transversal)
+
+Fórmula de Fleiss, con *r* participantes del grupo de comparación por cada uno del grupo índice y $\bar p = (p_1 + r p_0)/(r+1)$:
+
+$$n_1 = \frac{\left[z_{1-\alpha/2}\sqrt{(r+1)\,\bar p \bar q} + z_{1-\beta}\sqrt{r\,p_1 q_1 + p_0 q_0}\right]^2}{r\,(p_1 - p_0)^2}$$
+
+Con corrección de continuidad: $n_1' = \dfrac{n_1}{4}\left[1 + \sqrt{1 + \dfrac{2(r+1)}{n_1 r \lvert p_1 - p_0\rvert}}\right]^2$. En casos y controles, la proporción de expuestos entre los casos se obtiene del OR: $p_1 = \dfrac{OR\,p_0}{1 + p_0(OR-1)}$; en cohortes y transversales, $p_1 = RR \times p_0$. Fuente: Fleiss, Levin y Paik (2003).
+:::
+
+::: {.callout-note collapse="true"}
+## Comparar dos medias
+
+Se busca el *n* con el que la prueba *t* de Student para dos grupos independientes alcanza la potencia elegida, usando la distribución *t* no central (Lenth, 1989). Con grupos del mismo tamaño da el mismo resultado que `power.t.test()` de R. La aproximación normal que aparece en muchos libros, $n = 2\sigma^2 (z_{1-\alpha/2} + z_{1-\beta})^2/\Delta^2$, da uno o dos participantes menos en muestras pequeñas.
+:::
+
+::: {.callout-note collapse="true"}
+## Sensibilidad y especificidad
+
+$$n_{Se} = \frac{z^2\,Se\,(1-Se)}{d^2 \times \text{prevalencia}} \qquad n_{Sp} = \frac{z^2\,Sp\,(1-Sp)}{d^2 \times (1-\text{prevalencia})}$$
+
+Se usa el mayor de los dos. Fuente: Buderer (1996).
+:::
+
+::: {.callout-note collapse="true"}
+## Correlación
+
+$$n = \left(\frac{z_{1-\alpha/2} + z_{1-\beta}}{C}\right)^2 + 3, \qquad C = \tfrac{1}{2}\ln\frac{1+r}{1-r}$$
+
+Fuente: Hulley et al. (2013). `pwr::pwr.r.test()` usa una corrección adicional y puede dar uno menos.
+:::
+
+## ¿Puedo confiar en los resultados?
+
+Cada fórmula se comparó con R en decenas de combinaciones de supuestos. El tamaño para dos proporciones coincide con `EnvStats::propTestN()` (con y sin corrección de continuidad) y con `power.prop.test()`; el de dos medias, con `power.t.test()`; el de una prevalencia, con `epiR::epi.sssimpleestb()` cuando no hay población finita. El código de la verificación está disponible: [verificacion.R](verificacion.R).
+
+Cuando ya tengas tus datos, el módulo [Triaje](../../blog/que-prueba-estadistica/index.qmd) te ayuda a elegir la prueba estadística, y [Prospecto R](../../prospecto/index.qmd) te enseña a hacer el análisis en R.
+
+Si no necesitas calcular la muestra porque vas a incluir a **toda la población** (un censo) o a todas las historias clínicas de un periodo, igual debes decirlo y justificarlo en el proyecto, y conviene indicar qué diferencia podrás detectar con ese número.
+
+## Referencias
+
+- Lwanga SK, Lemeshow S. *Sample size determination in health studies: a practical manual*. Ginebra: Organización Mundial de la Salud; 1991.
+- Fleiss JL, Levin B, Paik MC. *Statistical Methods for Rates and Proportions*. 3.ª ed. Hoboken: Wiley; 2003.
+- Buderer NM. Statistical methodology: I. Incorporating the prevalence of disease into the sample size calculation for sensitivity and specificity. *Acad Emerg Med*. 1996;3(9):895-900.
+- Hulley SB, Cummings SR, Browner WS, Grady DG, Newman TB. *Designing Clinical Research*. 4.ª ed. Filadelfia: Lippincott Williams & Wilkins; 2013.
+- Lenth RV. Algorithm AS 243: cumulative distribution function of the non-central *t* distribution. *Appl Stat*. 1989;38(1):185-9.
+
+::: {.cta}
+**¿Tu diseño no aparece aquí?**
+
+Muestreo estratificado, regresión logística con varias variables, estudios emparejados, ensayos clínicos: te ayudo a calcular y justificar el tamaño de muestra de tu tesis.
+
+[Escríbeme por WhatsApp](https://api.whatsapp.com/send?phone=51955446754&text=Hola%2C%20us%C3%A9%20tu%20calculadora%20de%20tama%C3%B1o%20de%20muestra%20y%20quiero%20informaci%C3%B3n%20sobre%20asesor%C3%ADa%20para%20mi%20tesis)
+:::

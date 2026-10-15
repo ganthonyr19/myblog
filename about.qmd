@@ -21,6 +21,9 @@ about:
       href: https://www.researchgate.net/profile/Anthony-Romero-Cerdan-2
     - text: "{{< ai orcid >}} ORCID"
       href: https://orcid.org/0000-0001-6342-647X
+    - icon: instagram
+      text: Instagram
+      href: https://www.instagram.com/bioestadistica.en.linea/
     - icon: linkedin
       text: LinkedIn
       href: https://www.linkedin.com/in/garomeroc/
@@ -445,19 +448,28 @@ Puedes encontrar mis publicaciones en mis perfiles de ![](https://orcid.org/site
 ```{r}
 #| echo: false
 #| eval: true
+#| results: asis
 
 if(!require("pacman")) 
   install.packages("pacman")
 
 pacman::p_load(tidyverse, scholar, knitr)
 
-id <- "bSpylR0AAAAJ&hl"
+id <- "bSpylR0AAAAJ"   # identificador de Google Scholar (sin "&hl")
 
-scholar::get_publications(id) %>% 
-  as_tibble() %>% 
-  select(title:year) %>% 
-  arrange(desc(year),desc(cites)) %>% 
-  knitr::kable()
+# Google Scholar a veces bloquea la consulta o cambia el formato de su respuesta.
+# Si eso pasa, la página se genera igual y muestra el enlace al perfil.
+pubs <- tryCatch(scholar::get_publications(id), error = function(e) NULL)
+
+if (is.data.frame(pubs) && all(c("title", "author", "journal", "year", "cites") %in% names(pubs)) && nrow(pubs) > 0) {
+  pubs %>%
+    as_tibble() %>%
+    select(title, author, journal, year, cites) %>%
+    arrange(desc(year), desc(cites)) %>%
+    knitr::kable(col.names = c("Título", "Autores", "Revista", "Año", "Citas"))
+} else {
+  cat("La lista no se pudo actualizar en este momento. Puedes verla completa en mi [perfil de Google Scholar](https://scholar.google.com/citations?user=bSpylR0AAAAJ&hl=es).")
+}
 ```
 
 :::

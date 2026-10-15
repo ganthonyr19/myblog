@@ -1,0 +1,82 @@
+---
+title: "Diseños de estudio"
+description: "Una entrada por diseño, explicada con diagramas, ejemplos y los errores que más se observan en las tesis de salud: qué es, cuándo usarlo, cómo se analiza y cómo se calcula su muestra."
+page-layout: article
+toc: false
+image: portada.png
+format:
+  html:
+    css:
+      - ../prospecto/estilo/prospecto.css
+      - ../estilo/editorial.css
+---
+
+[![](../images/marcas/disenos.svg)<span><b>Diseños de estudio</b><em>Una entrada por diseño</em></span>](index.qmd){.sello}
+
+El diseño decide casi todo lo demás: qué medida de asociación puedes reportar, qué prueba estadística corresponde, cómo se calcula el tamaño de muestra y qué sesgos te pueden observar. Cada entrada de esta serie explica un diseño con un diagrama, un ejemplo, su análisis en R y los errores frecuentes en las tesis.
+
+## ¿Cuál es mi diseño?
+
+Tres preguntas bastan para ubicar casi cualquier estudio (Grimes y Schulz, 2002).
+
+```{=html}
+<div class="diagrama">
+<svg viewBox="0 0 760 360" role="img" aria-label="Algoritmo para identificar el diseño de un estudio">
+  <defs><marker id="fl" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#5B6B80"/></marker></defs>
+  <g font-size="13">
+    <rect x="250" y="10" width="260" height="46" rx="10" fill="#0B1F3A"/>
+    <text x="380" y="38" text-anchor="middle" fill="#fff" font-weight="600">¿El investigador asignó la exposición?</text>
+    <path d="M330 56 L170 100" class="dg-l" stroke-width="2" fill="none" marker-end="url(#fl)"/>
+    <path d="M430 56 L590 100" class="dg-l" stroke-width="2" fill="none" marker-end="url(#fl)"/>
+    <text x="232" y="74" class="dg-s">Sí</text><text x="520" y="74" class="dg-s">No</text>
+    <rect x="70" y="104" width="200" height="46" rx="10" fill="#E5636F"/>
+    <text x="170" y="125" text-anchor="middle" fill="#fff" font-weight="700">Experimental</text>
+    <text x="170" y="141" text-anchor="middle" fill="#fff" font-size="12">Ensayo clínico</text>
+    <rect x="470" y="104" width="240" height="46" rx="10" fill="#0B1F3A"/>
+    <text x="590" y="132" text-anchor="middle" fill="#fff" font-weight="600">¿Hay un grupo de comparación?</text>
+    <path d="M540 150 L430 196" class="dg-l" stroke-width="2" fill="none" marker-end="url(#fl)"/>
+    <path d="M640 150 L680 196" class="dg-l" stroke-width="2" fill="none" marker-end="url(#fl)"/>
+    <text x="470" y="170" class="dg-s">Sí</text><text x="672" y="170" class="dg-s">No</text>
+    <rect x="590" y="200" width="160" height="46" rx="10" fill="#2A9DA3"/>
+    <text x="670" y="221" text-anchor="middle" fill="#fff" font-weight="700">Descriptivo</text>
+    <text x="670" y="237" text-anchor="middle" fill="#fff" font-size="12">Serie de casos, transversal</text>
+    <rect x="290" y="200" width="270" height="46" rx="10" fill="#0B1F3A"/>
+    <text x="425" y="228" text-anchor="middle" fill="#fff" font-weight="600">¿En qué dirección se mira?</text>
+    <path d="M330 246 L150 296" class="dg-l" stroke-width="2" fill="none" marker-end="url(#fl)"/>
+    <path d="M425 246 L425 296" class="dg-l" stroke-width="2" fill="none" marker-end="url(#fl)"/>
+    <path d="M520 246 L680 296" class="dg-l" stroke-width="2" fill="none" marker-end="url(#fl)"/>
+    <rect x="40" y="300" width="230" height="52" rx="10" fill="#E5636F"/>
+    <text x="155" y="322" text-anchor="middle" fill="#fff" font-weight="700">Cohorte</text>
+    <text x="155" y="340" text-anchor="middle" fill="#fff" font-size="12">De la exposición al desenlace</text>
+    <rect x="310" y="300" width="230" height="52" rx="10" fill="#E5636F"/>
+    <text x="425" y="322" text-anchor="middle" fill="#fff" font-weight="700">Casos y controles</text>
+    <text x="425" y="340" text-anchor="middle" fill="#fff" font-size="12">Del desenlace a la exposición</text>
+    <rect x="580" y="300" width="170" height="52" rx="10" fill="#E5636F"/>
+    <text x="665" y="322" text-anchor="middle" fill="#fff" font-weight="700">Transversal</text>
+    <text x="665" y="340" text-anchor="middle" fill="#fff" font-size="12">Todo al mismo tiempo</text>
+  </g>
+</svg>
+<p class="cap">Adaptado de Grimes y Schulz (2002). Los estudios analíticos son los que tienen grupo de comparación.</p>
+</div>
+```
+
+## Las entradas
+
+```{=html}
+<div class="serie-grid">
+  <a class="serie-item" href="transversal/index.html"><span class="n">Diseño n.º 1</span><strong>El estudio transversal</strong>
+    <span class="d">Una fotografía de la población: prevalencias y razón de prevalencias.</span></a>
+  <a class="serie-item" href="casos-y-controles/index.html"><span class="n">Diseño n.º 2</span><strong>El estudio de casos y controles</strong>
+    <span class="d">Del desenlace hacia atrás: por qué aquí solo existe el odds ratio.</span></a>
+  <a class="serie-item" href="cohortes/index.html"><span class="n">Diseño n.º 3</span><strong>El estudio de cohortes</strong>
+    <span class="d">De la exposición hacia adelante: incidencia, riesgo relativo y seguimiento.</span></a>
+  <div class="serie-item pronto"><span class="n">Próximamente</span><strong>El ensayo clínico</strong><span class="d">Cuando el investigador asigna la exposición.</span></div>
+  <div class="serie-item pronto"><span class="n">Próximamente</span><strong>Estudios de pruebas diagnósticas</strong><span class="d">Sensibilidad, especificidad y sus sesgos.</span></div>
+  <div class="serie-item pronto"><span class="n">Próximamente</span><strong>El estudio ecológico</strong><span class="d">Cuando la unidad de análisis es un grupo.</span></div>
+  <div class="serie-item pronto"><span class="n">Próximamente</span><strong>Reporte y serie de casos</strong><span class="d">El primer paso para describir lo nuevo.</span></div>
+</div>
+```
+
+## Referencia
+
+Grimes DA, Schulz KF. An overview of clinical research: the lay of the land. *Lancet*. 2002;359(9300):57-61.

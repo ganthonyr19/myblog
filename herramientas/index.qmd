@@ -1,0 +1,49 @@
+---
+title: "Consultorio estadístico"
+description: "Herramientas gratuitas para resolver, paso a paso, las decisiones estadísticas de una tesis de salud: cuántos participantes necesitas y qué prueba usar."
+lang: es
+title-block-banner: true
+page-layout: article
+toc: false
+image: portada.png
+format:
+  html:
+    css:
+      - ../prospecto/estilo/prospecto.css
+      - ../estilo/editorial.css
+---
+
+[![](../images/marcas/consultorio.svg)<span><b>Consultorio estadístico</b><em>Herramientas para tu tesis</em></span>](index.qmd){.sello}
+
+Cada módulo atiende una consulta frecuente de quien hace una tesis. No solo te da un resultado: te explica de dónde sale, te da el texto para tu proyecto y el código en R para comprobarlo, y te advierte lo que podría observarte el jurado.
+
+```{=html}
+<div class="serie-grid">
+  <a class="serie-item" href="muestra/index.html">
+    <img src="../images/marcas/muestra.svg" alt="">
+    <span class="n">Módulo Muestra</span>
+    <strong>¿Cuántos participantes necesito?</strong>
+    <span class="d">Tamaño de muestra para prevalencias, casos y controles, cohortes, dos medias, pruebas diagnósticas y correlación.</span>
+  </a>
+  <a class="serie-item" href="../blog/que-prueba-estadistica/index.html#haz-tu-triaje">
+    <img src="../images/marcas/triaje.svg" alt="">
+    <span class="n">Módulo Triaje</span>
+    <strong>¿Qué prueba estadística uso?</strong>
+    <span class="d">Cuatro preguntas para llegar a la prueba correcta, con su código en R y cómo reportarla.</span>
+  </a>
+</div>
+```
+
+## Para usarlo mejor
+
+- Antes de calcular o elegir una prueba, ten claro tu **diseño**: la serie [Diseños de estudio](../disenos/index.qmd) explica cada uno con ejemplos.
+- Para hacer el análisis en R paso a paso, con datos reales del Perú, revisa [Prospecto R](../prospecto/index.qmd).
+- Los términos técnicos están en el [diccionario](../prospecto/diccionario.qmd), con sus fuentes.
+
+::: {.cta}
+**¿Tu consulta necesita algo más?**
+
+Te ayudo con la metodología y el análisis estadístico de tu tesis.
+
+[Escríbeme por WhatsApp](https://api.whatsapp.com/send?phone=51955446754&text=Hola%2C%20vi%20el%20Consultorio%20estad%C3%ADstico%20de%20tu%20web%20y%20quiero%20informaci%C3%B3n%20sobre%20asesor%C3%ADa%20para%20mi%20tesis)
+:::

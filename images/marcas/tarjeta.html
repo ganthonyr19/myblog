@@ -1,0 +1,29 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8">
+<style>
+@font-face{font-family:Fraunces;src:url(../../prospecto/estilo/fuentes/fraunces-latin-600-normal.woff2);font-weight:600}
+@font-face{font-family:Inter;src:url(../../prospecto/estilo/fuentes/inter-latin-400-normal.woff2);font-weight:400}
+@font-face{font-family:Inter;src:url(../../prospecto/estilo/fuentes/inter-latin-600-normal.woff2);font-weight:600}
+@font-face{font-family:Inter;src:url(../../prospecto/estilo/fuentes/inter-latin-700-normal.woff2);font-weight:700}
+*{box-sizing:border-box;margin:0;padding:0}
+body{width:1200px;height:630px;background:#0B1F3A;color:#F5F7FA;font-family:Inter;position:relative;overflow:hidden}
+.curva{position:absolute;right:-60px;bottom:-20px;opacity:.55}
+.emb{position:absolute;left:72px;top:72px;width:112px;height:112px;border-radius:25px;box-shadow:0 0 0 2px #2A4D74}
+.serie{position:absolute;left:208px;top:92px;font-weight:700;letter-spacing:.16em;font-size:20px;color:#E5636F;text-transform:uppercase}
+.sub-serie{position:absolute;left:208px;top:128px;font-size:20px;color:#A9B8CC}
+h1{position:absolute;left:72px;right:90px;top:232px;font-family:Fraunces;font-weight:600;font-size:66px;line-height:1.08;letter-spacing:-.01em}
+p.bajada{position:absolute;left:72px;right:300px;top:var(--top,440px);font-size:25px;line-height:1.4;color:#A9B8CC}
+.firma{position:absolute;left:72px;bottom:44px;font-size:18px;color:#A9B8CC;line-height:1.5}
+.firma b{color:#F5F7FA;font-weight:600}
+.logo{position:absolute;right:64px;bottom:44px;height:46px}
+</style></head><body>
+<svg class="curva" width="640" height="300" viewBox="0 0 640 300"><path d="M0 298 C180 298 230 40 320 40 C410 40 460 298 640 298" fill="#12305A" stroke="#1E4A72" stroke-width="2"/></svg>
+<img class="emb" id="emb"><div class="serie" id="serie"></div><div class="sub-serie" id="subserie"></div>
+<h1 id="t"></h1><p class="bajada" id="b"></p>
+<div class="firma"><b>Anthony Romero Cerdán</b> · anthonyromero.netlify.app<br>Instagram @bioestadistica.en.linea</div>
+<img class="logo" src="logo-bel.png">
+<script>
+const D = JSON.parse(new URLSearchParams(location.search).get('d'));
+emb.src = D.emblema + '.svg'; serie.textContent = D.serie; subserie.textContent = D.subserie || '';
+t.innerHTML = D.titulo; b.innerHTML = D.bajada || '';
+requestAnimationFrame(()=>{ const h = t.getBoundingClientRect().bottom; document.body.style.setProperty('--top', (h + 26) + 'px'); });
+</script></body></html>

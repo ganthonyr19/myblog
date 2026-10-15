@@ -51,9 +51,9 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-f546d6278a7fe63a888be9443735f898.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-5fd2d996c0150a3a1fed98b14a8f705c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="site_libs/bootstrap/bootstrap-f546d6278a7fe63a888be9443735f898.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-749f0c35d8da38091077ec74fca69a22.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-02237a22ee455bad83aece42a6742289.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-749f0c35d8da38091077ec74fca69a22.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -371,11 +371,19 @@ window.Quarto = {
  <span class="dropdown-text">Tutoriales</span></a>
   </li>  
         <li>
+    <a class="dropdown-item" href="./disenos/index.html">
+ <span class="dropdown-text">Diseños de estudio</span></a>
+  </li>  
+        <li>
     <a class="dropdown-item" href="./blog.html">
  <span class="dropdown-text">Blog</span></a>
   </li>  
     </ul>
   </li>
+  <li class="nav-item">
+    <a class="nav-link" href="./herramientas/index.html"> 
+<span class="menu-text">Consultorio</span></a>
+  </li>  
   <li class="nav-item">
     <a class="nav-link" href="./recursos.html"> 
 <span class="menu-text">Recursos</span></a>
@@ -403,6 +411,11 @@ window.Quarto = {
   </li>  
     </ul>
   </li>
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://www.instagram.com/bioestadistica.en.linea/"> <i class="bi bi-instagram" role="img" aria-label="Instagram de Bioestadística en línea">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
   <li class="nav-item compact">
     <a class="nav-link" href="https://x.com/ganthonyrc"> <i class="bi bi-twitter" role="img">
 </i> 
@@ -463,7 +476,7 @@ window.Quarto = {
 
 <div class="quarto-listing quarto-listing-container-grid" id="listing-listing">
 <div class="list grid quarto-listing-cols-3">
-<div class="g-col-1" data-index="0" data-categories="VHV0b3JpYWwlMkNSJTJDUlN0dWRpbyUyQ0luc3RhbGFjaSVDMyVCM24=" data-listing-date-sort="1681621200000" data-listing-file-modified-sort="1791940318797" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="725">
+<div class="g-col-1" data-index="0" data-categories="VHV0b3JpYWwlMkNSJTJDUlN0dWRpbyUyQ0luc3RhbGFjaSVDMyVCM24=" data-listing-date-sort="1681621200000" data-listing-file-modified-sort="1792080160923" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="725">
 <a href="./posts/Manual/index.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top">
@@ -501,6 +514,26 @@ Anthony R.
 </div>
 <div class="listing-no-matching d-none">No hay resultados</div>
 </div></main> <!-- /main -->
+<script>
+/* Tarjeta «Síguenos en Instagram» al final de cada entrada (no en listados ni en el inicio). */
+(function () {
+  var IG = "https://www.instagram.com/bioestadistica.en.linea/";
+  function poner() {
+    var main = document.querySelector("main#quarto-document-content") || document.querySelector("main");
+    if (!main || document.querySelector(".quarto-listing") || document.querySelector(".quarto-about-jolla, .about-entity")) return;
+    if (!document.querySelector(".quarto-title") || document.body.classList.contains("sin-sigue")) return;
+    var d = document.createElement("aside");
+    d.className = "sigue-ig";
+    d.innerHTML =
+      '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.3" cy="6.7" r="1.2" fill="currentColor"/></svg>' +
+      '<div><p class="sigue-t">¿Te sirvió?</p><p>En Instagram comparto tips de bioestadística y R para tesis de salud, y aviso cuando sale una entrega nueva.</p></div>' +
+      '<a href="' + IG + '" target="_blank" rel="noopener">Seguir @bioestadistica.en.linea</a>';
+    var ap = main.querySelector("#quarto-appendix, .quarto-appendix-contents");
+    if (ap) ap.parentNode.insertBefore(d, ap); else main.appendChild(d);
+  }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", poner); else poner();
+})();
+</script>
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     // Ensure there is a toggle, if there isn't float one in the top right
@@ -924,7 +957,7 @@ Anthony R.
   <div class="nav-footer">
     <div class="nav-footer-left">
 <p>Creado con <img src="./images/ricon24.png" class="img-fluid"> y <a href="https://quarto.org">Quarto</a>.<br>
-Código fuente <a href="https://github.com/ganthonyr19/myblog"><img src="./images/github-icon.png" class="img-fluid"></a></p>
+Código fuente <a href="https://github.com/ganthonyr19/myblog"><img src="./images/github-icon.png" class="img-fluid"></a> · <a href="https://www.instagram.com/bioestadistica.en.linea/">Instagram <span class="citation" data-cites="bioestadistica.en.linea">@bioestadistica.en.linea</span></a></p>
 </div>   
     <div class="nav-footer-center">
       &nbsp;
