@@ -1,4 +1,4 @@
-# Anthony Romero, MD · bioestadística en línea
+# Anthony Romero, MD · Bioestadística en línea
 
 Código fuente de la web personal de **Anthony Romero Cerdán**, médico cirujano (UNMSM): tutoriales, recursos y novedades sobre R y análisis de datos aplicados a la investigación en salud.
 
