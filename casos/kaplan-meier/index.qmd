@@ -1,0 +1,133 @@
+---
+title: "¿Qué hago con los pacientes que se fueron?"
+description: "Caso clínico estadístico: una cohorte pequeña con pacientes perdidos en el seguimiento, analizada con Kaplan-Meier. Decide qué afirmaciones son verdaderas y por qué."
+date: 2026-11-03
+draft: true
+image: portada.png
+categories: [Caso clínico estadístico, Epidemiología, Pruebas estadísticas, Tesis]
+---
+
+[![](../../images/marcas/casos.svg)<span><b>Caso clínico estadístico</b><em>Caso n.º 3</em></span>](../index.qmd){.sello}
+
+## El caso
+
+*Caso ilustrativo, con datos simulados.*
+
+Una tesista sigue durante 12 meses a 10 pacientes con cáncer gástrico avanzado desde el inicio de su quimioterapia paliativa en un hospital de Lima. El desenlace es la muerte por cualquier causa.
+
+Al cierre del estudio:
+
+- **5 pacientes fallecieron**, a los 2, 4, 6, 7 y 9 meses.
+- **3 se perdieron en el seguimiento** a los 3, 5 y 8 meses, porque se trasladaron a otra región o dejaron de acudir.
+- **2 seguían vivos** al cerrar el estudio, tras 11 y 12 meses de seguimiento (uno había ingresado un mes más tarde).
+
+En su borrador, la tesista reporta una «mortalidad al año del 50 %» (5 de 10). Su asesor le pide rehacer el análisis con el [método de Kaplan-Meier](../../prospecto/diccionario.qmd#metodo-de-kaplan-meier){.dic}, que da una supervivencia a los 12 meses del 35 % (IC 95 %: 12 % a 98 %) y una mediana de supervivencia de 9 meses.
+
+```{=html}
+<div style="overflow-x:auto">
+<table class="mapa" style="max-width:600px">
+<thead><tr><th>Mes</th><th>En riesgo</th><th>Muertes</th><th>Supervivencia acumulada</th></tr></thead>
+<tbody>
+<tr><td>2</td><td>10</td><td>1</td><td>0,900</td></tr>
+<tr><td>4</td><td>8</td><td>1</td><td>0,788</td></tr>
+<tr><td>6</td><td>6</td><td>1</td><td>0,656</td></tr>
+<tr><td>7</td><td>5</td><td>1</td><td>0,525</td></tr>
+<tr><td>9</td><td>3</td><td>1</td><td>0,350</td></tr>
+</tbody></table>
+</div>
+```
+
+## ¿Cuáles de estas afirmaciones son verdaderas?
+
+a) Los pacientes censurados deben excluirse del análisis, porque no se sabe si murieron.
+
+b) La mediana de supervivencia estimada es de 9 meses.
+
+c) Calcular la mortalidad como 5 de 10 subestima el riesgo de morir durante el primer año.
+
+d) Si los pacientes se perdieron porque estaban más graves, la curva de Kaplan-Meier sigue siendo válida sin cambios.
+
+## Pase de visita
+
+::: {.autoeval}
+::: {.pregunta}
+**a) Los pacientes censurados deben excluirse del análisis, porque no se sabe si murieron.**
+
+<details><summary>Ver respuesta</summary>
+**Falsa.** [Un dato censurado](../../prospecto/diccionario.qmd#dato-censurado){.dic} no es un dato perdido: sabemos que el paciente estaba vivo hasta el momento de la censura. Kaplan-Meier lo cuenta entre los pacientes en riesgo mientras lo observamos y lo retira después. Por eso, a los 4 meses quedan 8 pacientes en riesgo y no 9: el paciente censurado a los 3 meses ya salió. Excluirlo desde el inicio desperdiciaría información y sesgaría la estimación.
+</details>
+:::
+
+::: {.pregunta}
+**b) La mediana de supervivencia estimada es de 9 meses.**
+
+<details><summary>Ver respuesta</summary>
+**Verdadera.** La mediana es el primer tiempo en que la supervivencia acumulada cae a 0,50 o menos. A los 7 meses todavía es 0,525; a los 9 meses baja a 0,350. Con solo 10 pacientes, la estimación es muy imprecisa: R da un límite inferior de 6 meses y no puede calcular el superior.
+</details>
+:::
+
+::: {.pregunta}
+**c) Calcular la mortalidad como 5 de 10 subestima el riesgo de morir durante el primer año.**
+
+<details><summary>Ver respuesta</summary>
+**Verdadera.** El cálculo de 5 de 10 trata a los tres pacientes perdidos como si hubieran llegado vivos a los 12 meses, algo que nunca se observó. Kaplan-Meier estima una supervivencia al año de 0,35, es decir, un riesgo de morir de 1 − 0,35 = 0,65 (65 %), no del 50 %. La diferencia viene de usar en cada momento solo a quienes seguían en observación.
+</details>
+:::
+
+::: {.pregunta}
+**d) Si los pacientes se perdieron porque estaban más graves, la curva de Kaplan-Meier sigue siendo válida sin cambios.**
+
+<details><summary>Ver respuesta</summary>
+**Falsa.** Kaplan-Meier supone que la censura es **no informativa**: quien se pierde tiene el mismo pronóstico que quien sigue en el estudio. Si se pierden los más graves, la curva sobreestima la supervivencia. Este supuesto no puede verificarse con los datos. En tu tesis, reporta cuántos pacientes se perdieron, por qué y en qué momento, y discute el posible sesgo.
+</details>
+:::
+:::
+
+## Rp/
+
+::: {.en-una-frase}
+El paciente censurado aporta información hasta el día en que dejó de observarse: no lo cuentes como vivo ni lo borres de la base.
+:::
+
+## Diagnóstico diferencial
+
+- **Pérdidas en el seguimiento frente a [pérdidas](../../prospecto/diccionario.qmd#perdidas){.dic} en el tamaño de muestra.** Las primeras son un problema del análisis; las segundas se prevén al calcular la muestra, inflándola según el porcentaje esperado.
+- **Tasa por [persona-tiempo](../../prospecto/diccionario.qmd#persona-tiempo){.dic}.** También aprovecha el tiempo de cada paciente, pero supone un riesgo constante. Kaplan-Meier no lo supone y muestra cómo cambia la supervivencia mes a mes.
+- **[Regresión de Cox](../../prospecto/diccionario.qmd#regresion-de-cox){.dic}.** Es el paso siguiente cuando quieres comparar grupos y ajustar por [confusores](../../prospecto/diccionario.qmd#confusion){.dic}: estima el *hazard ratio*.
+
+## En R
+
+```{r}
+#| echo: true
+library(survival)
+
+# Tiempo en meses; evento: 1 = murió, 0 = censurado
+tiempo <- c(2, 3, 4, 5, 6, 7, 8, 9, 11, 12)
+evento <- c(1, 0, 1, 0, 1, 1, 0, 1, 0, 0)
+
+km <- survfit(Surv(tiempo, evento) ~ 1)
+summary(km)   # tabla de supervivencia con IC 95 %
+km            # mediana de supervivencia
+plot(km, xlab = "Meses", ylab = "Supervivencia", mark.time = TRUE)
+```
+
+Las marcas verticales de la curva son los pacientes censurados.
+
+## Para profundizar
+
+- [El estudio de cohortes](../../disenos/cohortes/index.qmd), en Diseños de estudio: incidencia, persona-tiempo y pérdidas en el seguimiento.
+- ¿Comparas la supervivencia entre dos grupos? Haz el [Triaje estadístico](../../blog/que-prueba-estadistica/index.qmd#haz-tu-triaje).
+
+## Referencias
+
+1. Kaplan EL, Meier P. Nonparametric estimation from incomplete observations. *J Am Stat Assoc*. 1958;53(282):457-81.
+2. Bland JM, Altman DG. Survival probabilities (the Kaplan-Meier method). *BMJ*. 1998;317(7172):1572.
+3. Clark TG, Bradburn MJ, Love SB, Altman DG. Survival analysis part I: basic concepts and first analyses. *Br J Cancer*. 2003;89(2):232-8.
+
+::: {.cta}
+**¿Te tocó un caso así en tu tesis?**
+
+Te ayudo a elegir e interpretar el análisis correcto.
+
+[Escríbeme por WhatsApp](https://api.whatsapp.com/send?phone=51955446754&text=Hola%2C%20le%C3%AD%20un%20caso%20cl%C3%ADnico%20estad%C3%ADstico%20en%20tu%20web%20y%20quiero%20informaci%C3%B3n%20sobre%20asesor%C3%ADa%20para%20mi%20tesis)
+:::

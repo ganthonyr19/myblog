@@ -1,0 +1,118 @@
+---
+title: "¿Importa quién evalúa al paciente?"
+description: "Caso clínico estadístico: un ensayo en esclerosis múltiple en el que cada paciente fue evaluado por un neurólogo cegado y otro que conocía el tratamiento. Decide qué afirmaciones son verdaderas y por qué."
+date: 2026-12-29
+draft: true
+image: portada.png
+categories: [Caso clínico estadístico, Diseños de estudio, Tesis]
+---
+
+[![](../../images/marcas/casos.svg)<span><b>Caso clínico estadístico</b><em>Caso n.º 11</em></span>](../index.qmd){.sello}
+
+## El caso
+
+*Estudio real: ensayo canadiense en esclerosis múltiple, análisis publicado en 1994.*
+
+Un ensayo con asignación aleatoria comparó tres esquemas en pacientes con esclerosis múltiple progresiva:
+
+- **Grupo I:** ciclofosfamida endovenosa y prednisona.
+- **Grupo II:** recambio plasmático semanal, ciclofosfamida oral y prednisona.
+- **Grupo III:** recambio plasmático simulado y medicamentos placebo.
+
+El desenlace era la evolución de la discapacidad neurológica. Los investigadores hicieron algo inusual: en cada visita, cada paciente era examinado por **dos neurólogos**. Uno no sabía qué tratamiento recibía el paciente (cegado). El otro sí lo sabía.
+
+El análisis principal, con las evaluaciones del neurólogo cegado, no mostró que ningún tratamiento fuera mejor que el placebo. Con las evaluaciones del neurólogo no cegado, en cambio, el grupo II parecía beneficiarse a los 6, 12 y 24 meses, con diferencias estadísticamente significativas.
+
+## ¿Cuáles de estas afirmaciones son verdaderas?
+
+a) El beneficio aparente del grupo II se explica mejor por un sesgo del evaluador que por un efecto real del tratamiento.
+
+b) Si el desenlace hubiera sido la mortalidad, la falta de cegamiento del evaluador habría tenido mucho menos impacto.
+
+c) En un ensayo quirúrgico, aunque el cirujano no pueda estar cegado, todavía es posible cegar a quien evalúa el desenlace.
+
+d) El cegamiento y el ocultamiento de la secuencia de asignación son lo mismo.
+
+## Pase de visita
+
+::: {.autoeval}
+::: {.pregunta}
+**a) El beneficio aparente del grupo II se explica mejor por un sesgo del evaluador que por un efecto real del tratamiento.**
+
+<details><summary>Ver respuesta</summary>
+**Verdadera.** Los mismos pacientes, en las mismas visitas, fueron evaluados por dos neurólogos: lo único que cambiaba era si el evaluador conocía el tratamiento. La escala de discapacidad requiere juicio clínico, y quien espera un beneficio tiende a verlo, aun sin proponérselo. Los propios autores concluyeron que el cegamiento evitó un falso positivo, es decir, un error tipo I.
+</details>
+:::
+
+::: {.pregunta}
+**b) Si el desenlace hubiera sido la mortalidad, la falta de cegamiento del evaluador habría tenido mucho menos impacto.**
+
+<details><summary>Ver respuesta</summary>
+**Verdadera.** El sesgo del evaluador es mayor cuanto más subjetivo es el desenlace: escalas de síntomas, dolor, mejoría percibida o una escala de discapacidad. Un desenlace duro, como la muerte, deja poco espacio a la interpretación. Aun así, la falta de cegamiento puede influir por otras vías, como cambios en la atención que reciben los pacientes.
+</details>
+:::
+
+::: {.pregunta}
+**c) En un ensayo quirúrgico, aunque el cirujano no pueda estar cegado, todavía es posible cegar a quien evalúa el desenlace.**
+
+<details><summary>Ver respuesta</summary>
+**Verdadera.** El [cegamiento](../../prospecto/diccionario.qmd#cegamiento){.dic} no es «todo o nada»: puede aplicarse al paciente, a quien da el tratamiento, a quien evalúa el desenlace y a quien analiza los datos. Cuando no se puede cegar a uno, se ciega a los demás. Un evaluador independiente que no participó en la cirugía y no sabe qué técnica se usó es una solución frecuente.
+</details>
+:::
+
+::: {.pregunta}
+**d) El cegamiento y el ocultamiento de la secuencia de asignación son lo mismo.**
+
+<details><summary>Ver respuesta</summary>
+**Falsa.** El ocultamiento de la secuencia protege la asignación: impide que quien recluta sepa qué tratamiento le tocará al siguiente paciente y lo elija o lo excluya por eso. Ocurre antes de asignar y siempre es posible. El cegamiento protege lo que pasa después de asignar: cómo se trata, se sigue y se evalúa a cada paciente, y no siempre es posible.
+</details>
+:::
+:::
+
+## Rp/
+
+::: {.en-una-frase}
+Si tu desenlace depende del juicio de alguien, esa persona no debe saber qué recibió cada paciente.
+:::
+
+## Diagnóstico diferencial
+
+- **«Doble ciego».** Es un término ambiguo: no dice quiénes fueron cegados. Reporta por separado si lo estaban los pacientes, los tratantes, los evaluadores y los analistas.
+- **Efecto placebo.** Es lo que se busca controlar al cegar al paciente; el sesgo del evaluador se controla cegando a quien mide.
+
+## En R
+
+Una simulación de un tratamiento **sin ningún efecto**, evaluado por un neurólogo cegado y por otro que, sin proponérselo, puntúa algo mejor a los pacientes tratados:
+
+```{r}
+#| echo: true
+set.seed(1994)
+n <- 60
+grupo  <- rep(c("tratamiento", "placebo"), each = n)
+cambio <- rnorm(2 * n, mean = 0.5, sd = 1)       # cambio real de discapacidad (igual en ambos)
+
+cegado    <- cambio + rnorm(2 * n, sd = 0.3)     # error de medición, sin sesgo
+no_cegado <- cambio + rnorm(2 * n, sd = 0.3) -
+             0.5 * (grupo == "tratamiento")      # ve menos deterioro en los tratados
+
+t.test(cegado ~ grupo)$p.value      # sin diferencia
+t.test(no_cegado ~ grupo)$p.value   # diferencia «significativa» creada por el sesgo
+```
+
+## Para profundizar
+
+- Caso n.º 7: [¿La aspirina no sirve si eres Géminis?](../error-tipo-i-y-ii/index.qmd), sobre el error tipo I.
+- Caso n.º 8: [¿Funciona el fármaco si el placebo también funciona?](../itt-vs-protocolo/index.qmd), sobre otro sesgo dentro de un ensayo.
+
+## Referencias
+
+1. Noseworthy JH, Ebers GC, Vandervoort MK, Farquhar RE, Yetisir E, Roberts R. The impact of blinding on the results of a randomized, placebo-controlled multiple sclerosis clinical trial. *Neurology*. 1994;44(1):16-20.
+2. Schulz KF, Grimes DA. Blinding in randomised trials: hiding who got what. *Lancet*. 2002;359(9307):696-700.
+
+::: {.cta}
+**¿Te tocó un caso así en tu tesis?**
+
+Te ayudo a elegir e interpretar el análisis correcto.
+
+[Escríbeme por WhatsApp](https://api.whatsapp.com/send?phone=51955446754&text=Hola%2C%20le%C3%AD%20un%20caso%20cl%C3%ADnico%20estad%C3%ADstico%20en%20tu%20web%20y%20quiero%20informaci%C3%B3n%20sobre%20asesor%C3%ADa%20para%20mi%20tesis)
+:::

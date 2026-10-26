@@ -1,0 +1,111 @@
+---
+title: "¿Quién responde a un anuncio en Facebook?"
+description: "Caso clínico estadístico: un estudio de anticuerpos contra la COVID-19 que reclutó voluntarios por redes sociales, y los límites de una muestra por conveniencia. Decide qué afirmaciones son verdaderas y por qué."
+date: 2027-02-16
+draft: true
+image: portada.png
+categories: [Caso clínico estadístico, Tamaño de muestra, Epidemiología]
+---
+
+[![](../../images/marcas/casos.svg)<span><b>Caso clínico estadístico</b><em>Caso n.º 18</em></span>](../index.qmd){.sello}
+
+## El caso
+
+*Estudio real: Bendavid y colaboradores, versión preliminar de abril de 2020.*
+
+A inicios de la pandemia, un equipo quiso estimar cuántas personas del condado de Santa Clara, en California, ya tenían anticuerpos contra el SARS-CoV-2. Para reclutar participantes, publicaron **anuncios dirigidos en Facebook**. Los interesados se inscribían en línea y acudían a un punto de toma de muestra en su auto.
+
+Se analizaron 3330 personas, y **50 dieron positivo** con una prueba rápida de anticuerpos: una prevalencia cruda de 1,5 %. Como la muestra no se parecía a la población del condado, los autores la ponderaron por código postal, sexo y raza, y la prevalencia subió a 2,8 %. Tras ajustar por el desempeño de la prueba, estimaron entre 2,5 % y 4,2 %.
+
+Con esas cifras concluyeron que había entre 50 y 85 veces más infecciones que casos confirmados. El resultado se difundió ampliamente y fue muy criticado.
+
+## ¿Cuáles de estas afirmaciones son verdaderas?
+
+a) Es una muestra por conveniencia: no todos los habitantes del condado tenían una probabilidad conocida de ser seleccionados.
+
+b) Como la muestra ponderada se parece al condado en código postal, sexo y raza, el sesgo de selección quedó corregido.
+
+c) Si las personas que habían tenido síntomas compatibles se inscribieron con más interés para saber si se habían infectado, la prevalencia estaría sobrestimada.
+
+d) Con una prevalencia tan baja, si la especificidad real de la prueba fuera de 98,5 %, los falsos positivos podrían explicar casi todos los resultados positivos.
+
+## Pase de visita
+
+::: {.autoeval}
+::: {.pregunta}
+**a) Es una muestra por conveniencia: no todos los habitantes del condado tenían una probabilidad conocida de ser seleccionados.**
+
+<details><summary>Ver respuesta</summary>
+**Verdadera.** Solo podía participar quien veía el anuncio, se interesaba, se inscribía a tiempo y podía llegar en auto. Nadie conoce la probabilidad de inclusión de cada habitante, así que la muestra no es probabilística. En un muestreo probabilístico, como el de la ENDES, cada persona tiene una probabilidad conocida de ser seleccionada, y eso permite generalizar con un [factor de expansión](../../prospecto/diccionario.qmd#factor-de-expansion){.dic}.
+</details>
+:::
+
+::: {.pregunta}
+**b) Como la muestra ponderada se parece al condado en código postal, sexo y raza, el sesgo de selección quedó corregido.**
+
+<details><summary>Ver respuesta</summary>
+**Falsa.** La ponderación corrige solo las variables usadas para ponderar. Si quienes respondieron al anuncio diferían en algo más que se relaciona con el desenlace, como haber tenido síntomas o contacto con un caso, ese sesgo sigue intacto. Además, que la ponderación cambie mucho la estimación (de 1,5 % a 2,8 %) es en sí una señal de que la muestra se alejaba bastante de la población.
+</details>
+:::
+
+::: {.pregunta}
+**c) Si las personas que habían tenido síntomas compatibles se inscribieron con más interés para saber si se habían infectado, la prevalencia estaría sobrestimada.**
+
+<details><summary>Ver respuesta</summary>
+**Verdadera.** Es **[autoselección](../../prospecto/diccionario.qmd#sesgo-de-seleccion){.dic}**: la decisión de participar depende de algo relacionado con el desenlace. Quien sospecha que se infectó tiene más motivos para querer una prueba de anticuerpos, así que los infectados estarían sobrerrepresentados. Los propios autores reconocieron esta posibilidad entre las limitaciones.
+</details>
+:::
+
+::: {.pregunta}
+**d) Con una prevalencia tan baja, si la especificidad real de la prueba fuera de 98,5 %, los falsos positivos podrían explicar casi todos los resultados positivos.**
+
+<details><summary>Ver respuesta</summary>
+**Verdadera.** Si casi todos los 3330 participantes no tenían anticuerpos, un 1,5 % de falsos positivos daría unos 50 positivos falsos: tantos como los observados. Cuando la [prevalencia](../../prospecto/diccionario.qmd#prevalencia){.dic} es baja, pequeñas diferencias en la [especificidad](../../prospecto/diccionario.qmd#especificidad){.dic} cambian por completo la estimación. Este es un error de medición, distinto del error de muestreo, pero ambos pueden sumarse en un mismo estudio.
+</details>
+:::
+:::
+
+## Rp/
+
+::: {.en-una-frase}
+Una muestra por conveniencia describe a quienes llegaron, no a la población: si tu objetivo es una prevalencia, necesitas un muestreo probabilístico.
+:::
+
+## Diagnóstico diferencial
+
+- **Muestreo por bola de nieve.** Los participantes reclutan a otros. Sirve para poblaciones difíciles de alcanzar, pero la muestra hereda las redes de los primeros participantes.
+- **[Conglomerados](../../prospecto/diccionario.qmd#conglomerado){.dic} y muestreo multietápico.** Son probabilísticos: se seleccionan al azar áreas y luego viviendas o personas. Requieren considerar el [diseño muestral complejo](../../prospecto/diccionario.qmd#diseno-muestral-complejo){.dic} en el análisis.
+- **Muestreo consecutivo en un hospital.** Es frecuente en las tesis y también es no probabilístico. Sus resultados describen a los pacientes que acuden a ese establecimiento.
+
+## En R
+
+```{r}
+#| echo: true
+n <- 3330; positivos <- 50
+
+# Prevalencia cruda con IC 95 % exacto
+round(binom.test(positivos, n)$conf.int * 100, 2)
+
+# Falsos positivos esperados según la especificidad de la prueba
+# (suponiendo que casi nadie tenía anticuerpos)
+especificidad <- c(0.999, 0.995, 0.990, 0.985)
+data.frame(especificidad, falsos_positivos = round((1 - especificidad) * n))
+```
+
+## Para profundizar
+
+- [Calcula el tamaño de muestra para estimar una prevalencia](../../herramientas/muestra/index.qmd#mod=prop), con efecto de diseño si muestreas por conglomerados.
+- Caso n.º 15: [¿Quién acepta participar?](../sesgo-de-respuesta/index.qmd), sobre el sesgo de respuesta.
+- Caso n.º 10: [¿Qué punto de corte elijo para el PSA?](../curva-roc/index.qmd), sobre sensibilidad y especificidad.
+
+## Referencias
+
+1. Bendavid E, Mulaney B, Sood N, et al. COVID-19 antibody seroprevalence in Santa Clara County, California [preprint]. medRxiv. 2020. doi:10.1101/2020.04.14.20062463.
+
+::: {.cta}
+**¿Te tocó un caso así en tu tesis?**
+
+Te ayudo a elegir e interpretar el análisis correcto.
+
+[Escríbeme por WhatsApp](https://api.whatsapp.com/send?phone=51955446754&text=Hola%2C%20le%C3%AD%20un%20caso%20cl%C3%ADnico%20estad%C3%ADstico%20en%20tu%20web%20y%20quiero%20informaci%C3%B3n%20sobre%20asesor%C3%ADa%20para%20mi%20tesis)
+:::

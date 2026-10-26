@@ -1,0 +1,112 @@
+---
+title: "p = 0,07: ¿la intervención no sirve?"
+description: "Caso clínico estadístico: un ensayo comunitario en hipertensión con p = 0,07. Qué dice el intervalo de confianza que el valor p calla. Decide qué afirmaciones son verdaderas y por qué."
+date: 2026-10-27
+draft: true
+image: portada.png
+categories: [Caso clínico estadístico, Pruebas estadísticas, Tesis]
+---
+
+[![](../../images/marcas/casos.svg)<span><b>Caso clínico estadístico</b><em>Caso n.º 2</em></span>](../index.qmd){.sello}
+
+## El caso
+
+*Caso ilustrativo, con datos simulados.*
+
+Un tesista evalúa un programa de seguimiento a cargo de agentes comunitarios de salud para adultos con hipertensión arterial en un distrito andino. El programa incluye visitas domiciliarias mensuales y recordatorios para tomar la medicación.
+
+Diseña un ensayo con asignación aleatoria y 120 participantes: 60 reciben el programa y 60 continúan con la atención habitual del puesto de salud. El desenlace es la reducción de la presión arterial sistólica (PAS) a los 6 meses.
+
+La PAS bajó en promedio 14 mmHg en el grupo del programa y 10 mmHg en el grupo control, con una desviación estándar de 12 mmHg en ambos. La diferencia fue de 4,0 mmHg a favor del programa (IC 95 %: −0,3 a 8,3; p = 0,070; prueba t para muestras independientes).
+
+En sus conclusiones, el tesista escribe: «El programa no tiene efecto sobre la presión arterial».
+
+## ¿Cuáles de estas afirmaciones son verdaderas?
+
+a) Como p > 0,05, el estudio demostró que el programa no reduce la presión arterial.
+
+b) Que el IC 95 % incluya el 0 es coherente con que p sea mayor que 0,05.
+
+c) Hay una probabilidad del 95 % de que la verdadera diferencia esté entre −0,3 y 8,3 mmHg.
+
+d) Con estos datos no puede descartarse que el programa reduzca la PAS en 5 mmHg más que la atención habitual.
+
+## Pase de visita
+
+::: {.autoeval}
+::: {.pregunta}
+**a) Como p > 0,05, el estudio demostró que el programa no reduce la presión arterial.**
+
+<details><summary>Ver respuesta</summary>
+**Falsa.** Un [valor p](../../prospecto/diccionario.qmd#valor-p){.dic} de 0,070 solo indica que los datos no son lo bastante incompatibles con la hipótesis de «ninguna diferencia» como para rechazarla al 5 %. No rechazar la hipótesis nula no equivale a demostrarla: la ausencia de evidencia no es evidencia de ausencia. La conclusión correcta es que el estudio no encontró una diferencia estadísticamente significativa y que el resultado es impreciso.
+</details>
+:::
+
+::: {.pregunta}
+**b) Que el IC 95 % incluya el 0 es coherente con que p sea mayor que 0,05.**
+
+<details><summary>Ver respuesta</summary>
+**Verdadera.** Cuando el [intervalo de confianza](../../prospecto/diccionario.qmd#intervalo-de-confianza){.dic} y el valor p salen de la misma prueba, como aquí, son dos caras de una misma moneda. Si el IC 95 % de una diferencia de medias incluye el 0, el valor p bilateral es mayor que 0,05; si lo excluye, es menor. Lo que el IC agrega es el tamaño y la dirección del efecto.
+</details>
+:::
+
+::: {.pregunta}
+**c) Hay una probabilidad del 95 % de que la verdadera diferencia esté entre −0,3 y 8,3 mmHg.**
+
+<details><summary>Ver respuesta</summary>
+**Falsa.** Es la mala interpretación más frecuente, y un jurado exigente la observa. La verdadera diferencia es un valor fijo: está o no está dentro de este intervalo concreto. El 95 % describe el método: si se repitiera el estudio muchas veces, el 95 % de los intervalos así calculados contendría el valor verdadero. En tu tesis, escribe que el intervalo muestra los valores compatibles con los datos.
+</details>
+:::
+
+::: {.pregunta}
+**d) Con estos datos no puede descartarse que el programa reduzca la PAS en 5 mmHg más que la atención habitual.**
+
+<details><summary>Ver respuesta</summary>
+**Verdadera.** El valor 5 mmHg está dentro del IC 95 % (−0,3 a 8,3), así que es compatible con los datos. Por eso decir que el programa «no tiene efecto» es apresurado. El intervalo va desde un efecto nulo hasta una reducción de más de 8 mmHg, que podría ser clínicamente relevante. Con 60 participantes por grupo, el estudio no tuvo la [precisión](../../prospecto/diccionario.qmd#precision){.dic} suficiente para distinguir entre ambos escenarios.
+</details>
+:::
+:::
+
+## Rp/
+
+::: {.en-una-frase}
+Un p > 0,05 no prueba que no haya efecto: mira el intervalo de confianza para saber qué efectos siguen siendo posibles.
+:::
+
+## Diagnóstico diferencial
+
+- **[Potencia estadística](../../prospecto/diccionario.qmd#potencia-estadistica){.dic}.** Un estudio con poca potencia puede no detectar un efecto real. La potencia se planifica antes, con el tamaño de muestra, y no se calcula después para justificar un resultado no significativo.
+- **Significancia estadística y relevancia clínica.** Un efecto puede ser significativo y clínicamente trivial, o importante y no significativo. El [tamaño del efecto](../../prospecto/diccionario.qmd#tamano-del-efecto){.dic} y su IC son los que permiten juzgarlo.
+
+## En R
+
+```{r}
+#| echo: true
+# Datos construidos con las medias y DE exactas del caso
+set.seed(2026)
+programa <- as.numeric(scale(rnorm(60))) * 12 + 14   # reducción de PAS (mmHg)
+control  <- as.numeric(scale(rnorm(60))) * 12 + 10
+
+# Prueba t para muestras independientes (varianzas iguales)
+t.test(programa, control, var.equal = TRUE)
+```
+
+La salida muestra una diferencia de medias de 4 mmHg, un IC 95 % de −0,34 a 8,34 y p = 0,070.
+
+## Para profundizar
+
+- ¿No sabes qué prueba corresponde a tu objetivo? Haz el [Triaje estadístico](../../blog/que-prueba-estadistica/index.qmd#haz-tu-triaje).
+- [Calcula el tamaño de muestra para comparar dos medias](../../herramientas/muestra/index.qmd#mod=med) en el Consultorio estadístico, antes de recolectar datos.
+
+## Referencias
+
+1. Altman DG, Bland JM. Absence of evidence is not evidence of absence. *BMJ*. 1995;311(7003):485.
+2. Greenland S, Senn SJ, Rothman KJ, Carlin JB, Poole C, Goodman SN, et al. Statistical tests, P values, confidence intervals, and power: a guide to misinterpretations. *Eur J Epidemiol*. 2016;31(4):337-50.
+
+::: {.cta}
+**¿Te tocó un caso así en tu tesis?**
+
+Te ayudo a elegir e interpretar el análisis correcto.
+
+[Escríbeme por WhatsApp](https://api.whatsapp.com/send?phone=51955446754&text=Hola%2C%20le%C3%AD%20un%20caso%20cl%C3%ADnico%20estad%C3%ADstico%20en%20tu%20web%20y%20quiero%20informaci%C3%B3n%20sobre%20asesor%C3%ADa%20para%20mi%20tesis)
+:::

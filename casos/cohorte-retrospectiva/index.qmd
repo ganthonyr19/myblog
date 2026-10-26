@@ -1,0 +1,111 @@
+---
+title: "¿Se puede seguir hacia adelante con datos del pasado?"
+description: "Caso clínico estadístico: la cohorte danesa de 657 461 niños que estudió la vacuna triple viral y el autismo con registros nacionales. Decide qué afirmaciones son verdaderas y por qué."
+date: 2027-04-13
+draft: true
+image: portada.png
+categories: [Caso clínico estadístico, Diseños de estudio, Epidemiología]
+---
+
+[![](../../images/marcas/casos.svg)<span><b>Caso clínico estadístico</b><em>Caso n.º 26</em></span>](../index.qmd){.sello}
+
+## El caso
+
+*Estudio real: Hviid y colaboradores, publicado en 2019.*
+
+Dinamarca registra, para cada persona, un número único que vincula sus vacunas, sus diagnósticos y otros datos de salud. Un equipo usó esos registros para responder, una vez más, si la vacuna contra sarampión, paperas y rubéola (triple viral) se asocia con el autismo.
+
+Incluyó a **657 461 niños** nacidos en Dinamarca entre 1999 y 2010. Obtuvo el estado de vacunación del registro nacional de vacunas y los diagnósticos de autismo del registro psiquiátrico, y siguió a los niños hasta agosto de 2013. Se acumularon más de 5 millones de persona-años.
+
+Durante el seguimiento se diagnosticó autismo en **6517 niños**: 129,7 por cada 100 000 persona-años. Comparando a los vacunados con los no vacunados, el **HR ajustado fue de 0,93**, con un IC 95 % que incluía el 1.
+
+## ¿Cuáles de estas afirmaciones son verdaderas?
+
+a) Aunque se analizó cuando los hechos ya habían ocurrido, es un estudio de cohortes: la exposición se registró antes del desenlace y se siguió a los niños hacia adelante.
+
+b) Como los datos vienen de registros que no se diseñaron para este estudio, sus resultados son necesariamente menos válidos que los de cualquier cohorte prospectiva.
+
+c) Como la vacunación se registró al aplicarse, independientemente de un diagnóstico posterior, se evita el sesgo de recuerdo que tendría un estudio que preguntara a los padres después del diagnóstico.
+
+d) Con un HR de 0,93 y un IC 95 % estrecho que incluye el 1, el estudio es compatible con la ausencia de efecto y hace muy improbable un aumento importante del riesgo.
+
+## Pase de visita
+
+::: {.autoeval}
+::: {.pregunta}
+**a) Aunque se analizó cuando los hechos ya habían ocurrido, es un estudio de cohortes: la exposición se registró antes del desenlace y se siguió a los niños hacia adelante.**
+
+<details><summary>Ver respuesta</summary>
+**Verdadera.** Es una **cohorte retrospectiva** o histórica. Lo que la hace cohorte no es cuándo trabaja el investigador, sino la dirección de la información: de la exposición al desenlace, en personas que al inicio no tenían el desenlace. La diferencia con la cohorte prospectiva es que el seguimiento ya ocurrió y se reconstruye con registros.
+</details>
+:::
+
+::: {.pregunta}
+**b) Como los datos vienen de registros que no se diseñaron para este estudio, sus resultados son necesariamente menos válidos que los de cualquier cohorte prospectiva.**
+
+<details><summary>Ver respuesta</summary>
+**Falsa.** La validez depende de la calidad de los datos, no de la dirección temporal del estudio. Unos registros completos y de buena calidad pueden ser mejores que una cohorte prospectiva pequeña con muchas pérdidas. El riesgo de las cohortes retrospectivas está en usar registros incompletos o en no tener las variables necesarias para controlar la confusión. En una tesis con historias clínicas, ese es el punto que hay que discutir.
+</details>
+:::
+
+::: {.pregunta}
+**c) Como la vacunación se registró al aplicarse, independientemente de un diagnóstico posterior, se evita el sesgo de recuerdo que tendría un estudio que preguntara a los padres después del diagnóstico.**
+
+<details><summary>Ver respuesta</summary>
+**Verdadera.** Los padres de un niño con autismo buscan explicaciones y pueden recordar o situar la vacunación de manera distinta que los padres de un niño sin el diagnóstico (caso n.º 5). Un registro hecho en el momento de la vacunación no puede verse influido por un diagnóstico que todavía no existía.
+</details>
+:::
+
+::: {.pregunta}
+**d) Con un HR de 0,93 y un IC 95 % estrecho que incluye el 1, el estudio es compatible con la ausencia de efecto y hace muy improbable un aumento importante del riesgo.**
+
+<details><summary>Ver respuesta</summary>
+**Verdadera.** Que el IC incluya el 1 no basta para decir «no hay efecto» (caso n.º 2). Lo que permite concluirlo con confianza es que el intervalo es estrecho y su límite superior queda muy cerca de 1: descarta cualquier aumento importante del riesgo. Ese tipo de precisión solo se logra con muestras enormes, como las que permiten los registros.
+</details>
+:::
+:::
+
+## Rp/
+
+::: {.en-una-frase}
+Una cohorte retrospectiva sigue siendo una cohorte: su fortaleza depende de que la exposición se haya registrado antes del desenlace y de la calidad de los registros.
+:::
+
+## Diagnóstico diferencial
+
+- **Estudio de casos y controles con historias clínicas.** También mira datos del pasado, pero parte del desenlace. Si en tu tesis seleccionas a los participantes según el desenlace, no es una cohorte retrospectiva.
+- **Estudio transversal con datos retrospectivos.** Si la exposición y el desenlace se toman del mismo momento, no hay seguimiento y no es una cohorte.
+
+## En R
+
+```{r}
+#| echo: true
+casos <- 6517
+tasa  <- 129.7 / 100000          # por persona-año
+
+# Persona-años implícitos en la tasa reportada
+round(casos / tasa)
+
+# Tasa con IC 95 % exacto, por 100 000 persona-años
+pt <- casos / tasa
+round(poisson.test(casos, pt)$conf.int * 100000, 1)
+```
+
+## Para profundizar
+
+- [El estudio de cohortes](../../disenos/cohortes/index.qmd), en Diseños de estudio: cohorte prospectiva y retrospectiva.
+- Caso n.º 19: [¿Porcentaje o tasa?](../tasa-de-incidencia/index.qmd), sobre tasas por persona-tiempo.
+- Caso n.º 25: [¿Un estudio de casos y controles dentro de una cohorte?](../casos-y-controles-anidado/index.qmd)
+
+## Referencias
+
+1. Hviid A, Hansen JV, Frisch M, Melbye M. Measles, mumps, rubella vaccination and autism: a nationwide cohort study. *Ann Intern Med*. 2019;170(8):513-20.
+2. Grimes DA, Schulz KF. Cohort studies: marching towards outcomes. *Lancet*. 2002;359(9303):341-5.
+
+::: {.cta}
+**¿Te tocó un caso así en tu tesis?**
+
+Te ayudo a elegir e interpretar el análisis correcto.
+
+[Escríbeme por WhatsApp](https://api.whatsapp.com/send?phone=51955446754&text=Hola%2C%20le%C3%AD%20un%20caso%20cl%C3%ADnico%20estad%C3%ADstico%20en%20tu%20web%20y%20quiero%20informaci%C3%B3n%20sobre%20asesor%C3%ADa%20para%20mi%20tesis)
+:::

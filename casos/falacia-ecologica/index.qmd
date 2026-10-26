@@ -1,0 +1,117 @@
+---
+title: "¿Comer chocolate te acerca al Nobel?"
+description: "Caso clínico estadístico: una correlación de 0,79 entre el consumo de chocolate y los premios Nobel de 23 países, y la falacia ecológica. Decide qué afirmaciones son verdaderas y por qué."
+date: 2026-12-15
+draft: true
+image: portada.png
+categories: [Caso clínico estadístico, Diseños de estudio, Epidemiología]
+---
+
+[![](../../images/marcas/casos.svg)<span><b>Caso clínico estadístico</b><em>Caso n.º 9</em></span>](../index.qmd){.sello}
+
+## El caso
+
+*Estudio real: Messerli, publicado en 2012.*
+
+Un cardiólogo planteó una pregunta provocadora: si los flavonoides del cacao podrían mejorar la función cognitiva, ¿los países que comen más chocolate producirían más mentes brillantes?
+
+Para responderla, reunió dos datos de 23 países: el consumo anual de chocolate por habitante y el número de premios Nobel por cada 10 millones de habitantes. No midió nada en ninguna persona.
+
+Encontró una correlación positiva fuerte: **r = 0,791** (p < 0,0001). Suiza encabezaba ambos rankings. Suecia tenía más del doble de premios de los que predecía su consumo; al excluirla, la correlación subía a 0,862.
+
+El artículo, de tono deliberadamente humorístico, se publicó en una revista médica de alto impacto y dio la vuelta al mundo en titulares que sugerían que comer chocolate ayuda a ganar un Nobel.
+
+## ¿Cuáles de estas afirmaciones son verdaderas?
+
+a) En este estudio, la unidad de análisis es el país, no la persona.
+
+b) Con r = 0,79, se puede concluir que las personas que comen más chocolate tienen más probabilidad de ganar un Nobel.
+
+c) Una correlación de 0,79 significa que el 79 % de la variación en el número de premios se explica por el consumo de chocolate.
+
+d) Una característica de los países, como su riqueza, podría explicar a la vez el mayor consumo de chocolate y el mayor número de premios.
+
+## Pase de visita
+
+::: {.autoeval}
+::: {.pregunta}
+**a) En este estudio, la unidad de análisis es el país, no la persona.**
+
+<details><summary>Ver respuesta</summary>
+**Verdadera.** Cada punto del análisis es un país, con un promedio de consumo y una tasa de premios. Es un estudio ecológico: sus datos son agregados de grupos. No sabemos cuánto chocolate comió ninguno de los galardonados, ni si comían más que sus compatriotas.
+</details>
+:::
+
+::: {.pregunta}
+**b) Con r = 0,79, se puede concluir que las personas que comen más chocolate tienen más probabilidad de ganar un Nobel.**
+
+<details><summary>Ver respuesta</summary>
+**Falsa.** Es la **[falacia ecológica](../../prospecto/diccionario.qmd#falacia-ecologica){.dic}**: atribuir a las personas una asociación observada entre grupos. Una relación entre países puede no existir, o incluso invertirse, dentro de cada país. Para hablar de personas se necesitan datos de personas, con un diseño de [cohorte](../../disenos/cohortes/index.qmd) o de [casos y controles](../../disenos/casos-y-controles/index.qmd).
+</details>
+:::
+
+::: {.pregunta}
+**c) Una correlación de 0,79 significa que el 79 % de la variación en el número de premios se explica por el consumo de chocolate.**
+
+<details><summary>Ver respuesta</summary>
+**Falsa.** La proporción de variación compartida es el cuadrado del [coeficiente de correlación](../../prospecto/diccionario.qmd#coeficiente-de-correlacion){.dic}: r² = 0,791² = 0,63, es decir, 63 %. Y aun así, «explicar» se refiere solo a que ambas variables varían juntas, no a que una cause la otra.
+</details>
+:::
+
+::: {.pregunta}
+**d) Una característica de los países, como su riqueza, podría explicar a la vez el mayor consumo de chocolate y el mayor número de premios.**
+
+<details><summary>Ver respuesta</summary>
+**Verdadera.** Los países con más ingresos suelen consumir más productos como el chocolate y también invierten más en educación e investigación. Una variable así es un posible factor de [confusión](../../prospecto/diccionario.qmd#confusion){.dic}. En los estudios ecológicos, la confusión es difícil de controlar porque la mayoría de las características de los países se mueven juntas.
+</details>
+:::
+:::
+
+## Rp/
+
+::: {.en-una-frase}
+Lo que es cierto para los grupos no tiene por qué ser cierto para las personas: un estudio ecológico genera hipótesis, no las confirma.
+:::
+
+## Diagnóstico diferencial
+
+- **Unidad de análisis frente a unidad de observación.** Puedes medir a personas y analizar por establecimientos o distritos. Las conclusiones valen para la unidad de análisis.
+- **[Conglomerado](../../prospecto/diccionario.qmd#conglomerado){.dic}.** En un muestreo por conglomerados mides a personas dentro de grupos: no es un estudio ecológico, pero debes considerar esa estructura en el análisis.
+
+## En R
+
+```{r}
+#| echo: true
+r <- 0.791; n <- 23    # correlación y número de países
+
+# Proporción de variación compartida
+r^2
+
+# Prueba de que la correlación es distinta de 0
+t <- r * sqrt(n - 2) / sqrt(1 - r^2)
+c(t = t, p = 2 * pt(-abs(t), df = n - 2))
+
+# IC 95 % de r con la transformación z de Fisher
+z <- atanh(r) + c(-1, 1) * 1.96 / sqrt(n - 3)
+tanh(z)
+```
+
+El IC 95 % de r va aproximadamente de 0,56 a 0,91: incluso una correlación tan alta es imprecisa con solo 23 puntos.
+
+## Para profundizar
+
+- [Diseños de estudio](../../disenos/index.qmd): dónde se ubica el estudio ecológico.
+- [Calcula el tamaño de muestra para una correlación](../../herramientas/muestra/index.qmd#mod=cor) en el Consultorio estadístico.
+
+## Referencias
+
+1. Messerli FH. Chocolate consumption, cognitive function, and Nobel laureates. *N Engl J Med*. 2012;367:1562-4.
+2. Morgenstern H. Ecologic studies in epidemiology: concepts, principles, and methods. *Annu Rev Public Health*. 1995;16:61-81.
+
+::: {.cta}
+**¿Te tocó un caso así en tu tesis?**
+
+Te ayudo a elegir e interpretar el análisis correcto.
+
+[Escríbeme por WhatsApp](https://api.whatsapp.com/send?phone=51955446754&text=Hola%2C%20le%C3%AD%20un%20caso%20cl%C3%ADnico%20estad%C3%ADstico%20en%20tu%20web%20y%20quiero%20informaci%C3%B3n%20sobre%20asesor%C3%ADa%20para%20mi%20tesis)
+:::

@@ -1,0 +1,106 @@
+---
+title: "Chi cuadrado y prueba exacta de Fisher"
+description: "Vademécum estadístico: indicación, contraindicaciones, posología, interacciones y reacciones adversas de la prueba de chi cuadrado de Pearson y de la prueba exacta de Fisher, con su código en R."
+date: 2026-10-22
+image: portada.png
+categories: [Vademécum estadístico, Pruebas estadísticas, Tesis]
+---
+
+[![](../../images/marcas/vademecum.svg)<span><b>Vademécum estadístico</b><em>Ficha n.º 1</em></span>](../index.qmd){.sello}
+
+::: {.en-una-frase}
+Compara la distribución de una variable categórica entre grupos de personas distintas; si las frecuencias **esperadas** son pequeñas, se cambia por la prueba exacta de Fisher.
+:::
+
+## Indicación
+
+Evaluar si dos variables categóricas están asociadas cuando cada persona aparece una sola vez en la tabla. Es la prueba habitual para comparar proporciones entre dos o más grupos independientes: el porcentaje de anemia según el sexo, de complicaciones según el tipo de cirugía o de adherencia según el nivel educativo.
+
+## Mecanismo de acción
+
+Construye la [tabla de contingencia](../../prospecto/diccionario.qmd#tabla-2x2){.dic} y calcula, para cada celda, la frecuencia que se esperaría si las variables no estuvieran asociadas: total de la fila × total de la columna / total general. El estadístico suma las diferencias al cuadrado entre lo observado y lo esperado, divididas entre lo esperado. Cuanto mayor es, más se alejan los datos de la hipótesis nula de independencia.
+
+La prueba exacta de Fisher no usa esa aproximación: calcula directamente la probabilidad de las tablas posibles con los mismos totales. Por eso sirve con muestras pequeñas.
+
+## Contraindicaciones
+
+- **Observaciones pareadas.** Si son las mismas personas medidas dos veces, o pares emparejados, corresponde la prueba de McNemar.
+- **Frecuencias esperadas pequeñas.** El chi cuadrado es adecuado si ninguna frecuencia esperada es menor que 1 y no más del 20 % es menor que 5 (Cochran, 1954). Si no se cumple, usa la prueba exacta de Fisher o agrupa categorías con sentido clínico.
+- **Variables ordinales con una tendencia de interés.** Si quieres saber si el riesgo aumenta a lo largo de categorías ordenadas, una prueba de tendencia responde mejor que el chi cuadrado general.
+
+## Posología
+
+El tamaño de muestra depende de las proporciones que esperas en cada grupo y de la diferencia mínima que te interesa detectar.
+
+::: {.usa-calc}
+![](../../images/marcas/muestra.svg)
+
+Calcúlalo en el Consultorio estadístico: [tamaño de muestra para comparar dos proporciones](../../herramientas/muestra/index.qmd#mod=dprop&dis=tr).
+:::
+
+## Interacciones
+
+- **Corrección de continuidad.** En tablas de 2 × 2, `chisq.test()` aplica por defecto la [corrección de Yates](../../prospecto/diccionario.qmd#correccion-de-continuidad){.dic}, que es conservadora. Campbell (2007) propone como alternativa la chi cuadrado «N − 1», que funciona bien cuando todas las frecuencias esperadas son al menos 1. Sea cual sea tu elección, decláralo en métodos.
+- **Encuestas con diseño complejo.** Con datos de la ENDES o la ENAHO, el chi cuadrado clásico no es válido: usa la versión de Rao-Scott, que considera el [diseño muestral](../../prospecto/diccionario.qmd#diseno-muestral-complejo){.dic}.
+- **Variables de confusión.** El chi cuadrado no ajusta por otras variables. Para eso necesitas un modelo de regresión.
+
+## Reacciones adversas frecuentes en las tesis
+
+- **Cambiar a Fisher porque una celda observada tiene menos de 5.** El criterio se aplica a las frecuencias esperadas, no a las observadas.
+- **Reportar solo el valor p.** El lector necesita los porcentajes de cada grupo y, si es posible, una medida de asociación con su IC 95 %.
+- **Confundir porcentajes por fila y por columna.** El [porcentaje](../../prospecto/diccionario.qmd#porcentaje-por-columna){.dic} debe calcularse dentro de los grupos que comparas.
+- **Leer la asociación como causa.** Un p pequeño indica que las proporciones difieren, no que una variable cause la otra.
+
+## Presentación en R
+
+Con la base `pbc` comparamos la presencia de arañas vasculares (`spiders`) entre los pacientes que recibieron D-penicilamina y placebo. Luego, la presencia de ascitis según el sexo, donde hay pocos hombres.
+
+```{r}
+#| echo: true
+library(survival)
+d <- pbc[!is.na(pbc$trt), ]                    # los 312 pacientes del ensayo
+d$grupo <- factor(d$trt, 1:2, c("D-penicilamina", "Placebo"))
+d$sexo  <- factor(d$sex, c("m", "f"), c("Hombre", "Mujer"))
+
+# 1. Arañas vasculares según el grupo
+tabla <- table(d$grupo, d$spiders)
+round(prop.table(tabla, 1) * 100, 1)           # porcentajes por grupo (fila)
+chisq.test(tabla)$expected                     # frecuencias esperadas
+chisq.test(tabla)                              # con corrección de Yates
+
+# 2. Ascitis según el sexo: una frecuencia esperada es menor que 5
+tabla2 <- table(d$sexo, d$ascites)
+round(chisq.test(tabla2)$expected, 1)
+fisher.test(tabla2)
+```
+
+En la primera tabla, todas las frecuencias esperadas superan 44, así que el chi cuadrado es adecuado. En la segunda, la frecuencia esperada de hombres con ascitis es 2,8 (una de cuatro celdas, el 25 %), por lo que corresponde Fisher.
+
+## Cómo reportarlo
+
+::: {.reporte}
+> La presencia de arañas vasculares fue similar en los pacientes que recibieron D-penicilamina (28,5 %) y en los que recibieron placebo (29,2 %) (p = 0,98; prueba de chi cuadrado con corrección de continuidad).
+:::
+
+## Diagnóstico diferencial
+
+- **Prueba de McNemar.** Para un desenlace categórico medido dos veces en las mismas personas.
+- **[Regresión logística](../../prospecto/diccionario.qmd#regresion-logistica){.dic} o de [Poisson](../../prospecto/diccionario.qmd#regresion-de-poisson){.dic}.** Para estimar la asociación ajustando por confusores.
+- **[Prueba de chi cuadrado](../../prospecto/diccionario.qmd#prueba-de-chi-cuadrado){.dic} de Rao-Scott.** Para tablas de encuestas con diseño complejo.
+
+Revisa también la receta corta de esta prueba en el [Triaje estadístico](../../blog/que-prueba-estadistica/index.qmd#haz-tu-triaje).
+
+## Referencias
+
+1. Kirkwood BR, Sterne JAC. *Essential Medical Statistics*. 2.ª ed. Oxford: Blackwell Science; 2003.
+2. Cochran WG. Some methods for strengthening the common χ² tests. *Biometrics*. 1954;10(4):417-51.
+3. Campbell I. Chi-squared and Fisher-Irwin tests of two-by-two tables with small sample recommendations. *Stat Med*. 2007;26:3661-75.
+4. Dickson ER, Grambsch PM, Fleming TR, Fisher LD, Langworthy A. Prognosis in primary biliary cirrhosis: model for decision making. *Hepatology*. 1989;10(1):1-7.
+
+::: {.cta}
+**¿No sabes si tu tabla cumple los supuestos?**
+
+Te ayudo a elegir, ejecutar y reportar la prueba correcta para tu tesis.
+
+[Escríbeme por WhatsApp](https://api.whatsapp.com/send?phone=51955446754&text=Hola%2C%20le%C3%AD%20el%20vadem%C3%A9cum%20estad%C3%ADstico%20de%20tu%20web%20y%20quiero%20informaci%C3%B3n%20sobre%20asesor%C3%ADa%20para%20mi%20tesis)
+:::

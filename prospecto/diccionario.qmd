@@ -8,6 +8,14 @@ toc: false
 Cada término de los tutoriales y de las herramientas con un subrayado punteado lleva aquí. Las definiciones son resúmenes propios, escritos para un lector de ciencias de la salud; para profundizar, cada una indica las fuentes de referencia en las que se basa.
 
 
+::: {#cegamiento .entrada}
+### Cegamiento
+
+Ocultar a una o más personas del ensayo qué tratamiento recibe cada participante: al paciente, a quien trata, a quien evalúa el desenlace o a quien analiza los datos. Evita que las expectativas influyan en el tratamiento, en el reporte de síntomas o en la medición. Es más importante cuanto más subjetivo es el desenlace. No debe confundirse con el ocultamiento de la secuencia de asignación, que protege la aleatorización.
+
+[Fuentes: [Schulz y Grimes, 2002](#fuente-schulz-cegamiento); [Hulley et al., 2013](#fuente-hulley).]{.fuente}
+:::
+
 ::: {#coeficiente-de-correlacion .entrada}
 ### Coeficiente de correlación
 
@@ -48,6 +56,22 @@ Reducción del tamaño de muestra cuando la población es pequeña y conocida (p
 [Fuentes: [Cochran, 1977](#fuente-cochran); [Lwanga y Lemeshow, 1991](#fuente-lwanga).]{.fuente}
 :::
 
+::: {#curva-roc .entrada}
+### Curva ROC
+
+Gráfico que muestra, para todos los puntos de corte de una prueba con resultado numérico, la sensibilidad frente a 1 − especificidad. El área bajo la curva (AUC) resume su capacidad de discriminar: es la probabilidad de que un enfermo elegido al azar tenga un valor más alto que un sano elegido al azar. Un AUC de 0,5 equivale al azar y uno de 1, a una discriminación perfecta.
+
+[Fuentes: [Hanley y McNeil, 1982](#fuente-hanley-roc); [Kirkwood y Sterne, 2003](#fuente-kirkwood).]{.fuente}
+:::
+
+::: {#dato-censurado .entrada}
+### Dato censurado
+
+Participante de un estudio de supervivencia que no presentó el evento mientras fue observado: terminó el estudio sin el evento, se perdió en el seguimiento o salió por otra causa. Se sabe que estuvo libre del evento hasta su último control, y esa información se aprovecha en el análisis. Los métodos de supervivencia suponen que la censura no está relacionada con el pronóstico (censura no informativa).
+
+[Fuentes: [Clark et al., 2003](#fuente-clark); [Kirkwood y Sterne, 2003](#fuente-kirkwood).]{.fuente}
+:::
+
 ::: {#desviacion-estandar .entrada}
 ### Desviación estándar
 
@@ -72,6 +96,22 @@ Cuántas veces mayor es la varianza de una estimación con un muestreo complejo 
 [Fuentes: [Kish, 1965](#fuente-kish); [Lwanga y Lemeshow, 1991](#fuente-lwanga).]{.fuente}
 :::
 
+::: {#efecto-hawthorne .entrada}
+### Efecto Hawthorne
+
+Cambio en la conducta de las personas por saber que están siendo observadas o estudiadas. Puede hacer que una medición refleje la conducta bajo observación y no la habitual, o que un grupo mejore por recibir más atención y no por la intervención. Se reduce con mediciones poco intrusivas y con el mismo calendario de visitas en todos los grupos.
+
+[Fuentes: [McCambridge et al., 2014](#fuente-mccambridge); [Porta, 2014](#fuente-porta).]{.fuente}
+:::
+
+::: {#efecto-placebo .entrada}
+### Efecto placebo
+
+Mejoría atribuida a recibir un tratamiento sin principio activo, por la expectativa del paciente o el contexto de la atención. Parte de lo que se ve en un grupo placebo se debe a la evolución natural y a la regresión a la media. Su efecto propio es mayor en desenlaces subjetivos, como el dolor, que en desenlaces objetivos.
+
+[Fuentes: [Hróbjartsson y Gøtzsche, 2001](#fuente-hrobjartsson); [Porta, 2014](#fuente-porta).]{.fuente}
+:::
+
 ::: {#endes .entrada}
 ### ENDES
 
@@ -80,12 +120,28 @@ Encuesta Demográfica y de Salud Familiar del Perú, a cargo del INEI. Mide la d
 [Fuentes: [INEI, ficha técnica ENDES 2024](#fuente-inei).]{.fuente}
 :::
 
+::: {#ensayo-cruzado .entrada}
+### Ensayo cruzado
+
+Ensayo en el que cada participante recibe todos los tratamientos en estudio, en un orden asignado al azar y separados por un periodo de lavado. Cada persona es su propio control, por lo que se necesitan menos participantes. Solo sirve en enfermedades crónicas y estables, con efectos que desaparecen al suspender el tratamiento, y se analiza con métodos para datos pareados.
+
+[Fuentes: [Mills et al., 2009](#fuente-mills); [Hulley et al., 2013](#fuente-hulley).]{.fuente}
+:::
+
 ::: {#error-estandar .entrada}
 ### Error estándar
 
 Medida de cuánto variaría una estimación (una prevalencia, un coeficiente) si se repitiera el estudio con otras muestras del mismo tamaño. Es la base para calcular intervalos de confianza y valores p.
 
 [Fuentes: [Kirkwood y Sterne, 2003](#fuente-kirkwood).]{.fuente}
+:::
+
+::: {#error-tipo-i-y-ii .entrada}
+### Error tipo I y error tipo II
+
+Los dos errores posibles al decidir con una prueba de hipótesis. El tipo I (α) es rechazar la hipótesis nula cuando es cierta: concluir que hay un efecto que no existe. El tipo II (β) es no rechazarla cuando es falsa: no detectar un efecto que sí existe. El nivel de significancia fija la probabilidad máxima del error tipo I, y la potencia es 1 − β.
+
+[Fuentes: [Kirkwood y Sterne, 2003](#fuente-kirkwood); [Hulley et al., 2013](#fuente-hulley).]{.fuente}
 :::
 
 ::: {#especificidad .entrada}
@@ -128,6 +184,38 @@ Número de personas de la población que representa cada persona de la muestra. 
 [Fuentes: [Lumley, 2010](#fuente-lumley); [INEI, ficha técnica ENDES 2024](#fuente-inei).]{.fuente}
 :::
 
+::: {#falacia-ecologica .entrada}
+### Falacia ecológica
+
+Error de atribuir a las personas una asociación observada entre grupos, como países o distritos. Una relación entre promedios de grupos puede no existir, o incluso invertirse, dentro de cada grupo. Por eso un estudio ecológico genera hipótesis, que deben confirmarse con datos individuales.
+
+[Fuentes: [Morgenstern, 1995](#fuente-morgenstern); [Porta, 2014](#fuente-porta).]{.fuente}
+:::
+
+::: {#hazard-ratio .entrada}
+### Hazard ratio
+
+Cociente entre las tasas instantáneas del evento (*hazards*) de dos grupos, estimado habitualmente con la regresión de Cox. Un HR de 0,70 indica que, en cada momento del seguimiento, la tasa del evento es un 30 % menor en un grupo que en el otro. Supone que ese cociente es constante en el tiempo (riesgos proporcionales) y, como toda medida relativa, conviene acompañarlo de los riesgos absolutos.
+
+[Fuentes: [Clark et al., 2003](#fuente-clark); [Kirkwood y Sterne, 2003](#fuente-kirkwood).]{.fuente}
+:::
+
+::: {#heterogeneidad .entrada}
+### Heterogeneidad
+
+Variación entre los resultados de los estudios de un metaanálisis mayor que la esperable por azar. Se evalúa con la prueba Q y se cuantifica con I², el porcentaje de la variabilidad que se debe a diferencias reales entre estudios; valores cercanos a 25 %, 50 % y 75 % suelen describirse como baja, moderada y alta. Cuando es alta, se busca su explicación y se usa un modelo de efectos aleatorios.
+
+[Fuentes: [Higgins et al., 2003](#fuente-higgins).]{.fuente}
+:::
+
+::: {#intencion-de-tratar .entrada}
+### Intención de tratar
+
+Análisis de un ensayo en el que cada participante se incluye en el grupo al que fue asignado, haya recibido o no el tratamiento. Conserva la comparabilidad que da la aleatorización y responde qué pasa cuando se indica el tratamiento. El análisis por protocolo, que excluye a quienes no cumplieron, puede complementarlo, pero pierde esa protección.
+
+[Fuentes: [Hulley et al., 2013](#fuente-hulley); [Porta, 2014](#fuente-porta).]{.fuente}
+:::
+
 ::: {#intervalo-de-confianza .entrada}
 ### Intervalo de confianza
 
@@ -136,12 +224,28 @@ Rango de valores compatibles con los datos para el parámetro estimado. Un inter
 [Fuentes: [Kirkwood y Sterne, 2003](#fuente-kirkwood); [Rothman et al., 2008](#fuente-rothman).]{.fuente}
 :::
 
+::: {#intervalo-de-prediccion .entrada}
+### Intervalo de predicción
+
+En un metaanálisis de efectos aleatorios, rango en el que se espera que esté el efecto verdadero de un nuevo estudio o de un nuevo lugar. A diferencia del intervalo de confianza, que describe la precisión del efecto promedio, refleja también la heterogeneidad entre estudios, por lo que suele ser mucho más ancho.
+
+[Fuentes: [Riley et al., 2011](#fuente-riley).]{.fuente}
+:::
+
 ::: {#mediana-y-ric .entrada}
 ### Mediana y rango intercuartílico (RIC)
 
 La mediana es el valor que deja a la mitad de los datos por debajo y a la otra mitad por encima. El rango intercuartílico va del primer cuartil (Q1, el 25&nbsp;% más bajo) al tercero (Q3, el 75&nbsp;% más bajo) y contiene a la mitad central de los datos. Se usan para variables numéricas asimétricas, porque los valores extremos no los arrastran como a la media y la desviación estándar.
 
 [Fuentes: [Kirkwood y Sterne, 2003](#fuente-kirkwood).]{.fuente}
+:::
+
+::: {#metodo-de-kaplan-meier .entrada}
+### Método de Kaplan-Meier
+
+Estimación de la probabilidad de seguir libre del evento a lo largo del tiempo. En cada momento en que ocurre un evento, multiplica la probabilidad acumulada por la proporción de quienes, estando en riesgo, no lo presentaron, y aprovecha a los participantes censurados mientras fueron observados. Se representa como una curva escalonada y permite estimar la mediana de supervivencia.
+
+[Fuentes: [Bland y Altman, 1998](#fuente-bland-km); [Clark et al., 2003](#fuente-clark).]{.fuente}
 :::
 
 ::: {#modelo-log-binomial .entrada}
@@ -158,6 +262,14 @@ Modelo lineal generalizado con distribución binomial y enlace logarítmico. Sus
 Porcentaje de intervalos de confianza que, si se repitiera el estudio muchas veces, contendrían el valor real. Es 1 − α, donde α es la probabilidad de error tipo I (concluir que hay diferencia cuando no la hay). Lo habitual es 95 % (α = 0,05), que corresponde a *z* = 1,96.
 
 [Fuentes: [Kirkwood y Sterne, 2003](#fuente-kirkwood); [Hulley et al., 2013](#fuente-hulley).]{.fuente}
+:::
+
+::: {#numero-necesario-a-tratar .entrada}
+### Número necesario a tratar
+
+Número de pacientes que hay que tratar durante un periodo determinado para evitar un evento adicional. Es el inverso de la reducción absoluta del riesgo (NNT = 1 / RAR). Cuando el tratamiento aumenta el riesgo de un daño, el inverso del aumento absoluto es el número necesario para dañar (NNH). Siempre se reporta con su periodo y su intervalo de confianza.
+
+[Fuentes: [Laupacis et al., 1988](#fuente-laupacis); [Altman, 1998](#fuente-altman-nnt).]{.fuente}
 :::
 
 ::: {#obesidad-abdominal .entrada}
@@ -248,6 +360,22 @@ Cociente entre la prevalencia del desenlace en expuestos y en no expuestos: P₁
 [Fuentes: [Rothman et al., 2008](#fuente-rothman); [Barros y Hirakata, 2003](#fuente-barros).]{.fuente}
 :::
 
+::: {#reduccion-absoluta-del-riesgo .entrada}
+### Reducción absoluta del riesgo
+
+Diferencia entre el riesgo del grupo control y el del grupo tratado, expresada en puntos porcentuales. A diferencia de la reducción relativa, depende del riesgo basal: un mismo efecto relativo produce un beneficio absoluto mayor en pacientes de alto riesgo. Es la base del número necesario a tratar.
+
+[Fuentes: [Laupacis et al., 1988](#fuente-laupacis); [Rothman et al., 2008](#fuente-rothman).]{.fuente}
+:::
+
+::: {#regresion-a-la-media .entrada}
+### Regresión a la media
+
+Tendencia de una medición extrema a ser seguida por otra más cercana al promedio, por simple variación aleatoria. Si los participantes entran a un estudio cuando sus valores están en su peor momento, mejorarán en la siguiente medición aunque no reciban ningún tratamiento. Por eso, comparar antes y después sin grupo control puede crear efectos falsos.
+
+[Fuentes: [Bland y Altman, 1994](#fuente-bland-regresion).]{.fuente}
+:::
+
 ::: {#regresion-de-cox .entrada}
 ### Regresión de Cox
 
@@ -288,6 +416,30 @@ Proporción de personas con la enfermedad en las que la prueba da positivo. Una 
 [Fuentes: [Kirkwood y Sterne, 2003](#fuente-kirkwood); [Buderer, 1996](#fuente-buderer).]{.fuente}
 :::
 
+::: {#sesgo-de-publicacion .entrada}
+### Sesgo de publicación
+
+Distorsión de la evidencia disponible porque la publicación de un estudio depende de sus resultados: los positivos se publican más, antes y en revistas más visibles. Un metaanálisis basado solo en lo publicado sobrestima el efecto. Se explora con el funnel plot y se reduce buscando también en registros de ensayos y en la literatura gris.
+
+[Fuentes: [Sterne et al., 2011](#fuente-sterne); [Turner et al., 2008](#fuente-turner).]{.fuente}
+:::
+
+::: {#sesgo-de-recuerdo .entrada}
+### Sesgo de recuerdo
+
+Sesgo de información que aparece cuando los participantes recuerdan o reportan su exposición pasada de manera distinta según tengan o no el desenlace. Es típico de los estudios de casos y controles: los casos suelen buscar una explicación y recordar con más detalle. Se reduce con datos registrados antes del desenlace o con preguntas estandarizadas aplicadas igual a todos.
+
+[Fuentes: [Coughlin, 1990](#fuente-coughlin); [Delgado-Rodríguez y Llorca, 2004](#fuente-delgado).]{.fuente}
+:::
+
+::: {#sesgo-de-seleccion .entrada}
+### Sesgo de selección
+
+Error sistemático que se produce por la forma en que los participantes entran o permanecen en el estudio, cuando esa forma se relaciona con la exposición y con el desenlace. Incluye la autoselección de voluntarios, la falta de respuesta, la elección inadecuada de controles y las pérdidas en el seguimiento. Aumentar el tamaño de la muestra no lo corrige.
+
+[Fuentes: [Delgado-Rodríguez y Llorca, 2004](#fuente-delgado); [Rothman et al., 2008](#fuente-rothman).]{.fuente}
+:::
+
 ::: {#tabla-2x2 .entrada}
 ### Tabla 2×2
 
@@ -302,6 +454,14 @@ Tabla que cruza una exposición (sí/no) con un desenlace (sí/no). Por convenci
 Magnitud de la diferencia o asociación que el estudio quiere poder detectar: una diferencia de medias, un OR, un RR, una correlación. No es la que uno espera ver, sino la mínima que tendría importancia clínica. Cuanto más pequeño es, más grande debe ser la muestra.
 
 [Fuentes: [Hulley et al., 2013](#fuente-hulley).]{.fuente}
+:::
+
+::: {#tasa-de-incidencia .entrada}
+### Tasa de incidencia
+
+Número de casos nuevos dividido entre el persona-tiempo en riesgo. Se expresa, por ejemplo, por cada 100 o 1000 persona-años. A diferencia del riesgo (incidencia acumulada), admite que cada participante haya sido seguido un tiempo distinto. Dos tasas se comparan con la razón de tasas, que se estima con la regresión de Poisson.
+
+[Fuentes: [Rothman et al., 2008](#fuente-rothman); [Kirkwood y Sterne, 2003](#fuente-kirkwood).]{.fuente}
 :::
 
 ::: {#valor-p .entrada}
@@ -357,3 +517,37 @@ Forma de calcular los errores estándar de un modelo que no depende de que la di
 [Hulley SB, Cummings SR, Browner WS, Grady DG, Newman TB. *Designing Clinical Research*. 4.ª ed. Filadelfia: Lippincott Williams & Wilkins; 2013.]{#fuente-hulley}
 
 [Buderer NM. Statistical methodology: I. Incorporating the prevalence of disease into the sample size calculation for sensitivity and specificity. *Acad Emerg Med*. 1996;3(9):895-900.]{#fuente-buderer}
+
+[Altman DG. Confidence intervals for the number needed to treat. *BMJ*. 1998;317(7168):1309-12.]{#fuente-altman-nnt}
+
+[Bland JM, Altman DG. Regression towards the mean. *BMJ*. 1994;308(6942):1499.]{#fuente-bland-regresion}
+
+[Bland JM, Altman DG. Survival probabilities (the Kaplan-Meier method). *BMJ*. 1998;317(7172):1572.]{#fuente-bland-km}
+
+[Clark TG, Bradburn MJ, Love SB, Altman DG. Survival analysis part I: basic concepts and first analyses. *Br J Cancer*. 2003;89(2):232-8.]{#fuente-clark}
+
+[Coughlin SS. Recall bias in epidemiologic studies. *J Clin Epidemiol*. 1990;43(1):87-91.]{#fuente-coughlin}
+
+[Delgado-Rodríguez M, Llorca J. Bias. *J Epidemiol Community Health*. 2004;58(8):635-41.]{#fuente-delgado}
+
+[Hanley JA, McNeil BJ. The meaning and use of the area under a receiver operating characteristic (ROC) curve. *Radiology*. 1982;143(1):29-36.]{#fuente-hanley-roc}
+
+[Higgins JP, Thompson SG, Deeks JJ, Altman DG. Measuring inconsistency in meta-analyses. *BMJ*. 2003;327(7414):557-60.]{#fuente-higgins}
+
+[Hróbjartsson A, Gøtzsche PC. Is the placebo powerless? An analysis of clinical trials comparing placebo with no treatment. *N Engl J Med*. 2001;344(21):1594-602.]{#fuente-hrobjartsson}
+
+[Laupacis A, Sackett DL, Roberts RS. An assessment of clinically useful measures of the consequences of treatment. *N Engl J Med*. 1988;318(26):1728-33.]{#fuente-laupacis}
+
+[McCambridge J, Witton J, Elbourne DR. Systematic review of the Hawthorne effect: new concepts are needed to study research participation effects. *J Clin Epidemiol*. 2014;67(3):267-77.]{#fuente-mccambridge}
+
+[Mills EJ, Chan AW, Wu P, Vail A, Guyatt GH, Altman DG. Design, analysis, and presentation of crossover trials. *Trials*. 2009;10:27.]{#fuente-mills}
+
+[Morgenstern H. Ecologic studies in epidemiology: concepts, principles, and methods. *Annu Rev Public Health*. 1995;16:61-81.]{#fuente-morgenstern}
+
+[Riley RD, Higgins JP, Deeks JJ. Interpretation of random effects meta-analyses. *BMJ*. 2011;342:d549.]{#fuente-riley}
+
+[Schulz KF, Grimes DA. Blinding in randomised trials: hiding who got what. *Lancet*. 2002;359(9307):696-700.]{#fuente-schulz-cegamiento}
+
+[Sterne JA, Sutton AJ, Ioannidis JP, Terrin N, Jones DR, Lau J, et al. Recommendations for examining and interpreting funnel plot asymmetry in meta-analyses of randomised controlled trials. *BMJ*. 2011;343:d4002.]{#fuente-sterne}
+
+[Turner EH, Matthews AM, Linardatos E, Tell RA, Rosenthal R. Selective publication of antidepressant trials and its influence on apparent efficacy. *N Engl J Med*. 2008;358(3):252-60.]{#fuente-turner}

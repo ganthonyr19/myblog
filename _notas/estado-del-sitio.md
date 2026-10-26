@@ -146,3 +146,14 @@ Nombre elegido por Anthony (15 oct 2026): **Consultorio estadístico**. Menú su
 - Diccionario: persona-tiempo y regresión de Cox, enlazados desde la entrada de cohortes y el triaje.
 - Comentarios: retirados de todo el sitio por decisión de Anthony (basta con Instagram y WhatsApp). Se quitó giscus de `prospecto/_metadata.yml`.
 - Palabras clave: al hacer clic en una palabra clave de una entrada se abre `temas.html#tema=<palabra>`, página fuera del menú que muestra solo las entradas con esa palabra clave (filtro propio en JavaScript; el filtro `#category=` de Quarto 1.10 no funciona con categorías múltiples). Si se agrega una sección nueva, sumar su ruta a `contents` de `temas.qmd`.
+
+## Series Caso clínico estadístico y Vademécum estadístico (26 oct 2026, rama `casos-y-vademecum`)
+
+- Redactadas en otra cuenta; las notas completas de la serie (formato, reglas, temas, puntos por revisar) están en `_notas/series-casos-y-vademecum.md`.
+- Carpetas `casos/` (29 casos, martes del 20/10/2026 al 04/05/2027) y `vademecum/` (4 fichas, jueves del 22/10 al 12/11/2026). Emblemas en `images/marcas/casos.svg` y `vademecum.svg`. Menú «Aprende» y `contents` de `blog.qmd`, `index.qmd` y `temas.qmd` actualizados. Diccionario ampliado con los términos nuevos.
+- **Publicación escalonada** (decisión de Anthony): solo se publican las entradas cuya fecha ya pasó, al ritmo de Instagram. El resto lleva `draft: true` y en la portada de su serie aparece como tarjeta «pronto» con la fecha.
+- Cada semana: `python3 _notas/publicar-por-fecha.py` (con `--simular` para ver sin cambiar, o `--hoy AAAA-MM-DD`). Quita o pone `draft: true` según la fecha, cambia las tarjetas de `casos/index.qmd` y `vademecum/index.qmd`, y lista qué renderizar. Después: renderizar esos archivos uno por uno, luego `blog.qmd`, `index.qmd` y `temas.qmd`, y hacer commit.
+- Quarto deja como texto sin enlace cualquier enlace a un borrador. Cuando el destino se publica, el script indica qué página que lo enlaza hay que volver a renderizar.
+- Portadas (1200 × 630) generadas con `images/marcas/tarjeta.js` para las 29 entradas, las 4 fichas y las dos series. Requiere `npm install` en `prospecto/_plantilla/`.
+- Las tablas `.mapa` de los casos van dentro de `<div style="overflow-x:auto">` (en 390 px desbordaban).
+- Se volvieron a renderizar todas las páginas con menú para que aparezcan las dos series. Siguen pendientes, como antes, `about.qmd` y `posts/Manual/index.qmd` (renderizar en la computadora de Anthony).

@@ -1,0 +1,120 @@
+---
+title: "¿Operar o fingir que se opera?"
+description: "Caso clínico estadístico: un ensayo que comparó la artroscopia de rodilla con una cirugía simulada, y lo que enseña sobre el efecto placebo. Decide qué afirmaciones son verdaderas y por qué."
+date: 2027-03-16
+draft: true
+image: portada.png
+categories: [Caso clínico estadístico, Diseños de estudio, Tesis]
+---
+
+[![](../../images/marcas/casos.svg)<span><b>Caso clínico estadístico</b><em>Caso n.º 22</em></span>](../index.qmd){.sello}
+
+## El caso
+
+*Estudio real: Moseley y colaboradores, publicado en 2002.*
+
+La artroscopia con lavado o desbridamiento se hacía con frecuencia en pacientes con artrosis de rodilla, y muchos referían alivio después de la operación. Un ensayo en un hospital de veteranos de Estados Unidos puso a prueba ese alivio.
+
+Asignó al azar a 180 pacientes a tres grupos:
+
+- **Desbridamiento artroscópico con lavado** (59).
+- **Lavado artroscópico** (61).
+- **Cirugía simulada** (60): con sedación, tres incisiones de 1 cm en la piel y la simulación de todo el procedimiento, sin introducir el artroscopio.
+
+Pacientes y evaluadores desconocían el grupo asignado. Se siguió a los pacientes durante 24 meses.
+
+En ningún momento los grupos operados reportaron menos dolor o mejor función que el grupo de cirugía simulada. A los 2 años, la puntuación de dolor fue de 51,4 con desbridamiento, 53,7 con lavado y 51,6 con cirugía simulada. Los autores señalaron que los IC 95 % de las diferencias excluían cualquier diferencia clínicamente importante.
+
+## ¿Cuáles de estas afirmaciones son verdaderas?
+
+a) Que los pacientes operados mejoraran después de la artroscopia demuestra que la cirugía es eficaz.
+
+b) Parte de la mejoría observada en cualquiera de los grupos puede deberse a la regresión a la media y a la evolución natural del dolor, no solo al efecto placebo.
+
+c) Como los IC excluían diferencias clínicamente importantes, el ensayo apoya que la artroscopia no aporta un beneficio relevante, algo más fuerte que un simple p > 0,05.
+
+d) En una revisión de ensayos que compararon placebo con ningún tratamiento, el placebo mostró un efecto pequeño en desenlaces subjetivos como el dolor, y ningún efecto claro en desenlaces objetivos.
+
+## Pase de visita
+
+::: {.autoeval}
+::: {.pregunta}
+**a) Que los pacientes operados mejoraran después de la artroscopia demuestra que la cirugía es eficaz.**
+
+<details><summary>Ver respuesta</summary>
+**Falsa.** La mejoría antes y después no dice qué la produjo. Sin un grupo de comparación, no se puede separar el efecto de la cirugía del efecto de la expectativa, de la atención recibida y de la evolución natural. El grupo de cirugía simulada mejoró igual, así que la mejoría no se puede atribuir a lo que se hizo dentro de la rodilla.
+</details>
+:::
+
+::: {.pregunta}
+**b) Parte de la mejoría observada en cualquiera de los grupos puede deberse a la regresión a la media y a la evolución natural del dolor, no solo al efecto placebo.**
+
+<details><summary>Ver respuesta</summary>
+**Verdadera.** Los pacientes suelen buscar atención, y entrar a un ensayo, cuando su dolor está en su peor momento. Como el dolor fluctúa, la siguiente medición tiende a ser mejor aunque no se haga nada: es la **[regresión a la media](../../prospecto/diccionario.qmd#regresion-a-la-media){.dic}**. Lo que mejora el grupo placebo es la suma de todo eso, no solo el efecto psicológico de creer que se recibió un tratamiento.
+</details>
+:::
+
+::: {.pregunta}
+**c) Como los IC excluían diferencias clínicamente importantes, el ensayo apoya que la artroscopia no aporta un beneficio relevante, algo más fuerte que un simple p > 0,05.**
+
+<details><summary>Ver respuesta</summary>
+**Verdadera.** Un p > 0,05 por sí solo no prueba que no haya efecto (caso n.º 2). Lo que permite concluir que no hay un beneficio relevante es que el [intervalo de confianza](../../prospecto/diccionario.qmd#intervalo-de-confianza){.dic} entero quede por debajo de la diferencia que se consideraría importante. Así, el ensayo no solo «no encontró diferencia»: descartó, con esa precisión, una diferencia que importe al paciente.
+</details>
+:::
+
+::: {.pregunta}
+**d) En una revisión de ensayos que compararon placebo con ningún tratamiento, el placebo mostró un efecto pequeño en desenlaces subjetivos como el dolor, y ningún efecto claro en desenlaces objetivos.**
+
+<details><summary>Ver respuesta</summary>
+**Verdadera.** Esa revisión, de Hróbjartsson y Gøtzsche, encontró que en los desenlaces binarios el placebo no difería de no hacer nada, y que en el dolor tenía un efecto pequeño, de unos 6,5 mm en una escala de 100 mm. Es una pista de que buena parte de lo que se atribuye al «efecto placebo» viene de la regresión a la media y de la evolución natural, y de que el efecto real se concentra en desenlaces que el propio paciente reporta.
+</details>
+:::
+:::
+
+## Rp/
+
+::: {.en-una-frase}
+Que el paciente mejore no prueba que el tratamiento funcione: necesitas un grupo control que reciba todo menos el ingrediente activo.
+:::
+
+## Diagnóstico diferencial
+
+- **[Efecto Hawthorne](../efecto-hawthorne/index.qmd).** El cambio se debe a saberse observado, no a creer que se recibió un tratamiento.
+- **Efecto nocebo.** Es el reverso: el paciente presenta efectos adversos por esperar que el tratamiento los produzca.
+
+## En R
+
+Una simulación de la regresión a la media: pacientes **sin ningún tratamiento**, que entran al estudio solo si su dolor está alto ese día.
+
+```{r}
+#| echo: true
+set.seed(2002)
+n <- 10000
+dolor_habitual <- rnorm(n, mean = 50, sd = 10)    # nivel típico de cada paciente
+medicion_1 <- dolor_habitual + rnorm(n, sd = 10)  # dolor el día que consulta
+medicion_2 <- dolor_habitual + rnorm(n, sd = 10)  # dolor semanas después, sin tratamiento
+
+incluidos <- medicion_1 > 65                      # solo entran los que consultan con dolor alto
+round(c(antes = mean(medicion_1[incluidos]),
+        despues = mean(medicion_2[incluidos])), 1)
+```
+
+Sin hacer nada, el dolor medio de los incluidos baja de forma importante.
+
+## Para profundizar
+
+- Caso n.º 11: [¿Importa quién evalúa al paciente?](../cegamiento/index.qmd), sobre el cegamiento.
+- Caso n.º 2: [p = 0,07: ¿la intervención no sirve?](../ic-vs-valor-p/index.qmd), sobre la ausencia de evidencia.
+
+## Referencias
+
+1. Moseley JB, O'Malley K, Petersen NJ, Menke TJ, Brody BA, Kuykendall DH, et al. A controlled trial of arthroscopic surgery for osteoarthritis of the knee. *N Engl J Med*. 2002;347(2):81-8.
+2. Hróbjartsson A, Gøtzsche PC. Is the placebo powerless? An analysis of clinical trials comparing placebo with no treatment. *N Engl J Med*. 2001;344(21):1594-602.
+
+::: {.cta}
+**¿Te tocó un caso así en tu tesis?**
+
+Te ayudo a elegir e interpretar el análisis correcto.
+
+[Escríbeme por WhatsApp](https://api.whatsapp.com/send?phone=51955446754&text=Hola%2C%20le%C3%AD%20un%20caso%20cl%C3%ADnico%20estad%C3%ADstico%20en%20tu%20web%20y%20quiero%20informaci%C3%B3n%20sobre%20asesor%C3%ADa%20para%20mi%20tesis)
+:::

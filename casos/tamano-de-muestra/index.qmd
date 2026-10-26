@@ -1,0 +1,121 @@
+---
+title: "¿Cuántos pacientes necesito para replicar un ensayo?"
+description: "Caso clínico estadístico: calcular el tamaño de muestra de un ensayo a partir de los riesgos del EMPA-REG OUTCOME, y por qué en los ensayos con seguimiento importan los eventos. Decide qué afirmaciones son verdaderas y por qué."
+date: 2027-04-20
+draft: true
+image: portada.png
+categories: [Caso clínico estadístico, Tamaño de muestra, Tesis]
+---
+
+[![](../../images/marcas/casos.svg)<span><b>Caso clínico estadístico</b><em>Caso n.º 27</em></span>](../index.qmd){.sello}
+
+## El caso
+
+*Caso basado en un estudio real: cifras del ensayo EMPA-REG OUTCOME (2015), usadas para un cálculo hipotético.*
+
+Una investigadora quiere diseñar un ensayo en pacientes con diabetes tipo 2 y enfermedad cardiovascular para un nuevo fármaco. Como referencia toma el EMPA-REG OUTCOME (caso n.º 16): en ese ensayo, el desenlace cardiovascular principal ocurrió en el **12,1 %** del grupo placebo y en el **10,5 %** del grupo tratado, durante una mediana de 3,1 años.
+
+Plantea su cálculo así:
+
+- **Riesgo esperado en el grupo control:** 12,1 %.
+- **Riesgo esperado con el nuevo fármaco:** 10,5 %.
+- **Nivel de significancia (α):** 0,05, bilateral.
+- **Potencia:** 80 %.
+- **Pérdidas esperadas:** 10 %.
+
+Con la fórmula para comparar dos proporciones, obtiene unas **6145 personas por grupo** antes de considerar las pérdidas.
+
+## ¿Cuáles de estas afirmaciones son verdaderas?
+
+a) Si esperara una diferencia mayor, por ejemplo 12,1 % frente a 8,0 %, necesitaría más participantes.
+
+b) Para compensar un 10 % de pérdidas, debe dividir el tamaño calculado entre 0,90.
+
+c) Si quisiera una potencia del 90 % en lugar del 80 %, necesitaría más participantes.
+
+d) En un ensayo con seguimiento en el tiempo, como este, la potencia depende sobre todo del número de eventos observados, no solo del número de pacientes.
+
+## Pase de visita
+
+::: {.autoeval}
+::: {.pregunta}
+**a) Si esperara una diferencia mayor, por ejemplo 12,1 % frente a 8,0 %, necesitaría más participantes.**
+
+<details><summary>Ver respuesta</summary>
+**Falsa.** Es al revés: una diferencia grande es más fácil de detectar. Con 12,1 % frente a 8,0 % bastarían unas 844 personas por grupo, en lugar de 6145. Por eso la tentación en una tesis es suponer una diferencia optimista para reducir la muestra. Si el efecto real es menor, el estudio no tendrá la [potencia](../../prospecto/diccionario.qmd#potencia-estadistica){.dic} para detectarlo (caso n.º 2). La diferencia esperada debe justificarse con estudios previos o con la mínima diferencia clínicamente importante.
+</details>
+:::
+
+::: {.pregunta}
+**b) Para compensar un 10 % de pérdidas, debe dividir el tamaño calculado entre 0,90.**
+
+<details><summary>Ver respuesta</summary>
+**Verdadera.** Se necesita que, tras perder el 10 %, queden al menos 6145 por grupo: n / (1 − 0,10) = 6145 / 0,90 = 6828. Multiplicar por 1,10 da 6760, que se queda corto: tras perder el 10 % quedarían 6084. La diferencia parece pequeña, pero crece cuando las [pérdidas](../../prospecto/diccionario.qmd#perdidas){.dic} esperadas son mayores.
+</details>
+:::
+
+::: {.pregunta}
+**c) Si quisiera una potencia del 90 % en lugar del 80 %, necesitaría más participantes.**
+
+<details><summary>Ver respuesta</summary>
+**Verdadera.** Con una potencia del 90 % necesitaría unas 8226 personas por grupo, un 34 % más. Más potencia significa menos probabilidad de un [error tipo II](../../prospecto/diccionario.qmd#error-tipo-i-y-ii){.dic} (caso n.º 7), y eso se paga con más participantes. Lo mismo ocurre si se exige un α más estricto, como 0,01.
+</details>
+:::
+
+::: {.pregunta}
+**d) En un ensayo con seguimiento en el tiempo, como este, la potencia depende sobre todo del número de eventos observados, no solo del número de pacientes.**
+
+<details><summary>Ver respuesta</summary>
+**Verdadera.** En un análisis de supervivencia, la información la aportan los eventos. Según la fórmula de Schoenfeld, para detectar un HR de 0,86 con 80 % de potencia y α de 0,05 se necesitan unos 1381 eventos en total. Por eso, muchos ensayos fijan el número de eventos que deben ocurrir y siguen a los pacientes hasta alcanzarlo. Con menos eventos de los previstos, por ejemplo porque los pacientes tenían menos riesgo, el ensayo pierde potencia aunque haya reclutado a todos.
+</details>
+:::
+:::
+
+## Rp/
+
+::: {.en-una-frase}
+El tamaño de muestra depende de la diferencia que quieres detectar, de la potencia y de las pérdidas: justifica cada supuesto con datos, no con lo que te conviene.
+:::
+
+## Diagnóstico diferencial
+
+- **Tamaño de muestra en una cohorte.** Usa la misma lógica, pero con el riesgo en los no expuestos, el RR mínimo de interés y la razón entre expuestos y no expuestos, que en una cohorte no se fija al azar.
+- **Cálculo de potencia después del estudio.** Calcular la potencia «observada» con el efecto encontrado no aporta información: depende directamente del valor p. Para interpretar un resultado no significativo se usa el IC.
+
+## En R
+
+```{r}
+#| echo: true
+# Tamaño por grupo para comparar dos proporciones
+n80 <- power.prop.test(p1 = 0.121, p2 = 0.105, power = 0.80)$n
+n90 <- power.prop.test(p1 = 0.121, p2 = 0.105, power = 0.90)$n
+n_dif_mayor <- power.prop.test(p1 = 0.121, p2 = 0.080, power = 0.80)$n
+ceiling(c(potencia_80 = n80, potencia_90 = n90, diferencia_mayor = n_dif_mayor))
+
+# Ajuste por 10 % de pérdidas: correcto e incorrecto
+n <- ceiling(n80)
+c(correcto = ceiling(n / 0.90), incorrecto = ceiling(n * 1.10))
+
+# Eventos necesarios para detectar un HR de 0,86 (fórmula de Schoenfeld, grupos iguales)
+ceiling(4 * (qnorm(0.975) + qnorm(0.80))^2 / log(0.86)^2)
+```
+
+## Para profundizar
+
+- [Calcula el tamaño de muestra de tu cohorte](../../herramientas/muestra/index.qmd#mod=dprop&dis=co) en el Consultorio estadístico, con pérdidas incluidas.
+- Caso n.º 16: [¿Qué significa un hazard ratio de 0,86?](../hazard-ratio/index.qmd), el ensayo de referencia.
+- Caso n.º 20: [¿Significativo es lo mismo que importante?](../significancia-clinica/index.qmd), sobre la diferencia que importa.
+
+## Referencias
+
+1. Zinman B, Wanner C, Lachin JM, Fitchett D, Bluhmki E, Hantel S, et al. Empagliflozin, cardiovascular outcomes, and mortality in type 2 diabetes. *N Engl J Med*. 2015;373(22):2117-28.
+2. Schoenfeld DA. Sample-size formula for the proportional-hazards regression model. *Biometrics*. 1983;39(2):499-503.
+3. Fleiss JL, Levin B, Paik MC. *Statistical Methods for Rates and Proportions*. 3.ª ed. Hoboken: Wiley; 2003.
+
+::: {.cta}
+**¿Te tocó un caso así en tu tesis?**
+
+Te ayudo a elegir e interpretar el análisis correcto.
+
+[Escríbeme por WhatsApp](https://api.whatsapp.com/send?phone=51955446754&text=Hola%2C%20le%C3%AD%20un%20caso%20cl%C3%ADnico%20estad%C3%ADstico%20en%20tu%20web%20y%20quiero%20informaci%C3%B3n%20sobre%20asesor%C3%ADa%20para%20mi%20tesis)
+:::

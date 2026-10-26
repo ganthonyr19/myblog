@@ -1,0 +1,123 @@
+---
+title: "¿Beber poco alarga la vida?"
+description: "Caso clínico estadístico: la aparente protección del consumo moderado de alcohol y los sesgos que la explican en los estudios de cohortes y transversales. Decide qué afirmaciones son verdaderas y por qué."
+date: 2027-05-04
+draft: true
+image: portada.png
+categories: [Caso clínico estadístico, Diseños de estudio, Epidemiología]
+---
+
+[![](../../images/marcas/casos.svg)<span><b>Caso clínico estadístico</b><em>Caso n.º 29</em></span>](../index.qmd){.sello}
+
+## El caso
+
+*Estudio real: revisión sistemática y metaanálisis de Stockwell y colaboradores, publicado en 2016.*
+
+Muchos estudios de cohortes han encontrado una curva en forma de J: quienes beben poco alcohol parecen morir menos que quienes no beben, y quienes beben mucho, más. Esa curva sustentó durante años la idea de que beber con moderación protege la salud.
+
+Un metaanálisis reunió **87 estudios de cohortes** con **3 998 626 participantes** y comparó la mortalidad por cualquier causa entre los bebedores de bajo volumen y quienes nunca habían bebido:
+
+- **Sin ajustar:** RR = 0,86.
+- **Ajustado por características de los participantes y por posibles sesgos de los estudios:** RR = 0,97 (IC 95 %: 0,88 a 1,07).
+
+Entre los sesgos considerados estaba cómo cada estudio definía al grupo de «abstemios»: en muchos, ese grupo incluía a exbebedores y a bebedores ocasionales.
+
+## ¿Cuáles de estas afirmaciones son verdaderas?
+
+a) En una cohorte, medir el consumo de alcohol una sola vez al inicio garantiza que la exposición quede bien clasificada durante todo el seguimiento.
+
+b) Si el grupo de «abstemios» incluye a personas que dejaron de beber porque enfermaron, ese grupo tendrá más mortalidad y beber poco parecerá protector.
+
+c) En un estudio transversal, los casos de corta duración (que se curan o mueren pronto) están tan representados como los de larga duración.
+
+d) Si un estudio transversal encuentra que las personas con depresión beben más, no puede saber si la depresión lleva a beber o si el alcohol contribuye a la depresión.
+
+## Pase de visita
+
+::: {.autoeval}
+::: {.pregunta}
+**a) En una cohorte, medir el consumo de alcohol una sola vez al inicio garantiza que la exposición quede bien clasificada durante todo el seguimiento.**
+
+<details><summary>Ver respuesta</summary>
+**Falsa.** La exposición puede cambiar: hay quien empieza, aumenta, reduce o deja de beber durante el seguimiento. Clasificar a todos según una sola medición inicial introduce un **error de clasificación** que suele atenuar las asociaciones y, si los cambios se relacionan con la salud, puede sesgarlas en cualquier dirección. Cuando es posible, se repite la medición y se modela la exposición como cambiante en el tiempo.
+</details>
+:::
+
+::: {.pregunta}
+**b) Si el grupo de «abstemios» incluye a personas que dejaron de beber porque enfermaron, ese grupo tendrá más mortalidad y beber poco parecerá protector.**
+
+<details><summary>Ver respuesta</summary>
+**Verdadera.** Es el sesgo del **exbebedor enfermo**: quien deja el alcohol por una enfermedad pasa al grupo de comparación y le aporta su mayor riesgo de morir. Es un problema de clasificación de la exposición que también funciona como causalidad inversa: la enfermedad cambia la exposición, y no al revés. Al comparar con quienes nunca bebieron y ajustar por estos sesgos, la protección desaparece (RR 0,97).
+</details>
+:::
+
+::: {.pregunta}
+**c) En un estudio transversal, los casos de corta duración (que se curan o mueren pronto) están tan representados como los de larga duración.**
+
+<details><summary>Ver respuesta</summary>
+**Falsa.** Un estudio transversal toma una fotografía: encuentra con más facilidad los casos que duran mucho, porque llevan más tiempo «disponibles». Los que se curan o mueren rápido quedan subrepresentados. Es el **sesgo de prevalencia-incidencia** (o de Neyman). Si un factor se asocia con sobrevivir más tiempo con la enfermedad, puede parecer un factor de riesgo de tenerla.
+</details>
+:::
+
+::: {.pregunta}
+**d) Si un estudio transversal encuentra que las personas con depresión beben más, no puede saber si la depresión lleva a beber o si el alcohol contribuye a la depresión.**
+
+<details><summary>Ver respuesta</summary>
+**Verdadera.** En un [estudio transversal](../../disenos/transversal/index.qmd), exposición y desenlace se miden al mismo tiempo, así que no se establece cuál ocurrió primero. Es la principal limitación del diseño para hablar de causas. Por eso, en una tesis transversal se habla de «asociación» y se reporta una [razón de prevalencias](../../prospecto/diccionario.qmd#razon-de-prevalencias){.dic}, no un riesgo.
+</details>
+:::
+:::
+
+## Rp/
+
+::: {.en-una-frase}
+Antes de creer en una protección, revisa a quién pusiste en el grupo de comparación y si el desenlace pudo cambiar la exposición.
+:::
+
+## Diagnóstico diferencial
+
+- **[Confusión](../../prospecto/diccionario.qmd#confusion){.dic}.** Los bebedores moderados pueden diferir de los abstemios en ingresos, actividad física o acceso a la salud (caso n.º 17). Es otro mecanismo, que puede sumarse al del exbebedor enfermo.
+- **[Pérdidas](../../prospecto/diccionario.qmd#perdidas){.dic} en el seguimiento.** Es el sesgo típico de las cohortes cuando quienes abandonan el estudio difieren de quienes se quedan (caso n.º 3).
+
+## En R
+
+Una simulación en la que el alcohol **no tiene ningún efecto** sobre la mortalidad, pero una parte de quienes enfermaron dejó de beber:
+
+```{r}
+#| echo: true
+set.seed(2016)
+n <- 100000
+enfermo   <- rbinom(n, 1, 0.15)                                  # enfermedad crónica previa
+bebedor   <- rbinom(n, 1, 0.60)                                  # bebía alguna vez
+dejo      <- bebedor == 1 & enfermo == 1 & rbinom(n, 1, 0.5) == 1 # la mitad de los enfermos deja de beber
+bebe_hoy  <- bebedor == 1 & !dejo
+muerte    <- rbinom(n, 1, ifelse(enfermo == 1, 0.20, 0.05))      # el alcohol no influye
+
+rr <- function(expuesto, referencia) mean(muerte[expuesto]) / mean(muerte[referencia])
+
+# Comparación sesgada: «abstemios» incluye a exbebedores
+round(rr(bebe_hoy, !bebe_hoy), 2)
+
+# Comparación correcta: exposición clasificada antes de enfermar (alguna vez bebió frente a nunca)
+round(rr(bebedor == 1, bebedor == 0), 2)
+```
+
+Comparar a los bebedores actuales con quienes nunca bebieron tampoco basta: el grupo de bebedores actuales perdió a parte de sus enfermos. Lo que corrige el sesgo es clasificar la exposición antes de que la enfermedad pudiera cambiarla.
+
+## Para profundizar
+
+- [El estudio transversal](../../disenos/transversal/index.qmd) y [El estudio de cohortes](../../disenos/cohortes/index.qmd), en Diseños de estudio.
+- Caso n.º 5: [¿Las madres recuerdan igual?](../sesgos-por-diseno/index.qmd), los sesgos del estudio de casos y controles.
+
+## Referencias
+
+1. Stockwell T, Zhao J, Panwar S, Roemer A, Naimi T, Chikritzhs T. Do "moderate" drinkers have reduced mortality risk? A systematic review and meta-analysis of alcohol consumption and all-cause mortality. *J Stud Alcohol Drugs*. 2016;77(2):185-98.
+2. Delgado-Rodríguez M, Llorca J. Bias. *J Epidemiol Community Health*. 2004;58(8):635-41.
+
+::: {.cta}
+**¿Te tocó un caso así en tu tesis?**
+
+Te ayudo a elegir e interpretar el análisis correcto.
+
+[Escríbeme por WhatsApp](https://api.whatsapp.com/send?phone=51955446754&text=Hola%2C%20le%C3%AD%20un%20caso%20cl%C3%ADnico%20estad%C3%ADstico%20en%20tu%20web%20y%20quiero%20informaci%C3%B3n%20sobre%20asesor%C3%ADa%20para%20mi%20tesis)
+:::

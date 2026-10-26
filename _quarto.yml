@@ -26,6 +26,10 @@ website:
             href: tutoriales.qmd
           - text: Diseños de estudio
             href: disenos/index.qmd
+          - text: Caso clínico estadístico
+            href: casos/index.qmd
+          - text: Vademécum estadístico
+            href: vademecum/index.qmd
           - text: Blog
             href: blog.qmd
       - text: Consultorio

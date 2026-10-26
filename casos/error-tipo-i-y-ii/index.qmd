@@ -1,0 +1,110 @@
+---
+title: "¿La aspirina no sirve si eres Géminis?"
+description: "Caso clínico estadístico: el análisis por signo zodiacal de un gran ensayo de aspirina en el infarto, y lo que enseña sobre los errores tipo I y tipo II. Decide qué afirmaciones son verdaderas y por qué."
+date: 2026-12-01
+draft: true
+image: portada.png
+categories: [Caso clínico estadístico, Pruebas estadísticas, Tesis]
+---
+
+[![](../../images/marcas/casos.svg)<span><b>Caso clínico estadístico</b><em>Caso n.º 7</em></span>](../index.qmd){.sello}
+
+## El caso
+
+*Estudio real: ensayo ISIS-2, publicado en 1988.*
+
+El ISIS-2 fue un ensayo con asignación aleatoria y diseño factorial que incluyó 17 187 pacientes con sospecha de infarto agudo de miocardio. Entre otras comparaciones, evaluó la aspirina oral frente a placebo.
+
+A las 5 semanas, la mortalidad vascular fue de 804/8587 (9,4 %) con aspirina y de 1016/8600 (11,8 %) con placebo: una reducción de la odds de muerte del 23 % (2p < 0,00001).
+
+Los investigadores agregaron, a propósito, un análisis que nadie tomaría en serio: dividieron a los pacientes según su signo zodiacal. En los nacidos bajo **Géminis o Libra**, la aspirina se asoció con un aumento aparente del 9 % en la odds de muerte, no significativo. En los **demás signos**, la reducción fue del 28 % (2p < 0,00001).
+
+Su objetivo era mostrar cuán engañosos pueden ser los análisis por subgrupos.
+
+## ¿Cuáles de estas afirmaciones son verdaderas?
+
+a) El resultado en Géminis y Libra demuestra que la aspirina no beneficia a los pacientes nacidos bajo esos signos.
+
+b) Si se prueban 12 subgrupos independientes, cada uno con α = 0,05 y sin efecto real en ninguno, la probabilidad de obtener al menos un resultado significativo por azar es cercana al 46 %.
+
+c) Como el subgrupo de Géminis y Libra es mucho más pequeño que el total, tiene menos potencia, y su resultado no significativo puede ser un error tipo II.
+
+d) Un error tipo I consiste en concluir que no hay efecto cuando en realidad sí lo hay.
+
+## Pase de visita
+
+::: {.autoeval}
+::: {.pregunta}
+**a) El resultado en Géminis y Libra demuestra que la aspirina no beneficia a los pacientes nacidos bajo esos signos.**
+
+<details><summary>Ver respuesta</summary>
+**Falsa.** No hay ningún motivo biológico para que el signo zodiacal modifique el efecto de la aspirina, y el resultado del subgrupo no fue significativo. La mejor estimación del efecto en cualquier subgrupo suele ser el efecto global del ensayo. Un resultado distinto en un subgrupo, sin una hipótesis previa que lo explique, es más probable que sea azar que un hallazgo real.
+</details>
+:::
+
+::: {.pregunta}
+**b) Si se prueban 12 subgrupos independientes, cada uno con α = 0,05 y sin efecto real en ninguno, la probabilidad de obtener al menos un resultado significativo por azar es cercana al 46 %.**
+
+<details><summary>Ver respuesta</summary>
+**Verdadera.** La probabilidad de no cometer ningún error tipo I en 12 pruebas independientes es 0,95¹² = 0,54. La de cometer al menos uno es 1 − 0,54 = 0,46. Cada comparación adicional es un nuevo boleto en la lotería de los falsos positivos. Por eso, los subgrupos se declaran antes de analizar y se evalúan con una prueba de interacción, no con valores p separados por subgrupo.
+</details>
+:::
+
+::: {.pregunta}
+**c) Como el subgrupo de Géminis y Libra es mucho más pequeño que el total, tiene menos potencia, y su resultado no significativo puede ser un error tipo II.**
+
+<details><summary>Ver respuesta</summary>
+**Verdadera.** Al partir la muestra, cada subgrupo tiene menos pacientes y menos eventos, así que su [potencia estadística](../../prospecto/diccionario.qmd#potencia-estadistica){.dic} para detectar el efecto global cae mucho. Si la aspirina beneficia a todos, como sugiere el ensayo, el resultado no significativo en Géminis y Libra sería un [error tipo II](../../prospecto/diccionario.qmd#error-tipo-i-y-ii){.dic}: no detectar un efecto que existe. Los subgrupos generan los dos errores a la vez: falsos positivos por las múltiples pruebas y falsos negativos por la falta de potencia.
+</details>
+:::
+
+::: {.pregunta}
+**d) Un error tipo I consiste en concluir que no hay efecto cuando en realidad sí lo hay.**
+
+<details><summary>Ver respuesta</summary>
+**Falsa.** Esa es la definición del error tipo II (β). El error tipo I (α) es rechazar la hipótesis nula cuando es verdadera, es decir, concluir que hay un efecto cuando no lo hay. El nivel de significancia (habitualmente 0,05) es la probabilidad máxima de cometer un error tipo I que aceptas en cada prueba, y 1 − β es la potencia.
+</details>
+:::
+:::
+
+## Rp/
+
+::: {.en-una-frase}
+Cada subgrupo que analizas es otra oportunidad de equivocarte: decláralos antes de ver los datos y evalúalos con una prueba de interacción.
+:::
+
+## Diagnóstico diferencial
+
+- **[Valor p](../../prospecto/diccionario.qmd#valor-p){.dic} y α.** El valor p sale de tus datos; α es el umbral que fijaste antes de analizarlos.
+- **Corrección por comparaciones múltiples.** Métodos como Bonferroni (dividir α entre el número de pruebas) reducen los falsos positivos a costa de la potencia. No reemplazan a una hipótesis bien planteada.
+
+## En R
+
+```{r}
+#| echo: true
+# Probabilidad de al menos un falso positivo con k pruebas independientes
+k <- c(1, 5, 12, 20)
+round(1 - 0.95^k, 2)
+
+# Umbral de Bonferroni para 12 pruebas
+0.05 / 12
+```
+
+## Para profundizar
+
+- ¿No sabes qué prueba corresponde a tu objetivo? Haz el [Triaje estadístico](../../blog/que-prueba-estadistica/index.qmd#haz-tu-triaje).
+- [Calcula el tamaño de muestra con la potencia que necesitas](../../herramientas/muestra/index.qmd#mod=dprop&dis=co) en el Consultorio estadístico.
+- Caso n.º 2: [p = 0,07: ¿la intervención no sirve?](../ic-vs-valor-p/index.qmd)
+
+## Referencias
+
+1. ISIS-2 (Second International Study of Infarct Survival) Collaborative Group. Randomised trial of intravenous streptokinase, oral aspirin, both, or neither among 17,187 cases of suspected acute myocardial infarction: ISIS-2. *Lancet*. 1988;2(8607):349-60.
+2. Wang R, Lagakos SW, Ware JH, Hunter DJ, Drazen JM. Statistics in medicine: reporting of subgroup analyses in clinical trials. *N Engl J Med*. 2007;357(21):2189-94.
+
+::: {.cta}
+**¿Te tocó un caso así en tu tesis?**
+
+Te ayudo a elegir e interpretar el análisis correcto.
+
+[Escríbeme por WhatsApp](https://api.whatsapp.com/send?phone=51955446754&text=Hola%2C%20le%C3%AD%20un%20caso%20cl%C3%ADnico%20estad%C3%ADstico%20en%20tu%20web%20y%20quiero%20informaci%C3%B3n%20sobre%20asesor%C3%ADa%20para%20mi%20tesis)
+:::

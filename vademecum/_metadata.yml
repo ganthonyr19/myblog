@@ -1,0 +1,13 @@
+# Opciones comunes de la serie «Vademécum estadístico»
+lang: es
+author: "Anthony Romero-Cerdán, MD"
+title-block-banner: true
+toc: true
+toc-title: "En esta ficha"
+date-format: "D [de] MMMM [de] YYYY"
+format:
+  html:
+    css:
+      - ../prospecto/estilo/prospecto.css
+      - ../estilo/editorial.css
+    include-after-body: ../prospecto/estilo/prospecto.html
