@@ -1,0 +1,126 @@
+---
+title: "¿Qué significa un hazard ratio de 0,86?"
+description: "Caso clínico estadístico: el ensayo EMPA-REG OUTCOME, sus hazard ratios y lo que dicen y no dicen sobre el beneficio. Decide qué afirmaciones son verdaderas y por qué."
+date: 2027-02-02
+draft: true
+image: portada.png
+categories: [Caso clínico estadístico, Epidemiología, Pruebas estadísticas]
+---
+
+[![](../../images/marcas/casos.svg)<span><b>Caso clínico estadístico</b><em>Caso n.º 16</em></span>](../index.qmd){.sello}
+
+## El caso
+
+*Estudio real: ensayo EMPA-REG OUTCOME, publicado en 2015.*
+
+El EMPA-REG OUTCOME asignó al azar a 7020 personas con diabetes tipo 2 y enfermedad cardiovascular establecida a recibir empagliflozina (10 o 25 mg, analizadas en conjunto) o placebo, además de su tratamiento habitual. La mediana de seguimiento fue de 3,1 años.
+
+El desenlace principal combinaba muerte cardiovascular, infarto no fatal y accidente cerebrovascular no fatal. Los resultados se analizaron con [regresión de Cox](../../prospecto/diccionario.qmd#regresion-de-cox){.dic}:
+
+```{=html}
+<div style="overflow-x:auto">
+<table class="mapa" style="max-width:620px">
+<thead><tr><th>Desenlace</th><th>Empagliflozina</th><th>Placebo</th><th>HR (IC 95 %)</th></tr></thead>
+<tbody>
+<tr><th>Desenlace principal</th><td>10,5 %</td><td>12,1 %</td><td>0,86 (0,74 a 0,99)</td></tr>
+<tr><th>Muerte cardiovascular</th><td>3,7 %</td><td>5,9 %</td><td>0,62 (0,49 a 0,77)</td></tr>
+<tr><th>Hospitalización por insuficiencia cardiaca</th><td>2,7 %</td><td>4,1 %</td><td>0,65 (0,50 a 0,85)</td></tr>
+</tbody></table>
+</div>
+```
+
+## ¿Cuáles de estas afirmaciones son verdaderas?
+
+a) Un HR de 0,86 en el desenlace principal significa que el 14 % de los pacientes tratados evitó un evento.
+
+b) El IC 95 % del desenlace principal (0,74 a 0,99) descarta que la reducción real sea pequeña.
+
+c) Un HR de 0,62 indica que, en cualquier momento del seguimiento, la tasa instantánea de muerte cardiovascular fue un 38 % menor con empagliflozina que con placebo.
+
+d) La regresión de Cox aprovecha el tiempo hasta el evento y la información de los pacientes censurados.
+
+## Pase de visita
+
+::: {.autoeval}
+::: {.pregunta}
+**a) Un HR de 0,86 en el desenlace principal significa que el 14 % de los pacientes tratados evitó un evento.**
+
+<details><summary>Ver respuesta</summary>
+**Falsa.** El HR es una medida relativa. En términos absolutos, presentaron el desenlace principal el 12,1 % con placebo y el 10,5 % con empagliflozina: una diferencia de 1,6 puntos porcentuales durante el seguimiento. Es la misma trampa de la reducción relativa del riesgo: suena mucho más grande de lo que es para cada paciente.
+</details>
+:::
+
+::: {.pregunta}
+**b) El IC 95 % del desenlace principal (0,74 a 0,99) descarta que la reducción real sea pequeña.**
+
+<details><summary>Ver respuesta</summary>
+**Falsa.** El [intervalo de confianza](../../prospecto/diccionario.qmd#intervalo-de-confianza){.dic} va desde una reducción del 26 % (HR 0,74) hasta una del 1 % (HR 0,99). Es compatible tanto con un beneficio importante como con uno casi nulo. El resultado es estadísticamente significativo (p = 0,04), pero su límite superior está pegado al 1. En cambio, el IC de la muerte cardiovascular (0,49 a 0,77) se aleja bastante del 1.
+</details>
+:::
+
+::: {.pregunta}
+**c) Un HR de 0,62 indica que, en cualquier momento del seguimiento, la tasa instantánea de muerte cardiovascular fue un 38 % menor con empagliflozina que con placebo.**
+
+<details><summary>Ver respuesta</summary>
+**Verdadera.** El *hazard* es la tasa instantánea del evento en quienes siguen en riesgo, y el [*hazard ratio*](../../prospecto/diccionario.qmd#hazard-ratio){.dic} compara esa tasa entre los grupos. El modelo de Cox supone que ese cociente se mantiene constante durante todo el seguimiento (supuesto de riesgos proporcionales). Si el supuesto no se cumple, por ejemplo porque el beneficio aparece solo después del primer año, un único HR resume mal lo ocurrido, y hay que verificarlo.
+</details>
+:::
+
+::: {.pregunta}
+**d) La regresión de Cox aprovecha el tiempo hasta el evento y la información de los pacientes censurados.**
+
+<details><summary>Ver respuesta</summary>
+**Verdadera.** Los pacientes no fueron seguidos todos el mismo tiempo: unos ingresaron antes y otros terminaron el estudio sin el evento. Cox usa cuánto tiempo estuvo cada paciente en riesgo y cuenta a los censurados hasta el momento en que dejaron de observarse, igual que la curva de Kaplan-Meier. Comparar solo los porcentajes finales ignora esa información.
+</details>
+:::
+:::
+
+## Rp/
+
+::: {.en-una-frase}
+El hazard ratio compara tasas instantáneas y es relativo: acompáñalo de los riesgos absolutos y verifica que sea constante en el tiempo.
+:::
+
+## Diagnóstico diferencial
+
+- **[Riesgo relativo](../../prospecto/diccionario.qmd#riesgo-relativo){.dic}.** Compara proporciones al final del seguimiento, sin considerar cuándo ocurrió cada evento. Con eventos poco frecuentes y seguimiento corto, el HR y el RR suelen parecerse; con eventos frecuentes, pueden diferir.
+- **Razón de tasas.** Compara eventos por [persona-tiempo](../../prospecto/diccionario.qmd#persona-tiempo){.dic} y supone una tasa constante; Cox no necesita suponer cómo es la tasa, solo que el cociente es constante.
+
+## En R
+
+```{r}
+#| echo: true
+# Recuperar el error estándar y el valor p a partir del HR y su IC 95 %
+hr_desde_ic <- function(hr, li, ls) {
+  se <- (log(ls) - log(li)) / (2 * 1.96)
+  z  <- log(hr) / se
+  round(c(HR = hr, EE_logHR = se, z = z, p = 2 * pnorm(-abs(z))), 3)
+}
+
+rbind(principal = hr_desde_ic(0.86, 0.74, 0.99),
+      muerte_cv = hr_desde_ic(0.62, 0.49, 0.77))
+
+# Diferencia absoluta en el desenlace principal (puntos porcentuales)
+12.1 - 10.5
+```
+
+Con datos individuales, el modelo se ajusta con `survival::coxph(Surv(tiempo, evento) ~ grupo)` y el supuesto de riesgos proporcionales se revisa con `cox.zph()`.
+
+## Para profundizar
+
+- Caso n.º 3: [¿Qué hago con los pacientes que se fueron?](../kaplan-meier/index.qmd), sobre Kaplan-Meier y datos censurados.
+- Caso n.º 4: [¿A cuántos hay que tratar para que uno se beneficie?](../nnt-y-nnh/index.qmd), sobre riesgo relativo y absoluto.
+- [El estudio de cohortes](../../disenos/cohortes/index.qmd), en Diseños de estudio.
+
+## Referencias
+
+1. Zinman B, Wanner C, Lachin JM, Fitchett D, Bluhmki E, Hantel S, et al. Empagliflozin, cardiovascular outcomes, and mortality in type 2 diabetes. *N Engl J Med*. 2015;373(22):2117-28.
+2. Clark TG, Bradburn MJ, Love SB, Altman DG. Survival analysis part I: basic concepts and first analyses. *Br J Cancer*. 2003;89(2):232-8.
+
+::: {.cta}
+**¿Te tocó un caso así en tu tesis?**
+
+Te ayudo a elegir e interpretar el análisis correcto.
+
+[Escríbeme por WhatsApp](https://api.whatsapp.com/send?phone=51955446754&text=Hola%2C%20le%C3%AD%20un%20caso%20cl%C3%ADnico%20estad%C3%ADstico%20en%20tu%20web%20y%20quiero%20informaci%C3%B3n%20sobre%20asesor%C3%ADa%20para%20mi%20tesis)
+:::

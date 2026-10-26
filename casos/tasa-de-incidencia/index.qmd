@@ -1,0 +1,110 @@
+---
+title: "¿Porcentaje o tasa?"
+description: "Caso clínico estadístico: el ensayo iPrEx de profilaxis preexposición contra el VIH, con sedes en el Perú, y por qué sus resultados se expresan por persona-año. Decide qué afirmaciones son verdaderas y por qué."
+date: 2027-02-23
+draft: true
+image: portada.png
+categories: [Caso clínico estadístico, Epidemiología, Tesis]
+---
+
+[![](../../images/marcas/casos.svg)<span><b>Caso clínico estadístico</b><em>Caso n.º 19</em></span>](../index.qmd){.sello}
+
+## El caso
+
+*Estudio real: ensayo iPrEx, publicado en 2010.*
+
+El iPrEx evaluó si tomar a diario una combinación de antirretrovirales (emtricitabina y tenofovir) prevenía la infección por el VIH en hombres que tienen sexo con hombres y en mujeres transgénero. Participaron 2499 personas en seis países, entre ellos el Perú, asignadas al azar al tratamiento (1251) o a placebo (1248).
+
+Los participantes no ingresaron todos el mismo día ni fueron seguidos el mismo tiempo: la mediana de seguimiento fue de 1,2 años, con un máximo de 2,8 años. En total se acumularon **3324 persona-años** de seguimiento.
+
+En el análisis principal hubo **100 infecciones**: 36 en el grupo tratado y 64 en el grupo placebo. Los autores reportaron una **reducción de la incidencia del 44 %** (IC 95 %: 15 a 63; p = 0,005).
+
+## ¿Cuáles de estas afirmaciones son verdaderas?
+
+a) La tasa de incidencia global de VIH en el estudio fue de unas 3,0 infecciones por cada 100 persona-años.
+
+b) Como se infectaron 100 de 2499 participantes, el riesgo de infección fue del 4 % para todos, sin importar cuánto tiempo fue seguido cada uno.
+
+c) Un persona-año corresponde siempre a una sola persona seguida durante un año completo.
+
+d) Una reducción del 44 % equivale a un cociente de 0,56 entre la tasa del grupo tratado y la del grupo placebo.
+
+## Pase de visita
+
+::: {.autoeval}
+::: {.pregunta}
+**a) La tasa de incidencia global de VIH en el estudio fue de unas 3,0 infecciones por cada 100 persona-años.**
+
+<details><summary>Ver respuesta</summary>
+**Verdadera.** La [tasa de incidencia](../../prospecto/diccionario.qmd#tasa-de-incidencia){.dic} divide los casos nuevos entre el tiempo total en riesgo: 100 / 3324 = 0,030 infecciones por persona-año, es decir, 3,0 por cada 100 persona-años. Tiene unidades de tiempo: no es una proporción, sino una velocidad con la que aparecen los casos.
+</details>
+:::
+
+::: {.pregunta}
+**b) Como se infectaron 100 de 2499 participantes, el riesgo de infección fue del 4 % para todos, sin importar cuánto tiempo fue seguido cada uno.**
+
+<details><summary>Ver respuesta</summary>
+**Falsa.** El 4 % mezcla a participantes seguidos pocos meses con otros seguidos casi tres años. Un riesgo (incidencia acumulada) solo tiene sentido referido a un periodo concreto, igual para todos: «riesgo a 1 año», por ejemplo. Cuando el seguimiento varía entre participantes, la tasa por [persona-tiempo](../../prospecto/diccionario.qmd#persona-tiempo){.dic} o los métodos de supervivencia aprovechan el tiempo que aportó cada uno.
+</details>
+:::
+
+::: {.pregunta}
+**c) Un persona-año corresponde siempre a una sola persona seguida durante un año completo.**
+
+<details><summary>Ver respuesta</summary>
+**Falsa.** Un persona-año puede ser una persona seguida 12 meses, dos personas seguidas 6 meses cada una o cuatro seguidas 3 meses. Por eso, sumar persona-tiempo supone que el riesgo es más o menos constante en el tiempo: que 3 meses de cuatro personas equivalen a 12 meses de una. Si el riesgo cambia mucho con el tiempo de seguimiento, conviene analizarlo con curvas de supervivencia.
+</details>
+:::
+
+::: {.pregunta}
+**d) Una reducción del 44 % equivale a un cociente de 0,56 entre la tasa del grupo tratado y la del grupo placebo.**
+
+<details><summary>Ver respuesta</summary>
+**Verdadera.** La eficacia es 1 menos el cociente de tasas (o de *hazards*): 1 − 0,56 = 0,44. Como los dos grupos tenían casi el mismo tamaño y un seguimiento parecido, el cociente se aproxima al de las infecciones, 36 / 64 = 0,56. Con datos individuales, el cálculo correcto usa el persona-tiempo exacto de cada grupo, mediante [regresión de Poisson](../../prospecto/diccionario.qmd#regresion-de-poisson){.dic} o de Cox.
+</details>
+:::
+:::
+
+## Rp/
+
+::: {.en-una-frase}
+Si tus participantes no fueron seguidos el mismo tiempo, no reportes un porcentaje: reporta una tasa por persona-tiempo.
+:::
+
+## Diagnóstico diferencial
+
+- **[Prevalencia](../../prospecto/diccionario.qmd#prevalencia){.dic}.** Cuenta los casos existentes en un momento, nuevos y antiguos. La incidencia cuenta solo los casos nuevos en personas que al inicio no tenían la enfermedad.
+- **Incidencia acumulada (riesgo).** Es una proporción, sin unidades, y exige un periodo fijo para todos. La tasa tiene unidades de tiempo y admite seguimientos distintos.
+
+## En R
+
+```{r}
+#| echo: true
+# Tasa global con IC 95 % exacto (distribución de Poisson)
+prueba <- poisson.test(x = 100, T = 3324)
+round(c(tasa_x100 = prueba$estimate * 100, prueba$conf.int * 100), 2)
+
+# Aproximación del cociente de tasas, suponiendo persona-tiempo similar en ambos grupos
+round(c(cociente = 36 / 64, eficacia = 1 - 36 / 64), 2)
+```
+
+Con los datos individuales, la razón de tasas se estimaría con `glm(infeccion ~ grupo + offset(log(tiempo)), family = poisson)`.
+
+## Para profundizar
+
+- [El estudio de cohortes](../../disenos/cohortes/index.qmd), en Diseños de estudio: incidencia acumulada, tasa y persona-tiempo.
+- Caso n.º 3: [¿Qué hago con los pacientes que se fueron?](../kaplan-meier/index.qmd), sobre seguimientos de distinta duración.
+- Caso n.º 16: [¿Qué significa un hazard ratio de 0,86?](../hazard-ratio/index.qmd)
+
+## Referencias
+
+1. Grant RM, Lama JR, Anderson PL, McMahan V, Liu AY, Vargas L, et al. Preexposure chemoprophylaxis for HIV prevention in men who have sex with men. *N Engl J Med*. 2010;363(27):2587-99.
+2. Rothman KJ, Greenland S, Lash TL. *Modern Epidemiology*. 3.ª ed. Filadelfia: Lippincott Williams & Wilkins; 2008.
+
+::: {.cta}
+**¿Te tocó un caso así en tu tesis?**
+
+Te ayudo a elegir e interpretar el análisis correcto.
+
+[Escríbeme por WhatsApp](https://api.whatsapp.com/send?phone=51955446754&text=Hola%2C%20le%C3%AD%20un%20caso%20cl%C3%ADnico%20estad%C3%ADstico%20en%20tu%20web%20y%20quiero%20informaci%C3%B3n%20sobre%20asesor%C3%ADa%20para%20mi%20tesis)
+:::

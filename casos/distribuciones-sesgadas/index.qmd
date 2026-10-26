@@ -1,0 +1,130 @@
+---
+title: "¿La media de la bilirrubina describe al paciente típico?"
+description: "Caso clínico estadístico: la bilirrubina de 312 pacientes del ensayo de la Clínica Mayo en cirrosis biliar primaria, una variable muy asimétrica. Decide qué afirmaciones son verdaderas y por qué."
+date: 2027-03-23
+draft: true
+image: portada.png
+categories: [Caso clínico estadístico, estadística descriptiva, Pruebas estadísticas, Tesis]
+---
+
+[![](../../images/marcas/casos.svg)<span><b>Caso clínico estadístico</b><em>Caso n.º 23</em></span>](../index.qmd){.sello}
+
+## El caso
+
+*Estudio real: ensayo de la Clínica Mayo en cirrosis biliar primaria (1974-1984). Sus datos se distribuyen con el paquete `survival` de R.*
+
+En un ensayo con asignación aleatoria, 312 pacientes con cirrosis biliar primaria recibieron D-penicilamina (158) o placebo (154). Estos datos se usaron después para construir un modelo pronóstico muy conocido.
+
+Un tesista que reanaliza la base describe la bilirrubina sérica de los 312 pacientes:
+
+- **Media:** 3,26 mg/dL; **desviación estándar:** 4,53 mg/dL.
+- **Mediana:** 1,35 mg/dL; **rango intercuartílico:** 0,80 a 3,42 mg/dL.
+- **Mínimo y máximo:** 0,3 y 28,0 mg/dL.
+
+Luego compara los dos grupos:
+
+```{=html}
+<div style="overflow-x:auto">
+<table class="mapa" style="max-width:600px">
+<thead><tr><th>Bilirrubina (mg/dL)</th><th>D-penicilamina (n = 158)</th><th>Placebo (n = 154)</th></tr></thead>
+<tbody>
+<tr><th>Media (DE)</th><td>2,87 (3,63)</td><td>3,65 (5,28)</td></tr>
+<tr><th>Mediana</th><td>1,40</td><td>1,30</td></tr>
+</tbody></table>
+</div>
+```
+
+## ¿Cuáles de estas afirmaciones son verdaderas?
+
+a) Que la desviación estándar sea mayor que la media, en una variable que no puede ser negativa, sugiere una distribución con asimetría hacia la derecha.
+
+b) La media de 3,26 mg/dL describe bien al paciente típico de este estudio.
+
+c) En la Tabla 1, la bilirrubina debería describirse con la mediana y el rango intercuartílico.
+
+d) La prueba de Wilcoxon (Mann-Whitney) no compara medias, sino si los valores de un grupo tienden a ser mayores que los del otro.
+
+## Pase de visita
+
+::: {.autoeval}
+::: {.pregunta}
+**a) Que la desviación estándar sea mayor que la media, en una variable que no puede ser negativa, sugiere una distribución con asimetría hacia la derecha.**
+
+<details><summary>Ver respuesta</summary>
+**Verdadera.** Si la bilirrubina fuera simétrica alrededor de 3,26 con una DE de 4,53, muchos pacientes tendrían valores negativos, lo cual es imposible. La DE es grande porque unos pocos pacientes tienen valores muy altos (hasta 28 mg/dL) que estiran la cola derecha. Es un truco rápido para revisar una Tabla 1: media y DE parecidas, o DE mayor que la media, en una variable positiva, son una alerta de asimetría.
+</details>
+:::
+
+::: {.pregunta}
+**b) La media de 3,26 mg/dL describe bien al paciente típico de este estudio.**
+
+<details><summary>Ver respuesta</summary>
+**Falsa.** Los valores extremos arrastran la media hacia arriba: en esta base, el 72 % de los pacientes tiene una bilirrubina por debajo de la media. La mediana, 1,35 mg/dL, deja a la mitad de los pacientes a cada lado y no se ve afectada por los extremos. En una distribución asimétrica, la mediana representa mejor al paciente típico.
+</details>
+:::
+
+::: {.pregunta}
+**c) En la Tabla 1, la bilirrubina debería describirse con la mediana y el rango intercuartílico.**
+
+<details><summary>Ver respuesta</summary>
+**Verdadera.** La [mediana y el RIC](../../prospecto/diccionario.qmd#mediana-y-ric){.dic} describen el centro y la dispersión sin depender de los extremos. La media y la [desviación estándar](../../prospecto/diccionario.qmd#desviacion-estandar){.dic} se reservan para variables con distribución aproximadamente simétrica. Decídelo mirando un histograma, no solo con una prueba de normalidad: con muestras grandes, esas pruebas rechazan la normalidad por desviaciones mínimas.
+</details>
+:::
+
+::: {.pregunta}
+**d) La prueba de Wilcoxon (Mann-Whitney) no compara medias, sino si los valores de un grupo tienden a ser mayores que los del otro.**
+
+<details><summary>Ver respuesta</summary>
+**Verdadera.** La prueba ordena todos los valores y compara los rangos de ambos grupos. Aquí lo que pasa es ilustrativo: las medias difieren en 0,78 mg/dL, pero las medianas casi coinciden. La diferencia de medias se debe a unos pocos valores extremos del grupo placebo. Por eso, la prueba t da p = 0,13 y la de Wilcoxon, p = 0,84: miden cosas distintas. Lo que no es correcto es decir que Wilcoxon «compara medianas» sin más; solo lo hace bajo supuestos adicionales.
+</details>
+:::
+:::
+
+## Rp/
+
+::: {.en-una-frase}
+Antes de elegir entre media y mediana, mira el histograma: en una variable asimétrica, la mediana describe al paciente típico.
+:::
+
+## Diagnóstico diferencial
+
+- **Transformación logarítmica.** Muchas variables de laboratorio con asimetría derecha se vuelven casi simétricas con el logaritmo. Así se pueden usar métodos paramétricos, y el resultado se interpreta como un cociente de medias geométricas.
+- **Valores atípicos frente a errores.** Un valor extremo puede ser real, como una bilirrubina de 28 mg/dL en una cirrosis avanzada. Elimínalo solo si es un error comprobado, no porque incomode al análisis.
+
+## En R
+
+```{r}
+#| echo: true
+library(survival)
+d <- pbc[!is.na(pbc$trt), ]   # los 312 pacientes del ensayo (trt: 1 = D-penicilamina, 2 = placebo)
+
+round(c(media = mean(d$bili), DE = sd(d$bili), mediana = median(d$bili),
+        quantile(d$bili, c(0.25, 0.75))), 2)
+
+mean(d$bili < mean(d$bili))   # proporción por debajo de la media
+
+hist(d$bili, breaks = 30, main = "", xlab = "Bilirrubina (mg/dL)")
+
+# Dos pruebas, dos preguntas distintas
+t.test(bili ~ trt, data = d)$p.value
+wilcox.test(bili ~ trt, data = d, exact = FALSE)$p.value
+```
+
+## Para profundizar
+
+- [La Tabla 1 de tu tesis](../../prospecto/tabla-1/inicial.qmd), en Prospecto R: cómo describir variables numéricas.
+- ¿Prueba paramétrica o no paramétrica? Haz el [Triaje estadístico](../../blog/que-prueba-estadistica/index.qmd#haz-tu-triaje).
+- Caso n.º 6: [¿11,2 ± 0,1 describe a los niños?](../de-vs-ee/index.qmd), sobre la DE y el EE.
+
+## Referencias
+
+1. Dickson ER, Grambsch PM, Fleming TR, Fisher LD, Langworthy A. Prognosis in primary biliary cirrhosis: model for decision making. *Hepatology*. 1989;10(1):1-7.
+2. Kirkwood BR, Sterne JAC. *Essential Medical Statistics*. 2.ª ed. Oxford: Blackwell Science; 2003.
+
+::: {.cta}
+**¿Te tocó un caso así en tu tesis?**
+
+Te ayudo a elegir e interpretar el análisis correcto.
+
+[Escríbeme por WhatsApp](https://api.whatsapp.com/send?phone=51955446754&text=Hola%2C%20le%C3%AD%20un%20caso%20cl%C3%ADnico%20estad%C3%ADstico%20en%20tu%20web%20y%20quiero%20informaci%C3%B3n%20sobre%20asesor%C3%ADa%20para%20mi%20tesis)
+:::

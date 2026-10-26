@@ -5,6 +5,8 @@ listing:
   contents:
     - prospecto/*/*.qmd
     - "disenos/*/index.qmd"
+    - "casos/*/index.qmd"       # serie Caso clínico estadístico (sin su portada)
+    - "vademecum/*/index.qmd"   # serie Vademécum estadístico (sin su portada)
     - blog
     - tutoriales
     - posts

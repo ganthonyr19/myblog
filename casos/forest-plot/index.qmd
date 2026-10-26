@@ -1,0 +1,119 @@
+---
+title: "¿Cómo se lee un forest plot?"
+description: "Caso clínico estadístico: el metaanálisis de 13 ensayos de la vacuna BCG contra la tuberculosis, con mucha heterogeneidad y una explicación inesperada. Decide qué afirmaciones son verdaderas y por qué."
+date: 2027-04-27
+draft: true
+image: portada.png
+categories: [Caso clínico estadístico, Epidemiología, Tesis]
+---
+
+[![](../../images/marcas/casos.svg)<span><b>Caso clínico estadístico</b><em>Caso n.º 28</em></span>](../index.qmd){.sello}
+
+## El caso
+
+*Estudio real: metaanálisis de Colditz y colaboradores, publicado en 1994. Sus datos se distribuyen con el paquete `metafor` de R.*
+
+La eficacia de la vacuna BCG contra la tuberculosis ha sido motivo de discusión durante décadas. Un metaanálisis reunió 13 ensayos realizados entre 1948 y 1980, en lugares tan distintos como Canadá, el Reino Unido, Estados Unidos, Sudáfrica y la India.
+
+Los resultados de cada ensayo fueron muy diferentes. Con un modelo de efectos aleatorios, nuestro reanálisis de esos datos da:
+
+- **RR combinado:** 0,49 (IC 95 %: 0,34 a 0,70).
+- **[Heterogeneidad](../../prospecto/diccionario.qmd#heterogeneidad){.dic}:** I² = 92 %; prueba Q, p < 0,001.
+- **Intervalo de predicción del 95 %:** 0,15 a 1,55.
+
+Los RR de cada ensayo iban desde 0,20 hasta 1,56. Por ejemplo, en un ensayo en Gran Bretaña fue de 0,24, mientras que en el gran ensayo de Madras (India) fue de 1,01. Al incluir la latitud geográfica de cada ensayo como moderador, esta explicó cerca del 76 % de la heterogeneidad: **cuanto más lejos del ecuador, mayor la eficacia**.
+
+## ¿Cuáles de estas afirmaciones son verdaderas?
+
+a) El rombo del forest plot (RR 0,49; IC 95 %: 0,34 a 0,70) sugiere que, en promedio, la vacuna redujo a la mitad el riesgo de tuberculosis en estos ensayos.
+
+b) Un I² de 92 % significa que el 92 % de los ensayos encontró un efecto significativo.
+
+c) El IC 95 % del RR combinado (0,34 a 0,70) indica el rango en el que caería el efecto si se aplicara la vacuna en un nuevo lugar.
+
+d) La latitud explica una parte importante de la heterogeneidad: los ensayos más alejados del ecuador muestran mayor eficacia.
+
+## Pase de visita
+
+::: {.autoeval}
+::: {.pregunta}
+**a) El rombo del forest plot (RR 0,49; IC 95 %: 0,34 a 0,70) sugiere que, en promedio, la vacuna redujo a la mitad el riesgo de tuberculosis en estos ensayos.**
+
+<details><summary>Ver respuesta</summary>
+**Verdadera.** En un forest plot, cada línea es un estudio: el cuadrado marca su estimación, su tamaño refleja el peso del estudio y la línea horizontal es su IC. El rombo final es la estimación combinada, y su ancho es el IC. Aquí el rombo queda lejos de la línea vertical del 1, que indica ausencia de efecto. Pero con tanta heterogeneidad, ese promedio esconde diferencias enormes entre lugares.
+</details>
+:::
+
+::: {.pregunta}
+**b) Un I² de 92 % significa que el 92 % de los ensayos encontró un efecto significativo.**
+
+<details><summary>Ver respuesta</summary>
+**Falsa.** El I² es el porcentaje de la variabilidad entre los resultados que se debe a diferencias reales entre los estudios, y no al azar. Un 92 % indica que los ensayos no estiman el mismo efecto: la eficacia de la BCG cambia según dónde y cómo se aplicó. Valores cercanos a 25 %, 50 % y 75 % suelen describirse como heterogeneidad baja, moderada y alta.
+</details>
+:::
+
+::: {.pregunta}
+**c) El IC 95 % del RR combinado (0,34 a 0,70) indica el rango en el que caería el efecto si se aplicara la vacuna en un nuevo lugar.**
+
+<details><summary>Ver respuesta</summary>
+**Falsa.** El [intervalo de confianza](../../prospecto/diccionario.qmd#intervalo-de-confianza){.dic} describe la precisión del efecto **promedio**. El rango de efectos esperables en un nuevo lugar es el **[intervalo de predicción](../../prospecto/diccionario.qmd#intervalo-de-prediccion){.dic}**, que aquí va de 0,15 a 1,55: desde una protección muy alta hasta un posible aumento del riesgo. Con mucha heterogeneidad, ambos intervalos son muy distintos, y conviene reportar los dos.
+</details>
+:::
+
+::: {.pregunta}
+**d) La latitud explica una parte importante de la heterogeneidad: los ensayos más alejados del ecuador muestran mayor eficacia.**
+
+<details><summary>Ver respuesta</summary>
+**Verdadera.** Una metarregresión con la latitud reduce mucho la heterogeneidad (de un I² de 92 % a uno de 68 %). Una explicación propuesta es que, cerca del ecuador, la exposición previa a micobacterias ambientales ya da cierta protección y reduce el beneficio adicional de la vacuna. Es una asociación entre estudios, así que vale la advertencia de la falacia ecológica (caso n.º 9).
+</details>
+:::
+:::
+
+## Rp/
+
+::: {.en-una-frase}
+Antes de confiar en el rombo, mira si las líneas se parecen: con mucha heterogeneidad, busca su explicación y reporta el intervalo de predicción.
+:::
+
+## Diagnóstico diferencial
+
+- **Funnel plot.** Grafica cada estudio según su efecto y su precisión, y se usa para explorar el sesgo de publicación (caso n.º 12). El forest plot muestra los resultados; el funnel plot, su posible sesgo.
+- **Efectos fijos frente a efectos aleatorios.** El modelo de efectos fijos supone que todos los estudios estiman el mismo efecto; el de efectos aleatorios admite que el efecto varía entre estudios. Con un I² de 92 %, el supuesto de efectos fijos no se sostiene.
+
+Un dato curioso: el logo de Cochrane es un forest plot, el de una de las primeras versiones de su revisión sobre corticoides prenatales.
+
+## En R
+
+```{r}
+#| echo: true
+library(metafor)
+
+# Riesgo relativo de cada ensayo a partir de las tablas 2 × 2 (vacunados frente a no vacunados)
+dat <- escalc(measure = "RR", ai = tpos, bi = tneg, ci = cpos, di = cneg, data = dat.bcg)
+
+res <- rma(yi, vi, data = dat)          # efectos aleatorios (REML)
+res                                      # I², tau² y prueba Q
+predict(res, transf = exp, digits = 2)   # RR combinado, IC 95 % e intervalo de predicción
+
+forest(res, transf = exp, slab = paste(dat$author, dat$year), refline = 1, xlab = "Riesgo relativo")
+
+rma(yi, vi, mods = ~ ablat, data = dat)  # metarregresión con la latitud
+```
+
+## Para profundizar
+
+- Caso n.º 12: [¿Dónde están los ensayos negativos?](../sesgo-de-publicacion/index.qmd), sobre el sesgo de publicación.
+- Caso n.º 9: [¿Comer chocolate te acerca al Nobel?](../falacia-ecologica/index.qmd), sobre las asociaciones entre grupos.
+
+## Referencias
+
+1. Colditz GA, Brewer TF, Berkey CS, et al. Efficacy of BCG vaccine in the prevention of tuberculosis: meta-analysis of the published literature. *JAMA*. 1994;271(9):698-702.
+2. Higgins JP, Thompson SG, Deeks JJ, Altman DG. Measuring inconsistency in meta-analyses. *BMJ*. 2003;327(7414):557-60.
+
+::: {.cta}
+**¿Te tocó un caso así en tu tesis?**
+
+Te ayudo a elegir e interpretar el análisis correcto.
+
+[Escríbeme por WhatsApp](https://api.whatsapp.com/send?phone=51955446754&text=Hola%2C%20le%C3%AD%20un%20caso%20cl%C3%ADnico%20estad%C3%ADstico%20en%20tu%20web%20y%20quiero%20informaci%C3%B3n%20sobre%20asesor%C3%ADa%20para%20mi%20tesis)
+:::

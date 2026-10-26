@@ -1,0 +1,119 @@
+---
+title: "¿11,2 ± 0,1 describe a los niños?"
+description: "Caso clínico estadístico: una Tabla 1 que reporta la hemoglobina con el error estándar en lugar de la desviación estándar. Decide qué afirmaciones son verdaderas y por qué."
+date: 2026-11-24
+draft: true
+image: portada.png
+categories: [Caso clínico estadístico, estadística descriptiva, estudios transversales, Tesis]
+---
+
+[![](../../images/marcas/casos.svg)<span><b>Caso clínico estadístico</b><em>Caso n.º 6</em></span>](../index.qmd){.sello}
+
+## El caso
+
+*Caso ilustrativo, con datos simulados.*
+
+Un tesista realiza un estudio transversal en 225 niños de 6 a 35 meses atendidos en los establecimientos de salud de un distrito altoandino. Mide la hemoglobina capilar con un hemoglobinómetro portátil.
+
+En la Tabla 1 de su tesis escribe: «Hemoglobina: 11,2 ± 0,1 g/dL». En la sustentación, un jurado comenta que una dispersión tan pequeña es poco creíble en niños de esa edad. El tesista revisa su salida de R y descubre lo que pasó: reportó el error estándar de la media (EE), no la desviación estándar (DE).
+
+Con los datos correctos:
+
+- **Media:** 11,2 g/dL
+- **DE:** 1,5 g/dL
+- **EE:** 1,5 / √225 = 0,1 g/dL
+- **IC 95 % de la media:** 11,0 a 11,4 g/dL
+
+## ¿Cuáles de estas afirmaciones son verdaderas?
+
+a) El valor «± 0,1» indica que casi todos los niños tienen una hemoglobina entre 11,0 y 11,4 g/dL.
+
+b) Si 0,1 es el EE, la DE de la muestra es 0,1 × √225 = 1,5 g/dL.
+
+c) Para describir a los participantes en la Tabla 1, corresponde reportar la DE.
+
+d) Si la muestra se cuadruplicara, el EE se reduciría a la mitad, pero la DE se mantendría aproximadamente igual.
+
+## Pase de visita
+
+::: {.autoeval}
+::: {.pregunta}
+**a) El valor «± 0,1» indica que casi todos los niños tienen una hemoglobina entre 11,0 y 11,4 g/dL.**
+
+<details><summary>Ver respuesta</summary>
+**Falsa.** Ese rango es el IC 95 % de la **media**, no el de los valores individuales. La variabilidad entre niños la da la [desviación estándar](../../prospecto/diccionario.qmd#desviacion-estandar){.dic}: si la hemoglobina tuviera una distribución aproximadamente normal, alrededor del 95 % de los niños estaría entre 11,2 ± 1,96 × 1,5, es decir, entre 8,3 y 14,1 g/dL. Es un rango casi 15 veces más amplio que el que sugería la Tabla 1.
+</details>
+:::
+
+::: {.pregunta}
+**b) Si 0,1 es el EE, la DE de la muestra es 0,1 × √225 = 1,5 g/dL.**
+
+<details><summary>Ver respuesta</summary>
+**Verdadera.** El [error estándar](../../prospecto/diccionario.qmd#error-estandar){.dic} de la media es la DE dividida entre la raíz del tamaño de muestra: EE = DE / √n. Despejando, DE = EE × √n = 0,1 × 15 = 1,5 g/dL. Este cálculo sirve también para recuperar la DE cuando un artículo solo reporta el EE, por ejemplo, al preparar un metaanálisis o calcular tu tamaño de muestra.
+</details>
+:::
+
+::: {.pregunta}
+**c) Para describir a los participantes en la Tabla 1, corresponde reportar la DE.**
+
+<details><summary>Ver respuesta</summary>
+**Verdadera.** La Tabla 1 describe la muestra, y para eso se usa la DE (o la [mediana y el RIC](../../prospecto/diccionario.qmd#mediana-y-ric){.dic} si la distribución es asimétrica). El EE mide la [precisión](../../prospecto/diccionario.qmd#precision){.dic} con que se estima la media y corresponde a la inferencia, normalmente expresada como un IC 95 %. Reportar «media ± EE» en una tabla descriptiva hace que los datos parezcan más homogéneos de lo que son.
+</details>
+:::
+
+::: {.pregunta}
+**d) Si la muestra se cuadruplicara, el EE se reduciría a la mitad, pero la DE se mantendría aproximadamente igual.**
+
+<details><summary>Ver respuesta</summary>
+**Verdadera.** La DE describe una característica de la población, la variabilidad de la hemoglobina entre niños, y no depende del tamaño de muestra: con 900 niños seguiría siendo cercana a 1,5 g/dL. El EE, en cambio, se divide entre √n: con 900 niños sería 1,5 / 30 = 0,05 g/dL. Más participantes no hacen más parecidos a los niños; solo estiman la media con más precisión.
+</details>
+:::
+:::
+
+## Rp/
+
+::: {.en-una-frase}
+La DE describe a tus participantes; el EE describe tu estimación de la media. En la Tabla 1 va la DE.
+:::
+
+## Diagnóstico diferencial
+
+- **[Intervalo de confianza](../../prospecto/diccionario.qmd#intervalo-de-confianza){.dic}.** Se construye con el EE y es la forma recomendada de expresar la precisión de una media.
+- **Rango.** No reemplaza a la DE: depende solo de los dos valores extremos y tiende a crecer con el tamaño de muestra.
+
+## En R
+
+```{r}
+#| echo: true
+# Datos construidos con la media y la DE exactas del caso
+set.seed(2026)
+hb <- as.numeric(scale(rnorm(225))) * 1.5 + 11.2
+
+de <- sd(hb)
+ee <- de / sqrt(length(hb))
+round(c(media = mean(hb), DE = de, EE = ee), 2)
+
+# IC 95 % de la media
+round(t.test(hb)$conf.int, 1)
+
+# El EE con una muestra cuatro veces mayor (la DE no cambia)
+round(de / sqrt(4 * 225), 2)
+```
+
+## Para profundizar
+
+- [La Tabla 1 de tu tesis](../../prospecto/tabla-1/inicial.qmd), en Prospecto R: cómo describir a tus participantes.
+- [El estudio transversal](../../disenos/transversal/index.qmd), en Diseños de estudio.
+- [Calcula el tamaño de muestra para comparar dos medias](../../herramientas/muestra/index.qmd#mod=med): ahí la DE es un dato de entrada.
+
+## Referencias
+
+1. Altman DG, Bland JM. Standard deviations and standard errors. *BMJ*. 2005;331(7521):903.
+
+::: {.cta}
+**¿Te tocó un caso así en tu tesis?**
+
+Te ayudo a elegir e interpretar el análisis correcto.
+
+[Escríbeme por WhatsApp](https://api.whatsapp.com/send?phone=51955446754&text=Hola%2C%20le%C3%AD%20un%20caso%20cl%C3%ADnico%20estad%C3%ADstico%20en%20tu%20web%20y%20quiero%20informaci%C3%B3n%20sobre%20asesor%C3%ADa%20para%20mi%20tesis)
+:::

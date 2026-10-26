@@ -1,0 +1,109 @@
+---
+title: "¿Por qué la fase 1 empieza con tan pocos voluntarios?"
+description: "Caso clínico estadístico: el ensayo de fase 1 del anticuerpo TGN1412, en el que seis voluntarios sanos terminaron en cuidados intensivos. Decide qué afirmaciones son verdaderas y por qué."
+date: 2027-03-30
+draft: true
+image: portada.png
+categories: [Caso clínico estadístico, Diseños de estudio, Tesis]
+---
+
+[![](../../images/marcas/casos.svg)<span><b>Caso clínico estadístico</b><em>Caso n.º 24</em></span>](../index.qmd){.sello}
+
+## El caso
+
+*Estudio real: ensayo de fase 1 del TGN1412, publicado en 2006.*
+
+El TGN1412 era un anticuerpo monoclonal diseñado para estimular un tipo de linfocito T, con la idea de tratar enfermedades autoinmunes y algunas leucemias. En los estudios preclínicos no se habían detectado efectos tóxicos.
+
+En su primer ensayo en humanos participaron **8 varones sanos**: 6 recibieron el anticuerpo y 2 recibieron placebo, con asignación aleatoria y doble ciego. La dosis fue de 0,1 mg/kg, y las infusiones se administraron **una tras otra, con 10 minutos de diferencia** entre cada voluntario.
+
+En los 90 minutos siguientes, los seis que recibieron el anticuerpo presentaron una respuesta inflamatoria sistémica: una «tormenta de citocinas». Entre las 12 y las 16 horas, los seis estaban en estado crítico en cuidados intensivos, con falla de varios órganos. Todos sobrevivieron, tras estancias en la UCI de entre 4 y 21 días.
+
+## ¿Cuáles de estas afirmaciones son verdaderas?
+
+a) El objetivo principal de un ensayo de fase 1 es evaluar la seguridad, la tolerancia y el comportamiento del fármaco en el organismo, no demostrar su eficacia.
+
+b) Administrar el fármaco a todos los voluntarios con 10 minutos de diferencia impidió ver la reacción del primero antes de exponer a los demás.
+
+c) La fase 3 compara el nuevo tratamiento con el estándar o con placebo en un número grande de pacientes, para confirmar su eficacia y seguridad.
+
+d) Una vez que un fármaco supera la fase 3 y se aprueba, su perfil de seguridad ya se conoce por completo.
+
+## Pase de visita
+
+::: {.autoeval}
+::: {.pregunta}
+**a) El objetivo principal de un ensayo de fase 1 es evaluar la seguridad, la tolerancia y el comportamiento del fármaco en el organismo, no demostrar su eficacia.**
+
+<details><summary>Ver respuesta</summary>
+**Verdadera.** La fase 1 es el primer contacto con humanos. Busca la dosis que se tolera y describe la farmacocinética, habitualmente en pocos voluntarios sanos. Una excepción frecuente son los fármacos oncológicos, que se prueban desde el inicio en pacientes. La fase 2 empieza a explorar la eficacia y la dosis en pacientes, y la fase 3 la confirma.
+</details>
+:::
+
+::: {.pregunta}
+**b) Administrar el fármaco a todos los voluntarios con 10 minutos de diferencia impidió ver la reacción del primero antes de exponer a los demás.**
+
+<details><summary>Ver respuesta</summary>
+**Verdadera.** Los primeros síntomas aparecieron, en promedio, una hora después de cada infusión; para entonces, prácticamente todos los voluntarios ya habían sido dosificados. Si se hubiera dosificado primero a un solo voluntario y se hubiera esperado lo suficiente, la reacción habría afectado a una persona y no a seis. Tras este episodio, las recomendaciones para los primeros ensayos en humanos de fármacos de alto riesgo insistieron en la dosificación escalonada y en dosis iniciales más prudentes.
+</details>
+:::
+
+::: {.pregunta}
+**c) La fase 3 compara el nuevo tratamiento con el estándar o con placebo en un número grande de pacientes, para confirmar su eficacia y seguridad.**
+
+<details><summary>Ver respuesta</summary>
+**Verdadera.** Es la fase de los ensayos con asignación aleatoria de cientos o miles de pacientes, como los de los casos n.º 16 y n.º 20 de esta serie. Sus resultados son los que sustentan la aprobación del fármaco por las agencias reguladoras.
+</details>
+:::
+
+::: {.pregunta}
+**d) Una vez que un fármaco supera la fase 3 y se aprueba, su perfil de seguridad ya se conoce por completo.**
+
+<details><summary>Ver respuesta</summary>
+**Falsa.** Un efecto adverso que aparece en 1 de cada 10 000 pacientes difícilmente se verá en ensayos de unos pocos miles. Si en un ensayo no aparece ningún caso de un efecto adverso, la «regla del tres» dice que el límite superior del IC 95 % de su frecuencia es aproximadamente 3 / n. Por eso existe la **fase 4**, o farmacovigilancia: la vigilancia del fármaco ya comercializado en poblaciones mucho más grandes y diversas.
+</details>
+:::
+:::
+
+## Rp/
+
+::: {.en-una-frase}
+Cada fase responde una pregunta distinta: la 1, si es seguro; la 2, si parece funcionar; la 3, si funciona mejor que lo disponible; la 4, qué pasa cuando lo usan miles.
+:::
+
+## Diagnóstico diferencial
+
+- **Estudio preclínico.** Se hace en células y animales antes de cualquier fase clínica. No resultar tóxico en animales no garantiza la seguridad en humanos, como mostró este caso.
+- **Fase 2 frente a fase 3.** La fase 2 suele usar desenlaces intermedios y muestras más pequeñas para elegir la dosis; la fase 3 usa desenlaces clínicos y muestras grandes para confirmar.
+
+## En R
+
+```{r}
+#| echo: true
+# Probabilidad de observar al menos un caso de un efecto adverso con frecuencia 1/10 000
+n <- c(300, 3000, 30000)
+round(1 - (1 - 1/10000)^n, 3)
+
+# Regla del tres: si no hubo casos en n pacientes, el límite superior del IC 95 % es ~3/n
+n_ensayo <- 3000
+c(regla_del_tres = 3 / n_ensayo,
+  exacto = binom.test(0, n_ensayo)$conf.int[2])
+```
+
+## Para profundizar
+
+- [Diseños de estudio](../../disenos/index.qmd): dónde se ubica el ensayo clínico.
+- Caso n.º 21: [¿Funciona en la vida real?](../ensayos-pragmaticos/index.qmd), sobre ensayos explicativos y pragmáticos.
+
+## Referencias
+
+1. Suntharalingam G, Perry MR, Ward S, Brett SJ, Castello-Cortes A, Brunner MD, et al. Cytokine storm in a phase 1 trial of the anti-CD28 monoclonal antibody TGN1412. *N Engl J Med*. 2006;355(10):1018-28.
+2. Hanley JA, Lippman-Hand A. If nothing goes wrong, is everything all right? Interpreting zero numerators. *JAMA*. 1983;249(13):1743-5.
+
+::: {.cta}
+**¿Te tocó un caso así en tu tesis?**
+
+Te ayudo a elegir e interpretar el análisis correcto.
+
+[Escríbeme por WhatsApp](https://api.whatsapp.com/send?phone=51955446754&text=Hola%2C%20le%C3%AD%20un%20caso%20cl%C3%ADnico%20estad%C3%ADstico%20en%20tu%20web%20y%20quiero%20informaci%C3%B3n%20sobre%20asesor%C3%ADa%20para%20mi%20tesis)
+:::

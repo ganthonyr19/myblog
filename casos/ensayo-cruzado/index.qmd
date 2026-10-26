@@ -1,0 +1,121 @@
+---
+title: "¿Y si cada paciente es su propio control?"
+description: "Caso clínico estadístico: un ensayo cruzado sobre paracetamol y presión arterial en personas con hipertensión. Decide qué afirmaciones son verdaderas y por qué."
+date: 2027-01-19
+draft: true
+image: portada.png
+categories: [Caso clínico estadístico, Diseños de estudio, Pruebas estadísticas]
+---
+
+[![](../../images/marcas/casos.svg)<span><b>Caso clínico estadístico</b><em>Caso n.º 14</em></span>](../index.qmd){.sello}
+
+## El caso
+
+*Estudio real: ensayo PATH-BP, publicado en 2022.*
+
+El paracetamol se recomienda a menudo como el analgésico más seguro para personas con hipertensión. Un ensayo en el Reino Unido puso a prueba esa idea con un **[diseño cruzado](../../prospecto/diccionario.qmd#ensayo-cruzado){.dic}**, doble ciego y controlado con placebo.
+
+Se incluyeron 110 personas con hipertensión. Cada una recibió dos tratamientos, en orden asignado al azar:
+
+- **Paracetamol:** 1 g cuatro veces al día durante 2 semanas.
+- **Placebo:** tabletas idénticas durante 2 semanas.
+
+Entre ambos periodos hubo un **lavado** de 2 semanas sin tratamiento. El desenlace principal fue la presión arterial sistólica (PAS) diurna medida con monitoreo ambulatorio.
+
+Completaron ambos periodos 103 participantes. Con paracetamol, la PAS diurna fue **4,7 mmHg más alta** que con placebo (IC 95 %: 2,9 a 6,6; p < 0,0001).
+
+## ¿Cuáles de estas afirmaciones son verdaderas?
+
+a) Un diseño cruzado necesita más participantes que un ensayo con grupos paralelos para lograr la misma precisión.
+
+b) El periodo de lavado busca que el efecto del primer tratamiento no persista durante el segundo.
+
+c) Los datos deben analizarse como si fueran dos grupos independientes, con una prueba t para muestras independientes.
+
+d) Este diseño sería igual de adecuado para comparar dos antibióticos en el tratamiento de la neumonía.
+
+## Pase de visita
+
+::: {.autoeval}
+::: {.pregunta}
+**a) Un diseño cruzado necesita más participantes que un ensayo con grupos paralelos para lograr la misma precisión.**
+
+<details><summary>Ver respuesta</summary>
+**Falsa.** Es al revés. Como cada participante recibe ambos tratamientos, la comparación se hace dentro de la misma persona, y desaparece la variabilidad entre personas: su edad, su presión basal o su sensibilidad a la sal. La [desviación estándar](../../prospecto/diccionario.qmd#desviacion-estandar){.dic} de las diferencias suele ser mucho menor que la de las mediciones, así que el mismo efecto se detecta con menos participantes.
+</details>
+:::
+
+::: {.pregunta}
+**b) El periodo de lavado busca que el efecto del primer tratamiento no persista durante el segundo.**
+
+<details><summary>Ver respuesta</summary>
+**Verdadera.** Si el efecto del paracetamol durara más que su administración, quienes lo recibieron primero empezarían el periodo de placebo con la presión aún elevada. Ese **efecto de arrastre** reduciría la diferencia entre tratamientos. El lavado debe durar lo suficiente para que el organismo vuelva a su estado basal.
+</details>
+:::
+
+::: {.pregunta}
+**c) Los datos deben analizarse como si fueran dos grupos independientes, con una prueba t para muestras independientes.**
+
+<details><summary>Ver respuesta</summary>
+**Falsa.** Las dos mediciones de cada participante están relacionadas, y tratarlas como independientes desperdicia la ventaja del diseño. Se analiza la diferencia dentro de cada persona: una prueba t para muestras relacionadas o, mejor, un modelo que además incluya el periodo y el orden de los tratamientos. Tratar los datos como grupos independientes infla el error estándar y ensancha el intervalo de confianza.
+</details>
+:::
+
+::: {.pregunta}
+**d) Este diseño sería igual de adecuado para comparar dos antibióticos en el tratamiento de la neumonía.**
+
+<details><summary>Ver respuesta</summary>
+**Falsa.** El diseño cruzado exige una enfermedad crónica y estable, que vuelva a su estado basal después de cada tratamiento. La neumonía se cura o empeora con el primer tratamiento: en el segundo periodo, el paciente ya no es comparable consigo mismo. Para enfermedades agudas o desenlaces irreversibles, como la muerte, se usa un ensayo con grupos paralelos.
+</details>
+:::
+:::
+
+## Rp/
+
+::: {.en-una-frase}
+El ensayo cruzado ahorra participantes porque compara a cada persona consigo misma: úsalo solo en enfermedades estables y analízalo como datos pareados.
+:::
+
+## Diagnóstico diferencial
+
+- **Diseño antes y después sin control.** También mide dos veces a la misma persona, pero sin placebo ni orden aleatorio no separa el efecto del tratamiento del paso del tiempo.
+- **Efecto del periodo.** La enfermedad o las condiciones pueden cambiar entre el primer y el segundo periodo. Asignar el orden al azar y modelar el periodo lo controla.
+
+## En R
+
+Una simulación con 103 personas reproduce el efecto y el IC del ensayo, y muestra qué pasa si se ignora el pareamiento:
+
+```{r}
+#| echo: true
+set.seed(2022)
+n <- 103
+pas_placebo <- rnorm(n, mean = 133, sd = 12)              # PAS diurna con placebo
+dif         <- as.numeric(scale(rnorm(n))) * 9.47 + 4.7   # diferencia intrapersonal
+pas_parac   <- pas_placebo + dif                          # PAS con paracetamol
+
+# Correcto: muestras relacionadas
+t.test(pas_parac, pas_placebo, paired = TRUE)$conf.int
+
+# Incorrecto: como si fueran grupos independientes
+t.test(pas_parac, pas_placebo)$conf.int
+```
+
+El análisis pareado da un IC 95 % de 2,8 a 6,6 mmHg; el no pareado, uno de 1,0 a 8,4 mmHg, el doble de ancho con los mismos datos. La media de 133 mmHg y la DE de 12 mmHg son supuestos de la simulación, no datos del ensayo.
+
+## Para profundizar
+
+- ¿Muestras independientes o relacionadas? Resuélvelo en el [Triaje estadístico](../../blog/que-prueba-estadistica/index.qmd#haz-tu-triaje).
+- Caso n.º 2: [p = 0,07: ¿la intervención no sirve?](../ic-vs-valor-p/index.qmd), con una prueba t para muestras independientes.
+
+## Referencias
+
+1. MacIntyre IM, Turtle EJ, Farrah TE, Graham C, Dear JW, Webb DJ; PATH-BP Investigators. Regular acetaminophen use and blood pressure in people with hypertension: the PATH-BP trial. *Circulation*. 2022;145(6):416-23.
+2. Mills EJ, Chan AW, Wu P, Vail A, Guyatt GH, Altman DG. Design, analysis, and presentation of crossover trials. *Trials*. 2009;10:27.
+
+::: {.cta}
+**¿Te tocó un caso así en tu tesis?**
+
+Te ayudo a elegir e interpretar el análisis correcto.
+
+[Escríbeme por WhatsApp](https://api.whatsapp.com/send?phone=51955446754&text=Hola%2C%20le%C3%AD%20un%20caso%20cl%C3%ADnico%20estad%C3%ADstico%20en%20tu%20web%20y%20quiero%20informaci%C3%B3n%20sobre%20asesor%C3%ADa%20para%20mi%20tesis)
+:::

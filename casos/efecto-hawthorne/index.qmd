@@ -1,0 +1,121 @@
+---
+title: "¿Nos lavamos más las manos cuando nos miran?"
+description: "Caso clínico estadístico: dispensadores electrónicos de alcohol gel registraron qué pasaba cuando llegaba el auditor de higiene de manos. Decide qué afirmaciones son verdaderas y por qué."
+date: 2027-01-12
+draft: true
+image: portada.png
+categories: [Caso clínico estadístico, Diseños de estudio, Epidemiología]
+---
+
+[![](../../images/marcas/casos.svg)<span><b>Caso clínico estadístico</b><em>Caso n.º 13</em></span>](../index.qmd){.sello}
+
+## El caso
+
+*Estudio real: Srigley y colaboradores, publicado en 2014.*
+
+En dos unidades de trasplante de un hospital universitario, cada dispensador de alcohol gel y de jabón registraba electrónicamente cuántas veces se usaba. Durante unos 8 meses se acumularon más de 780 000 usos.
+
+En ese periodo, el hospital hizo sus auditorías habituales de higiene de manos: un observador entrenado se paraba en la unidad y anotaba si el personal cumplía. Los investigadores compararon, en los pasillos, la tasa de uso de los dispensadores (mediana de usos por dispensador por hora):
+
+```{=html}
+<div style="overflow-x:auto">
+<table class="mapa" style="max-width:560px">
+<thead><tr><th>Dispensadores de pasillo</th><th>Usos por hora (mediana)</th></tr></thead>
+<tbody>
+<tr><th>A la vista del auditor, durante la auditoría</th><td>3,75</td></tr>
+<tr><th>Fuera de la vista del auditor, al mismo tiempo</th><td>1,48</td></tr>
+<tr><th>Los mismos dispensadores, una semana antes</th><td>1,07</td></tr>
+</tbody></table>
+</div>
+```
+
+Los autores concluyeron que la presencia visible del auditor triplicaba aproximadamente la higiene de manos en los pasillos.
+
+## ¿Cuáles de estas afirmaciones son verdaderas?
+
+a) Durante la auditoría, la tasa de uso en los pasillos visibles para el auditor fue unas 2,5 veces la de los pasillos fuera de su vista.
+
+b) Las auditorías por observación directa probablemente sobrestiman la higiene de manos que ocurre cuando nadie mira.
+
+c) Como la presencia del auditor no se asignó al azar, los resultados de este estudio no tienen valor.
+
+d) En un ensayo, si el grupo intervención recibe más visitas y controles que el grupo control, puede mejorar por el solo hecho de ser observado más de cerca.
+
+## Pase de visita
+
+::: {.autoeval}
+::: {.pregunta}
+**a) Durante la auditoría, la tasa de uso en los pasillos visibles para el auditor fue unas 2,5 veces la de los pasillos fuera de su vista.**
+
+<details><summary>Ver respuesta</summary>
+**Verdadera.** El cociente de medianas es 3,75 / 1,48 = 2,5. Frente a los mismos dispensadores una semana antes, el cociente es 3,75 / 1,07 = 3,5. Las dos comparaciones apuntan en la misma dirección: el personal usaba mucho más los dispensadores cuando podía ver al auditor.
+</details>
+:::
+
+::: {.pregunta}
+**b) Las auditorías por observación directa probablemente sobrestiman la higiene de manos que ocurre cuando nadie mira.**
+
+<details><summary>Ver respuesta</summary>
+**Verdadera.** Es el **[efecto Hawthorne](../../prospecto/diccionario.qmd#efecto-hawthorne){.dic}**: las personas cambian su conducta cuando saben que son observadas. Si la medición misma modifica lo que se mide, el resultado describe la conducta bajo observación, no la habitual. Por eso, una auditoría puede reportar una adherencia alta mientras la adherencia real es mucho menor.
+</details>
+:::
+
+::: {.pregunta}
+**c) Como la presencia del auditor no se asignó al azar, los resultados de este estudio no tienen valor.**
+
+<details><summary>Ver respuesta</summary>
+**Falsa.** Es un estudio observacional, pero con comparaciones bien elegidas. Comparar dispensadores fuera de la vista del auditor **en el mismo momento** controla la hora, el turno y la carga de trabajo de ese día. Comparar los mismos dispensadores una semana antes controla su ubicación. Que ambas comparaciones coincidan refuerza la conclusión, aunque no la convierte en prueba definitiva.
+</details>
+:::
+
+::: {.pregunta}
+**d) En un ensayo, si el grupo intervención recibe más visitas y controles que el grupo control, puede mejorar por el solo hecho de ser observado más de cerca.**
+
+<details><summary>Ver respuesta</summary>
+**Verdadera.** Si un grupo recibe más atención, parte de su mejoría puede deberse a esa atención y no a la intervención. En tu tesis, procura que ambos grupos tengan el mismo calendario de visitas y mediciones, y que el grupo control reciba una atención comparable.
+</details>
+:::
+:::
+
+## Rp/
+
+::: {.en-una-frase}
+Si tus participantes saben que los miras, mides cómo se portan cuando los miras: diseña la medición para que no cambie la conducta.
+:::
+
+## Diagnóstico diferencial
+
+- **[Efecto placebo](../../prospecto/diccionario.qmd#efecto-placebo){.dic}.** El paciente mejora por la expectativa de recibir un tratamiento. En el efecto Hawthorne, el cambio viene de sentirse observado.
+- **Sesgo de deseabilidad social.** El participante responde lo que cree que se espera de él en una entrevista o encuesta. Es pariente cercano del efecto Hawthorne, pero en lo que se declara, no en lo que se hace.
+- **Regresión a la media.** Si se audita justo después de un periodo malo, la siguiente medición tiende a mejorar sola.
+
+## En R
+
+```{r}
+#| echo: true
+# Medianas de usos por dispensador por hora, en los pasillos
+visible     <- 3.75   # a la vista del auditor
+no_visible  <- 1.48   # fuera de su vista, al mismo tiempo
+semana_prev <- 1.07   # mismos dispensadores, una semana antes
+
+round(c(visible_vs_no_visible  = visible / no_visible,
+        visible_vs_semana_prev = visible / semana_prev), 1)
+```
+
+## Para profundizar
+
+- Caso n.º 11: [¿Importa quién evalúa al paciente?](../cegamiento/index.qmd), sobre el sesgo del evaluador.
+- [Diseños de estudio](../../disenos/index.qmd): estudios observacionales y experimentales.
+
+## Referencias
+
+1. Srigley JA, Furness CD, Baker GR, Gardam M. Quantification of the Hawthorne effect in hand hygiene compliance monitoring using an electronic monitoring system: a retrospective cohort study. *BMJ Qual Saf*. 2014;23(12):974-80.
+2. McCambridge J, Witton J, Elbourne DR. Systematic review of the Hawthorne effect: new concepts are needed to study research participation effects. *J Clin Epidemiol*. 2014;67(3):267-77.
+
+::: {.cta}
+**¿Te tocó un caso así en tu tesis?**
+
+Te ayudo a elegir e interpretar el análisis correcto.
+
+[Escríbeme por WhatsApp](https://api.whatsapp.com/send?phone=51955446754&text=Hola%2C%20le%C3%AD%20un%20caso%20cl%C3%ADnico%20estad%C3%ADstico%20en%20tu%20web%20y%20quiero%20informaci%C3%B3n%20sobre%20asesor%C3%ADa%20para%20mi%20tesis)
+:::

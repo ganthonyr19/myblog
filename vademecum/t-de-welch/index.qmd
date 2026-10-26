@@ -1,0 +1,105 @@
+---
+title: "Prueba t para dos muestras independientes"
+description: "Vademécum estadístico: indicación, contraindicaciones, posología, interacciones y reacciones adversas de la prueba t de Welch y de Student, con su código en R."
+date: 2026-10-29
+draft: true
+image: portada.png
+categories: [Vademécum estadístico, Pruebas estadísticas, Tesis]
+---
+
+[![](../../images/marcas/vademecum.svg)<span><b>Vademécum estadístico</b><em>Ficha n.º 2</em></span>](../index.qmd){.sello}
+
+::: {.en-una-frase}
+Compara la media de una variable numérica entre dos grupos de personas distintas. Usa la versión de Welch, que no exige varianzas iguales.
+:::
+
+## Indicación
+
+Comparar el promedio de una variable numérica entre dos grupos independientes: la hemoglobina entre hombres y mujeres, la presión arterial entre un grupo intervenido y uno control o la estancia hospitalaria entre dos técnicas quirúrgicas, cuando la distribución no es muy asimétrica.
+
+## Mecanismo de acción
+
+Divide la diferencia entre las medias de los dos grupos entre su [error estándar](../../prospecto/diccionario.qmd#error-estandar){.dic}. Si la hipótesis nula de medias iguales fuera cierta, ese cociente seguiría una distribución t. Lo más útil para tu tesis no es el valor p, sino la **diferencia de medias con su [intervalo de confianza](../../prospecto/diccionario.qmd#intervalo-de-confianza){.dic}**, que la misma prueba entrega.
+
+La versión de Student supone que ambos grupos tienen la misma varianza. La de Welch calcula el error estándar sin ese supuesto y ajusta los grados de libertad.
+
+## Contraindicaciones
+
+- **Datos pareados.** Si son las mismas personas antes y después, corresponde la prueba t pareada.
+- **Distribución muy asimétrica con muestras pequeñas.** Con pocos participantes por grupo y valores extremos, la media representa mal a los grupos. Considera una transformación logarítmica o la U de Mann-Whitney.
+- **Más de dos grupos.** Hacer varias pruebas t entre pares aumenta los falsos positivos; corresponde un ANOVA.
+
+La normalidad importa menos de lo que se cree: con muestras de tamaño moderado, la prueba t es robusta (Lumley et al., 2002).
+
+## Posología
+
+Necesitas la diferencia de medias que sería clínicamente importante y la [desviación estándar](../../prospecto/diccionario.qmd#desviacion-estandar){.dic} esperada, tomada de un estudio previo o de un piloto.
+
+::: {.usa-calc}
+![](../../images/marcas/muestra.svg)
+
+Calcúlalo en el Consultorio estadístico: [tamaño de muestra para comparar dos medias](../../herramientas/muestra/index.qmd#mod=med).
+:::
+
+## Interacciones
+
+- **Prueba de Levene previa.** Elegir entre Student y Welch según una prueba de varianzas añade un paso innecesario. La prueba de Welch funciona bien con varianzas iguales o distintas, y por eso se recomienda usarla siempre (Ruxton, 2006). En R es la opción por defecto.
+- **Confusión.** La prueba t no ajusta por otras variables. Para eso necesitas una regresión lineal.
+- **Varias variables a la vez.** En una Tabla 1 con muchas comparaciones, alguna saldrá significativa por azar.
+
+## Reacciones adversas frecuentes en las tesis
+
+- **Aplicar Shapiro-Wilk a todo antes de decidir.** Con muestras grandes rechaza la normalidad por desviaciones mínimas; con muestras pequeñas casi nunca la rechaza. Mira el histograma.
+- **Reportar «media ± error estándar».** Para describir a los grupos va la desviación estándar (ver el [caso n.º 6](../../casos/de-vs-ee/index.qmd)).
+- **Reportar solo el valor p.** Falta la diferencia de medias y su IC 95 %.
+- **Concluir «no hay diferencia» con un p > 0,05.** Revisa qué diferencias siguen siendo compatibles con el IC (ver el [caso n.º 2](../../casos/ic-vs-valor-p/index.qmd)).
+
+## Presentación en R
+
+Con la base `pbc` comparamos la albúmina sérica entre hombres y mujeres.
+
+```{r}
+#| echo: true
+library(survival)
+d <- pbc[!is.na(pbc$trt), ]                    # los 312 pacientes del ensayo
+d$sexo <- factor(d$sex, c("m", "f"), c("Hombre", "Mujer"))
+
+# Descripción por grupo: n, media y desviación estándar
+aggregate(albumin ~ sexo, data = d,
+          FUN = function(x) round(c(n = length(x), media = mean(x), DE = sd(x)), 2))
+
+hist(d$albumin, breaks = 25, main = "", xlab = "Albúmina (g/dL)")   # ¿muy asimétrica?
+
+t.test(albumin ~ sexo, data = d)               # Welch por defecto
+```
+
+## Cómo reportarlo
+
+::: {.reporte}
+> La albúmina sérica media fue de 3,58 g/dL (DE: 0,45) en los hombres (n = 36) y de 3,51 g/dL (DE: 0,42) en las mujeres (n = 276); diferencia: 0,07 g/dL (IC 95 %: −0,09 a 0,23; p = 0,41; prueba t de Welch).
+:::
+
+El IC indica que, con estos datos, la diferencia real podría estar entre 0,09 g/dL a favor de las mujeres y 0,23 g/dL a favor de los hombres.
+
+## Diagnóstico diferencial
+
+- **U de Mann-Whitney.** Para variables muy asimétricas u ordinales (ver la [ficha n.º 3](../u-de-mann-whitney/index.qmd)).
+- **Prueba t pareada.** Para las mismas personas medidas dos veces.
+- **ANOVA.** Para tres o más grupos.
+
+Revisa también la receta corta de esta prueba en el [Triaje estadístico](../../blog/que-prueba-estadistica/index.qmd#haz-tu-triaje).
+
+## Referencias
+
+1. Kirkwood BR, Sterne JAC. *Essential Medical Statistics*. 2.ª ed. Oxford: Blackwell Science; 2003.
+2. Ruxton GD. The unequal variance t-test is an underused alternative to Student's t-test and the Mann-Whitney U test. *Behav Ecol*. 2006;17(4):688-90.
+3. Lumley T, Diehr P, Emerson S, Chen L. The importance of the normality assumption in large public health data sets. *Annu Rev Public Health*. 2002;23:151-69.
+4. Dickson ER, Grambsch PM, Fleming TR, Fisher LD, Langworthy A. Prognosis in primary biliary cirrhosis: model for decision making. *Hepatology*. 1989;10(1):1-7.
+
+::: {.cta}
+**¿Tu jurado te pidió justificar la prueba?**
+
+Te ayudo a elegir, ejecutar y reportar el análisis correcto para tu tesis.
+
+[Escríbeme por WhatsApp](https://api.whatsapp.com/send?phone=51955446754&text=Hola%2C%20le%C3%AD%20el%20vadem%C3%A9cum%20estad%C3%ADstico%20de%20tu%20web%20y%20quiero%20informaci%C3%B3n%20sobre%20asesor%C3%ADa%20para%20mi%20tesis)
+:::

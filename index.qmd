@@ -29,6 +29,8 @@ listing:
     - posts
     - prospecto/*/inicial.qmd   # de Prospecto R, solo la dosis inicial: enlaza a la plena
     - "disenos/*/index.qmd"     # serie Diseños de estudio (sin su portada)
+    - "casos/*/index.qmd"       # serie Caso clínico estadístico (sin su portada)
+    - "vademecum/*/index.qmd"   # serie Vademécum estadístico (sin su portada)
   sort: "date desc"
   type: grid
   max-items: 3

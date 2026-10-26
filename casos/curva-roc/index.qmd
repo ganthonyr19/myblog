@@ -1,0 +1,128 @@
+---
+title: "¿Qué punto de corte elijo para el PSA?"
+description: "Caso clínico estadístico: la curva ROC del PSA en el Prostate Cancer Prevention Trial, con su AUC y cuatro puntos de corte. Decide qué afirmaciones son verdaderas y por qué."
+date: 2026-12-22
+draft: true
+image: portada.png
+categories: [Caso clínico estadístico, Epidemiología, Tesis]
+---
+
+[![](../../images/marcas/casos.svg)<span><b>Caso clínico estadístico</b><em>Caso n.º 10</em></span>](../index.qmd){.sello}
+
+## El caso
+
+*Estudio real: Prostate Cancer Prevention Trial, análisis publicado en 2005.*
+
+En el grupo placebo de un gran ensayo de prevención del cáncer de próstata, los investigadores analizaron a los varones que tenían un PSA y un tacto rectal en el mismo año y a quienes, además, se les hizo al menos una biopsia. Fueron 5587 hombres, todos con un PSA inicial de 3,0 ng/mL o menos al entrar al ensayo. La biopsia, el patrón de referencia, encontró cáncer en 1225 (21,9 %).
+
+Con esos datos construyeron la [curva ROC](../../prospecto/diccionario.qmd#curva-roc){.dic} del PSA. El área bajo la curva (AUC) fue de **0,678** (IC 95 %: 0,666 a 0,689) para cualquier cáncer y de **0,782** para los cánceres con Gleason 7 o más.
+
+```{=html}
+<div style="overflow-x:auto">
+<table class="mapa" style="max-width:520px">
+<thead><tr><th>Punto de corte (ng/mL)</th><th>Sensibilidad</th><th>Especificidad</th></tr></thead>
+<tbody>
+<tr><th>1,1</th><td>83,4 %</td><td>38,9 %</td></tr>
+<tr><th>2,1</th><td>52,6 %</td><td>72,5 %</td></tr>
+<tr><th>3,1</th><td>32,2 %</td><td>86,7 %</td></tr>
+<tr><th>4,1</th><td>20,5 %</td><td>93,8 %</td></tr>
+</tbody></table>
+<p class="cap">Detección de cualquier cáncer de próstata según el punto de corte del PSA.</p>
+</div>
+```
+
+## ¿Cuáles de estas afirmaciones son verdaderas?
+
+a) Con un punto de corte de 4,1 ng/mL, el PSA no habría detectado casi 4 de cada 5 cánceres.
+
+b) Bajar el punto de corte a 1,1 ng/mL aumenta la sensibilidad sin pérdida de especificidad.
+
+c) Un AUC de 0,678 significa que el PSA clasifica correctamente al 67,8 % de los hombres.
+
+d) El PSA discriminó mejor los cánceres con Gleason 7 o más que el conjunto de todos los cánceres.
+
+## Pase de visita
+
+::: {.autoeval}
+::: {.pregunta}
+**a) Con un punto de corte de 4,1 ng/mL, el PSA no habría detectado casi 4 de cada 5 cánceres.**
+
+<details><summary>Ver respuesta</summary>
+**Verdadera.** La [sensibilidad](../../prospecto/diccionario.qmd#sensibilidad){.dic} con ese corte fue de 20,5 %: de cada 100 hombres con cáncer, solo unos 20 tenían un PSA de 4,1 o más. Los otros 80 habrían sido falsos negativos. La alta [especificidad](../../prospecto/diccionario.qmd#especificidad){.dic} (93,8 %) tiene ese precio.
+</details>
+:::
+
+::: {.pregunta}
+**b) Bajar el punto de corte a 1,1 ng/mL aumenta la sensibilidad sin pérdida de especificidad.**
+
+<details><summary>Ver respuesta</summary>
+**Falsa.** Con una variable continua, mover el punto de corte siempre intercambia una por otra. Al bajar a 1,1, la sensibilidad sube a 83,4 %, pero la especificidad cae a 38,9 %: el 61 % de los hombres sin cáncer daría positivo y se expondría a una biopsia innecesaria. La curva ROC muestra justamente ese intercambio en todos los cortes posibles.
+</details>
+:::
+
+::: {.pregunta}
+**c) Un AUC de 0,678 significa que el PSA clasifica correctamente al 67,8 % de los hombres.**
+
+<details><summary>Ver respuesta</summary>
+**Falsa.** El AUC no depende de un punto de corte, así que no puede ser un porcentaje de aciertos. Si se elige al azar un hombre con cáncer y otro sin cáncer, el AUC es la probabilidad de que el primero tenga el PSA más alto. Un AUC de 0,5 equivale a lanzar una moneda y uno de 1,0 es una discriminación perfecta; 0,678 es una capacidad discriminativa modesta.
+</details>
+:::
+
+::: {.pregunta}
+**d) El PSA discriminó mejor los cánceres con Gleason 7 o más que el conjunto de todos los cánceres.**
+
+<details><summary>Ver respuesta</summary>
+**Verdadera.** El AUC fue de 0,782 para los cánceres con Gleason 7 o más, frente a 0,678 para cualquier cáncer. La capacidad de una prueba depende de qué desenlace se define como «enfermo». Por eso, en tu tesis, el patrón de referencia y la definición de caso deben quedar explícitos.
+</details>
+:::
+:::
+
+## Rp/
+
+::: {.en-una-frase}
+El AUC resume la prueba; el punto de corte decide qué errores aceptas: elígelo según el costo de un falso negativo frente a un falso positivo.
+:::
+
+## Diagnóstico diferencial
+
+- **Valores predictivos.** A diferencia de la sensibilidad y la especificidad, dependen de la [prevalencia](../../prospecto/diccionario.qmd#prevalencia){.dic} de la enfermedad en la población donde se usa la prueba.
+- **Índice de Youden.** Sensibilidad + especificidad − 1. Elige el corte que maximiza ambas por igual, lo que no siempre es lo clínicamente deseable.
+
+## En R
+
+```{r}
+#| echo: true
+corte <- c(1.1, 2.1, 3.1, 4.1)
+sens  <- c(0.834, 0.526, 0.322, 0.205)
+esp   <- c(0.389, 0.725, 0.867, 0.938)
+
+data.frame(corte,
+           youden = round(sens + esp - 1, 3),   # índice de Youden
+           RV_pos = round(sens / (1 - esp), 2), # razón de verosimilitud positiva
+           RV_neg = round((1 - sens) / esp, 2)) # razón de verosimilitud negativa
+
+# Los cuatro puntos sobre el espacio ROC
+plot(1 - esp, sens, type = "b", xlim = c(0, 1), ylim = c(0, 1),
+     xlab = "1 - especificidad", ylab = "Sensibilidad")
+abline(0, 1, lty = 2)   # diagonal: prueba sin capacidad discriminativa
+```
+
+Con datos individuales, el paquete `pROC` dibuja la curva completa y calcula el AUC con su IC 95 %.
+
+## Para profundizar
+
+- [Calcula el tamaño de muestra de tu estudio de prueba diagnóstica](../../herramientas/muestra/index.qmd#mod=dx) en el Consultorio estadístico.
+- ¿Comparas dos pruebas? Haz el [Triaje estadístico](../../blog/que-prueba-estadistica/index.qmd#haz-tu-triaje).
+
+## Referencias
+
+1. Thompson IM, Ankerst DP, Chi C, Lucia MS, Goodman PJ, Crowley JJ, et al. Operating characteristics of prostate-specific antigen in men with an initial PSA level of 3.0 ng/ml or lower. *JAMA*. 2005;294(1):66-70.
+2. Hanley JA, McNeil BJ. The meaning and use of the area under a receiver operating characteristic (ROC) curve. *Radiology*. 1982;143(1):29-36.
+
+::: {.cta}
+**¿Te tocó un caso así en tu tesis?**
+
+Te ayudo a elegir e interpretar el análisis correcto.
+
+[Escríbeme por WhatsApp](https://api.whatsapp.com/send?phone=51955446754&text=Hola%2C%20le%C3%AD%20un%20caso%20cl%C3%ADnico%20estad%C3%ADstico%20en%20tu%20web%20y%20quiero%20informaci%C3%B3n%20sobre%20asesor%C3%ADa%20para%20mi%20tesis)
+:::

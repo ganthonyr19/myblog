@@ -1,0 +1,111 @@
+---
+title: "¿Funciona en la vida real?"
+description: "Caso clínico estadístico: el Salford Lung Study, un ensayo pragmático en EPOC hecho en la atención habitual. Decide qué afirmaciones son verdaderas y por qué."
+date: 2027-03-09
+draft: true
+image: portada.png
+categories: [Caso clínico estadístico, Diseños de estudio, Tesis]
+---
+
+[![](../../images/marcas/casos.svg)<span><b>Caso clínico estadístico</b><em>Caso n.º 21</em></span>](../index.qmd){.sello}
+
+## El caso
+
+*Estudio real: Salford Lung Study en EPOC, publicado en 2016.*
+
+La mayoría de ensayos de inhaladores incluyen pacientes muy seleccionados: con espirometría dentro de ciertos rangos, sin otras enfermedades importantes y con visitas frecuentes al centro de investigación. El Salford Lung Study quiso responder otra pregunta: ¿qué pasa en la práctica diaria?
+
+Identificó a los pacientes en los registros electrónicos de la atención primaria de Salford, en el Reino Unido. Incluyó a cerca de 2800 adultos de 40 años o más con EPOC, al menos una exacerbación en los últimos 3 años y algún inhalador de mantenimiento, **sin restricciones por tabaquismo ni por espirometría**.
+
+Los asignó al azar a cambiar a un inhalador de fluticasona furoato con vilanterol o a **continuar la atención habitual** indicada por su médico de cabecera. Ni pacientes ni médicos estaban cegados, y el seguimiento se hizo con los registros clínicos de rutina.
+
+La tasa de exacerbaciones moderadas o graves fue de **1,74 por año** con el nuevo inhalador y de **1,90** con la atención habitual: una reducción del 8,4 % (IC 95 %: 1,1 a 15,2; p = 0,02).
+
+## ¿Cuáles de estas afirmaciones son verdaderas?
+
+a) Como incluyó pacientes sin restricciones por tabaquismo ni espirometría, sus resultados son menos aplicables a los pacientes que se ven en la consulta.
+
+b) Que no hubiera cegamiento invalida el ensayo.
+
+c) Comparar contra la «atención habitual» responde si conviene cambiar al nuevo inhalador frente a lo que los médicos ya indican, no si el inhalador es mejor que un placebo.
+
+d) Un ensayo explicativo con pacientes muy seleccionados y seguimiento estricto daría, en principio, el mismo tamaño de efecto.
+
+## Pase de visita
+
+::: {.autoeval}
+::: {.pregunta}
+**a) Como incluyó pacientes sin restricciones por tabaquismo ni espirometría, sus resultados son menos aplicables a los pacientes que se ven en la consulta.**
+
+<details><summary>Ver respuesta</summary>
+**Falsa.** Es al revés. Los criterios amplios hacen que los participantes se parezcan a los pacientes reales, con sus comorbilidades y sus hábitos. Esa es la ventaja de un **ensayo pragmático**: mide la **efectividad**, es decir, cuánto funciona una intervención en las condiciones habituales. Un ensayo **explicativo** mide la **eficacia** en condiciones ideales y suele ser menos generalizable.
+</details>
+:::
+
+::: {.pregunta}
+**b) Que no hubiera cegamiento invalida el ensayo.**
+
+<details><summary>Ver respuesta</summary>
+**Falsa.** En un ensayo pragmático, el diseño abierto es una decisión deliberada: en la vida real, el paciente y el médico saben qué inhalador se usa. Aun así, tiene un costo: el conocimiento del tratamiento puede influir en decisiones como indicar antibióticos o corticoides, que forman parte de la definición de exacerbación. Es una limitación para discutir, no un motivo para descartar el ensayo.
+</details>
+:::
+
+::: {.pregunta}
+**c) Comparar contra la «atención habitual» responde si conviene cambiar al nuevo inhalador frente a lo que los médicos ya indican, no si el inhalador es mejor que un placebo.**
+
+<details><summary>Ver respuesta</summary>
+**Verdadera.** El comparador define la pregunta. Contra placebo, la pregunta es si el fármaco tiene efecto. Contra la atención habitual, que incluía distintos inhaladores según cada paciente, la pregunta es si cambiar de estrategia mejora los resultados. Para quien decide qué recetar o qué comprar, esta segunda pregunta suele ser la más útil.
+</details>
+:::
+
+::: {.pregunta}
+**d) Un ensayo explicativo con pacientes muy seleccionados y seguimiento estricto daría, en principio, el mismo tamaño de efecto.**
+
+<details><summary>Ver respuesta</summary>
+**Falsa.** En condiciones ideales, la adherencia es mejor, el uso del inhalador se supervisa y los pacientes tienen menos factores que diluyan el efecto. Por eso, los ensayos explicativos tienden a mostrar efectos mayores que los que se observan en la práctica. Ambos diseños son útiles: responden preguntas distintas, y la herramienta PRECIS-2 ayuda a ubicar un ensayo entre los dos extremos.
+</details>
+:::
+:::
+
+## Rp/
+
+::: {.en-una-frase}
+El ensayo explicativo pregunta si puede funcionar; el pragmático, si funciona en la práctica. Elige el diseño según la decisión que quieres informar.
+:::
+
+## Diagnóstico diferencial
+
+- **Estudio observacional con datos de práctica real.** Usa registros de rutina como el Salford, pero sin aleatorización: quién recibe cada tratamiento depende del médico, y aparece la [confusión](../../prospecto/diccionario.qmd#confusion){.dic}.
+- **Validez interna y validez externa.** La interna es que el resultado sea correcto para los participantes; la externa, que se pueda generalizar. Los ensayos explicativos privilegian la primera y los pragmáticos, la segunda.
+
+## En R
+
+```{r}
+#| echo: true
+tasa_nuevo  <- 1.74   # exacerbaciones por paciente-año
+tasa_actual <- 1.90
+
+razon <- tasa_nuevo / tasa_actual
+round(c(razon_de_tasas = razon, reduccion = 1 - razon), 3)
+
+# Exacerbaciones evitadas por cada 100 pacientes tratados durante un año
+(tasa_actual - tasa_nuevo) * 100
+```
+
+## Para profundizar
+
+- Caso n.º 8: [¿Funciona el fármaco si el placebo también funciona?](../itt-vs-protocolo/index.qmd), sobre adherencia e intención de tratar.
+- Caso n.º 19: [¿Porcentaje o tasa?](../tasa-de-incidencia/index.qmd), sobre tasas de eventos.
+
+## Referencias
+
+1. Vestbo J, Leather D, Diar Bakerly N, New J, Gibson JM, McCorkindale S, et al. Effectiveness of fluticasone furoate-vilanterol for COPD in clinical practice. *N Engl J Med*. 2016;375(13):1253-60.
+2. Loudon K, Treweek S, Sullivan F, Donnan P, Thorpe KE, Zwarenstein M. The PRECIS-2 tool: designing trials that are fit for purpose. *BMJ*. 2015;350:h2147.
+
+::: {.cta}
+**¿Te tocó un caso así en tu tesis?**
+
+Te ayudo a elegir e interpretar el análisis correcto.
+
+[Escríbeme por WhatsApp](https://api.whatsapp.com/send?phone=51955446754&text=Hola%2C%20le%C3%AD%20un%20caso%20cl%C3%ADnico%20estad%C3%ADstico%20en%20tu%20web%20y%20quiero%20informaci%C3%B3n%20sobre%20asesor%C3%ADa%20para%20mi%20tesis)
+:::

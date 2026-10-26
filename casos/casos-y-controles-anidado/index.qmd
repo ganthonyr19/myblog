@@ -1,0 +1,112 @@
+---
+title: "¿Un estudio de casos y controles dentro de una cohorte?"
+description: "Caso clínico estadístico: fluoroquinolonas y aneurisma o disección aórtica en un estudio de casos y controles anidado en una cohorte de un millón de personas. Decide qué afirmaciones son verdaderas y por qué."
+date: 2027-04-06
+draft: true
+image: portada.png
+categories: [Caso clínico estadístico, Diseños de estudio, Epidemiología]
+---
+
+[![](../../images/marcas/casos.svg)<span><b>Caso clínico estadístico</b><em>Caso n.º 25</em></span>](../index.qmd){.sello}
+
+## El caso
+
+*Estudio real: Lee y colaboradores, publicado en 2015.*
+
+Varios reportes sugerían que las fluoroquinolonas, por su efecto sobre el colágeno, podían dañar la pared de la aorta. Para estudiarlo, un equipo usó la base del seguro nacional de salud de Taiwán: una **cohorte de cerca de un millón de personas** con sus atenciones y recetas registradas entre 2000 y 2011.
+
+Dentro de esa cohorte identificaron a **1477 casos** hospitalizados por aneurisma o disección aórtica. Para cada caso eligieron **100 controles** de la misma cohorte, emparejados por edad y sexo: **147 700 controles** en total.
+
+Luego revisaron en los registros de farmacia si cada persona había recibido fluoroquinolonas orales antes de la fecha del evento. El uso actual (en los 60 días previos) se asoció con un riesgo mayor: **RR ajustado = 2,43** (IC 95 %: 1,83 a 3,22). El uso pasado (entre 61 y 365 días antes) tuvo una asociación menor: RR = 1,48 (IC 95 %: 1,18 a 1,86).
+
+## ¿Cuáles de estas afirmaciones son verdaderas?
+
+a) Como casos y controles provienen de la misma cohorte definida, es más probable que los controles representen a la población de la que salieron los casos.
+
+b) Si los controles se eligen entre quienes seguían en riesgo en el momento en que ocurrió cada caso, el OR estima la razón de tasas sin necesidad de suponer que la enfermedad es rara.
+
+c) Como el uso de fluoroquinolonas se obtuvo de registros de recetas, el estudio no puede tener confusión.
+
+d) Con 100 controles por caso, el estudio tiene unas 100 veces más potencia que con 1 control por caso.
+
+## Pase de visita
+
+::: {.autoeval}
+::: {.pregunta}
+**a) Como casos y controles provienen de la misma cohorte definida, es más probable que los controles representen a la población de la que salieron los casos.**
+
+<details><summary>Ver respuesta</summary>
+**Verdadera.** Es la gran ventaja del diseño anidado. En un estudio de [casos y controles](../../disenos/casos-y-controles/index.qmd) clásico, elegir controles que representen a la población de origen de los casos es difícil (caso n.º 5). Aquí esa población está definida: es la cohorte. Además, se analiza solo una fracción de ella, lo que ahorra tiempo y costo cuando medir la exposición es caro.
+</details>
+:::
+
+::: {.pregunta}
+**b) Si los controles se eligen entre quienes seguían en riesgo en el momento en que ocurrió cada caso, el OR estima la razón de tasas sin necesidad de suponer que la enfermedad es rara.**
+
+<details><summary>Ver respuesta</summary>
+**Verdadera.** Es el **muestreo por densidad de incidencia**: cada vez que aparece un caso, se eligen controles entre quienes en ese momento seguían en riesgo. Con ese muestreo, el [odds ratio](../../prospecto/diccionario.qmd#odds-ratio){.dic} estima directamente la razón de tasas de incidencia, sin el supuesto de enfermedad rara del caso n.º 1. Por eso muchos estudios anidados reportan su resultado como «RR».
+</details>
+:::
+
+::: {.pregunta}
+**c) Como el uso de fluoroquinolonas se obtuvo de registros de recetas, el estudio no puede tener confusión.**
+
+<details><summary>Ver respuesta</summary>
+**Falsa.** Los registros evitan el sesgo de recuerdo, pero no la [confusión](../../prospecto/diccionario.qmd#confusion){.dic}. Quien recibe un antibiótico tiene una infección, y la infección o la inflamación sistémica podrían por sí mismas asociarse con eventos aórticos: es la **confusión por indicación**. Los autores la abordaron con un puntaje de propensión, pero solo pueden ajustar lo que está en la base.
+</details>
+:::
+
+::: {.pregunta}
+**d) Con 100 controles por caso, el estudio tiene unas 100 veces más potencia que con 1 control por caso.**
+
+<details><summary>Ver respuesta</summary>
+**Falsa.** Aumentar los controles por caso tiene rendimientos decrecientes. La eficiencia relativa frente a tener infinitos controles es c / (c + 1): 50 % con 1 control, 80 % con 4 y 99 % con 100. Más allá de 4 o 5 controles por caso se gana poco. Aquí, como los datos ya estaban en la base, tomar 100 controles no costaba nada; en tu tesis, cada control adicional sí cuesta.
+</details>
+:::
+:::
+
+## Rp/
+
+::: {.en-una-frase}
+Si ya tienes una cohorte con registros, anidar un estudio de casos y controles te da controles bien definidos y exposición medida antes del evento.
+:::
+
+## Diagnóstico diferencial
+
+- **Estudio de caso-cohorte.** También se anida en una cohorte, pero los controles son una subcohorte aleatoria elegida al inicio, que sirve para estudiar varios desenlaces a la vez.
+- **Emparejamiento.** Si emparejas por edad y sexo, esas variables ya no pueden estudiarse como factores de riesgo, y el análisis debe tener en cuenta el emparejamiento.
+
+## En R
+
+```{r}
+#| echo: true
+# Eficiencia relativa según el número de controles por caso
+controles <- c(1, 2, 4, 10, 100)
+round(controles / (controles + 1), 2)
+
+# Error estándar del log(RR) y valor p a partir del IC 95 % reportado
+ee <- (log(3.22) - log(1.83)) / (2 * 1.96)
+z  <- log(2.43) / ee
+c(EE = ee, p = 2 * pnorm(-abs(z)))
+```
+
+Con datos individuales emparejados, el análisis se hace con regresión logística condicional: `survival::clogit(caso ~ exposicion + strata(grupo))`.
+
+## Para profundizar
+
+- [El estudio de casos y controles](../../disenos/casos-y-controles/index.qmd) y [El estudio de cohortes](../../disenos/cohortes/index.qmd), en Diseños de estudio.
+- Caso n.º 5: [¿Las madres recuerdan igual?](../sesgos-por-diseno/index.qmd), sobre el sesgo de recuerdo.
+- [Calcula el tamaño de muestra de tus casos y controles](../../herramientas/muestra/index.qmd#mod=dprop&dis=cc).
+
+## Referencias
+
+1. Lee CC, Lee MT, Chen YS, Lee SH, Chen SC, Chang SC. Risk of aortic dissection and aortic aneurysm in patients taking oral fluoroquinolone. *JAMA Intern Med*. 2015;175(11):1839-47.
+2. Rothman KJ, Greenland S, Lash TL. *Modern Epidemiology*. 3.ª ed. Filadelfia: Lippincott Williams & Wilkins; 2008.
+
+::: {.cta}
+**¿Te tocó un caso así en tu tesis?**
+
+Te ayudo a elegir e interpretar el análisis correcto.
+
+[Escríbeme por WhatsApp](https://api.whatsapp.com/send?phone=51955446754&text=Hola%2C%20le%C3%AD%20un%20caso%20cl%C3%ADnico%20estad%C3%ADstico%20en%20tu%20web%20y%20quiero%20informaci%C3%B3n%20sobre%20asesor%C3%ADa%20para%20mi%20tesis)
+:::

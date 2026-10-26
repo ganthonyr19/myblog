@@ -1,0 +1,98 @@
+---
+title: "Correlación de Pearson y de Spearman"
+description: "Vademécum estadístico: indicación, contraindicaciones, posología, interacciones y reacciones adversas de los coeficientes de correlación de Pearson y de Spearman, con su código en R."
+date: 2026-11-12
+draft: true
+image: portada.png
+categories: [Vademécum estadístico, Pruebas estadísticas, Tesis]
+---
+
+[![](../../images/marcas/vademecum.svg)<span><b>Vademécum estadístico</b><em>Ficha n.º 4</em></span>](../index.qmd){.sello}
+
+::: {.en-una-frase}
+Mide qué tan fuerte es la relación entre dos variables numéricas medidas en las mismas personas: lineal con Pearson, monótona con Spearman. No mide concordancia ni causalidad.
+:::
+
+## Indicación
+
+Describir la fuerza y la dirección de la relación entre dos variables numéricas u ordinales: la edad y la presión arterial, la hemoglobina y la altitud, o el puntaje de dos escalas aplicadas a las mismas personas.
+
+## Mecanismo de acción
+
+El [coeficiente de Pearson](../../prospecto/diccionario.qmd#coeficiente-de-correlacion){.dic} (r) mide cuánto se ajustan los puntos a una línea recta. Va de −1 a 1: el signo indica la dirección, y el valor absoluto, la fuerza de la relación lineal. El de Spearman (rho) calcula lo mismo sobre los rangos, así que mide relaciones monótonas (que siempre suben o siempre bajan, aunque no en línea recta) y es menos sensible a los valores extremos.
+
+Ambas pruebas ponen a prueba la hipótesis nula de que la correlación en la población es cero.
+
+## Contraindicaciones
+
+- **Relación no lineal.** Una relación en U puede dar r cercano a 0 aunque las variables estén muy relacionadas. Grafica siempre antes de calcular.
+- **Valores extremos.** Un solo punto alejado puede crear o esconder una correlación de Pearson. Spearman es más resistente.
+- **Medidas repetidas.** Si cada persona aporta varias mediciones, las observaciones no son independientes y el coeficiente habitual no es válido.
+
+## Posología
+
+Necesitas el valor mínimo de r que sería importante detectar. Detectar correlaciones débiles exige muestras grandes.
+
+::: {.usa-calc}
+![](../../images/marcas/muestra.svg)
+
+Calcúlalo en el Consultorio estadístico: [tamaño de muestra para una correlación](../../herramientas/muestra/index.qmd#mod=cor).
+:::
+
+## Interacciones
+
+- **r y r².** El cuadrado de r es la proporción de la variabilidad que comparten ambas variables: un r de 0,5 equivale a un 25 % (ver el [caso n.º 9](../../casos/falacia-ecologica/index.qmd)).
+- **Transformaciones.** Si una variable es muy asimétrica, el logaritmo puede volver lineal la relación y acercar Pearson a Spearman.
+- **Tamaño de muestra.** Con miles de participantes, una correlación muy débil puede ser significativa sin tener importancia práctica.
+
+## Reacciones adversas frecuentes en las tesis
+
+- **Usar la correlación para comparar dos métodos de medición.** Dos instrumentos pueden correlacionar casi perfectamente y aun así dar valores muy distintos. Para concordancia se usan el coeficiente de correlación intraclase y el gráfico de Bland-Altman.
+- **Leer r como pendiente.** Un r de 0,8 no significa que una variable aumente 0,8 unidades por cada unidad de la otra; eso lo da la regresión lineal.
+- **Clasificar la fuerza con una sola regla rígida.** Los cortes de «débil», «moderada» o «fuerte» varían entre autores; reporta el coeficiente con su IC 95 % e interprétalo en su contexto (Schober et al., 2018).
+- **Concluir causalidad.** La correlación no indica qué variable influye en la otra.
+
+## Presentación en R
+
+Con la base `pbc` estudiamos la relación entre la bilirrubina y la albúmina sérica.
+
+```{r}
+#| echo: true
+library(survival)
+d <- pbc[!is.na(pbc$trt), ]                    # los 312 pacientes del ensayo
+
+plot(d$bili, d$albumin, xlab = "Bilirrubina (mg/dL)", ylab = "Albúmina (g/dL)")
+
+cor.test(d$bili, d$albumin)                               # Pearson
+cor.test(d$bili, d$albumin, method = "spearman", exact = FALSE)  # Spearman
+cor.test(log(d$bili), d$albumin)                          # Pearson con log(bilirrubina)
+```
+
+El gráfico muestra una bilirrubina muy asimétrica. Con su logaritmo, el coeficiente de Pearson (−0,38) se acerca al de Spearman (−0,37).
+
+## Cómo reportarlo
+
+::: {.reporte}
+> La bilirrubina y la albúmina séricas mostraron una correlación negativa (rho de Spearman = −0,37; p < 0,001; n = 312): a mayor bilirrubina, menor albúmina. Con la bilirrubina en escala logarítmica, el coeficiente de Pearson fue de −0,38 (IC 95 %: −0,47 a −0,28).
+:::
+
+## Diagnóstico diferencial
+
+- **Regresión lineal.** Para estimar cuánto cambia una variable por cada unidad de la otra y ajustar por confusores.
+- **Coeficiente de correlación intraclase y Bland-Altman.** Para evaluar la concordancia entre dos mediciones.
+
+Revisa también la receta corta de esta prueba en el [Triaje estadístico](../../blog/que-prueba-estadistica/index.qmd#haz-tu-triaje).
+
+## Referencias
+
+1. Schober P, Boer C, Schwarte LA. Correlation coefficients: appropriate use and interpretation. *Anesth Analg*. 2018;126(5):1763-8.
+2. Kirkwood BR, Sterne JAC. *Essential Medical Statistics*. 2.ª ed. Oxford: Blackwell Science; 2003.
+3. Dickson ER, Grambsch PM, Fleming TR, Fisher LD, Langworthy A. Prognosis in primary biliary cirrhosis: model for decision making. *Hepatology*. 1989;10(1):1-7.
+
+::: {.cta}
+**¿Correlación, regresión o concordancia?**
+
+Te ayudo a elegir, ejecutar y reportar el análisis correcto para tu tesis.
+
+[Escríbeme por WhatsApp](https://api.whatsapp.com/send?phone=51955446754&text=Hola%2C%20le%C3%AD%20el%20vadem%C3%A9cum%20estad%C3%ADstico%20de%20tu%20web%20y%20quiero%20informaci%C3%B3n%20sobre%20asesor%C3%ADa%20para%20mi%20tesis)
+:::

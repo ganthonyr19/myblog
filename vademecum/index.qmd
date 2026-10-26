@@ -1,0 +1,51 @@
+---
+title: "Vademécum estadístico"
+description: "Cada prueba estadística descrita como un fármaco: indicación, mecanismo de acción, contraindicaciones, posología, interacciones, reacciones adversas y su presentación en R."
+page-layout: article
+toc: false
+image: portada.png
+format:
+  html:
+    css:
+      - ../prospecto/estilo/prospecto.css
+      - ../estilo/editorial.css
+---
+
+[![](../images/marcas/vademecum.svg)<span><b>Vademécum estadístico</b><em>Una ficha por prueba</em></span>](index.qmd){.sello}
+
+Antes de recetar un fármaco, revisas su indicación, sus contraindicaciones y sus interacciones. Con una prueba estadística debería pasar lo mismo. Cada ficha de este vademécum describe una prueba con la estructura de una monografía:
+
+- **Indicación:** qué pregunta responde.
+- **Mecanismo de acción:** qué calcula y qué hipótesis pone a prueba.
+- **Contraindicaciones:** los supuestos que no puedes ignorar.
+- **Posología:** cuántos participantes necesitas.
+- **Interacciones:** cómo se relaciona con otras decisiones de tu análisis.
+- **Reacciones adversas:** los errores que más se observan en las tesis.
+- **Presentación:** el código en R, con datos reales, y cómo reportarlo.
+
+¿Todavía no sabes qué prueba te toca? Empieza por el [Triaje estadístico](../blog/que-prueba-estadistica/index.qmd#haz-tu-triaje): te lleva a la prueba, y la ficha te cuenta todo lo demás.
+
+## Las fichas
+
+```{=html}
+<div class="serie-grid">
+  <a class="serie-item" href="chi-cuadrado/index.html"><span class="n">Ficha n.º 1</span><strong>Chi cuadrado y prueba exacta de Fisher</strong>
+    <span class="d">Dos variables categóricas en grupos independientes.</span></a>
+  <div class="serie-item pronto" data-slug="t-de-welch"><span class="n">Ficha n.º 2 · 29 oct.</span><strong>Prueba t para dos muestras independientes</strong>
+    <span class="d">La media de una variable numérica en dos grupos.</span></div>
+  <div class="serie-item pronto" data-slug="u-de-mann-whitney"><span class="n">Ficha n.º 3 · 5 nov.</span><strong>U de Mann-Whitney</strong>
+    <span class="d">Una variable sesgada u ordinal en dos grupos.</span></div>
+  <div class="serie-item pronto" data-slug="correlacion"><span class="n">Ficha n.º 4 · 12 nov.</span><strong>Correlación de Pearson y de Spearman</strong>
+    <span class="d">Dos variables numéricas en las mismas personas.</span></div>
+  <div class="serie-item pronto"><span class="n">Próximamente</span><strong>ANOVA y Kruskal-Wallis</strong><span class="d">Tres o más grupos.</span></div>
+  <div class="serie-item pronto"><span class="n">Próximamente</span><strong>Prueba t pareada y Wilcoxon</strong><span class="d">Las mismas personas medidas dos veces.</span></div>
+  <div class="serie-item pronto"><span class="n">Próximamente</span><strong>McNemar</strong><span class="d">Un desenlace categórico medido dos veces.</span></div>
+  <div class="serie-item pronto"><span class="n">Próximamente</span><strong>Regresión de Poisson con varianza robusta</strong><span class="d">La razón de prevalencias ajustada.</span></div>
+</div>
+```
+
+Los ejemplos de las fichas usan la base `pbc`, que se instala con R: los datos reales de 312 pacientes de un ensayo de la Clínica Mayo en cirrosis biliar primaria (Dickson et al., 1989). Así puedes reproducir cada cifra en tu computadora.
+
+## Referencia
+
+Dickson ER, Grambsch PM, Fleming TR, Fisher LD, Langworthy A. Prognosis in primary biliary cirrhosis: model for decision making. *Hepatology*. 1989;10(1):1-7.

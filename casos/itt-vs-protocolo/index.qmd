@@ -1,0 +1,128 @@
+---
+title: "¿Funciona el fármaco si el placebo también funciona?"
+description: "Caso clínico estadístico: el Coronary Drug Project y la diferencia entre el análisis por intención de tratar y el análisis según la adherencia. Decide qué afirmaciones son verdaderas y por qué."
+date: 2026-12-08
+draft: true
+image: portada.png
+categories: [Caso clínico estadístico, Diseños de estudio, Tesis]
+---
+
+[![](../../images/marcas/casos.svg)<span><b>Caso clínico estadístico</b><em>Caso n.º 8</em></span>](../index.qmd){.sello}
+
+## El caso
+
+*Estudio real: Coronary Drug Project, análisis publicado en 1980.*
+
+El Coronary Drug Project fue un ensayo con asignación aleatoria en varones que habían sobrevivido a un infarto de miocardio. Uno de sus brazos comparó el clofibrato, un hipolipemiante, con un placebo.
+
+En el análisis por **[intención de tratar](../../prospecto/diccionario.qmd#intencion-de-tratar){.dic}**, que incluye a todos según el grupo al que fueron asignados, la mortalidad a 5 años fue de 20,0 % con clofibrato (1103 pacientes) y de 20,9 % con placebo (2789 pacientes), sin diferencia significativa.
+
+Luego, los investigadores clasificaron a los pacientes según su **adherencia**: buenos adherentes si tomaron al menos el 80 % de las cápsulas indicadas y malos adherentes si tomaron menos.
+
+```{=html}
+<div style="overflow-x:auto">
+<table class="mapa" style="max-width:560px">
+<thead><tr><th>Mortalidad a 5 años</th><th>Buenos adherentes</th><th>Malos adherentes</th></tr></thead>
+<tbody>
+<tr><th>Clofibrato</th><td>15 %</td><td>25 %</td></tr>
+<tr><th>Placebo</th><td>15 %</td><td>28 %</td></tr>
+</tbody></table>
+<p class="cap">Cifras redondeadas al entero.</p>
+</div>
+```
+
+## ¿Cuáles de estas afirmaciones son verdaderas?
+
+a) En el análisis por intención de tratar, la mortalidad a 5 años fue similar con clofibrato y con placebo.
+
+b) Los buenos adherentes al clofibrato murieron menos que los malos adherentes, lo que demuestra que el clofibrato funciona cuando se toma.
+
+c) La diferencia entre buenos y malos adherentes dentro del grupo placebo indica que la adherencia se asocia con el pronóstico por razones ajenas al fármaco.
+
+d) Comparar solo a los buenos adherentes de cada grupo conserva las ventajas de la asignación aleatoria.
+
+## Pase de visita
+
+::: {.autoeval}
+::: {.pregunta}
+**a) En el análisis por intención de tratar, la mortalidad a 5 años fue similar con clofibrato y con placebo.**
+
+<details><summary>Ver respuesta</summary>
+**Verdadera.** La mortalidad fue de 20,0 % frente a 20,9 %, una diferencia de menos de un punto porcentual y no significativa. El análisis por intención de tratar compara los grupos tal como los formó la aleatorización, sin importar si los pacientes tomaron o no el tratamiento. Así conserva la comparabilidad entre grupos y responde una pregunta práctica: qué pasa cuando se indica el fármaco.
+</details>
+:::
+
+::: {.pregunta}
+**b) Los buenos adherentes al clofibrato murieron menos que los malos adherentes, lo que demuestra que el clofibrato funciona cuando se toma.**
+
+<details><summary>Ver respuesta</summary>
+**Falsa.** Esa comparación ya no es aleatoria: los pacientes eligieron, sin saberlo, en qué grupo de adherencia quedar. El grupo placebo lo desmiente: sus buenos adherentes también murieron mucho menos (15 % frente a 28 %), y el placebo no tiene principio activo. La diferencia se explica por las características de quienes cumplen el tratamiento, no por el clofibrato.
+</details>
+:::
+
+::: {.pregunta}
+**c) La diferencia entre buenos y malos adherentes dentro del grupo placebo indica que la adherencia se asocia con el pronóstico por razones ajenas al fármaco.**
+
+<details><summary>Ver respuesta</summary>
+**Verdadera.** Quien toma con disciplina sus cápsulas suele cuidar también otros aspectos de su salud: acude a sus controles, fuma menos o tiene una enfermedad menos grave. Además, un paciente que empeora puede dejar el tratamiento. La adherencia funciona como un marcador de buen pronóstico, y eso produce [confusión](../../prospecto/diccionario.qmd#confusion){.dic} cuando se analiza a los pacientes según lo que hicieron y no según lo que se les asignó.
+</details>
+:::
+
+::: {.pregunta}
+**d) Comparar solo a los buenos adherentes de cada grupo conserva las ventajas de la asignación aleatoria.**
+
+<details><summary>Ver respuesta</summary>
+**Falsa.** Al excluir a los malos adherentes, los grupos dejan de ser los que formó el azar, y pueden diferir en factores que se asocian con la adherencia y con el pronóstico. Ese análisis por protocolo puede ser útil como análisis complementario, pero no reemplaza al de intención de tratar. Estimar bien el efecto en quienes sí toman el tratamiento exige métodos que ajusten por esos factores.
+</details>
+:::
+:::
+
+## Rp/
+
+::: {.en-una-frase}
+Analiza a los pacientes en el grupo al que fueron asignados; el análisis por protocolo es un complemento, nunca el resultado principal.
+:::
+
+## Diagnóstico diferencial
+
+- **Análisis por protocolo.** Incluye solo a quienes cumplieron el protocolo. Pierde la protección de la aleatorización.
+- **Análisis según el tratamiento recibido.** Agrupa a los pacientes según lo que tomaron, no según lo que se les asignó. Tiene el mismo problema.
+- **[Pérdidas](../../prospecto/diccionario.qmd#perdidas){.dic}.** Si faltan datos del desenlace, ni siquiera el análisis por intención de tratar está a salvo. Hay que reportarlas por grupo.
+
+## En R
+
+Una simulación con un fármaco **sin ningún efecto** muestra cómo surge la ilusión. La fragilidad de cada paciente influye a la vez en su adherencia y en su riesgo de morir.
+
+```{r}
+#| echo: true
+set.seed(1980)
+n <- 4000
+grupo     <- rep(c("farmaco", "placebo"), each = n / 2)   # asignación al azar
+fragil    <- rnorm(n)                                      # pronóstico oculto
+adherente <- rbinom(n, 1, plogis(1 - fragil))              # los frágiles cumplen menos
+muerte    <- rbinom(n, 1, plogis(-1.6 + 0.8 * fragil))     # el fármaco no influye
+
+# Intención de tratar: sin diferencia, como debe ser
+round(tapply(muerte, grupo, mean), 3)
+
+# Según la adherencia: la ilusión aparece también en el placebo
+round(tapply(muerte, list(grupo, adherente = adherente), mean), 3)
+```
+
+## Para profundizar
+
+- [El estudio de cohortes](../../disenos/cohortes/index.qmd), en Diseños de estudio: confusión y pérdidas en el seguimiento.
+- Caso n.º 7: [¿La aspirina no sirve si eres Géminis?](../error-tipo-i-y-ii/index.qmd)
+
+## Referencias
+
+1. Coronary Drug Project Research Group. Influence of adherence to treatment and response of cholesterol on mortality in the Coronary Drug Project. *N Engl J Med*. 1980;303(18):1038-41.
+2. Murray EJ, Hernán MA. Adherence adjustment in the Coronary Drug Project: a call for better per-protocol effect estimates in randomized trials. *Clin Trials*. 2016;13(4):372-8.
+
+::: {.cta}
+**¿Te tocó un caso así en tu tesis?**
+
+Te ayudo a elegir e interpretar el análisis correcto.
+
+[Escríbeme por WhatsApp](https://api.whatsapp.com/send?phone=51955446754&text=Hola%2C%20le%C3%AD%20un%20caso%20cl%C3%ADnico%20estad%C3%ADstico%20en%20tu%20web%20y%20quiero%20informaci%C3%B3n%20sobre%20asesor%C3%ADa%20para%20mi%20tesis)
+:::

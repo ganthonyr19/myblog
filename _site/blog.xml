@@ -10,7 +10,636 @@
 <atom:link href="https://anthonyromero.netlify.app/blog.xml" rel="self" type="application/rss+xml"/>
 <description>Entradas para entender y hacer mejor la investigación en salud: diseños de estudio, elección de pruebas estadísticas y novedades del ecosistema R.</description>
 <generator>quarto-1.10.18</generator>
-<lastBuildDate>Thu, 08 Oct 2026 05:00:00 GMT</lastBuildDate>
+<lastBuildDate>Thu, 22 Oct 2026 05:00:00 GMT</lastBuildDate>
+<item>
+  <title>Chi cuadrado y prueba exacta de Fisher</title>
+  <dc:creator>Anthony Romero-Cerdán, MD</dc:creator>
+  <link>https://anthonyromero.netlify.app/vademecum/chi-cuadrado/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+
+<p><a href="../../vademecum/index.html" class="sello"><img src="https://anthonyromero.netlify.app/images/marcas/vademecum.svg" class="img-fluid"><span><b>Vademécum estadístico</b><em>Ficha n.º 1</em></span></a></p>
+<div class="en-una-frase">
+<p>Compara la distribución de una variable categórica entre grupos de personas distintas; si las frecuencias <strong>esperadas</strong> son pequeñas, se cambia por la prueba exacta de Fisher.</p>
+</div>
+<section id="indicación" class="level2">
+<h2 class="anchored" data-anchor-id="indicación">Indicación</h2>
+<p>Evaluar si dos variables categóricas están asociadas cuando cada persona aparece una sola vez en la tabla. Es la prueba habitual para comparar proporciones entre dos o más grupos independientes: el porcentaje de anemia según el sexo, de complicaciones según el tipo de cirugía o de adherencia según el nivel educativo.</p>
+</section>
+<section id="mecanismo-de-acción" class="level2">
+<h2 class="anchored" data-anchor-id="mecanismo-de-acción">Mecanismo de acción</h2>
+<p>Construye la <a href="../../prospecto/diccionario.html#tabla-2x2" class="dic">tabla de contingencia</a> y calcula, para cada celda, la frecuencia que se esperaría si las variables no estuvieran asociadas: total de la fila × total de la columna / total general. El estadístico suma las diferencias al cuadrado entre lo observado y lo esperado, divididas entre lo esperado. Cuanto mayor es, más se alejan los datos de la hipótesis nula de independencia.</p>
+<p>La prueba exacta de Fisher no usa esa aproximación: calcula directamente la probabilidad de las tablas posibles con los mismos totales. Por eso sirve con muestras pequeñas.</p>
+</section>
+<section id="contraindicaciones" class="level2">
+<h2 class="anchored" data-anchor-id="contraindicaciones">Contraindicaciones</h2>
+<ul>
+<li><strong>Observaciones pareadas.</strong> Si son las mismas personas medidas dos veces, o pares emparejados, corresponde la prueba de McNemar.</li>
+<li><strong>Frecuencias esperadas pequeñas.</strong> El chi cuadrado es adecuado si ninguna frecuencia esperada es menor que 1 y no más del 20 % es menor que 5 (Cochran, 1954). Si no se cumple, usa la prueba exacta de Fisher o agrupa categorías con sentido clínico.</li>
+<li><strong>Variables ordinales con una tendencia de interés.</strong> Si quieres saber si el riesgo aumenta a lo largo de categorías ordenadas, una prueba de tendencia responde mejor que el chi cuadrado general.</li>
+</ul>
+</section>
+<section id="posología" class="level2">
+<h2 class="anchored" data-anchor-id="posología">Posología</h2>
+<p>El tamaño de muestra depende de las proporciones que esperas en cada grupo y de la diferencia mínima que te interesa detectar.</p>
+<div class="usa-calc">
+<p><img src="https://anthonyromero.netlify.app/images/marcas/muestra.svg" class="img-fluid"></p>
+<p>Calcúlalo en el Consultorio estadístico: <a href="../../herramientas/muestra/index.html#mod=dprop&amp;dis=tr">tamaño de muestra para comparar dos proporciones</a>.</p>
+</div>
+</section>
+<section id="interacciones" class="level2">
+<h2 class="anchored" data-anchor-id="interacciones">Interacciones</h2>
+<ul>
+<li><strong>Corrección de continuidad.</strong> En tablas de 2 × 2, <code>chisq.test()</code> aplica por defecto la <a href="../../prospecto/diccionario.html#correccion-de-continuidad" class="dic">corrección de Yates</a>, que es conservadora. Campbell (2007) propone como alternativa la chi cuadrado «N − 1», que funciona bien cuando todas las frecuencias esperadas son al menos 1. Sea cual sea tu elección, decláralo en métodos.</li>
+<li><strong>Encuestas con diseño complejo.</strong> Con datos de la ENDES o la ENAHO, el chi cuadrado clásico no es válido: usa la versión de Rao-Scott, que considera el <a href="../../prospecto/diccionario.html#diseno-muestral-complejo" class="dic">diseño muestral</a>.</li>
+<li><strong>Variables de confusión.</strong> El chi cuadrado no ajusta por otras variables. Para eso necesitas un modelo de regresión.</li>
+</ul>
+</section>
+<section id="reacciones-adversas-frecuentes-en-las-tesis" class="level2">
+<h2 class="anchored" data-anchor-id="reacciones-adversas-frecuentes-en-las-tesis">Reacciones adversas frecuentes en las tesis</h2>
+<ul>
+<li><strong>Cambiar a Fisher porque una celda observada tiene menos de 5.</strong> El criterio se aplica a las frecuencias esperadas, no a las observadas.</li>
+<li><strong>Reportar solo el valor p.</strong> El lector necesita los porcentajes de cada grupo y, si es posible, una medida de asociación con su IC 95 %.</li>
+<li><strong>Confundir porcentajes por fila y por columna.</strong> El <a href="../../prospecto/diccionario.html#porcentaje-por-columna" class="dic">porcentaje</a> debe calcularse dentro de los grupos que comparas.</li>
+<li><strong>Leer la asociación como causa.</strong> Un p pequeño indica que las proporciones difieren, no que una variable cause la otra.</li>
+</ul>
+</section>
+<section id="presentación-en-r" class="level2">
+<h2 class="anchored" data-anchor-id="presentación-en-r">Presentación en R</h2>
+<p>Con la base <code>pbc</code> comparamos la presencia de arañas vasculares (<code>spiders</code>) entre los pacientes que recibieron D-penicilamina y placebo. Luego, la presencia de ascitis según el sexo, donde hay pocos hombres.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Ver código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">library</span>(survival)</span>
+<span id="cb1-2">d <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> pbc[<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">!</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">is.na</span>(pbc<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>trt), ]                    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># los 312 pacientes del ensayo</span></span>
+<span id="cb1-3">d<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>grupo <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">factor</span>(d<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>trt, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span>, <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"D-penicilamina"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Placebo"</span>))</span>
+<span id="cb1-4">d<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>sexo  <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">factor</span>(d<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>sex, <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"m"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"f"</span>), <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Hombre"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Mujer"</span>))</span>
+<span id="cb1-5"></span>
+<span id="cb1-6"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># 1. Arañas vasculares según el grupo</span></span>
+<span id="cb1-7">tabla <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">table</span>(d<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>grupo, d<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>spiders)</span>
+<span id="cb1-8"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">round</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">prop.table</span>(tabla, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">100</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>)           <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># porcentajes por grupo (fila)</span></span></code></pre></div></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>                
+                    0    1
+  D-penicilamina 71.5 28.5
+  Placebo        70.8 29.2</code></pre>
+</div>
+<details class="code-fold">
+<summary>Ver código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">chisq.test</span>(tabla)<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>expected                     <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># frecuencias esperadas</span></span></code></pre></div></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>                
+                        0        1
+  D-penicilamina 112.4231 45.57692
+  Placebo        109.5769 44.42308</code></pre>
+</div>
+<details class="code-fold">
+<summary>Ver código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">chisq.test</span>(tabla)                              <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># con corrección de Yates</span></span></code></pre></div></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Pearson's Chi-squared test with Yates' continuity correction
+
+data:  tabla
+X-squared = 0.00036966, df = 1, p-value = 0.9847</code></pre>
+</div>
+<details class="code-fold">
+<summary>Ver código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># 2. Ascitis según el sexo: una frecuencia esperada es menor que 5</span></span>
+<span id="cb7-2">tabla2 <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">table</span>(d<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>sexo, d<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>ascites)</span>
+<span id="cb7-3"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">round</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">chisq.test</span>(tabla2)<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>expected, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>)</span></code></pre></div></div>
+</details>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in chisq.test(tabla2): Chi-squared approximation may be incorrect</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>        
+             0    1
+  Hombre  33.2  2.8
+  Mujer  254.8 21.2</code></pre>
+</div>
+<details class="code-fold">
+<summary>Ver código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">fisher.test</span>(tabla2)</span></code></pre></div></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Fisher's Exact Test for Count Data
+
+data:  tabla2
+p-value = 0.7474
+alternative hypothesis: true odds ratio is not equal to 1
+95 percent confidence interval:
+ 0.2496388 4.9989515
+sample estimates:
+odds ratio 
+ 0.9061537 </code></pre>
+</div>
+</div>
+<p>En la primera tabla, todas las frecuencias esperadas superan 44, así que el chi cuadrado es adecuado. En la segunda, la frecuencia esperada de hombres con ascitis es 2,8 (una de cuatro celdas, el 25 %), por lo que corresponde Fisher.</p>
+</section>
+<section id="cómo-reportarlo" class="level2">
+<h2 class="anchored" data-anchor-id="cómo-reportarlo">Cómo reportarlo</h2>
+<div class="reporte">
+<blockquote class="blockquote">
+<p>La presencia de arañas vasculares fue similar en los pacientes que recibieron D-penicilamina (28,5 %) y en los que recibieron placebo (29,2 %) (p = 0,98; prueba de chi cuadrado con corrección de continuidad).</p>
+</blockquote>
+</div>
+</section>
+<section id="diagnóstico-diferencial" class="level2">
+<h2 class="anchored" data-anchor-id="diagnóstico-diferencial">Diagnóstico diferencial</h2>
+<ul>
+<li><strong>Prueba de McNemar.</strong> Para un desenlace categórico medido dos veces en las mismas personas.</li>
+<li><strong><a href="../../prospecto/diccionario.html#regresion-logistica" class="dic">Regresión logística</a> o de <a href="../../prospecto/diccionario.html#regresion-de-poisson" class="dic">Poisson</a>.</strong> Para estimar la asociación ajustando por confusores.</li>
+<li><strong><a href="../../prospecto/diccionario.html#prueba-de-chi-cuadrado" class="dic">Prueba de chi cuadrado</a> de Rao-Scott.</strong> Para tablas de encuestas con diseño complejo.</li>
+</ul>
+<p>Revisa también la receta corta de esta prueba en el <a href="../../blog/que-prueba-estadistica/index.html#haz-tu-triaje">Triaje estadístico</a>.</p>
+</section>
+<section id="referencias" class="level2">
+<h2 class="anchored" data-anchor-id="referencias">Referencias</h2>
+<ol type="1">
+<li>Kirkwood BR, Sterne JAC. <em>Essential Medical Statistics</em>. 2.ª ed.&nbsp;Oxford: Blackwell Science; 2003.</li>
+<li>Cochran WG. Some methods for strengthening the common χ² tests. <em>Biometrics</em>. 1954;10(4):417-51.</li>
+<li>Campbell I. Chi-squared and Fisher-Irwin tests of two-by-two tables with small sample recommendations. <em>Stat Med</em>. 2007;26:3661-75.</li>
+<li>Dickson ER, Grambsch PM, Fleming TR, Fisher LD, Langworthy A. Prognosis in primary biliary cirrhosis: model for decision making. <em>Hepatology</em>. 1989;10(1):1-7.</li>
+</ol>
+<div class="cta">
+<p><strong>¿No sabes si tu tabla cumple los supuestos?</strong></p>
+<p>Te ayudo a elegir, ejecutar y reportar la prueba correcta para tu tesis.</p>
+<p><a href="https://api.whatsapp.com/send?phone=51955446754&amp;text=Hola%2C%20le%C3%AD%20el%20vadem%C3%A9cum%20estad%C3%ADstico%20de%20tu%20web%20y%20quiero%20informaci%C3%B3n%20sobre%20asesor%C3%ADa%20para%20mi%20tesis">Escríbeme por WhatsApp</a></p>
+</div>
+
+
+</section>
+
+ ]]></description>
+  <category>Vademécum estadístico</category>
+  <category>Pruebas estadísticas</category>
+  <category>Tesis</category>
+  <guid>https://anthonyromero.netlify.app/vademecum/chi-cuadrado/</guid>
+  <pubDate>Thu, 22 Oct 2026 05:00:00 GMT</pubDate>
+  <media:content url="https://anthonyromero.netlify.app/vademecum/chi-cuadrado/portada.png" medium="image" type="image/png" height="76" width="144"/>
+</item>
+<item>
+  <title>¿El odds ratio es un riesgo relativo?</title>
+  <dc:creator>Anthony Romero-Cerdán, MD</dc:creator>
+  <link>https://anthonyromero.netlify.app/casos/rr-vs-or/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+
+<p><a href="../../casos/index.html" class="sello"><img src="https://anthonyromero.netlify.app/images/marcas/casos.svg" class="img-fluid"><span><b>Caso clínico estadístico</b><em>Caso n.º 1</em></span></a></p>
+<section id="el-caso" class="level2">
+<h2 class="anchored" data-anchor-id="el-caso">El caso</h2>
+<p><em>Caso ilustrativo, con datos simulados.</em></p>
+<p>Una tesista quiere saber si la inducción del trabajo de parto se asocia con terminar en cesárea. Para responderlo, diseña una cohorte retrospectiva en un hospital regional del Perú. Revisa las historias clínicas de 500 gestantes nulíparas a término, con feto único en presentación cefálica, atendidas durante un año.</p>
+<p>La exposición es el inicio del trabajo de parto: inducido (200 gestantes) o espontáneo (300). El desenlace es el parto por cesárea.</p>
+<p>Terminaron en cesárea 90 de las 200 gestantes inducidas (45 %) y 75 de las 300 con inicio espontáneo (25 %). En su borrador, la tesista reporta dos cifras:</p>
+<ul>
+<li><strong>RR = 1,80</strong> (IC 95 %: 1,40 a 2,31)</li>
+<li><strong>OR = 2,45</strong> (IC 95 %: 1,68 a 3,60)</li>
+</ul>
+<p>Su conclusión es que «las gestantes inducidas tienen 2,45 veces más riesgo de cesárea».</p>
+<div style="overflow-x:auto">
+
+<table class="mapa caption-top table">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Cesárea</th>
+<th data-quarto-table-cell-role="th">Parto vaginal</th>
+<th data-quarto-table-cell-role="th">Total</th>
+<th data-quarto-table-cell-role="th">Riesgo</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">Inducido</th>
+<td><strong>a</strong> = 90</td>
+<td><strong>b</strong> = 110</td>
+<td>200</td>
+<td>45 %</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">Espontáneo</th>
+<td><strong>c</strong> = 75</td>
+<td><strong>d</strong> = 225</td>
+<td>300</td>
+<td>25 %</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</section>
+<section id="cuáles-de-estas-afirmaciones-son-verdaderas" class="level2">
+<h2 class="anchored" data-anchor-id="cuáles-de-estas-afirmaciones-son-verdaderas">¿Cuáles de estas afirmaciones son verdaderas?</h2>
+<ol type="a">
+<li><p>El riesgo de cesárea fue 80 % mayor en las gestantes inducidas que en las de inicio espontáneo.</p></li>
+<li><p>La conclusión de la tesista es correcta: el OR de 2,45 indica que el riesgo de cesárea es 2,45 veces mayor con la inducción.</p></li>
+<li><p>Si la cesárea hubiera sido rara (por ejemplo, 2 % frente a 1 %), el OR y el RR habrían sido casi iguales.</p></li>
+<li><p>Si la misma pregunta se estudiara con un diseño de casos y controles, el RR podría calcularse directamente de la tabla 2 × 2.</p></li>
+</ol>
+</section>
+<section id="pase-de-visita" class="level2">
+<h2 class="anchored" data-anchor-id="pase-de-visita">Pase de visita</h2>
+<div class="autoeval">
+<div class="pregunta">
+<p><strong>a) El riesgo de cesárea fue 80 % mayor en las gestantes inducidas que en las de inicio espontáneo.</strong></p>
+<details>
+<summary>
+Ver respuesta
+</summary>
+<strong>Verdadera.</strong> En una cohorte se mide directamente el riesgo (la incidencia acumulada) en cada grupo: 90/200 = 0,45 y 75/300 = 0,25. El <a href="../../prospecto/diccionario.html#riesgo-relativo" class="dic">riesgo relativo</a> es 0,45/0,25 = 1,80, es decir, un riesgo 80 % mayor. El IC 95 % (1,40 a 2,31) no incluye el 1, así que el resultado es compatible con un aumento real del riesgo.
+</details>
+</div>
+<div class="pregunta">
+<p><strong>b) La conclusión de la tesista es correcta: el OR de 2,45 indica que el riesgo de cesárea es 2,45 veces mayor con la inducción.</strong></p>
+<details>
+<summary>
+Ver respuesta
+</summary>
+<strong>Falsa.</strong> El <a href="../../prospecto/diccionario.html#odds-ratio" class="dic">odds ratio</a> compara <a href="../../prospecto/diccionario.html#odds" class="dic">odds</a>, no riesgos. La odds de cesárea fue 90/110 = 0,82 en las inducidas y 75/225 = 0,33 en las de inicio espontáneo; su cociente es 2,45. Leerlo como «2,45 veces más riesgo» exagera la asociación, porque el riesgo en realidad fue 1,8 veces mayor. Un jurado atento lo va a observar.
+</details>
+</div>
+<div class="pregunta">
+<p><strong>c) Si la cesárea hubiera sido rara (por ejemplo, 2 % frente a 1 %), el OR y el RR habrían sido casi iguales.</strong></p>
+<details>
+<summary>
+Ver respuesta
+</summary>
+<strong>Verdadera.</strong> Cuando el desenlace es raro, casi todas las personas quedan en la columna «sin desenlace», y la odds (a/b) se parece mucho al riesgo (a/[a + b]). Con 4 cesáreas de 200 inducidas y 3 de 300 espontáneas, el RR sería 2,00 y el OR 2,02. Con un desenlace del 25 % al 45 %, como en este caso, la diferencia es grande. El OR siempre queda más lejos de 1 que el RR.
+</details>
+</div>
+<div class="pregunta">
+<p><strong>d) Si la misma pregunta se estudiara con un diseño de casos y controles, el RR podría calcularse directamente de la tabla 2 × 2.</strong></p>
+<details>
+<summary>
+Ver respuesta
+</summary>
+<strong>Falsa.</strong> En un estudio de <a href="../../disenos/casos-y-controles/index.html">casos y controles</a>, el investigador fija cuántos casos y cuántos controles incluye. Por eso, la proporción de cesáreas en la tabla refleja esa decisión, no el riesgo real de la población, y el RR calculado con esa tabla no tiene sentido. Lo que sí se puede estimar es el OR, que no depende de esa proporción.
+</details>
+</div>
+</div>
+</section>
+<section id="rp" class="level2">
+<h2 class="anchored" data-anchor-id="rp">Rp/</h2>
+<div class="en-una-frase">
+<p>Si tu diseño te permite medir el riesgo, reporta el RR; el OR solo se parece al RR cuando el desenlace es raro.</p>
+</div>
+</section>
+<section id="diagnóstico-diferencial" class="level2">
+<h2 class="anchored" data-anchor-id="diagnóstico-diferencial">Diagnóstico diferencial</h2>
+<ul>
+<li><strong><a href="../../prospecto/diccionario.html#razon-de-prevalencias" class="dic">Razón de prevalencias</a>.</strong> Es la medida equivalente al RR en un <a href="../../prospecto/diccionario.html#estudio-transversal" class="dic">estudio transversal</a>. Compara prevalencias, no incidencias.</li>
+<li><strong>OR de una <a href="../../prospecto/diccionario.html#regresion-logistica" class="dic">regresión logística</a>.</strong> Cuando ajustas por confusores en una cohorte con un desenlace frecuente, el OR ajustado tiene el mismo problema. Para obtener el RR ajustado se usa la <a href="../../prospecto/diccionario.html#regresion-de-poisson" class="dic">regresión de Poisson</a> con <a href="../../prospecto/diccionario.html#varianza-robusta" class="dic">varianza robusta</a> o un <a href="../../prospecto/diccionario.html#modelo-log-binomial" class="dic">modelo log-binomial</a>.</li>
+</ul>
+</section>
+<section id="en-r" class="level2">
+<h2 class="anchored" data-anchor-id="en-r">En R</h2>
+<div class="cell">
+<details class="code-fold">
+<summary>Ver código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Tabla 2 × 2 del caso</span></span>
+<span id="cb1-2">a <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">90</span>; b <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">110</span>   <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># inducido: cesárea, parto vaginal</span></span>
+<span id="cb1-3">c <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">75</span>; d <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">225</span>   <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># espontáneo: cesárea, parto vaginal</span></span>
+<span id="cb1-4"></span>
+<span id="cb1-5"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Riesgo relativo con IC 95 % (método log)</span></span>
+<span id="cb1-6">rr    <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> (a <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span> (a <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> b)) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span> (c <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span> (c <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> d))</span>
+<span id="cb1-7">se_rr <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">sqrt</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span>a <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span>(a <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> b) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span>c <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span>(c <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> d))</span>
+<span id="cb1-8"></span>
+<span id="cb1-9"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Odds ratio con IC 95 % (método de Woolf)</span></span>
+<span id="cb1-10">or    <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> (a <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span> d) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span> (b <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span> c)</span>
+<span id="cb1-11">se_or <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">sqrt</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span>a <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span>b <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span>c <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span>d)</span>
+<span id="cb1-12"></span>
+<span id="cb1-13"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">round</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">rbind</span>(</span>
+<span id="cb1-14">  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">RR =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">estimado =</span> rr, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">li =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">exp</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">log</span>(rr) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1.96</span> <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span> se_rr), <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">ls =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">exp</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">log</span>(rr) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1.96</span> <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span> se_rr)),</span>
+<span id="cb1-15">  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">OR =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">estimado =</span> or, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">li =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">exp</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">log</span>(or) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1.96</span> <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span> se_or), <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">ls =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">exp</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">log</span>(or) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1.96</span> <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span> se_or))</span>
+<span id="cb1-16">), <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span>)</span></code></pre></div></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>   estimado   li   ls
+RR     1.80 1.40 2.31
+OR     2.45 1.68 3.60</code></pre>
+</div>
+</div>
+</section>
+<section id="para-profundizar" class="level2">
+<h2 class="anchored" data-anchor-id="para-profundizar">Para profundizar</h2>
+<ul>
+<li><a href="../../prospecto/or-vs-rp/inicial.html">¿OR o RP?</a>, en Prospecto R: qué medida reportar en tu estudio transversal.</li>
+<li><a href="../../disenos/cohortes/index.html">El estudio de cohortes</a> y <a href="../../disenos/casos-y-controles/index.html">El estudio de casos y controles</a>, en Diseños de estudio.</li>
+<li><a href="../../herramientas/muestra/index.html#mod=dprop&amp;dis=co">Calcula el tamaño de muestra de tu cohorte</a> en el Consultorio estadístico.</li>
+</ul>
+</section>
+<section id="referencias" class="level2">
+<h2 class="anchored" data-anchor-id="referencias">Referencias</h2>
+<ol type="1">
+<li>Zhang J, Yu KF. What’s the relative risk? A method of correcting the odds ratio in cohort studies of common outcomes. <em>JAMA</em>. 1998;280(19):1690-1.</li>
+<li>Davies HT, Crombie IK, Tavakoli M. When can odds ratios mislead? <em>BMJ</em>. 1998;316(7136):989-91.</li>
+</ol>
+<div class="cta">
+<p><strong>¿Te tocó un caso así en tu tesis?</strong></p>
+<p>Te ayudo a elegir e interpretar el análisis correcto.</p>
+<p><a href="https://api.whatsapp.com/send?phone=51955446754&amp;text=Hola%2C%20le%C3%AD%20un%20caso%20cl%C3%ADnico%20estad%C3%ADstico%20en%20tu%20web%20y%20quiero%20informaci%C3%B3n%20sobre%20asesor%C3%ADa%20para%20mi%20tesis">Escríbeme por WhatsApp</a></p>
+</div>
+
+
+</section>
+
+ ]]></description>
+  <category>Caso clínico estadístico</category>
+  <category>medidas de asociación</category>
+  <category>Epidemiología</category>
+  <category>Tesis</category>
+  <guid>https://anthonyromero.netlify.app/casos/rr-vs-or/</guid>
+  <pubDate>Tue, 20 Oct 2026 05:00:00 GMT</pubDate>
+  <media:content url="https://anthonyromero.netlify.app/casos/rr-vs-or/portada.png" medium="image" type="image/png" height="76" width="144"/>
+</item>
 <item>
   <title>El estudio de cohortes</title>
   <dc:creator>Anthony Romero-Cerdán, MD</dc:creator>

@@ -1,0 +1,98 @@
+---
+title: "U de Mann-Whitney"
+description: "Vademécum estadístico: indicación, contraindicaciones, posología, interacciones y reacciones adversas de la prueba U de Mann-Whitney (suma de rangos de Wilcoxon), con su código en R."
+date: 2026-11-05
+draft: true
+image: portada.png
+categories: [Vademécum estadístico, Pruebas estadísticas, Tesis]
+---
+
+[![](../../images/marcas/vademecum.svg)<span><b>Vademécum estadístico</b><em>Ficha n.º 3</em></span>](../index.qmd){.sello}
+
+::: {.en-una-frase}
+Compara una variable numérica asimétrica u ordinal entre dos grupos de personas distintas. No compara medianas, salvo que las distribuciones tengan la misma forma.
+:::
+
+## Indicación
+
+Comparar dos grupos independientes cuando la variable es ordinal (una escala de Likert, el estadio de una enfermedad) o numérica con una distribución muy asimétrica y una muestra pequeña: días de estancia, cargas virales o valores de laboratorio con colas largas.
+
+## Mecanismo de acción
+
+Ordena a todos los participantes de ambos grupos de menor a mayor y reemplaza cada valor por su rango. Luego compara la suma de rangos de cada grupo. La pregunta que responde es si los valores de un grupo tienden a ser mayores que los del otro: la probabilidad de que una persona elegida al azar de un grupo tenga un valor más alto que una elegida al azar del otro.
+
+Como trabaja con rangos, los valores extremos pesan menos que en la prueba t.
+
+## Contraindicaciones
+
+- **Datos pareados.** Para las mismas personas medidas dos veces corresponde la prueba de rangos con signo de Wilcoxon.
+- **Muchos empates.** Si la variable tiene pocas categorías posibles, hay muchos valores repetidos y la prueba pierde información. R lo advierte y usa una aproximación.
+- **Querer comparar medianas en grupos de forma distinta.** La prueba puede ser significativa porque los grupos difieren en su dispersión aunque tengan la misma mediana (Hart, 2001).
+
+## Posología
+
+No hay una fórmula tan simple como para la prueba t. Frente a ella, la eficiencia relativa de la prueba de rangos es de 0,955 cuando los datos son normales y nunca baja de 0,864. Por eso, una regla prudente es calcular el tamaño para comparar dos medias y aumentarlo alrededor de un 15 %.
+
+::: {.usa-calc}
+![](../../images/marcas/muestra.svg)
+
+Calcúlalo en el Consultorio estadístico: [tamaño de muestra para comparar dos medias](../../herramientas/muestra/index.qmd#mod=med).
+:::
+
+## Interacciones
+
+- **Prueba de normalidad como filtro automático.** Elegir Mann-Whitney solo porque Shapiro-Wilk dio p < 0,05 no es un buen criterio. Con muestras grandes, la prueba t de Welch suele funcionar bien aunque la variable no sea normal (Ruxton, 2006); la decisión depende también de qué quieres comparar.
+- **Medida del efecto.** El valor p no dice cuánto difieren los grupos. Con `wilcox.test(conf.int = TRUE)`, R estima la diferencia de Hodges-Lehmann con su IC 95 %: la mediana de todas las diferencias posibles entre un valor de un grupo y uno del otro.
+- **Descripción coherente.** Si usas una prueba de rangos, describe a los grupos con [mediana y RIC](../../prospecto/diccionario.qmd#mediana-y-ric){.dic}, no con media y desviación estándar.
+
+## Reacciones adversas frecuentes en las tesis
+
+- **Escribir «se compararon las medianas».** Es correcto solo si las distribuciones de ambos grupos tienen la misma forma.
+- **Reportar media y desviación estándar junto a un p de Mann-Whitney.** La descripción y la prueba deben ir en el mismo lenguaje.
+- **Usarla con datos pareados.** Un diseño antes y después necesita la prueba de rangos con signo.
+
+## Presentación en R
+
+Con la base `pbc` comparamos la bilirrubina, una variable muy asimétrica, entre los grupos del ensayo (ver el [caso n.º 23](../../casos/distribuciones-sesgadas/index.qmd)).
+
+```{r}
+#| echo: true
+library(survival)
+d <- pbc[!is.na(pbc$trt), ]                    # los 312 pacientes del ensayo
+d$grupo <- factor(d$trt, 1:2, c("D-penicilamina", "Placebo"))
+
+# Mediana y rango intercuartílico por grupo
+aggregate(bili ~ grupo, data = d, FUN = function(x) quantile(x, c(0.25, 0.5, 0.75)))
+
+# Prueba y diferencia de Hodges-Lehmann con su IC 95 %
+wilcox.test(bili ~ grupo, data = d, exact = FALSE, conf.int = TRUE)
+```
+
+## Cómo reportarlo
+
+::: {.reporte}
+> La mediana de bilirrubina sérica fue de 1,40 mg/dL (RIC: 0,80 a 3,20) en el grupo de D-penicilamina y de 1,30 mg/dL (RIC: 0,72 a 3,60) en el grupo placebo (p = 0,84; prueba U de Mann-Whitney). La diferencia de Hodges-Lehmann fue de 0,00 mg/dL (IC 95 %: −0,20 a 0,20).
+:::
+
+## Diagnóstico diferencial
+
+- **Prueba t de Welch.** Si la distribución es razonablemente simétrica o la muestra es grande (ver la [ficha n.º 2](../t-de-welch/index.qmd)).
+- **Rangos con signo de Wilcoxon.** Para las mismas personas medidas dos veces.
+- **Kruskal-Wallis.** Para tres o más grupos.
+
+Revisa también la receta corta de esta prueba en el [Triaje estadístico](../../blog/que-prueba-estadistica/index.qmd#haz-tu-triaje).
+
+## Referencias
+
+1. Hart A. Mann-Whitney test is not just a test of medians: differences in spread can be important. *BMJ*. 2001;323(7309):391-3.
+2. Ruxton GD. The unequal variance t-test is an underused alternative to Student's t-test and the Mann-Whitney U test. *Behav Ecol*. 2006;17(4):688-90.
+3. Kirkwood BR, Sterne JAC. *Essential Medical Statistics*. 2.ª ed. Oxford: Blackwell Science; 2003.
+4. Dickson ER, Grambsch PM, Fleming TR, Fisher LD, Langworthy A. Prognosis in primary biliary cirrhosis: model for decision making. *Hepatology*. 1989;10(1):1-7.
+
+::: {.cta}
+**¿Tus datos no se parecen a una campana?**
+
+Te ayudo a elegir, ejecutar y reportar la prueba correcta para tu tesis.
+
+[Escríbeme por WhatsApp](https://api.whatsapp.com/send?phone=51955446754&text=Hola%2C%20le%C3%AD%20el%20vadem%C3%A9cum%20estad%C3%ADstico%20de%20tu%20web%20y%20quiero%20informaci%C3%B3n%20sobre%20asesor%C3%ADa%20para%20mi%20tesis)
+:::

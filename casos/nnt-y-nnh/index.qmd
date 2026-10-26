@@ -1,0 +1,127 @@
+---
+title: "¿A cuántos hay que tratar para que uno se beneficie?"
+description: "Caso clínico estadístico: un ensayo de profilaxis con una reducción relativa del 50 %, un NNT y un NNH. Decide qué afirmaciones son verdaderas y por qué."
+date: 2026-11-10
+draft: true
+image: portada.png
+categories: [Caso clínico estadístico, medidas de asociación, Epidemiología, Tesis]
+---
+
+[![](../../images/marcas/casos.svg)<span><b>Caso clínico estadístico</b><em>Caso n.º 4</em></span>](../index.qmd){.sello}
+
+## El caso
+
+*Caso ilustrativo, con datos simulados.*
+
+Un ensayo con asignación aleatoria evalúa un fármaco profiláctico para prevenir la trombosis venosa en adultos hospitalizados por enfermedades médicas agudas. Participan 2000 pacientes: 1000 reciben el fármaco durante la hospitalización y 1000 reciben placebo.
+
+Durante la hospitalización, presentaron trombosis venosa sintomática 30 pacientes del grupo tratado (3 %) y 60 del grupo placebo (6 %). Hubo sangrado mayor en 25 pacientes tratados (2,5 %) y en 10 con placebo (1,0 %).
+
+Con estos datos, el equipo reporta:
+
+- **Reducción relativa del riesgo (RRR) de trombosis:** 50 %.
+- **[Reducción absoluta del riesgo](../../prospecto/diccionario.qmd#reduccion-absoluta-del-riesgo){.dic} (RAR):** 3,0 puntos porcentuales (IC 95 %: 1,2 a 4,8).
+- **[Número necesario a tratar](../../prospecto/diccionario.qmd#numero-necesario-a-tratar){.dic} (NNT):** 34 (IC 95 %: 21 a 85).
+- **Aumento absoluto del riesgo de sangrado:** 1,5 puntos porcentuales (IC 95 %: 0,4 a 2,6).
+- **Número necesario para dañar (NNH):** 67.
+
+La nota de prensa del hospital titula: «Nuevo fármaco evita la trombosis en la mitad de los pacientes».
+
+## ¿Cuáles de estas afirmaciones son verdaderas?
+
+a) El titular es correcto: el fármaco evita la trombosis en la mitad de los pacientes tratados.
+
+b) Hay que tratar a unos 34 pacientes durante su hospitalización para evitar una trombosis que de otro modo habría ocurrido.
+
+c) Como el NNH (67) es mayor que el NNT (34), el fármaco siempre conviene.
+
+d) En pacientes de bajo riesgo, con una trombosis del 0,6 % sin profilaxis y la misma reducción relativa del 50 %, el NNT seguiría siendo 34.
+
+## Pase de visita
+
+::: {.autoeval}
+::: {.pregunta}
+**a) El titular es correcto: el fármaco evita la trombosis en la mitad de los pacientes tratados.**
+
+<details><summary>Ver respuesta</summary>
+**Falsa.** La reducción relativa del 50 % se aplica al riesgo, no a los pacientes. Sin el fármaco, 94 de cada 100 pacientes no habrían tenido trombosis de todos modos. Con el fármaco, el riesgo baja de 6 % a 3 %: se evitan 3 trombosis por cada 100 tratados, no 50. Las cifras relativas suenan más impactantes que las absolutas, y por eso conviene reportar ambas.
+</details>
+:::
+
+::: {.pregunta}
+**b) Hay que tratar a unos 34 pacientes durante su hospitalización para evitar una trombosis que de otro modo habría ocurrido.**
+
+<details><summary>Ver respuesta</summary>
+**Verdadera.** El NNT es el inverso de la reducción absoluta del riesgo: 1 / 0,03 = 33,3, que se redondea hacia arriba a 34. Siempre se acompaña del periodo de tratamiento o seguimiento, aquí la hospitalización. Su IC 95 % (21 a 85) se obtiene invirtiendo los límites del IC de la RAR, y muestra que el beneficio real podría ser bastante menor que el estimado.
+</details>
+:::
+
+::: {.pregunta}
+**c) Como el NNH (67) es mayor que el NNT (34), el fármaco siempre conviene.**
+
+<details><summary>Ver respuesta</summary>
+**Falsa.** Comparar el NNT y el NNH es útil: por cada 67 tratados hay un sangrado mayor adicional, y en ese mismo grupo se evitan unas 2 trombosis (67 / 34). Pero los números no dicen cuánto pesa cada desenlace: una trombosis no equivale a un sangrado mayor. La decisión depende de la gravedad de ambos, del riesgo de cada paciente y de sus preferencias, no solo de comparar dos cifras.
+</details>
+:::
+
+::: {.pregunta}
+**d) En pacientes de bajo riesgo, con una trombosis del 0,6 % sin profilaxis y la misma reducción relativa del 50 %, el NNT seguiría siendo 34.**
+
+<details><summary>Ver respuesta</summary>
+**Falsa.** Con el mismo efecto relativo, el beneficio absoluto depende del riesgo basal. El riesgo bajaría de 0,6 % a 0,3 %, una RAR de 0,003, y el NNT sería 1 / 0,003 = 334. Habría que tratar a diez veces más pacientes para evitar una trombosis, mientras que el riesgo de sangrado probablemente no cambiaría. Por eso un mismo fármaco puede convenir en pacientes de alto riesgo y no en los de bajo riesgo.
+</details>
+:::
+:::
+
+## Rp/
+
+::: {.en-una-frase}
+El efecto relativo vende, pero el absoluto decide: reporta la RAR y el NNT, con su IC y su periodo de seguimiento.
+:::
+
+## Diagnóstico diferencial
+
+- **[Riesgo relativo](../../prospecto/diccionario.qmd#riesgo-relativo){.dic} y RRR.** El RR es 0,03 / 0,06 = 0,50 y la RRR es 1 − RR = 50 %. Ambos ignoran el riesgo basal.
+- **NNT de un [odds ratio](../../prospecto/diccionario.qmd#odds-ratio){.dic}.** El NNT se calcula con diferencias de riesgos. Si solo tienes un OR, necesitas además el riesgo basal para estimarlo.
+- **NNT no significativo.** Si el IC de la RAR incluye el 0, el IC del NNT pasa por el infinito y va de un NNT a un NNH. Se reporta así, sin recortar el intervalo.
+
+## En R
+
+```{r}
+#| echo: true
+n <- 1000                                 # pacientes por grupo
+riesgo_trat    <- 30 / n                  # trombosis con el fármaco
+riesgo_placebo <- 60 / n                  # trombosis con placebo
+
+rar    <- riesgo_placebo - riesgo_trat
+se_rar <- sqrt(riesgo_trat * (1 - riesgo_trat) / n +
+               riesgo_placebo * (1 - riesgo_placebo) / n)
+ic_rar <- rar + c(-1, 1) * 1.96 * se_rar
+
+c(RRR = 1 - riesgo_trat / riesgo_placebo,
+  RAR = rar, li = ic_rar[1], ls = ic_rar[2])
+
+# NNT con IC 95 % (se invierten los límites de la RAR)
+c(NNT = ceiling(1 / rar), li = ceiling(1 / ic_rar[2]), ls = ceiling(1 / ic_rar[1]))
+
+# NNH del sangrado mayor
+ceiling(1 / (25 / n - 10 / n))
+```
+
+## Para profundizar
+
+- [El estudio de cohortes](../../disenos/cohortes/index.qmd), en Diseños de estudio: riesgo, incidencia y riesgo relativo.
+- Caso n.º 1: [¿El odds ratio es un riesgo relativo?](../rr-vs-or/index.qmd)
+
+## Referencias
+
+1. Laupacis A, Sackett DL, Roberts RS. An assessment of clinically useful measures of the consequences of treatment. *N Engl J Med*. 1988;318(26):1728-33.
+2. Altman DG. Confidence intervals for the number needed to treat. *BMJ*. 1998;317(7168):1309-12.
+
+::: {.cta}
+**¿Te tocó un caso así en tu tesis?**
+
+Te ayudo a elegir e interpretar el análisis correcto.
+
+[Escríbeme por WhatsApp](https://api.whatsapp.com/send?phone=51955446754&text=Hola%2C%20le%C3%AD%20un%20caso%20cl%C3%ADnico%20estad%C3%ADstico%20en%20tu%20web%20y%20quiero%20informaci%C3%B3n%20sobre%20asesor%C3%ADa%20para%20mi%20tesis)
+:::

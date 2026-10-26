@@ -1,0 +1,127 @@
+---
+title: "¿Las madres recuerdan igual?"
+description: "Caso clínico estadístico: un estudio de casos y controles sobre malformaciones congénitas en el que el OR cambia según de dónde salga el dato. Decide qué afirmaciones son verdaderas y por qué."
+date: 2026-11-17
+draft: true
+image: portada.png
+categories: [Caso clínico estadístico, Diseños de estudio, Epidemiología, Tesis]
+---
+
+[![](../../images/marcas/casos.svg)<span><b>Caso clínico estadístico</b><em>Caso n.º 5</em></span>](../index.qmd){.sello}
+
+## El caso
+
+*Caso ilustrativo, con datos simulados.*
+
+Una tesista quiere saber si la infección urinaria en el primer trimestre del embarazo se asocia con malformaciones congénitas. Diseña un estudio de casos y controles en un hospital materno del Perú.
+
+Los casos son 150 madres de recién nacidos con alguna malformación congénita mayor. Los controles son 300 madres de recién nacidos sin malformaciones, atendidas en el mismo hospital y en el mismo periodo. A todas las entrevista durante el puerperio y les pregunta si tuvieron infección urinaria en el primer trimestre.
+
+Reportaron la infección 45 de las 150 madres de casos (30 %) y 54 de las 300 de controles (18 %): **OR = 1,95** (IC 95 %: 1,24 a 3,08).
+
+Su asesor le pide revisar también la historia clínica prenatal de cada madre. Con ese registro, hecho antes del parto, la infección consta en 33 casos (22 %) y 52 controles (17 %): **OR = 1,35** (IC 95 %: 0,83 a 2,19).
+
+```{=html}
+<div style="overflow-x:auto">
+<table class="mapa" style="max-width:600px">
+<thead><tr><th>Fuente del dato</th><th>Casos expuestas</th><th>Controles expuestas</th><th>OR (IC 95 %)</th></tr></thead>
+<tbody>
+<tr><th>Entrevista en el puerperio</th><td>45/150 (30 %)</td><td>54/300 (18 %)</td><td>1,95 (1,24 a 3,08)</td></tr>
+<tr><th>Historia clínica prenatal</th><td>33/150 (22 %)</td><td>52/300 (17 %)</td><td>1,35 (0,83 a 2,19)</td></tr>
+</tbody></table>
+</div>
+```
+
+## ¿Cuáles de estas afirmaciones son verdaderas?
+
+a) Las madres de recién nacidos con malformación pueden recordar con más detalle lo ocurrido en el embarazo, y eso puede inflar el OR obtenido por entrevista.
+
+b) Usar la historia clínica prenatal, registrada antes de conocer el desenlace, reduce ese sesgo.
+
+c) Un estudio transversal en gestantes habría evitado el problema y, además, habría demostrado que la infección precede a la malformación.
+
+d) Como los controles salieron del mismo hospital que los casos, el estudio no puede tener sesgo de selección.
+
+## Pase de visita
+
+::: {.autoeval}
+::: {.pregunta}
+**a) Las madres de recién nacidos con malformación pueden recordar con más detalle lo ocurrido en el embarazo, y eso puede inflar el OR obtenido por entrevista.**
+
+<details><summary>Ver respuesta</summary>
+**Verdadera.** Es el **[sesgo de recuerdo](../../prospecto/diccionario.qmd#sesgo-de-recuerdo){.dic}**, un sesgo de información típico de los [casos y controles](../../disenos/casos-y-controles/index.qmd), porque la exposición se pregunta después del desenlace. Una madre que busca una explicación para la malformación de su hijo revisa su embarazo con más detalle que una madre con un recién nacido sano. Si los casos recuerdan mejor que los controles, la exposición se reporta más en los casos y el OR se aleja de 1. En este caso, la diferencia entre las fuentes del dato muestra una sobrerrepresentación de la exposición en los casos.
+</details>
+:::
+
+::: {.pregunta}
+**b) Usar la historia clínica prenatal, registrada antes de conocer el desenlace, reduce ese sesgo.**
+
+<details><summary>Ver respuesta</summary>
+**Verdadera.** Cuando el dato de exposición se registró antes del desenlace y con el mismo procedimiento para casos y controles, el recuerdo de la madre ya no influye. Aquí el OR baja de 1,95 a 1,35 y su IC 95 % pasa a incluir el 1. Eso no prueba que no haya asociación, pero sí que la asociación inicial estaba sobreestimada. La historia clínica tiene sus propios límites: subregistro y datos incompletos.
+</details>
+:::
+
+::: {.pregunta}
+**c) Un estudio transversal en gestantes habría evitado el problema y, además, habría demostrado que la infección precede a la malformación.**
+
+<details><summary>Ver respuesta</summary>
+**Falsa.** Un [estudio transversal](../../disenos/transversal/index.qmd) mide exposición y desenlace en el mismo momento, así que no establece la secuencia temporal. Además, la mayoría de malformaciones solo se diagnostican al nacer. Para observar primero la infección y después el desenlace se necesita una [cohorte](../../disenos/cohortes/index.qmd) de gestantes seguidas hasta el parto, con un desenlace raro que exigiría muchas participantes.
+</details>
+:::
+
+::: {.pregunta}
+**d) Como los controles salieron del mismo hospital que los casos, el estudio no puede tener sesgo de selección.**
+
+<details><summary>Ver respuesta</summary>
+**Falsa.** Elegir controles del mismo hospital ayuda a que provengan de la misma población que los casos, pero no lo garantiza. Si el hospital es de referencia, los casos pueden llegar de toda la región mientras los controles son de su zona. Si los controles se atendieron por complicaciones relacionadas con la infección urinaria, la exposición también estaría sobrerrepresentada entre ellos. La pregunta clave es si los controles representan la exposición de la población de la que salieron los casos.
+</details>
+:::
+:::
+
+## Rp/
+
+::: {.en-una-frase}
+En un estudio de casos y controles, mide la exposición igual en casos y controles, y si puedes, con datos registrados antes del desenlace.
+:::
+
+## Diagnóstico diferencial
+
+- **[Confusión](../../prospecto/diccionario.qmd#confusion){.dic}.** No es un error de medición ni de selección: es una tercera variable que distorsiona la asociación. Se controla en el diseño o en el análisis; el sesgo de recuerdo, no.
+- **Sesgo del entrevistador.** Si quien pregunta sabe quién es caso, puede indagar con más insistencia. Se reduce con un cuestionario estandarizado y entrevistadores que no conozcan el grupo.
+
+## En R
+
+```{r}
+#| echo: true
+# OR con IC 95 % (método de Woolf) a partir de la tabla 2 × 2
+or_ic <- function(a, b, c, d) {
+  # a: casos expuestas, b: controles expuestas,
+  # c: casos no expuestas, d: controles no expuestas
+  or <- (a * d) / (b * c)
+  se <- sqrt(1/a + 1/b + 1/c + 1/d)
+  round(c(OR = or, li = exp(log(or) - 1.96 * se), ls = exp(log(or) + 1.96 * se)), 2)
+}
+
+rbind(
+  entrevista = or_ic(a = 45, b = 54, c = 150 - 45, d = 300 - 54),
+  historia   = or_ic(a = 33, b = 52, c = 150 - 33, d = 300 - 52)
+)
+```
+
+## Para profundizar
+
+- [El estudio de casos y controles](../../disenos/casos-y-controles/index.qmd), en Diseños de estudio: selección de controles y cálculo del OR.
+- [Calcula el tamaño de muestra de tus casos y controles](../../herramientas/muestra/index.qmd#mod=dprop&dis=cc) en el Consultorio estadístico.
+
+## Referencias
+
+1. Coughlin SS. Recall bias in epidemiologic studies. *J Clin Epidemiol*. 1990;43(1):87-91.
+2. Delgado-Rodríguez M, Llorca J. Bias. *J Epidemiol Community Health*. 2004;58(8):635-41.
+
+::: {.cta}
+**¿Te tocó un caso así en tu tesis?**
+
+Te ayudo a elegir e interpretar el análisis correcto.
+
+[Escríbeme por WhatsApp](https://api.whatsapp.com/send?phone=51955446754&text=Hola%2C%20le%C3%AD%20un%20caso%20cl%C3%ADnico%20estad%C3%ADstico%20en%20tu%20web%20y%20quiero%20informaci%C3%B3n%20sobre%20asesor%C3%ADa%20para%20mi%20tesis)
+:::

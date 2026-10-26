@@ -5,6 +5,8 @@ listing:
   contents:
     - blog
     - "disenos/*/index.qmd"   # la serie Diseños de estudio también aparece en el blog
+    - "casos/*/index.qmd"       # serie Caso clínico estadístico (sin su portada)
+    - "vademecum/*/index.qmd"   # serie Vademécum estadístico (sin su portada)
   sort: "date desc"
   type: grid
   categories: true

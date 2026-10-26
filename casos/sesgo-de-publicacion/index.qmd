@@ -1,0 +1,119 @@
+---
+title: "¿Dónde están los ensayos negativos?"
+description: "Caso clínico estadístico: 74 ensayos de antidepresivos registrados ante la FDA y lo que la literatura publicada contó de ellos. Decide qué afirmaciones son verdaderas y por qué."
+date: 2027-01-05
+draft: true
+image: portada.png
+categories: [Caso clínico estadístico, Epidemiología, Tesis]
+---
+
+[![](../../images/marcas/casos.svg)<span><b>Caso clínico estadístico</b><em>Caso n.º 12</em></span>](../index.qmd){.sello}
+
+## El caso
+
+*Estudio real: Turner y colaboradores, publicado en 2008.*
+
+Antes de aprobar un medicamento, la agencia reguladora de Estados Unidos (FDA) revisa todos los ensayos que el fabricante registró, hayan salido bien o mal. Un grupo de investigadores comparó esas revisiones con lo que se publicó en revistas científicas para 12 antidepresivos.
+
+La FDA tenía registrados **74 ensayos**, con 12 564 pacientes. Según su evaluación, 38 fueron positivos y 36 fueron negativos o dudosos.
+
+En la literatura:
+
+- De los **38 positivos**, se publicaron 37.
+- De los **36 negativos o dudosos**, 22 no se publicaron, 11 se publicaron presentados como si fueran positivos y solo 3 se publicaron como negativos.
+
+Quien leyera la literatura habría visto que el 94 % de los ensayos eran positivos; según la FDA, lo eran el 51 %. El tamaño del efecto en los datos publicados fue, en conjunto, un 32 % mayor que en los datos de la FDA.
+
+## ¿Cuáles de estas afirmaciones son verdaderas?
+
+a) Casi un tercio de los ensayos registrados nunca se publicó.
+
+b) Un metaanálisis basado solo en los ensayos publicados habría sobrestimado la eficacia de estos antidepresivos.
+
+c) Si un metaanálisis incluye suficientes estudios publicados, el sesgo de publicación se compensa.
+
+d) Si el funnel plot de un metaanálisis es simétrico, se puede descartar el sesgo de publicación.
+
+## Pase de visita
+
+::: {.autoeval}
+::: {.pregunta}
+**a) Casi un tercio de los ensayos registrados nunca se publicó.**
+
+<details><summary>Ver respuesta</summary>
+**Verdadera.** Quedaron sin publicar 23 de los 74 ensayos: 22 negativos o dudosos y 1 positivo. Eso es el 31 %. La publicación no fue al azar: casi todos los positivos se publicaron, y la mayoría de los negativos no, o se publicaron con otro enfoque.
+</details>
+:::
+
+::: {.pregunta}
+**b) Un metaanálisis basado solo en los ensayos publicados habría sobrestimado la eficacia de estos antidepresivos.**
+
+<details><summary>Ver respuesta</summary>
+**Verdadera.** El metaanálisis combina lo que encuentra. Si faltan los ensayos negativos y algunos negativos aparecen como positivos, el efecto combinado se infla. Aquí, el tamaño del efecto en los datos publicados fue un 32 % mayor que en los datos completos de la FDA. Quien se basara solo en la literatura habría creído que estos fármacos funcionan mejor de lo que funcionan.
+</details>
+:::
+
+::: {.pregunta}
+**c) Si un metaanálisis incluye suficientes estudios publicados, el sesgo de publicación se compensa.**
+
+<details><summary>Ver respuesta</summary>
+**Falsa.** El [sesgo de publicación](../../prospecto/diccionario.qmd#sesgo-de-publicacion){.dic} es sistemático: los estudios que faltan no faltan al azar, sino porque tenían resultados desfavorables. Sumar más estudios publicados aumenta la [precisión](../../prospecto/diccionario.qmd#precision){.dic} de una estimación sesgada, pero no corrige el sesgo. Se obtiene un intervalo de confianza más estrecho alrededor del valor equivocado.
+</details>
+:::
+
+::: {.pregunta}
+**d) Si el funnel plot de un metaanálisis es simétrico, se puede descartar el sesgo de publicación.**
+
+<details><summary>Ver respuesta</summary>
+**Falsa.** El funnel plot grafica el efecto de cada estudio frente a su precisión: sin sesgo, los estudios pequeños se dispersan a ambos lados del efecto combinado. La asimetría sugiere que faltan estudios pequeños con resultados desfavorables, pero también puede deberse a heterogeneidad o al azar. Y un gráfico simétrico, sobre todo con pocos estudios, no garantiza que no falten ensayos: la mejor protección es buscarlos en registros de ensayos y en documentos regulatorios.
+</details>
+:::
+:::
+
+## Rp/
+
+::: {.en-una-frase}
+Lo publicado no es todo lo investigado: en tu revisión sistemática, busca también en registros de ensayos y en la literatura gris.
+:::
+
+## Diagnóstico diferencial
+
+- **Reporte selectivo de desenlaces.** El estudio se publica, pero se destacan los desenlaces favorables y se omiten los demás. Es lo que pasó con los 11 ensayos negativos presentados como positivos.
+- **Heterogeneidad.** Los estudios difieren en sus resultados por diferencias reales de población, dosis o diseño. Puede producir asimetría en el funnel plot sin que haya sesgo de publicación.
+
+## En R
+
+```{r}
+#| echo: true
+# Ensayos según la evaluación de la FDA y su destino en la literatura
+positivos <- c(publicados = 37, no_publicados = 1)
+negativos <- c(publicados_como_positivos = 11, publicados_como_negativos = 3,
+               no_publicados = 22)
+total <- sum(positivos) + sum(negativos)
+
+# Proporción no publicada
+(positivos["no_publicados"] + negativos["no_publicados"]) / total
+
+# Proporción positiva según la FDA y según la literatura
+c(FDA        = sum(positivos) / total,
+  literatura = (positivos["publicados"] + negativos["publicados_como_positivos"]) /
+               (positivos["publicados"] + sum(negativos[1:2])))
+```
+
+## Para profundizar
+
+- Caso n.º 2: [p = 0,07: ¿la intervención no sirve?](../ic-vs-valor-p/index.qmd), sobre cómo leer un resultado no significativo.
+- [Diseños de estudio](../../disenos/index.qmd): qué diseño responde qué pregunta.
+
+## Referencias
+
+1. Turner EH, Matthews AM, Linardatos E, Tell RA, Rosenthal R. Selective publication of antidepressant trials and its influence on apparent efficacy. *N Engl J Med*. 2008;358(3):252-60.
+2. Sterne JA, Sutton AJ, Ioannidis JP, Terrin N, Jones DR, Lau J, et al. Recommendations for examining and interpreting funnel plot asymmetry in meta-analyses of randomised controlled trials. *BMJ*. 2011;343:d4002.
+
+::: {.cta}
+**¿Te tocó un caso así en tu tesis?**
+
+Te ayudo a elegir e interpretar el análisis correcto.
+
+[Escríbeme por WhatsApp](https://api.whatsapp.com/send?phone=51955446754&text=Hola%2C%20le%C3%AD%20un%20caso%20cl%C3%ADnico%20estad%C3%ADstico%20en%20tu%20web%20y%20quiero%20informaci%C3%B3n%20sobre%20asesor%C3%ADa%20para%20mi%20tesis)
+:::

@@ -1,0 +1,123 @@
+---
+title: "¿Por qué el ensayo contradijo a la cohorte?"
+description: "Caso clínico estadístico: la terapia hormonal parecía proteger el corazón en una gran cohorte de enfermeras, pero un ensayo aleatorizado encontró lo contrario. Decide qué afirmaciones son verdaderas y por qué."
+date: 2027-02-09
+draft: true
+image: portada.png
+categories: [Caso clínico estadístico, Diseños de estudio, Epidemiología]
+---
+
+[![](../../images/marcas/casos.svg)<span><b>Caso clínico estadístico</b><em>Caso n.º 17</em></span>](../index.qmd){.sello}
+
+## El caso
+
+*Estudios reales: Nurses' Health Study (1996) y Women's Health Initiative (2002).*
+
+Durante años, la terapia hormonal de la posmenopausia se recomendó, entre otras razones, para prevenir la enfermedad coronaria. La base eran estudios observacionales.
+
+En el **Nurses' Health Study**, una cohorte de 59 337 enfermeras seguidas hasta 16 años, las mujeres que usaban estrógenos más progestágeno tuvieron un riesgo de enfermedad coronaria mayor mucho menor que las que no usaban hormonas: **RR ajustado = 0,39** (IC 95 %: 0,19 a 0,78).
+
+Para confirmarlo, el **Women's Health Initiative** (WHI) asignó al azar a 16 608 mujeres posmenopáusicas a recibir estrógenos más progestágeno (8506) o placebo (8102). Tras una media de 5,2 años, el ensayo se detuvo antes de lo previsto. El resultado fue el opuesto: **HR de enfermedad coronaria = 1,29** (IC 95 % nominal: 1,02 a 1,63).
+
+## ¿Cuáles de estas afirmaciones son verdaderas?
+
+a) En la cohorte, las mujeres que decidieron usar terapia hormonal probablemente diferían de las que no la usaban en factores que también protegen el corazón.
+
+b) Si la cohorte hubiera ajustado por todas las variables medidas, la confusión habría quedado eliminada por completo.
+
+c) La asignación aleatoria del WHI tiende a repartir por igual entre los grupos tanto los factores de confusión medidos como los no medidos.
+
+d) Como el WHI es un ensayo aleatorizado, sus grupos no pueden diferir al inicio en ninguna característica.
+
+## Pase de visita
+
+::: {.autoeval}
+::: {.pregunta}
+**a) En la cohorte, las mujeres que decidieron usar terapia hormonal probablemente diferían de las que no la usaban en factores que también protegen el corazón.**
+
+<details><summary>Ver respuesta</summary>
+**Verdadera.** Quien elige y mantiene un tratamiento preventivo suele tener más acceso a la atención médica, más nivel socioeconómico y mejores hábitos. Si esos factores reducen el riesgo coronario y se asocian con usar hormonas, producen [confusión](../../prospecto/diccionario.qmd#confusion){.dic}: el tratamiento parece proteger aunque no lo haga. No toda la discrepancia se atribuye a confusión: las poblaciones también diferían, por ejemplo, en el tiempo transcurrido desde la menopausia al iniciar el tratamiento.
+</details>
+:::
+
+::: {.pregunta}
+**b) Si la cohorte hubiera ajustado por todas las variables medidas, la confusión habría quedado eliminada por completo.**
+
+<details><summary>Ver respuesta</summary>
+**Falsa.** El ajuste, con estratificación o con un modelo de regresión, solo controla lo que se midió, y lo controla tan bien como se midió. Quedan la **confusión residual**, por variables medidas de forma imprecisa (como el nivel socioeconómico resumido en una sola pregunta), y la confusión por variables que nunca se midieron. Por eso, un RR ajustado de un estudio observacional sigue siendo una estimación con posibles sesgos.
+</details>
+:::
+
+::: {.pregunta}
+**c) La asignación aleatoria del WHI tiende a repartir por igual entre los grupos tanto los factores de confusión medidos como los no medidos.**
+
+<details><summary>Ver respuesta</summary>
+**Verdadera.** Es la gran ventaja de la aleatorización: como el azar decide quién recibe el tratamiento, ninguna característica de la mujer influye en la asignación. En promedio, los grupos resultan comparables en todo, incluso en lo que nadie pensó medir. Por eso, una diferencia en el desenlace puede atribuirse al tratamiento con mucha más confianza.
+</details>
+:::
+
+::: {.pregunta}
+**d) Como el WHI es un ensayo aleatorizado, sus grupos no pueden diferir al inicio en ninguna característica.**
+
+<details><summary>Ver respuesta</summary>
+**Falsa.** La aleatorización equilibra los grupos en promedio, no en cada ensayo concreto. Por azar, puede haber diferencias al inicio, sobre todo en ensayos pequeños. Por eso se presenta una tabla con las características basales de cada grupo, y si una variable pronóstica importante quedó desbalanceada, puede ajustarse en el análisis, idealmente si se previó en el protocolo. Lo que no tiene sentido es comparar esas características con valores p: ya sabemos que cualquier diferencia se debe al azar.
+</details>
+:::
+:::
+
+## Rp/
+
+::: {.en-una-frase}
+Ajustar controla lo que mediste; aleatorizar controla también lo que no mediste. Por eso un ensayo bien hecho pesa más que una cohorte ajustada.
+:::
+
+## Diagnóstico diferencial
+
+- **Sesgo de selección.** Se produce por cómo entran las personas al estudio. La confusión existe aunque la selección sea perfecta, porque viene de la relación entre la exposición, el desenlace y un tercer factor.
+- **Modificación del efecto.** El efecto real cambia según una tercera variable, como la edad de inicio del tratamiento. No es un sesgo que haya que eliminar, sino un hallazgo que hay que reportar.
+
+## En R
+
+Una simulación de una cohorte en la que la terapia **no tiene ningún efecto**, pero el nivel socioeconómico (NSE) favorece su uso y reduce el riesgo coronario:
+
+```{r}
+#| echo: true
+set.seed(2002)
+n <- 50000
+nse_alto <- rbinom(n, 1, 0.5)
+terapia  <- rbinom(n, 1, ifelse(nse_alto == 1, 0.5, 0.2))   # el NSE alto usa más terapia
+coronaria <- rbinom(n, 1, ifelse(nse_alto == 1, 0.02, 0.05)) # la terapia no influye
+
+rr <- function(e, d) mean(d[e == 1]) / mean(d[e == 0])
+
+# Cohorte sin ajustar: la terapia «protege»
+round(rr(terapia, coronaria), 2)
+
+# Estratificando por NSE: el efecto desaparece
+round(c(nse_bajo = rr(terapia[nse_alto == 0], coronaria[nse_alto == 0]),
+        nse_alto = rr(terapia[nse_alto == 1], coronaria[nse_alto == 1])), 2)
+
+# Asignación al azar: tampoco hay efecto
+asignada <- rbinom(n, 1, 0.5)
+round(rr(asignada, coronaria), 2)
+```
+
+## Para profundizar
+
+- [El estudio de cohortes](../../disenos/cohortes/index.qmd), en Diseños de estudio: confusión y su control.
+- [¿OR o RP?](../../prospecto/or-vs-rp/inicial.qmd), en Prospecto R: cómo ajustar por confusores en R.
+- Caso n.º 8: [¿Funciona el fármaco si el placebo también funciona?](../itt-vs-protocolo/index.qmd), sobre la adherencia como marcador de buen pronóstico.
+
+## Referencias
+
+1. Grodstein F, Stampfer MJ, Manson JE, Colditz GA, Willett WC, Rosner B, et al. Postmenopausal estrogen and progestin use and the risk of cardiovascular disease. *N Engl J Med*. 1996;335(7):453-61.
+2. Rossouw JE, Anderson GL, Prentice RL, LaCroix AZ, Kooperberg C, Stefanick ML, et al. Risks and benefits of estrogen plus progestin in healthy postmenopausal women: principal results from the Women's Health Initiative randomized controlled trial. *JAMA*. 2002;288(3):321-33.
+3. Lawlor DA, Davey Smith G, Ebrahim S. Commentary: the hormone replacement-coronary heart disease conundrum: is this the death of observational epidemiology? *Int J Epidemiol*. 2004;33(3):464-7.
+
+::: {.cta}
+**¿Te tocó un caso así en tu tesis?**
+
+Te ayudo a elegir e interpretar el análisis correcto.
+
+[Escríbeme por WhatsApp](https://api.whatsapp.com/send?phone=51955446754&text=Hola%2C%20le%C3%AD%20un%20caso%20cl%C3%ADnico%20estad%C3%ADstico%20en%20tu%20web%20y%20quiero%20informaci%C3%B3n%20sobre%20asesor%C3%ADa%20para%20mi%20tesis)
+:::

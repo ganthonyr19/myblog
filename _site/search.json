@@ -130,7 +130,7 @@
     "href": "blog.html",
     "title": "Blog",
     "section": "",
-    "text": "El estudio de cohortes\n\n7 minutos\n\n\nDiseños de estudio\n\nEpidemiología\n\nTesis\n\n\n\nEl estudio de cohortes explicado con diagramas y ejemplos: prospectivo y retrospectivo, incidencia, riesgo relativo, persona-tiempo, pérdidas en el seguimiento, análisis en…\n\n\n\n8 oct 2026\n\n\n\n\n\n\n\n\n\n\n\n\n\nEl estudio de casos y controles\n\n7 minutos\n\n\nDiseños de estudio\n\nEpidemiología\n\nTesis\n\n\n\nEl estudio de casos y controles explicado con diagramas y ejemplos: selección de controles, odds ratio, sesgo de recuerdo, análisis en R y tamaño de muestra.\n\n\n\n1 oct 2026\n\n\n\n\n\n\n\n\n\n\n\n\n\nEl estudio transversal\n\n7 minutos\n\n\nDiseños de estudio\n\nEpidemiología\n\nTesis\n\n\n\nEl estudio transversal explicado con diagramas y ejemplos: prevalencia, razón de prevalencias, sesgos, análisis en R y tamaño de muestra.\n\n\n\n24 sep 2026\n\n\n\n\n\n\n\n\n\n\n\n\n\n¿Qué prueba estadística uso?\n\n6 minutos\n\n\nConsultorio estadístico\n\nPruebas estadísticas\n\nTesis\n\n\n\nCómo elegir la prueba estadística de tu tesis de salud: un triaje interactivo en cuatro preguntas, el mapa completo de pruebas, cinco mitos y el código en R de cada una.\n\n\n\n10 sep 2026\n\n\n\n\n\n\nNo hay resultados"
+    "text": "Chi cuadrado y prueba exacta de Fisher\n\n5 minutos\n\n\nVademécum estadístico\n\nPruebas estadísticas\n\nTesis\n\n\n\nVademécum estadístico: indicación, contraindicaciones, posología, interacciones y reacciones adversas de la prueba de chi cuadrado de Pearson y de la prueba exacta de…\n\n\n\n22 oct 2026\n\n\n\n\n\n\n\n\n\n\n\n\n\n¿El odds ratio es un riesgo relativo?\n\n5 minutos\n\n\nCaso clínico estadístico\n\nmedidas de asociación\n\nEpidemiología\n\nTesis\n\n\n\nCaso clínico estadístico: una cohorte de gestantes con un desenlace frecuente, donde el odds ratio y el riesgo relativo dicen cosas distintas. Decide qué afirmaciones son…\n\n\n\n20 oct 2026\n\n\n\n\n\n\n\n\n\n\n\n\n\nEl estudio de cohortes\n\n7 minutos\n\n\nDiseños de estudio\n\nEpidemiología\n\nTesis\n\n\n\nEl estudio de cohortes explicado con diagramas y ejemplos: prospectivo y retrospectivo, incidencia, riesgo relativo, persona-tiempo, pérdidas en el seguimiento, análisis en…\n\n\n\n8 oct 2026\n\n\n\n\n\n\n\n\n\n\n\n\n\nEl estudio de casos y controles\n\n7 minutos\n\n\nDiseños de estudio\n\nEpidemiología\n\nTesis\n\n\n\nEl estudio de casos y controles explicado con diagramas y ejemplos: selección de controles, odds ratio, sesgo de recuerdo, análisis en R y tamaño de muestra.\n\n\n\n1 oct 2026\n\n\n\n\n\n\n\n\n\n\n\n\n\nEl estudio transversal\n\n7 minutos\n\n\nDiseños de estudio\n\nEpidemiología\n\nTesis\n\n\n\nEl estudio transversal explicado con diagramas y ejemplos: prevalencia, razón de prevalencias, sesgos, análisis en R y tamaño de muestra.\n\n\n\n24 sep 2026\n\n\n\n\n\n\n\n\n\n\n\n\n\n¿Qué prueba estadística uso?\n\n6 minutos\n\n\nConsultorio estadístico\n\nPruebas estadísticas\n\nTesis\n\n\n\nCómo elegir la prueba estadística de tu tesis de salud: un triaje interactivo en cuatro preguntas, el mapa completo de pruebas, cinco mitos y el código en R de cada una.\n\n\n\n10 sep 2026\n\n\n\n\n\n\nNo hay resultados"
   },
   {
     "objectID": "about.html",
@@ -151,7 +151,7 @@
     "href": "index.html#lo-más-reciente",
     "title": "¡Hola! 👋",
     "section": "Lo más reciente",
-    "text": "Lo más reciente\n\n\n\n\n\n\n\n\n\n\nEl estudio de cohortes\n\n\nDiseños de estudio\nEpidemiología\nTesis\n\n\n\n8 oct 2026\n\n\n\n\n\n\n\n\n\n\n\n\n\nEl estudio de casos y controles\n\n\nDiseños de estudio\nEpidemiología\nTesis\n\n\n\n1 oct 2026\n\n\n\n\n\n\n\n\n\n\n\n\n\nEl estudio transversal\n\n\nDiseños de estudio\nEpidemiología\nTesis\n\n\n\n24 sep 2026\n\n\n\n\n\n\nNo hay resultados"
+    "text": "Lo más reciente\n\n\n\n\n\n\n\n\n\n\nChi cuadrado y prueba exacta de Fisher\n\n\nVademécum estadístico\nPruebas estadísticas\nTesis\n\n\n\n22 oct 2026\n\n\n\n\n\n\n\n\n\n\n\n\n\n¿El odds ratio es un riesgo relativo?\n\n\nCaso clínico estadístico\nmedidas de asociación\nEpidemiología\nTesis\n\n\n\n20 oct 2026\n\n\n\n\n\n\n\n\n\n\n\n\n\nEl estudio de cohortes\n\n\nDiseños de estudio\nEpidemiología\nTesis\n\n\n\n8 oct 2026\n\n\n\n\n\n\nNo hay resultados"
   },
   {
     "objectID": "prospecto/diccionario.html",
@@ -165,7 +165,7 @@
     "href": "prospecto/diccionario.html#fuentes",
     "title": "Diccionario de Prospecto R",
     "section": "Fuentes",
-    "text": "Fuentes\nPorta M, editor. A Dictionary of Epidemiology. 6.ª ed. Nueva York: Oxford University Press; 2014.\nRothman KJ, Greenland S, Lash TL. Modern Epidemiology. 3.ª ed. Filadelfia: Lippincott Williams & Wilkins; 2008.\nKirkwood BR, Sterne JAC. Essential Medical Statistics. 2.ª ed. Oxford: Blackwell Science; 2003.\nHosmer DW, Lemeshow S, Sturdivant RX. Applied Logistic Regression. 3.ª ed. Hoboken: Wiley; 2013.\nLumley T. Complex Surveys: A Guide to Analysis Using R. Hoboken: Wiley; 2010.\nZou G. A modified Poisson regression approach to prospective studies with binary data. Am J Epidemiol. 2004;159(7):702-6.\nBarros AJD, Hirakata VN. Alternatives for logistic regression in cross-sectional studies: an empirical comparison of models that directly estimate the prevalence ratio. BMC Med Res Methodol. 2003;3:21.\nMuller CJ, MacLehose RF. Estimating predicted probabilities from logistic regression: different methods correspond to different target populations. Int J Epidemiol. 2014;43(3):962-70.\nExpert Panel on Detection, Evaluation, and Treatment of High Blood Cholesterol in Adults. Executive summary of the third report of the NCEP Adult Treatment Panel III. JAMA. 2001;285(19):2486-97.\nInstituto Nacional de Estadística e Informática. Ficha técnica. Encuesta Demográfica y de Salud Familiar 2024. Lima: INEI.\nRao JNK, Scott AJ. On chi-squared tests for multiway contingency tables with cell proportions estimated from survey data. Ann Stat. 1984;12(1):46-60.\nWasserstein RL, Lazar NA. The ASA’s statement on p-values: context, process, and purpose. Am Stat. 2016;70(2):129-33.\nLwanga SK, Lemeshow S. Sample size determination in health studies: a practical manual. Ginebra: Organización Mundial de la Salud; 1991.\nCochran WG. Sampling Techniques. 3.ª ed. Nueva York: Wiley; 1977.\nKish L. Survey Sampling. Nueva York: Wiley; 1965.\nFleiss JL, Levin B, Paik MC. Statistical Methods for Rates and Proportions. 3.ª ed. Hoboken: Wiley; 2003.\nHulley SB, Cummings SR, Browner WS, Grady DG, Newman TB. Designing Clinical Research. 4.ª ed. Filadelfia: Lippincott Williams & Wilkins; 2013.\nBuderer NM. Statistical methodology: I. Incorporating the prevalence of disease into the sample size calculation for sensitivity and specificity. Acad Emerg Med. 1996;3(9):895-900."
+    "text": "Fuentes\nPorta M, editor. A Dictionary of Epidemiology. 6.ª ed. Nueva York: Oxford University Press; 2014.\nRothman KJ, Greenland S, Lash TL. Modern Epidemiology. 3.ª ed. Filadelfia: Lippincott Williams & Wilkins; 2008.\nKirkwood BR, Sterne JAC. Essential Medical Statistics. 2.ª ed. Oxford: Blackwell Science; 2003.\nHosmer DW, Lemeshow S, Sturdivant RX. Applied Logistic Regression. 3.ª ed. Hoboken: Wiley; 2013.\nLumley T. Complex Surveys: A Guide to Analysis Using R. Hoboken: Wiley; 2010.\nZou G. A modified Poisson regression approach to prospective studies with binary data. Am J Epidemiol. 2004;159(7):702-6.\nBarros AJD, Hirakata VN. Alternatives for logistic regression in cross-sectional studies: an empirical comparison of models that directly estimate the prevalence ratio. BMC Med Res Methodol. 2003;3:21.\nMuller CJ, MacLehose RF. Estimating predicted probabilities from logistic regression: different methods correspond to different target populations. Int J Epidemiol. 2014;43(3):962-70.\nExpert Panel on Detection, Evaluation, and Treatment of High Blood Cholesterol in Adults. Executive summary of the third report of the NCEP Adult Treatment Panel III. JAMA. 2001;285(19):2486-97.\nInstituto Nacional de Estadística e Informática. Ficha técnica. Encuesta Demográfica y de Salud Familiar 2024. Lima: INEI.\nRao JNK, Scott AJ. On chi-squared tests for multiway contingency tables with cell proportions estimated from survey data. Ann Stat. 1984;12(1):46-60.\nWasserstein RL, Lazar NA. The ASA’s statement on p-values: context, process, and purpose. Am Stat. 2016;70(2):129-33.\nLwanga SK, Lemeshow S. Sample size determination in health studies: a practical manual. Ginebra: Organización Mundial de la Salud; 1991.\nCochran WG. Sampling Techniques. 3.ª ed. Nueva York: Wiley; 1977.\nKish L. Survey Sampling. Nueva York: Wiley; 1965.\nFleiss JL, Levin B, Paik MC. Statistical Methods for Rates and Proportions. 3.ª ed. Hoboken: Wiley; 2003.\nHulley SB, Cummings SR, Browner WS, Grady DG, Newman TB. Designing Clinical Research. 4.ª ed. Filadelfia: Lippincott Williams & Wilkins; 2013.\nBuderer NM. Statistical methodology: I. Incorporating the prevalence of disease into the sample size calculation for sensitivity and specificity. Acad Emerg Med. 1996;3(9):895-900.\nAltman DG. Confidence intervals for the number needed to treat. BMJ. 1998;317(7168):1309-12.\nBland JM, Altman DG. Regression towards the mean. BMJ. 1994;308(6942):1499.\nBland JM, Altman DG. Survival probabilities (the Kaplan-Meier method). BMJ. 1998;317(7172):1572.\nClark TG, Bradburn MJ, Love SB, Altman DG. Survival analysis part I: basic concepts and first analyses. Br J Cancer. 2003;89(2):232-8.\nCoughlin SS. Recall bias in epidemiologic studies. J Clin Epidemiol. 1990;43(1):87-91.\nDelgado-Rodríguez M, Llorca J. Bias. J Epidemiol Community Health. 2004;58(8):635-41.\nHanley JA, McNeil BJ. The meaning and use of the area under a receiver operating characteristic (ROC) curve. Radiology. 1982;143(1):29-36.\nHiggins JP, Thompson SG, Deeks JJ, Altman DG. Measuring inconsistency in meta-analyses. BMJ. 2003;327(7414):557-60.\nHróbjartsson A, Gøtzsche PC. Is the placebo powerless? An analysis of clinical trials comparing placebo with no treatment. N Engl J Med. 2001;344(21):1594-602.\nLaupacis A, Sackett DL, Roberts RS. An assessment of clinically useful measures of the consequences of treatment. N Engl J Med. 1988;318(26):1728-33.\nMcCambridge J, Witton J, Elbourne DR. Systematic review of the Hawthorne effect: new concepts are needed to study research participation effects. J Clin Epidemiol. 2014;67(3):267-77.\nMills EJ, Chan AW, Wu P, Vail A, Guyatt GH, Altman DG. Design, analysis, and presentation of crossover trials. Trials. 2009;10:27.\nMorgenstern H. Ecologic studies in epidemiology: concepts, principles, and methods. Annu Rev Public Health. 1995;16:61-81.\nRiley RD, Higgins JP, Deeks JJ. Interpretation of random effects meta-analyses. BMJ. 2011;342:d549.\nSchulz KF, Grimes DA. Blinding in randomised trials: hiding who got what. Lancet. 2002;359(9307):696-700.\nSterne JA, Sutton AJ, Ioannidis JP, Terrin N, Jones DR, Lau J, et al. Recommendations for examining and interpreting funnel plot asymmetry in meta-analyses of randomised controlled trials. BMJ. 2011;343:d4002.\nTurner EH, Matthews AM, Linardatos E, Tell RA, Rosenthal R. Selective publication of antidepressant trials and its influence on apparent efficacy. N Engl J Med. 2008;358(3):252-60."
   },
   {
     "objectID": "prospecto/or-vs-rp/inicial.html#indicación",
@@ -817,5 +817,180 @@
     "title": "Recursos",
     "section": "Libros recomendados",
     "text": "Libros recomendados\nLibros gratuitos en línea, en inglés, para seguir aprendiendo R aplicado a la salud. Para cada uno, a quién le sirve, qué leer primero y con qué entrada de esta web se complementa.\n\n  \n    \n      Reproducible Medical Research with RPeter D. R. Higgins, MD, PhDR\n    \n    \n      Reproducible Medical Research with R\n      Peter D. R. Higgins, MD, PhD\n      Para quién: Médicos y residentes que empiezan a analizar sus propios datos en R.\n      Qué leer primero: Los capítulos de importación y limpieza de datos, Tabla 1 con gtsummary, tamaño de muestra con pwr y cómo leer los mensajes de error.\n      Complétalo con: La Tabla 1 de tu tesis · ¿Cuántos participantes necesito?\n    \n  \n  \n    \n      Data Analysis in Medicine and Health using RKamarul Imran, Wan Nor Arifin y Tengku M. HanisR\n    \n    \n      Data Analysis in Medicine and Health using R\n      Kamarul Imran, Wan Nor Arifin y Tengku M. Hanis\n      Para quién: Tesistas y profesionales de salud que ya manejan lo básico y quieren pasar a los modelos.\n      Qué leer primero: Regresión logística, de Poisson y supervivencia (Kaplan-Meier y Cox), datos faltantes y construcción del modelo.\n      Complétalo con: ¿OR o razón de prevalencias? · ¿Qué prueba estadística uso?\n    \n  \n  \n    \n      Introduction to Bio-Medical Data Analysis with RNhan Thi Ho, MD, PhD, y colaboradoresR\n    \n    \n      Introduction to Bio-Medical Data Analysis with R\n      Nhan Thi Ho, MD, PhD, y colaboradores\n      Para quién: Estudiantes e investigadores biomédicos que buscan estadística aplicada con práctica en R.\n      Qué leer primero: Estadística básica, regresión, análisis de supervivencia, datos longitudinales y ensayos clínicos.\n      Complétalo con: El estudio de cohortes\n    \n  \n  \n    \n      Introduction to R for Health Data ScienceStatistics Team (curso de maestría)R\n    \n    \n      Introduction to R for Health Data Science\n      Statistics Team (curso de maestría)\n      Para quién: Quien parte de cero en R y quiere una base ordenada, con ejercicios resueltos.\n      Qué leer primero: Estructuras de datos, tidyverse, proyectos y reproducibilidad, y gráficos con ggplot2.\n      Complétalo con: Manual de instalación de R, RStudio y Rtools\n    \n  \n  \n    \n      Population Health Data Science with RTomás J. AragónR\n    \n    \n      Population Health Data Science with R\n      Tomás J. Aragón\n      Para quién: Epidemiólogos y analistas de salud pública con interés en un enfoque más amplio.\n      Qué leer primero: Fundamentos de R y los dominios de la ciencia de datos en salud poblacional: descripción, predicción, inferencia causal, simulación y optimización.\n      Complétalo con: Diseños de estudio\n    \n  \n\nLas portadas son ilustraciones propias; cada libro se lee gratis en su sitio oficial."
+  },
+  {
+    "objectID": "casos/rr-vs-or/index.html",
+    "href": "casos/rr-vs-or/index.html",
+    "title": "¿El odds ratio es un riesgo relativo?",
+    "section": "",
+    "text": "Caso clínico estadísticoCaso n.º 1"
+  },
+  {
+    "objectID": "casos/rr-vs-or/index.html#el-caso",
+    "href": "casos/rr-vs-or/index.html#el-caso",
+    "title": "¿El odds ratio es un riesgo relativo?",
+    "section": "El caso",
+    "text": "El caso\nCaso ilustrativo, con datos simulados.\nUna tesista quiere saber si la inducción del trabajo de parto se asocia con terminar en cesárea. Para responderlo, diseña una cohorte retrospectiva en un hospital regional del Perú. Revisa las historias clínicas de 500 gestantes nulíparas a término, con feto único en presentación cefálica, atendidas durante un año.\nLa exposición es el inicio del trabajo de parto: inducido (200 gestantes) o espontáneo (300). El desenlace es el parto por cesárea.\nTerminaron en cesárea 90 de las 200 gestantes inducidas (45 %) y 75 de las 300 con inicio espontáneo (25 %). En su borrador, la tesista reporta dos cifras:\n\nRR = 1,80 (IC 95 %: 1,40 a 2,31)\nOR = 2,45 (IC 95 %: 1,68 a 3,60)\n\nSu conclusión es que «las gestantes inducidas tienen 2,45 veces más riesgo de cesárea».\n\n\n\n\n\n\nCesárea\nParto vaginal\nTotal\nRiesgo\n\n\n\n\nInducido\na = 90\nb = 110\n200\n45 %\n\n\nEspontáneo\nc = 75\nd = 225\n300\n25 %"
+  },
+  {
+    "objectID": "casos/rr-vs-or/index.html#cuáles-de-estas-afirmaciones-son-verdaderas",
+    "href": "casos/rr-vs-or/index.html#cuáles-de-estas-afirmaciones-son-verdaderas",
+    "title": "¿El odds ratio es un riesgo relativo?",
+    "section": "¿Cuáles de estas afirmaciones son verdaderas?",
+    "text": "¿Cuáles de estas afirmaciones son verdaderas?\n\nEl riesgo de cesárea fue 80 % mayor en las gestantes inducidas que en las de inicio espontáneo.\nLa conclusión de la tesista es correcta: el OR de 2,45 indica que el riesgo de cesárea es 2,45 veces mayor con la inducción.\nSi la cesárea hubiera sido rara (por ejemplo, 2 % frente a 1 %), el OR y el RR habrían sido casi iguales.\nSi la misma pregunta se estudiara con un diseño de casos y controles, el RR podría calcularse directamente de la tabla 2 × 2."
+  },
+  {
+    "objectID": "casos/rr-vs-or/index.html#pase-de-visita",
+    "href": "casos/rr-vs-or/index.html#pase-de-visita",
+    "title": "¿El odds ratio es un riesgo relativo?",
+    "section": "Pase de visita",
+    "text": "Pase de visita\n\n\na) El riesgo de cesárea fue 80 % mayor en las gestantes inducidas que en las de inicio espontáneo.\n\n\nVer respuesta\n\nVerdadera. En una cohorte se mide directamente el riesgo (la incidencia acumulada) en cada grupo: 90/200 = 0,45 y 75/300 = 0,25. El riesgo relativo es 0,45/0,25 = 1,80, es decir, un riesgo 80 % mayor. El IC 95 % (1,40 a 2,31) no incluye el 1, así que el resultado es compatible con un aumento real del riesgo.\n\n\n\nb) La conclusión de la tesista es correcta: el OR de 2,45 indica que el riesgo de cesárea es 2,45 veces mayor con la inducción.\n\n\nVer respuesta\n\nFalsa. El odds ratio compara odds, no riesgos. La odds de cesárea fue 90/110 = 0,82 en las inducidas y 75/225 = 0,33 en las de inicio espontáneo; su cociente es 2,45. Leerlo como «2,45 veces más riesgo» exagera la asociación, porque el riesgo en realidad fue 1,8 veces mayor. Un jurado atento lo va a observar.\n\n\n\nc) Si la cesárea hubiera sido rara (por ejemplo, 2 % frente a 1 %), el OR y el RR habrían sido casi iguales.\n\n\nVer respuesta\n\nVerdadera. Cuando el desenlace es raro, casi todas las personas quedan en la columna «sin desenlace», y la odds (a/b) se parece mucho al riesgo (a/[a + b]). Con 4 cesáreas de 200 inducidas y 3 de 300 espontáneas, el RR sería 2,00 y el OR 2,02. Con un desenlace del 25 % al 45 %, como en este caso, la diferencia es grande. El OR siempre queda más lejos de 1 que el RR.\n\n\n\nd) Si la misma pregunta se estudiara con un diseño de casos y controles, el RR podría calcularse directamente de la tabla 2 × 2.\n\n\nVer respuesta\n\nFalsa. En un estudio de casos y controles, el investigador fija cuántos casos y cuántos controles incluye. Por eso, la proporción de cesáreas en la tabla refleja esa decisión, no el riesgo real de la población, y el RR calculado con esa tabla no tiene sentido. Lo que sí se puede estimar es el OR, que no depende de esa proporción."
+  },
+  {
+    "objectID": "casos/rr-vs-or/index.html#rp",
+    "href": "casos/rr-vs-or/index.html#rp",
+    "title": "¿El odds ratio es un riesgo relativo?",
+    "section": "Rp/",
+    "text": "Rp/\n\nSi tu diseño te permite medir el riesgo, reporta el RR; el OR solo se parece al RR cuando el desenlace es raro."
+  },
+  {
+    "objectID": "casos/rr-vs-or/index.html#diagnóstico-diferencial",
+    "href": "casos/rr-vs-or/index.html#diagnóstico-diferencial",
+    "title": "¿El odds ratio es un riesgo relativo?",
+    "section": "Diagnóstico diferencial",
+    "text": "Diagnóstico diferencial\n\nRazón de prevalencias. Es la medida equivalente al RR en un estudio transversal. Compara prevalencias, no incidencias.\nOR de una regresión logística. Cuando ajustas por confusores en una cohorte con un desenlace frecuente, el OR ajustado tiene el mismo problema. Para obtener el RR ajustado se usa la regresión de Poisson con varianza robusta o un modelo log-binomial."
+  },
+  {
+    "objectID": "casos/rr-vs-or/index.html#en-r",
+    "href": "casos/rr-vs-or/index.html#en-r",
+    "title": "¿El odds ratio es un riesgo relativo?",
+    "section": "En R",
+    "text": "En R\n\n\nVer código\n# Tabla 2 × 2 del caso\na &lt;- 90; b &lt;- 110   # inducido: cesárea, parto vaginal\nc &lt;- 75; d &lt;- 225   # espontáneo: cesárea, parto vaginal\n\n# Riesgo relativo con IC 95 % (método log)\nrr    &lt;- (a / (a + b)) / (c / (c + d))\nse_rr &lt;- sqrt(1/a - 1/(a + b) + 1/c - 1/(c + d))\n\n# Odds ratio con IC 95 % (método de Woolf)\nor    &lt;- (a * d) / (b * c)\nse_or &lt;- sqrt(1/a + 1/b + 1/c + 1/d)\n\nround(rbind(\n  RR = c(estimado = rr, li = exp(log(rr) - 1.96 * se_rr), ls = exp(log(rr) + 1.96 * se_rr)),\n  OR = c(estimado = or, li = exp(log(or) - 1.96 * se_or), ls = exp(log(or) + 1.96 * se_or))\n), 2)\n\n\n   estimado   li   ls\nRR     1.80 1.40 2.31\nOR     2.45 1.68 3.60"
+  },
+  {
+    "objectID": "casos/rr-vs-or/index.html#para-profundizar",
+    "href": "casos/rr-vs-or/index.html#para-profundizar",
+    "title": "¿El odds ratio es un riesgo relativo?",
+    "section": "Para profundizar",
+    "text": "Para profundizar\n\n¿OR o RP?, en Prospecto R: qué medida reportar en tu estudio transversal.\nEl estudio de cohortes y El estudio de casos y controles, en Diseños de estudio.\nCalcula el tamaño de muestra de tu cohorte en el Consultorio estadístico."
+  },
+  {
+    "objectID": "casos/rr-vs-or/index.html#referencias",
+    "href": "casos/rr-vs-or/index.html#referencias",
+    "title": "¿El odds ratio es un riesgo relativo?",
+    "section": "Referencias",
+    "text": "Referencias\n\nZhang J, Yu KF. What’s the relative risk? A method of correcting the odds ratio in cohort studies of common outcomes. JAMA. 1998;280(19):1690-1.\nDavies HT, Crombie IK, Tavakoli M. When can odds ratios mislead? BMJ. 1998;316(7136):989-91.\n\n\n¿Te tocó un caso así en tu tesis?\nTe ayudo a elegir e interpretar el análisis correcto.\nEscríbeme por WhatsApp"
+  },
+  {
+    "objectID": "vademecum/chi-cuadrado/index.html",
+    "href": "vademecum/chi-cuadrado/index.html",
+    "title": "Chi cuadrado y prueba exacta de Fisher",
+    "section": "",
+    "text": "Vademécum estadísticoFicha n.º 1"
+  },
+  {
+    "objectID": "vademecum/chi-cuadrado/index.html#indicación",
+    "href": "vademecum/chi-cuadrado/index.html#indicación",
+    "title": "Chi cuadrado y prueba exacta de Fisher",
+    "section": "Indicación",
+    "text": "Indicación\nEvaluar si dos variables categóricas están asociadas cuando cada persona aparece una sola vez en la tabla. Es la prueba habitual para comparar proporciones entre dos o más grupos independientes: el porcentaje de anemia según el sexo, de complicaciones según el tipo de cirugía o de adherencia según el nivel educativo."
+  },
+  {
+    "objectID": "vademecum/chi-cuadrado/index.html#mecanismo-de-acción",
+    "href": "vademecum/chi-cuadrado/index.html#mecanismo-de-acción",
+    "title": "Chi cuadrado y prueba exacta de Fisher",
+    "section": "Mecanismo de acción",
+    "text": "Mecanismo de acción\nConstruye la tabla de contingencia y calcula, para cada celda, la frecuencia que se esperaría si las variables no estuvieran asociadas: total de la fila × total de la columna / total general. El estadístico suma las diferencias al cuadrado entre lo observado y lo esperado, divididas entre lo esperado. Cuanto mayor es, más se alejan los datos de la hipótesis nula de independencia.\nLa prueba exacta de Fisher no usa esa aproximación: calcula directamente la probabilidad de las tablas posibles con los mismos totales. Por eso sirve con muestras pequeñas."
+  },
+  {
+    "objectID": "vademecum/chi-cuadrado/index.html#contraindicaciones",
+    "href": "vademecum/chi-cuadrado/index.html#contraindicaciones",
+    "title": "Chi cuadrado y prueba exacta de Fisher",
+    "section": "Contraindicaciones",
+    "text": "Contraindicaciones\n\nObservaciones pareadas. Si son las mismas personas medidas dos veces, o pares emparejados, corresponde la prueba de McNemar.\nFrecuencias esperadas pequeñas. El chi cuadrado es adecuado si ninguna frecuencia esperada es menor que 1 y no más del 20 % es menor que 5 (Cochran, 1954). Si no se cumple, usa la prueba exacta de Fisher o agrupa categorías con sentido clínico.\nVariables ordinales con una tendencia de interés. Si quieres saber si el riesgo aumenta a lo largo de categorías ordenadas, una prueba de tendencia responde mejor que el chi cuadrado general."
+  },
+  {
+    "objectID": "vademecum/chi-cuadrado/index.html#posología",
+    "href": "vademecum/chi-cuadrado/index.html#posología",
+    "title": "Chi cuadrado y prueba exacta de Fisher",
+    "section": "Posología",
+    "text": "Posología\nEl tamaño de muestra depende de las proporciones que esperas en cada grupo y de la diferencia mínima que te interesa detectar.\n\n\nCalcúlalo en el Consultorio estadístico: tamaño de muestra para comparar dos proporciones."
+  },
+  {
+    "objectID": "vademecum/chi-cuadrado/index.html#interacciones",
+    "href": "vademecum/chi-cuadrado/index.html#interacciones",
+    "title": "Chi cuadrado y prueba exacta de Fisher",
+    "section": "Interacciones",
+    "text": "Interacciones\n\nCorrección de continuidad. En tablas de 2 × 2, chisq.test() aplica por defecto la corrección de Yates, que es conservadora. Campbell (2007) propone como alternativa la chi cuadrado «N − 1», que funciona bien cuando todas las frecuencias esperadas son al menos 1. Sea cual sea tu elección, decláralo en métodos.\nEncuestas con diseño complejo. Con datos de la ENDES o la ENAHO, el chi cuadrado clásico no es válido: usa la versión de Rao-Scott, que considera el diseño muestral.\nVariables de confusión. El chi cuadrado no ajusta por otras variables. Para eso necesitas un modelo de regresión."
+  },
+  {
+    "objectID": "vademecum/chi-cuadrado/index.html#reacciones-adversas-frecuentes-en-las-tesis",
+    "href": "vademecum/chi-cuadrado/index.html#reacciones-adversas-frecuentes-en-las-tesis",
+    "title": "Chi cuadrado y prueba exacta de Fisher",
+    "section": "Reacciones adversas frecuentes en las tesis",
+    "text": "Reacciones adversas frecuentes en las tesis\n\nCambiar a Fisher porque una celda observada tiene menos de 5. El criterio se aplica a las frecuencias esperadas, no a las observadas.\nReportar solo el valor p. El lector necesita los porcentajes de cada grupo y, si es posible, una medida de asociación con su IC 95 %.\nConfundir porcentajes por fila y por columna. El porcentaje debe calcularse dentro de los grupos que comparas.\nLeer la asociación como causa. Un p pequeño indica que las proporciones difieren, no que una variable cause la otra."
+  },
+  {
+    "objectID": "vademecum/chi-cuadrado/index.html#presentación-en-r",
+    "href": "vademecum/chi-cuadrado/index.html#presentación-en-r",
+    "title": "Chi cuadrado y prueba exacta de Fisher",
+    "section": "Presentación en R",
+    "text": "Presentación en R\nCon la base pbc comparamos la presencia de arañas vasculares (spiders) entre los pacientes que recibieron D-penicilamina y placebo. Luego, la presencia de ascitis según el sexo, donde hay pocos hombres.\n\n\nVer código\nlibrary(survival)\nd &lt;- pbc[!is.na(pbc$trt), ]                    # los 312 pacientes del ensayo\nd$grupo &lt;- factor(d$trt, 1:2, c(\"D-penicilamina\", \"Placebo\"))\nd$sexo  &lt;- factor(d$sex, c(\"m\", \"f\"), c(\"Hombre\", \"Mujer\"))\n\n# 1. Arañas vasculares según el grupo\ntabla &lt;- table(d$grupo, d$spiders)\nround(prop.table(tabla, 1) * 100, 1)           # porcentajes por grupo (fila)\n\n\n                \n                    0    1\n  D-penicilamina 71.5 28.5\n  Placebo        70.8 29.2\n\n\nVer código\nchisq.test(tabla)$expected                     # frecuencias esperadas\n\n\n                \n                        0        1\n  D-penicilamina 112.4231 45.57692\n  Placebo        109.5769 44.42308\n\n\nVer código\nchisq.test(tabla)                              # con corrección de Yates\n\n\n\n    Pearson's Chi-squared test with Yates' continuity correction\n\ndata:  tabla\nX-squared = 0.00036966, df = 1, p-value = 0.9847\n\n\nVer código\n# 2. Ascitis según el sexo: una frecuencia esperada es menor que 5\ntabla2 &lt;- table(d$sexo, d$ascites)\nround(chisq.test(tabla2)$expected, 1)\n\n\nWarning in chisq.test(tabla2): Chi-squared approximation may be incorrect\n\n\n        \n             0    1\n  Hombre  33.2  2.8\n  Mujer  254.8 21.2\n\n\nVer código\nfisher.test(tabla2)\n\n\n\n    Fisher's Exact Test for Count Data\n\ndata:  tabla2\np-value = 0.7474\nalternative hypothesis: true odds ratio is not equal to 1\n95 percent confidence interval:\n 0.2496388 4.9989515\nsample estimates:\nodds ratio \n 0.9061537 \n\n\nEn la primera tabla, todas las frecuencias esperadas superan 44, así que el chi cuadrado es adecuado. En la segunda, la frecuencia esperada de hombres con ascitis es 2,8 (una de cuatro celdas, el 25 %), por lo que corresponde Fisher."
+  },
+  {
+    "objectID": "vademecum/chi-cuadrado/index.html#cómo-reportarlo",
+    "href": "vademecum/chi-cuadrado/index.html#cómo-reportarlo",
+    "title": "Chi cuadrado y prueba exacta de Fisher",
+    "section": "Cómo reportarlo",
+    "text": "Cómo reportarlo\n\n\nLa presencia de arañas vasculares fue similar en los pacientes que recibieron D-penicilamina (28,5 %) y en los que recibieron placebo (29,2 %) (p = 0,98; prueba de chi cuadrado con corrección de continuidad)."
+  },
+  {
+    "objectID": "vademecum/chi-cuadrado/index.html#diagnóstico-diferencial",
+    "href": "vademecum/chi-cuadrado/index.html#diagnóstico-diferencial",
+    "title": "Chi cuadrado y prueba exacta de Fisher",
+    "section": "Diagnóstico diferencial",
+    "text": "Diagnóstico diferencial\n\nPrueba de McNemar. Para un desenlace categórico medido dos veces en las mismas personas.\nRegresión logística o de Poisson. Para estimar la asociación ajustando por confusores.\nPrueba de chi cuadrado de Rao-Scott. Para tablas de encuestas con diseño complejo.\n\nRevisa también la receta corta de esta prueba en el Triaje estadístico."
+  },
+  {
+    "objectID": "vademecum/chi-cuadrado/index.html#referencias",
+    "href": "vademecum/chi-cuadrado/index.html#referencias",
+    "title": "Chi cuadrado y prueba exacta de Fisher",
+    "section": "Referencias",
+    "text": "Referencias\n\nKirkwood BR, Sterne JAC. Essential Medical Statistics. 2.ª ed. Oxford: Blackwell Science; 2003.\nCochran WG. Some methods for strengthening the common χ² tests. Biometrics. 1954;10(4):417-51.\nCampbell I. Chi-squared and Fisher-Irwin tests of two-by-two tables with small sample recommendations. Stat Med. 2007;26:3661-75.\nDickson ER, Grambsch PM, Fleming TR, Fisher LD, Langworthy A. Prognosis in primary biliary cirrhosis: model for decision making. Hepatology. 1989;10(1):1-7.\n\n\n¿No sabes si tu tabla cumple los supuestos?\nTe ayudo a elegir, ejecutar y reportar la prueba correcta para tu tesis.\nEscríbeme por WhatsApp"
+  },
+  {
+    "objectID": "casos/index.html",
+    "href": "casos/index.html",
+    "title": "Caso clínico estadístico",
+    "section": "",
+    "text": "Caso clínico estadísticoUn caso, cuatro afirmaciones\nCada caso se presenta como en un pase de visita. Primero, la viñeta del estudio: qué se hizo, con quién y qué se encontró. Después, cuatro afirmaciones sobre un concepto estadístico. Tu tarea es decidir cuáles son verdaderas antes de abrir la respuesta.\nLas respuestas explican el razonamiento con las cifras del caso, y cada entrada termina con una receta (Rp/) para llevar a tu tesis y el código en R para reproducir el cálculo. Puede haber varias verdaderas, ninguna o todas: no busques un patrón, busca el argumento."
+  },
+  {
+    "objectID": "casos/index.html#los-casos",
+    "href": "casos/index.html#los-casos",
+    "title": "Caso clínico estadístico",
+    "section": "Los casos",
+    "text": "Los casos\n\n  Caso n.º 1¿El odds ratio es un riesgo relativo?\n    Una cohorte con un desenlace frecuente, donde el OR exagera.\n  Caso n.º 2 · 27 oct.p = 0,07: ¿la intervención no sirve?\n    Intervalo de confianza frente a valor p en un ensayo comunitario.\n  Caso n.º 3 · 3 nov.¿Qué hago con los pacientes que se fueron?\n    Kaplan-Meier y datos censurados en una cohorte pequeña.\n  Caso n.º 4 · 10 nov.¿A cuántos hay que tratar para que uno se beneficie?\n    NNT, NNH y la diferencia entre riesgo relativo y absoluto.\n  Caso n.º 5 · 17 nov.¿Las madres recuerdan igual?\n    Sesgo de recuerdo y de selección en un estudio de casos y controles.\n  Caso n.º 6 · 24 nov.¿11,2 ± 0,1 describe a los niños?\n    Desviación estándar frente a error estándar en la Tabla 1.\n  Caso n.º 7 · 1 dic.¿La aspirina no sirve si eres Géminis?\n    Errores tipo I y II en los análisis por subgrupos del ISIS-2.\n  Caso n.º 8 · 8 dic.¿Funciona el fármaco si el placebo también funciona?\n    Intención de tratar frente a adherencia en el Coronary Drug Project.\n  Caso n.º 9 · 15 dic.¿Comer chocolate te acerca al Nobel?\n    Falacia ecológica en una correlación entre países.\n  Caso n.º 10 · 22 dic.¿Qué punto de corte elijo para el PSA?\n    Curva ROC, AUC y el intercambio entre sensibilidad y especificidad.\n  Caso n.º 11 · 29 dic.¿Importa quién evalúa al paciente?\n    Un ensayo con un neurólogo cegado y otro que conocía el tratamiento.\n  Caso n.º 12 · 5 ene.¿Dónde están los ensayos negativos?\n    Sesgo de publicación en 74 ensayos de antidepresivos.\n  Caso n.º 13 · 12 ene.¿Nos lavamos más las manos cuando nos miran?\n    Efecto Hawthorne medido con dispensadores electrónicos.\n  Caso n.º 14 · 19 ene.¿Y si cada paciente es su propio control?\n    Ensayo cruzado sobre paracetamol y presión arterial.\n  Caso n.º 15 · 26 ene.¿Quién acepta participar?\n    Sesgo de respuesta en una cohorte de medio millón de personas.\n  Caso n.º 16 · 2 feb.¿Qué significa un hazard ratio de 0,86?\n    Regresión de Cox y riesgos absolutos en el EMPA-REG OUTCOME.\n  Caso n.º 17 · 9 feb.¿Por qué el ensayo contradijo a la cohorte?\n    Confusión en la terapia hormonal: Nurses' Health Study frente al WHI.\n  Caso n.º 18 · 16 feb.¿Quién responde a un anuncio en Facebook?\n    Muestreo por conveniencia en un estudio de anticuerpos contra la COVID-19.\n  Caso n.º 19 · 23 feb.¿Porcentaje o tasa?\n    Tasa de incidencia y persona-tiempo en el ensayo iPrEx.\n  Caso n.º 20 · 2 mar.¿Significativo es lo mismo que importante?\n    Significancia estadística frente a relevancia clínica.\n  Caso n.º 21 · 9 mar.¿Funciona en la vida real?\n    Ensayos explicativos y pragmáticos: el Salford Lung Study.\n  Caso n.º 22 · 16 mar.¿Operar o fingir que se opera?\n    Efecto placebo y regresión a la media en una cirugía simulada.\n  Caso n.º 23 · 23 mar.¿La media de la bilirrubina describe al paciente típico?\n    Distribuciones asimétricas y pruebas no paramétricas.\n  Caso n.º 24 · 30 mar.¿Por qué la fase 1 empieza con tan pocos voluntarios?\n    Las fases del ensayo clínico y el caso TGN1412.\n  Caso n.º 25 · 6 abr.¿Un estudio de casos y controles dentro de una cohorte?\n    Casos y controles anidado: fluoroquinolonas y aorta.\n  Caso n.º 26 · 13 abr.¿Se puede seguir hacia adelante con datos del pasado?\n    Cohorte retrospectiva con registros nacionales.\n  Caso n.º 27 · 20 abr.¿Cuántos pacientes necesito para replicar un ensayo?\n    Tamaño de muestra en ensayos y cohortes.\n  Caso n.º 28 · 27 abr.¿Cómo se lee un forest plot?\n    Forest plot y heterogeneidad en el metaanálisis de la BCG.\n  Caso n.º 29 · 4 may.¿Beber poco alarga la vida?\n    Sesgos en estudios de cohortes y transversales."
+  },
+  {
+    "objectID": "vademecum/index.html",
+    "href": "vademecum/index.html",
+    "title": "Vademécum estadístico",
+    "section": "",
+    "text": "Vademécum estadísticoUna ficha por prueba\nAntes de recetar un fármaco, revisas su indicación, sus contraindicaciones y sus interacciones. Con una prueba estadística debería pasar lo mismo. Cada ficha de este vademécum describe una prueba con la estructura de una monografía:\n¿Todavía no sabes qué prueba te toca? Empieza por el Triaje estadístico: te lleva a la prueba, y la ficha te cuenta todo lo demás."
+  },
+  {
+    "objectID": "vademecum/index.html#las-fichas",
+    "href": "vademecum/index.html#las-fichas",
+    "title": "Vademécum estadístico",
+    "section": "Las fichas",
+    "text": "Las fichas\n\n  Ficha n.º 1Chi cuadrado y prueba exacta de Fisher\n    Dos variables categóricas en grupos independientes.\n  Ficha n.º 2 · 29 oct.Prueba t para dos muestras independientes\n    La media de una variable numérica en dos grupos.\n  Ficha n.º 3 · 5 nov.U de Mann-Whitney\n    Una variable sesgada u ordinal en dos grupos.\n  Ficha n.º 4 · 12 nov.Correlación de Pearson y de Spearman\n    Dos variables numéricas en las mismas personas.\n  PróximamenteANOVA y Kruskal-WallisTres o más grupos.\n  PróximamentePrueba t pareada y WilcoxonLas mismas personas medidas dos veces.\n  PróximamenteMcNemarUn desenlace categórico medido dos veces.\n  PróximamenteRegresión de Poisson con varianza robustaLa razón de prevalencias ajustada.\n\nLos ejemplos de las fichas usan la base pbc, que se instala con R: los datos reales de 312 pacientes de un ensayo de la Clínica Mayo en cirrosis biliar primaria (Dickson et al., 1989). Así puedes reproducir cada cifra en tu computadora."
+  },
+  {
+    "objectID": "vademecum/index.html#referencia",
+    "href": "vademecum/index.html#referencia",
+    "title": "Vademécum estadístico",
+    "section": "Referencia",
+    "text": "Referencia\nDickson ER, Grambsch PM, Fleming TR, Fisher LD, Langworthy A. Prognosis in primary biliary cirrhosis: model for decision making. Hepatology. 1989;10(1):1-7."
   }
 ]
