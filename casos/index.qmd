@@ -25,8 +25,8 @@ Las respuestas explican el razonamiento con las cifras del caso, y cada entrada 
     <span class="d">Una cohorte con un desenlace frecuente, donde el OR exagera.</span></a>
   <a class="serie-item" href="ic-vs-valor-p/index.html"><span class="n">Caso n.º 2</span><strong>p = 0,07: ¿la intervención no sirve?</strong>
     <span class="d">Intervalo de confianza frente a valor p en un ensayo comunitario.</span></a>
-  <div class="serie-item pronto" data-slug="kaplan-meier"><span class="n">Caso n.º 3 · 3 nov.</span><strong>¿Qué hago con los pacientes que se fueron?</strong>
-    <span class="d">Kaplan-Meier y datos censurados en una cohorte pequeña.</span></div>
+  <a class="serie-item" href="kaplan-meier/index.html"><span class="n">Caso n.º 3</span><strong>¿Qué hago con los pacientes que se fueron?</strong>
+    <span class="d">Kaplan-Meier y datos censurados en una cohorte pequeña.</span></a>
   <div class="serie-item pronto" data-slug="nnt-y-nnh"><span class="n">Caso n.º 4 · 10 nov.</span><strong>¿A cuántos hay que tratar para que uno se beneficie?</strong>
     <span class="d">NNT, NNH y la diferencia entre riesgo relativo y absoluto.</span></div>
   <div class="serie-item pronto" data-slug="sesgos-por-diseno"><span class="n">Caso n.º 5 · 17 nov.</span><strong>¿Las madres recuerdan igual?</strong>
