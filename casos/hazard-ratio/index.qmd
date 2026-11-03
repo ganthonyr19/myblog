@@ -1,7 +1,7 @@
 ---
 title: "¿Qué significa un hazard ratio de 0,86?"
 description: "Caso clínico estadístico: el ensayo EMPA-REG OUTCOME, sus hazard ratios y lo que dicen y no dicen sobre el beneficio. Decide qué afirmaciones son verdaderas y por qué."
-date: 2027-02-02
+date: 2026-12-29
 draft: true
 image: portada.png
 categories: [Caso clínico estadístico, Epidemiología, Pruebas estadísticas]

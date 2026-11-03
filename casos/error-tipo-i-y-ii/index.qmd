@@ -1,7 +1,7 @@
 ---
 title: "¿La aspirina no sirve si eres Géminis?"
 description: "Caso clínico estadístico: el análisis por signo zodiacal de un gran ensayo de aspirina en el infarto, y lo que enseña sobre los errores tipo I y tipo II. Decide qué afirmaciones son verdaderas y por qué."
-date: 2026-12-01
+date: 2026-11-24
 draft: true
 image: portada.png
 categories: [Caso clínico estadístico, Pruebas estadísticas, Tesis]

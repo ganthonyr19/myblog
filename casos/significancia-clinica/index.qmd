@@ -1,7 +1,7 @@
 ---
 title: "¿Significativo es lo mismo que importante?"
 description: "Caso clínico estadístico: el ensayo del lecanemab en la enfermedad de Alzheimer temprana, con p < 0,001 y una diferencia de 0,45 puntos. Decide qué afirmaciones son verdaderas y por qué."
-date: 2027-03-02
+date: 2027-01-15
 draft: true
 image: portada.png
 categories: [Caso clínico estadístico, Pruebas estadísticas, Tesis]

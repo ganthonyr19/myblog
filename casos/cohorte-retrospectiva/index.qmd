@@ -1,7 +1,7 @@
 ---
 title: "¿Se puede seguir hacia adelante con datos del pasado?"
 description: "Caso clínico estadístico: la cohorte danesa de 657 461 niños que estudió la vacuna triple viral y el autismo con registros nacionales. Decide qué afirmaciones son verdaderas y por qué."
-date: 2027-04-13
+date: 2027-02-05
 draft: true
 image: portada.png
 categories: [Caso clínico estadístico, Diseños de estudio, Epidemiología]

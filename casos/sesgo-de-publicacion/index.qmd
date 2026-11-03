@@ -1,7 +1,7 @@
 ---
 title: "¿Dónde están los ensayos negativos?"
 description: "Caso clínico estadístico: 74 ensayos de antidepresivos registrados ante la FDA y lo que la literatura publicada contó de ellos. Decide qué afirmaciones son verdaderas y por qué."
-date: 2027-01-05
+date: 2026-12-11
 draft: true
 image: portada.png
 categories: [Caso clínico estadístico, Epidemiología, Tesis]

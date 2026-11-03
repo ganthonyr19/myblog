@@ -130,7 +130,7 @@
     "href": "blog.html",
     "title": "Blog",
     "section": "",
-    "text": "Chi cuadrado y prueba exacta de Fisher\n\n5 minutos\n\n\nVademécum estadístico\n\nPruebas estadísticas\n\nTesis\n\n\n\nVademécum estadístico: indicación, contraindicaciones, posología, interacciones y reacciones adversas de la prueba de chi cuadrado de Pearson y de la prueba exacta de…\n\n\n\n22 oct 2026\n\n\n\n\n\n\n\n\n\n\n\n\n\n¿El odds ratio es un riesgo relativo?\n\n5 minutos\n\n\nCaso clínico estadístico\n\nmedidas de asociación\n\nEpidemiología\n\nTesis\n\n\n\nCaso clínico estadístico: una cohorte de gestantes con un desenlace frecuente, donde el odds ratio y el riesgo relativo dicen cosas distintas. Decide qué afirmaciones son…\n\n\n\n20 oct 2026\n\n\n\n\n\n\n\n\n\n\n\n\n\nEl estudio de cohortes\n\n7 minutos\n\n\nDiseños de estudio\n\nEpidemiología\n\nTesis\n\n\n\nEl estudio de cohortes explicado con diagramas y ejemplos: prospectivo y retrospectivo, incidencia, riesgo relativo, persona-tiempo, pérdidas en el seguimiento, análisis en…\n\n\n\n8 oct 2026\n\n\n\n\n\n\n\n\n\n\n\n\n\nEl estudio de casos y controles\n\n7 minutos\n\n\nDiseños de estudio\n\nEpidemiología\n\nTesis\n\n\n\nEl estudio de casos y controles explicado con diagramas y ejemplos: selección de controles, odds ratio, sesgo de recuerdo, análisis en R y tamaño de muestra.\n\n\n\n1 oct 2026\n\n\n\n\n\n\n\n\n\n\n\n\n\nEl estudio transversal\n\n7 minutos\n\n\nDiseños de estudio\n\nEpidemiología\n\nTesis\n\n\n\nEl estudio transversal explicado con diagramas y ejemplos: prevalencia, razón de prevalencias, sesgos, análisis en R y tamaño de muestra.\n\n\n\n24 sep 2026\n\n\n\n\n\n\n\n\n\n\n\n\n\n¿Qué prueba estadística uso?\n\n6 minutos\n\n\nConsultorio estadístico\n\nPruebas estadísticas\n\nTesis\n\n\n\nCómo elegir la prueba estadística de tu tesis de salud: un triaje interactivo en cuatro preguntas, el mapa completo de pruebas, cinco mitos y el código en R de cada una.\n\n\n\n10 sep 2026\n\n\n\n\n\n\nNo hay resultados"
+    "text": "Prueba t para dos muestras independientes\n\n4 minutos\n\n\nVademécum estadístico\n\nPruebas estadísticas\n\nTesis\n\n\n\nVademécum estadístico: indicación, contraindicaciones, posología, interacciones y reacciones adversas de la prueba t de Welch y de Student, con su código en R.\n\n\n\n29 oct 2026\n\n\n\n\n\n\n\n\n\n\n\n\n\np = 0,07: ¿la intervención no sirve?\n\n5 minutos\n\n\nCaso clínico estadístico\n\nPruebas estadísticas\n\nTesis\n\n\n\nCaso clínico estadístico: un ensayo comunitario en hipertensión con p = 0,07. Qué dice el intervalo de confianza que el valor p calla. Decide qué afirmaciones son verdaderas…\n\n\n\n27 oct 2026\n\n\n\n\n\n\n\n\n\n\n\n\n\nChi cuadrado y prueba exacta de Fisher\n\n5 minutos\n\n\nVademécum estadístico\n\nPruebas estadísticas\n\nTesis\n\n\n\nVademécum estadístico: indicación, contraindicaciones, posología, interacciones y reacciones adversas de la prueba de chi cuadrado de Pearson y de la prueba exacta de…\n\n\n\n22 oct 2026\n\n\n\n\n\n\n\n\n\n\n\n\n\n¿El odds ratio es un riesgo relativo?\n\n5 minutos\n\n\nCaso clínico estadístico\n\nmedidas de asociación\n\nEpidemiología\n\nTesis\n\n\n\nCaso clínico estadístico: una cohorte de gestantes con un desenlace frecuente, donde el odds ratio y el riesgo relativo dicen cosas distintas. Decide qué afirmaciones son…\n\n\n\n20 oct 2026\n\n\n\n\n\n\n\n\n\n\n\n\n\nEl estudio de cohortes\n\n7 minutos\n\n\nDiseños de estudio\n\nEpidemiología\n\nTesis\n\n\n\nEl estudio de cohortes explicado con diagramas y ejemplos: prospectivo y retrospectivo, incidencia, riesgo relativo, persona-tiempo, pérdidas en el seguimiento, análisis en…\n\n\n\n8 oct 2026\n\n\n\n\n\n\n\n\n\n\n\n\n\nEl estudio de casos y controles\n\n7 minutos\n\n\nDiseños de estudio\n\nEpidemiología\n\nTesis\n\n\n\nEl estudio de casos y controles explicado con diagramas y ejemplos: selección de controles, odds ratio, sesgo de recuerdo, análisis en R y tamaño de muestra.\n\n\n\n1 oct 2026\n\n\n\n\n\n\n\n\n\n\n\n\n\nEl estudio transversal\n\n7 minutos\n\n\nDiseños de estudio\n\nEpidemiología\n\nTesis\n\n\n\nEl estudio transversal explicado con diagramas y ejemplos: prevalencia, razón de prevalencias, sesgos, análisis en R y tamaño de muestra.\n\n\n\n24 sep 2026\n\n\n\n\n\n\n\n\n\n\n\n\n\n¿Qué prueba estadística uso?\n\n6 minutos\n\n\nConsultorio estadístico\n\nPruebas estadísticas\n\nTesis\n\n\n\nCómo elegir la prueba estadística de tu tesis de salud: un triaje interactivo en cuatro preguntas, el mapa completo de pruebas, cinco mitos y el código en R de cada una.\n\n\n\n10 sep 2026\n\n\n\n\n\n\nNo hay resultados"
   },
   {
     "objectID": "about.html",
@@ -151,7 +151,7 @@
     "href": "index.html#lo-más-reciente",
     "title": "¡Hola! 👋",
     "section": "Lo más reciente",
-    "text": "Lo más reciente\n\n\n\n\n\n\n\n\n\n\nChi cuadrado y prueba exacta de Fisher\n\n\nVademécum estadístico\nPruebas estadísticas\nTesis\n\n\n\n22 oct 2026\n\n\n\n\n\n\n\n\n\n\n\n\n\n¿El odds ratio es un riesgo relativo?\n\n\nCaso clínico estadístico\nmedidas de asociación\nEpidemiología\nTesis\n\n\n\n20 oct 2026\n\n\n\n\n\n\n\n\n\n\n\n\n\nEl estudio de cohortes\n\n\nDiseños de estudio\nEpidemiología\nTesis\n\n\n\n8 oct 2026\n\n\n\n\n\n\nNo hay resultados"
+    "text": "Lo más reciente\n\n\n\n\n\n\n\n\n\n\nPrueba t para dos muestras independientes\n\n\nVademécum estadístico\nPruebas estadísticas\nTesis\n\n\n\n29 oct 2026\n\n\n\n\n\n\n\n\n\n\n\n\n\np = 0,07: ¿la intervención no sirve?\n\n\nCaso clínico estadístico\nPruebas estadísticas\nTesis\n\n\n\n27 oct 2026\n\n\n\n\n\n\n\n\n\n\n\n\n\nChi cuadrado y prueba exacta de Fisher\n\n\nVademécum estadístico\nPruebas estadísticas\nTesis\n\n\n\n22 oct 2026\n\n\n\n\n\n\nNo hay resultados"
   },
   {
     "objectID": "prospecto/diccionario.html",
@@ -970,7 +970,7 @@
     "href": "casos/index.html#los-casos",
     "title": "Caso clínico estadístico",
     "section": "Los casos",
-    "text": "Los casos\n\n  Caso n.º 1¿El odds ratio es un riesgo relativo?\n    Una cohorte con un desenlace frecuente, donde el OR exagera.\n  Caso n.º 2 · 27 oct.p = 0,07: ¿la intervención no sirve?\n    Intervalo de confianza frente a valor p en un ensayo comunitario.\n  Caso n.º 3 · 3 nov.¿Qué hago con los pacientes que se fueron?\n    Kaplan-Meier y datos censurados en una cohorte pequeña.\n  Caso n.º 4 · 10 nov.¿A cuántos hay que tratar para que uno se beneficie?\n    NNT, NNH y la diferencia entre riesgo relativo y absoluto.\n  Caso n.º 5 · 17 nov.¿Las madres recuerdan igual?\n    Sesgo de recuerdo y de selección en un estudio de casos y controles.\n  Caso n.º 6 · 24 nov.¿11,2 ± 0,1 describe a los niños?\n    Desviación estándar frente a error estándar en la Tabla 1.\n  Caso n.º 7 · 1 dic.¿La aspirina no sirve si eres Géminis?\n    Errores tipo I y II en los análisis por subgrupos del ISIS-2.\n  Caso n.º 8 · 8 dic.¿Funciona el fármaco si el placebo también funciona?\n    Intención de tratar frente a adherencia en el Coronary Drug Project.\n  Caso n.º 9 · 15 dic.¿Comer chocolate te acerca al Nobel?\n    Falacia ecológica en una correlación entre países.\n  Caso n.º 10 · 22 dic.¿Qué punto de corte elijo para el PSA?\n    Curva ROC, AUC y el intercambio entre sensibilidad y especificidad.\n  Caso n.º 11 · 29 dic.¿Importa quién evalúa al paciente?\n    Un ensayo con un neurólogo cegado y otro que conocía el tratamiento.\n  Caso n.º 12 · 5 ene.¿Dónde están los ensayos negativos?\n    Sesgo de publicación en 74 ensayos de antidepresivos.\n  Caso n.º 13 · 12 ene.¿Nos lavamos más las manos cuando nos miran?\n    Efecto Hawthorne medido con dispensadores electrónicos.\n  Caso n.º 14 · 19 ene.¿Y si cada paciente es su propio control?\n    Ensayo cruzado sobre paracetamol y presión arterial.\n  Caso n.º 15 · 26 ene.¿Quién acepta participar?\n    Sesgo de respuesta en una cohorte de medio millón de personas.\n  Caso n.º 16 · 2 feb.¿Qué significa un hazard ratio de 0,86?\n    Regresión de Cox y riesgos absolutos en el EMPA-REG OUTCOME.\n  Caso n.º 17 · 9 feb.¿Por qué el ensayo contradijo a la cohorte?\n    Confusión en la terapia hormonal: Nurses' Health Study frente al WHI.\n  Caso n.º 18 · 16 feb.¿Quién responde a un anuncio en Facebook?\n    Muestreo por conveniencia en un estudio de anticuerpos contra la COVID-19.\n  Caso n.º 19 · 23 feb.¿Porcentaje o tasa?\n    Tasa de incidencia y persona-tiempo en el ensayo iPrEx.\n  Caso n.º 20 · 2 mar.¿Significativo es lo mismo que importante?\n    Significancia estadística frente a relevancia clínica.\n  Caso n.º 21 · 9 mar.¿Funciona en la vida real?\n    Ensayos explicativos y pragmáticos: el Salford Lung Study.\n  Caso n.º 22 · 16 mar.¿Operar o fingir que se opera?\n    Efecto placebo y regresión a la media en una cirugía simulada.\n  Caso n.º 23 · 23 mar.¿La media de la bilirrubina describe al paciente típico?\n    Distribuciones asimétricas y pruebas no paramétricas.\n  Caso n.º 24 · 30 mar.¿Por qué la fase 1 empieza con tan pocos voluntarios?\n    Las fases del ensayo clínico y el caso TGN1412.\n  Caso n.º 25 · 6 abr.¿Un estudio de casos y controles dentro de una cohorte?\n    Casos y controles anidado: fluoroquinolonas y aorta.\n  Caso n.º 26 · 13 abr.¿Se puede seguir hacia adelante con datos del pasado?\n    Cohorte retrospectiva con registros nacionales.\n  Caso n.º 27 · 20 abr.¿Cuántos pacientes necesito para replicar un ensayo?\n    Tamaño de muestra en ensayos y cohortes.\n  Caso n.º 28 · 27 abr.¿Cómo se lee un forest plot?\n    Forest plot y heterogeneidad en el metaanálisis de la BCG.\n  Caso n.º 29 · 4 may.¿Beber poco alarga la vida?\n    Sesgos en estudios de cohortes y transversales."
+    "text": "Los casos\n\n  Caso n.º 1¿El odds ratio es un riesgo relativo?\n    Una cohorte con un desenlace frecuente, donde el OR exagera.\n  Caso n.º 2p = 0,07: ¿la intervención no sirve?\n    Intervalo de confianza frente a valor p en un ensayo comunitario.\n  Caso n.º 3 · 3 nov.¿Qué hago con los pacientes que se fueron?\n    Kaplan-Meier y datos censurados en una cohorte pequeña.\n  Caso n.º 4 · 10 nov.¿A cuántos hay que tratar para que uno se beneficie?\n    NNT, NNH y la diferencia entre riesgo relativo y absoluto.\n  Caso n.º 5 · 17 nov.¿Las madres recuerdan igual?\n    Sesgo de recuerdo y de selección en un estudio de casos y controles.\n  Caso n.º 6 · 20 nov.¿11,2 ± 0,1 describe a los niños?\n    Desviación estándar frente a error estándar en la Tabla 1.\n  Caso n.º 7 · 24 nov.¿La aspirina no sirve si eres Géminis?\n    Errores tipo I y II en los análisis por subgrupos del ISIS-2.\n  Caso n.º 8 · 27 nov.¿Funciona el fármaco si el placebo también funciona?\n    Intención de tratar frente a adherencia en el Coronary Drug Project.\n  Caso n.º 9 · 1 dic.¿Comer chocolate te acerca al Nobel?\n    Falacia ecológica en una correlación entre países.\n  Caso n.º 10 · 4 dic.¿Qué punto de corte elijo para el PSA?\n    Curva ROC, AUC y el intercambio entre sensibilidad y especificidad.\n  Caso n.º 11 · 8 dic.¿Importa quién evalúa al paciente?\n    Un ensayo con un neurólogo cegado y otro que conocía el tratamiento.\n  Caso n.º 12 · 11 dic.¿Dónde están los ensayos negativos?\n    Sesgo de publicación en 74 ensayos de antidepresivos.\n  Caso n.º 13 · 15 dic.¿Nos lavamos más las manos cuando nos miran?\n    Efecto Hawthorne medido con dispensadores electrónicos.\n  Caso n.º 14 · 18 dic.¿Y si cada paciente es su propio control?\n    Ensayo cruzado sobre paracetamol y presión arterial.\n  Caso n.º 15 · 22 dic.¿Quién acepta participar?\n    Sesgo de respuesta en una cohorte de medio millón de personas.\n  Caso n.º 16 · 29 dic.¿Qué significa un hazard ratio de 0,86?\n    Regresión de Cox y riesgos absolutos en el EMPA-REG OUTCOME.\n  Caso n.º 17 · 5 ene.¿Por qué el ensayo contradijo a la cohorte?\n    Confusión en la terapia hormonal: Nurses' Health Study frente al WHI.\n  Caso n.º 18 · 8 ene.¿Quién responde a un anuncio en Facebook?\n    Muestreo por conveniencia en un estudio de anticuerpos contra la COVID-19.\n  Caso n.º 19 · 12 ene.¿Porcentaje o tasa?\n    Tasa de incidencia y persona-tiempo en el ensayo iPrEx.\n  Caso n.º 20 · 15 ene.¿Significativo es lo mismo que importante?\n    Significancia estadística frente a relevancia clínica.\n  Caso n.º 21 · 19 ene.¿Funciona en la vida real?\n    Ensayos explicativos y pragmáticos: el Salford Lung Study.\n  Caso n.º 22 · 22 ene.¿Operar o fingir que se opera?\n    Efecto placebo y regresión a la media en una cirugía simulada.\n  Caso n.º 23 · 26 ene.¿La media de la bilirrubina describe al paciente típico?\n    Distribuciones asimétricas y pruebas no paramétricas.\n  Caso n.º 24 · 29 ene.¿Por qué la fase 1 empieza con tan pocos voluntarios?\n    Las fases del ensayo clínico y el caso TGN1412.\n  Caso n.º 25 · 2 feb.¿Un estudio de casos y controles dentro de una cohorte?\n    Casos y controles anidado: fluoroquinolonas y aorta.\n  Caso n.º 26 · 5 feb.¿Se puede seguir hacia adelante con datos del pasado?\n    Cohorte retrospectiva con registros nacionales.\n  Caso n.º 27 · 9 feb.¿Cuántos pacientes necesito para replicar un ensayo?\n    Tamaño de muestra en ensayos y cohortes.\n  Caso n.º 28 · 12 feb.¿Cómo se lee un forest plot?\n    Forest plot y heterogeneidad en el metaanálisis de la BCG.\n  Caso n.º 29 · 16 feb.¿Beber poco alarga la vida?\n    Sesgos en estudios de cohortes y transversales."
   },
   {
     "objectID": "vademecum/index.html",
@@ -984,7 +984,7 @@
     "href": "vademecum/index.html#las-fichas",
     "title": "Vademécum estadístico",
     "section": "Las fichas",
-    "text": "Las fichas\n\n  Ficha n.º 1Chi cuadrado y prueba exacta de Fisher\n    Dos variables categóricas en grupos independientes.\n  Ficha n.º 2 · 29 oct.Prueba t para dos muestras independientes\n    La media de una variable numérica en dos grupos.\n  Ficha n.º 3 · 5 nov.U de Mann-Whitney\n    Una variable sesgada u ordinal en dos grupos.\n  Ficha n.º 4 · 12 nov.Correlación de Pearson y de Spearman\n    Dos variables numéricas en las mismas personas.\n  PróximamenteANOVA y Kruskal-WallisTres o más grupos.\n  PróximamentePrueba t pareada y WilcoxonLas mismas personas medidas dos veces.\n  PróximamenteMcNemarUn desenlace categórico medido dos veces.\n  PróximamenteRegresión de Poisson con varianza robustaLa razón de prevalencias ajustada.\n\nLos ejemplos de las fichas usan la base pbc, que se instala con R: los datos reales de 312 pacientes de un ensayo de la Clínica Mayo en cirrosis biliar primaria (Dickson et al., 1989). Así puedes reproducir cada cifra en tu computadora."
+    "text": "Las fichas\n\n  Ficha n.º 1Chi cuadrado y prueba exacta de Fisher\n    Dos variables categóricas en grupos independientes.\n  Ficha n.º 2Prueba t para dos muestras independientes\n    La media de una variable numérica en dos grupos.\n  Ficha n.º 3 · 6 nov.U de Mann-Whitney\n    Una variable sesgada u ordinal en dos grupos.\n  Ficha n.º 4 · 13 nov.Correlación de Pearson y de Spearman\n    Dos variables numéricas en las mismas personas.\n  PróximamenteANOVA y Kruskal-WallisTres o más grupos.\n  PróximamentePrueba t pareada y WilcoxonLas mismas personas medidas dos veces.\n  PróximamenteMcNemarUn desenlace categórico medido dos veces.\n  PróximamenteRegresión de Poisson con varianza robustaLa razón de prevalencias ajustada.\n\nLos ejemplos de las fichas usan la base pbc, que se instala con R: los datos reales de 312 pacientes de un ensayo de la Clínica Mayo en cirrosis biliar primaria (Dickson et al., 1989). Así puedes reproducir cada cifra en tu computadora."
   },
   {
     "objectID": "vademecum/index.html#referencia",
@@ -992,5 +992,145 @@
     "title": "Vademécum estadístico",
     "section": "Referencia",
     "text": "Referencia\nDickson ER, Grambsch PM, Fleming TR, Fisher LD, Langworthy A. Prognosis in primary biliary cirrhosis: model for decision making. Hepatology. 1989;10(1):1-7."
+  },
+  {
+    "objectID": "casos/ic-vs-valor-p/index.html",
+    "href": "casos/ic-vs-valor-p/index.html",
+    "title": "p = 0,07: ¿la intervención no sirve?",
+    "section": "",
+    "text": "Caso clínico estadísticoCaso n.º 2"
+  },
+  {
+    "objectID": "casos/ic-vs-valor-p/index.html#el-caso",
+    "href": "casos/ic-vs-valor-p/index.html#el-caso",
+    "title": "p = 0,07: ¿la intervención no sirve?",
+    "section": "El caso",
+    "text": "El caso\nCaso ilustrativo, con datos simulados.\nUn tesista evalúa un programa de seguimiento a cargo de agentes comunitarios de salud para adultos con hipertensión arterial en un distrito andino. El programa incluye visitas domiciliarias mensuales y recordatorios para tomar la medicación.\nDiseña un ensayo con asignación aleatoria y 120 participantes: 60 reciben el programa y 60 continúan con la atención habitual del puesto de salud. El desenlace es la reducción de la presión arterial sistólica (PAS) a los 6 meses.\nLa PAS bajó en promedio 14 mmHg en el grupo del programa y 10 mmHg en el grupo control, con una desviación estándar de 12 mmHg en ambos. La diferencia fue de 4,0 mmHg a favor del programa (IC 95 %: −0,3 a 8,3; p = 0,070; prueba t para muestras independientes).\nEn sus conclusiones, el tesista escribe: «El programa no tiene efecto sobre la presión arterial»."
+  },
+  {
+    "objectID": "casos/ic-vs-valor-p/index.html#cuáles-de-estas-afirmaciones-son-verdaderas",
+    "href": "casos/ic-vs-valor-p/index.html#cuáles-de-estas-afirmaciones-son-verdaderas",
+    "title": "p = 0,07: ¿la intervención no sirve?",
+    "section": "¿Cuáles de estas afirmaciones son verdaderas?",
+    "text": "¿Cuáles de estas afirmaciones son verdaderas?\n\nComo p &gt; 0,05, el estudio demostró que el programa no reduce la presión arterial.\nQue el IC 95 % incluya el 0 es coherente con que p sea mayor que 0,05.\nHay una probabilidad del 95 % de que la verdadera diferencia esté entre −0,3 y 8,3 mmHg.\nCon estos datos no puede descartarse que el programa reduzca la PAS en 5 mmHg más que la atención habitual."
+  },
+  {
+    "objectID": "casos/ic-vs-valor-p/index.html#pase-de-visita",
+    "href": "casos/ic-vs-valor-p/index.html#pase-de-visita",
+    "title": "p = 0,07: ¿la intervención no sirve?",
+    "section": "Pase de visita",
+    "text": "Pase de visita\n\n\na) Como p &gt; 0,05, el estudio demostró que el programa no reduce la presión arterial.\n\n\nVer respuesta\n\nFalsa. Un valor p de 0,070 solo indica que los datos no son lo bastante incompatibles con la hipótesis de «ninguna diferencia» como para rechazarla al 5 %. No rechazar la hipótesis nula no equivale a demostrarla: la ausencia de evidencia no es evidencia de ausencia. La conclusión correcta es que el estudio no encontró una diferencia estadísticamente significativa y que el resultado es impreciso.\n\n\n\nb) Que el IC 95 % incluya el 0 es coherente con que p sea mayor que 0,05.\n\n\nVer respuesta\n\nVerdadera. Cuando el intervalo de confianza y el valor p salen de la misma prueba, como aquí, son dos caras de una misma moneda. Si el IC 95 % de una diferencia de medias incluye el 0, el valor p bilateral es mayor que 0,05; si lo excluye, es menor. Lo que el IC agrega es el tamaño y la dirección del efecto.\n\n\n\nc) Hay una probabilidad del 95 % de que la verdadera diferencia esté entre −0,3 y 8,3 mmHg.\n\n\nVer respuesta\n\nFalsa. Es la mala interpretación más frecuente, y un jurado exigente la observa. La verdadera diferencia es un valor fijo: está o no está dentro de este intervalo concreto. El 95 % describe el método: si se repitiera el estudio muchas veces, el 95 % de los intervalos así calculados contendría el valor verdadero. En tu tesis, escribe que el intervalo muestra los valores compatibles con los datos.\n\n\n\nd) Con estos datos no puede descartarse que el programa reduzca la PAS en 5 mmHg más que la atención habitual.\n\n\nVer respuesta\n\nVerdadera. El valor 5 mmHg está dentro del IC 95 % (−0,3 a 8,3), así que es compatible con los datos. Por eso decir que el programa «no tiene efecto» es apresurado. El intervalo va desde un efecto nulo hasta una reducción de más de 8 mmHg, que podría ser clínicamente relevante. Con 60 participantes por grupo, el estudio no tuvo la precisión suficiente para distinguir entre ambos escenarios."
+  },
+  {
+    "objectID": "casos/ic-vs-valor-p/index.html#rp",
+    "href": "casos/ic-vs-valor-p/index.html#rp",
+    "title": "p = 0,07: ¿la intervención no sirve?",
+    "section": "Rp/",
+    "text": "Rp/\n\nUn p &gt; 0,05 no prueba que no haya efecto: mira el intervalo de confianza para saber qué efectos siguen siendo posibles."
+  },
+  {
+    "objectID": "casos/ic-vs-valor-p/index.html#diagnóstico-diferencial",
+    "href": "casos/ic-vs-valor-p/index.html#diagnóstico-diferencial",
+    "title": "p = 0,07: ¿la intervención no sirve?",
+    "section": "Diagnóstico diferencial",
+    "text": "Diagnóstico diferencial\n\nPotencia estadística. Un estudio con poca potencia puede no detectar un efecto real. La potencia se planifica antes, con el tamaño de muestra, y no se calcula después para justificar un resultado no significativo.\nSignificancia estadística y relevancia clínica. Un efecto puede ser significativo y clínicamente trivial, o importante y no significativo. El tamaño del efecto y su IC son los que permiten juzgarlo."
+  },
+  {
+    "objectID": "casos/ic-vs-valor-p/index.html#en-r",
+    "href": "casos/ic-vs-valor-p/index.html#en-r",
+    "title": "p = 0,07: ¿la intervención no sirve?",
+    "section": "En R",
+    "text": "En R\n\n\nVer código\n# Datos construidos con las medias y DE exactas del caso\nset.seed(2026)\nprograma &lt;- as.numeric(scale(rnorm(60))) * 12 + 14   # reducción de PAS (mmHg)\ncontrol  &lt;- as.numeric(scale(rnorm(60))) * 12 + 10\n\n# Prueba t para muestras independientes (varianzas iguales)\nt.test(programa, control, var.equal = TRUE)\n\n\n\n    Two Sample t-test\n\ndata:  programa and control\nt = 1.8257, df = 118, p-value = 0.07042\nalternative hypothesis: true difference in means is not equal to 0\n95 percent confidence interval:\n -0.3385591  8.3385591\nsample estimates:\nmean of x mean of y \n       14        10 \n\n\nLa salida muestra una diferencia de medias de 4 mmHg, un IC 95 % de −0,34 a 8,34 y p = 0,070."
+  },
+  {
+    "objectID": "casos/ic-vs-valor-p/index.html#para-profundizar",
+    "href": "casos/ic-vs-valor-p/index.html#para-profundizar",
+    "title": "p = 0,07: ¿la intervención no sirve?",
+    "section": "Para profundizar",
+    "text": "Para profundizar\n\n¿No sabes qué prueba corresponde a tu objetivo? Haz el Triaje estadístico.\nCalcula el tamaño de muestra para comparar dos medias en el Consultorio estadístico, antes de recolectar datos."
+  },
+  {
+    "objectID": "casos/ic-vs-valor-p/index.html#referencias",
+    "href": "casos/ic-vs-valor-p/index.html#referencias",
+    "title": "p = 0,07: ¿la intervención no sirve?",
+    "section": "Referencias",
+    "text": "Referencias\n\nAltman DG, Bland JM. Absence of evidence is not evidence of absence. BMJ. 1995;311(7003):485.\nGreenland S, Senn SJ, Rothman KJ, Carlin JB, Poole C, Goodman SN, et al. Statistical tests, P values, confidence intervals, and power: a guide to misinterpretations. Eur J Epidemiol. 2016;31(4):337-50.\n\n\n¿Te tocó un caso así en tu tesis?\nTe ayudo a elegir e interpretar el análisis correcto.\nEscríbeme por WhatsApp"
+  },
+  {
+    "objectID": "vademecum/t-de-welch/index.html",
+    "href": "vademecum/t-de-welch/index.html",
+    "title": "Prueba t para dos muestras independientes",
+    "section": "",
+    "text": "Vademécum estadísticoFicha n.º 2"
+  },
+  {
+    "objectID": "vademecum/t-de-welch/index.html#indicación",
+    "href": "vademecum/t-de-welch/index.html#indicación",
+    "title": "Prueba t para dos muestras independientes",
+    "section": "Indicación",
+    "text": "Indicación\nComparar el promedio de una variable numérica entre dos grupos independientes: la hemoglobina entre hombres y mujeres, la presión arterial entre un grupo intervenido y uno control o la estancia hospitalaria entre dos técnicas quirúrgicas, cuando la distribución no es muy asimétrica."
+  },
+  {
+    "objectID": "vademecum/t-de-welch/index.html#mecanismo-de-acción",
+    "href": "vademecum/t-de-welch/index.html#mecanismo-de-acción",
+    "title": "Prueba t para dos muestras independientes",
+    "section": "Mecanismo de acción",
+    "text": "Mecanismo de acción\nDivide la diferencia entre las medias de los dos grupos entre su error estándar. Si la hipótesis nula de medias iguales fuera cierta, ese cociente seguiría una distribución t. Lo más útil para tu tesis no es el valor p, sino la diferencia de medias con su intervalo de confianza, que la misma prueba entrega.\nLa versión de Student supone que ambos grupos tienen la misma varianza. La de Welch calcula el error estándar sin ese supuesto y ajusta los grados de libertad."
+  },
+  {
+    "objectID": "vademecum/t-de-welch/index.html#contraindicaciones",
+    "href": "vademecum/t-de-welch/index.html#contraindicaciones",
+    "title": "Prueba t para dos muestras independientes",
+    "section": "Contraindicaciones",
+    "text": "Contraindicaciones\n\nDatos pareados. Si son las mismas personas antes y después, corresponde la prueba t pareada.\nDistribución muy asimétrica con muestras pequeñas. Con pocos participantes por grupo y valores extremos, la media representa mal a los grupos. Considera una transformación logarítmica o la U de Mann-Whitney.\nMás de dos grupos. Hacer varias pruebas t entre pares aumenta los falsos positivos; corresponde un ANOVA.\n\nLa normalidad importa menos de lo que se cree: con muestras de tamaño moderado, la prueba t es robusta (Lumley et al., 2002)."
+  },
+  {
+    "objectID": "vademecum/t-de-welch/index.html#posología",
+    "href": "vademecum/t-de-welch/index.html#posología",
+    "title": "Prueba t para dos muestras independientes",
+    "section": "Posología",
+    "text": "Posología\nNecesitas la diferencia de medias que sería clínicamente importante y la desviación estándar esperada, tomada de un estudio previo o de un piloto.\n\n\nCalcúlalo en el Consultorio estadístico: tamaño de muestra para comparar dos medias."
+  },
+  {
+    "objectID": "vademecum/t-de-welch/index.html#interacciones",
+    "href": "vademecum/t-de-welch/index.html#interacciones",
+    "title": "Prueba t para dos muestras independientes",
+    "section": "Interacciones",
+    "text": "Interacciones\n\nPrueba de Levene previa. Elegir entre Student y Welch según una prueba de varianzas añade un paso innecesario. La prueba de Welch funciona bien con varianzas iguales o distintas, y por eso se recomienda usarla siempre (Ruxton, 2006). En R es la opción por defecto.\nConfusión. La prueba t no ajusta por otras variables. Para eso necesitas una regresión lineal.\nVarias variables a la vez. En una Tabla 1 con muchas comparaciones, alguna saldrá significativa por azar."
+  },
+  {
+    "objectID": "vademecum/t-de-welch/index.html#reacciones-adversas-frecuentes-en-las-tesis",
+    "href": "vademecum/t-de-welch/index.html#reacciones-adversas-frecuentes-en-las-tesis",
+    "title": "Prueba t para dos muestras independientes",
+    "section": "Reacciones adversas frecuentes en las tesis",
+    "text": "Reacciones adversas frecuentes en las tesis\n\nAplicar Shapiro-Wilk a todo antes de decidir. Con muestras grandes rechaza la normalidad por desviaciones mínimas; con muestras pequeñas casi nunca la rechaza. Mira el histograma.\nReportar «media ± error estándar». Para describir a los grupos va la desviación estándar (ver el caso n.º 6).\nReportar solo el valor p. Falta la diferencia de medias y su IC 95 %.\nConcluir «no hay diferencia» con un p &gt; 0,05. Revisa qué diferencias siguen siendo compatibles con el IC (ver el caso n.º 2)."
+  },
+  {
+    "objectID": "vademecum/t-de-welch/index.html#presentación-en-r",
+    "href": "vademecum/t-de-welch/index.html#presentación-en-r",
+    "title": "Prueba t para dos muestras independientes",
+    "section": "Presentación en R",
+    "text": "Presentación en R\nCon la base pbc comparamos la albúmina sérica entre hombres y mujeres.\n\n\nVer código\nlibrary(survival)\nd &lt;- pbc[!is.na(pbc$trt), ]                    # los 312 pacientes del ensayo\nd$sexo &lt;- factor(d$sex, c(\"m\", \"f\"), c(\"Hombre\", \"Mujer\"))\n\n# Descripción por grupo: n, media y desviación estándar\naggregate(albumin ~ sexo, data = d,\n          FUN = function(x) round(c(n = length(x), media = mean(x), DE = sd(x)), 2))\n\n\n    sexo albumin.n albumin.media albumin.DE\n1 Hombre     36.00          3.58       0.45\n2  Mujer    276.00          3.51       0.42\n\n\nVer código\nhist(d$albumin, breaks = 25, main = \"\", xlab = \"Albúmina (g/dL)\")   # ¿muy asimétrica?\n\n\n\n\n\n\n\n\n\nVer código\nt.test(albumin ~ sexo, data = d)               # Welch por defecto\n\n\n\n    Welch Two Sample t-test\n\ndata:  albumin by sexo\nt = 0.84089, df = 43.042, p-value = 0.4051\nalternative hypothesis: true difference in means between group Hombre and group Mujer is not equal to 0\n95 percent confidence interval:\n -0.09351911  0.22728723\nsample estimates:\nmean in group Hombre  mean in group Mujer \n            3.579167             3.512283"
+  },
+  {
+    "objectID": "vademecum/t-de-welch/index.html#cómo-reportarlo",
+    "href": "vademecum/t-de-welch/index.html#cómo-reportarlo",
+    "title": "Prueba t para dos muestras independientes",
+    "section": "Cómo reportarlo",
+    "text": "Cómo reportarlo\n\n\nLa albúmina sérica media fue de 3,58 g/dL (DE: 0,45) en los hombres (n = 36) y de 3,51 g/dL (DE: 0,42) en las mujeres (n = 276); diferencia: 0,07 g/dL (IC 95 %: −0,09 a 0,23; p = 0,41; prueba t de Welch).\n\n\nEl IC indica que, con estos datos, la diferencia real podría estar entre 0,09 g/dL a favor de las mujeres y 0,23 g/dL a favor de los hombres."
+  },
+  {
+    "objectID": "vademecum/t-de-welch/index.html#diagnóstico-diferencial",
+    "href": "vademecum/t-de-welch/index.html#diagnóstico-diferencial",
+    "title": "Prueba t para dos muestras independientes",
+    "section": "Diagnóstico diferencial",
+    "text": "Diagnóstico diferencial\n\nU de Mann-Whitney. Para variables muy asimétricas u ordinales (ver la ficha n.º 3).\nPrueba t pareada. Para las mismas personas medidas dos veces.\nANOVA. Para tres o más grupos.\n\nRevisa también la receta corta de esta prueba en el Triaje estadístico."
+  },
+  {
+    "objectID": "vademecum/t-de-welch/index.html#referencias",
+    "href": "vademecum/t-de-welch/index.html#referencias",
+    "title": "Prueba t para dos muestras independientes",
+    "section": "Referencias",
+    "text": "Referencias\n\nKirkwood BR, Sterne JAC. Essential Medical Statistics. 2.ª ed. Oxford: Blackwell Science; 2003.\nRuxton GD. The unequal variance t-test is an underused alternative to Student’s t-test and the Mann-Whitney U test. Behav Ecol. 2006;17(4):688-90.\nLumley T, Diehr P, Emerson S, Chen L. The importance of the normality assumption in large public health data sets. Annu Rev Public Health. 2002;23:151-69.\nDickson ER, Grambsch PM, Fleming TR, Fisher LD, Langworthy A. Prognosis in primary biliary cirrhosis: model for decision making. Hepatology. 1989;10(1):1-7.\n\n\n¿Tu jurado te pidió justificar la prueba?\nTe ayudo a elegir, ejecutar y reportar el análisis correcto para tu tesis.\nEscríbeme por WhatsApp"
   }
 ]
