@@ -1,7 +1,7 @@
 ---
 title: "¿Quién responde a un anuncio en Facebook?"
 description: "Caso clínico estadístico: un estudio de anticuerpos contra la COVID-19 que reclutó voluntarios por redes sociales, y los límites de una muestra por conveniencia. Decide qué afirmaciones son verdaderas y por qué."
-date: 2027-02-16
+date: 2027-01-08
 draft: true
 image: portada.png
 categories: [Caso clínico estadístico, Tamaño de muestra, Epidemiología]

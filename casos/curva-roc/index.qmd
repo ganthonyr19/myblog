@@ -1,7 +1,7 @@
 ---
 title: "¿Qué punto de corte elijo para el PSA?"
 description: "Caso clínico estadístico: la curva ROC del PSA en el Prostate Cancer Prevention Trial, con su AUC y cuatro puntos de corte. Decide qué afirmaciones son verdaderas y por qué."
-date: 2026-12-22
+date: 2026-12-04
 draft: true
 image: portada.png
 categories: [Caso clínico estadístico, Epidemiología, Tesis]

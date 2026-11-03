@@ -1,7 +1,7 @@
 ---
 title: "¿Nos lavamos más las manos cuando nos miran?"
 description: "Caso clínico estadístico: dispensadores electrónicos de alcohol gel registraron qué pasaba cuando llegaba el auditor de higiene de manos. Decide qué afirmaciones son verdaderas y por qué."
-date: 2027-01-12
+date: 2026-12-15
 draft: true
 image: portada.png
 categories: [Caso clínico estadístico, Diseños de estudio, Epidemiología]

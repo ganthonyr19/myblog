@@ -458,6 +458,7 @@ Agrega una línea por cada tarea, con la fecha.
 - **2026-10-16.** Se crearon el Vademécum estadístico (4 fichas), las piezas para Instagram de los 29 casos (174 imágenes de carrusel, 29 recetas y el calendario con textos), el Recetario del tesista en PDF y el documento de diseño de «Historia clínica de tu tesis». Se agregó la parte III de este archivo.
 - **2026-10-23.** Se anotó la idea de Anthony de una sección de temas de tesis para pregrado (sección 18.6), sin desarrollar.
 
+- **2026-11-02.** Nuevo ritmo de publicación: martes y viernes, hasta el 16/02/2027 (antes, casos los martes hasta el 04/05/2027 y fichas los jueves). Se cambiaron las fechas de las entradas pendientes y las tarjetas «pronto».
 
 ---
 

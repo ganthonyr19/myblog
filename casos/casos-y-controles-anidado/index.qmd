@@ -1,7 +1,7 @@
 ---
 title: "¿Un estudio de casos y controles dentro de una cohorte?"
 description: "Caso clínico estadístico: fluoroquinolonas y aneurisma o disección aórtica en un estudio de casos y controles anidado en una cohorte de un millón de personas. Decide qué afirmaciones son verdaderas y por qué."
-date: 2027-04-06
+date: 2027-02-02
 draft: true
 image: portada.png
 categories: [Caso clínico estadístico, Diseños de estudio, Epidemiología]

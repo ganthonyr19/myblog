@@ -1,7 +1,7 @@
 ---
 title: "¿Operar o fingir que se opera?"
 description: "Caso clínico estadístico: un ensayo que comparó la artroscopia de rodilla con una cirugía simulada, y lo que enseña sobre el efecto placebo. Decide qué afirmaciones son verdaderas y por qué."
-date: 2027-03-16
+date: 2027-01-22
 draft: true
 image: portada.png
 categories: [Caso clínico estadístico, Diseños de estudio, Tesis]

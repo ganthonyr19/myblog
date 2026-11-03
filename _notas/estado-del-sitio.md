@@ -157,3 +157,11 @@ Nombre elegido por Anthony (15 oct 2026): **Consultorio estadístico**. Menú su
 - Portadas (1200 × 630) generadas con `images/marcas/tarjeta.js` para las 29 entradas, las 4 fichas y las dos series. Requiere `npm install` en `prospecto/_plantilla/`.
 - Las tablas `.mapa` de los casos van dentro de `<div style="overflow-x:auto">` (en 390 px desbordaban).
 - Se volvieron a renderizar todas las páginas con menú para que aparezcan las dos series. Siguen pendientes, como antes, `about.qmd` y `posts/Manual/index.qmd` (renderizar en la computadora de Anthony).
+
+## Publicación dos veces por semana (2 nov 2026, rama `publicacion-2x-semana`)
+
+- Decisión de Anthony: publicar en la web dos veces por semana. Las entradas pendientes se reprogramaron para **martes y viernes**, del 3 de noviembre de 2026 al 16 de febrero de 2027, en el mismo orden (las fichas 3 y 4 del Vademécum, el 6 y el 13 de noviembre). Se saltan el viernes 25 de diciembre y el viernes 1 de enero.
+- Una tarea programada de Claude se ejecuta cada martes y viernes temprano: corre `publicar-por-fecha.py`, renderiza lo que indica y abre una PR lista para revisar. **Anthony la une**; Claude no hace merge.
+- Para renderizar en el contenedor: R de Ubuntu (`apt-get install r-base-core r-cran-survival r-cran-metafor r-cran-sandwich r-cran-survey r-cran-rmarkdown r-cran-knitr`) y Quarto 1.10.18 (`.deb` de los releases de GitHub).
+- Los carruseles de Instagram de cada caso salen después de su fecha en la web (calendario en `ig_asesorias/calendario-publicaciones.md` del equipo de Anthony).
+
