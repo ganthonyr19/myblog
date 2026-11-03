@@ -10,7 +10,303 @@
 <atom:link href="https://anthonyromero.netlify.app/blog.xml" rel="self" type="application/rss+xml"/>
 <description>Entradas para entender y hacer mejor la investigación en salud: diseños de estudio, elección de pruebas estadísticas y novedades del ecosistema R.</description>
 <generator>quarto-1.10.18</generator>
-<lastBuildDate>Thu, 29 Oct 2026 05:00:00 GMT</lastBuildDate>
+<lastBuildDate>Tue, 03 Nov 2026 00:00:00 GMT</lastBuildDate>
+<item>
+  <title>¿Qué hago con los pacientes que se fueron?</title>
+  <dc:creator>Anthony Romero-Cerdán, MD</dc:creator>
+  <link>https://anthonyromero.netlify.app/casos/kaplan-meier/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+
+<p><a href="../../casos/index.html" class="sello"><img src="https://anthonyromero.netlify.app/images/marcas/casos.svg" class="img-fluid"><span><b>Caso clínico estadístico</b><em>Caso n.º 3</em></span></a></p>
+<section id="el-caso" class="level2">
+<h2 class="anchored" data-anchor-id="el-caso">El caso</h2>
+<p><em>Caso ilustrativo, con datos simulados.</em></p>
+<p>Una tesista sigue durante 12 meses a 10 pacientes con cáncer gástrico avanzado desde el inicio de su quimioterapia paliativa en un hospital de Lima. El desenlace es la muerte por cualquier causa.</p>
+<p>Al cierre del estudio:</p>
+<ul>
+<li><strong>5 pacientes fallecieron</strong>, a los 2, 4, 6, 7 y 9 meses.</li>
+<li><strong>3 se perdieron en el seguimiento</strong> a los 3, 5 y 8 meses, porque se trasladaron a otra región o dejaron de acudir.</li>
+<li><strong>2 seguían vivos</strong> al cerrar el estudio, tras 11 y 12 meses de seguimiento (uno había ingresado un mes más tarde).</li>
+</ul>
+<p>En su borrador, la tesista reporta una «mortalidad al año del 50 %» (5 de 10). Su asesor le pide rehacer el análisis con el <a href="../../prospecto/diccionario.html#metodo-de-kaplan-meier" class="dic">método de Kaplan-Meier</a>, que da una supervivencia a los 12 meses del 35 % (IC 95 %: 12 % a 98 %) y una mediana de supervivencia de 9 meses.</p>
+<div style="overflow-x:auto">
+
+<table class="mapa caption-top table">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">Mes</th>
+<th data-quarto-table-cell-role="th">En riesgo</th>
+<th data-quarto-table-cell-role="th">Muertes</th>
+<th data-quarto-table-cell-role="th">Supervivencia acumulada</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>2</td>
+<td>10</td>
+<td>1</td>
+<td>0,900</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>8</td>
+<td>1</td>
+<td>0,788</td>
+</tr>
+<tr class="odd">
+<td>6</td>
+<td>6</td>
+<td>1</td>
+<td>0,656</td>
+</tr>
+<tr class="even">
+<td>7</td>
+<td>5</td>
+<td>1</td>
+<td>0,525</td>
+</tr>
+<tr class="odd">
+<td>9</td>
+<td>3</td>
+<td>1</td>
+<td>0,350</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</section>
+<section id="cuáles-de-estas-afirmaciones-son-verdaderas" class="level2">
+<h2 class="anchored" data-anchor-id="cuáles-de-estas-afirmaciones-son-verdaderas">¿Cuáles de estas afirmaciones son verdaderas?</h2>
+<ol type="a">
+<li><p>Los pacientes censurados deben excluirse del análisis, porque no se sabe si murieron.</p></li>
+<li><p>La mediana de supervivencia estimada es de 9 meses.</p></li>
+<li><p>Calcular la mortalidad como 5 de 10 subestima el riesgo de morir durante el primer año.</p></li>
+<li><p>Si los pacientes se perdieron porque estaban más graves, la curva de Kaplan-Meier sigue siendo válida sin cambios.</p></li>
+</ol>
+</section>
+<section id="pase-de-visita" class="level2">
+<h2 class="anchored" data-anchor-id="pase-de-visita">Pase de visita</h2>
+<div class="autoeval">
+<div class="pregunta">
+<p><strong>a) Los pacientes censurados deben excluirse del análisis, porque no se sabe si murieron.</strong></p>
+<details>
+<summary>
+Ver respuesta
+</summary>
+<strong>Falsa.</strong> <a href="../../prospecto/diccionario.html#dato-censurado" class="dic">Un dato censurado</a> no es un dato perdido: sabemos que el paciente estaba vivo hasta el momento de la censura. Kaplan-Meier lo cuenta entre los pacientes en riesgo mientras lo observamos y lo retira después. Por eso, a los 4 meses quedan 8 pacientes en riesgo y no 9: el paciente censurado a los 3 meses ya salió. Excluirlo desde el inicio desperdiciaría información y sesgaría la estimación.
+</details>
+</div>
+<div class="pregunta">
+<p><strong>b) La mediana de supervivencia estimada es de 9 meses.</strong></p>
+<details>
+<summary>
+Ver respuesta
+</summary>
+<strong>Verdadera.</strong> La mediana es el primer tiempo en que la supervivencia acumulada cae a 0,50 o menos. A los 7 meses todavía es 0,525; a los 9 meses baja a 0,350. Con solo 10 pacientes, la estimación es muy imprecisa: R da un límite inferior de 6 meses y no puede calcular el superior.
+</details>
+</div>
+<div class="pregunta">
+<p><strong>c) Calcular la mortalidad como 5 de 10 subestima el riesgo de morir durante el primer año.</strong></p>
+<details>
+<summary>
+Ver respuesta
+</summary>
+<strong>Verdadera.</strong> El cálculo de 5 de 10 trata a los tres pacientes perdidos como si hubieran llegado vivos a los 12 meses, algo que nunca se observó. Kaplan-Meier estima una supervivencia al año de 0,35, es decir, un riesgo de morir de 1 − 0,35 = 0,65 (65 %), no del 50 %. La diferencia viene de usar en cada momento solo a quienes seguían en observación.
+</details>
+</div>
+<div class="pregunta">
+<p><strong>d) Si los pacientes se perdieron porque estaban más graves, la curva de Kaplan-Meier sigue siendo válida sin cambios.</strong></p>
+<details>
+<summary>
+Ver respuesta
+</summary>
+<strong>Falsa.</strong> Kaplan-Meier supone que la censura es <strong>no informativa</strong>: quien se pierde tiene el mismo pronóstico que quien sigue en el estudio. Si se pierden los más graves, la curva sobreestima la supervivencia. Este supuesto no puede verificarse con los datos. En tu tesis, reporta cuántos pacientes se perdieron, por qué y en qué momento, y discute el posible sesgo.
+</details>
+</div>
+</div>
+</section>
+<section id="rp" class="level2">
+<h2 class="anchored" data-anchor-id="rp">Rp/</h2>
+<div class="en-una-frase">
+<p>El paciente censurado aporta información hasta el día en que dejó de observarse: no lo cuentes como vivo ni lo borres de la base.</p>
+</div>
+</section>
+<section id="diagnóstico-diferencial" class="level2">
+<h2 class="anchored" data-anchor-id="diagnóstico-diferencial">Diagnóstico diferencial</h2>
+<ul>
+<li><strong>Pérdidas en el seguimiento frente a <a href="../../prospecto/diccionario.html#perdidas" class="dic">pérdidas</a> en el tamaño de muestra.</strong> Las primeras son un problema del análisis; las segundas se prevén al calcular la muestra, inflándola según el porcentaje esperado.</li>
+<li><strong>Tasa por <a href="../../prospecto/diccionario.html#persona-tiempo" class="dic">persona-tiempo</a>.</strong> También aprovecha el tiempo de cada paciente, pero supone un riesgo constante. Kaplan-Meier no lo supone y muestra cómo cambia la supervivencia mes a mes.</li>
+<li><strong><a href="../../prospecto/diccionario.html#regresion-de-cox" class="dic">Regresión de Cox</a>.</strong> Es el paso siguiente cuando quieres comparar grupos y ajustar por <a href="../../prospecto/diccionario.html#confusion" class="dic">confusores</a>: estima el <em>hazard ratio</em>.</li>
+</ul>
+</section>
+<section id="en-r" class="level2">
+<h2 class="anchored" data-anchor-id="en-r">En R</h2>
+<div class="cell">
+<details class="code-fold">
+<summary>Ver código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">library</span>(survival)</span>
+<span id="cb1-2"></span>
+<span id="cb1-3"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Tiempo en meses; evento: 1 = murió, 0 = censurado</span></span>
+<span id="cb1-4">tiempo <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">3</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">4</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">5</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">6</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">7</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">8</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">9</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">11</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">12</span>)</span>
+<span id="cb1-5">evento <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>)</span>
+<span id="cb1-6"></span>
+<span id="cb1-7">km <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">survfit</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">Surv</span>(tiempo, evento) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">~</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>)</span>
+<span id="cb1-8"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">summary</span>(km)   <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># tabla de supervivencia con IC 95 %</span></span></code></pre></div></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Call: survfit(formula = Surv(tiempo, evento) ~ 1)
+
+ time n.risk n.event survival std.err lower 95% CI upper 95% CI
+    2     10       1    0.900  0.0949        0.732        1.000
+    4      8       1    0.787  0.1340        0.564        1.000
+    6      6       1    0.656  0.1638        0.402        1.000
+    7      5       1    0.525  0.1759        0.272        1.000
+    9      3       1    0.350  0.1849        0.124        0.985</code></pre>
+</div>
+<details class="code-fold">
+<summary>Ver código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1">km            <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># mediana de supervivencia</span></span></code></pre></div></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Call: survfit(formula = Surv(tiempo, evento) ~ 1)
+
+      n events median 0.95LCL 0.95UCL
+[1,] 10      5      9       6      NA</code></pre>
+</div>
+<details class="code-fold">
+<summary>Ver código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">plot</span>(km, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">xlab =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Meses"</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">ylab =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Supervivencia"</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">mark.time =</span> <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">TRUE</span>)</span></code></pre></div></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="https://anthonyromero.netlify.app/casos/kaplan-meier/index_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Las marcas verticales de la curva son los pacientes censurados.</p>
+</section>
+<section id="para-profundizar" class="level2">
+<h2 class="anchored" data-anchor-id="para-profundizar">Para profundizar</h2>
+<ul>
+<li><a href="../../disenos/cohortes/index.html">El estudio de cohortes</a>, en Diseños de estudio: incidencia, persona-tiempo y pérdidas en el seguimiento.</li>
+<li>¿Comparas la supervivencia entre dos grupos? Haz el <a href="../../blog/que-prueba-estadistica/index.html#haz-tu-triaje">Triaje estadístico</a>.</li>
+</ul>
+</section>
+<section id="referencias" class="level2">
+<h2 class="anchored" data-anchor-id="referencias">Referencias</h2>
+<ol type="1">
+<li>Kaplan EL, Meier P. Nonparametric estimation from incomplete observations. <em>J Am Stat Assoc</em>. 1958;53(282):457-81.</li>
+<li>Bland JM, Altman DG. Survival probabilities (the Kaplan-Meier method). <em>BMJ</em>. 1998;317(7172):1572.</li>
+<li>Clark TG, Bradburn MJ, Love SB, Altman DG. Survival analysis part I: basic concepts and first analyses. <em>Br J Cancer</em>. 2003;89(2):232-8.</li>
+</ol>
+<div class="cta">
+<p><strong>¿Te tocó un caso así en tu tesis?</strong></p>
+<p>Te ayudo a elegir e interpretar el análisis correcto.</p>
+<p><a href="https://api.whatsapp.com/send?phone=51955446754&amp;text=Hola%2C%20le%C3%AD%20un%20caso%20cl%C3%ADnico%20estad%C3%ADstico%20en%20tu%20web%20y%20quiero%20informaci%C3%B3n%20sobre%20asesor%C3%ADa%20para%20mi%20tesis">Escríbeme por WhatsApp</a></p>
+</div>
+
+
+</section>
+
+ ]]></description>
+  <category>Caso clínico estadístico</category>
+  <category>Epidemiología</category>
+  <category>Pruebas estadísticas</category>
+  <category>Tesis</category>
+  <guid>https://anthonyromero.netlify.app/casos/kaplan-meier/</guid>
+  <pubDate>Tue, 03 Nov 2026 00:00:00 GMT</pubDate>
+  <media:content url="https://anthonyromero.netlify.app/casos/kaplan-meier/portada.png" medium="image" type="image/png" height="76" width="144"/>
+</item>
 <item>
   <title>Prueba t para dos muestras independientes</title>
   <dc:creator>Anthony Romero-Cerdán, MD</dc:creator>
@@ -247,7 +543,7 @@ mean in group Hombre  mean in group Mujer
   <category>Pruebas estadísticas</category>
   <category>Tesis</category>
   <guid>https://anthonyromero.netlify.app/vademecum/t-de-welch/</guid>
-  <pubDate>Thu, 29 Oct 2026 05:00:00 GMT</pubDate>
+  <pubDate>Thu, 29 Oct 2026 00:00:00 GMT</pubDate>
   <media:content url="https://anthonyromero.netlify.app/vademecum/t-de-welch/portada.png" medium="image" type="image/png" height="76" width="144"/>
 </item>
 <item>
@@ -441,7 +737,7 @@ mean of x mean of y
   <category>Pruebas estadísticas</category>
   <category>Tesis</category>
   <guid>https://anthonyromero.netlify.app/casos/ic-vs-valor-p/</guid>
-  <pubDate>Tue, 27 Oct 2026 05:00:00 GMT</pubDate>
+  <pubDate>Tue, 27 Oct 2026 00:00:00 GMT</pubDate>
   <media:content url="https://anthonyromero.netlify.app/casos/ic-vs-valor-p/portada.png" medium="image" type="image/png" height="76" width="144"/>
 </item>
 <item>
@@ -723,7 +1019,7 @@ odds ratio
   <category>Pruebas estadísticas</category>
   <category>Tesis</category>
   <guid>https://anthonyromero.netlify.app/vademecum/chi-cuadrado/</guid>
-  <pubDate>Thu, 22 Oct 2026 05:00:00 GMT</pubDate>
+  <pubDate>Thu, 22 Oct 2026 00:00:00 GMT</pubDate>
   <media:content url="https://anthonyromero.netlify.app/vademecum/chi-cuadrado/portada.png" medium="image" type="image/png" height="76" width="144"/>
 </item>
 <item>
@@ -1070,7 +1366,7 @@ OR     2.45 1.68 3.60</code></pre>
   <category>Epidemiología</category>
   <category>Tesis</category>
   <guid>https://anthonyromero.netlify.app/casos/rr-vs-or/</guid>
-  <pubDate>Tue, 20 Oct 2026 05:00:00 GMT</pubDate>
+  <pubDate>Tue, 20 Oct 2026 00:00:00 GMT</pubDate>
   <media:content url="https://anthonyromero.netlify.app/casos/rr-vs-or/portada.png" medium="image" type="image/png" height="76" width="144"/>
 </item>
 <item>
@@ -1355,7 +1651,7 @@ Un sesgo por pérdidas diferenciales: si quienes se fueron tenían un riesgo dis
   <category>Epidemiología</category>
   <category>Tesis</category>
   <guid>https://anthonyromero.netlify.app/disenos/cohortes/</guid>
-  <pubDate>Thu, 08 Oct 2026 05:00:00 GMT</pubDate>
+  <pubDate>Thu, 08 Oct 2026 00:00:00 GMT</pubDate>
   <media:content url="https://anthonyromero.netlify.app/disenos/cohortes/portada.png" medium="image" type="image/png" height="76" width="144"/>
 </item>
 <item>
@@ -1611,7 +1907,7 @@ Para reducir el sesgo de recuerdo: los casos tienden a recordar o reportar sus e
   <category>Epidemiología</category>
   <category>Tesis</category>
   <guid>https://anthonyromero.netlify.app/disenos/casos-y-controles/</guid>
-  <pubDate>Thu, 01 Oct 2026 05:00:00 GMT</pubDate>
+  <pubDate>Thu, 01 Oct 2026 00:00:00 GMT</pubDate>
   <media:content url="https://anthonyromero.netlify.app/disenos/casos-y-controles/portada.png" medium="image" type="image/png" height="76" width="144"/>
 </item>
 <item>
@@ -1859,7 +2155,7 @@ Porque mide ambos a la vez y no establece qué ocurrió primero; además, el dia
   <category>Epidemiología</category>
   <category>Tesis</category>
   <guid>https://anthonyromero.netlify.app/disenos/transversal/</guid>
-  <pubDate>Thu, 24 Sep 2026 05:00:00 GMT</pubDate>
+  <pubDate>Thu, 24 Sep 2026 00:00:00 GMT</pubDate>
   <media:content url="https://anthonyromero.netlify.app/disenos/transversal/portada.png" medium="image" type="image/png" height="76" width="144"/>
 </item>
 <item>
@@ -2196,7 +2492,7 @@ Una regresión de Poisson con varianza robusta para estimar razones de prevalenc
   <category>Pruebas estadísticas</category>
   <category>Tesis</category>
   <guid>https://anthonyromero.netlify.app/blog/que-prueba-estadistica/</guid>
-  <pubDate>Thu, 10 Sep 2026 05:00:00 GMT</pubDate>
+  <pubDate>Thu, 10 Sep 2026 00:00:00 GMT</pubDate>
   <media:content url="https://anthonyromero.netlify.app/blog/que-prueba-estadistica/portada.png" medium="image" type="image/png" height="76" width="144"/>
 </item>
 </channel>

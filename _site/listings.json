@@ -17,6 +17,7 @@
   {
     "listing": "/blog.html",
     "items": [
+      "/casos/kaplan-meier/index.html",
       "/vademecum/t-de-welch/index.html",
       "/casos/ic-vs-valor-p/index.html",
       "/vademecum/chi-cuadrado/index.html",
@@ -30,6 +31,7 @@
   {
     "listing": "/index.html",
     "items": [
+      "/casos/kaplan-meier/index.html",
       "/vademecum/t-de-welch/index.html",
       "/casos/ic-vs-valor-p/index.html",
       "/vademecum/chi-cuadrado/index.html",
@@ -50,6 +52,7 @@
   {
     "listing": "/temas.html",
     "items": [
+      "/casos/kaplan-meier/index.html",
       "/vademecum/t-de-welch/index.html",
       "/casos/ic-vs-valor-p/index.html",
       "/vademecum/chi-cuadrado/index.html",

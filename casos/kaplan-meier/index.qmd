@@ -2,7 +2,6 @@
 title: "¿Qué hago con los pacientes que se fueron?"
 description: "Caso clínico estadístico: una cohorte pequeña con pacientes perdidos en el seguimiento, analizada con Kaplan-Meier. Decide qué afirmaciones son verdaderas y por qué."
 date: 2026-11-03
-draft: true
 image: portada.png
 categories: [Caso clínico estadístico, Epidemiología, Pruebas estadísticas, Tesis]
 ---
