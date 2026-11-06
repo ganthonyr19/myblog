@@ -10,7 +10,214 @@
 <atom:link href="https://anthonyromero.netlify.app/blog.xml" rel="self" type="application/rss+xml"/>
 <description>Entradas para entender y hacer mejor la investigación en salud: diseños de estudio, elección de pruebas estadísticas y novedades del ecosistema R.</description>
 <generator>quarto-1.10.18</generator>
-<lastBuildDate>Tue, 03 Nov 2026 00:00:00 GMT</lastBuildDate>
+<lastBuildDate>Fri, 06 Nov 2026 00:00:00 GMT</lastBuildDate>
+<item>
+  <title>U de Mann-Whitney</title>
+  <dc:creator>Anthony Romero-Cerdán, MD</dc:creator>
+  <link>https://anthonyromero.netlify.app/vademecum/u-de-mann-whitney/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+
+<p><a href="../../vademecum/index.html" class="sello"><img src="https://anthonyromero.netlify.app/images/marcas/vademecum.svg" class="img-fluid"><span><b>Vademécum estadístico</b><em>Ficha n.º 3</em></span></a></p>
+<div class="en-una-frase">
+<p>Compara una variable numérica asimétrica u ordinal entre dos grupos de personas distintas. No compara medianas, salvo que las distribuciones tengan la misma forma.</p>
+</div>
+<section id="indicación" class="level2">
+<h2 class="anchored" data-anchor-id="indicación">Indicación</h2>
+<p>Comparar dos grupos independientes cuando la variable es ordinal (una escala de Likert, el estadio de una enfermedad) o numérica con una distribución muy asimétrica y una muestra pequeña: días de estancia, cargas virales o valores de laboratorio con colas largas.</p>
+</section>
+<section id="mecanismo-de-acción" class="level2">
+<h2 class="anchored" data-anchor-id="mecanismo-de-acción">Mecanismo de acción</h2>
+<p>Ordena a todos los participantes de ambos grupos de menor a mayor y reemplaza cada valor por su rango. Luego compara la suma de rangos de cada grupo. La pregunta que responde es si los valores de un grupo tienden a ser mayores que los del otro: la probabilidad de que una persona elegida al azar de un grupo tenga un valor más alto que una elegida al azar del otro.</p>
+<p>Como trabaja con rangos, los valores extremos pesan menos que en la prueba t.</p>
+</section>
+<section id="contraindicaciones" class="level2">
+<h2 class="anchored" data-anchor-id="contraindicaciones">Contraindicaciones</h2>
+<ul>
+<li><strong>Datos pareados.</strong> Para las mismas personas medidas dos veces corresponde la prueba de rangos con signo de Wilcoxon.</li>
+<li><strong>Muchos empates.</strong> Si la variable tiene pocas categorías posibles, hay muchos valores repetidos y la prueba pierde información. R lo advierte y usa una aproximación.</li>
+<li><strong>Querer comparar medianas en grupos de forma distinta.</strong> La prueba puede ser significativa porque los grupos difieren en su dispersión aunque tengan la misma mediana (Hart, 2001).</li>
+</ul>
+</section>
+<section id="posología" class="level2">
+<h2 class="anchored" data-anchor-id="posología">Posología</h2>
+<p>No hay una fórmula tan simple como para la prueba t. Frente a ella, la eficiencia relativa de la prueba de rangos es de 0,955 cuando los datos son normales y nunca baja de 0,864. Por eso, una regla prudente es calcular el tamaño para comparar dos medias y aumentarlo alrededor de un 15 %.</p>
+<div class="usa-calc">
+<p><img src="https://anthonyromero.netlify.app/images/marcas/muestra.svg" class="img-fluid"></p>
+<p>Calcúlalo en el Consultorio estadístico: <a href="../../herramientas/muestra/index.html#mod=med">tamaño de muestra para comparar dos medias</a>.</p>
+</div>
+</section>
+<section id="interacciones" class="level2">
+<h2 class="anchored" data-anchor-id="interacciones">Interacciones</h2>
+<ul>
+<li><strong>Prueba de normalidad como filtro automático.</strong> Elegir Mann-Whitney solo porque Shapiro-Wilk dio p &lt; 0,05 no es un buen criterio. Con muestras grandes, la prueba t de Welch suele funcionar bien aunque la variable no sea normal (Ruxton, 2006); la decisión depende también de qué quieres comparar.</li>
+<li><strong>Medida del efecto.</strong> El valor p no dice cuánto difieren los grupos. Con <code>wilcox.test(conf.int = TRUE)</code>, R estima la diferencia de Hodges-Lehmann con su IC 95 %: la mediana de todas las diferencias posibles entre un valor de un grupo y uno del otro.</li>
+<li><strong>Descripción coherente.</strong> Si usas una prueba de rangos, describe a los grupos con <a href="../../prospecto/diccionario.html#mediana-y-ric" class="dic">mediana y RIC</a>, no con media y desviación estándar.</li>
+</ul>
+</section>
+<section id="reacciones-adversas-frecuentes-en-las-tesis" class="level2">
+<h2 class="anchored" data-anchor-id="reacciones-adversas-frecuentes-en-las-tesis">Reacciones adversas frecuentes en las tesis</h2>
+<ul>
+<li><strong>Escribir «se compararon las medianas».</strong> Es correcto solo si las distribuciones de ambos grupos tienen la misma forma.</li>
+<li><strong>Reportar media y desviación estándar junto a un p de Mann-Whitney.</strong> La descripción y la prueba deben ir en el mismo lenguaje.</li>
+<li><strong>Usarla con datos pareados.</strong> Un diseño antes y después necesita la prueba de rangos con signo.</li>
+</ul>
+</section>
+<section id="presentación-en-r" class="level2">
+<h2 class="anchored" data-anchor-id="presentación-en-r">Presentación en R</h2>
+<p>Con la base <code>pbc</code> comparamos la bilirrubina, una variable muy asimétrica, entre los grupos del ensayo (ver el caso n.º 23).</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Ver código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">library</span>(survival)</span>
+<span id="cb1-2">d <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> pbc[<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">!</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">is.na</span>(pbc<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>trt), ]                    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># los 312 pacientes del ensayo</span></span>
+<span id="cb1-3">d<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>grupo <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">factor</span>(d<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>trt, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span>, <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"D-penicilamina"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Placebo"</span>))</span>
+<span id="cb1-4"></span>
+<span id="cb1-5"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Mediana y rango intercuartílico por grupo</span></span>
+<span id="cb1-6"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">aggregate</span>(bili <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">~</span> grupo, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">data =</span> d, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">FUN =</span> <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">function</span>(x) <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">quantile</span>(x, <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(<span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.25</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.5</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.75</span>)))</span></code></pre></div></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>           grupo bili.25% bili.50% bili.75%
+1 D-penicilamina    0.800    1.400    3.200
+2        Placebo    0.725    1.300    3.600</code></pre>
+</div>
+<details class="code-fold">
+<summary>Ver código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Prueba y diferencia de Hodges-Lehmann con su IC 95 %</span></span>
+<span id="cb3-2"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">wilcox.test</span>(bili <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">~</span> grupo, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">data =</span> d, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">exact =</span> <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">FALSE</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">conf.int =</span> <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">TRUE</span>)</span></code></pre></div></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Wilcoxon rank sum test with continuity correction
+
+data:  bili by grupo
+W = 12007, p-value = 0.8422
+alternative hypothesis: true location shift is not equal to 0
+95 percent confidence interval:
+ -0.2000024  0.2000073
+sample estimates:
+difference in location 
+         -5.294983e-05 </code></pre>
+</div>
+</div>
+</section>
+<section id="cómo-reportarlo" class="level2">
+<h2 class="anchored" data-anchor-id="cómo-reportarlo">Cómo reportarlo</h2>
+<div class="reporte">
+<blockquote class="blockquote">
+<p>La mediana de bilirrubina sérica fue de 1,40 mg/dL (RIC: 0,80 a 3,20) en el grupo de D-penicilamina y de 1,30 mg/dL (RIC: 0,72 a 3,60) en el grupo placebo (p = 0,84; prueba U de Mann-Whitney). La diferencia de Hodges-Lehmann fue de 0,00 mg/dL (IC 95 %: −0,20 a 0,20).</p>
+</blockquote>
+</div>
+</section>
+<section id="diagnóstico-diferencial" class="level2">
+<h2 class="anchored" data-anchor-id="diagnóstico-diferencial">Diagnóstico diferencial</h2>
+<ul>
+<li><strong>Prueba t de Welch.</strong> Si la distribución es razonablemente simétrica o la muestra es grande (ver la <a href="../../vademecum/t-de-welch/index.html">ficha n.º 2</a>).</li>
+<li><strong>Rangos con signo de Wilcoxon.</strong> Para las mismas personas medidas dos veces.</li>
+<li><strong>Kruskal-Wallis.</strong> Para tres o más grupos.</li>
+</ul>
+<p>Revisa también la receta corta de esta prueba en el <a href="../../blog/que-prueba-estadistica/index.html#haz-tu-triaje">Triaje estadístico</a>.</p>
+</section>
+<section id="referencias" class="level2">
+<h2 class="anchored" data-anchor-id="referencias">Referencias</h2>
+<ol type="1">
+<li>Hart A. Mann-Whitney test is not just a test of medians: differences in spread can be important. <em>BMJ</em>. 2001;323(7309):391-3.</li>
+<li>Ruxton GD. The unequal variance t-test is an underused alternative to Student’s t-test and the Mann-Whitney U test. <em>Behav Ecol</em>. 2006;17(4):688-90.</li>
+<li>Kirkwood BR, Sterne JAC. <em>Essential Medical Statistics</em>. 2.ª ed.&nbsp;Oxford: Blackwell Science; 2003.</li>
+<li>Dickson ER, Grambsch PM, Fleming TR, Fisher LD, Langworthy A. Prognosis in primary biliary cirrhosis: model for decision making. <em>Hepatology</em>. 1989;10(1):1-7.</li>
+</ol>
+<div class="cta">
+<p><strong>¿Tus datos no se parecen a una campana?</strong></p>
+<p>Te ayudo a elegir, ejecutar y reportar la prueba correcta para tu tesis.</p>
+<p><a href="https://api.whatsapp.com/send?phone=51955446754&amp;text=Hola%2C%20le%C3%AD%20el%20vadem%C3%A9cum%20estad%C3%ADstico%20de%20tu%20web%20y%20quiero%20informaci%C3%B3n%20sobre%20asesor%C3%ADa%20para%20mi%20tesis">Escríbeme por WhatsApp</a></p>
+</div>
+
+
+</section>
+
+ ]]></description>
+  <category>Vademécum estadístico</category>
+  <category>Pruebas estadísticas</category>
+  <category>Tesis</category>
+  <guid>https://anthonyromero.netlify.app/vademecum/u-de-mann-whitney/</guid>
+  <pubDate>Fri, 06 Nov 2026 00:00:00 GMT</pubDate>
+  <media:content url="https://anthonyromero.netlify.app/vademecum/u-de-mann-whitney/portada.png" medium="image" type="image/png" height="76" width="144"/>
+</item>
 <item>
   <title>¿Qué hago con los pacientes que se fueron?</title>
   <dc:creator>Anthony Romero-Cerdán, MD</dc:creator>
@@ -515,7 +722,7 @@ mean in group Hombre  mean in group Mujer
 <section id="diagnóstico-diferencial" class="level2">
 <h2 class="anchored" data-anchor-id="diagnóstico-diferencial">Diagnóstico diferencial</h2>
 <ul>
-<li><strong>U de Mann-Whitney.</strong> Para variables muy asimétricas u ordinales (ver la ficha n.º 3).</li>
+<li><strong>U de Mann-Whitney.</strong> Para variables muy asimétricas u ordinales (ver la <a href="../../vademecum/u-de-mann-whitney/index.html">ficha n.º 3</a>).</li>
 <li><strong>Prueba t pareada.</strong> Para las mismas personas medidas dos veces.</li>
 <li><strong>ANOVA.</strong> Para tres o más grupos.</li>
 </ul>

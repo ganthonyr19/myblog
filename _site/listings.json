@@ -17,6 +17,7 @@
   {
     "listing": "/blog.html",
     "items": [
+      "/vademecum/u-de-mann-whitney/index.html",
       "/casos/kaplan-meier/index.html",
       "/vademecum/t-de-welch/index.html",
       "/casos/ic-vs-valor-p/index.html",
@@ -31,6 +32,7 @@
   {
     "listing": "/index.html",
     "items": [
+      "/vademecum/u-de-mann-whitney/index.html",
       "/casos/kaplan-meier/index.html",
       "/vademecum/t-de-welch/index.html",
       "/casos/ic-vs-valor-p/index.html",
@@ -52,6 +54,7 @@
   {
     "listing": "/temas.html",
     "items": [
+      "/vademecum/u-de-mann-whitney/index.html",
       "/casos/kaplan-meier/index.html",
       "/vademecum/t-de-welch/index.html",
       "/casos/ic-vs-valor-p/index.html",
