@@ -130,7 +130,7 @@
     "href": "blog.html",
     "title": "Blog",
     "section": "",
-    "text": "¿Qué hago con los pacientes que se fueron?\n\n5 minutos\n\n\nCaso clínico estadístico\n\nEpidemiología\n\nPruebas estadísticas\n\nTesis\n\n\n\nCaso clínico estadístico: una cohorte pequeña con pacientes perdidos en el seguimiento, analizada con Kaplan-Meier. Decide qué afirmaciones son verdaderas y por qué.\n\n\n\n3 nov 2026\n\n\n\n\n\n\n\n\n\n\n\n\n\nPrueba t para dos muestras independientes\n\n4 minutos\n\n\nVademécum estadístico\n\nPruebas estadísticas\n\nTesis\n\n\n\nVademécum estadístico: indicación, contraindicaciones, posología, interacciones y reacciones adversas de la prueba t de Welch y de Student, con su código en R.\n\n\n\n29 oct 2026\n\n\n\n\n\n\n\n\n\n\n\n\n\np = 0,07: ¿la intervención no sirve?\n\n5 minutos\n\n\nCaso clínico estadístico\n\nPruebas estadísticas\n\nTesis\n\n\n\nCaso clínico estadístico: un ensayo comunitario en hipertensión con p = 0,07. Qué dice el intervalo de confianza que el valor p calla. Decide qué afirmaciones son verdaderas…\n\n\n\n27 oct 2026\n\n\n\n\n\n\n\n\n\n\n\n\n\nChi cuadrado y prueba exacta de Fisher\n\n5 minutos\n\n\nVademécum estadístico\n\nPruebas estadísticas\n\nTesis\n\n\n\nVademécum estadístico: indicación, contraindicaciones, posología, interacciones y reacciones adversas de la prueba de chi cuadrado de Pearson y de la prueba exacta de…\n\n\n\n22 oct 2026\n\n\n\n\n\n\n\n\n\n\n\n\n\n¿El odds ratio es un riesgo relativo?\n\n5 minutos\n\n\nCaso clínico estadístico\n\nmedidas de asociación\n\nEpidemiología\n\nTesis\n\n\n\nCaso clínico estadístico: una cohorte de gestantes con un desenlace frecuente, donde el odds ratio y el riesgo relativo dicen cosas distintas. Decide qué afirmaciones son…\n\n\n\n20 oct 2026\n\n\n\n\n\n\n\n\n\n\n\n\n\nEl estudio de cohortes\n\n7 minutos\n\n\nDiseños de estudio\n\nEpidemiología\n\nTesis\n\n\n\nEl estudio de cohortes explicado con diagramas y ejemplos: prospectivo y retrospectivo, incidencia, riesgo relativo, persona-tiempo, pérdidas en el seguimiento, análisis en…\n\n\n\n8 oct 2026\n\n\n\n\n\n\n\n\n\n\n\n\n\nEl estudio de casos y controles\n\n7 minutos\n\n\nDiseños de estudio\n\nEpidemiología\n\nTesis\n\n\n\nEl estudio de casos y controles explicado con diagramas y ejemplos: selección de controles, odds ratio, sesgo de recuerdo, análisis en R y tamaño de muestra.\n\n\n\n1 oct 2026\n\n\n\n\n\n\n\n\n\n\n\n\n\nEl estudio transversal\n\n7 minutos\n\n\nDiseños de estudio\n\nEpidemiología\n\nTesis\n\n\n\nEl estudio transversal explicado con diagramas y ejemplos: prevalencia, razón de prevalencias, sesgos, análisis en R y tamaño de muestra.\n\n\n\n24 sep 2026\n\n\n\n\n\n\n\n\n\n\n\n\n\n¿Qué prueba estadística uso?\n\n6 minutos\n\n\nConsultorio estadístico\n\nPruebas estadísticas\n\nTesis\n\n\n\nCómo elegir la prueba estadística de tu tesis de salud: un triaje interactivo en cuatro preguntas, el mapa completo de pruebas, cinco mitos y el código en R de cada una.\n\n\n\n10 sep 2026\n\n\n\n\n\n\nNo hay resultados"
+    "text": "U de Mann-Whitney\n\n4 minutos\n\n\nVademécum estadístico\n\nPruebas estadísticas\n\nTesis\n\n\n\nVademécum estadístico: indicación, contraindicaciones, posología, interacciones y reacciones adversas de la prueba U de Mann-Whitney (suma de rangos de Wilcoxon), con su…\n\n\n\n6 nov 2026\n\n\n\n\n\n\n\n\n\n\n\n\n\n¿Qué hago con los pacientes que se fueron?\n\n5 minutos\n\n\nCaso clínico estadístico\n\nEpidemiología\n\nPruebas estadísticas\n\nTesis\n\n\n\nCaso clínico estadístico: una cohorte pequeña con pacientes perdidos en el seguimiento, analizada con Kaplan-Meier. Decide qué afirmaciones son verdaderas y por qué.\n\n\n\n3 nov 2026\n\n\n\n\n\n\n\n\n\n\n\n\n\nPrueba t para dos muestras independientes\n\n4 minutos\n\n\nVademécum estadístico\n\nPruebas estadísticas\n\nTesis\n\n\n\nVademécum estadístico: indicación, contraindicaciones, posología, interacciones y reacciones adversas de la prueba t de Welch y de Student, con su código en R.\n\n\n\n29 oct 2026\n\n\n\n\n\n\n\n\n\n\n\n\n\np = 0,07: ¿la intervención no sirve?\n\n5 minutos\n\n\nCaso clínico estadístico\n\nPruebas estadísticas\n\nTesis\n\n\n\nCaso clínico estadístico: un ensayo comunitario en hipertensión con p = 0,07. Qué dice el intervalo de confianza que el valor p calla. Decide qué afirmaciones son verdaderas…\n\n\n\n27 oct 2026\n\n\n\n\n\n\n\n\n\n\n\n\n\nChi cuadrado y prueba exacta de Fisher\n\n5 minutos\n\n\nVademécum estadístico\n\nPruebas estadísticas\n\nTesis\n\n\n\nVademécum estadístico: indicación, contraindicaciones, posología, interacciones y reacciones adversas de la prueba de chi cuadrado de Pearson y de la prueba exacta de…\n\n\n\n22 oct 2026\n\n\n\n\n\n\n\n\n\n\n\n\n\n¿El odds ratio es un riesgo relativo?\n\n5 minutos\n\n\nCaso clínico estadístico\n\nmedidas de asociación\n\nEpidemiología\n\nTesis\n\n\n\nCaso clínico estadístico: una cohorte de gestantes con un desenlace frecuente, donde el odds ratio y el riesgo relativo dicen cosas distintas. Decide qué afirmaciones son…\n\n\n\n20 oct 2026\n\n\n\n\n\n\n\n\n\n\n\n\n\nEl estudio de cohortes\n\n7 minutos\n\n\nDiseños de estudio\n\nEpidemiología\n\nTesis\n\n\n\nEl estudio de cohortes explicado con diagramas y ejemplos: prospectivo y retrospectivo, incidencia, riesgo relativo, persona-tiempo, pérdidas en el seguimiento, análisis en…\n\n\n\n8 oct 2026\n\n\n\n\n\n\n\n\n\n\n\n\n\nEl estudio de casos y controles\n\n7 minutos\n\n\nDiseños de estudio\n\nEpidemiología\n\nTesis\n\n\n\nEl estudio de casos y controles explicado con diagramas y ejemplos: selección de controles, odds ratio, sesgo de recuerdo, análisis en R y tamaño de muestra.\n\n\n\n1 oct 2026\n\n\n\n\n\n\n\n\n\n\n\n\n\nEl estudio transversal\n\n7 minutos\n\n\nDiseños de estudio\n\nEpidemiología\n\nTesis\n\n\n\nEl estudio transversal explicado con diagramas y ejemplos: prevalencia, razón de prevalencias, sesgos, análisis en R y tamaño de muestra.\n\n\n\n24 sep 2026\n\n\n\n\n\n\n\n\n\n\n\n\n\n¿Qué prueba estadística uso?\n\n6 minutos\n\n\nConsultorio estadístico\n\nPruebas estadísticas\n\nTesis\n\n\n\nCómo elegir la prueba estadística de tu tesis de salud: un triaje interactivo en cuatro preguntas, el mapa completo de pruebas, cinco mitos y el código en R de cada una.\n\n\n\n10 sep 2026\n\n\n\n\n\n\nNo hay resultados"
   },
   {
     "objectID": "about.html",
@@ -151,7 +151,7 @@
     "href": "index.html#lo-más-reciente",
     "title": "¡Hola! 👋",
     "section": "Lo más reciente",
-    "text": "Lo más reciente\n\n\n\n\n\n\n\n\n\n\n¿Qué hago con los pacientes que se fueron?\n\n\nCaso clínico estadístico\nEpidemiología\nPruebas estadísticas\nTesis\n\n\n\n3 nov 2026\n\n\n\n\n\n\n\n\n\n\n\n\n\nPrueba t para dos muestras independientes\n\n\nVademécum estadístico\nPruebas estadísticas\nTesis\n\n\n\n29 oct 2026\n\n\n\n\n\n\n\n\n\n\n\n\n\np = 0,07: ¿la intervención no sirve?\n\n\nCaso clínico estadístico\nPruebas estadísticas\nTesis\n\n\n\n27 oct 2026\n\n\n\n\n\n\nNo hay resultados"
+    "text": "Lo más reciente\n\n\n\n\n\n\n\n\n\n\nU de Mann-Whitney\n\n\nVademécum estadístico\nPruebas estadísticas\nTesis\n\n\n\n6 nov 2026\n\n\n\n\n\n\n\n\n\n\n\n\n\n¿Qué hago con los pacientes que se fueron?\n\n\nCaso clínico estadístico\nEpidemiología\nPruebas estadísticas\nTesis\n\n\n\n3 nov 2026\n\n\n\n\n\n\n\n\n\n\n\n\n\nPrueba t para dos muestras independientes\n\n\nVademécum estadístico\nPruebas estadísticas\nTesis\n\n\n\n29 oct 2026\n\n\n\n\n\n\nNo hay resultados"
   },
   {
     "objectID": "prospecto/diccionario.html",
@@ -984,7 +984,7 @@
     "href": "vademecum/index.html#las-fichas",
     "title": "Vademécum estadístico",
     "section": "Las fichas",
-    "text": "Las fichas\n\n  Ficha n.º 1Chi cuadrado y prueba exacta de Fisher\n    Dos variables categóricas en grupos independientes.\n  Ficha n.º 2Prueba t para dos muestras independientes\n    La media de una variable numérica en dos grupos.\n  Ficha n.º 3 · 6 nov.U de Mann-Whitney\n    Una variable sesgada u ordinal en dos grupos.\n  Ficha n.º 4 · 13 nov.Correlación de Pearson y de Spearman\n    Dos variables numéricas en las mismas personas.\n  PróximamenteANOVA y Kruskal-WallisTres o más grupos.\n  PróximamentePrueba t pareada y WilcoxonLas mismas personas medidas dos veces.\n  PróximamenteMcNemarUn desenlace categórico medido dos veces.\n  PróximamenteRegresión de Poisson con varianza robustaLa razón de prevalencias ajustada.\n\nLos ejemplos de las fichas usan la base pbc, que se instala con R: los datos reales de 312 pacientes de un ensayo de la Clínica Mayo en cirrosis biliar primaria (Dickson et al., 1989). Así puedes reproducir cada cifra en tu computadora."
+    "text": "Las fichas\n\n  Ficha n.º 1Chi cuadrado y prueba exacta de Fisher\n    Dos variables categóricas en grupos independientes.\n  Ficha n.º 2Prueba t para dos muestras independientes\n    La media de una variable numérica en dos grupos.\n  Ficha n.º 3U de Mann-Whitney\n    Una variable sesgada u ordinal en dos grupos.\n  Ficha n.º 4 · 13 nov.Correlación de Pearson y de Spearman\n    Dos variables numéricas en las mismas personas.\n  PróximamenteANOVA y Kruskal-WallisTres o más grupos.\n  PróximamentePrueba t pareada y WilcoxonLas mismas personas medidas dos veces.\n  PróximamenteMcNemarUn desenlace categórico medido dos veces.\n  PróximamenteRegresión de Poisson con varianza robustaLa razón de prevalencias ajustada.\n\nLos ejemplos de las fichas usan la base pbc, que se instala con R: los datos reales de 312 pacientes de un ensayo de la Clínica Mayo en cirrosis biliar primaria (Dickson et al., 1989). Así puedes reproducir cada cifra en tu computadora."
   },
   {
     "objectID": "vademecum/index.html#referencia",
@@ -1195,5 +1195,82 @@
     "title": "¿Qué hago con los pacientes que se fueron?",
     "section": "Referencias",
     "text": "Referencias\n\nKaplan EL, Meier P. Nonparametric estimation from incomplete observations. J Am Stat Assoc. 1958;53(282):457-81.\nBland JM, Altman DG. Survival probabilities (the Kaplan-Meier method). BMJ. 1998;317(7172):1572.\nClark TG, Bradburn MJ, Love SB, Altman DG. Survival analysis part I: basic concepts and first analyses. Br J Cancer. 2003;89(2):232-8.\n\n\n¿Te tocó un caso así en tu tesis?\nTe ayudo a elegir e interpretar el análisis correcto.\nEscríbeme por WhatsApp"
+  },
+  {
+    "objectID": "vademecum/u-de-mann-whitney/index.html",
+    "href": "vademecum/u-de-mann-whitney/index.html",
+    "title": "U de Mann-Whitney",
+    "section": "",
+    "text": "Vademécum estadísticoFicha n.º 3"
+  },
+  {
+    "objectID": "vademecum/u-de-mann-whitney/index.html#indicación",
+    "href": "vademecum/u-de-mann-whitney/index.html#indicación",
+    "title": "U de Mann-Whitney",
+    "section": "Indicación",
+    "text": "Indicación\nComparar dos grupos independientes cuando la variable es ordinal (una escala de Likert, el estadio de una enfermedad) o numérica con una distribución muy asimétrica y una muestra pequeña: días de estancia, cargas virales o valores de laboratorio con colas largas."
+  },
+  {
+    "objectID": "vademecum/u-de-mann-whitney/index.html#mecanismo-de-acción",
+    "href": "vademecum/u-de-mann-whitney/index.html#mecanismo-de-acción",
+    "title": "U de Mann-Whitney",
+    "section": "Mecanismo de acción",
+    "text": "Mecanismo de acción\nOrdena a todos los participantes de ambos grupos de menor a mayor y reemplaza cada valor por su rango. Luego compara la suma de rangos de cada grupo. La pregunta que responde es si los valores de un grupo tienden a ser mayores que los del otro: la probabilidad de que una persona elegida al azar de un grupo tenga un valor más alto que una elegida al azar del otro.\nComo trabaja con rangos, los valores extremos pesan menos que en la prueba t."
+  },
+  {
+    "objectID": "vademecum/u-de-mann-whitney/index.html#contraindicaciones",
+    "href": "vademecum/u-de-mann-whitney/index.html#contraindicaciones",
+    "title": "U de Mann-Whitney",
+    "section": "Contraindicaciones",
+    "text": "Contraindicaciones\n\nDatos pareados. Para las mismas personas medidas dos veces corresponde la prueba de rangos con signo de Wilcoxon.\nMuchos empates. Si la variable tiene pocas categorías posibles, hay muchos valores repetidos y la prueba pierde información. R lo advierte y usa una aproximación.\nQuerer comparar medianas en grupos de forma distinta. La prueba puede ser significativa porque los grupos difieren en su dispersión aunque tengan la misma mediana (Hart, 2001)."
+  },
+  {
+    "objectID": "vademecum/u-de-mann-whitney/index.html#posología",
+    "href": "vademecum/u-de-mann-whitney/index.html#posología",
+    "title": "U de Mann-Whitney",
+    "section": "Posología",
+    "text": "Posología\nNo hay una fórmula tan simple como para la prueba t. Frente a ella, la eficiencia relativa de la prueba de rangos es de 0,955 cuando los datos son normales y nunca baja de 0,864. Por eso, una regla prudente es calcular el tamaño para comparar dos medias y aumentarlo alrededor de un 15 %.\n\n\nCalcúlalo en el Consultorio estadístico: tamaño de muestra para comparar dos medias."
+  },
+  {
+    "objectID": "vademecum/u-de-mann-whitney/index.html#interacciones",
+    "href": "vademecum/u-de-mann-whitney/index.html#interacciones",
+    "title": "U de Mann-Whitney",
+    "section": "Interacciones",
+    "text": "Interacciones\n\nPrueba de normalidad como filtro automático. Elegir Mann-Whitney solo porque Shapiro-Wilk dio p &lt; 0,05 no es un buen criterio. Con muestras grandes, la prueba t de Welch suele funcionar bien aunque la variable no sea normal (Ruxton, 2006); la decisión depende también de qué quieres comparar.\nMedida del efecto. El valor p no dice cuánto difieren los grupos. Con wilcox.test(conf.int = TRUE), R estima la diferencia de Hodges-Lehmann con su IC 95 %: la mediana de todas las diferencias posibles entre un valor de un grupo y uno del otro.\nDescripción coherente. Si usas una prueba de rangos, describe a los grupos con mediana y RIC, no con media y desviación estándar."
+  },
+  {
+    "objectID": "vademecum/u-de-mann-whitney/index.html#reacciones-adversas-frecuentes-en-las-tesis",
+    "href": "vademecum/u-de-mann-whitney/index.html#reacciones-adversas-frecuentes-en-las-tesis",
+    "title": "U de Mann-Whitney",
+    "section": "Reacciones adversas frecuentes en las tesis",
+    "text": "Reacciones adversas frecuentes en las tesis\n\nEscribir «se compararon las medianas». Es correcto solo si las distribuciones de ambos grupos tienen la misma forma.\nReportar media y desviación estándar junto a un p de Mann-Whitney. La descripción y la prueba deben ir en el mismo lenguaje.\nUsarla con datos pareados. Un diseño antes y después necesita la prueba de rangos con signo."
+  },
+  {
+    "objectID": "vademecum/u-de-mann-whitney/index.html#presentación-en-r",
+    "href": "vademecum/u-de-mann-whitney/index.html#presentación-en-r",
+    "title": "U de Mann-Whitney",
+    "section": "Presentación en R",
+    "text": "Presentación en R\nCon la base pbc comparamos la bilirrubina, una variable muy asimétrica, entre los grupos del ensayo (ver el caso n.º 23).\n\n\nVer código\nlibrary(survival)\nd &lt;- pbc[!is.na(pbc$trt), ]                    # los 312 pacientes del ensayo\nd$grupo &lt;- factor(d$trt, 1:2, c(\"D-penicilamina\", \"Placebo\"))\n\n# Mediana y rango intercuartílico por grupo\naggregate(bili ~ grupo, data = d, FUN = function(x) quantile(x, c(0.25, 0.5, 0.75)))\n\n\n           grupo bili.25% bili.50% bili.75%\n1 D-penicilamina    0.800    1.400    3.200\n2        Placebo    0.725    1.300    3.600\n\n\nVer código\n# Prueba y diferencia de Hodges-Lehmann con su IC 95 %\nwilcox.test(bili ~ grupo, data = d, exact = FALSE, conf.int = TRUE)\n\n\n\n    Wilcoxon rank sum test with continuity correction\n\ndata:  bili by grupo\nW = 12007, p-value = 0.8422\nalternative hypothesis: true location shift is not equal to 0\n95 percent confidence interval:\n -0.2000024  0.2000073\nsample estimates:\ndifference in location \n         -5.294983e-05"
+  },
+  {
+    "objectID": "vademecum/u-de-mann-whitney/index.html#cómo-reportarlo",
+    "href": "vademecum/u-de-mann-whitney/index.html#cómo-reportarlo",
+    "title": "U de Mann-Whitney",
+    "section": "Cómo reportarlo",
+    "text": "Cómo reportarlo\n\n\nLa mediana de bilirrubina sérica fue de 1,40 mg/dL (RIC: 0,80 a 3,20) en el grupo de D-penicilamina y de 1,30 mg/dL (RIC: 0,72 a 3,60) en el grupo placebo (p = 0,84; prueba U de Mann-Whitney). La diferencia de Hodges-Lehmann fue de 0,00 mg/dL (IC 95 %: −0,20 a 0,20)."
+  },
+  {
+    "objectID": "vademecum/u-de-mann-whitney/index.html#diagnóstico-diferencial",
+    "href": "vademecum/u-de-mann-whitney/index.html#diagnóstico-diferencial",
+    "title": "U de Mann-Whitney",
+    "section": "Diagnóstico diferencial",
+    "text": "Diagnóstico diferencial\n\nPrueba t de Welch. Si la distribución es razonablemente simétrica o la muestra es grande (ver la ficha n.º 2).\nRangos con signo de Wilcoxon. Para las mismas personas medidas dos veces.\nKruskal-Wallis. Para tres o más grupos.\n\nRevisa también la receta corta de esta prueba en el Triaje estadístico."
+  },
+  {
+    "objectID": "vademecum/u-de-mann-whitney/index.html#referencias",
+    "href": "vademecum/u-de-mann-whitney/index.html#referencias",
+    "title": "U de Mann-Whitney",
+    "section": "Referencias",
+    "text": "Referencias\n\nHart A. Mann-Whitney test is not just a test of medians: differences in spread can be important. BMJ. 2001;323(7309):391-3.\nRuxton GD. The unequal variance t-test is an underused alternative to Student’s t-test and the Mann-Whitney U test. Behav Ecol. 2006;17(4):688-90.\nKirkwood BR, Sterne JAC. Essential Medical Statistics. 2.ª ed. Oxford: Blackwell Science; 2003.\nDickson ER, Grambsch PM, Fleming TR, Fisher LD, Langworthy A. Prognosis in primary biliary cirrhosis: model for decision making. Hepatology. 1989;10(1):1-7.\n\n\n¿Tus datos no se parecen a una campana?\nTe ayudo a elegir, ejecutar y reportar la prueba correcta para tu tesis.\nEscríbeme por WhatsApp"
   }
 ]
