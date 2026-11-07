@@ -1,7 +1,7 @@
 ---
 title: "¿Cómo se lee un forest plot?"
 description: "Caso clínico estadístico: el metaanálisis de 13 ensayos de la vacuna BCG contra la tuberculosis, con mucha heterogeneidad y una explicación inesperada. Decide qué afirmaciones son verdaderas y por qué."
-date: 2027-02-12
+date: 2027-01-11
 draft: true
 image: portada.png
 categories: [Caso clínico estadístico, Epidemiología, Tesis]

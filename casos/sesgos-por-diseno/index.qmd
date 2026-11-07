@@ -1,7 +1,7 @@
 ---
 title: "¿Las madres recuerdan igual?"
 description: "Caso clínico estadístico: un estudio de casos y controles sobre malformaciones congénitas en el que el OR cambia según de dónde salga el dato. Decide qué afirmaciones son verdaderas y por qué."
-date: 2026-11-17
+date: 2026-11-13
 draft: true
 image: portada.png
 categories: [Caso clínico estadístico, Diseños de estudio, Epidemiología, Tesis]

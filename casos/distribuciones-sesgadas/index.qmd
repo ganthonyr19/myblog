@@ -1,7 +1,7 @@
 ---
 title: "¿La media de la bilirrubina describe al paciente típico?"
 description: "Caso clínico estadístico: la bilirrubina de 312 pacientes del ensayo de la Clínica Mayo en cirrosis biliar primaria, una variable muy asimétrica. Decide qué afirmaciones son verdaderas y por qué."
-date: 2027-01-26
+date: 2026-12-28
 draft: true
 image: portada.png
 categories: [Caso clínico estadístico, estadística descriptiva, Pruebas estadísticas, Tesis]

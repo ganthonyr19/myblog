@@ -1,7 +1,7 @@
 ---
 title: "¿Y si cada paciente es su propio control?"
 description: "Caso clínico estadístico: un ensayo cruzado sobre paracetamol y presión arterial en personas con hipertensión. Decide qué afirmaciones son verdaderas y por qué."
-date: 2026-12-18
+date: 2026-12-04
 draft: true
 image: portada.png
 categories: [Caso clínico estadístico, Diseños de estudio, Pruebas estadísticas]

@@ -1,7 +1,7 @@
 ---
 title: "¿Por qué el ensayo contradijo a la cohorte?"
 description: "Caso clínico estadístico: la terapia hormonal parecía proteger el corazón en una gran cohorte de enfermeras, pero un ensayo aleatorizado encontró lo contrario. Decide qué afirmaciones son verdaderas y por qué."
-date: 2027-01-05
+date: 2026-12-11
 draft: true
 image: portada.png
 categories: [Caso clínico estadístico, Diseños de estudio, Epidemiología]

@@ -1,7 +1,7 @@
 ---
 title: "¿Beber poco alarga la vida?"
 description: "Caso clínico estadístico: la aparente protección del consumo moderado de alcohol y los sesgos que la explican en los estudios de cohortes y transversales. Decide qué afirmaciones son verdaderas y por qué."
-date: 2027-02-16
+date: 2027-01-13
 draft: true
 image: portada.png
 categories: [Caso clínico estadístico, Diseños de estudio, Epidemiología]
