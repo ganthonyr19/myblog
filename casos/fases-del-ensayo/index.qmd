@@ -1,7 +1,7 @@
 ---
 title: "¿Por qué la fase 1 empieza con tan pocos voluntarios?"
 description: "Caso clínico estadístico: el ensayo de fase 1 del anticuerpo TGN1412, en el que seis voluntarios sanos terminaron en cuidados intensivos. Decide qué afirmaciones son verdaderas y por qué."
-date: 2027-01-29
+date: 2026-12-30
 draft: true
 image: portada.png
 categories: [Caso clínico estadístico, Diseños de estudio, Tesis]

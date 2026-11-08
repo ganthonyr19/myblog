@@ -459,6 +459,7 @@ Agrega una línea por cada tarea, con la fecha.
 - **2026-10-23.** Se anotó la idea de Anthony de una sección de temas de tesis para pregrado (sección 18.6), sin desarrollar.
 
 - **2026-11-02.** Nuevo ritmo de publicación: martes y viernes, hasta el 16/02/2027 (antes, casos los martes hasta el 04/05/2027 y fichas los jueves). Se cambiaron las fechas de las entradas pendientes y las tarjetas «pronto».
+- **2026-11-07.** Nuevo ritmo: lunes, miércoles y viernes, hasta el 13/01/2027. Se cambiaron las fechas de las entradas pendientes y las tarjetas «pronto».
 
 ---
 

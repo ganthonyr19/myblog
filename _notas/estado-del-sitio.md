@@ -165,3 +165,8 @@ Nombre elegido por Anthony (15 oct 2026): **Consultorio estadístico**. Menú su
 - Para renderizar en el contenedor: R de Ubuntu (`apt-get install r-base-core r-cran-survival r-cran-metafor r-cran-sandwich r-cran-survey r-cran-rmarkdown r-cran-knitr`) y Quarto 1.10.18 (`.deb` de los releases de GitHub).
 - Los carruseles de Instagram de cada caso salen después de su fecha en la web (calendario en `ig_asesorias/calendario-publicaciones.md` del equipo de Anthony).
 
+## Publicación tres veces por semana (7 nov 2026, rama `web-3x-semana`)
+
+- Decisión de Anthony: la web pasa a **lunes, miércoles y viernes**. Las 27 entradas pendientes van del 9 de noviembre de 2026 al 13 de enero de 2027, en el mismo orden (ficha 4 el 11 de noviembre). Se saltan el 25 de diciembre y el 1 de enero.
+- La tarea programada corre lunes, miércoles y viernes a las 6:13 a. m. de Lima.
+

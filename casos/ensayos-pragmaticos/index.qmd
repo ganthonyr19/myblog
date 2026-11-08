@@ -1,7 +1,7 @@
 ---
 title: "¿Funciona en la vida real?"
 description: "Caso clínico estadístico: el Salford Lung Study, un ensayo pragmático en EPOC hecho en la atención habitual. Decide qué afirmaciones son verdaderas y por qué."
-date: 2027-01-19
+date: 2026-12-21
 draft: true
 image: portada.png
 categories: [Caso clínico estadístico, Diseños de estudio, Tesis]

@@ -35,7 +35,7 @@ Antes de recetar un fármaco, revisas su indicación, sus contraindicaciones y s
     <span class="d">La media de una variable numérica en dos grupos.</span></a>
   <a class="serie-item" href="u-de-mann-whitney/index.html"><span class="n">Ficha n.º 3</span><strong>U de Mann-Whitney</strong>
     <span class="d">Una variable sesgada u ordinal en dos grupos.</span></a>
-  <div class="serie-item pronto" data-slug="correlacion"><span class="n">Ficha n.º 4 · 13 nov.</span><strong>Correlación de Pearson y de Spearman</strong>
+  <div class="serie-item pronto" data-slug="correlacion"><span class="n">Ficha n.º 4 · 11 nov.</span><strong>Correlación de Pearson y de Spearman</strong>
     <span class="d">Dos variables numéricas en las mismas personas.</span></div>
   <div class="serie-item pronto"><span class="n">Próximamente</span><strong>ANOVA y Kruskal-Wallis</strong><span class="d">Tres o más grupos.</span></div>
   <div class="serie-item pronto"><span class="n">Próximamente</span><strong>Prueba t pareada y Wilcoxon</strong><span class="d">Las mismas personas medidas dos veces.</span></div>

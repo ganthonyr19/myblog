@@ -1,7 +1,7 @@
 ---
 title: "¿A cuántos hay que tratar para que uno se beneficie?"
 description: "Caso clínico estadístico: un ensayo de profilaxis con una reducción relativa del 50 %, un NNT y un NNH. Decide qué afirmaciones son verdaderas y por qué."
-date: 2026-11-10
+date: 2026-11-09
 draft: true
 image: portada.png
 categories: [Caso clínico estadístico, medidas de asociación, Epidemiología, Tesis]

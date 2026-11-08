@@ -27,57 +27,57 @@ Las respuestas explican el razonamiento con las cifras del caso, y cada entrada 
     <span class="d">Intervalo de confianza frente a valor p en un ensayo comunitario.</span></a>
   <a class="serie-item" href="kaplan-meier/index.html"><span class="n">Caso n.º 3</span><strong>¿Qué hago con los pacientes que se fueron?</strong>
     <span class="d">Kaplan-Meier y datos censurados en una cohorte pequeña.</span></a>
-  <div class="serie-item pronto" data-slug="nnt-y-nnh"><span class="n">Caso n.º 4 · 10 nov.</span><strong>¿A cuántos hay que tratar para que uno se beneficie?</strong>
+  <div class="serie-item pronto" data-slug="nnt-y-nnh"><span class="n">Caso n.º 4 · 9 nov.</span><strong>¿A cuántos hay que tratar para que uno se beneficie?</strong>
     <span class="d">NNT, NNH y la diferencia entre riesgo relativo y absoluto.</span></div>
-  <div class="serie-item pronto" data-slug="sesgos-por-diseno"><span class="n">Caso n.º 5 · 17 nov.</span><strong>¿Las madres recuerdan igual?</strong>
+  <div class="serie-item pronto" data-slug="sesgos-por-diseno"><span class="n">Caso n.º 5 · 13 nov.</span><strong>¿Las madres recuerdan igual?</strong>
     <span class="d">Sesgo de recuerdo y de selección en un estudio de casos y controles.</span></div>
-  <div class="serie-item pronto" data-slug="de-vs-ee"><span class="n">Caso n.º 6 · 20 nov.</span><strong>¿11,2 ± 0,1 describe a los niños?</strong>
+  <div class="serie-item pronto" data-slug="de-vs-ee"><span class="n">Caso n.º 6 · 16 nov.</span><strong>¿11,2 ± 0,1 describe a los niños?</strong>
     <span class="d">Desviación estándar frente a error estándar en la Tabla 1.</span></div>
-  <div class="serie-item pronto" data-slug="error-tipo-i-y-ii"><span class="n">Caso n.º 7 · 24 nov.</span><strong>¿La aspirina no sirve si eres Géminis?</strong>
+  <div class="serie-item pronto" data-slug="error-tipo-i-y-ii"><span class="n">Caso n.º 7 · 18 nov.</span><strong>¿La aspirina no sirve si eres Géminis?</strong>
     <span class="d">Errores tipo I y II en los análisis por subgrupos del ISIS-2.</span></div>
-  <div class="serie-item pronto" data-slug="itt-vs-protocolo"><span class="n">Caso n.º 8 · 27 nov.</span><strong>¿Funciona el fármaco si el placebo también funciona?</strong>
+  <div class="serie-item pronto" data-slug="itt-vs-protocolo"><span class="n">Caso n.º 8 · 20 nov.</span><strong>¿Funciona el fármaco si el placebo también funciona?</strong>
     <span class="d">Intención de tratar frente a adherencia en el Coronary Drug Project.</span></div>
-  <div class="serie-item pronto" data-slug="falacia-ecologica"><span class="n">Caso n.º 9 · 1 dic.</span><strong>¿Comer chocolate te acerca al Nobel?</strong>
+  <div class="serie-item pronto" data-slug="falacia-ecologica"><span class="n">Caso n.º 9 · 23 nov.</span><strong>¿Comer chocolate te acerca al Nobel?</strong>
     <span class="d">Falacia ecológica en una correlación entre países.</span></div>
-  <div class="serie-item pronto" data-slug="curva-roc"><span class="n">Caso n.º 10 · 4 dic.</span><strong>¿Qué punto de corte elijo para el PSA?</strong>
+  <div class="serie-item pronto" data-slug="curva-roc"><span class="n">Caso n.º 10 · 25 nov.</span><strong>¿Qué punto de corte elijo para el PSA?</strong>
     <span class="d">Curva ROC, AUC y el intercambio entre sensibilidad y especificidad.</span></div>
-  <div class="serie-item pronto" data-slug="cegamiento"><span class="n">Caso n.º 11 · 8 dic.</span><strong>¿Importa quién evalúa al paciente?</strong>
+  <div class="serie-item pronto" data-slug="cegamiento"><span class="n">Caso n.º 11 · 27 nov.</span><strong>¿Importa quién evalúa al paciente?</strong>
     <span class="d">Un ensayo con un neurólogo cegado y otro que conocía el tratamiento.</span></div>
-  <div class="serie-item pronto" data-slug="sesgo-de-publicacion"><span class="n">Caso n.º 12 · 11 dic.</span><strong>¿Dónde están los ensayos negativos?</strong>
+  <div class="serie-item pronto" data-slug="sesgo-de-publicacion"><span class="n">Caso n.º 12 · 30 nov.</span><strong>¿Dónde están los ensayos negativos?</strong>
     <span class="d">Sesgo de publicación en 74 ensayos de antidepresivos.</span></div>
-  <div class="serie-item pronto" data-slug="efecto-hawthorne"><span class="n">Caso n.º 13 · 15 dic.</span><strong>¿Nos lavamos más las manos cuando nos miran?</strong>
+  <div class="serie-item pronto" data-slug="efecto-hawthorne"><span class="n">Caso n.º 13 · 2 dic.</span><strong>¿Nos lavamos más las manos cuando nos miran?</strong>
     <span class="d">Efecto Hawthorne medido con dispensadores electrónicos.</span></div>
-  <div class="serie-item pronto" data-slug="ensayo-cruzado"><span class="n">Caso n.º 14 · 18 dic.</span><strong>¿Y si cada paciente es su propio control?</strong>
+  <div class="serie-item pronto" data-slug="ensayo-cruzado"><span class="n">Caso n.º 14 · 4 dic.</span><strong>¿Y si cada paciente es su propio control?</strong>
     <span class="d">Ensayo cruzado sobre paracetamol y presión arterial.</span></div>
-  <div class="serie-item pronto" data-slug="sesgo-de-respuesta"><span class="n">Caso n.º 15 · 22 dic.</span><strong>¿Quién acepta participar?</strong>
+  <div class="serie-item pronto" data-slug="sesgo-de-respuesta"><span class="n">Caso n.º 15 · 7 dic.</span><strong>¿Quién acepta participar?</strong>
     <span class="d">Sesgo de respuesta en una cohorte de medio millón de personas.</span></div>
-  <div class="serie-item pronto" data-slug="hazard-ratio"><span class="n">Caso n.º 16 · 29 dic.</span><strong>¿Qué significa un hazard ratio de 0,86?</strong>
+  <div class="serie-item pronto" data-slug="hazard-ratio"><span class="n">Caso n.º 16 · 9 dic.</span><strong>¿Qué significa un hazard ratio de 0,86?</strong>
     <span class="d">Regresión de Cox y riesgos absolutos en el EMPA-REG OUTCOME.</span></div>
-  <div class="serie-item pronto" data-slug="confusion"><span class="n">Caso n.º 17 · 5 ene.</span><strong>¿Por qué el ensayo contradijo a la cohorte?</strong>
+  <div class="serie-item pronto" data-slug="confusion"><span class="n">Caso n.º 17 · 11 dic.</span><strong>¿Por qué el ensayo contradijo a la cohorte?</strong>
     <span class="d">Confusión en la terapia hormonal: Nurses' Health Study frente al WHI.</span></div>
-  <div class="serie-item pronto" data-slug="muestreo-por-conveniencia"><span class="n">Caso n.º 18 · 8 ene.</span><strong>¿Quién responde a un anuncio en Facebook?</strong>
+  <div class="serie-item pronto" data-slug="muestreo-por-conveniencia"><span class="n">Caso n.º 18 · 14 dic.</span><strong>¿Quién responde a un anuncio en Facebook?</strong>
     <span class="d">Muestreo por conveniencia en un estudio de anticuerpos contra la COVID-19.</span></div>
-  <div class="serie-item pronto" data-slug="tasa-de-incidencia"><span class="n">Caso n.º 19 · 12 ene.</span><strong>¿Porcentaje o tasa?</strong>
+  <div class="serie-item pronto" data-slug="tasa-de-incidencia"><span class="n">Caso n.º 19 · 16 dic.</span><strong>¿Porcentaje o tasa?</strong>
     <span class="d">Tasa de incidencia y persona-tiempo en el ensayo iPrEx.</span></div>
-  <div class="serie-item pronto" data-slug="significancia-clinica"><span class="n">Caso n.º 20 · 15 ene.</span><strong>¿Significativo es lo mismo que importante?</strong>
+  <div class="serie-item pronto" data-slug="significancia-clinica"><span class="n">Caso n.º 20 · 18 dic.</span><strong>¿Significativo es lo mismo que importante?</strong>
     <span class="d">Significancia estadística frente a relevancia clínica.</span></div>
-  <div class="serie-item pronto" data-slug="ensayos-pragmaticos"><span class="n">Caso n.º 21 · 19 ene.</span><strong>¿Funciona en la vida real?</strong>
+  <div class="serie-item pronto" data-slug="ensayos-pragmaticos"><span class="n">Caso n.º 21 · 21 dic.</span><strong>¿Funciona en la vida real?</strong>
     <span class="d">Ensayos explicativos y pragmáticos: el Salford Lung Study.</span></div>
-  <div class="serie-item pronto" data-slug="efecto-placebo"><span class="n">Caso n.º 22 · 22 ene.</span><strong>¿Operar o fingir que se opera?</strong>
+  <div class="serie-item pronto" data-slug="efecto-placebo"><span class="n">Caso n.º 22 · 23 dic.</span><strong>¿Operar o fingir que se opera?</strong>
     <span class="d">Efecto placebo y regresión a la media en una cirugía simulada.</span></div>
-  <div class="serie-item pronto" data-slug="distribuciones-sesgadas"><span class="n">Caso n.º 23 · 26 ene.</span><strong>¿La media de la bilirrubina describe al paciente típico?</strong>
+  <div class="serie-item pronto" data-slug="distribuciones-sesgadas"><span class="n">Caso n.º 23 · 28 dic.</span><strong>¿La media de la bilirrubina describe al paciente típico?</strong>
     <span class="d">Distribuciones asimétricas y pruebas no paramétricas.</span></div>
-  <div class="serie-item pronto" data-slug="fases-del-ensayo"><span class="n">Caso n.º 24 · 29 ene.</span><strong>¿Por qué la fase 1 empieza con tan pocos voluntarios?</strong>
+  <div class="serie-item pronto" data-slug="fases-del-ensayo"><span class="n">Caso n.º 24 · 30 dic.</span><strong>¿Por qué la fase 1 empieza con tan pocos voluntarios?</strong>
     <span class="d">Las fases del ensayo clínico y el caso TGN1412.</span></div>
-  <div class="serie-item pronto" data-slug="casos-y-controles-anidado"><span class="n">Caso n.º 25 · 2 feb.</span><strong>¿Un estudio de casos y controles dentro de una cohorte?</strong>
+  <div class="serie-item pronto" data-slug="casos-y-controles-anidado"><span class="n">Caso n.º 25 · 4 ene.</span><strong>¿Un estudio de casos y controles dentro de una cohorte?</strong>
     <span class="d">Casos y controles anidado: fluoroquinolonas y aorta.</span></div>
-  <div class="serie-item pronto" data-slug="cohorte-retrospectiva"><span class="n">Caso n.º 26 · 5 feb.</span><strong>¿Se puede seguir hacia adelante con datos del pasado?</strong>
+  <div class="serie-item pronto" data-slug="cohorte-retrospectiva"><span class="n">Caso n.º 26 · 6 ene.</span><strong>¿Se puede seguir hacia adelante con datos del pasado?</strong>
     <span class="d">Cohorte retrospectiva con registros nacionales.</span></div>
-  <div class="serie-item pronto" data-slug="tamano-de-muestra"><span class="n">Caso n.º 27 · 9 feb.</span><strong>¿Cuántos pacientes necesito para replicar un ensayo?</strong>
+  <div class="serie-item pronto" data-slug="tamano-de-muestra"><span class="n">Caso n.º 27 · 8 ene.</span><strong>¿Cuántos pacientes necesito para replicar un ensayo?</strong>
     <span class="d">Tamaño de muestra en ensayos y cohortes.</span></div>
-  <div class="serie-item pronto" data-slug="forest-plot"><span class="n">Caso n.º 28 · 12 feb.</span><strong>¿Cómo se lee un forest plot?</strong>
+  <div class="serie-item pronto" data-slug="forest-plot"><span class="n">Caso n.º 28 · 11 ene.</span><strong>¿Cómo se lee un forest plot?</strong>
     <span class="d">Forest plot y heterogeneidad en el metaanálisis de la BCG.</span></div>
-  <div class="serie-item pronto" data-slug="sesgos-transversales-y-cohortes"><span class="n">Caso n.º 29 · 16 feb.</span><strong>¿Beber poco alarga la vida?</strong>
+  <div class="serie-item pronto" data-slug="sesgos-transversales-y-cohortes"><span class="n">Caso n.º 29 · 13 ene.</span><strong>¿Beber poco alarga la vida?</strong>
     <span class="d">Sesgos en estudios de cohortes y transversales.</span></div>
 </div>
 ```

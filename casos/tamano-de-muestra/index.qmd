@@ -1,7 +1,7 @@
 ---
 title: "¿Cuántos pacientes necesito para replicar un ensayo?"
 description: "Caso clínico estadístico: calcular el tamaño de muestra de un ensayo a partir de los riesgos del EMPA-REG OUTCOME, y por qué en los ensayos con seguimiento importan los eventos. Decide qué afirmaciones son verdaderas y por qué."
-date: 2027-02-09
+date: 2027-01-08
 draft: true
 image: portada.png
 categories: [Caso clínico estadístico, Tamaño de muestra, Tesis]

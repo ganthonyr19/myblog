@@ -1,7 +1,7 @@
 ---
 title: "¿Importa quién evalúa al paciente?"
 description: "Caso clínico estadístico: un ensayo en esclerosis múltiple en el que cada paciente fue evaluado por un neurólogo cegado y otro que conocía el tratamiento. Decide qué afirmaciones son verdaderas y por qué."
-date: 2026-12-08
+date: 2026-11-27
 draft: true
 image: portada.png
 categories: [Caso clínico estadístico, Diseños de estudio, Tesis]

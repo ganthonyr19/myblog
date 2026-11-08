@@ -1,7 +1,7 @@
 ---
 title: "¿Funciona el fármaco si el placebo también funciona?"
 description: "Caso clínico estadístico: el Coronary Drug Project y la diferencia entre el análisis por intención de tratar y el análisis según la adherencia. Decide qué afirmaciones son verdaderas y por qué."
-date: 2026-11-27
+date: 2026-11-20
 draft: true
 image: portada.png
 categories: [Caso clínico estadístico, Diseños de estudio, Tesis]

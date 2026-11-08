@@ -1,7 +1,7 @@
 ---
 title: "¿Comer chocolate te acerca al Nobel?"
 description: "Caso clínico estadístico: una correlación de 0,79 entre el consumo de chocolate y los premios Nobel de 23 países, y la falacia ecológica. Decide qué afirmaciones son verdaderas y por qué."
-date: 2026-12-01
+date: 2026-11-23
 draft: true
 image: portada.png
 categories: [Caso clínico estadístico, Diseños de estudio, Epidemiología]
