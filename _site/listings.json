@@ -17,6 +17,7 @@
   {
     "listing": "/blog.html",
     "items": [
+      "/casos/nnt-y-nnh/index.html",
       "/vademecum/u-de-mann-whitney/index.html",
       "/casos/kaplan-meier/index.html",
       "/vademecum/t-de-welch/index.html",
@@ -32,6 +33,7 @@
   {
     "listing": "/index.html",
     "items": [
+      "/casos/nnt-y-nnh/index.html",
       "/vademecum/u-de-mann-whitney/index.html",
       "/casos/kaplan-meier/index.html",
       "/vademecum/t-de-welch/index.html",
@@ -54,6 +56,7 @@
   {
     "listing": "/temas.html",
     "items": [
+      "/casos/nnt-y-nnh/index.html",
       "/vademecum/u-de-mann-whitney/index.html",
       "/casos/kaplan-meier/index.html",
       "/vademecum/t-de-welch/index.html",
