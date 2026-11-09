@@ -27,8 +27,8 @@ Las respuestas explican el razonamiento con las cifras del caso, y cada entrada 
     <span class="d">Intervalo de confianza frente a valor p en un ensayo comunitario.</span></a>
   <a class="serie-item" href="kaplan-meier/index.html"><span class="n">Caso n.º 3</span><strong>¿Qué hago con los pacientes que se fueron?</strong>
     <span class="d">Kaplan-Meier y datos censurados en una cohorte pequeña.</span></a>
-  <div class="serie-item pronto" data-slug="nnt-y-nnh"><span class="n">Caso n.º 4 · 9 nov.</span><strong>¿A cuántos hay que tratar para que uno se beneficie?</strong>
-    <span class="d">NNT, NNH y la diferencia entre riesgo relativo y absoluto.</span></div>
+  <a class="serie-item" href="nnt-y-nnh/index.html"><span class="n">Caso n.º 4</span><strong>¿A cuántos hay que tratar para que uno se beneficie?</strong>
+    <span class="d">NNT, NNH y la diferencia entre riesgo relativo y absoluto.</span></a>
   <div class="serie-item pronto" data-slug="sesgos-por-diseno"><span class="n">Caso n.º 5 · 13 nov.</span><strong>¿Las madres recuerdan igual?</strong>
     <span class="d">Sesgo de recuerdo y de selección en un estudio de casos y controles.</span></div>
   <div class="serie-item pronto" data-slug="de-vs-ee"><span class="n">Caso n.º 6 · 16 nov.</span><strong>¿11,2 ± 0,1 describe a los niños?</strong>
