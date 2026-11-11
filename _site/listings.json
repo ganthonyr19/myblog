@@ -17,6 +17,7 @@
   {
     "listing": "/blog.html",
     "items": [
+      "/vademecum/correlacion/index.html",
       "/casos/nnt-y-nnh/index.html",
       "/vademecum/u-de-mann-whitney/index.html",
       "/casos/kaplan-meier/index.html",
@@ -33,6 +34,7 @@
   {
     "listing": "/index.html",
     "items": [
+      "/vademecum/correlacion/index.html",
       "/casos/nnt-y-nnh/index.html",
       "/vademecum/u-de-mann-whitney/index.html",
       "/casos/kaplan-meier/index.html",
@@ -56,6 +58,7 @@
   {
     "listing": "/temas.html",
     "items": [
+      "/vademecum/correlacion/index.html",
       "/casos/nnt-y-nnh/index.html",
       "/vademecum/u-de-mann-whitney/index.html",
       "/casos/kaplan-meier/index.html",
