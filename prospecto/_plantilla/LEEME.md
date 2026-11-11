@@ -23,6 +23,7 @@ Cada dosis escribe al compilarse `receta_<nivel>.json` con todos los textos y ci
 
 1. `npm install` en esta carpeta (Playwright y las tipografías Fraunces, Inter y JetBrains Mono).
 2. Compila el tutorial: `quarto render prospecto/<tema>/plena.qmd` y luego `inicial.qmd`.
-3. `node render.js ../<tema>/receta_<nivel>.json`
+3. `node render.js ../<tema>/receta_<nivel>.json` (añade `--solo-ficha` para rehacer solo el PDF)
+4. Revisa: `python3 _notas/revisar-descargables.py` desde la raíz del repo. Si compilas en Linux o en un contenedor, hazlo con `LANG=C.UTF-8`: sin UTF-8, R escribe las tildes como secuencias `<U+XXXX>` y `render.js` se detiene.
 
 Se crean junto al JSON `receta_<nivel>.png` (1080 × 1350: portada e Instagram) y `receta_<nivel>_web.png` (1200 × 630: vista previa en X, LinkedIn y WhatsApp). El distintivo de nivel sale del campo `nivel`. La cifra destacada del hallazgo sale del campo `big` (HTML, por ejemplo `"<b>36,7 %</b> → <b>17,9 %</b>"`); si no existe, se muestran `rp` y `or`.
