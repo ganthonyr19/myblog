@@ -442,14 +442,25 @@
 .herramienta p{text-align:left}
 
 /* Tarjeta de Instagram al final de las entradas */
-.sigue-ig{display:grid;grid-template-columns:auto 1fr auto;gap:1rem;align-items:center;margin:2.2rem 0 1rem;padding:1.1rem 1.3rem;
-  border-radius:14px;border:1px solid rgba(229,99,111,.35);background:linear-gradient(120deg,rgba(229,99,111,.08),rgba(42,157,163,.06))}
-.sigue-ig svg{width:42px;height:42px;color:#E5636F}
-.sigue-ig p{margin:0;text-align:left !important;font-size:.95rem;line-height:1.5}
-.sigue-ig .sigue-t{font-weight:700;font-size:1.05rem}
-.sigue-ig a{white-space:nowrap;padding:.5rem 1rem;border-radius:999px;background:#E5636F;color:#fff !important;font-weight:600;text-decoration:none;font-size:.9rem}
+/* Cierre de las entradas: WhatsApp (.cta) e Instagram (.sigue-ig), compactas y lado a lado.
+   La unión la hace _includes/sigue.html; aplica sola a toda entrada nueva con .cta al final. */
+.cierre{display:flex;gap:.8rem;margin:2rem 0 1rem;align-items:stretch}
+.cierre > .cta, .cierre > .sigue-ig{margin:0;flex:1 1 0;min-width:0}
+.cierre .cta{display:flex;flex-direction:column;gap:.35rem;padding:.9rem 1rem;border-radius:12px}
+.cierre .cta p{margin:0;font-size:.88rem;line-height:1.45;text-align:left !important}
+.cierre .cta strong{font-size:1.02rem;line-height:1.3}
+.cierre .cta p:last-child{margin-top:auto}
+.cierre .cta a{margin-top:.35rem;padding:.35rem .9rem;font-size:.82rem}
+.sigue-ig{display:flex;flex-direction:column;gap:.35rem;margin:2rem 0 1rem;padding:.9rem 1rem;max-width:calc(50% - .4rem);
+  border-radius:12px;border:1px solid rgba(229,99,111,.35);background:rgba(229,99,111,.06)}
+.cierre .sigue-ig{max-width:none}
+.sigue-ig p{margin:0;text-align:left !important;font-size:.88rem;line-height:1.45}
+.sigue-ig .sigue-t{display:flex;align-items:center;gap:.45rem;font-weight:700;font-size:1.02rem}
+.sigue-ig svg{width:20px;height:20px;color:#E5636F;flex:none}
+.sigue-ig a{align-self:flex-start;margin-top:auto;padding:.35rem .9rem;border-radius:999px;background:#E5636F;color:#fff !important;
+  font-weight:600;text-decoration:none;font-size:.82rem}
 .sigue-ig a:hover{filter:brightness(1.08)}
-@media (max-width:640px){ .sigue-ig{grid-template-columns:auto 1fr} .sigue-ig a{grid-column:1 / -1;text-align:center;white-space:normal} }
+@media (max-width:640px){ .cierre{flex-direction:column} .sigue-ig{max-width:none} }
 
 /* Sobre mí: idiomas como escala de puntos (A1 a C2) */
 .idiomas{display:grid;gap:.45rem;max-width:30rem;margin:.4rem 0 1rem}

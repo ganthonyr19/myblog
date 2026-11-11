@@ -131,6 +131,7 @@ Nombre elegido por Anthony (15 oct 2026): **Consultorio estadístico**. Menú su
 
 - Ícono en el menú superior, enlace en el pie de página, en el inicio y en «Sobre mí».
 - Tarjeta «¿Te sirvió? Seguir @bioestadistica.en.linea» al final de cada página con título que no sea listado ni el inicio: `_includes/sigue.html` (incluido en `_quarto.yml`), estilos en `styles.css`. Para ocultarla en una página: clase `sin-sigue` en el body.
+- **Cierre compacto (decisión de Anthony, 11/11/2026, regla para todo lo que se publique):** si la página tiene un bloque `.cta` (WhatsApp) y es el último elemento de su sección, el script lo envuelve junto con la tarjeta de Instagram en `<div class="cierre">`: dos tarjetas compactas lado a lado (apiladas en menos de 640 px). Sin `.cta`, la tarjeta de Instagram sale sola, compacta y a media columna. Estilos en `styles.css` (sección «Cierre de las entradas»). Se usa `display:flex` y un `div` (no `grid` ni `aside`) porque Quarto asigna columnas de su rejilla de página a esos elementos y rompe el diseño.
 
 ## Cómo renderizar aquí (lecciones del 15 oct 2026)
 

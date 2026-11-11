@@ -127,7 +127,7 @@ categories: [Caso clínico estadístico, Medidas de asociación, Ensayo clínico
     :::
     ```
 
-La tarjeta «Seguir @bioestadistica.en.linea» y el tiempo de lectura se agregan solos (`_includes/`). No los pongas a mano. **No hay comentarios en el sitio.**
+La tarjeta «Seguir @bioestadistica.en.linea» y el tiempo de lectura se agregan solos (`_includes/`). No los pongas a mano. **El bloque `.cta` debe ser lo último de su sección** (nada después dentro de ella): así `_includes/sigue.html` lo junta con la tarjeta de Instagram en el cierre compacto, lado a lado (decisión de Anthony, 11/11/2026). Mantén el texto breve: título de una línea y una frase. **No hay comentarios en el sitio.**
 
 ### 4.3 Extensión y tono
 
