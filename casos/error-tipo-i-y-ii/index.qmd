@@ -90,6 +90,13 @@ round(1 - 0.95^k, 2)
 0.05 / 12
 ```
 
+::: {.lee-salida}
+1. `0.05 0.23 0.46 0.64` Es la probabilidad de obtener al menos un falso positivo al hacer 1, 5, 12 y 20 pruebas independientes con α = 0,05, si ninguna diferencia es real: 5 %, 23 %, 46 % y 64 %.
+2. `0.004166667` Es el umbral de Bonferroni para 12 pruebas: 0,05 ÷ 12 = 0,0042. Cada prueba solo se considera significativa si su p es menor que ese valor.
+
+**En una frase:** con 12 pruebas, la probabilidad de al menos un falso positivo sube al 46 %; la corrección de Bonferroni exige p < 0,0042 a cada una.
+:::
+
 ## Para profundizar
 
 - ¿No sabes qué prueba corresponde a tu objetivo? Haz el [Triaje estadístico](../../blog/que-prueba-estadistica/index.qmd#haz-tu-triaje).

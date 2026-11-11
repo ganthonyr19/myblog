@@ -109,6 +109,15 @@ round(tapply(muerte, grupo, mean), 3)
 round(tapply(muerte, list(grupo, adherente = adherente), mean), 3)
 ```
 
+::: {.lee-salida}
+1. `0.196` Es la mortalidad por intención de tratar: 19,6 % con el fármaco y 19,0 % con placebo. No hay diferencia, como debe ser, porque el fármaco no tiene efecto.
+2. `adherente` Las columnas separan a los pacientes según su adherencia: 0 = no adherentes, 1 = adherentes.
+3. `0.174` Con el fármaco, los adherentes murieron menos (17,4 %) que los no adherentes (25,0 %). Parece que el fármaco funciona.
+4. `0.150` Pero con placebo pasa lo mismo: 15,0 % frente a 29,5 %. La diferencia se debe a que los adherentes son menos frágiles, no al fármaco.
+
+**En una frase:** por intención de tratar no hay diferencia (19,6 % y 19,0 %); comparar según la adherencia crea un «efecto» que aparece incluso con placebo.
+:::
+
 ## Para profundizar
 
 - [El estudio de cohortes](../../disenos/cohortes/index.qmd), en Diseños de estudio: confusión y pérdidas en el seguimiento.

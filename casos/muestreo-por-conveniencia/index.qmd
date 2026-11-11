@@ -92,6 +92,14 @@ especificidad <- c(0.999, 0.995, 0.990, 0.985)
 data.frame(especificidad, falsos_positivos = round((1 - especificidad) * n))
 ```
 
+::: {.lee-salida}
+1. `1.12 1.97` Es el IC 95 % exacto de la prevalencia cruda (1,5 %): de 1,12 % a 1,97 %. Solo refleja el error por azar; no corrige el sesgo de selección ni los errores de la prueba.
+2. `falsos_positivos` Son los falsos positivos esperados entre las 3330 personas si casi nadie tuviera anticuerpos, según la especificidad de la prueba.
+3. `50` Con una especificidad de 98,5 %, se esperarían 50 falsos positivos: tantos como los positivos observados.
+
+**En una frase:** la prevalencia cruda fue de 1,5 % (IC 95 %: 1,12 a 1,97), pero con una especificidad de 98,5 % todos los positivos podrían ser falsos.
+:::
+
 ## Para profundizar
 
 - [Calcula el tamaño de muestra para estimar una prevalencia](../../herramientas/muestra/index.qmd#mod=prop), con efecto de diseño si muestreas por conglomerados.

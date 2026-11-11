@@ -96,7 +96,14 @@ z <- atanh(r) + c(-1, 1) * 1.96 / sqrt(n - 3)
 tanh(z)
 ```
 
-El IC 95 % de r va aproximadamente de 0,56 a 0,91: incluso una correlación tan alta es imprecisa con solo 23 puntos.
+::: {.lee-salida}
+1. `0.625681` Es r² = 0,63: el 63 % de la variación entre países de una variable se asocia linealmente con la otra.
+2. `5.924684e+00` Es el estadístico t, en notación científica: `e+00` es «× 10⁰», así que vale 5,92.
+3. `7.011815e-06` Es el valor p: 0,000007 (`e-06` es «× 10⁻⁶»). Se reporta como p < 0,001.
+4. `0.5620524 0.9073582` Es el IC 95 % de r: de 0,56 a 0,91. Incluso una correlación tan alta es imprecisa con solo 23 países.
+
+**En una frase:** la correlación entre países fue alta (r = 0,79; IC 95 %: 0,56 a 0,91; p < 0,001), pero es imprecisa con 23 puntos y no dice nada sobre las personas.
+:::
 
 ## Para profundizar
 

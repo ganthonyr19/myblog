@@ -103,6 +103,13 @@ p_nacional  <- 0.322
 p_biobank - p_nacional                      # sesgo absoluto: -9,2 puntos
 ```
 
+::: {.lee-salida}
+1. `5.45` Es la tasa de respuesta: solo el 5,45 % de los invitados participó.
+2. `-0.092` Es el sesgo absoluto en la obesidad de mujeres de 45 a 54 años: 23,0 % en el UK Biobank frente a 32,2 % en la población nacional, 9,2 puntos porcentuales menos. Con medio millón de participantes la estimación es muy precisa, pero precisa no es lo mismo que correcta.
+
+**En una frase:** solo participó el 5,45 % de los invitados y, aunque la muestra es enorme, subestima la obesidad en 9,2 puntos porcentuales.
+:::
+
 ## Para profundizar
 
 - [El estudio transversal](../../disenos/transversal/index.qmd), en Diseños de estudio: cuándo la representatividad es imprescindible.

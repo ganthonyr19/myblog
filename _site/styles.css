@@ -512,3 +512,17 @@
 .colab-rep span b{display:block;color:#1F2A37;font-size:.95rem}
 .colab-nota{font-size:.8rem;color:#5B6B80;text-align:left !important}
 @media (max-width:576px){ .colab-rep{width:calc(50% - .5rem)} .colab-rep img{width:100%;height:auto;aspect-ratio:500/650} }
+
+/* «Cómo leer esta salida» (regla de Anthony, 11/11/2026): debajo de cada salida de R que se interpreta.
+   Marcado en _includes/lee-salida.html. */
+.lee-salida{margin:.6rem 0 1.4rem;padding:.8rem 1rem .9rem;border:1px solid #DDE2E9;border-left:4px solid #E5636F;border-radius:0 10px 10px 0;background:#FAFBFC}
+.lee-salida::before{content:"Cómo leer esta salida";display:block;font-weight:700;color:#0B1F3A;margin-bottom:.4rem;font-size:.98rem}
+.lee-salida > ol{list-style:none;counter-reset:lee;padding-left:0;margin:0}
+.lee-salida > ol > li{counter-increment:lee;position:relative;padding-left:1.9rem;margin:.45rem 0;font-size:.92rem;line-height:1.5;text-align:left}
+.lee-salida > ol > li::before{content:counter(lee);position:absolute;left:0;top:.1rem;width:1.3rem;height:1.3rem;border-radius:50%;background:#E5636F;color:#fff;font-size:.75rem;font-weight:700;display:flex;align-items:center;justify-content:center}
+.lee-salida > ol > li > code:first-child{background:#EEF1F5;color:#12305A}
+.lee-salida code{white-space:normal;overflow-wrap:anywhere}
+.lee-salida p{margin:.55rem 0 0;font-size:.92rem;text-align:left !important}
+.lee-salida > p:last-child{background:#0B1F3A;color:#F5F7FA;border-radius:8px;padding:.55rem .8rem}
+.lee-salida > p:last-child strong{color:#E9B44C}
+.lee-n{display:inline-flex;align-items:center;justify-content:center;width:1.15rem;height:1.15rem;margin-left:.35rem;border-radius:50%;background:#E5636F;color:#fff;font:700 .7rem/1 'Source Sans 3',sans-serif;vertical-align:.1em}

@@ -592,6 +592,16 @@ Ver respuesta
 <pre><code>[1] 67</code></pre>
 </div>
 </div>
+<div class="lee-salida">
+<ol type="1">
+<li><code>0.50000000</code> Es la reducción relativa del riesgo (RRR): 50 %. El fármaco reduce a la mitad el riesgo de trombosis (de 6 % a 3 %).</li>
+<li><code>0.03000000</code> Es la reducción absoluta del riesgo (RAR): 0,03, es decir, 3 puntos porcentuales. <code>li</code> y <code>ls</code> son su IC 95 %: de 0,012 a 0,048.</li>
+<li><code>34</code> Es el NNT: hay que tratar a 34 pacientes para evitar una trombosis (1 ÷ 0,03 = 33,3, que se redondea hacia arriba).</li>
+<li><code>85</code> Con el <code>21</code> forma el IC 95 % del NNT: de 21 a 85. Se obtiene invirtiendo los límites de la RAR, por eso el límite inferior del NNT sale del superior de la RAR.</li>
+<li><code>67</code> Es el NNH del sangrado mayor: por cada 67 pacientes tratados se produce un sangrado mayor más (2,5 % − 1,0 % = 1,5 puntos).</li>
+</ol>
+<p><strong>En una frase:</strong> tratar a 34 pacientes evita una trombosis (IC 95 %: 21 a 85), y por cada 67 tratados se produce un sangrado mayor.</p>
+</div>
 </section>
 <section id="para-profundizar" class="level2">
 <h2 class="anchored" data-anchor-id="para-profundizar">Para profundizar</h2>
@@ -712,6 +722,46 @@ Ver respuesta
     }, true);
   }
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", iniciar); else iniciar();
+})();
+</script>
+<script>
+/* «Cómo leer esta salida»: cada bloque ::: {.lee-salida} va justo después de un bloque de código de R.
+   Cada punto de su lista empieza con un fragmento `entre comillas invertidas` copiado de la salida.
+   Este script busca ese fragmento en la salida anterior y le pone el número del punto. */
+(function () {
+  function textos(nodo) {
+    var w = document.createTreeWalker(nodo, NodeFilter.SHOW_TEXT), t, r = [];
+    while ((t = w.nextNode())) r.push(t);
+    return r;
+  }
+  function marcar() {
+    document.querySelectorAll(".lee-salida").forEach(function (caja) {
+      var celda = caja.previousElementSibling;
+      while (celda && !celda.classList.contains("cell")) celda = celda.previousElementSibling;
+      if (!celda) return;
+      var salidas = celda.querySelectorAll(".cell-output pre, .cell-output-stdout pre, .cell-output-stderr pre, .cell-output-error pre");
+      var nodos = [];
+      salidas.forEach(function (s) { nodos = nodos.concat(textos(s)); });
+      var desde = 0, pos = 0;
+      caja.querySelectorAll(":scope > ol > li").forEach(function (li, i) {
+        var c = li.querySelector("code");
+        if (!c) return;
+        var frag = c.textContent;
+        for (var k = desde; k < nodos.length; k++) {
+          var n = nodos[k], j = n.nodeValue.indexOf(frag, k === desde ? pos : 0);
+          if (j < 0) continue;
+          var resto = n.splitText(j + frag.length);
+          var m = document.createElement("span");
+          m.className = "lee-n"; m.textContent = i + 1; m.setAttribute("aria-hidden", "true");
+          n.parentNode.insertBefore(m, resto);
+          nodos.splice(k + 1, 0, resto);
+          desde = k + 1; pos = 0;
+          break;
+        }
+      });
+    });
+  }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", marcar); else marcar();
 })();
 </script>
 <script>

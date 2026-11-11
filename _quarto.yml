@@ -81,5 +81,6 @@ format:
     include-after-body:
       - _includes/sigue.html
       - _includes/entradas.html  # tiempo de lectura y palabras clave enlazadas a temas.html
+      - _includes/lee-salida.html  # numera en la salida de R los fragmentos que explica «Cómo leer esta salida»
 mainfont: "Source Sans 3"
 link-external-newwindow: TRUE

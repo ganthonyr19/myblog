@@ -608,6 +608,14 @@ RR     1.80 1.40 2.31
 OR     2.45 1.68 3.60</code></pre>
 </div>
 </div>
+<div class="lee-salida">
+<ol type="1">
+<li><code>estimado</code> Es la estimación puntual; <code>li</code> y <code>ls</code> son los límites inferior y superior del IC 95 %.</li>
+<li><code>1.80</code> Es el RR: el riesgo de cesárea fue 1,8 veces mayor (80 % mayor) en las gestantes inducidas, con IC 95 % de 1,40 a 2,31.</li>
+<li><code>2.45</code> Es el OR: 2,45 (IC 95 %: 1,68 a 3,60). Está más lejos de 1 que el RR porque la cesárea es frecuente (25 % a 45 %). No se lee como «2,45 veces más riesgo».</li>
+</ol>
+<p><strong>En una frase:</strong> el riesgo de cesárea fue 80 % mayor con la inducción (RR 1,80; IC 95 %: 1,40 a 2,31); el OR de 2,45 exagera la asociación porque el desenlace es frecuente.</p>
+</div>
 </section>
 <section id="para-profundizar" class="level2">
 <h2 class="anchored" data-anchor-id="para-profundizar">Para profundizar</h2>
@@ -729,6 +737,46 @@ OR     2.45 1.68 3.60</code></pre>
     }, true);
   }
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", iniciar); else iniciar();
+})();
+</script>
+<script>
+/* «Cómo leer esta salida»: cada bloque ::: {.lee-salida} va justo después de un bloque de código de R.
+   Cada punto de su lista empieza con un fragmento `entre comillas invertidas` copiado de la salida.
+   Este script busca ese fragmento en la salida anterior y le pone el número del punto. */
+(function () {
+  function textos(nodo) {
+    var w = document.createTreeWalker(nodo, NodeFilter.SHOW_TEXT), t, r = [];
+    while ((t = w.nextNode())) r.push(t);
+    return r;
+  }
+  function marcar() {
+    document.querySelectorAll(".lee-salida").forEach(function (caja) {
+      var celda = caja.previousElementSibling;
+      while (celda && !celda.classList.contains("cell")) celda = celda.previousElementSibling;
+      if (!celda) return;
+      var salidas = celda.querySelectorAll(".cell-output pre, .cell-output-stdout pre, .cell-output-stderr pre, .cell-output-error pre");
+      var nodos = [];
+      salidas.forEach(function (s) { nodos = nodos.concat(textos(s)); });
+      var desde = 0, pos = 0;
+      caja.querySelectorAll(":scope > ol > li").forEach(function (li, i) {
+        var c = li.querySelector("code");
+        if (!c) return;
+        var frag = c.textContent;
+        for (var k = desde; k < nodos.length; k++) {
+          var n = nodos[k], j = n.nodeValue.indexOf(frag, k === desde ? pos : 0);
+          if (j < 0) continue;
+          var resto = n.splitText(j + frag.length);
+          var m = document.createElement("span");
+          m.className = "lee-n"; m.textContent = i + 1; m.setAttribute("aria-hidden", "true");
+          n.parentNode.insertBefore(m, resto);
+          nodos.splice(k + 1, 0, resto);
+          desde = k + 1; pos = 0;
+          break;
+        }
+      });
+    });
+  }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", marcar); else marcar();
 })();
 </script>
 <script>

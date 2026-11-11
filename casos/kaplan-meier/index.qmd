@@ -107,6 +107,22 @@ evento <- c(1, 0, 1, 0, 1, 1, 0, 1, 0, 0)
 km <- survfit(Surv(tiempo, evento) ~ 1)
 summary(km)   # tabla de supervivencia con IC 95 %
 km            # mediana de supervivencia
+```
+
+::: {.lee-salida}
+1. `n.risk` Son los pacientes en riesgo justo antes de cada tiempo: los que siguen vivos y en seguimiento. Baja con cada muerte y con cada censura; por eso en el mes 4 quedan 8 y no 9, porque uno se censuró en el mes 3.
+2. `n.event` Son las muertes en ese tiempo. Solo aparecen los meses con muertes: las censuras no tienen fila propia.
+3. `survival` Es la supervivencia acumulada: la probabilidad de seguir vivo después de ese tiempo.
+4. `0.350` A los 9 meses, la supervivencia es del 35 %, y se mantiene así hasta el mes 12 porque no hubo más muertes.
+5. `0.985` Con `0.124`, forma su IC 95 %: de 12 % a 98 %. Es muy ancho porque hay pocos pacientes.
+6. `median` Es la mediana de supervivencia: 9 meses, el momento en que la curva baja del 50 %.
+7. `NA` Es el límite superior del IC 95 % de la mediana. No es un error: la curva superior del intervalo nunca baja del 50 %, así que ese límite no se alcanza. El inferior es 6 meses.
+
+**En una frase:** la supervivencia a los 12 meses fue del 35 % (IC 95 %: 12 % a 98 %) y la mediana, de 9 meses (IC 95 %: 6 a no alcanzado).
+:::
+
+```{r}
+#| echo: true
 plot(km, xlab = "Meses", ylab = "Supervivencia", mark.time = TRUE)
 ```
 

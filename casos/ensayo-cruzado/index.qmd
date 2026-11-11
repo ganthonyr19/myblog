@@ -100,7 +100,15 @@ t.test(pas_parac, pas_placebo, paired = TRUE)$conf.int
 t.test(pas_parac, pas_placebo)$conf.int
 ```
 
-El análisis pareado da un IC 95 % de 2,8 a 6,6 mmHg; el no pareado, uno de 1,0 a 8,4 mmHg, el doble de ancho con los mismos datos. La media de 133 mmHg y la DE de 12 mmHg son supuestos de la simulación, no datos del ensayo.
+::: {.lee-salida}
+1. `2.849187 6.550813` Es el IC 95 % del análisis pareado: el paracetamol aumentó la PAS entre 2,8 y 6,6 mmHg. `$conf.int` extrae solo el intervalo de toda la salida de `t.test()`.
+2. `attr(,"conf.level")` No es un resultado: R recuerda que el intervalo es al 95 %.
+3. `0.9961823 8.4038177` Es el IC 95 % si se ignora el pareamiento: de 1,0 a 8,4 mmHg, el doble de ancho con los mismos datos. Al tratar a cada persona como si fuera otra, la variabilidad entre personas infla el error.
+
+**En una frase:** con los mismos datos, el análisis pareado estima el aumento de la PAS con mucha más precisión (IC 95 %: 2,8 a 6,6 mmHg) que el no pareado (1,0 a 8,4 mmHg).
+:::
+
+La media de 133 mmHg y la DE de 12 mmHg son supuestos de la simulación, no datos del ensayo.
 
 ## Para profundizar
 

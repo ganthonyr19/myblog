@@ -90,7 +90,15 @@ control  <- as.numeric(scale(rnorm(60))) * 12 + 10
 t.test(programa, control, var.equal = TRUE)
 ```
 
-La salida muestra una diferencia de medias de 4 mmHg, un IC 95 % de −0,34 a 8,34 y p = 0,070.
+::: {.lee-salida}
+1. `Two Sample t-test` Es la t de Student clásica, porque pedimos `var.equal = TRUE`. Sin esa opción, R usaría la t de Welch.
+2. `df = 118` Son los grados de libertad: 60 + 60 − 2.
+3. `p-value = 0.07042` p = 0,070: mayor que 0,05, así que la diferencia «no es significativa».
+4. `-0.3385591  8.3385591` Es el IC 95 % de la diferencia (programa menos control): de −0,34 a 8,34 mmHg. Es compatible tanto con ningún efecto como con una reducción adicional de 8 mmHg, que sería clínicamente importante. No significativo no es lo mismo que sin efecto.
+5. `mean of x mean of y` Son las medias de cada grupo, en el orden en que se pusieron en `t.test()`: x es el programa (14 mmHg) e y el control (10 mmHg). La diferencia, 4 mmHg, se obtiene restando.
+
+**En una frase:** el programa redujo la PAS 4 mmHg más que el control (IC 95 %: −0,34 a 8,34; p = 0,070); el resultado no descarta un efecto clínicamente importante.
+:::
 
 ## Para profundizar
 

@@ -113,6 +113,14 @@ round(rbind(
 ), 2)
 ```
 
+::: {.lee-salida}
+1. `estimado` Es la estimación puntual; `li` y `ls` son los límites inferior y superior del IC 95 %.
+2. `1.80` Es el RR: el riesgo de cesárea fue 1,8 veces mayor (80 % mayor) en las gestantes inducidas, con IC 95 % de 1,40 a 2,31.
+3. `2.45` Es el OR: 2,45 (IC 95 %: 1,68 a 3,60). Está más lejos de 1 que el RR porque la cesárea es frecuente (25 % a 45 %). No se lee como «2,45 veces más riesgo».
+
+**En una frase:** el riesgo de cesárea fue 80 % mayor con la inducción (RR 1,80; IC 95 %: 1,40 a 2,31); el OR de 2,45 exagera la asociación porque el desenlace es frecuente.
+:::
+
 ## Para profundizar
 
 - [¿OR o RP?](../../prospecto/or-vs-rp/inicial.qmd), en Prospecto R: qué medida reportar en tu estudio transversal.

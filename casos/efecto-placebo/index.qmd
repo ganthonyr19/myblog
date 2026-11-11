@@ -99,7 +99,12 @@ round(c(antes = mean(medicion_1[incluidos]),
         despues = mean(medicion_2[incluidos])), 1)
 ```
 
-Sin hacer nada, el dolor medio de los incluidos baja de forma importante.
+::: {.lee-salida}
+1. `72.5` Es el dolor medio de los incluidos el día que consultaron. Es alto porque solo entraron quienes tenían más de 65 ese día.
+2. `61.0` Es su dolor medio semanas después, sin ningún tratamiento: 11,5 puntos menos, solo por regresión a la media.
+
+**En una frase:** sin ningún tratamiento, el dolor medio bajó de 72,5 a 61,0; sin un grupo control, esa mejora se atribuiría por error al tratamiento.
+:::
 
 ## Para profundizar
 

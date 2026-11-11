@@ -91,6 +91,14 @@ pt <- casos / tasa
 round(poisson.test(casos, pt)$conf.int * 100000, 1)
 ```
 
+::: {.lee-salida}
+1. `5024672` Son los persona-años que implica la tasa reportada: 6517 casos ÷ 0,001297 casos por persona-año ≈ 5,02 millones de persona-años.
+2. `126.6 132.9` Es el IC 95 % exacto de la tasa, por 100 000 persona-años: de 126,6 a 132,9.
+3. `attr(,"conf.level")` No es un resultado: R recuerda que el intervalo es al 95 % (el `0.95` de la línea siguiente).
+
+**En una frase:** la tasa fue de 129,7 por 100 000 persona-años (IC 95 %: 126,6 a 132,9); con más de cinco millones de persona-años, la estimación es muy precisa.
+:::
+
 ## Para profundizar
 
 - [El estudio de cohortes](../../disenos/cohortes/index.qmd), en Diseños de estudio: cohorte prospectiva y retrospectiva.

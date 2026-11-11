@@ -100,6 +100,15 @@ round(t.test(hb)$conf.int, 1)
 round(de / sqrt(4 * 225), 2)
 ```
 
+::: {.lee-salida}
+1. `DE` La desviación estándar (1,5 g/dL) describe cuánto varía la hemoglobina de una persona a otra.
+2. `EE` El error estándar (0,1 g/dL) describe la precisión de la media: es la DE dividida entre la raíz de n (1,5 ÷ 15).
+3. `11.0 11.4` Es el IC 95 % de la media: de 11,0 a 11,4 g/dL. Se construye con el EE, no con la DE.
+4. `0.05` Con una muestra cuatro veces mayor, el EE se reduce a la mitad (0,05 g/dL). La DE no cambia, porque la variabilidad entre personas es la misma.
+
+**En una frase:** la hemoglobina media fue de 11,2 g/dL (DE: 1,5); la DE describe a las personas, y el EE (0,1) y el IC 95 % (11,0 a 11,4), la precisión de la media.
+:::
+
 ## Para profundizar
 
 - [La Tabla 1 de tu tesis](../../prospecto/tabla-1/inicial.qmd), en Prospecto R: cómo describir a tus participantes.

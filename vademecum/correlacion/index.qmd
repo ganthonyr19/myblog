@@ -61,13 +61,49 @@ library(survival)
 d <- pbc[!is.na(pbc$trt), ]                    # los 312 pacientes del ensayo
 
 plot(d$bili, d$albumin, xlab = "Bilirrubina (mg/dL)", ylab = "Albúmina (g/dL)")
+```
 
+```{r}
+#| echo: true
 cor.test(d$bili, d$albumin)                               # Pearson
+```
+
+::: {.lee-salida}
+1. `Pearson's product-moment correlation` Es la correlación de Pearson, la que usa `cor.test()` si no se indica otro método.
+2. `t = -6.2524, df = 310` Son el estadístico y sus grados de libertad (n − 2 = 312 − 2). Sirven para obtener el valor p; no hace falta reportarlos.
+3. `p-value = 1.337e-09` Está en notación científica: `e-09` significa «× 10⁻⁹», o sea 0,000000001337. Se reporta como p < 0,001. Indica que la correlación difiere de 0, no que sea fuerte.
+4. `-0.4297095 -0.2322283` Es el IC 95 % del coeficiente: de −0,43 a −0,23.
+5. `-0.3346379` Es el coeficiente r = −0,33. El signo negativo indica que a mayor bilirrubina, menor albúmina; el valor, que la relación es débil a moderada. Con una bilirrubina tan asimétrica, Pearson no es el más adecuado.
+
+**En una frase:** el coeficiente de Pearson fue de −0,33 (IC 95 %: −0,43 a −0,23; p < 0,001), pero la asimetría de la bilirrubina obliga a revisar Spearman o una transformación.
+:::
+
+```{r}
+#| echo: true
 cor.test(d$bili, d$albumin, method = "spearman", exact = FALSE)  # Spearman
+```
+
+::: {.lee-salida}
+1. `Spearman's rank correlation rho` Es la correlación de Spearman: usa los rangos (el orden) de los valores, no los valores. Por eso no le afectan la asimetría ni los valores extremos.
+2. `S = 6929942` Es el estadístico de la prueba, basado en las diferencias de rangos. No se interpreta ni se reporta.
+3. `p-value = 1.676e-11` p = 0,00000000001676: se reporta como p < 0,001.
+4. `-0.369057` Es rho = −0,37: relación negativa, débil a moderada. Esta salida no trae IC 95 %, porque `cor.test()` no lo calcula para Spearman.
+
+**En una frase:** la bilirrubina y la albúmina mostraron una correlación negativa (rho de Spearman = −0,37; p < 0,001; n = 312).
+:::
+
+```{r}
+#| echo: true
 cor.test(log(d$bili), d$albumin)                          # Pearson con log(bilirrubina)
 ```
 
-El gráfico muestra una bilirrubina muy asimétrica. Con su logaritmo, el coeficiente de Pearson (−0,38) se acerca al de Spearman (−0,37).
+::: {.lee-salida}
+1. `log(d$bili) and d$albumin` Confirma que esta vez se usó el logaritmo de la bilirrubina, que corrige buena parte de su asimetría.
+2. `-0.4732945 -0.2833405` Es el IC 95 % del coeficiente: de −0,47 a −0,28.
+3. `-0.3823498` r = −0,38, muy cercano al rho de Spearman (−0,37): al quitar la asimetría, ambos métodos coinciden.
+
+**En una frase:** con la bilirrubina en escala logarítmica, el coeficiente de Pearson fue de −0,38 (IC 95 %: −0,47 a −0,28).
+:::
 
 ## Cómo reportarlo
 

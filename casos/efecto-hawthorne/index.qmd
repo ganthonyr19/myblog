@@ -102,6 +102,13 @@ round(c(visible_vs_no_visible  = visible / no_visible,
         visible_vs_semana_prev = visible / semana_prev), 1)
 ```
 
+::: {.lee-salida}
+1. `2.5` La mediana de usos por hora de los dispensadores a la vista del auditor fue 2,5 veces la de los que estaban fuera de su vista, en el mismo momento.
+2. `3.5` Y fue 3,5 veces la de esos mismos dispensadores una semana antes, sin auditor.
+
+**En una frase:** la sola presencia del auditor multiplicó entre 2,5 y 3,5 veces el uso de los dispensadores.
+:::
+
 ## Para profundizar
 
 - Caso n.º 11: [¿Importa quién evalúa al paciente?](../cegamiento/index.qmd), sobre el sesgo del evaluador.

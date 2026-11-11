@@ -541,6 +541,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   D-penicilamina 71.5 28.5
   Placebo        70.8 29.2</code></pre>
 </div>
+</div>
+<div class="lee-salida">
+<ol type="1">
+<li><code>0    1</code> Son las columnas: el código de <code>spiders</code>, donde 0 es «sin arañas vasculares» y 1 es «con arañas vasculares». Las filas son los grupos de tratamiento.</li>
+<li><code>28.5</code> El 28,5 % de los pacientes con D-penicilamina tenía arañas vasculares. Cada fila suma 100 % porque <code>prop.table(tabla, 1)</code> calcula los porcentajes por fila (el <code>1</code> indica filas; un <code>2</code> los daría por columna).</li>
+<li><code>29.2</code> Con placebo, el 29,2 %.</li>
+</ol>
+<p><strong>En una frase:</strong> la frecuencia de arañas vasculares fue casi la misma en ambos grupos (28,5 % y 29,2 %).</p>
+</div>
+<div class="cell">
 <details class="code-fold">
 <summary>Ver código</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chisq.test</span>(tabla)<span class="sc">$</span>expected                     <span class="co"># frecuencias esperadas</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
@@ -551,6 +561,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   D-penicilamina 112.4231 45.57692
   Placebo        109.5769 44.42308</code></pre>
 </div>
+</div>
+<div class="lee-salida">
+<ol type="1">
+<li><code>112.4231</code> Son frecuencias esperadas: cuántas personas habría en cada celda si el tratamiento y las arañas vasculares no estuvieran asociados (total de la fila × total de la columna ÷ total general). Por eso tienen decimales.</li>
+<li><code>44.42308</code> Es la esperada más pequeña. El chi cuadrado es adecuado si ninguna esperada es menor que 1 y no más del 20 % es menor que 5 (Cochran, 1954). Aquí todas superan 44.</li>
+</ol>
+<p><strong>En una frase:</strong> todas las frecuencias esperadas son mayores que 5, así que corresponde el chi cuadrado.</p>
+</div>
+<div class="cell">
 <details class="code-fold">
 <summary>Ver código</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chisq.test</span>(tabla)                              <span class="co"># con corrección de Yates</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
@@ -562,6 +581,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 data:  tabla
 X-squared = 0.00036966, df = 1, p-value = 0.9847</code></pre>
 </div>
+</div>
+<div class="lee-salida">
+<ol type="1">
+<li><code>with Yates' continuity correction</code> R aplicó la corrección de Yates porque la tabla es de 2 × 2. Lo hace por defecto; para no aplicarla, usa <code>correct = FALSE</code>. Sea cual sea tu elección, decláralo en métodos.</li>
+<li><code>X-squared = 0.00036966</code> Es el estadístico chi cuadrado: mide cuánto se alejan las frecuencias observadas de las esperadas. Aquí es casi 0: lo observado es casi idéntico a lo esperado sin asociación.</li>
+<li><code>df = 1</code> Son los grados de libertad: (filas − 1) × (columnas − 1). En una tabla de 2 × 2 siempre es 1.</li>
+<li><code>p-value = 0.9847</code> Se lee p = 0,98 (R usa punto decimal). Si no hubiera asociación, una diferencia como esta o mayor sería muy frecuente, así que no hay evidencia de diferencia entre los grupos. Ojo: no demuestra que los grupos sean iguales.</li>
+</ol>
+<p><strong>En una frase:</strong> la presencia de arañas vasculares fue similar con D-penicilamina (28,5 %) y con placebo (29,2 %) (p = 0,98; chi cuadrado con corrección de Yates).</p>
+</div>
+<div class="cell">
 <details class="code-fold">
 <summary>Ver código</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. Ascitis según el sexo: una frecuencia esperada es menor que 5</span></span>
@@ -577,6 +607,15 @@ X-squared = 0.00036966, df = 1, p-value = 0.9847</code></pre>
   Hombre  33.2  2.8
   Mujer  254.8 21.2</code></pre>
 </div>
+</div>
+<div class="lee-salida">
+<ol type="1">
+<li><code>Chi-squared approximation may be incorrect</code> Es un aviso, no un error. R advierte que alguna frecuencia esperada es baja y que la aproximación del chi cuadrado puede no ser confiable. Aparece aunque solo pedimos las esperadas, porque <code>chisq.test()</code> calcula la prueba de todos modos.</li>
+<li><code>2.8</code> Es la frecuencia esperada de hombres con ascitis: menor que 5. Es una de cuatro celdas (25 %), más del 20 % que permite el criterio de Cochran.</li>
+</ol>
+<p><strong>En una frase:</strong> con una frecuencia esperada menor que 5 en una tabla de 2 × 2, corresponde la prueba exacta de Fisher.</p>
+</div>
+<div class="cell">
 <details class="code-fold">
 <summary>Ver código</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fisher.test</span>(tabla2)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
@@ -595,7 +634,16 @@ odds ratio
  0.9061537 </code></pre>
 </div>
 </div>
-<p>En la primera tabla, todas las frecuencias esperadas superan 44, así que el chi cuadrado es adecuado. En la segunda, la frecuencia esperada de hombres con ascitis es 2,8 (una de cuatro celdas, el 25 %), por lo que corresponde Fisher.</p>
+<div class="lee-salida">
+<ol type="1">
+<li><code>Fisher's Exact Test for Count Data</code> Es la prueba exacta de Fisher: calcula la probabilidad directamente, sin la aproximación del chi cuadrado. Por eso no tiene estadístico ni grados de libertad.</li>
+<li><code>p-value = 0.7474</code> p = 0,75: no hay evidencia de asociación entre el sexo y la ascitis.</li>
+<li><code>true odds ratio is not equal to 1</code> No es un resultado: es la hipótesis alternativa que se contrasta (bilateral, el OR podría ser mayor o menor que 1).</li>
+<li><code>0.2496388 4.9989515</code> Es el IC 95 % del OR: de 0,25 a 5,00. Incluye el 1 y es muy ancho: los datos son compatibles tanto con un efecto protector fuerte como con un riesgo cinco veces mayor. Hay muy poca información, porque hay pocos hombres.</li>
+<li><code>0.9061537</code> OR = 0,91: la odds de ascitis en las mujeres (segunda fila) es 0,91 veces la de los hombres (primera fila). Es una estimación condicional, por eso puede diferir un poco del OR calculado a mano con la tabla.</li>
+</ol>
+<p><strong>En una frase:</strong> la frecuencia de ascitis no difirió según el sexo (OR 0,91; IC 95 %: 0,25 a 5,00; p = 0,75; prueba exacta de Fisher).</p>
+</div>
 </section>
 <section id="cómo-reportarlo" class="level2">
 <h2 class="anchored" data-anchor-id="cómo-reportarlo">Cómo reportarlo</h2>
@@ -728,6 +776,46 @@ odds ratio
     }, true);
   }
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", iniciar); else iniciar();
+})();
+</script>
+<script>
+/* «Cómo leer esta salida»: cada bloque ::: {.lee-salida} va justo después de un bloque de código de R.
+   Cada punto de su lista empieza con un fragmento `entre comillas invertidas` copiado de la salida.
+   Este script busca ese fragmento en la salida anterior y le pone el número del punto. */
+(function () {
+  function textos(nodo) {
+    var w = document.createTreeWalker(nodo, NodeFilter.SHOW_TEXT), t, r = [];
+    while ((t = w.nextNode())) r.push(t);
+    return r;
+  }
+  function marcar() {
+    document.querySelectorAll(".lee-salida").forEach(function (caja) {
+      var celda = caja.previousElementSibling;
+      while (celda && !celda.classList.contains("cell")) celda = celda.previousElementSibling;
+      if (!celda) return;
+      var salidas = celda.querySelectorAll(".cell-output pre, .cell-output-stdout pre, .cell-output-stderr pre, .cell-output-error pre");
+      var nodos = [];
+      salidas.forEach(function (s) { nodos = nodos.concat(textos(s)); });
+      var desde = 0, pos = 0;
+      caja.querySelectorAll(":scope > ol > li").forEach(function (li, i) {
+        var c = li.querySelector("code");
+        if (!c) return;
+        var frag = c.textContent;
+        for (var k = desde; k < nodos.length; k++) {
+          var n = nodos[k], j = n.nodeValue.indexOf(frag, k === desde ? pos : 0);
+          if (j < 0) continue;
+          var resto = n.splitText(j + frag.length);
+          var m = document.createElement("span");
+          m.className = "lee-n"; m.textContent = i + 1; m.setAttribute("aria-hidden", "true");
+          n.parentNode.insertBefore(m, resto);
+          nodos.splice(k + 1, 0, resto);
+          desde = k + 1; pos = 0;
+          break;
+        }
+      });
+    });
+  }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", marcar); else marcar();
 })();
 </script>
 <script>

@@ -102,6 +102,13 @@ round(rr(bebe_hoy, !bebe_hoy), 2)
 round(rr(bebedor == 1, bebedor == 0), 2)
 ```
 
+::: {.lee-salida}
+1. `0.72` Es el RR de los bebedores actuales frente a los «abstemios», un grupo que incluye a exbebedores que dejaron de beber al enfermar. El alcohol parece proteger, aunque en la simulación no tiene efecto.
+2. `[1] 1` Es el RR de la comparación correcta, alguna vez bebió frente a nunca: 1. R escribe `1` y no `1.00` porque omite los ceros finales.
+
+**En una frase:** el aparente efecto protector del alcohol (RR 0,72) se debía a que los enfermos dejaron de beber; al clasificar la exposición antes de enfermar, el RR es 1.
+:::
+
 Comparar a los bebedores actuales con quienes nunca bebieron tampoco basta: el grupo de bebedores actuales perdió a parte de sus enfermos. Lo que corrige el sesgo es clasificar la exposición antes de que la enfermedad pudiera cambiarla.
 
 ## Para profundizar
