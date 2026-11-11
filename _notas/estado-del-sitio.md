@@ -180,3 +180,13 @@ Nombre elegido por Anthony (15 oct 2026): **Consultorio estadístico**. Menú su
 - Estilos en `styles.css` (sección «Cómo leer esta salida»). Decimales con coma en la explicación; el fragmento citado conserva el punto de R.
 - Prospecto R ya tenía su propio formato (`<details class="salida">` + `::: {.leer}`) y se mantiene.
 - Aplicado el 11/11/2026 a las 4 fichas del Vademécum y a los 29 casos (también a los que aún están en borrador).
+
+## Tildes dañadas en descargas (corregido el 11 nov 2026)
+
+- Síntoma: en las fichas PDF de Prospecto R las tildes salían como «<U+00E9>», «<U+00F3>», etc. (or-vs-rp inicial y plena, tabla-1 inicial).
+- Causa: el 15/10/2026 los `.qmd` de Prospecto R se compilaron en un contenedor sin configuración UTF-8 (LANG=C). R escribió `receta_*.json` y los `.R` descargables con esas secuencias. Luego se corrigieron el JSON y los `.R`, pero los PDF no se regeneraron.
+- Corrección: fichas regeneradas con `node prospecto/_plantilla/render.js <receta.json> --solo-ficha`.
+- Para que no se repita:
+  1. Todo lo que ejecute R en un contenedor corre con `LANG=C.UTF-8`.
+  2. `render.js` se detiene si el JSON trae tildes dañadas, y tiene la opción `--solo-ficha`.
+  3. `python3 _notas/revisar-descargables.py` revisa PDF (con pdftotext), `.R`, JSON, CSV, TXT y HTML; córrelo antes de cada commit que toque descargas o Prospecto R. Está incluido en la tarea programada de publicación.
