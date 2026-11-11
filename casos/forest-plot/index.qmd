@@ -94,11 +94,42 @@ dat <- escalc(measure = "RR", ai = tpos, bi = tneg, ci = cpos, di = cneg, data =
 res <- rma(yi, vi, data = dat)          # efectos aleatorios (REML)
 res                                      # I², tau² y prueba Q
 predict(res, transf = exp, digits = 2)   # RR combinado, IC 95 % e intervalo de predicción
+```
 
+::: {.lee-salida}
+1. `Random-Effects Model (k = 13` Es un modelo de efectos aleatorios con 13 ensayos: supone que el efecto verdadero varía de un ensayo a otro.
+2. `0.3132` Es tau²: la varianza del efecto verdadero entre ensayos, en escala logarítmica. Cuanto mayor, más difieren los ensayos entre sí.
+3. `92.22%` Es I²: el 92 % de la variabilidad observada se debe a diferencias reales entre ensayos y no al azar. La heterogeneidad es muy alta.
+4. `Q(df = 12) = 152.2330, p-val < .0001` Es la prueba Q de heterogeneidad: p < 0,0001 confirma que los ensayos no estiman todos el mismo efecto.
+5. `-0.7145` Es el efecto combinado en escala logarítmica (log RR). No se interpreta así: hay que exponenciarlo, que es lo que hace `predict()` más abajo.
+6. `-1.0669  -0.3622` Es su IC 95 %, también en escala logarítmica. No incluye el 0 (que equivale a RR = 1).
+7. `0.49` Es el RR combinado: en promedio, los vacunados tuvieron un riesgo de tuberculosis 51 % menor.
+8. `0.34` Con `ci.ub` forma el IC 95 % del RR combinado: de 0,34 a 0,70.
+9. `1.55` Con `pi.lb` (0,15) forma el intervalo de predicción: dónde estaría el efecto en un ensayo nuevo. Incluye el 1, así que en algunos contextos la vacuna podría no proteger.
+
+**En una frase:** la BCG redujo el riesgo de tuberculosis (RR 0,49; IC 95 %: 0,34 a 0,70), pero con una heterogeneidad muy alta (I² = 92 %), su efecto en un nuevo contexto podría ir de 0,15 a 1,55.
+:::
+
+```{r}
+#| echo: true
 forest(res, transf = exp, slab = paste(dat$author, dat$year), refline = 1, xlab = "Riesgo relativo")
+```
 
+```{r}
+#| echo: true
 rma(yi, vi, mods = ~ ablat, data = dat)  # metarregresión con la latitud
 ```
+
+::: {.lee-salida}
+1. `Mixed-Effects Model` Es una metarregresión: el modelo de efectos aleatorios con un moderador, la latitud absoluta de cada ensayo (`ablat`).
+2. `68.39%` Es el I² residual: la heterogeneidad que queda después de tener en cuenta la latitud.
+3. `75.62%` Es R²: la latitud explica el 76 % de la heterogeneidad entre ensayos.
+4. `QM(df = 1) = 16.3571, p-val < .0001` Es la prueba del moderador: la latitud se asocia con el efecto de la vacuna (p < 0,0001).
+5. `0.2515` Es el intercepto: el log RR predicho en latitud 0. No se interpreta, porque ningún ensayo se hizo en el ecuador.
+6. `-0.0291` Es el coeficiente de la latitud: por cada grado más lejos del ecuador, el log RR baja 0,029; el RR se multiplica por exp(−0,029) ≈ 0,97, unos 3 % menos por grado.
+
+**En una frase:** la latitud explicó el 76 % de la heterogeneidad: la protección de la BCG aumenta con la distancia al ecuador (coeficiente −0,029 por grado; p < 0,0001).
+:::
 
 ## Para profundizar
 

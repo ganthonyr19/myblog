@@ -90,6 +90,14 @@ c(regla_del_tres = 3 / n_ensayo,
   exacto = binom.test(0, n_ensayo)$conf.int[2])
 ```
 
+::: {.lee-salida}
+1. `0.030 0.259 0.950` Es la probabilidad de ver al menos un caso de un efecto adverso que ocurre en 1 de cada 10 000 pacientes, con 300, 3000 y 30 000 pacientes: 3 %, 26 % y 95 %.
+2. `0.001000000` Es la regla del tres: si no hubo casos en 3000 pacientes, el límite superior del IC 95 % es aproximadamente 3 ÷ 3000 = 0,001, es decir, 1 en 1000.
+3. `0.001228871` Es el límite superior exacto que da `binom.test()`: 0,0012. Es algo mayor porque viene de un IC bilateral; la regla del tres es una buena aproximación.
+
+**En una frase:** un ensayo de 3000 pacientes sin casos solo descarta frecuencias mayores que 1 en 1000; un efecto de 1 en 10 000 pasaría inadvertido en 3 de cada 4 ensayos de ese tamaño.
+:::
+
 ## Para profundizar
 
 - [Diseños de estudio](../../disenos/index.qmd): dónde se ubica el ensayo clínico.

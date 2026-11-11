@@ -107,6 +107,15 @@ plot(1 - esp, sens, type = "b", xlim = c(0, 1), ylim = c(0, 1),
 abline(0, 1, lty = 2)   # diagonal: prueba sin capacidad discriminativa
 ```
 
+::: {.lee-salida}
+1. `youden` Es el índice de Youden: sensibilidad + especificidad − 1. Va de 0 (la prueba no discrimina mejor que el azar) a 1 (discrimina perfectamente).
+2. `RV_pos` Es la razón de verosimilitud positiva: cuánto aumenta un resultado positivo la odds de tener la enfermedad. Cuanto más lejos de 1, más útil.
+3. `RV_neg` Es la razón de verosimilitud negativa: cuánto la reduce un resultado negativo. Cuanto más cerca de 0, más útil.
+4. `0.251` Es el mayor índice de Youden, en el punto de corte 2,1. Aun así es bajo, y sus razones de verosimilitud (1,91 y 0,65) apenas cambian la probabilidad de enfermedad.
+
+**En una frase:** el mejor punto de corte según Youden es 2,1 (sensibilidad 52,6 %, especificidad 72,5 %), pero su capacidad para discriminar es modesta.
+:::
+
 Con datos individuales, el paquete `pROC` dibuja la curva completa y calcula el AUC con su IC 95 %.
 
 ## Para profundizar

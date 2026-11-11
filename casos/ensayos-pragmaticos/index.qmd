@@ -92,6 +92,14 @@ round(c(razon_de_tasas = razon, reduccion = 1 - razon), 3)
 (tasa_actual - tasa_nuevo) * 100
 ```
 
+::: {.lee-salida}
+1. `0.916` Es la razón de tasas: con el tratamiento nuevo, la tasa de exacerbaciones es el 91,6 % de la del tratamiento actual.
+2. `0.084` Es la reducción relativa: 1 − 0,916 = 8,4 % menos exacerbaciones.
+3. `16` Son las exacerbaciones evitadas por cada 100 pacientes tratados durante un año: la diferencia de tasas (1,90 − 1,74 = 0,16 por paciente-año) multiplicada por 100.
+
+**En una frase:** el tratamiento nuevo redujo las exacerbaciones en 8,4 % en términos relativos, unas 16 menos por cada 100 pacientes tratados durante un año.
+:::
+
 ## Para profundizar
 
 - Caso n.º 8: [¿Funciona el fármaco si el placebo también funciona?](../itt-vs-protocolo/index.qmd), sobre adherencia e intención de tratar.

@@ -104,6 +104,16 @@ rbind(principal = hr_desde_ic(0.86, 0.74, 0.99),
 12.1 - 10.5
 ```
 
+::: {.lee-salida}
+1. `EE_logHR` Es el error estándar del log(HR), recuperado del ancho del IC 95 %: (log ls − log li) ÷ (2 × 1,96).
+2. `-2.031` Es el estadístico z: log(HR) ÷ EE. Sirve para obtener el valor p.
+3. `0.042` Es el valor p del desenlace principal: p ≈ 0,04. Es significativo, pero cerca del límite, como muestra un IC que llega a 0,99.
+4. `0.000` Es el valor p de la muerte cardiovascular. No es cero: es menor que 0,0005 y se ve así por el redondeo a tres decimales. Se reporta como p < 0,001.
+5. `1.6` Es la diferencia absoluta en el desenlace principal: 12,1 % − 10,5 % = 1,6 puntos porcentuales en una mediana de 3,1 años.
+
+**En una frase:** la empagliflozina redujo el desenlace principal en 14 % (HR 0,86; IC 95 %: 0,74 a 0,99; p ≈ 0,04), es decir, 1,6 puntos porcentuales en 3,1 años.
+:::
+
 Con datos individuales, el modelo se ajusta con `survival::coxph(Surv(tiempo, evento) ~ grupo)` y el supuesto de riesgos proporcionales se revisa con `cox.zph()`.
 
 ## Para profundizar

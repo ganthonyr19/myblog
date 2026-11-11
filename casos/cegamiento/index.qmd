@@ -99,6 +99,13 @@ t.test(cegado ~ grupo)$p.value      # sin diferencia
 t.test(no_cegado ~ grupo)$p.value   # diferencia «significativa» creada por el sesgo
 ```
 
+::: {.lee-salida}
+1. `0.5131878` Es el valor p con el evaluador cegado: p = 0,51. No hay diferencia, como corresponde a un tratamiento sin efecto. `$p.value` extrae solo el valor p de toda la salida de `t.test()`.
+2. `8.166647e-05` Es el valor p con el evaluador no cegado, en notación científica (`e-05` es «× 10⁻⁵»): 0,00008, es decir, p < 0,001. Es una diferencia «significativa» creada solo por el sesgo de medición.
+
+**En una frase:** con los mismos pacientes, el evaluador no cegado convierte un tratamiento sin efecto en uno «significativo» (p < 0,001 frente a p = 0,51).
+:::
+
 ## Para profundizar
 
 - Caso n.º 7: [¿La aspirina no sirve si eres Géminis?](../error-tipo-i-y-ii/index.qmd), sobre el error tipo I.

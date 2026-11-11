@@ -102,6 +102,15 @@ asignada <- rbinom(n, 1, 0.5)
 round(rr(asignada, coronaria), 2)
 ```
 
+::: {.lee-salida}
+1. `0.75` Es el RR crudo: quienes usan la terapia parecen tener 25 % menos riesgo coronario. Pero en esta simulación la terapia no tiene ningún efecto.
+2. `1.03` Es el RR entre las personas de NSE bajo: prácticamente 1.
+3. `0.99` Es el RR entre las de NSE alto: también 1. Al comparar personas del mismo NSE, el «efecto» desaparece: el NSE era un confusor.
+4. `1.02` Es el RR cuando la terapia se asigna al azar: otra vez 1, porque el azar reparte el NSE por igual entre los grupos.
+
+**En una frase:** el RR crudo de 0,75 se debía a la confusión por el nivel socioeconómico; al estratificar (1,03 y 0,99) o al asignar al azar (1,02), desaparece.
+:::
+
 ## Para profundizar
 
 - [El estudio de cohortes](../../disenos/cohortes/index.qmd), en Diseños de estudio: confusión y su control.

@@ -630,6 +630,20 @@ Ver respuesta
       n events median 0.95LCL 0.95UCL
 [1,] 10      5      9       6      NA</code></pre>
 </div>
+</div>
+<div class="lee-salida">
+<ol type="1">
+<li><code>n.risk</code> Son los pacientes en riesgo justo antes de cada tiempo: los que siguen vivos y en seguimiento. Baja con cada muerte y con cada censura; por eso en el mes 4 quedan 8 y no 9, porque uno se censuró en el mes 3.</li>
+<li><code>n.event</code> Son las muertes en ese tiempo. Solo aparecen los meses con muertes: las censuras no tienen fila propia.</li>
+<li><code>survival</code> Es la supervivencia acumulada: la probabilidad de seguir vivo después de ese tiempo.</li>
+<li><code>0.350</code> A los 9 meses, la supervivencia es del 35 %, y se mantiene así hasta el mes 12 porque no hubo más muertes.</li>
+<li><code>0.985</code> Con <code>0.124</code>, forma su IC 95 %: de 12 % a 98 %. Es muy ancho porque hay pocos pacientes.</li>
+<li><code>median</code> Es la mediana de supervivencia: 9 meses, el momento en que la curva baja del 50 %.</li>
+<li><code>NA</code> Es el límite superior del IC 95 % de la mediana. No es un error: la curva superior del intervalo nunca baja del 50 %, así que ese límite no se alcanza. El inferior es 6 meses.</li>
+</ol>
+<p><strong>En una frase:</strong> la supervivencia a los 12 meses fue del 35 % (IC 95 %: 12 % a 98 %) y la mediana, de 9 meses (IC 95 %: 6 a no alcanzado).</p>
+</div>
+<div class="cell">
 <details class="code-fold">
 <summary>Ver código</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(km, <span class="at">xlab =</span> <span class="st">"Meses"</span>, <span class="at">ylab =</span> <span class="st">"Supervivencia"</span>, <span class="at">mark.time =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
@@ -637,7 +651,7 @@ Ver respuesta
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="index_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="index_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -669,19 +683,31 @@ Ver respuesta
 
 </main> <!-- /main -->
 <script>
-/* Tarjeta «Síguenos en Instagram» al final de cada entrada (no en listados ni en el inicio). */
+/* Cierre de cada entrada: tarjeta «Síguenos en Instagram» (no en listados ni en el inicio).
+   Si la entrada tiene una tarjeta de WhatsApp (.cta) al final de su contenido, ambas se
+   muestran juntas, compactas y lado a lado, dentro de <div class="cierre">. */
 (function () {
   var IG = "https://www.instagram.com/bioestadistica.en.linea/";
   function poner() {
     var main = document.querySelector("main#quarto-document-content") || document.querySelector("main");
     if (!main || document.querySelector(".quarto-listing") || document.querySelector(".quarto-about-jolla, .about-entity")) return;
     if (!document.querySelector(".quarto-title") || document.body.classList.contains("sin-sigue")) return;
-    var d = document.createElement("aside");
+    var d = document.createElement("div");
     d.className = "sigue-ig";
     d.innerHTML =
-      '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.3" cy="6.7" r="1.2" fill="currentColor"/></svg>' +
-      '<div><p class="sigue-t">¿Te sirvió?</p><p>En Instagram comparto tips de bioestadística y R para tesis de salud, y aviso cuando sale una entrega nueva.</p></div>' +
+      '<p class="sigue-t"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.3" cy="6.7" r="1.2" fill="currentColor"/></svg>¿Te sirvió?</p>' +
+      '<p>En Instagram comparto tips de bioestadística y R para tesis de salud, y aviso cuando sale una entrega nueva.</p>' +
       '<a href="' + IG + '" target="_blank" rel="noopener">Seguir @bioestadistica.en.linea</a>';
+    var ctas = main.querySelectorAll(".cta");
+    var cta = ctas.length ? ctas[ctas.length - 1] : null;
+    if (cta && !cta.nextElementSibling) {
+      var c = document.createElement("div");
+      c.className = "cierre";
+      cta.parentNode.insertBefore(c, cta);
+      c.appendChild(cta);
+      c.appendChild(d);
+      return;
+    }
     var ap = main.querySelector("#quarto-appendix, .quarto-appendix-contents");
     if (ap) ap.parentNode.insertBefore(d, ap); else main.appendChild(d);
   }
@@ -752,6 +778,46 @@ Ver respuesta
     }, true);
   }
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", iniciar); else iniciar();
+})();
+</script>
+<script>
+/* «Cómo leer esta salida»: cada bloque ::: {.lee-salida} va justo después de un bloque de código de R.
+   Cada punto de su lista empieza con un fragmento `entre comillas invertidas` copiado de la salida.
+   Este script busca ese fragmento en la salida anterior y le pone el número del punto. */
+(function () {
+  function textos(nodo) {
+    var w = document.createTreeWalker(nodo, NodeFilter.SHOW_TEXT), t, r = [];
+    while ((t = w.nextNode())) r.push(t);
+    return r;
+  }
+  function marcar() {
+    document.querySelectorAll(".lee-salida").forEach(function (caja) {
+      var celda = caja.previousElementSibling;
+      while (celda && !celda.classList.contains("cell")) celda = celda.previousElementSibling;
+      if (!celda) return;
+      var salidas = celda.querySelectorAll(".cell-output pre, .cell-output-stdout pre, .cell-output-stderr pre, .cell-output-error pre");
+      var nodos = [];
+      salidas.forEach(function (s) { nodos = nodos.concat(textos(s)); });
+      var desde = 0, pos = 0;
+      caja.querySelectorAll(":scope > ol > li").forEach(function (li, i) {
+        var c = li.querySelector("code");
+        if (!c) return;
+        var frag = c.textContent;
+        for (var k = desde; k < nodos.length; k++) {
+          var n = nodos[k], j = n.nodeValue.indexOf(frag, k === desde ? pos : 0);
+          if (j < 0) continue;
+          var resto = n.splitText(j + frag.length);
+          var m = document.createElement("span");
+          m.className = "lee-n"; m.textContent = i + 1; m.setAttribute("aria-hidden", "true");
+          n.parentNode.insertBefore(m, resto);
+          nodos.splice(k + 1, 0, resto);
+          desde = k + 1; pos = 0;
+          break;
+        }
+      });
+    });
+  }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", marcar); else marcar();
 })();
 </script>
 <script>

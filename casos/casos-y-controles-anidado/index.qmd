@@ -90,6 +90,14 @@ z  <- log(2.43) / ee
 c(EE = ee, p = 2 * pnorm(-abs(z)))
 ```
 
+::: {.lee-salida}
+1. `0.50 0.67 0.80 0.91 0.99` Es la eficiencia relativa con 1, 2, 4, 10 y 100 controles por caso, comparada con tener controles ilimitados. Con 1 control se logra el 50 % de la precisión máxima; con 4, el 80 %. Pasar de 4 a 10 controles solo suma 11 puntos: por eso rara vez se usan más de 4.
+2. `1.441493e-01` Es el error estándar del log(RR), en notación científica: `e-01` significa «× 10⁻¹», o sea 0,144. Se obtuvo del ancho del IC 95 % reportado: (log 3,22 − log 1,83) ÷ (2 × 1,96).
+3. `7.296402e-10` Es el valor p: 0,0000000007. Se reporta como p < 0,001.
+
+**En una frase:** con 4 controles por caso se alcanza el 80 % de la eficiencia máxima, y un RR de 2,43 con IC 95 % de 1,83 a 3,22 corresponde a p < 0,001.
+:::
+
 Con datos individuales emparejados, el análisis se hace con regresión logística condicional: `survival::clogit(caso ~ exposicion + strata(grupo))`.
 
 ## Para profundizar

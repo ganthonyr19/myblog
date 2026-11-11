@@ -100,6 +100,17 @@ c(correcto = ceiling(n / 0.90), incorrecto = ceiling(n * 1.10))
 ceiling(4 * (qnorm(0.975) + qnorm(0.80))^2 / log(0.86)^2)
 ```
 
+::: {.lee-salida}
+1. `6145` Son las personas necesarias por grupo con una potencia del 80 %.
+2. `8226` Con una potencia del 90 %: 2081 personas más por grupo.
+3. `844` Si se esperara una diferencia mayor (12,1 % frente a 8,0 %), bastarían 844 por grupo: el tamaño depende sobre todo de la diferencia que se quiere detectar.
+4. `6828` Es el ajuste correcto por 10 % de pérdidas: n ÷ (1 − 0,10).
+5. `6760` Es el ajuste incorrecto, n × 1,10: se queda corto por 68 personas por grupo.
+6. `1381` Son los eventos necesarios para detectar un HR de 0,86 con 80 % de potencia (fórmula de Schoenfeld). En un análisis de supervivencia, la potencia depende del número de eventos, no del de personas.
+
+**En una frase:** se necesitan 6145 personas por grupo y 6828 tras prever un 10 % de pérdidas, que se obtiene dividiendo entre 0,90, no multiplicando por 1,10.
+:::
+
 ## Para profundizar
 
 - [Calcula el tamaño de muestra de tu cohorte](../../herramientas/muestra/index.qmd#mod=dprop&dis=co) en el Consultorio estadístico, con pérdidas incluidas.

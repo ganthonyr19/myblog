@@ -88,6 +88,16 @@ round(c(tasa_x100 = prueba$estimate * 100, prueba$conf.int * 100), 2)
 round(c(cociente = 36 / 64, eficacia = 1 - 36 / 64), 2)
 ```
 
+::: {.lee-salida}
+1. `tasa_x100.event rate` Es solo una etiqueta: R junta el nombre que le pusimos con el que trae el resultado. Las otras dos columnas, sin nombre, son los límites del IC 95 %.
+2. `3.01` Es la tasa global: 3,01 infecciones por 100 persona-años.
+3. `2.45` Con `3.66`, forma el IC 95 % exacto de la tasa: de 2,45 a 3,66 por 100 persona-años.
+4. `0.56` Es el cociente aproximado de tasas (36 ÷ 64), suponiendo que ambos grupos acumularon un persona-tiempo similar.
+5. `0.44` Es la reducción: 1 − 0,56 = 44 %, la misma que reportaron los autores.
+
+**En una frase:** la incidencia global fue de 3,01 por 100 persona-años (IC 95 %: 2,45 a 3,66), y la reducción aproximada de 44 % coincide con la reportada.
+:::
+
 Con los datos individuales, la razón de tasas se estimaría con `glm(infeccion ~ grupo + offset(log(tiempo)), family = poisson)`.
 
 ## Para profundizar

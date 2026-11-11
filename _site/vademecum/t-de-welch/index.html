@@ -540,6 +540,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 1 Hombre     36.00          3.58       0.45
 2  Mujer    276.00          3.51       0.42</code></pre>
 </div>
+</div>
+<div class="lee-salida">
+<ol type="1">
+<li><code>albumin.n</code> Es el número de personas de cada grupo: 36 hombres y 276 mujeres. Aparece como <code>36.00</code> solo porque <code>round(..., 2)</code> da formato de dos decimales a toda la fila.</li>
+<li><code>3.58</code> Es la albúmina media de los hombres: 3,58 g/dL.</li>
+<li><code>0.45</code> Es su desviación estándar (DE): cuánto varían los valores de una persona a otra dentro del grupo, no la precisión de la media.</li>
+<li><code>3.51</code> La media de las mujeres, 3,51 g/dL, con DE de 0,42.</li>
+</ol>
+<p><strong>En una frase:</strong> la albúmina media fue de 3,58 g/dL (DE: 0,45) en hombres y de 3,51 g/dL (DE: 0,42) en mujeres.</p>
+</div>
+<div class="cell">
 <details class="code-fold">
 <summary>Ver código</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(d<span class="sc">$</span>albumin, <span class="at">breaks =</span> <span class="dv">25</span>, <span class="at">main =</span> <span class="st">""</span>, <span class="at">xlab =</span> <span class="st">"Albúmina (g/dL)"</span>)   <span class="co"># ¿muy asimétrica?</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
@@ -547,10 +558,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="index_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="index_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
+</div>
+<div class="cell">
 <details class="code-fold">
 <summary>Ver código</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(albumin <span class="sc">~</span> sexo, <span class="at">data =</span> d)               <span class="co"># Welch por defecto</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
@@ -568,6 +581,18 @@ sample estimates:
 mean in group Hombre  mean in group Mujer 
             3.579167             3.512283 </code></pre>
 </div>
+</div>
+<div class="lee-salida">
+<ol type="1">
+<li><code>Welch Two Sample t-test</code> Es la t de Welch, la que usa R por defecto: no supone que las varianzas de los grupos sean iguales. La t de Student clásica requiere <code>var.equal = TRUE</code>.</li>
+<li><code>t = 0.84089</code> Es el estadístico t: la diferencia de medias dividida entre su error estándar. Por sí solo no se reporta en una tesis.</li>
+<li><code>df = 43.042</code> Son los grados de libertad de Welch. Tienen decimales porque se ajustan según las varianzas y el tamaño de cada grupo; es normal.</li>
+<li><code>p-value = 0.4051</code> p = 0,41: no hay evidencia de que la albúmina media difiera entre hombres y mujeres.</li>
+<li><code>between group Hombre and group Mujer</code> Indica el orden de la resta: hombres menos mujeres. Un valor positivo significa que los hombres tienen la media más alta.</li>
+<li><code>-0.09351911  0.22728723</code> Es el IC 95 % de esa diferencia: de −0,09 a 0,23 g/dL. Incluye el 0, coherente con p &gt; 0,05, y muestra que cualquier diferencia real sería pequeña.</li>
+<li><code>3.579167</code> Son las medias de cada grupo. La diferencia es 3,58 − 3,51 = 0,07 g/dL; R no la imprime, se calcula restando.</li>
+</ol>
+<p><strong>En una frase:</strong> la albúmina media no difirió entre hombres y mujeres (diferencia: 0,07 g/dL; IC 95 %: −0,09 a 0,23; p = 0,41; t de Welch).</p>
 </div>
 </section>
 <section id="cómo-reportarlo" class="level2">
@@ -607,19 +632,31 @@ mean in group Hombre  mean in group Mujer
 
 </main> <!-- /main -->
 <script>
-/* Tarjeta «Síguenos en Instagram» al final de cada entrada (no en listados ni en el inicio). */
+/* Cierre de cada entrada: tarjeta «Síguenos en Instagram» (no en listados ni en el inicio).
+   Si la entrada tiene una tarjeta de WhatsApp (.cta) al final de su contenido, ambas se
+   muestran juntas, compactas y lado a lado, dentro de <div class="cierre">. */
 (function () {
   var IG = "https://www.instagram.com/bioestadistica.en.linea/";
   function poner() {
     var main = document.querySelector("main#quarto-document-content") || document.querySelector("main");
     if (!main || document.querySelector(".quarto-listing") || document.querySelector(".quarto-about-jolla, .about-entity")) return;
     if (!document.querySelector(".quarto-title") || document.body.classList.contains("sin-sigue")) return;
-    var d = document.createElement("aside");
+    var d = document.createElement("div");
     d.className = "sigue-ig";
     d.innerHTML =
-      '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.3" cy="6.7" r="1.2" fill="currentColor"/></svg>' +
-      '<div><p class="sigue-t">¿Te sirvió?</p><p>En Instagram comparto tips de bioestadística y R para tesis de salud, y aviso cuando sale una entrega nueva.</p></div>' +
+      '<p class="sigue-t"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.3" cy="6.7" r="1.2" fill="currentColor"/></svg>¿Te sirvió?</p>' +
+      '<p>En Instagram comparto tips de bioestadística y R para tesis de salud, y aviso cuando sale una entrega nueva.</p>' +
       '<a href="' + IG + '" target="_blank" rel="noopener">Seguir @bioestadistica.en.linea</a>';
+    var ctas = main.querySelectorAll(".cta");
+    var cta = ctas.length ? ctas[ctas.length - 1] : null;
+    if (cta && !cta.nextElementSibling) {
+      var c = document.createElement("div");
+      c.className = "cierre";
+      cta.parentNode.insertBefore(c, cta);
+      c.appendChild(cta);
+      c.appendChild(d);
+      return;
+    }
     var ap = main.querySelector("#quarto-appendix, .quarto-appendix-contents");
     if (ap) ap.parentNode.insertBefore(d, ap); else main.appendChild(d);
   }
@@ -690,6 +727,46 @@ mean in group Hombre  mean in group Mujer
     }, true);
   }
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", iniciar); else iniciar();
+})();
+</script>
+<script>
+/* «Cómo leer esta salida»: cada bloque ::: {.lee-salida} va justo después de un bloque de código de R.
+   Cada punto de su lista empieza con un fragmento `entre comillas invertidas` copiado de la salida.
+   Este script busca ese fragmento en la salida anterior y le pone el número del punto. */
+(function () {
+  function textos(nodo) {
+    var w = document.createTreeWalker(nodo, NodeFilter.SHOW_TEXT), t, r = [];
+    while ((t = w.nextNode())) r.push(t);
+    return r;
+  }
+  function marcar() {
+    document.querySelectorAll(".lee-salida").forEach(function (caja) {
+      var celda = caja.previousElementSibling;
+      while (celda && !celda.classList.contains("cell")) celda = celda.previousElementSibling;
+      if (!celda) return;
+      var salidas = celda.querySelectorAll(".cell-output pre, .cell-output-stdout pre, .cell-output-stderr pre, .cell-output-error pre");
+      var nodos = [];
+      salidas.forEach(function (s) { nodos = nodos.concat(textos(s)); });
+      var desde = 0, pos = 0;
+      caja.querySelectorAll(":scope > ol > li").forEach(function (li, i) {
+        var c = li.querySelector("code");
+        if (!c) return;
+        var frag = c.textContent;
+        for (var k = desde; k < nodos.length; k++) {
+          var n = nodos[k], j = n.nodeValue.indexOf(frag, k === desde ? pos : 0);
+          if (j < 0) continue;
+          var resto = n.splitText(j + frag.length);
+          var m = document.createElement("span");
+          m.className = "lee-n"; m.textContent = i + 1; m.setAttribute("aria-hidden", "true");
+          n.parentNode.insertBefore(m, resto);
+          nodos.splice(k + 1, 0, resto);
+          desde = k + 1; pos = 0;
+          break;
+        }
+      });
+    });
+  }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", marcar); else marcar();
 })();
 </script>
 <script>

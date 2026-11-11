@@ -62,10 +62,31 @@ d$grupo <- factor(d$trt, 1:2, c("D-penicilamina", "Placebo"))
 
 # Mediana y rango intercuartílico por grupo
 aggregate(bili ~ grupo, data = d, FUN = function(x) quantile(x, c(0.25, 0.5, 0.75)))
+```
 
+::: {.lee-salida}
+1. `bili.25%` Son los percentiles 25, 50 y 75 de cada grupo. El 25 y el 75 forman el rango intercuartílico (RIC), donde está la mitad central de los pacientes.
+2. `1.400` Es la mediana (percentil 50) del grupo D-penicilamina: la mitad de los pacientes tiene una bilirrubina menor que 1,40 mg/dL. Su RIC va de 0,80 a 3,20 mg/dL. En placebo, la mediana es 1,30 mg/dL.
+3. `0.725` Es el percentil 25 del grupo placebo (0,72 mg/dL). El RIC de placebo va de 0,72 a 3,60 mg/dL.
+
+**En una frase:** la mediana de bilirrubina fue de 1,40 mg/dL (RIC: 0,80 a 3,20) con D-penicilamina y de 1,30 mg/dL (RIC: 0,72 a 3,60) con placebo.
+:::
+
+```{r}
+#| echo: true
 # Prueba y diferencia de Hodges-Lehmann con su IC 95 %
 wilcox.test(bili ~ grupo, data = d, exact = FALSE, conf.int = TRUE)
 ```
+
+::: {.lee-salida}
+1. `Wilcoxon rank sum test with continuity correction` Es la prueba U de Mann-Whitney: R la llama «prueba de suma de rangos de Wilcoxon» (son la misma). Usa una aproximación con corrección de continuidad porque pedimos `exact = FALSE`, necesario cuando hay valores repetidos.
+2. `W = 12007` Es el estadístico de la prueba (equivale a la U del primer grupo). Por sí solo no se interpreta y no suele reportarse.
+3. `p-value = 0.8422` p = 0,84: no hay evidencia de que la bilirrubina difiera entre los grupos.
+4. `-0.2000024  0.2000073` Es el IC 95 % de la diferencia de Hodges-Lehmann: de −0,20 a 0,20 mg/dL. Incluye el 0.
+5. `-5.294983e-05` Es la diferencia de Hodges-Lehmann (D-penicilamina menos placebo), en notación científica: `e-05` significa «× 10⁻⁵», es decir, −0,00005, prácticamente 0. No es la diferencia de medianas: es la mediana de todas las diferencias entre un paciente de cada grupo.
+
+**En una frase:** la bilirrubina no difirió entre los grupos (diferencia de Hodges-Lehmann: 0,00 mg/dL; IC 95 %: −0,20 a 0,20; p = 0,84; U de Mann-Whitney).
+:::
 
 ## Cómo reportarlo
 

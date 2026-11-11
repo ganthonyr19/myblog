@@ -95,6 +95,15 @@ round(c(relativa = 0.45 / 1.66, del_rango = 0.45 / 18), 3)
 12.6 - 1.7
 ```
 
+::: {.lee-salida}
+1. `6.095295e-05` Es el valor p aproximado a partir del IC 95 %: 0,00006 (`e-05` es «× 10⁻⁵»). Se reporta como p < 0,001.
+2. `0.271` Es la diferencia relativa: 0,45 ÷ 1,66 = 27 % menos deterioro que con placebo, la cifra que más se difundió.
+3. `0.025` Es la misma diferencia como proporción del rango de la escala: 0,45 puntos de 18, el 2,5 %.
+4. `10.9` Es la diferencia absoluta en edema cerebral (ARIA-E): 10,9 puntos porcentuales más con lecanemab.
+
+**En una frase:** la diferencia fue muy significativa (p < 0,001) y equivale a «27 % menos deterioro», pero son 0,45 puntos de una escala de 18, con 10,9 puntos porcentuales más de edema cerebral.
+:::
+
 ## Para profundizar
 
 - Caso n.º 2: [p = 0,07: ¿la intervención no sirve?](../ic-vs-valor-p/index.qmd), el problema opuesto.

@@ -571,7 +571,16 @@ mean of x mean of y
        14        10 </code></pre>
 </div>
 </div>
-<p>La salida muestra una diferencia de medias de 4 mmHg, un IC 95 % de −0,34 a 8,34 y p = 0,070.</p>
+<div class="lee-salida">
+<ol type="1">
+<li><code>Two Sample t-test</code> Es la t de Student clásica, porque pedimos <code>var.equal = TRUE</code>. Sin esa opción, R usaría la t de Welch.</li>
+<li><code>df = 118</code> Son los grados de libertad: 60 + 60 − 2.</li>
+<li><code>p-value = 0.07042</code> p = 0,070: mayor que 0,05, así que la diferencia «no es significativa».</li>
+<li><code>-0.3385591  8.3385591</code> Es el IC 95 % de la diferencia (programa menos control): de −0,34 a 8,34 mmHg. Es compatible tanto con ningún efecto como con una reducción adicional de 8 mmHg, que sería clínicamente importante. No significativo no es lo mismo que sin efecto.</li>
+<li><code>mean of x mean of y</code> Son las medias de cada grupo, en el orden en que se pusieron en <code>t.test()</code>: x es el programa (14 mmHg) e y el control (10 mmHg). La diferencia, 4 mmHg, se obtiene restando.</li>
+</ol>
+<p><strong>En una frase:</strong> el programa redujo la PAS 4 mmHg más que el control (IC 95 %: −0,34 a 8,34; p = 0,070); el resultado no descarta un efecto clínicamente importante.</p>
+</div>
 </section>
 <section id="para-profundizar" class="level2">
 <h2 class="anchored" data-anchor-id="para-profundizar">Para profundizar</h2>
@@ -597,19 +606,31 @@ mean of x mean of y
 
 </main> <!-- /main -->
 <script>
-/* Tarjeta «Síguenos en Instagram» al final de cada entrada (no en listados ni en el inicio). */
+/* Cierre de cada entrada: tarjeta «Síguenos en Instagram» (no en listados ni en el inicio).
+   Si la entrada tiene una tarjeta de WhatsApp (.cta) al final de su contenido, ambas se
+   muestran juntas, compactas y lado a lado, dentro de <div class="cierre">. */
 (function () {
   var IG = "https://www.instagram.com/bioestadistica.en.linea/";
   function poner() {
     var main = document.querySelector("main#quarto-document-content") || document.querySelector("main");
     if (!main || document.querySelector(".quarto-listing") || document.querySelector(".quarto-about-jolla, .about-entity")) return;
     if (!document.querySelector(".quarto-title") || document.body.classList.contains("sin-sigue")) return;
-    var d = document.createElement("aside");
+    var d = document.createElement("div");
     d.className = "sigue-ig";
     d.innerHTML =
-      '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.3" cy="6.7" r="1.2" fill="currentColor"/></svg>' +
-      '<div><p class="sigue-t">¿Te sirvió?</p><p>En Instagram comparto tips de bioestadística y R para tesis de salud, y aviso cuando sale una entrega nueva.</p></div>' +
+      '<p class="sigue-t"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.3" cy="6.7" r="1.2" fill="currentColor"/></svg>¿Te sirvió?</p>' +
+      '<p>En Instagram comparto tips de bioestadística y R para tesis de salud, y aviso cuando sale una entrega nueva.</p>' +
       '<a href="' + IG + '" target="_blank" rel="noopener">Seguir @bioestadistica.en.linea</a>';
+    var ctas = main.querySelectorAll(".cta");
+    var cta = ctas.length ? ctas[ctas.length - 1] : null;
+    if (cta && !cta.nextElementSibling) {
+      var c = document.createElement("div");
+      c.className = "cierre";
+      cta.parentNode.insertBefore(c, cta);
+      c.appendChild(cta);
+      c.appendChild(d);
+      return;
+    }
     var ap = main.querySelector("#quarto-appendix, .quarto-appendix-contents");
     if (ap) ap.parentNode.insertBefore(d, ap); else main.appendChild(d);
   }
@@ -680,6 +701,46 @@ mean of x mean of y
     }, true);
   }
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", iniciar); else iniciar();
+})();
+</script>
+<script>
+/* «Cómo leer esta salida»: cada bloque ::: {.lee-salida} va justo después de un bloque de código de R.
+   Cada punto de su lista empieza con un fragmento `entre comillas invertidas` copiado de la salida.
+   Este script busca ese fragmento en la salida anterior y le pone el número del punto. */
+(function () {
+  function textos(nodo) {
+    var w = document.createTreeWalker(nodo, NodeFilter.SHOW_TEXT), t, r = [];
+    while ((t = w.nextNode())) r.push(t);
+    return r;
+  }
+  function marcar() {
+    document.querySelectorAll(".lee-salida").forEach(function (caja) {
+      var celda = caja.previousElementSibling;
+      while (celda && !celda.classList.contains("cell")) celda = celda.previousElementSibling;
+      if (!celda) return;
+      var salidas = celda.querySelectorAll(".cell-output pre, .cell-output-stdout pre, .cell-output-stderr pre, .cell-output-error pre");
+      var nodos = [];
+      salidas.forEach(function (s) { nodos = nodos.concat(textos(s)); });
+      var desde = 0, pos = 0;
+      caja.querySelectorAll(":scope > ol > li").forEach(function (li, i) {
+        var c = li.querySelector("code");
+        if (!c) return;
+        var frag = c.textContent;
+        for (var k = desde; k < nodos.length; k++) {
+          var n = nodos[k], j = n.nodeValue.indexOf(frag, k === desde ? pos : 0);
+          if (j < 0) continue;
+          var resto = n.splitText(j + frag.length);
+          var m = document.createElement("span");
+          m.className = "lee-n"; m.textContent = i + 1; m.setAttribute("aria-hidden", "true");
+          n.parentNode.insertBefore(m, resto);
+          nodos.splice(k + 1, 0, resto);
+          desde = k + 1; pos = 0;
+          break;
+        }
+      });
+    });
+  }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", marcar); else marcar();
 })();
 </script>
 <script>

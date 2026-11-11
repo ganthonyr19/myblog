@@ -131,6 +131,7 @@ Nombre elegido por Anthony (15 oct 2026): **Consultorio estadístico**. Menú su
 
 - Ícono en el menú superior, enlace en el pie de página, en el inicio y en «Sobre mí».
 - Tarjeta «¿Te sirvió? Seguir @bioestadistica.en.linea» al final de cada página con título que no sea listado ni el inicio: `_includes/sigue.html` (incluido en `_quarto.yml`), estilos en `styles.css`. Para ocultarla en una página: clase `sin-sigue` en el body.
+- **Cierre compacto (decisión de Anthony, 11/11/2026, regla para todo lo que se publique):** si la página tiene un bloque `.cta` (WhatsApp) y es el último elemento de su sección, el script lo envuelve junto con la tarjeta de Instagram en `<div class="cierre">`: dos tarjetas compactas lado a lado (apiladas en menos de 640 px). Sin `.cta`, la tarjeta de Instagram sale sola, compacta y a media columna. Estilos en `styles.css` (sección «Cierre de las entradas»). Se usa `display:flex` y un `div` (no `grid` ni `aside`) porque Quarto asigna columnas de su rejilla de página a esos elementos y rompe el diseño.
 
 ## Cómo renderizar aquí (lecciones del 15 oct 2026)
 
@@ -170,3 +171,12 @@ Nombre elegido por Anthony (15 oct 2026): **Consultorio estadístico**. Menú su
 - Decisión de Anthony: la web pasa a **lunes, miércoles y viernes**. Las 27 entradas pendientes van del 9 de noviembre de 2026 al 13 de enero de 2027, en el mismo orden (ficha 4 el 11 de noviembre). Se saltan el 25 de diciembre y el 1 de enero.
 - La tarea programada corre lunes, miércoles y viernes a las 6:13 a. m. de Lima.
 
+
+## «Cómo leer esta salida» (regla de Anthony, 11 nov 2026, para todo lo que se publique)
+
+- Toda salida de R que se interpreta lleva debajo un bloque `::: {.lee-salida}`: una lista numerada donde cada punto empieza con un fragmento copiado **tal cual** de la salida entre comillas invertidas, y luego la explicación (qué es y cómo se interpreta). Cierra siempre con un párrafo `**En una frase:** …` con la redacción para la tesis.
+- `_includes/lee-salida.html` busca cada fragmento en la salida del bloque de R anterior, en orden, y le pone el número del punto. Si un fragmento no aparece, el punto queda sin número en la salida: revisarlo. Los fragmentos deben seguir el orden en que aparecen en la salida.
+- Si un bloque produce varias salidas que conviene explicar por separado, se divide en varios bloques de R. No se explican las salidas que solo preparan datos ni los gráficos.
+- Estilos en `styles.css` (sección «Cómo leer esta salida»). Decimales con coma en la explicación; el fragmento citado conserva el punto de R.
+- Prospecto R ya tenía su propio formato (`<details class="salida">` + `::: {.leer}`) y se mantiene.
+- Aplicado el 11/11/2026 a las 4 fichas del Vademécum y a los 29 casos (también a los que aún están en borrador).

@@ -65,16 +65,70 @@ d$sexo  <- factor(d$sex, c("m", "f"), c("Hombre", "Mujer"))
 # 1. Arañas vasculares según el grupo
 tabla <- table(d$grupo, d$spiders)
 round(prop.table(tabla, 1) * 100, 1)           # porcentajes por grupo (fila)
-chisq.test(tabla)$expected                     # frecuencias esperadas
-chisq.test(tabla)                              # con corrección de Yates
+```
 
+::: {.lee-salida}
+1. `0    1` Son las columnas: el código de `spiders`, donde 0 es «sin arañas vasculares» y 1 es «con arañas vasculares». Las filas son los grupos de tratamiento.
+2. `28.5` El 28,5 % de los pacientes con D-penicilamina tenía arañas vasculares. Cada fila suma 100 % porque `prop.table(tabla, 1)` calcula los porcentajes por fila (el `1` indica filas; un `2` los daría por columna).
+3. `29.2` Con placebo, el 29,2 %.
+
+**En una frase:** la frecuencia de arañas vasculares fue casi la misma en ambos grupos (28,5 % y 29,2 %).
+:::
+
+```{r}
+#| echo: true
+chisq.test(tabla)$expected                     # frecuencias esperadas
+```
+
+::: {.lee-salida}
+1. `112.4231` Son frecuencias esperadas: cuántas personas habría en cada celda si el tratamiento y las arañas vasculares no estuvieran asociados (total de la fila × total de la columna ÷ total general). Por eso tienen decimales.
+2. `44.42308` Es la esperada más pequeña. El chi cuadrado es adecuado si ninguna esperada es menor que 1 y no más del 20 % es menor que 5 (Cochran, 1954). Aquí todas superan 44.
+
+**En una frase:** todas las frecuencias esperadas son mayores que 5, así que corresponde el chi cuadrado.
+:::
+
+```{r}
+#| echo: true
+chisq.test(tabla)                              # con corrección de Yates
+```
+
+::: {.lee-salida}
+1. `with Yates' continuity correction` R aplicó la corrección de Yates porque la tabla es de 2 × 2. Lo hace por defecto; para no aplicarla, usa `correct = FALSE`. Sea cual sea tu elección, decláralo en métodos.
+2. `X-squared = 0.00036966` Es el estadístico chi cuadrado: mide cuánto se alejan las frecuencias observadas de las esperadas. Aquí es casi 0: lo observado es casi idéntico a lo esperado sin asociación.
+3. `df = 1` Son los grados de libertad: (filas − 1) × (columnas − 1). En una tabla de 2 × 2 siempre es 1.
+4. `p-value = 0.9847` Se lee p = 0,98 (R usa punto decimal). Si no hubiera asociación, una diferencia como esta o mayor sería muy frecuente, así que no hay evidencia de diferencia entre los grupos. Ojo: no demuestra que los grupos sean iguales.
+
+**En una frase:** la presencia de arañas vasculares fue similar con D-penicilamina (28,5 %) y con placebo (29,2 %) (p = 0,98; chi cuadrado con corrección de Yates).
+:::
+
+```{r}
+#| echo: true
 # 2. Ascitis según el sexo: una frecuencia esperada es menor que 5
 tabla2 <- table(d$sexo, d$ascites)
 round(chisq.test(tabla2)$expected, 1)
+```
+
+::: {.lee-salida}
+1. `Chi-squared approximation may be incorrect` Es un aviso, no un error. R advierte que alguna frecuencia esperada es baja y que la aproximación del chi cuadrado puede no ser confiable. Aparece aunque solo pedimos las esperadas, porque `chisq.test()` calcula la prueba de todos modos.
+2. `2.8` Es la frecuencia esperada de hombres con ascitis: menor que 5. Es una de cuatro celdas (25 %), más del 20 % que permite el criterio de Cochran.
+
+**En una frase:** con una frecuencia esperada menor que 5 en una tabla de 2 × 2, corresponde la prueba exacta de Fisher.
+:::
+
+```{r}
+#| echo: true
 fisher.test(tabla2)
 ```
 
-En la primera tabla, todas las frecuencias esperadas superan 44, así que el chi cuadrado es adecuado. En la segunda, la frecuencia esperada de hombres con ascitis es 2,8 (una de cuatro celdas, el 25 %), por lo que corresponde Fisher.
+::: {.lee-salida}
+1. `Fisher's Exact Test for Count Data` Es la prueba exacta de Fisher: calcula la probabilidad directamente, sin la aproximación del chi cuadrado. Por eso no tiene estadístico ni grados de libertad.
+2. `p-value = 0.7474` p = 0,75: no hay evidencia de asociación entre el sexo y la ascitis.
+3. `true odds ratio is not equal to 1` No es un resultado: es la hipótesis alternativa que se contrasta (bilateral, el OR podría ser mayor o menor que 1).
+4. `0.2496388 4.9989515` Es el IC 95 % del OR: de 0,25 a 5,00. Incluye el 1 y es muy ancho: los datos son compatibles tanto con un efecto protector fuerte como con un riesgo cinco veces mayor. Hay muy poca información, porque hay pocos hombres.
+5. `0.9061537` OR = 0,91: la odds de ascitis en las mujeres (segunda fila) es 0,91 veces la de los hombres (primera fila). Es una estimación condicional, por eso puede diferir un poco del OR calculado a mano con la tabla.
+
+**En una frase:** la frecuencia de ascitis no difirió según el sexo (OR 0,91; IC 95 %: 0,25 a 5,00; p = 0,75; prueba exacta de Fisher).
+:::
 
 ## Cómo reportarlo
 

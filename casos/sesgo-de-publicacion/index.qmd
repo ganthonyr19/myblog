@@ -100,6 +100,15 @@ c(FDA        = sum(positivos) / total,
                (positivos["publicados"] + sum(negativos[1:2])))
 ```
 
+::: {.lee-salida}
+1. `0.3108108` El 31 % de los ensayos (23 de 74) nunca se publicó.
+2. `literatura.publicados` Es solo una etiqueta: R junta el nombre que le pusimos con el del vector original. Los valores debajo son proporciones.
+3. `0.5135135` Según la FDA, el 51 % de los ensayos fue positivo (38 de 74).
+4. `0.9411765` En la literatura publicada, el 94 % parecía positivo (48 de 51), porque se publicaron casi todos los positivos y varios negativos se presentaron como positivos.
+
+**En una frase:** según la FDA, la mitad de los ensayos fue positiva (51 %), pero en la literatura publicada lo parecía casi todos (94 %).
+:::
+
 ## Para profundizar
 
 - Caso n.º 2: [p = 0,07: ¿la intervención no sirve?](../ic-vs-valor-p/index.qmd), sobre cómo leer un resultado no significativo.

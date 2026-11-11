@@ -108,6 +108,14 @@ rbind(
 )
 ```
 
+::: {.lee-salida}
+1. `li` Con `ls`, son los límites inferior y superior del IC 95 % de cada OR.
+2. `1.95` Es el OR con el dato de la entrevista: 1,95 (IC 95 %: 1,24 a 3,08).
+3. `1.35` Es el OR con la historia clínica prenatal: 1,35 (IC 95 %: 0,83 a 2,19), que incluye el 1. La diferencia entre ambas fuentes sugiere sesgo de memoria: las madres de niños con malformaciones recuerdan o reportan más infecciones.
+
+**En una frase:** el OR bajó de 1,95 con la entrevista a 1,35 con la historia clínica prenatal, un cambio compatible con sesgo de memoria.
+:::
+
 ## Para profundizar
 
 - [El estudio de casos y controles](../../disenos/casos-y-controles/index.qmd), en Diseños de estudio: selección de controles y cálculo del OR.

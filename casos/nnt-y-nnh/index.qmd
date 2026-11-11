@@ -107,6 +107,16 @@ c(NNT = ceiling(1 / rar), li = ceiling(1 / ic_rar[2]), ls = ceiling(1 / ic_rar[1
 ceiling(1 / (25 / n - 10 / n))
 ```
 
+::: {.lee-salida}
+1. `0.50000000` Es la reducción relativa del riesgo (RRR): 50 %. El fármaco reduce a la mitad el riesgo de trombosis (de 6 % a 3 %).
+2. `0.03000000` Es la reducción absoluta del riesgo (RAR): 0,03, es decir, 3 puntos porcentuales. `li` y `ls` son su IC 95 %: de 0,012 a 0,048.
+3. `34` Es el NNT: hay que tratar a 34 pacientes para evitar una trombosis (1 ÷ 0,03 = 33,3, que se redondea hacia arriba).
+4. `85` Con el `21` forma el IC 95 % del NNT: de 21 a 85. Se obtiene invirtiendo los límites de la RAR, por eso el límite inferior del NNT sale del superior de la RAR.
+5. `67` Es el NNH del sangrado mayor: por cada 67 pacientes tratados se produce un sangrado mayor más (2,5 % − 1,0 % = 1,5 puntos).
+
+**En una frase:** tratar a 34 pacientes evita una trombosis (IC 95 %: 21 a 85), y por cada 67 tratados se produce un sangrado mayor.
+:::
+
 ## Para profundizar
 
 - [El estudio de cohortes](../../disenos/cohortes/index.qmd), en Diseños de estudio: riesgo, incidencia y riesgo relativo.
