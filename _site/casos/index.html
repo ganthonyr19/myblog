@@ -425,8 +425,8 @@ ul.task-list li input[type="checkbox"] {
     <span class="d">Kaplan-Meier y datos censurados en una cohorte pequeña.</span></a>
   <a class="serie-item" href="nnt-y-nnh/index.html"><span class="n">Caso n.º 4</span><strong>¿A cuántos hay que tratar para que uno se beneficie?</strong>
     <span class="d">NNT, NNH y la diferencia entre riesgo relativo y absoluto.</span></a>
-  <div class="serie-item pronto" data-slug="sesgos-por-diseno"><span class="n">Caso n.º 5 · 13 nov.</span><strong>¿Las madres recuerdan igual?</strong>
-    <span class="d">Sesgo de recuerdo y de selección en un estudio de casos y controles.</span></div>
+  <a class="serie-item" href="sesgos-por-diseno/index.html"><span class="n">Caso n.º 5</span><strong>¿Las madres recuerdan igual?</strong>
+    <span class="d">Sesgo de recuerdo y de selección en un estudio de casos y controles.</span></a>
   <div class="serie-item pronto" data-slug="de-vs-ee"><span class="n">Caso n.º 6 · 16 nov.</span><strong>¿11,2 ± 0,1 describe a los niños?</strong>
     <span class="d">Desviación estándar frente a error estándar en la Tabla 1.</span></div>
   <div class="serie-item pronto" data-slug="error-tipo-i-y-ii"><span class="n">Caso n.º 7 · 18 nov.</span><strong>¿La aspirina no sirve si eres Géminis?</strong>
@@ -577,6 +577,46 @@ ul.task-list li input[type="checkbox"] {
     }, true);
   }
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", iniciar); else iniciar();
+})();
+</script>
+<script>
+/* «Cómo leer esta salida»: cada bloque ::: {.lee-salida} va justo después de un bloque de código de R.
+   Cada punto de su lista empieza con un fragmento `entre comillas invertidas` copiado de la salida.
+   Este script busca ese fragmento en la salida anterior y le pone el número del punto. */
+(function () {
+  function textos(nodo) {
+    var w = document.createTreeWalker(nodo, NodeFilter.SHOW_TEXT), t, r = [];
+    while ((t = w.nextNode())) r.push(t);
+    return r;
+  }
+  function marcar() {
+    document.querySelectorAll(".lee-salida").forEach(function (caja) {
+      var celda = caja.previousElementSibling;
+      while (celda && !celda.classList.contains("cell")) celda = celda.previousElementSibling;
+      if (!celda) return;
+      var salidas = celda.querySelectorAll(".cell-output pre, .cell-output-stdout pre, .cell-output-stderr pre, .cell-output-error pre");
+      var nodos = [];
+      salidas.forEach(function (s) { nodos = nodos.concat(textos(s)); });
+      var desde = 0, pos = 0;
+      caja.querySelectorAll(":scope > ol > li").forEach(function (li, i) {
+        var c = li.querySelector("code");
+        if (!c) return;
+        var frag = c.textContent;
+        for (var k = desde; k < nodos.length; k++) {
+          var n = nodos[k], j = n.nodeValue.indexOf(frag, k === desde ? pos : 0);
+          if (j < 0) continue;
+          var resto = n.splitText(j + frag.length);
+          var m = document.createElement("span");
+          m.className = "lee-n"; m.textContent = i + 1; m.setAttribute("aria-hidden", "true");
+          n.parentNode.insertBefore(m, resto);
+          nodos.splice(k + 1, 0, resto);
+          desde = k + 1; pos = 0;
+          break;
+        }
+      });
+    });
+  }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", marcar); else marcar();
 })();
 </script>
 <script>
