@@ -10,7 +10,318 @@
 <atom:link href="https://anthonyromero.netlify.app/blog.xml" rel="self" type="application/rss+xml"/>
 <description>Entradas para entender y hacer mejor la investigación en salud: diseños de estudio, elección de pruebas estadísticas y novedades del ecosistema R.</description>
 <generator>quarto-1.10.18</generator>
-<lastBuildDate>Wed, 11 Nov 2026 00:00:00 GMT</lastBuildDate>
+<lastBuildDate>Fri, 13 Nov 2026 00:00:00 GMT</lastBuildDate>
+<item>
+  <title>¿Las madres recuerdan igual?</title>
+  <dc:creator>Anthony Romero-Cerdán, MD</dc:creator>
+  <link>https://anthonyromero.netlify.app/casos/sesgos-por-diseno/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+
+<p><a href="../../casos/index.html" class="sello"><img src="https://anthonyromero.netlify.app/images/marcas/casos.svg" class="img-fluid"><span><b>Caso clínico estadístico</b><em>Caso n.º 5</em></span></a></p>
+<section id="el-caso" class="level2">
+<h2 class="anchored" data-anchor-id="el-caso">El caso</h2>
+<p><em>Caso ilustrativo, con datos simulados.</em></p>
+<p>Una tesista quiere saber si la infección urinaria en el primer trimestre del embarazo se asocia con malformaciones congénitas. Diseña un estudio de casos y controles en un hospital materno del Perú.</p>
+<p>Los casos son 150 madres de recién nacidos con alguna malformación congénita mayor. Los controles son 300 madres de recién nacidos sin malformaciones, atendidas en el mismo hospital y en el mismo periodo. A todas las entrevista durante el puerperio y les pregunta si tuvieron infección urinaria en el primer trimestre.</p>
+<p>Reportaron la infección 45 de las 150 madres de casos (30 %) y 54 de las 300 de controles (18 %): <strong>OR = 1,95</strong> (IC 95 %: 1,24 a 3,08).</p>
+<p>Su asesor le pide revisar también la historia clínica prenatal de cada madre. Con ese registro, hecho antes del parto, la infección consta en 33 casos (22 %) y 52 controles (17 %): <strong>OR = 1,35</strong> (IC 95 %: 0,83 a 2,19).</p>
+<div style="overflow-x:auto">
+
+<table class="mapa caption-top table">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">Fuente del dato</th>
+<th data-quarto-table-cell-role="th">Casos expuestas</th>
+<th data-quarto-table-cell-role="th">Controles expuestas</th>
+<th data-quarto-table-cell-role="th">OR (IC 95 %)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">Entrevista en el puerperio</th>
+<td>45/150 (30 %)</td>
+<td>54/300 (18 %)</td>
+<td>1,95 (1,24 a 3,08)</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">Historia clínica prenatal</th>
+<td>33/150 (22 %)</td>
+<td>52/300 (17 %)</td>
+<td>1,35 (0,83 a 2,19)</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</section>
+<section id="cuáles-de-estas-afirmaciones-son-verdaderas" class="level2">
+<h2 class="anchored" data-anchor-id="cuáles-de-estas-afirmaciones-son-verdaderas">¿Cuáles de estas afirmaciones son verdaderas?</h2>
+<ol type="a">
+<li><p>Las madres de recién nacidos con malformación pueden recordar con más detalle lo ocurrido en el embarazo, y eso puede inflar el OR obtenido por entrevista.</p></li>
+<li><p>Usar la historia clínica prenatal, registrada antes de conocer el desenlace, reduce ese sesgo.</p></li>
+<li><p>Un estudio transversal en gestantes habría evitado el problema y, además, habría demostrado que la infección precede a la malformación.</p></li>
+<li><p>Como los controles salieron del mismo hospital que los casos, el estudio no puede tener sesgo de selección.</p></li>
+</ol>
+</section>
+<section id="pase-de-visita" class="level2">
+<h2 class="anchored" data-anchor-id="pase-de-visita">Pase de visita</h2>
+<div class="autoeval">
+<div class="pregunta">
+<p><strong>a) Las madres de recién nacidos con malformación pueden recordar con más detalle lo ocurrido en el embarazo, y eso puede inflar el OR obtenido por entrevista.</strong></p>
+<details>
+<summary>
+Ver respuesta
+</summary>
+<strong>Verdadera.</strong> Es el <strong><a href="../../prospecto/diccionario.html#sesgo-de-recuerdo" class="dic">sesgo de recuerdo</a></strong>, un sesgo de información típico de los <a href="../../disenos/casos-y-controles/index.html">casos y controles</a>, porque la exposición se pregunta después del desenlace. Una madre que busca una explicación para la malformación de su hijo revisa su embarazo con más detalle que una madre con un recién nacido sano. Si los casos recuerdan mejor que los controles, la exposición se reporta más en los casos y el OR se aleja de 1. En este caso, la diferencia entre las fuentes del dato muestra una sobrerrepresentación de la exposición en los casos.
+</details>
+</div>
+<div class="pregunta">
+<p><strong>b) Usar la historia clínica prenatal, registrada antes de conocer el desenlace, reduce ese sesgo.</strong></p>
+<details>
+<summary>
+Ver respuesta
+</summary>
+<strong>Verdadera.</strong> Cuando el dato de exposición se registró antes del desenlace y con el mismo procedimiento para casos y controles, el recuerdo de la madre ya no influye. Aquí el OR baja de 1,95 a 1,35 y su IC 95 % pasa a incluir el 1. Eso no prueba que no haya asociación, pero sí que la asociación inicial estaba sobreestimada. La historia clínica tiene sus propios límites: subregistro y datos incompletos.
+</details>
+</div>
+<div class="pregunta">
+<p><strong>c) Un estudio transversal en gestantes habría evitado el problema y, además, habría demostrado que la infección precede a la malformación.</strong></p>
+<details>
+<summary>
+Ver respuesta
+</summary>
+<strong>Falsa.</strong> Un <a href="../../disenos/transversal/index.html">estudio transversal</a> mide exposición y desenlace en el mismo momento, así que no establece la secuencia temporal. Además, la mayoría de malformaciones solo se diagnostican al nacer. Para observar primero la infección y después el desenlace se necesita una <a href="../../disenos/cohortes/index.html">cohorte</a> de gestantes seguidas hasta el parto, con un desenlace raro que exigiría muchas participantes.
+</details>
+</div>
+<div class="pregunta">
+<p><strong>d) Como los controles salieron del mismo hospital que los casos, el estudio no puede tener sesgo de selección.</strong></p>
+<details>
+<summary>
+Ver respuesta
+</summary>
+<strong>Falsa.</strong> Elegir controles del mismo hospital ayuda a que provengan de la misma población que los casos, pero no lo garantiza. Si el hospital es de referencia, los casos pueden llegar de toda la región mientras los controles son de su zona. Si los controles se atendieron por complicaciones relacionadas con la infección urinaria, la exposición también estaría sobrerrepresentada entre ellos. La pregunta clave es si los controles representan la exposición de la población de la que salieron los casos.
+</details>
+</div>
+</div>
+</section>
+<section id="rp" class="level2">
+<h2 class="anchored" data-anchor-id="rp">Rp/</h2>
+<div class="en-una-frase">
+<p>En un estudio de casos y controles, mide la exposición igual en casos y controles, y si puedes, con datos registrados antes del desenlace.</p>
+</div>
+</section>
+<section id="diagnóstico-diferencial" class="level2">
+<h2 class="anchored" data-anchor-id="diagnóstico-diferencial">Diagnóstico diferencial</h2>
+<ul>
+<li><strong><a href="../../prospecto/diccionario.html#confusion" class="dic">Confusión</a>.</strong> No es un error de medición ni de selección: es una tercera variable que distorsiona la asociación. Se controla en el diseño o en el análisis; el sesgo de recuerdo, no.</li>
+<li><strong>Sesgo del entrevistador.</strong> Si quien pregunta sabe quién es caso, puede indagar con más insistencia. Se reduce con un cuestionario estandarizado y entrevistadores que no conozcan el grupo.</li>
+</ul>
+</section>
+<section id="en-r" class="level2">
+<h2 class="anchored" data-anchor-id="en-r">En R</h2>
+<div class="cell">
+<details class="code-fold">
+<summary>Ver código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># OR con IC 95 % (método de Woolf) a partir de la tabla 2 × 2</span></span>
+<span id="cb1-2">or_ic <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">function</span>(a, b, c, d) {</span>
+<span id="cb1-3">  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># a: casos expuestas, b: controles expuestas,</span></span>
+<span id="cb1-4">  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># c: casos no expuestas, d: controles no expuestas</span></span>
+<span id="cb1-5">  or <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> (a <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span> d) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span> (b <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span> c)</span>
+<span id="cb1-6">  se <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">sqrt</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span>a <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span>b <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span>c <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span>d)</span>
+<span id="cb1-7">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">round</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">OR =</span> or, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">li =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">exp</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">log</span>(or) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1.96</span> <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span> se), <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">ls =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">exp</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">log</span>(or) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1.96</span> <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span> se)), <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span>)</span>
+<span id="cb1-8">}</span>
+<span id="cb1-9"></span>
+<span id="cb1-10"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">rbind</span>(</span>
+<span id="cb1-11">  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">entrevista =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">or_ic</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">a =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">45</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">b =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">54</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">c =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">150</span> <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">45</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">d =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">300</span> <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">54</span>),</span>
+<span id="cb1-12">  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">historia   =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">or_ic</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">a =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">33</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">b =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">52</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">c =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">150</span> <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">33</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">d =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">300</span> <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">52</span>)</span>
+<span id="cb1-13">)</span></code></pre></div></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>             OR   li   ls
+entrevista 1.95 1.24 3.08
+historia   1.35 0.83 2.19</code></pre>
+</div>
+</div>
+<div class="lee-salida">
+<ol type="1">
+<li><code>li</code> Con <code>ls</code>, son los límites inferior y superior del IC 95 % de cada OR.</li>
+<li><code>1.95</code> Es el OR con el dato de la entrevista: 1,95 (IC 95 %: 1,24 a 3,08).</li>
+<li><code>1.35</code> Es el OR con la historia clínica prenatal: 1,35 (IC 95 %: 0,83 a 2,19), que incluye el 1. La diferencia entre ambas fuentes sugiere sesgo de memoria: las madres de niños con malformaciones recuerdan o reportan más infecciones.</li>
+</ol>
+<p><strong>En una frase:</strong> el OR bajó de 1,95 con la entrevista a 1,35 con la historia clínica prenatal, un cambio compatible con sesgo de memoria.</p>
+</div>
+</section>
+<section id="para-profundizar" class="level2">
+<h2 class="anchored" data-anchor-id="para-profundizar">Para profundizar</h2>
+<ul>
+<li><a href="../../disenos/casos-y-controles/index.html">El estudio de casos y controles</a>, en Diseños de estudio: selección de controles y cálculo del OR.</li>
+<li><a href="../../herramientas/muestra/index.html#mod=dprop&amp;dis=cc">Calcula el tamaño de muestra de tus casos y controles</a> en el Consultorio estadístico.</li>
+</ul>
+</section>
+<section id="referencias" class="level2">
+<h2 class="anchored" data-anchor-id="referencias">Referencias</h2>
+<ol type="1">
+<li>Coughlin SS. Recall bias in epidemiologic studies. <em>J Clin Epidemiol</em>. 1990;43(1):87-91.</li>
+<li>Delgado-Rodríguez M, Llorca J. Bias. <em>J Epidemiol Community Health</em>. 2004;58(8):635-41.</li>
+</ol>
+<div class="cta">
+<p><strong>¿Te tocó un caso así en tu tesis?</strong></p>
+<p>Te ayudo a elegir e interpretar el análisis correcto.</p>
+<p><a href="https://api.whatsapp.com/send?phone=51955446754&amp;text=Hola%2C%20le%C3%AD%20un%20caso%20cl%C3%ADnico%20estad%C3%ADstico%20en%20tu%20web%20y%20quiero%20informaci%C3%B3n%20sobre%20asesor%C3%ADa%20para%20mi%20tesis">Escríbeme por WhatsApp</a></p>
+</div>
+
+
+</section>
+
+ ]]></description>
+  <category>Caso clínico estadístico</category>
+  <category>Diseños de estudio</category>
+  <category>Epidemiología</category>
+  <category>Tesis</category>
+  <guid>https://anthonyromero.netlify.app/casos/sesgos-por-diseno/</guid>
+  <pubDate>Fri, 13 Nov 2026 00:00:00 GMT</pubDate>
+  <media:content url="https://anthonyromero.netlify.app/casos/sesgos-por-diseno/portada.png" medium="image" type="image/png" height="76" width="144"/>
+</item>
 <item>
   <title>Correlación de Pearson y de Spearman</title>
   <dc:creator>Anthony Romero-Cerdán, MD</dc:creator>
@@ -112,6 +423,8 @@ font-style: inherit;">"Albúmina (g/dL)"</span>)</span></code></pre></div></div>
 </figure>
 </div>
 </div>
+</div>
+<div class="cell">
 <details class="code-fold">
 <summary>Ver código</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><span class="fu" style="color: #4758AB;
@@ -137,6 +450,18 @@ sample estimates:
        cor 
 -0.3346379 </code></pre>
 </div>
+</div>
+<div class="lee-salida">
+<ol type="1">
+<li><code>Pearson's product-moment correlation</code> Es la correlación de Pearson, la que usa <code>cor.test()</code> si no se indica otro método.</li>
+<li><code>t = -6.2524, df = 310</code> Son el estadístico y sus grados de libertad (n − 2 = 312 − 2). Sirven para obtener el valor p; no hace falta reportarlos.</li>
+<li><code>p-value = 1.337e-09</code> Está en notación científica: <code>e-09</code> significa «× 10⁻⁹», o sea 0,000000001337. Se reporta como p &lt; 0,001. Indica que la correlación difiere de 0, no que sea fuerte.</li>
+<li><code>-0.4297095 -0.2322283</code> Es el IC 95 % del coeficiente: de −0,43 a −0,23.</li>
+<li><code>-0.3346379</code> Es el coeficiente r = −0,33. El signo negativo indica que a mayor bilirrubina, menor albúmina; el valor, que la relación es débil a moderada. Con una bilirrubina tan asimétrica, Pearson no es el más adecuado.</li>
+</ol>
+<p><strong>En una frase:</strong> el coeficiente de Pearson fue de −0,33 (IC 95 %: −0,43 a −0,23; p &lt; 0,001), pero la asimetría de la bilirrubina obliga a revisar Spearman o una transformación.</p>
+</div>
+<div class="cell">
 <details class="code-fold">
 <summary>Ver código</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><span class="fu" style="color: #4758AB;
@@ -168,6 +493,17 @@ sample estimates:
       rho 
 -0.369057 </code></pre>
 </div>
+</div>
+<div class="lee-salida">
+<ol type="1">
+<li><code>Spearman's rank correlation rho</code> Es la correlación de Spearman: usa los rangos (el orden) de los valores, no los valores. Por eso no le afectan la asimetría ni los valores extremos.</li>
+<li><code>S = 6929942</code> Es el estadístico de la prueba, basado en las diferencias de rangos. No se interpreta ni se reporta.</li>
+<li><code>p-value = 1.676e-11</code> p = 0,00000000001676: se reporta como p &lt; 0,001.</li>
+<li><code>-0.369057</code> Es rho = −0,37: relación negativa, débil a moderada. Esta salida no trae IC 95 %, porque <code>cor.test()</code> no lo calcula para Spearman.</li>
+</ol>
+<p><strong>En una frase:</strong> la bilirrubina y la albúmina mostraron una correlación negativa (rho de Spearman = −0,37; p &lt; 0,001; n = 312).</p>
+</div>
+<div class="cell">
 <details class="code-fold">
 <summary>Ver código</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><span class="fu" style="color: #4758AB;
@@ -196,7 +532,14 @@ sample estimates:
 -0.3823498 </code></pre>
 </div>
 </div>
-<p>El gráfico muestra una bilirrubina muy asimétrica. Con su logaritmo, el coeficiente de Pearson (−0,38) se acerca al de Spearman (−0,37).</p>
+<div class="lee-salida">
+<ol type="1">
+<li><code>log(d$bili) and d$albumin</code> Confirma que esta vez se usó el logaritmo de la bilirrubina, que corrige buena parte de su asimetría.</li>
+<li><code>-0.4732945 -0.2833405</code> Es el IC 95 % del coeficiente: de −0,47 a −0,28.</li>
+<li><code>-0.3823498</code> r = −0,38, muy cercano al rho de Spearman (−0,37): al quitar la asimetría, ambos métodos coinciden.</li>
+</ol>
+<p><strong>En una frase:</strong> con la bilirrubina en escala logarítmica, el coeficiente de Pearson fue de −0,38 (IC 95 %: −0,47 a −0,28).</p>
+</div>
 </section>
 <section id="cómo-reportarlo" class="level2">
 <h2 class="anchored" data-anchor-id="cómo-reportarlo">Cómo reportarlo</h2>
@@ -504,6 +847,16 @@ font-style: inherit;">/</span> n))</span></code></pre></div></div>
 <pre><code>[1] 67</code></pre>
 </div>
 </div>
+<div class="lee-salida">
+<ol type="1">
+<li><code>0.50000000</code> Es la reducción relativa del riesgo (RRR): 50 %. El fármaco reduce a la mitad el riesgo de trombosis (de 6 % a 3 %).</li>
+<li><code>0.03000000</code> Es la reducción absoluta del riesgo (RAR): 0,03, es decir, 3 puntos porcentuales. <code>li</code> y <code>ls</code> son su IC 95 %: de 0,012 a 0,048.</li>
+<li><code>34</code> Es el NNT: hay que tratar a 34 pacientes para evitar una trombosis (1 ÷ 0,03 = 33,3, que se redondea hacia arriba).</li>
+<li><code>85</code> Con el <code>21</code> forma el IC 95 % del NNT: de 21 a 85. Se obtiene invirtiendo los límites de la RAR, por eso el límite inferior del NNT sale del superior de la RAR.</li>
+<li><code>67</code> Es el NNH del sangrado mayor: por cada 67 pacientes tratados se produce un sangrado mayor más (2,5 % − 1,0 % = 1,5 puntos).</li>
+</ol>
+<p><strong>En una frase:</strong> tratar a 34 pacientes evita una trombosis (IC 95 %: 21 a 85), y por cada 67 tratados se produce un sangrado mayor.</p>
+</div>
 </section>
 <section id="para-profundizar" class="level2">
 <h2 class="anchored" data-anchor-id="para-profundizar">Para profundizar</h2>
@@ -665,6 +1018,16 @@ font-style: inherit;">0.75</span>)))</span></code></pre></div></div>
 1 D-penicilamina    0.800    1.400    3.200
 2        Placebo    0.725    1.300    3.600</code></pre>
 </div>
+</div>
+<div class="lee-salida">
+<ol type="1">
+<li><code>bili.25%</code> Son los percentiles 25, 50 y 75 de cada grupo. El 25 y el 75 forman el rango intercuartílico (RIC), donde está la mitad central de los pacientes.</li>
+<li><code>1.400</code> Es la mediana (percentil 50) del grupo D-penicilamina: la mitad de los pacientes tiene una bilirrubina menor que 1,40 mg/dL. Su RIC va de 0,80 a 3,20 mg/dL. En placebo, la mediana es 1,30 mg/dL.</li>
+<li><code>0.725</code> Es el percentil 25 del grupo placebo (0,72 mg/dL). El RIC de placebo va de 0,72 a 3,60 mg/dL.</li>
+</ol>
+<p><strong>En una frase:</strong> la mediana de bilirrubina fue de 1,40 mg/dL (RIC: 0,80 a 3,20) con D-penicilamina y de 1,30 mg/dL (RIC: 0,72 a 3,60) con placebo.</p>
+</div>
+<div class="cell">
 <details class="code-fold">
 <summary>Ver código</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><span class="co" style="color: #5E5E5E;
@@ -699,6 +1062,16 @@ sample estimates:
 difference in location 
          -5.294983e-05 </code></pre>
 </div>
+</div>
+<div class="lee-salida">
+<ol type="1">
+<li><code>Wilcoxon rank sum test with continuity correction</code> Es la prueba U de Mann-Whitney: R la llama «prueba de suma de rangos de Wilcoxon» (son la misma). Usa una aproximación con corrección de continuidad porque pedimos <code>exact = FALSE</code>, necesario cuando hay valores repetidos.</li>
+<li><code>W = 12007</code> Es el estadístico de la prueba (equivale a la U del primer grupo). Por sí solo no se interpreta y no suele reportarse.</li>
+<li><code>p-value = 0.8422</code> p = 0,84: no hay evidencia de que la bilirrubina difiera entre los grupos.</li>
+<li><code>-0.2000024  0.2000073</code> Es el IC 95 % de la diferencia de Hodges-Lehmann: de −0,20 a 0,20 mg/dL. Incluye el 0.</li>
+<li><code>-5.294983e-05</code> Es la diferencia de Hodges-Lehmann (D-penicilamina menos placebo), en notación científica: <code>e-05</code> significa «× 10⁻⁵», es decir, −0,00005, prácticamente 0. No es la diferencia de medianas: es la mediana de todas las diferencias entre un paciente de cada grupo.</li>
+</ol>
+<p><strong>En una frase:</strong> la bilirrubina no difirió entre los grupos (diferencia de Hodges-Lehmann: 0,00 mg/dL; IC 95 %: −0,20 a 0,20; p = 0,84; U de Mann-Whitney).</p>
 </div>
 </section>
 <section id="cómo-reportarlo" class="level2">
@@ -979,6 +1352,20 @@ font-style: inherit;"># mediana de supervivencia</span></span></code></pre></div
       n events median 0.95LCL 0.95UCL
 [1,] 10      5      9       6      NA</code></pre>
 </div>
+</div>
+<div class="lee-salida">
+<ol type="1">
+<li><code>n.risk</code> Son los pacientes en riesgo justo antes de cada tiempo: los que siguen vivos y en seguimiento. Baja con cada muerte y con cada censura; por eso en el mes 4 quedan 8 y no 9, porque uno se censuró en el mes 3.</li>
+<li><code>n.event</code> Son las muertes en ese tiempo. Solo aparecen los meses con muertes: las censuras no tienen fila propia.</li>
+<li><code>survival</code> Es la supervivencia acumulada: la probabilidad de seguir vivo después de ese tiempo.</li>
+<li><code>0.350</code> A los 9 meses, la supervivencia es del 35 %, y se mantiene así hasta el mes 12 porque no hubo más muertes.</li>
+<li><code>0.985</code> Con <code>0.124</code>, forma su IC 95 %: de 12 % a 98 %. Es muy ancho porque hay pocos pacientes.</li>
+<li><code>median</code> Es la mediana de supervivencia: 9 meses, el momento en que la curva baja del 50 %.</li>
+<li><code>NA</code> Es el límite superior del IC 95 % de la mediana. No es un error: la curva superior del intervalo nunca baja del 50 %, así que ese límite no se alcanza. El inferior es 6 meses.</li>
+</ol>
+<p><strong>En una frase:</strong> la supervivencia a los 12 meses fue del 35 % (IC 95 %: 12 % a 98 %) y la mediana, de 9 meses (IC 95 %: 6 a no alcanzado).</p>
+</div>
+<div class="cell">
 <details class="code-fold">
 <summary>Ver código</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><span class="fu" style="color: #4758AB;
@@ -1000,7 +1387,7 @@ font-style: inherit;">TRUE</span>)</span></code></pre></div></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="https://anthonyromero.netlify.app/casos/kaplan-meier/index_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="https://anthonyromero.netlify.app/casos/kaplan-meier/index_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -1179,6 +1566,17 @@ font-style: inherit;">2</span>))</span></code></pre></div></div>
 1 Hombre     36.00          3.58       0.45
 2  Mujer    276.00          3.51       0.42</code></pre>
 </div>
+</div>
+<div class="lee-salida">
+<ol type="1">
+<li><code>albumin.n</code> Es el número de personas de cada grupo: 36 hombres y 276 mujeres. Aparece como <code>36.00</code> solo porque <code>round(..., 2)</code> da formato de dos decimales a toda la fila.</li>
+<li><code>3.58</code> Es la albúmina media de los hombres: 3,58 g/dL.</li>
+<li><code>0.45</code> Es su desviación estándar (DE): cuánto varían los valores de una persona a otra dentro del grupo, no la precisión de la media.</li>
+<li><code>3.51</code> La media de las mujeres, 3,51 g/dL, con DE de 0,42.</li>
+</ol>
+<p><strong>En una frase:</strong> la albúmina media fue de 3,58 g/dL (DE: 0,45) en hombres y de 3,51 g/dL (DE: 0,42) en mujeres.</p>
+</div>
+<div class="cell">
 <details class="code-fold">
 <summary>Ver código</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><span class="fu" style="color: #4758AB;
@@ -1204,10 +1602,12 @@ font-style: inherit;"># ¿muy asimétrica?</span></span></code></pre></div></div
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="https://anthonyromero.netlify.app/vademecum/t-de-welch/index_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="https://anthonyromero.netlify.app/vademecum/t-de-welch/index_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
+</div>
+<div class="cell">
 <details class="code-fold">
 <summary>Ver código</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><span class="fu" style="color: #4758AB;
@@ -1233,6 +1633,18 @@ sample estimates:
 mean in group Hombre  mean in group Mujer 
             3.579167             3.512283 </code></pre>
 </div>
+</div>
+<div class="lee-salida">
+<ol type="1">
+<li><code>Welch Two Sample t-test</code> Es la t de Welch, la que usa R por defecto: no supone que las varianzas de los grupos sean iguales. La t de Student clásica requiere <code>var.equal = TRUE</code>.</li>
+<li><code>t = 0.84089</code> Es el estadístico t: la diferencia de medias dividida entre su error estándar. Por sí solo no se reporta en una tesis.</li>
+<li><code>df = 43.042</code> Son los grados de libertad de Welch. Tienen decimales porque se ajustan según las varianzas y el tamaño de cada grupo; es normal.</li>
+<li><code>p-value = 0.4051</code> p = 0,41: no hay evidencia de que la albúmina media difiera entre hombres y mujeres.</li>
+<li><code>between group Hombre and group Mujer</code> Indica el orden de la resta: hombres menos mujeres. Un valor positivo significa que los hombres tienen la media más alta.</li>
+<li><code>-0.09351911  0.22728723</code> Es el IC 95 % de esa diferencia: de −0,09 a 0,23 g/dL. Incluye el 0, coherente con p &gt; 0,05, y muestra que cualquier diferencia real sería pequeña.</li>
+<li><code>3.579167</code> Son las medias de cada grupo. La diferencia es 3,58 − 3,51 = 0,07 g/dL; R no la imprime, se calcula restando.</li>
+</ol>
+<p><strong>En una frase:</strong> la albúmina media no difirió entre hombres y mujeres (diferencia: 0,07 g/dL; IC 95 %: −0,09 a 0,23; p = 0,41; t de Welch).</p>
 </div>
 </section>
 <section id="cómo-reportarlo" class="level2">
@@ -1440,7 +1852,16 @@ mean of x mean of y
        14        10 </code></pre>
 </div>
 </div>
-<p>La salida muestra una diferencia de medias de 4 mmHg, un IC 95 % de −0,34 a 8,34 y p = 0,070.</p>
+<div class="lee-salida">
+<ol type="1">
+<li><code>Two Sample t-test</code> Es la t de Student clásica, porque pedimos <code>var.equal = TRUE</code>. Sin esa opción, R usaría la t de Welch.</li>
+<li><code>df = 118</code> Son los grados de libertad: 60 + 60 − 2.</li>
+<li><code>p-value = 0.07042</code> p = 0,070: mayor que 0,05, así que la diferencia «no es significativa».</li>
+<li><code>-0.3385591  8.3385591</code> Es el IC 95 % de la diferencia (programa menos control): de −0,34 a 8,34 mmHg. Es compatible tanto con ningún efecto como con una reducción adicional de 8 mmHg, que sería clínicamente importante. No significativo no es lo mismo que sin efecto.</li>
+<li><code>mean of x mean of y</code> Son las medias de cada grupo, en el orden en que se pusieron en <code>t.test()</code>: x es el programa (14 mmHg) e y el control (10 mmHg). La diferencia, 4 mmHg, se obtiene restando.</li>
+</ol>
+<p><strong>En una frase:</strong> el programa redujo la PAS 4 mmHg más que el control (IC 95 %: −0,34 a 8,34; p = 0,070); el resultado no descarta un efecto clínicamente importante.</p>
+</div>
 </section>
 <section id="para-profundizar" class="level2">
 <h2 class="anchored" data-anchor-id="para-profundizar">Para profundizar</h2>
@@ -1626,6 +2047,16 @@ font-style: inherit;"># porcentajes por grupo (fila)</span></span></code></pre><
   D-penicilamina 71.5 28.5
   Placebo        70.8 29.2</code></pre>
 </div>
+</div>
+<div class="lee-salida">
+<ol type="1">
+<li><code>0    1</code> Son las columnas: el código de <code>spiders</code>, donde 0 es «sin arañas vasculares» y 1 es «con arañas vasculares». Las filas son los grupos de tratamiento.</li>
+<li><code>28.5</code> El 28,5 % de los pacientes con D-penicilamina tenía arañas vasculares. Cada fila suma 100 % porque <code>prop.table(tabla, 1)</code> calcula los porcentajes por fila (el <code>1</code> indica filas; un <code>2</code> los daría por columna).</li>
+<li><code>29.2</code> Con placebo, el 29,2 %.</li>
+</ol>
+<p><strong>En una frase:</strong> la frecuencia de arañas vasculares fue casi la misma en ambos grupos (28,5 % y 29,2 %).</p>
+</div>
+<div class="cell">
 <details class="code-fold">
 <summary>Ver código</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><span class="fu" style="color: #4758AB;
@@ -1642,6 +2073,15 @@ font-style: inherit;"># frecuencias esperadas</span></span></code></pre></div></
   D-penicilamina 112.4231 45.57692
   Placebo        109.5769 44.42308</code></pre>
 </div>
+</div>
+<div class="lee-salida">
+<ol type="1">
+<li><code>112.4231</code> Son frecuencias esperadas: cuántas personas habría en cada celda si el tratamiento y las arañas vasculares no estuvieran asociados (total de la fila × total de la columna ÷ total general). Por eso tienen decimales.</li>
+<li><code>44.42308</code> Es la esperada más pequeña. El chi cuadrado es adecuado si ninguna esperada es menor que 1 y no más del 20 % es menor que 5 (Cochran, 1954). Aquí todas superan 44.</li>
+</ol>
+<p><strong>En una frase:</strong> todas las frecuencias esperadas son mayores que 5, así que corresponde el chi cuadrado.</p>
+</div>
+<div class="cell">
 <details class="code-fold">
 <summary>Ver código</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><span class="fu" style="color: #4758AB;
@@ -1657,6 +2097,17 @@ font-style: inherit;"># con corrección de Yates</span></span></code></pre></div
 data:  tabla
 X-squared = 0.00036966, df = 1, p-value = 0.9847</code></pre>
 </div>
+</div>
+<div class="lee-salida">
+<ol type="1">
+<li><code>with Yates' continuity correction</code> R aplicó la corrección de Yates porque la tabla es de 2 × 2. Lo hace por defecto; para no aplicarla, usa <code>correct = FALSE</code>. Sea cual sea tu elección, decláralo en métodos.</li>
+<li><code>X-squared = 0.00036966</code> Es el estadístico chi cuadrado: mide cuánto se alejan las frecuencias observadas de las esperadas. Aquí es casi 0: lo observado es casi idéntico a lo esperado sin asociación.</li>
+<li><code>df = 1</code> Son los grados de libertad: (filas − 1) × (columnas − 1). En una tabla de 2 × 2 siempre es 1.</li>
+<li><code>p-value = 0.9847</code> Se lee p = 0,98 (R usa punto decimal). Si no hubiera asociación, una diferencia como esta o mayor sería muy frecuente, así que no hay evidencia de diferencia entre los grupos. Ojo: no demuestra que los grupos sean iguales.</li>
+</ol>
+<p><strong>En una frase:</strong> la presencia de arañas vasculares fue similar con D-penicilamina (28,5 %) y con placebo (29,2 %) (p = 0,98; chi cuadrado con corrección de Yates).</p>
+</div>
+<div class="cell">
 <details class="code-fold">
 <summary>Ver código</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><span class="co" style="color: #5E5E5E;
@@ -1690,6 +2141,15 @@ font-style: inherit;">1</span>)</span></code></pre></div></div>
   Hombre  33.2  2.8
   Mujer  254.8 21.2</code></pre>
 </div>
+</div>
+<div class="lee-salida">
+<ol type="1">
+<li><code>Chi-squared approximation may be incorrect</code> Es un aviso, no un error. R advierte que alguna frecuencia esperada es baja y que la aproximación del chi cuadrado puede no ser confiable. Aparece aunque solo pedimos las esperadas, porque <code>chisq.test()</code> calcula la prueba de todos modos.</li>
+<li><code>2.8</code> Es la frecuencia esperada de hombres con ascitis: menor que 5. Es una de cuatro celdas (25 %), más del 20 % que permite el criterio de Cochran.</li>
+</ol>
+<p><strong>En una frase:</strong> con una frecuencia esperada menor que 5 en una tabla de 2 × 2, corresponde la prueba exacta de Fisher.</p>
+</div>
+<div class="cell">
 <details class="code-fold">
 <summary>Ver código</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><span class="fu" style="color: #4758AB;
@@ -1710,7 +2170,16 @@ odds ratio
  0.9061537 </code></pre>
 </div>
 </div>
-<p>En la primera tabla, todas las frecuencias esperadas superan 44, así que el chi cuadrado es adecuado. En la segunda, la frecuencia esperada de hombres con ascitis es 2,8 (una de cuatro celdas, el 25 %), por lo que corresponde Fisher.</p>
+<div class="lee-salida">
+<ol type="1">
+<li><code>Fisher's Exact Test for Count Data</code> Es la prueba exacta de Fisher: calcula la probabilidad directamente, sin la aproximación del chi cuadrado. Por eso no tiene estadístico ni grados de libertad.</li>
+<li><code>p-value = 0.7474</code> p = 0,75: no hay evidencia de asociación entre el sexo y la ascitis.</li>
+<li><code>true odds ratio is not equal to 1</code> No es un resultado: es la hipótesis alternativa que se contrasta (bilateral, el OR podría ser mayor o menor que 1).</li>
+<li><code>0.2496388 4.9989515</code> Es el IC 95 % del OR: de 0,25 a 5,00. Incluye el 1 y es muy ancho: los datos son compatibles tanto con un efecto protector fuerte como con un riesgo cinco veces mayor. Hay muy poca información, porque hay pocos hombres.</li>
+<li><code>0.9061537</code> OR = 0,91: la odds de ascitis en las mujeres (segunda fila) es 0,91 veces la de los hombres (primera fila). Es una estimación condicional, por eso puede diferir un poco del OR calculado a mano con la tabla.</li>
+</ol>
+<p><strong>En una frase:</strong> la frecuencia de ascitis no difirió según el sexo (OR 0,91; IC 95 %: 0,25 a 5,00; p = 0,75; prueba exacta de Fisher).</p>
+</div>
 </section>
 <section id="cómo-reportarlo" class="level2">
 <h2 class="anchored" data-anchor-id="cómo-reportarlo">Cómo reportarlo</h2>
@@ -2067,6 +2536,14 @@ font-style: inherit;">2</span>)</span></code></pre></div></div>
 RR     1.80 1.40 2.31
 OR     2.45 1.68 3.60</code></pre>
 </div>
+</div>
+<div class="lee-salida">
+<ol type="1">
+<li><code>estimado</code> Es la estimación puntual; <code>li</code> y <code>ls</code> son los límites inferior y superior del IC 95 %.</li>
+<li><code>1.80</code> Es el RR: el riesgo de cesárea fue 1,8 veces mayor (80 % mayor) en las gestantes inducidas, con IC 95 % de 1,40 a 2,31.</li>
+<li><code>2.45</code> Es el OR: 2,45 (IC 95 %: 1,68 a 3,60). Está más lejos de 1 que el RR porque la cesárea es frecuente (25 % a 45 %). No se lee como «2,45 veces más riesgo».</li>
+</ol>
+<p><strong>En una frase:</strong> el riesgo de cesárea fue 80 % mayor con la inducción (RR 1,80; IC 95 %: 1,40 a 2,31); el OR de 2,45 exagera la asociación porque el desenlace es frecuente.</p>
 </div>
 </section>
 <section id="para-profundizar" class="level2">

@@ -17,6 +17,7 @@
   {
     "listing": "/blog.html",
     "items": [
+      "/casos/sesgos-por-diseno/index.html",
       "/vademecum/correlacion/index.html",
       "/casos/nnt-y-nnh/index.html",
       "/vademecum/u-de-mann-whitney/index.html",
@@ -34,6 +35,7 @@
   {
     "listing": "/index.html",
     "items": [
+      "/casos/sesgos-por-diseno/index.html",
       "/vademecum/correlacion/index.html",
       "/casos/nnt-y-nnh/index.html",
       "/vademecum/u-de-mann-whitney/index.html",
@@ -58,6 +60,7 @@
   {
     "listing": "/temas.html",
     "items": [
+      "/casos/sesgos-por-diseno/index.html",
       "/vademecum/correlacion/index.html",
       "/casos/nnt-y-nnh/index.html",
       "/vademecum/u-de-mann-whitney/index.html",

@@ -161,13 +161,13 @@ window.Quarto = {
 <link rel="stylesheet" href="styles.css">
 <link rel="alternate" type="application/rss+xml" title="Anthony Romero" href="blog.xml" data-external="1"><meta property="og:title" content="Blog – Anthony Romero">
 <meta property="og:description" content="Entradas para entender y hacer mejor la investigación en salud: diseños de estudio, elección de pruebas estadísticas y novedades del ecosistema R.">
-<meta property="og:image" content="https://anthonyromero.netlify.app/vademecum/correlacion/portada.png">
+<meta property="og:image" content="https://anthonyromero.netlify.app/casos/sesgos-por-diseno/portada.png">
 <meta property="og:site_name" content="Anthony Romero">
 <meta property="og:image:height" content="630">
 <meta property="og:image:width" content="1200">
 <meta name="twitter:title" content="Blog – Anthony Romero">
 <meta name="twitter:description" content="Entradas para entender y hacer mejor la investigación en salud: diseños de estudio, elección de pruebas estadísticas y novedades del ecosistema R.">
-<meta name="twitter:image" content="https://anthonyromero.netlify.app/vademecum/correlacion/portada.png">
+<meta name="twitter:image" content="https://anthonyromero.netlify.app/casos/sesgos-por-diseno/portada.png">
 <meta name="twitter:image-height" content="630">
 <meta name="twitter:image-width" content="1200">
 <meta name="twitter:card" content="summary_large_image">
@@ -469,7 +469,7 @@ window.Quarto = {
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         
-    <h5 class="quarto-listing-category-title">Categorías</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">Todas <span class="quarto-category-count">(12)</span></div><div class="category" data-category="Q2FzbyUyMGNsJUMzJUFEbmljbyUyMGVzdGFkJUMzJUFEc3RpY28=">Caso clínico estadístico <span class="quarto-category-count">(4)</span></div><div class="category" data-category="Q29uc3VsdG9yaW8lMjBlc3RhZCVDMyVBRHN0aWNv">Consultorio estadístico <span class="quarto-category-count">(1)</span></div><div class="category" data-category="RGlzZSVDMyVCMW9zJTIwZGUlMjBlc3R1ZGlv">Diseños de estudio <span class="quarto-category-count">(3)</span></div><div class="category" data-category="RXBpZGVtaW9sb2clQzMlQURh">Epidemiología <span class="quarto-category-count">(6)</span></div><div class="category" data-category="bWVkaWRhcyUyMGRlJTIwYXNvY2lhY2klQzMlQjNu">medidas de asociación <span class="quarto-category-count">(2)</span></div><div class="category" data-category="UHJ1ZWJhcyUyMGVzdGFkJUMzJUFEc3RpY2Fz">Pruebas estadísticas <span class="quarto-category-count">(7)</span></div><div class="category" data-category="VGVzaXM=">Tesis <span class="quarto-category-count">(12)</span></div><div class="category" data-category="VmFkZW0lQzMlQTljdW0lMjBlc3RhZCVDMyVBRHN0aWNv">Vademécum estadístico <span class="quarto-category-count">(4)</span></div></div></div>
+    <h5 class="quarto-listing-category-title">Categorías</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">Todas <span class="quarto-category-count">(13)</span></div><div class="category" data-category="Q2FzbyUyMGNsJUMzJUFEbmljbyUyMGVzdGFkJUMzJUFEc3RpY28=">Caso clínico estadístico <span class="quarto-category-count">(5)</span></div><div class="category" data-category="Q29uc3VsdG9yaW8lMjBlc3RhZCVDMyVBRHN0aWNv">Consultorio estadístico <span class="quarto-category-count">(1)</span></div><div class="category" data-category="RGlzZSVDMyVCMW9zJTIwZGUlMjBlc3R1ZGlv">Diseños de estudio <span class="quarto-category-count">(4)</span></div><div class="category" data-category="RXBpZGVtaW9sb2clQzMlQURh">Epidemiología <span class="quarto-category-count">(7)</span></div><div class="category" data-category="bWVkaWRhcyUyMGRlJTIwYXNvY2lhY2klQzMlQjNu">medidas de asociación <span class="quarto-category-count">(2)</span></div><div class="category" data-category="UHJ1ZWJhcyUyMGVzdGFkJUMzJUFEc3RpY2Fz">Pruebas estadísticas <span class="quarto-category-count">(7)</span></div><div class="category" data-category="VGVzaXM=">Tesis <span class="quarto-category-count">(13)</span></div><div class="category" data-category="VmFkZW0lQzMlQTljdW0lMjBlc3RhZCVDMyVBRHN0aWNv">Vademécum estadístico <span class="quarto-category-count">(4)</span></div></div></div>
 <!-- main -->
 <main class="content quarto-banner-title-block column-page-left" id="quarto-document-content">
 
@@ -484,7 +484,40 @@ window.Quarto = {
 
 <div class="quarto-listing quarto-listing-container-grid" id="listing-listing">
 <div class="list grid quarto-listing-cols-3">
-<div class="g-col-1" data-index="0" data-categories="VmFkZW0lQzMlQTljdW0lMjBlc3RhZCVDMyVBRHN0aWNvJTJDUHJ1ZWJhcyUyMGVzdGFkJUMzJUFEc3RpY2FzJTJDVGVzaXM=" data-listing-date-sort="1794355200000" data-listing-file-modified-sort="1794396156025" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="738">
+<div class="g-col-1" data-index="0" data-categories="Q2FzbyUyMGNsJUMzJUFEbmljbyUyMGVzdGFkJUMzJUFEc3RpY28lMkNEaXNlJUMzJUIxb3MlMjBkZSUyMGVzdHVkaW8lMkNFcGlkZW1pb2xvZyVDMyVBRGElMkNUZXNpcw==" data-listing-date-sort="1794528000000" data-listing-file-modified-sort="1794568573884" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="6" data-listing-word-count-sort="1040">
+<a href="./casos/sesgos-por-diseno/index.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img loading="lazy" src="./casos/sesgos-por-diseno/portada.png" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+¿Las madres recuerdan igual?
+</h5>
+<div class="listing-reading-time card-text text-muted">6 minutos</div>
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('Q2FzbyUyMGNsJUMzJUFEbmljbyUyMGVzdGFkJUMzJUFEc3RpY28='); return false;">Caso clínico estadístico</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('RGlzZSVDMyVCMW9zJTIwZGUlMjBlc3R1ZGlv'); return false;">Diseños de estudio</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('RXBpZGVtaW9sb2clQzMlQURh'); return false;">Epidemiología</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('VGVzaXM='); return false;">Tesis</div>
+
+</div>
+<div class="card-text listing-description delink">
+<p>Caso clínico estadístico: un estudio de casos y controles sobre malformaciones congénitas en el que el OR cambia según de dónde salga el dato. Decide qué afirmaciones son…</p>
+</div>
+<div class="card-attribution card-text-small end">
+<div class="listing-date">
+13 nov 2026
+</div>
+</div>
+</div>
+</div></a>
+</div>
+<div class="g-col-1" data-index="1" data-categories="VmFkZW0lQzMlQTljdW0lMjBlc3RhZCVDMyVBRHN0aWNvJTJDUHJ1ZWJhcyUyMGVzdGFkJUMzJUFEc3RpY2FzJTJDVGVzaXM=" data-listing-date-sort="1794355200000" data-listing-file-modified-sort="1794568520552" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="6" data-listing-word-count-sort="1071">
 <a href="./vademecum/correlacion/index.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top">
@@ -494,7 +527,7 @@ window.Quarto = {
 <h5 class="no-anchor card-title listing-title">
 Correlación de Pearson y de Spearman
 </h5>
-<div class="listing-reading-time card-text text-muted">4 minutos</div>
+<div class="listing-reading-time card-text text-muted">6 minutos</div>
 <div class="listing-categories">
 
 <div class="listing-category" onclick="window.quartoListingCategory('VmFkZW0lQzMlQTljdW0lMjBlc3RhZCVDMyVBRHN0aWNv'); return false;">Vademécum estadístico</div>
@@ -515,7 +548,7 @@ Correlación de Pearson y de Spearman
 </div>
 </div></a>
 </div>
-<div class="g-col-1" data-index="1" data-categories="Q2FzbyUyMGNsJUMzJUFEbmljbyUyMGVzdGFkJUMzJUFEc3RpY28lMkNtZWRpZGFzJTIwZGUlMjBhc29jaWFjaSVDMyVCM24lMkNFcGlkZW1pb2xvZyVDMyVBRGElMkNUZXNpcw==" data-listing-date-sort="1794182400000" data-listing-file-modified-sort="1794396094834" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="988">
+<div class="g-col-1" data-index="2" data-categories="Q2FzbyUyMGNsJUMzJUFEbmljbyUyMGVzdGFkJUMzJUFEc3RpY28lMkNtZWRpZGFzJTIwZGUlMjBhc29jaWFjaSVDMyVCM24lMkNFcGlkZW1pb2xvZyVDMyVBRGElMkNUZXNpcw==" data-listing-date-sort="1794182400000" data-listing-file-modified-sort="1794568520552" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="6" data-listing-word-count-sort="1152">
 <a href="./casos/nnt-y-nnh/index.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top">
@@ -525,7 +558,7 @@ Correlación de Pearson y de Spearman
 <h5 class="no-anchor card-title listing-title">
 ¿A cuántos hay que tratar para que uno se beneficie?
 </h5>
-<div class="listing-reading-time card-text text-muted">5 minutos</div>
+<div class="listing-reading-time card-text text-muted">6 minutos</div>
 <div class="listing-categories">
 
 <div class="listing-category" onclick="window.quartoListingCategory('Q2FzbyUyMGNsJUMzJUFEbmljbyUyMGVzdGFkJUMzJUFEc3RpY28='); return false;">Caso clínico estadístico</div>
@@ -548,7 +581,7 @@ Correlación de Pearson y de Spearman
 </div>
 </div></a>
 </div>
-<div class="g-col-1" data-index="2" data-categories="VmFkZW0lQzMlQTljdW0lMjBlc3RhZCVDMyVBRHN0aWNvJTJDUHJ1ZWJhcyUyMGVzdGFkJUMzJUFEc3RpY2FzJTJDVGVzaXM=" data-listing-date-sort="1793923200000" data-listing-file-modified-sort="1794396094960" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="767">
+<div class="g-col-1" data-index="3" data-categories="VmFkZW0lQzMlQTljdW0lMjBlc3RhZCVDMyVBRHN0aWNvJTJDUHJ1ZWJhcyUyMGVzdGFkJUMzJUFEc3RpY2FzJTJDVGVzaXM=" data-listing-date-sort="1793923200000" data-listing-file-modified-sort="1794568520552" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="6" data-listing-word-count-sort="1055">
 <a href="./vademecum/u-de-mann-whitney/index.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top">
@@ -558,7 +591,7 @@ Correlación de Pearson y de Spearman
 <h5 class="no-anchor card-title listing-title">
 U de Mann-Whitney
 </h5>
-<div class="listing-reading-time card-text text-muted">4 minutos</div>
+<div class="listing-reading-time card-text text-muted">6 minutos</div>
 <div class="listing-categories">
 
 <div class="listing-category" onclick="window.quartoListingCategory('VmFkZW0lQzMlQTljdW0lMjBlc3RhZCVDMyVBRHN0aWNv'); return false;">Vademécum estadístico</div>
@@ -579,7 +612,7 @@ U de Mann-Whitney
 </div>
 </div></a>
 </div>
-<div class="g-col-1" data-index="3" data-categories="Q2FzbyUyMGNsJUMzJUFEbmljbyUyMGVzdGFkJUMzJUFEc3RpY28lMkNFcGlkZW1pb2xvZyVDMyVBRGElMkNQcnVlYmFzJTIwZXN0YWQlQzMlQURzdGljYXMlMkNUZXNpcw==" data-listing-date-sort="1793664000000" data-listing-file-modified-sort="1794396094833" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="817">
+<div class="g-col-1" data-index="4" data-categories="Q2FzbyUyMGNsJUMzJUFEbmljbyUyMGVzdGFkJUMzJUFEc3RpY28lMkNFcGlkZW1pb2xvZyVDMyVBRGElMkNQcnVlYmFzJTIwZXN0YWQlQzMlQURzdGljYXMlMkNUZXNpcw==" data-listing-date-sort="1793664000000" data-listing-file-modified-sort="1794568520552" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="6" data-listing-word-count-sort="1032">
 <a href="./casos/kaplan-meier/index.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top">
@@ -589,7 +622,7 @@ U de Mann-Whitney
 <h5 class="no-anchor card-title listing-title">
 ¿Qué hago con los pacientes que se fueron?
 </h5>
-<div class="listing-reading-time card-text text-muted">5 minutos</div>
+<div class="listing-reading-time card-text text-muted">6 minutos</div>
 <div class="listing-categories">
 
 <div class="listing-category" onclick="window.quartoListingCategory('Q2FzbyUyMGNsJUMzJUFEbmljbyUyMGVzdGFkJUMzJUFEc3RpY28='); return false;">Caso clínico estadístico</div>
@@ -612,7 +645,7 @@ U de Mann-Whitney
 </div>
 </div></a>
 </div>
-<div class="g-col-1" data-index="4" data-categories="VmFkZW0lQzMlQTljdW0lMjBlc3RhZCVDMyVBRHN0aWNvJTJDUHJ1ZWJhcyUyMGVzdGFkJUMzJUFEc3RpY2FzJTJDVGVzaXM=" data-listing-date-sort="1793232000000" data-listing-file-modified-sort="1794396094959" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="781">
+<div class="g-col-1" data-index="5" data-categories="VmFkZW0lQzMlQTljdW0lMjBlc3RhZCVDMyVBRHN0aWNvJTJDUHJ1ZWJhcyUyMGVzdGFkJUMzJUFEc3RpY2FzJTJDVGVzaXM=" data-listing-date-sort="1793232000000" data-listing-file-modified-sort="1794568520552" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="6" data-listing-word-count-sort="1096">
 <a href="./vademecum/t-de-welch/index.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top">
@@ -622,7 +655,7 @@ U de Mann-Whitney
 <h5 class="no-anchor card-title listing-title">
 Prueba t para dos muestras independientes
 </h5>
-<div class="listing-reading-time card-text text-muted">4 minutos</div>
+<div class="listing-reading-time card-text text-muted">6 minutos</div>
 <div class="listing-categories">
 
 <div class="listing-category" onclick="window.quartoListingCategory('VmFkZW0lQzMlQTljdW0lMjBlc3RhZCVDMyVBRHN0aWNv'); return false;">Vademécum estadístico</div>
@@ -643,7 +676,7 @@ Prueba t para dos muestras independientes
 </div>
 </div></a>
 </div>
-<div class="g-col-1" data-index="5" data-categories="Q2FzbyUyMGNsJUMzJUFEbmljbyUyMGVzdGFkJUMzJUFEc3RpY28lMkNQcnVlYmFzJTIwZXN0YWQlQzMlQURzdGljYXMlMkNUZXNpcw==" data-listing-date-sort="1793059200000" data-listing-file-modified-sort="1794396094832" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="812">
+<div class="g-col-1" data-index="6" data-categories="Q2FzbyUyMGNsJUMzJUFEbmljbyUyMGVzdGFkJUMzJUFEc3RpY28lMkNQcnVlYmFzJTIwZXN0YWQlQzMlQURzdGljYXMlMkNUZXNpcw==" data-listing-date-sort="1793059200000" data-listing-file-modified-sort="1794568520552" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="960">
 <a href="./casos/ic-vs-valor-p/index.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top">
@@ -674,7 +707,7 @@ p = 0,07: ¿la intervención no sirve?
 </div>
 </div></a>
 </div>
-<div class="g-col-1" data-index="6" data-categories="VmFkZW0lQzMlQTljdW0lMjBlc3RhZCVDMyVBRHN0aWNvJTJDUHJ1ZWJhcyUyMGVzdGFkJUMzJUFEc3RpY2FzJTJDVGVzaXM=" data-listing-date-sort="1792627200000" data-listing-file-modified-sort="1794396094959" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="881">
+<div class="g-col-1" data-index="7" data-categories="VmFkZW0lQzMlQTljdW0lMjBlc3RhZCVDMyVBRHN0aWNvJTJDUHJ1ZWJhcyUyMGVzdGFkJUMzJUFEc3RpY2FzJTJDVGVzaXM=" data-listing-date-sort="1792627200000" data-listing-file-modified-sort="1794568520552" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="8" data-listing-word-count-sort="1478">
 <a href="./vademecum/chi-cuadrado/index.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top">
@@ -684,7 +717,7 @@ p = 0,07: ¿la intervención no sirve?
 <h5 class="no-anchor card-title listing-title">
 Chi cuadrado y prueba exacta de Fisher
 </h5>
-<div class="listing-reading-time card-text text-muted">5 minutos</div>
+<div class="listing-reading-time card-text text-muted">8 minutos</div>
 <div class="listing-categories">
 
 <div class="listing-category" onclick="window.quartoListingCategory('VmFkZW0lQzMlQTljdW0lMjBlc3RhZCVDMyVBRHN0aWNv'); return false;">Vademécum estadístico</div>
@@ -705,7 +738,7 @@ Chi cuadrado y prueba exacta de Fisher
 </div>
 </div></a>
 </div>
-<div class="g-col-1" data-index="7" data-categories="Q2FzbyUyMGNsJUMzJUFEbmljbyUyMGVzdGFkJUMzJUFEc3RpY28lMkNtZWRpZGFzJTIwZGUlMjBhc29jaWFjaSVDMyVCM24lMkNFcGlkZW1pb2xvZyVDMyVBRGElMkNUZXNpcw==" data-listing-date-sort="1792454400000" data-listing-file-modified-sort="1794396094834" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="914">
+<div class="g-col-1" data-index="8" data-categories="Q2FzbyUyMGNsJUMzJUFEbmljbyUyMGVzdGFkJUMzJUFEc3RpY28lMkNtZWRpZGFzJTIwZGUlMjBhc29jaWFjaSVDMyVCM24lMkNFcGlkZW1pb2xvZyVDMyVBRGElMkNUZXNpcw==" data-listing-date-sort="1792454400000" data-listing-file-modified-sort="1794568520552" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="6" data-listing-word-count-sort="1030">
 <a href="./casos/rr-vs-or/index.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top">
@@ -715,7 +748,7 @@ Chi cuadrado y prueba exacta de Fisher
 <h5 class="no-anchor card-title listing-title">
 ¿El odds ratio es un riesgo relativo?
 </h5>
-<div class="listing-reading-time card-text text-muted">5 minutos</div>
+<div class="listing-reading-time card-text text-muted">6 minutos</div>
 <div class="listing-categories">
 
 <div class="listing-category" onclick="window.quartoListingCategory('Q2FzbyUyMGNsJUMzJUFEbmljbyUyMGVzdGFkJUMzJUFEc3RpY28='); return false;">Caso clínico estadístico</div>
@@ -738,7 +771,7 @@ Chi cuadrado y prueba exacta de Fisher
 </div>
 </div></a>
 </div>
-<div class="g-col-1" data-index="8" data-categories="RGlzZSVDMyVCMW9zJTIwZGUlMjBlc3R1ZGlvJTJDRXBpZGVtaW9sb2clQzMlQURhJTJDVGVzaXM=" data-listing-date-sort="1791417600000" data-listing-file-modified-sort="1794396094880" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="7" data-listing-word-count-sort="1394">
+<div class="g-col-1" data-index="9" data-categories="RGlzZSVDMyVCMW9zJTIwZGUlMjBlc3R1ZGlvJTJDRXBpZGVtaW9sb2clQzMlQURhJTJDVGVzaXM=" data-listing-date-sort="1791417600000" data-listing-file-modified-sort="1794396095222" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="7" data-listing-word-count-sort="1394">
 <a href="./disenos/cohortes/index.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top">
@@ -769,7 +802,7 @@ El estudio de cohortes
 </div>
 </div></a>
 </div>
-<div class="g-col-1" data-index="9" data-categories="RGlzZSVDMyVCMW9zJTIwZGUlMjBlc3R1ZGlvJTJDRXBpZGVtaW9sb2clQzMlQURhJTJDVGVzaXM=" data-listing-date-sort="1790812800000" data-listing-file-modified-sort="1794396094880" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="7" data-listing-word-count-sort="1370">
+<div class="g-col-1" data-index="10" data-categories="RGlzZSVDMyVCMW9zJTIwZGUlMjBlc3R1ZGlvJTJDRXBpZGVtaW9sb2clQzMlQURhJTJDVGVzaXM=" data-listing-date-sort="1790812800000" data-listing-file-modified-sort="1794396095222" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="7" data-listing-word-count-sort="1370">
 <a href="./disenos/casos-y-controles/index.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top">
@@ -800,7 +833,7 @@ El estudio de casos y controles
 </div>
 </div></a>
 </div>
-<div class="g-col-1" data-index="10" data-categories="RGlzZSVDMyVCMW9zJTIwZGUlMjBlc3R1ZGlvJTJDRXBpZGVtaW9sb2clQzMlQURhJTJDVGVzaXM=" data-listing-date-sort="1790208000000" data-listing-file-modified-sort="1794396094880" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="7" data-listing-word-count-sort="1394">
+<div class="g-col-1" data-index="11" data-categories="RGlzZSVDMyVCMW9zJTIwZGUlMjBlc3R1ZGlvJTJDRXBpZGVtaW9sb2clQzMlQURhJTJDVGVzaXM=" data-listing-date-sort="1790208000000" data-listing-file-modified-sort="1794396095222" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="7" data-listing-word-count-sort="1394">
 <a href="./disenos/transversal/index.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top">
@@ -831,7 +864,7 @@ El estudio transversal
 </div>
 </div></a>
 </div>
-<div class="g-col-1" data-index="11" data-categories="Q29uc3VsdG9yaW8lMjBlc3RhZCVDMyVBRHN0aWNvJTJDUHJ1ZWJhcyUyMGVzdGFkJUMzJUFEc3RpY2FzJTJDVGVzaXM=" data-listing-date-sort="1788998400000" data-listing-file-modified-sort="1794396094823" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="6" data-listing-word-count-sort="1130">
+<div class="g-col-1" data-index="12" data-categories="Q29uc3VsdG9yaW8lMjBlc3RhZCVDMyVBRHN0aWNvJTJDUHJ1ZWJhcyUyMGVzdGFkJUMzJUFEc3RpY2FzJTJDVGVzaXM=" data-listing-date-sort="1788998400000" data-listing-file-modified-sort="1794396095162" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="6" data-listing-word-count-sort="1130">
 <a href="./blog/que-prueba-estadistica/index.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top">
@@ -961,6 +994,46 @@ El estudio transversal
     }, true);
   }
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", iniciar); else iniciar();
+})();
+</script>
+<script>
+/* «Cómo leer esta salida»: cada bloque ::: {.lee-salida} va justo después de un bloque de código de R.
+   Cada punto de su lista empieza con un fragmento `entre comillas invertidas` copiado de la salida.
+   Este script busca ese fragmento en la salida anterior y le pone el número del punto. */
+(function () {
+  function textos(nodo) {
+    var w = document.createTreeWalker(nodo, NodeFilter.SHOW_TEXT), t, r = [];
+    while ((t = w.nextNode())) r.push(t);
+    return r;
+  }
+  function marcar() {
+    document.querySelectorAll(".lee-salida").forEach(function (caja) {
+      var celda = caja.previousElementSibling;
+      while (celda && !celda.classList.contains("cell")) celda = celda.previousElementSibling;
+      if (!celda) return;
+      var salidas = celda.querySelectorAll(".cell-output pre, .cell-output-stdout pre, .cell-output-stderr pre, .cell-output-error pre");
+      var nodos = [];
+      salidas.forEach(function (s) { nodos = nodos.concat(textos(s)); });
+      var desde = 0, pos = 0;
+      caja.querySelectorAll(":scope > ol > li").forEach(function (li, i) {
+        var c = li.querySelector("code");
+        if (!c) return;
+        var frag = c.textContent;
+        for (var k = desde; k < nodos.length; k++) {
+          var n = nodos[k], j = n.nodeValue.indexOf(frag, k === desde ? pos : 0);
+          if (j < 0) continue;
+          var resto = n.splitText(j + frag.length);
+          var m = document.createElement("span");
+          m.className = "lee-n"; m.textContent = i + 1; m.setAttribute("aria-hidden", "true");
+          n.parentNode.insertBefore(m, resto);
+          nodos.splice(k + 1, 0, resto);
+          desde = k + 1; pos = 0;
+          break;
+        }
+      });
+    });
+  }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", marcar); else marcar();
 })();
 </script>
 <script id="quarto-html-after-body" type="application/javascript">
