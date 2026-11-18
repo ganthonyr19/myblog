@@ -2,7 +2,6 @@
 title: "¿11,2 ± 0,1 describe a los niños?"
 description: "Caso clínico estadístico: una Tabla 1 que reporta la hemoglobina con el error estándar en lugar de la desviación estándar. Decide qué afirmaciones son verdaderas y por qué."
 date: 2026-11-16
-draft: true
 image: portada.png
 categories: [Caso clínico estadístico, estadística descriptiva, estudios transversales, Tesis]
 ---
