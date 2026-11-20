@@ -18,7 +18,7 @@
   </url>
   <url>
     <loc>https://anthonyromero.netlify.app/blog.html</loc>
-    <lastmod>2026-11-11T11:21:35.162Z</lastmod>
+    <lastmod>2026-11-18T11:14:27.871Z</lastmod>
   </url>
   <url>
     <loc>https://anthonyromero.netlify.app/about.html</loc>
@@ -26,7 +26,7 @@
   </url>
   <url>
     <loc>https://anthonyromero.netlify.app/index.html</loc>
-    <lastmod>2026-11-11T11:21:35.241Z</lastmod>
+    <lastmod>2026-11-18T11:14:27.964Z</lastmod>
   </url>
   <url>
     <loc>https://anthonyromero.netlify.app/prospecto/diccionario.html</loc>
@@ -78,7 +78,7 @@
   </url>
   <url>
     <loc>https://anthonyromero.netlify.app/temas.html</loc>
-    <lastmod>2026-11-11T11:21:35.298Z</lastmod>
+    <lastmod>2026-11-18T11:14:28.026Z</lastmod>
   </url>
   <url>
     <loc>https://anthonyromero.netlify.app/casos/rr-vs-or/index.html</loc>
@@ -90,7 +90,7 @@
   </url>
   <url>
     <loc>https://anthonyromero.netlify.app/casos/index.html</loc>
-    <lastmod>2026-11-13T11:16:13.885Z</lastmod>
+    <lastmod>2026-11-20T11:16:14.398Z</lastmod>
   </url>
   <url>
     <loc>https://anthonyromero.netlify.app/vademecum/index.html</loc>
@@ -102,7 +102,7 @@
   </url>
   <url>
     <loc>https://anthonyromero.netlify.app/vademecum/t-de-welch/index.html</loc>
-    <lastmod>2026-11-11T15:37:27.574Z</lastmod>
+    <lastmod>2026-11-18T11:14:28.027Z</lastmod>
   </url>
   <url>
     <loc>https://anthonyromero.netlify.app/casos/kaplan-meier/index.html</loc>
@@ -123,5 +123,17 @@
   <url>
     <loc>https://anthonyromero.netlify.app/casos/sesgos-por-diseno/index.html</loc>
     <lastmod>2026-11-13T11:16:13.884Z</lastmod>
+  </url>
+  <url>
+    <loc>https://anthonyromero.netlify.app/casos/de-vs-ee/index.html</loc>
+    <lastmod>2026-11-20T11:16:14.395Z</lastmod>
+  </url>
+  <url>
+    <loc>https://anthonyromero.netlify.app/casos/error-tipo-i-y-ii/index.html</loc>
+    <lastmod>2026-11-20T11:16:14.396Z</lastmod>
+  </url>
+  <url>
+    <loc>https://anthonyromero.netlify.app/casos/itt-vs-protocolo/index.html</loc>
+    <lastmod>2026-11-20T11:16:14.396Z</lastmod>
   </url>
 </urlset>

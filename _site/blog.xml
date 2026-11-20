@@ -10,7 +10,692 @@
 <atom:link href="https://anthonyromero.netlify.app/blog.xml" rel="self" type="application/rss+xml"/>
 <description>Entradas para entender y hacer mejor la investigación en salud: diseños de estudio, elección de pruebas estadísticas y novedades del ecosistema R.</description>
 <generator>quarto-1.10.18</generator>
-<lastBuildDate>Fri, 13 Nov 2026 00:00:00 GMT</lastBuildDate>
+<lastBuildDate>Fri, 20 Nov 2026 05:00:00 GMT</lastBuildDate>
+<item>
+  <title>¿Funciona el fármaco si el placebo también funciona?</title>
+  <dc:creator>Anthony Romero-Cerdán, MD</dc:creator>
+  <link>https://anthonyromero.netlify.app/casos/itt-vs-protocolo/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+
+<p><a href="../../casos/index.html" class="sello"><img src="https://anthonyromero.netlify.app/images/marcas/casos.svg" class="img-fluid"><span><b>Caso clínico estadístico</b><em>Caso n.º 8</em></span></a></p>
+<section id="el-caso" class="level2">
+<h2 class="anchored" data-anchor-id="el-caso">El caso</h2>
+<p><em>Estudio real: Coronary Drug Project, análisis publicado en 1980.</em></p>
+<p>El Coronary Drug Project fue un ensayo con asignación aleatoria en varones que habían sobrevivido a un infarto de miocardio. Uno de sus brazos comparó el clofibrato, un hipolipemiante, con un placebo.</p>
+<p>En el análisis por <strong><a href="../../prospecto/diccionario.html#intencion-de-tratar" class="dic">intención de tratar</a></strong>, que incluye a todos según el grupo al que fueron asignados, la mortalidad a 5 años fue de 20,0 % con clofibrato (1103 pacientes) y de 20,9 % con placebo (2789 pacientes), sin diferencia significativa.</p>
+<p>Luego, los investigadores clasificaron a los pacientes según su <strong>adherencia</strong>: buenos adherentes si tomaron al menos el 80 % de las cápsulas indicadas y malos adherentes si tomaron menos.</p>
+<div style="overflow-x:auto">
+
+<table class="mapa caption-top table">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">Mortalidad a 5 años</th>
+<th data-quarto-table-cell-role="th">Buenos adherentes</th>
+<th data-quarto-table-cell-role="th">Malos adherentes</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">Clofibrato</th>
+<td>15 %</td>
+<td>25 %</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">Placebo</th>
+<td>15 %</td>
+<td>28 %</td>
+</tr>
+</tbody>
+</table>
+
+<p class="cap">Cifras redondeadas al entero.</p>
+</div>
+</section>
+<section id="cuáles-de-estas-afirmaciones-son-verdaderas" class="level2">
+<h2 class="anchored" data-anchor-id="cuáles-de-estas-afirmaciones-son-verdaderas">¿Cuáles de estas afirmaciones son verdaderas?</h2>
+<ol type="a">
+<li><p>En el análisis por intención de tratar, la mortalidad a 5 años fue similar con clofibrato y con placebo.</p></li>
+<li><p>Los buenos adherentes al clofibrato murieron menos que los malos adherentes, lo que demuestra que el clofibrato funciona cuando se toma.</p></li>
+<li><p>La diferencia entre buenos y malos adherentes dentro del grupo placebo indica que la adherencia se asocia con el pronóstico por razones ajenas al fármaco.</p></li>
+<li><p>Comparar solo a los buenos adherentes de cada grupo conserva las ventajas de la asignación aleatoria.</p></li>
+</ol>
+</section>
+<section id="pase-de-visita" class="level2">
+<h2 class="anchored" data-anchor-id="pase-de-visita">Pase de visita</h2>
+<div class="autoeval">
+<div class="pregunta">
+<p><strong>a) En el análisis por intención de tratar, la mortalidad a 5 años fue similar con clofibrato y con placebo.</strong></p>
+<details>
+<summary>
+Ver respuesta
+</summary>
+<strong>Verdadera.</strong> La mortalidad fue de 20,0 % frente a 20,9 %, una diferencia de menos de un punto porcentual y no significativa. El análisis por intención de tratar compara los grupos tal como los formó la aleatorización, sin importar si los pacientes tomaron o no el tratamiento. Así conserva la comparabilidad entre grupos y responde una pregunta práctica: qué pasa cuando se indica el fármaco.
+</details>
+</div>
+<div class="pregunta">
+<p><strong>b) Los buenos adherentes al clofibrato murieron menos que los malos adherentes, lo que demuestra que el clofibrato funciona cuando se toma.</strong></p>
+<details>
+<summary>
+Ver respuesta
+</summary>
+<strong>Falsa.</strong> Esa comparación ya no es aleatoria: los pacientes eligieron, sin saberlo, en qué grupo de adherencia quedar. El grupo placebo lo desmiente: sus buenos adherentes también murieron mucho menos (15 % frente a 28 %), y el placebo no tiene principio activo. La diferencia se explica por las características de quienes cumplen el tratamiento, no por el clofibrato.
+</details>
+</div>
+<div class="pregunta">
+<p><strong>c) La diferencia entre buenos y malos adherentes dentro del grupo placebo indica que la adherencia se asocia con el pronóstico por razones ajenas al fármaco.</strong></p>
+<details>
+<summary>
+Ver respuesta
+</summary>
+<strong>Verdadera.</strong> Quien toma con disciplina sus cápsulas suele cuidar también otros aspectos de su salud: acude a sus controles, fuma menos o tiene una enfermedad menos grave. Además, un paciente que empeora puede dejar el tratamiento. La adherencia funciona como un marcador de buen pronóstico, y eso produce <a href="../../prospecto/diccionario.html#confusion" class="dic">confusión</a> cuando se analiza a los pacientes según lo que hicieron y no según lo que se les asignó.
+</details>
+</div>
+<div class="pregunta">
+<p><strong>d) Comparar solo a los buenos adherentes de cada grupo conserva las ventajas de la asignación aleatoria.</strong></p>
+<details>
+<summary>
+Ver respuesta
+</summary>
+<strong>Falsa.</strong> Al excluir a los malos adherentes, los grupos dejan de ser los que formó el azar, y pueden diferir en factores que se asocian con la adherencia y con el pronóstico. Ese análisis por protocolo puede ser útil como análisis complementario, pero no reemplaza al de intención de tratar. Estimar bien el efecto en quienes sí toman el tratamiento exige métodos que ajusten por esos factores.
+</details>
+</div>
+</div>
+</section>
+<section id="rp" class="level2">
+<h2 class="anchored" data-anchor-id="rp">Rp/</h2>
+<div class="en-una-frase">
+<p>Analiza a los pacientes en el grupo al que fueron asignados; el análisis por protocolo es un complemento, nunca el resultado principal.</p>
+</div>
+</section>
+<section id="diagnóstico-diferencial" class="level2">
+<h2 class="anchored" data-anchor-id="diagnóstico-diferencial">Diagnóstico diferencial</h2>
+<ul>
+<li><strong>Análisis por protocolo.</strong> Incluye solo a quienes cumplieron el protocolo. Pierde la protección de la aleatorización.</li>
+<li><strong>Análisis según el tratamiento recibido.</strong> Agrupa a los pacientes según lo que tomaron, no según lo que se les asignó. Tiene el mismo problema.</li>
+<li><strong><a href="../../prospecto/diccionario.html#perdidas" class="dic">Pérdidas</a>.</strong> Si faltan datos del desenlace, ni siquiera el análisis por intención de tratar está a salvo. Hay que reportarlas por grupo.</li>
+</ul>
+</section>
+<section id="en-r" class="level2">
+<h2 class="anchored" data-anchor-id="en-r">En R</h2>
+<p>Una simulación con un fármaco <strong>sin ningún efecto</strong> muestra cómo surge la ilusión. La fragilidad de cada paciente influye a la vez en su adherencia y en su riesgo de morir.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Ver código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">set.seed</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1980</span>)</span>
+<span id="cb1-2">n <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">4000</span></span>
+<span id="cb1-3">grupo     <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">rep</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"farmaco"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"placebo"</span>), <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">each =</span> n <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span>)   <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># asignación al azar</span></span>
+<span id="cb1-4">fragil    <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">rnorm</span>(n)                                      <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># pronóstico oculto</span></span>
+<span id="cb1-5">adherente <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">rbinom</span>(n, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>, <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">plogis</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span> <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span> fragil))              <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># los frágiles cumplen menos</span></span>
+<span id="cb1-6">muerte    <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">rbinom</span>(n, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>, <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">plogis</span>(<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1.6</span> <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.8</span> <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span> fragil))     <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># el fármaco no influye</span></span>
+<span id="cb1-7"></span>
+<span id="cb1-8"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Intención de tratar: sin diferencia, como debe ser</span></span>
+<span id="cb1-9"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">round</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">tapply</span>(muerte, grupo, mean), <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">3</span>)</span></code></pre></div></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>farmaco placebo 
+  0.196   0.190 </code></pre>
+</div>
+<details class="code-fold">
+<summary>Ver código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Según la adherencia: la ilusión aparece también en el placebo</span></span>
+<span id="cb3-2"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">round</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">tapply</span>(muerte, <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">list</span>(grupo, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">adherente =</span> adherente), mean), <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">3</span>)</span></code></pre></div></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>         adherente
+              0     1
+  farmaco 0.250 0.174
+  placebo 0.295 0.150</code></pre>
+</div>
+</div>
+<div class="lee-salida">
+<ol type="1">
+<li><code>0.196</code> Es la mortalidad por intención de tratar: 19,6 % con el fármaco y 19,0 % con placebo. No hay diferencia, como debe ser, porque el fármaco no tiene efecto.</li>
+<li><code>adherente</code> Las columnas separan a los pacientes según su adherencia: 0 = no adherentes, 1 = adherentes.</li>
+<li><code>0.174</code> Con el fármaco, los adherentes murieron menos (17,4 %) que los no adherentes (25,0 %). Parece que el fármaco funciona.</li>
+<li><code>0.150</code> Pero con placebo pasa lo mismo: 15,0 % frente a 29,5 %. La diferencia se debe a que los adherentes son menos frágiles, no al fármaco.</li>
+</ol>
+<p><strong>En una frase:</strong> por intención de tratar no hay diferencia (19,6 % y 19,0 %); comparar según la adherencia crea un «efecto» que aparece incluso con placebo.</p>
+</div>
+</section>
+<section id="para-profundizar" class="level2">
+<h2 class="anchored" data-anchor-id="para-profundizar">Para profundizar</h2>
+<ul>
+<li><a href="../../disenos/cohortes/index.html">El estudio de cohortes</a>, en Diseños de estudio: confusión y pérdidas en el seguimiento.</li>
+<li>Caso n.º 7: <a href="../../casos/error-tipo-i-y-ii/index.html">¿La aspirina no sirve si eres Géminis?</a></li>
+</ul>
+</section>
+<section id="referencias" class="level2">
+<h2 class="anchored" data-anchor-id="referencias">Referencias</h2>
+<ol type="1">
+<li>Coronary Drug Project Research Group. Influence of adherence to treatment and response of cholesterol on mortality in the Coronary Drug Project. <em>N Engl J Med</em>. 1980;303(18):1038-41.</li>
+<li>Murray EJ, Hernán MA. Adherence adjustment in the Coronary Drug Project: a call for better per-protocol effect estimates in randomized trials. <em>Clin Trials</em>. 2016;13(4):372-8.</li>
+</ol>
+<div class="cta">
+<p><strong>¿Te tocó un caso así en tu tesis?</strong></p>
+<p>Te ayudo a elegir e interpretar el análisis correcto.</p>
+<p><a href="https://api.whatsapp.com/send?phone=51955446754&amp;text=Hola%2C%20le%C3%AD%20un%20caso%20cl%C3%ADnico%20estad%C3%ADstico%20en%20tu%20web%20y%20quiero%20informaci%C3%B3n%20sobre%20asesor%C3%ADa%20para%20mi%20tesis">Escríbeme por WhatsApp</a></p>
+</div>
+
+
+</section>
+
+ ]]></description>
+  <category>Caso clínico estadístico</category>
+  <category>Diseños de estudio</category>
+  <category>Tesis</category>
+  <guid>https://anthonyromero.netlify.app/casos/itt-vs-protocolo/</guid>
+  <pubDate>Fri, 20 Nov 2026 05:00:00 GMT</pubDate>
+  <media:content url="https://anthonyromero.netlify.app/casos/itt-vs-protocolo/portada.png" medium="image" type="image/png" height="76" width="144"/>
+</item>
+<item>
+  <title>¿La aspirina no sirve si eres Géminis?</title>
+  <dc:creator>Anthony Romero-Cerdán, MD</dc:creator>
+  <link>https://anthonyromero.netlify.app/casos/error-tipo-i-y-ii/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+
+<p><a href="../../casos/index.html" class="sello"><img src="https://anthonyromero.netlify.app/images/marcas/casos.svg" class="img-fluid"><span><b>Caso clínico estadístico</b><em>Caso n.º 7</em></span></a></p>
+<section id="el-caso" class="level2">
+<h2 class="anchored" data-anchor-id="el-caso">El caso</h2>
+<p><em>Estudio real: ensayo ISIS-2, publicado en 1988.</em></p>
+<p>El ISIS-2 fue un ensayo con asignación aleatoria y diseño factorial que incluyó 17 187 pacientes con sospecha de infarto agudo de miocardio. Entre otras comparaciones, evaluó la aspirina oral frente a placebo.</p>
+<p>A las 5 semanas, la mortalidad vascular fue de 804/8587 (9,4 %) con aspirina y de 1016/8600 (11,8 %) con placebo: una reducción de la odds de muerte del 23 % (2p &lt; 0,00001).</p>
+<p>Los investigadores agregaron, a propósito, un análisis que nadie tomaría en serio: dividieron a los pacientes según su signo zodiacal. En los nacidos bajo <strong>Géminis o Libra</strong>, la aspirina se asoció con un aumento aparente del 9 % en la odds de muerte, no significativo. En los <strong>demás signos</strong>, la reducción fue del 28 % (2p &lt; 0,00001).</p>
+<p>Su objetivo era mostrar cuán engañosos pueden ser los análisis por subgrupos.</p>
+</section>
+<section id="cuáles-de-estas-afirmaciones-son-verdaderas" class="level2">
+<h2 class="anchored" data-anchor-id="cuáles-de-estas-afirmaciones-son-verdaderas">¿Cuáles de estas afirmaciones son verdaderas?</h2>
+<ol type="a">
+<li><p>El resultado en Géminis y Libra demuestra que la aspirina no beneficia a los pacientes nacidos bajo esos signos.</p></li>
+<li><p>Si se prueban 12 subgrupos independientes, cada uno con α = 0,05 y sin efecto real en ninguno, la probabilidad de obtener al menos un resultado significativo por azar es cercana al 46 %.</p></li>
+<li><p>Como el subgrupo de Géminis y Libra es mucho más pequeño que el total, tiene menos potencia, y su resultado no significativo puede ser un error tipo II.</p></li>
+<li><p>Un error tipo I consiste en concluir que no hay efecto cuando en realidad sí lo hay.</p></li>
+</ol>
+</section>
+<section id="pase-de-visita" class="level2">
+<h2 class="anchored" data-anchor-id="pase-de-visita">Pase de visita</h2>
+<div class="autoeval">
+<div class="pregunta">
+<p><strong>a) El resultado en Géminis y Libra demuestra que la aspirina no beneficia a los pacientes nacidos bajo esos signos.</strong></p>
+<details>
+<summary>
+Ver respuesta
+</summary>
+<strong>Falsa.</strong> No hay ningún motivo biológico para que el signo zodiacal modifique el efecto de la aspirina, y el resultado del subgrupo no fue significativo. La mejor estimación del efecto en cualquier subgrupo suele ser el efecto global del ensayo. Un resultado distinto en un subgrupo, sin una hipótesis previa que lo explique, es más probable que sea azar que un hallazgo real.
+</details>
+</div>
+<div class="pregunta">
+<p><strong>b) Si se prueban 12 subgrupos independientes, cada uno con α = 0,05 y sin efecto real en ninguno, la probabilidad de obtener al menos un resultado significativo por azar es cercana al 46 %.</strong></p>
+<details>
+<summary>
+Ver respuesta
+</summary>
+<strong>Verdadera.</strong> La probabilidad de no cometer ningún error tipo I en 12 pruebas independientes es 0,95¹² = 0,54. La de cometer al menos uno es 1 − 0,54 = 0,46. Cada comparación adicional es un nuevo boleto en la lotería de los falsos positivos. Por eso, los subgrupos se declaran antes de analizar y se evalúan con una prueba de interacción, no con valores p separados por subgrupo.
+</details>
+</div>
+<div class="pregunta">
+<p><strong>c) Como el subgrupo de Géminis y Libra es mucho más pequeño que el total, tiene menos potencia, y su resultado no significativo puede ser un error tipo II.</strong></p>
+<details>
+<summary>
+Ver respuesta
+</summary>
+<strong>Verdadera.</strong> Al partir la muestra, cada subgrupo tiene menos pacientes y menos eventos, así que su <a href="../../prospecto/diccionario.html#potencia-estadistica" class="dic">potencia estadística</a> para detectar el efecto global cae mucho. Si la aspirina beneficia a todos, como sugiere el ensayo, el resultado no significativo en Géminis y Libra sería un <a href="../../prospecto/diccionario.html#error-tipo-i-y-ii" class="dic">error tipo II</a>: no detectar un efecto que existe. Los subgrupos generan los dos errores a la vez: falsos positivos por las múltiples pruebas y falsos negativos por la falta de potencia.
+</details>
+</div>
+<div class="pregunta">
+<p><strong>d) Un error tipo I consiste en concluir que no hay efecto cuando en realidad sí lo hay.</strong></p>
+<details>
+<summary>
+Ver respuesta
+</summary>
+<strong>Falsa.</strong> Esa es la definición del error tipo II (β). El error tipo I (α) es rechazar la hipótesis nula cuando es verdadera, es decir, concluir que hay un efecto cuando no lo hay. El nivel de significancia (habitualmente 0,05) es la probabilidad máxima de cometer un error tipo I que aceptas en cada prueba, y 1 − β es la potencia.
+</details>
+</div>
+</div>
+</section>
+<section id="rp" class="level2">
+<h2 class="anchored" data-anchor-id="rp">Rp/</h2>
+<div class="en-una-frase">
+<p>Cada subgrupo que analizas es otra oportunidad de equivocarte: decláralos antes de ver los datos y evalúalos con una prueba de interacción.</p>
+</div>
+</section>
+<section id="diagnóstico-diferencial" class="level2">
+<h2 class="anchored" data-anchor-id="diagnóstico-diferencial">Diagnóstico diferencial</h2>
+<ul>
+<li><strong><a href="../../prospecto/diccionario.html#valor-p" class="dic">Valor p</a> y α.</strong> El valor p sale de tus datos; α es el umbral que fijaste antes de analizarlos.</li>
+<li><strong>Corrección por comparaciones múltiples.</strong> Métodos como Bonferroni (dividir α entre el número de pruebas) reducen los falsos positivos a costa de la potencia. No reemplazan a una hipótesis bien planteada.</li>
+</ul>
+</section>
+<section id="en-r" class="level2">
+<h2 class="anchored" data-anchor-id="en-r">En R</h2>
+<div class="cell">
+<details class="code-fold">
+<summary>Ver código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Probabilidad de al menos un falso positivo con k pruebas independientes</span></span>
+<span id="cb1-2">k <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">5</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">12</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">20</span>)</span>
+<span id="cb1-3"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">round</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span> <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.95</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">^</span>k, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span>)</span></code></pre></div></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.05 0.23 0.46 0.64</code></pre>
+</div>
+<details class="code-fold">
+<summary>Ver código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Umbral de Bonferroni para 12 pruebas</span></span>
+<span id="cb3-2"><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.05</span> <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">12</span></span></code></pre></div></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.004166667</code></pre>
+</div>
+</div>
+<div class="lee-salida">
+<ol type="1">
+<li><code>0.05 0.23 0.46 0.64</code> Es la probabilidad de obtener al menos un falso positivo al hacer 1, 5, 12 y 20 pruebas independientes con α = 0,05, si ninguna diferencia es real: 5 %, 23 %, 46 % y 64 %.</li>
+<li><code>0.004166667</code> Es el umbral de Bonferroni para 12 pruebas: 0,05 ÷ 12 = 0,0042. Cada prueba solo se considera significativa si su p es menor que ese valor.</li>
+</ol>
+<p><strong>En una frase:</strong> con 12 pruebas, la probabilidad de al menos un falso positivo sube al 46 %; la corrección de Bonferroni exige p &lt; 0,0042 a cada una.</p>
+</div>
+</section>
+<section id="para-profundizar" class="level2">
+<h2 class="anchored" data-anchor-id="para-profundizar">Para profundizar</h2>
+<ul>
+<li>¿No sabes qué prueba corresponde a tu objetivo? Haz el <a href="../../blog/que-prueba-estadistica/index.html#haz-tu-triaje">Triaje estadístico</a>.</li>
+<li><a href="../../herramientas/muestra/index.html#mod=dprop&amp;dis=co">Calcula el tamaño de muestra con la potencia que necesitas</a> en el Consultorio estadístico.</li>
+<li>Caso n.º 2: <a href="../../casos/ic-vs-valor-p/index.html">p = 0,07: ¿la intervención no sirve?</a></li>
+</ul>
+</section>
+<section id="referencias" class="level2">
+<h2 class="anchored" data-anchor-id="referencias">Referencias</h2>
+<ol type="1">
+<li>ISIS-2 (Second International Study of Infarct Survival) Collaborative Group. Randomised trial of intravenous streptokinase, oral aspirin, both, or neither among 17,187 cases of suspected acute myocardial infarction: ISIS-2. <em>Lancet</em>. 1988;2(8607):349-60.</li>
+<li>Wang R, Lagakos SW, Ware JH, Hunter DJ, Drazen JM. Statistics in medicine: reporting of subgroup analyses in clinical trials. <em>N Engl J Med</em>. 2007;357(21):2189-94.</li>
+</ol>
+<div class="cta">
+<p><strong>¿Te tocó un caso así en tu tesis?</strong></p>
+<p>Te ayudo a elegir e interpretar el análisis correcto.</p>
+<p><a href="https://api.whatsapp.com/send?phone=51955446754&amp;text=Hola%2C%20le%C3%AD%20un%20caso%20cl%C3%ADnico%20estad%C3%ADstico%20en%20tu%20web%20y%20quiero%20informaci%C3%B3n%20sobre%20asesor%C3%ADa%20para%20mi%20tesis">Escríbeme por WhatsApp</a></p>
+</div>
+
+
+</section>
+
+ ]]></description>
+  <category>Caso clínico estadístico</category>
+  <category>Pruebas estadísticas</category>
+  <category>Tesis</category>
+  <guid>https://anthonyromero.netlify.app/casos/error-tipo-i-y-ii/</guid>
+  <pubDate>Wed, 18 Nov 2026 05:00:00 GMT</pubDate>
+  <media:content url="https://anthonyromero.netlify.app/casos/error-tipo-i-y-ii/portada.png" medium="image" type="image/png" height="76" width="144"/>
+</item>
+<item>
+  <title>¿11,2 ± 0,1 describe a los niños?</title>
+  <dc:creator>Anthony Romero-Cerdán, MD</dc:creator>
+  <link>https://anthonyromero.netlify.app/casos/de-vs-ee/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+
+<p><a href="../../casos/index.html" class="sello"><img src="https://anthonyromero.netlify.app/images/marcas/casos.svg" class="img-fluid"><span><b>Caso clínico estadístico</b><em>Caso n.º 6</em></span></a></p>
+<section id="el-caso" class="level2">
+<h2 class="anchored" data-anchor-id="el-caso">El caso</h2>
+<p><em>Caso ilustrativo, con datos simulados.</em></p>
+<p>Un tesista realiza un estudio transversal en 225 niños de 6 a 35 meses atendidos en los establecimientos de salud de un distrito altoandino. Mide la hemoglobina capilar con un hemoglobinómetro portátil.</p>
+<p>En la Tabla 1 de su tesis escribe: «Hemoglobina: 11,2 ± 0,1 g/dL». En la sustentación, un jurado comenta que una dispersión tan pequeña es poco creíble en niños de esa edad. El tesista revisa su salida de R y descubre lo que pasó: reportó el error estándar de la media (EE), no la desviación estándar (DE).</p>
+<p>Con los datos correctos:</p>
+<ul>
+<li><strong>Media:</strong> 11,2 g/dL</li>
+<li><strong>DE:</strong> 1,5 g/dL</li>
+<li><strong>EE:</strong> 1,5 / √225 = 0,1 g/dL</li>
+<li><strong>IC 95 % de la media:</strong> 11,0 a 11,4 g/dL</li>
+</ul>
+</section>
+<section id="cuáles-de-estas-afirmaciones-son-verdaderas" class="level2">
+<h2 class="anchored" data-anchor-id="cuáles-de-estas-afirmaciones-son-verdaderas">¿Cuáles de estas afirmaciones son verdaderas?</h2>
+<ol type="a">
+<li><p>El valor «± 0,1» indica que casi todos los niños tienen una hemoglobina entre 11,0 y 11,4 g/dL.</p></li>
+<li><p>Si 0,1 es el EE, la DE de la muestra es 0,1 × √225 = 1,5 g/dL.</p></li>
+<li><p>Para describir a los participantes en la Tabla 1, corresponde reportar la DE.</p></li>
+<li><p>Si la muestra se cuadruplicara, el EE se reduciría a la mitad, pero la DE se mantendría aproximadamente igual.</p></li>
+</ol>
+</section>
+<section id="pase-de-visita" class="level2">
+<h2 class="anchored" data-anchor-id="pase-de-visita">Pase de visita</h2>
+<div class="autoeval">
+<div class="pregunta">
+<p><strong>a) El valor «± 0,1» indica que casi todos los niños tienen una hemoglobina entre 11,0 y 11,4 g/dL.</strong></p>
+<details>
+<summary>
+Ver respuesta
+</summary>
+<strong>Falsa.</strong> Ese rango es el IC 95 % de la <strong>media</strong>, no el de los valores individuales. La variabilidad entre niños la da la <a href="../../prospecto/diccionario.html#desviacion-estandar" class="dic">desviación estándar</a>: si la hemoglobina tuviera una distribución aproximadamente normal, alrededor del 95 % de los niños estaría entre 11,2 ± 1,96 × 1,5, es decir, entre 8,3 y 14,1 g/dL. Es un rango casi 15 veces más amplio que el que sugería la Tabla 1.
+</details>
+</div>
+<div class="pregunta">
+<p><strong>b) Si 0,1 es el EE, la DE de la muestra es 0,1 × √225 = 1,5 g/dL.</strong></p>
+<details>
+<summary>
+Ver respuesta
+</summary>
+<strong>Verdadera.</strong> El <a href="../../prospecto/diccionario.html#error-estandar" class="dic">error estándar</a> de la media es la DE dividida entre la raíz del tamaño de muestra: EE = DE / √n.&nbsp;Despejando, DE = EE × √n = 0,1 × 15 = 1,5 g/dL. Este cálculo sirve también para recuperar la DE cuando un artículo solo reporta el EE, por ejemplo, al preparar un metaanálisis o calcular tu tamaño de muestra.
+</details>
+</div>
+<div class="pregunta">
+<p><strong>c) Para describir a los participantes en la Tabla 1, corresponde reportar la DE.</strong></p>
+<details>
+<summary>
+Ver respuesta
+</summary>
+<strong>Verdadera.</strong> La Tabla 1 describe la muestra, y para eso se usa la DE (o la <a href="../../prospecto/diccionario.html#mediana-y-ric" class="dic">mediana y el RIC</a> si la distribución es asimétrica). El EE mide la <a href="../../prospecto/diccionario.html#precision" class="dic">precisión</a> con que se estima la media y corresponde a la inferencia, normalmente expresada como un IC 95 %. Reportar «media ± EE» en una tabla descriptiva hace que los datos parezcan más homogéneos de lo que son.
+</details>
+</div>
+<div class="pregunta">
+<p><strong>d) Si la muestra se cuadruplicara, el EE se reduciría a la mitad, pero la DE se mantendría aproximadamente igual.</strong></p>
+<details>
+<summary>
+Ver respuesta
+</summary>
+<strong>Verdadera.</strong> La DE describe una característica de la población, la variabilidad de la hemoglobina entre niños, y no depende del tamaño de muestra: con 900 niños seguiría siendo cercana a 1,5 g/dL. El EE, en cambio, se divide entre √n: con 900 niños sería 1,5 / 30 = 0,05 g/dL. Más participantes no hacen más parecidos a los niños; solo estiman la media con más precisión.
+</details>
+</div>
+</div>
+</section>
+<section id="rp" class="level2">
+<h2 class="anchored" data-anchor-id="rp">Rp/</h2>
+<div class="en-una-frase">
+<p>La DE describe a tus participantes; el EE describe tu estimación de la media. En la Tabla 1 va la DE.</p>
+</div>
+</section>
+<section id="diagnóstico-diferencial" class="level2">
+<h2 class="anchored" data-anchor-id="diagnóstico-diferencial">Diagnóstico diferencial</h2>
+<ul>
+<li><strong><a href="../../prospecto/diccionario.html#intervalo-de-confianza" class="dic">Intervalo de confianza</a>.</strong> Se construye con el EE y es la forma recomendada de expresar la precisión de una media.</li>
+<li><strong>Rango.</strong> No reemplaza a la DE: depende solo de los dos valores extremos y tiende a crecer con el tamaño de muestra.</li>
+</ul>
+</section>
+<section id="en-r" class="level2">
+<h2 class="anchored" data-anchor-id="en-r">En R</h2>
+<div class="cell">
+<details class="code-fold">
+<summary>Ver código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Datos construidos con la media y la DE exactas del caso</span></span>
+<span id="cb1-2"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">set.seed</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2026</span>)</span>
+<span id="cb1-3">hb <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">as.numeric</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">scale</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">rnorm</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">225</span>))) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1.5</span> <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">11.2</span></span>
+<span id="cb1-4"></span>
+<span id="cb1-5">de <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">sd</span>(hb)</span>
+<span id="cb1-6">ee <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> de <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">sqrt</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">length</span>(hb))</span>
+<span id="cb1-7"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">round</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">media =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">mean</span>(hb), <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">DE =</span> de, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">EE =</span> ee), <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span>)</span></code></pre></div></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>media    DE    EE 
+ 11.2   1.5   0.1 </code></pre>
+</div>
+<details class="code-fold">
+<summary>Ver código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># IC 95 % de la media</span></span>
+<span id="cb3-2"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">round</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">t.test</span>(hb)<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>conf.int, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>)</span></code></pre></div></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 11.0 11.4
+attr(,"conf.level")
+[1] 0.95</code></pre>
+</div>
+<details class="code-fold">
+<summary>Ver código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># El EE con una muestra cuatro veces mayor (la DE no cambia)</span></span>
+<span id="cb5-2"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">round</span>(de <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">sqrt</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">4</span> <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">225</span>), <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span>)</span></code></pre></div></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.05</code></pre>
+</div>
+</div>
+<div class="lee-salida">
+<ol type="1">
+<li><code>DE</code> La desviación estándar (1,5 g/dL) describe cuánto varía la hemoglobina de una persona a otra.</li>
+<li><code>EE</code> El error estándar (0,1 g/dL) describe la precisión de la media: es la DE dividida entre la raíz de n (1,5 ÷ 15).</li>
+<li><code>11.0 11.4</code> Es el IC 95 % de la media: de 11,0 a 11,4 g/dL. Se construye con el EE, no con la DE.</li>
+<li><code>0.05</code> Con una muestra cuatro veces mayor, el EE se reduce a la mitad (0,05 g/dL). La DE no cambia, porque la variabilidad entre personas es la misma.</li>
+</ol>
+<p><strong>En una frase:</strong> la hemoglobina media fue de 11,2 g/dL (DE: 1,5); la DE describe a las personas, y el EE (0,1) y el IC 95 % (11,0 a 11,4), la precisión de la media.</p>
+</div>
+</section>
+<section id="para-profundizar" class="level2">
+<h2 class="anchored" data-anchor-id="para-profundizar">Para profundizar</h2>
+<ul>
+<li><a href="../../prospecto/tabla-1/inicial.html">La Tabla 1 de tu tesis</a>, en Prospecto R: cómo describir a tus participantes.</li>
+<li><a href="../../disenos/transversal/index.html">El estudio transversal</a>, en Diseños de estudio.</li>
+<li><a href="../../herramientas/muestra/index.html#mod=med">Calcula el tamaño de muestra para comparar dos medias</a>: ahí la DE es un dato de entrada.</li>
+</ul>
+</section>
+<section id="referencias" class="level2">
+<h2 class="anchored" data-anchor-id="referencias">Referencias</h2>
+<ol type="1">
+<li>Altman DG, Bland JM. Standard deviations and standard errors. <em>BMJ</em>. 2005;331(7521):903.</li>
+</ol>
+<div class="cta">
+<p><strong>¿Te tocó un caso así en tu tesis?</strong></p>
+<p>Te ayudo a elegir e interpretar el análisis correcto.</p>
+<p><a href="https://api.whatsapp.com/send?phone=51955446754&amp;text=Hola%2C%20le%C3%AD%20un%20caso%20cl%C3%ADnico%20estad%C3%ADstico%20en%20tu%20web%20y%20quiero%20informaci%C3%B3n%20sobre%20asesor%C3%ADa%20para%20mi%20tesis">Escríbeme por WhatsApp</a></p>
+</div>
+
+
+</section>
+
+ ]]></description>
+  <category>Caso clínico estadístico</category>
+  <category>estadística descriptiva</category>
+  <category>estudios transversales</category>
+  <category>Tesis</category>
+  <guid>https://anthonyromero.netlify.app/casos/de-vs-ee/</guid>
+  <pubDate>Mon, 16 Nov 2026 05:00:00 GMT</pubDate>
+  <media:content url="https://anthonyromero.netlify.app/casos/de-vs-ee/portada.png" medium="image" type="image/png" height="76" width="144"/>
+</item>
 <item>
   <title>¿Las madres recuerdan igual?</title>
   <dc:creator>Anthony Romero-Cerdán, MD</dc:creator>
@@ -319,7 +1004,7 @@ historia   1.35 0.83 2.19</code></pre>
   <category>Epidemiología</category>
   <category>Tesis</category>
   <guid>https://anthonyromero.netlify.app/casos/sesgos-por-diseno/</guid>
-  <pubDate>Fri, 13 Nov 2026 00:00:00 GMT</pubDate>
+  <pubDate>Fri, 13 Nov 2026 05:00:00 GMT</pubDate>
   <media:content url="https://anthonyromero.netlify.app/casos/sesgos-por-diseno/portada.png" medium="image" type="image/png" height="76" width="144"/>
 </item>
 <item>
@@ -578,7 +1263,7 @@ sample estimates:
   <category>Pruebas estadísticas</category>
   <category>Tesis</category>
   <guid>https://anthonyromero.netlify.app/vademecum/correlacion/</guid>
-  <pubDate>Wed, 11 Nov 2026 00:00:00 GMT</pubDate>
+  <pubDate>Wed, 11 Nov 2026 05:00:00 GMT</pubDate>
   <media:content url="https://anthonyromero.netlify.app/vademecum/correlacion/portada.png" medium="image" type="image/png" height="76" width="144"/>
 </item>
 <item>
@@ -886,7 +1571,7 @@ font-style: inherit;">/</span> n))</span></code></pre></div></div>
   <category>Epidemiología</category>
   <category>Tesis</category>
   <guid>https://anthonyromero.netlify.app/casos/nnt-y-nnh/</guid>
-  <pubDate>Mon, 09 Nov 2026 00:00:00 GMT</pubDate>
+  <pubDate>Mon, 09 Nov 2026 05:00:00 GMT</pubDate>
   <media:content url="https://anthonyromero.netlify.app/casos/nnt-y-nnh/portada.png" medium="image" type="image/png" height="76" width="144"/>
 </item>
 <item>
@@ -1113,7 +1798,7 @@ difference in location
   <category>Pruebas estadísticas</category>
   <category>Tesis</category>
   <guid>https://anthonyromero.netlify.app/vademecum/u-de-mann-whitney/</guid>
-  <pubDate>Fri, 06 Nov 2026 00:00:00 GMT</pubDate>
+  <pubDate>Fri, 06 Nov 2026 05:00:00 GMT</pubDate>
   <media:content url="https://anthonyromero.netlify.app/vademecum/u-de-mann-whitney/portada.png" medium="image" type="image/png" height="76" width="144"/>
 </item>
 <item>
@@ -1423,7 +2108,7 @@ font-style: inherit;">TRUE</span>)</span></code></pre></div></div>
   <category>Pruebas estadísticas</category>
   <category>Tesis</category>
   <guid>https://anthonyromero.netlify.app/casos/kaplan-meier/</guid>
-  <pubDate>Tue, 03 Nov 2026 00:00:00 GMT</pubDate>
+  <pubDate>Tue, 03 Nov 2026 05:00:00 GMT</pubDate>
   <media:content url="https://anthonyromero.netlify.app/casos/kaplan-meier/portada.png" medium="image" type="image/png" height="76" width="144"/>
 </item>
 <item>
@@ -1479,7 +2164,7 @@ font-style: inherit;">TRUE</span>)</span></code></pre></div></div>
 <h2 class="anchored" data-anchor-id="reacciones-adversas-frecuentes-en-las-tesis">Reacciones adversas frecuentes en las tesis</h2>
 <ul>
 <li><strong>Aplicar Shapiro-Wilk a todo antes de decidir.</strong> Con muestras grandes rechaza la normalidad por desviaciones mínimas; con muestras pequeñas casi nunca la rechaza. Mira el histograma.</li>
-<li><strong>Reportar «media ± error estándar».</strong> Para describir a los grupos va la desviación estándar (ver el caso n.º 6).</li>
+<li><strong>Reportar «media ± error estándar».</strong> Para describir a los grupos va la desviación estándar (ver el <a href="../../casos/de-vs-ee/index.html">caso n.º 6</a>).</li>
 <li><strong>Reportar solo el valor p.</strong> Falta la diferencia de medias y su IC 95 %.</li>
 <li><strong>Concluir «no hay diferencia» con un p &gt; 0,05.</strong> Revisa qué diferencias siguen siendo compatibles con el IC (ver el <a href="../../casos/ic-vs-valor-p/index.html">caso n.º 2</a>).</li>
 </ul>
@@ -1687,7 +2372,7 @@ mean in group Hombre  mean in group Mujer
   <category>Pruebas estadísticas</category>
   <category>Tesis</category>
   <guid>https://anthonyromero.netlify.app/vademecum/t-de-welch/</guid>
-  <pubDate>Thu, 29 Oct 2026 00:00:00 GMT</pubDate>
+  <pubDate>Thu, 29 Oct 2026 05:00:00 GMT</pubDate>
   <media:content url="https://anthonyromero.netlify.app/vademecum/t-de-welch/portada.png" medium="image" type="image/png" height="76" width="144"/>
 </item>
 <item>
@@ -1890,7 +2575,7 @@ mean of x mean of y
   <category>Pruebas estadísticas</category>
   <category>Tesis</category>
   <guid>https://anthonyromero.netlify.app/casos/ic-vs-valor-p/</guid>
-  <pubDate>Tue, 27 Oct 2026 00:00:00 GMT</pubDate>
+  <pubDate>Tue, 27 Oct 2026 05:00:00 GMT</pubDate>
   <media:content url="https://anthonyromero.netlify.app/casos/ic-vs-valor-p/portada.png" medium="image" type="image/png" height="76" width="144"/>
 </item>
 <item>
@@ -2220,7 +2905,7 @@ odds ratio
   <category>Pruebas estadísticas</category>
   <category>Tesis</category>
   <guid>https://anthonyromero.netlify.app/vademecum/chi-cuadrado/</guid>
-  <pubDate>Thu, 22 Oct 2026 00:00:00 GMT</pubDate>
+  <pubDate>Thu, 22 Oct 2026 05:00:00 GMT</pubDate>
   <media:content url="https://anthonyromero.netlify.app/vademecum/chi-cuadrado/portada.png" medium="image" type="image/png" height="76" width="144"/>
 </item>
 <item>
@@ -2575,7 +3260,7 @@ OR     2.45 1.68 3.60</code></pre>
   <category>Epidemiología</category>
   <category>Tesis</category>
   <guid>https://anthonyromero.netlify.app/casos/rr-vs-or/</guid>
-  <pubDate>Tue, 20 Oct 2026 00:00:00 GMT</pubDate>
+  <pubDate>Tue, 20 Oct 2026 05:00:00 GMT</pubDate>
   <media:content url="https://anthonyromero.netlify.app/casos/rr-vs-or/portada.png" medium="image" type="image/png" height="76" width="144"/>
 </item>
 <item>
@@ -2860,7 +3545,7 @@ Un sesgo por pérdidas diferenciales: si quienes se fueron tenían un riesgo dis
   <category>Epidemiología</category>
   <category>Tesis</category>
   <guid>https://anthonyromero.netlify.app/disenos/cohortes/</guid>
-  <pubDate>Thu, 08 Oct 2026 00:00:00 GMT</pubDate>
+  <pubDate>Thu, 08 Oct 2026 05:00:00 GMT</pubDate>
   <media:content url="https://anthonyromero.netlify.app/disenos/cohortes/portada.png" medium="image" type="image/png" height="76" width="144"/>
 </item>
 <item>
@@ -3116,7 +3801,7 @@ Para reducir el sesgo de recuerdo: los casos tienden a recordar o reportar sus e
   <category>Epidemiología</category>
   <category>Tesis</category>
   <guid>https://anthonyromero.netlify.app/disenos/casos-y-controles/</guid>
-  <pubDate>Thu, 01 Oct 2026 00:00:00 GMT</pubDate>
+  <pubDate>Thu, 01 Oct 2026 05:00:00 GMT</pubDate>
   <media:content url="https://anthonyromero.netlify.app/disenos/casos-y-controles/portada.png" medium="image" type="image/png" height="76" width="144"/>
 </item>
 <item>
@@ -3364,7 +4049,7 @@ Porque mide ambos a la vez y no establece qué ocurrió primero; además, el dia
   <category>Epidemiología</category>
   <category>Tesis</category>
   <guid>https://anthonyromero.netlify.app/disenos/transversal/</guid>
-  <pubDate>Thu, 24 Sep 2026 00:00:00 GMT</pubDate>
+  <pubDate>Thu, 24 Sep 2026 05:00:00 GMT</pubDate>
   <media:content url="https://anthonyromero.netlify.app/disenos/transversal/portada.png" medium="image" type="image/png" height="76" width="144"/>
 </item>
 <item>
@@ -3701,7 +4386,7 @@ Una regresión de Poisson con varianza robusta para estimar razones de prevalenc
   <category>Pruebas estadísticas</category>
   <category>Tesis</category>
   <guid>https://anthonyromero.netlify.app/blog/que-prueba-estadistica/</guid>
-  <pubDate>Thu, 10 Sep 2026 00:00:00 GMT</pubDate>
+  <pubDate>Thu, 10 Sep 2026 05:00:00 GMT</pubDate>
   <media:content url="https://anthonyromero.netlify.app/blog/que-prueba-estadistica/portada.png" medium="image" type="image/png" height="76" width="144"/>
 </item>
 </channel>
