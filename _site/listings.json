@@ -17,6 +17,9 @@
   {
     "listing": "/blog.html",
     "items": [
+      "/casos/itt-vs-protocolo/index.html",
+      "/casos/error-tipo-i-y-ii/index.html",
+      "/casos/de-vs-ee/index.html",
       "/casos/sesgos-por-diseno/index.html",
       "/vademecum/correlacion/index.html",
       "/casos/nnt-y-nnh/index.html",
@@ -35,6 +38,9 @@
   {
     "listing": "/index.html",
     "items": [
+      "/casos/itt-vs-protocolo/index.html",
+      "/casos/error-tipo-i-y-ii/index.html",
+      "/casos/de-vs-ee/index.html",
       "/casos/sesgos-por-diseno/index.html",
       "/vademecum/correlacion/index.html",
       "/casos/nnt-y-nnh/index.html",
@@ -60,6 +66,9 @@
   {
     "listing": "/temas.html",
     "items": [
+      "/casos/itt-vs-protocolo/index.html",
+      "/casos/error-tipo-i-y-ii/index.html",
+      "/casos/de-vs-ee/index.html",
       "/casos/sesgos-por-diseno/index.html",
       "/vademecum/correlacion/index.html",
       "/casos/nnt-y-nnh/index.html",
