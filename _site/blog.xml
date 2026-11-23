@@ -10,7 +10,255 @@
 <atom:link href="https://anthonyromero.netlify.app/blog.xml" rel="self" type="application/rss+xml"/>
 <description>Entradas para entender y hacer mejor la investigación en salud: diseños de estudio, elección de pruebas estadísticas y novedades del ecosistema R.</description>
 <generator>quarto-1.10.18</generator>
-<lastBuildDate>Fri, 20 Nov 2026 05:00:00 GMT</lastBuildDate>
+<lastBuildDate>Mon, 23 Nov 2026 05:00:00 GMT</lastBuildDate>
+<item>
+  <title>¿Comer chocolate te acerca al Nobel?</title>
+  <dc:creator>Anthony Romero-Cerdán, MD</dc:creator>
+  <link>https://anthonyromero.netlify.app/casos/falacia-ecologica/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+
+<p><a href="../../casos/index.html" class="sello"><img src="https://anthonyromero.netlify.app/images/marcas/casos.svg" class="img-fluid"><span><b>Caso clínico estadístico</b><em>Caso n.º 9</em></span></a></p>
+<section id="el-caso" class="level2">
+<h2 class="anchored" data-anchor-id="el-caso">El caso</h2>
+<p><em>Estudio real: Messerli, publicado en 2012.</em></p>
+<p>Un cardiólogo planteó una pregunta provocadora: si los flavonoides del cacao podrían mejorar la función cognitiva, ¿los países que comen más chocolate producirían más mentes brillantes?</p>
+<p>Para responderla, reunió dos datos de 23 países: el consumo anual de chocolate por habitante y el número de premios Nobel por cada 10 millones de habitantes. No midió nada en ninguna persona.</p>
+<p>Encontró una correlación positiva fuerte: <strong>r = 0,791</strong> (p &lt; 0,0001). Suiza encabezaba ambos rankings. Suecia tenía más del doble de premios de los que predecía su consumo; al excluirla, la correlación subía a 0,862.</p>
+<p>El artículo, de tono deliberadamente humorístico, se publicó en una revista médica de alto impacto y dio la vuelta al mundo en titulares que sugerían que comer chocolate ayuda a ganar un Nobel.</p>
+</section>
+<section id="cuáles-de-estas-afirmaciones-son-verdaderas" class="level2">
+<h2 class="anchored" data-anchor-id="cuáles-de-estas-afirmaciones-son-verdaderas">¿Cuáles de estas afirmaciones son verdaderas?</h2>
+<ol type="a">
+<li><p>En este estudio, la unidad de análisis es el país, no la persona.</p></li>
+<li><p>Con r = 0,79, se puede concluir que las personas que comen más chocolate tienen más probabilidad de ganar un Nobel.</p></li>
+<li><p>Una correlación de 0,79 significa que el 79 % de la variación en el número de premios se explica por el consumo de chocolate.</p></li>
+<li><p>Una característica de los países, como su riqueza, podría explicar a la vez el mayor consumo de chocolate y el mayor número de premios.</p></li>
+</ol>
+</section>
+<section id="pase-de-visita" class="level2">
+<h2 class="anchored" data-anchor-id="pase-de-visita">Pase de visita</h2>
+<div class="autoeval">
+<div class="pregunta">
+<p><strong>a) En este estudio, la unidad de análisis es el país, no la persona.</strong></p>
+<details>
+<summary>
+Ver respuesta
+</summary>
+<strong>Verdadera.</strong> Cada punto del análisis es un país, con un promedio de consumo y una tasa de premios. Es un estudio ecológico: sus datos son agregados de grupos. No sabemos cuánto chocolate comió ninguno de los galardonados, ni si comían más que sus compatriotas.
+</details>
+</div>
+<div class="pregunta">
+<p><strong>b) Con r = 0,79, se puede concluir que las personas que comen más chocolate tienen más probabilidad de ganar un Nobel.</strong></p>
+<details>
+<summary>
+Ver respuesta
+</summary>
+<strong>Falsa.</strong> Es la <strong><a href="../../prospecto/diccionario.html#falacia-ecologica" class="dic">falacia ecológica</a></strong>: atribuir a las personas una asociación observada entre grupos. Una relación entre países puede no existir, o incluso invertirse, dentro de cada país. Para hablar de personas se necesitan datos de personas, con un diseño de <a href="../../disenos/cohortes/index.html">cohorte</a> o de <a href="../../disenos/casos-y-controles/index.html">casos y controles</a>.
+</details>
+</div>
+<div class="pregunta">
+<p><strong>c) Una correlación de 0,79 significa que el 79 % de la variación en el número de premios se explica por el consumo de chocolate.</strong></p>
+<details>
+<summary>
+Ver respuesta
+</summary>
+<strong>Falsa.</strong> La proporción de variación compartida es el cuadrado del <a href="../../prospecto/diccionario.html#coeficiente-de-correlacion" class="dic">coeficiente de correlación</a>: r² = 0,791² = 0,63, es decir, 63 %. Y aun así, «explicar» se refiere solo a que ambas variables varían juntas, no a que una cause la otra.
+</details>
+</div>
+<div class="pregunta">
+<p><strong>d) Una característica de los países, como su riqueza, podría explicar a la vez el mayor consumo de chocolate y el mayor número de premios.</strong></p>
+<details>
+<summary>
+Ver respuesta
+</summary>
+<strong>Verdadera.</strong> Los países con más ingresos suelen consumir más productos como el chocolate y también invierten más en educación e investigación. Una variable así es un posible factor de <a href="../../prospecto/diccionario.html#confusion" class="dic">confusión</a>. En los estudios ecológicos, la confusión es difícil de controlar porque la mayoría de las características de los países se mueven juntas.
+</details>
+</div>
+</div>
+</section>
+<section id="rp" class="level2">
+<h2 class="anchored" data-anchor-id="rp">Rp/</h2>
+<div class="en-una-frase">
+<p>Lo que es cierto para los grupos no tiene por qué ser cierto para las personas: un estudio ecológico genera hipótesis, no las confirma.</p>
+</div>
+</section>
+<section id="diagnóstico-diferencial" class="level2">
+<h2 class="anchored" data-anchor-id="diagnóstico-diferencial">Diagnóstico diferencial</h2>
+<ul>
+<li><strong>Unidad de análisis frente a unidad de observación.</strong> Puedes medir a personas y analizar por establecimientos o distritos. Las conclusiones valen para la unidad de análisis.</li>
+<li><strong><a href="../../prospecto/diccionario.html#conglomerado" class="dic">Conglomerado</a>.</strong> En un muestreo por conglomerados mides a personas dentro de grupos: no es un estudio ecológico, pero debes considerar esa estructura en el análisis.</li>
+</ul>
+</section>
+<section id="en-r" class="level2">
+<h2 class="anchored" data-anchor-id="en-r">En R</h2>
+<div class="cell">
+<details class="code-fold">
+<summary>Ver código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1">r <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.791</span>; n <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">23</span>    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># correlación y número de países</span></span>
+<span id="cb1-2"></span>
+<span id="cb1-3"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Proporción de variación compartida</span></span>
+<span id="cb1-4">r<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">^</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span></span></code></pre></div></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.625681</code></pre>
+</div>
+<details class="code-fold">
+<summary>Ver código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Prueba de que la correlación es distinta de 0</span></span>
+<span id="cb3-2">t <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> r <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">sqrt</span>(n <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">sqrt</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span> <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span> r<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">^</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span>)</span>
+<span id="cb3-3"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">t =</span> t, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">p =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span> <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">pt</span>(<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">abs</span>(t), <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">df =</span> n <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span>))</span></code></pre></div></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>           t            p 
+5.924684e+00 7.011815e-06 </code></pre>
+</div>
+<details class="code-fold">
+<summary>Ver código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># IC 95 % de r con la transformación z de Fisher</span></span>
+<span id="cb5-2">z <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">atanh</span>(r) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1.96</span> <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">sqrt</span>(n <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">3</span>)</span>
+<span id="cb5-3"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">tanh</span>(z)</span></code></pre></div></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.5620524 0.9073582</code></pre>
+</div>
+</div>
+<div class="lee-salida">
+<ol type="1">
+<li><code>0.625681</code> Es r² = 0,63: el 63 % de la variación entre países de una variable se asocia linealmente con la otra.</li>
+<li><code>5.924684e+00</code> Es el estadístico t, en notación científica: <code>e+00</code> es «× 10⁰», así que vale 5,92.</li>
+<li><code>7.011815e-06</code> Es el valor p: 0,000007 (<code>e-06</code> es «× 10⁻⁶»). Se reporta como p &lt; 0,001.</li>
+<li><code>0.5620524 0.9073582</code> Es el IC 95 % de r: de 0,56 a 0,91. Incluso una correlación tan alta es imprecisa con solo 23 países.</li>
+</ol>
+<p><strong>En una frase:</strong> la correlación entre países fue alta (r = 0,79; IC 95 %: 0,56 a 0,91; p &lt; 0,001), pero es imprecisa con 23 puntos y no dice nada sobre las personas.</p>
+</div>
+</section>
+<section id="para-profundizar" class="level2">
+<h2 class="anchored" data-anchor-id="para-profundizar">Para profundizar</h2>
+<ul>
+<li><a href="../../disenos/index.html">Diseños de estudio</a>: dónde se ubica el estudio ecológico.</li>
+<li><a href="../../herramientas/muestra/index.html#mod=cor">Calcula el tamaño de muestra para una correlación</a> en el Consultorio estadístico.</li>
+</ul>
+</section>
+<section id="referencias" class="level2">
+<h2 class="anchored" data-anchor-id="referencias">Referencias</h2>
+<ol type="1">
+<li>Messerli FH. Chocolate consumption, cognitive function, and Nobel laureates. <em>N Engl J Med</em>. 2012;367:1562-4.</li>
+<li>Morgenstern H. Ecologic studies in epidemiology: concepts, principles, and methods. <em>Annu Rev Public Health</em>. 1995;16:61-81.</li>
+</ol>
+<div class="cta">
+<p><strong>¿Te tocó un caso así en tu tesis?</strong></p>
+<p>Te ayudo a elegir e interpretar el análisis correcto.</p>
+<p><a href="https://api.whatsapp.com/send?phone=51955446754&amp;text=Hola%2C%20le%C3%AD%20un%20caso%20cl%C3%ADnico%20estad%C3%ADstico%20en%20tu%20web%20y%20quiero%20informaci%C3%B3n%20sobre%20asesor%C3%ADa%20para%20mi%20tesis">Escríbeme por WhatsApp</a></p>
+</div>
+
+
+</section>
+
+ ]]></description>
+  <category>Caso clínico estadístico</category>
+  <category>Diseños de estudio</category>
+  <category>Epidemiología</category>
+  <guid>https://anthonyromero.netlify.app/casos/falacia-ecologica/</guid>
+  <pubDate>Mon, 23 Nov 2026 05:00:00 GMT</pubDate>
+  <media:content url="https://anthonyromero.netlify.app/casos/falacia-ecologica/portada.png" medium="image" type="image/png" height="76" width="144"/>
+</item>
 <item>
   <title>¿Funciona el fármaco si el placebo también funciona?</title>
   <dc:creator>Anthony Romero-Cerdán, MD</dc:creator>
@@ -1050,7 +1298,7 @@ historia   1.35 0.83 2.19</code></pre>
 <section id="interacciones" class="level2">
 <h2 class="anchored" data-anchor-id="interacciones">Interacciones</h2>
 <ul>
-<li><strong>r y r².</strong> El cuadrado de r es la proporción de la variabilidad que comparten ambas variables: un r de 0,5 equivale a un 25 % (ver el caso n.º 9).</li>
+<li><strong>r y r².</strong> El cuadrado de r es la proporción de la variabilidad que comparten ambas variables: un r de 0,5 equivale a un 25 % (ver el <a href="../../casos/falacia-ecologica/index.html">caso n.º 9</a>).</li>
 <li><strong>Transformaciones.</strong> Si una variable es muy asimétrica, el logaritmo puede volver lineal la relación y acercar Pearson a Spearman.</li>
 <li><strong>Tamaño de muestra.</strong> Con miles de participantes, una correlación muy débil puede ser significativa sin tener importancia práctica.</li>
 </ul>

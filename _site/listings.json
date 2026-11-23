@@ -17,6 +17,7 @@
   {
     "listing": "/blog.html",
     "items": [
+      "/casos/falacia-ecologica/index.html",
       "/casos/itt-vs-protocolo/index.html",
       "/casos/error-tipo-i-y-ii/index.html",
       "/casos/de-vs-ee/index.html",
@@ -38,6 +39,7 @@
   {
     "listing": "/index.html",
     "items": [
+      "/casos/falacia-ecologica/index.html",
       "/casos/itt-vs-protocolo/index.html",
       "/casos/error-tipo-i-y-ii/index.html",
       "/casos/de-vs-ee/index.html",
@@ -66,6 +68,7 @@
   {
     "listing": "/temas.html",
     "items": [
+      "/casos/falacia-ecologica/index.html",
       "/casos/itt-vs-protocolo/index.html",
       "/casos/error-tipo-i-y-ii/index.html",
       "/casos/de-vs-ee/index.html",
