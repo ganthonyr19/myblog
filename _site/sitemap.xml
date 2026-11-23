@@ -90,7 +90,7 @@
   </url>
   <url>
     <loc>https://anthonyromero.netlify.app/casos/index.html</loc>
-    <lastmod>2026-11-20T11:16:14.398Z</lastmod>
+    <lastmod>2026-11-23T11:35:24.656Z</lastmod>
   </url>
   <url>
     <loc>https://anthonyromero.netlify.app/vademecum/index.html</loc>
@@ -118,7 +118,7 @@
   </url>
   <url>
     <loc>https://anthonyromero.netlify.app/vademecum/correlacion/index.html</loc>
-    <lastmod>2026-11-11T15:37:27.575Z</lastmod>
+    <lastmod>2026-11-18T11:14:28.026Z</lastmod>
   </url>
   <url>
     <loc>https://anthonyromero.netlify.app/casos/sesgos-por-diseno/index.html</loc>
@@ -135,5 +135,9 @@
   <url>
     <loc>https://anthonyromero.netlify.app/casos/itt-vs-protocolo/index.html</loc>
     <lastmod>2026-11-20T11:16:14.396Z</lastmod>
+  </url>
+  <url>
+    <loc>https://anthonyromero.netlify.app/casos/falacia-ecologica/index.html</loc>
+    <lastmod>2026-11-23T11:35:24.654Z</lastmod>
   </url>
 </urlset>
