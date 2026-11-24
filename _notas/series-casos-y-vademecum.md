@@ -11,7 +11,7 @@ Instrucciones para redactar las entradas de la serie **Caso clínico estadístic
 ## 1. Quién es el autor y cómo trabajar con él
 
 - **Autor:** Anthony Romero-Cerdán, MD. Es médico cirujano colegiado, egresado de la UNMSM (Lima, Perú). Asesora tesis de ciencias de la salud en metodología y bioestadística con R.
-- **Marca:** Bioestadística en línea (Instagram @bioestadistica.en.linea).
+- **Marca:** Bioestadística en línea (Instagram @bioestadisticaenlinea).
 - **Idioma:** responde siempre en español.
 - **No inventar nada:** ningún dato, cifra, cita ni referencia. Si no sabes algo o no puedes verificarlo, dilo.
 - **Rigor máximo:** cada afirmación estadística debe ser correcta y defendible ante un jurado de tesis.
@@ -129,7 +129,7 @@ categories: [Caso clínico estadístico, Medidas de asociación, Ensayo clínico
 
 **Salidas de R:** cada salida que se interpreta va seguida de un bloque `::: {.lee-salida}` (lista numerada: fragmento exacto de la salida entre comillas invertidas + explicación; cierra con `**En una frase:**`). Ver `_notas/estado-del-sitio.md`.
 
-La tarjeta «Seguir @bioestadistica.en.linea» y el tiempo de lectura se agregan solos (`_includes/`). No los pongas a mano. **El bloque `.cta` debe ser lo último de su sección** (nada después dentro de ella): así `_includes/sigue.html` lo junta con la tarjeta de Instagram en el cierre compacto, lado a lado (decisión de Anthony, 11/11/2026). Mantén el texto breve: título de una línea y una frase. **No hay comentarios en el sitio.**
+La tarjeta «Seguir @bioestadisticaenlinea» y el tiempo de lectura se agregan solos (`_includes/`). No los pongas a mano. **El bloque `.cta` debe ser lo último de su sección** (nada después dentro de ella): así `_includes/sigue.html` lo junta con la tarjeta de Instagram en el cierre compacto, lado a lado (decisión de Anthony, 11/11/2026). Mantén el texto breve: título de una línea y una frase. **No hay comentarios en el sitio.**
 
 ### 4.3 Extensión y tono
 
@@ -246,7 +246,7 @@ CHROMIUM=/ruta/a/chromium node images/marcas/tarjeta.js casos/<slug>/portada.png
   '{"emblema":"casos","serie":"Caso clínico estadístico","subserie":"Caso n.º 1","titulo":"¿El odds ratio es un riesgo relativo?","bajada":"Un caso, cuatro afirmaciones y la explicación de cada una."}'
 ```
 
-- La tarjeta ya firma «Anthony Romero-Cerdán, MD», la web y @bioestadistica.en.linea.
+- La tarjeta ya firma «Anthony Romero-Cerdán, MD», la web y @bioestadisticaenlinea.
 - El campo `emblema` es el nombre del SVG en `images/marcas/` sin extensión; requiere que exista `casos.svg`.
 
 ---

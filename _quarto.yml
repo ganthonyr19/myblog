@@ -46,7 +46,7 @@ website:
          - text: Reportar un error
            href: https://github.com/ganthonyr19/myblog/issues
       - icon: instagram
-        href: https://www.instagram.com/bioestadistica.en.linea/
+        href: https://www.instagram.com/bioestadisticaenlinea/
         aria-label: Instagram de Bioestadística en línea
       - icon: tiktok
         href: https://www.tiktok.com/@bioestadisticaenlinea
@@ -57,7 +57,7 @@ website:
   page-footer: 
     left: |
       Creado con ![](/images/ricon24.png) y [Quarto](https://quarto.org).  
-      Código fuente [![](/images/github-icon.png)](https://github.com/ganthonyr19/myblog) · [Instagram \@bioestadistica.en.linea](https://www.instagram.com/bioestadistica.en.linea/) · [TikTok \@bioestadisticaenlinea](https://www.tiktok.com/@bioestadisticaenlinea)
+      Código fuente [![](/images/github-icon.png)](https://github.com/ganthonyr19/myblog) · [Instagram \@bioestadisticaenlinea](https://www.instagram.com/bioestadisticaenlinea/) · [TikTok \@bioestadisticaenlinea](https://www.tiktok.com/@bioestadisticaenlinea)
     background: light
     right: |
      &copy; 2023-2026 Anthony Romero Cerdán  

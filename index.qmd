@@ -9,7 +9,7 @@ about:
   links:
     - icon: instagram
       text: Instagram
-      href: https://www.instagram.com/bioestadistica.en.linea/
+      href: https://www.instagram.com/bioestadisticaenlinea/
     - icon: tiktok
       text: TikTok
       href: https://www.tiktok.com/@bioestadisticaenlinea
