@@ -23,7 +23,7 @@ import pathlib
 import re
 
 RAIZ = pathlib.Path(__file__).resolve().parent.parent
-SERIES = ["casos", "vademecum"]
+SERIES = ["casos", "vademecum", "disenos", "blog"]   # las que se publican por fecha
 MESES = ["ene.", "feb.", "mar.", "abr.", "may.", "jun.",
          "jul.", "ago.", "set.", "oct.", "nov.", "dic."]
 
@@ -77,6 +77,8 @@ def main():
                     qmd.write_text(nuevo, encoding="utf-8")
 
         portada = RAIZ / serie / "index.qmd"
+        if not portada.exists():      # blog/ no tiene portada de serie con tarjetas
+            continue
         texto = portada.read_text(encoding="utf-8")
         patron = re.compile(
             r'<a class="serie-item" href="([a-z0-9-]+)/index\.html">(.*?)</a>'
