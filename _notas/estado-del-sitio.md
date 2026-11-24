@@ -196,3 +196,10 @@ Nombre elegido por Anthony (15 oct 2026): **Consultorio estadístico**. Menú su
 - Cuenta de Anthony, código `anthonyromero`. Panel privado: https://anthonyromero.goatcounter.com
 - `_includes/goatcounter.html` (incluido en todas las páginas desde `_quarto.yml`) carga `count.js` solo en `anthonyromero.netlify.app`: no cuenta las vistas previas de Netlify ni las pruebas locales. No usa cookies.
 - **Decisión de Anthony:** al inicio las estadísticas son solo para él. **Cuando las lecturas pasen de 100, se hace público el contador** (discreto, junto al tiempo de lectura de cada entrada). Para activarlo: en GoatCounter, Settings → «Allow adding visitor counts on your website», y en el sitio llamar a `goatcounter.visit_count()` después de que cargue `count.js`. Las cifras públicas se guardan en caché hasta 4 horas.
+
+## TikTok junto a Instagram (23 nov 2026)
+
+- Decisión de Anthony: donde aparece Instagram, aparece también TikTok (@bioestadisticaenlinea, https://www.tiktok.com/@bioestadisticaenlinea).
+- Menú (ícono), pie de página, enlaces del inicio y de Sobre mí, tarjeta «¿Te sirvió?» al final de cada entrada (dos botones), plantilla de portadas `images/marcas/tarjeta.html` y PDF del mapa de pruebas.
+- En el pie, la arroba va escapada (`\@`) para que Pandoc no la lea como cita.
+- Las portadas ya generadas conservan solo Instagram; las nuevas salen con ambas redes.

@@ -24,6 +24,9 @@ about:
     - icon: instagram
       text: Instagram
       href: https://www.instagram.com/bioestadistica.en.linea/
+    - icon: tiktok
+      text: TikTok
+      href: https://www.tiktok.com/@bioestadisticaenlinea
     - icon: linkedin
       text: LinkedIn
       href: https://www.linkedin.com/in/garomeroc/
