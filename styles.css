@@ -460,6 +460,9 @@
 .sigue-ig a{align-self:flex-start;margin-top:auto;padding:.35rem .9rem;border-radius:999px;background:#E5636F;color:#fff !important;
   font-weight:600;text-decoration:none;font-size:.82rem}
 .sigue-ig a:hover{filter:brightness(1.08)}
+.sigue-ig .sigue-redes{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:auto}
+.sigue-ig .sigue-redes a{margin-top:0}
+.sigue-ig a.tt{background:#0B1F3A}
 @media (max-width:640px){ .cierre{flex-direction:column} .sigue-ig{max-width:none} }
 
 /* Sobre mí: idiomas como escala de puntos (A1 a C2) */
