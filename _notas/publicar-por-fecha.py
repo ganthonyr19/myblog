@@ -23,7 +23,7 @@ import pathlib
 import re
 
 RAIZ = pathlib.Path(__file__).resolve().parent.parent
-SERIES = ["casos", "vademecum"]
+SERIES = ["casos", "vademecum", "disenos"]
 MESES = ["ene.", "feb.", "mar.", "abr.", "may.", "jun.",
          "jul.", "ago.", "set.", "oct.", "nov.", "dic."]
 
