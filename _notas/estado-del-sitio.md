@@ -42,7 +42,7 @@ El sitio se renderiza con **Quarto 1.10.18**. Usar otra versión rompe el JavaSc
 
 ## 2. Prospecto R
 
-Serie de minitutoriales de análisis de datos de salud en R, al estilo de las *recipes* de Posit, con datos reales del Perú. Firma: Anthony Romero Cerdán + Bioestadística en línea (@bioestadistica.en.linea). Nombres de los niveles: **Dosis inicial** y **Dosis plena** (decisión final de Anthony).
+Serie de minitutoriales de análisis de datos de salud en R, al estilo de las *recipes* de Posit, con datos reales del Perú. Firma: Anthony Romero Cerdán + Bioestadística en línea (@bioestadisticaenlinea). Nombres de los niveles: **Dosis inicial** y **Dosis plena** (decisión final de Anthony).
 
 El botón «Escríbeme» (`contacto:` en `prospecto/_metadata.yml`) abre WhatsApp (51955446754) con el mensaje «Hola, vi tu tutorial Prospecto R en tu página web y quiero información sobre asesoría para mi tesis», distinto del de Instagram, para saber de dónde llega cada contacto.
 
@@ -127,10 +127,10 @@ Nombre elegido por Anthony (15 oct 2026): **Consultorio estadístico**. Menú su
 - Portadas 1200 × 630 de cada entrada: `node images/marcas/tarjeta.js salida.png '{"emblema":"disenos","serie":"…","subserie":"…","titulo":"…","bajada":"…"}'` (con `CHROMIUM=/ruta/a/chromium` si hace falta). Usa `tarjeta.html`, las fuentes de Prospecto R y el logo `logo-bel.png`.
 - Componentes editoriales nuevos en `estilo/editorial.css`: tarjetas numeradas, triaje, mapa de pruebas, mitos, diagramas, pros y contras, llamada a la calculadora, rejilla de serie.
 
-## Instagram (@bioestadistica.en.linea)
+## Instagram (@bioestadisticaenlinea)
 
 - Ícono en el menú superior, enlace en el pie de página, en el inicio y en «Sobre mí».
-- Tarjeta «¿Te sirvió? Seguir @bioestadistica.en.linea» al final de cada página con título que no sea listado ni el inicio: `_includes/sigue.html` (incluido en `_quarto.yml`), estilos en `styles.css`. Para ocultarla en una página: clase `sin-sigue` en el body.
+- Tarjeta «¿Te sirvió? Seguir @bioestadisticaenlinea» al final de cada página con título que no sea listado ni el inicio: `_includes/sigue.html` (incluido en `_quarto.yml`), estilos en `styles.css`. Para ocultarla en una página: clase `sin-sigue` en el body.
 - **Cierre compacto (decisión de Anthony, 11/11/2026, regla para todo lo que se publique):** si la página tiene un bloque `.cta` (WhatsApp) y es el último elemento de su sección, el script lo envuelve junto con la tarjeta de Instagram en `<div class="cierre">`: dos tarjetas compactas lado a lado (apiladas en menos de 640 px). Sin `.cta`, la tarjeta de Instagram sale sola, compacta y a media columna. Estilos en `styles.css` (sección «Cierre de las entradas»). Se usa `display:flex` y un `div` (no `grid` ni `aside`) porque Quarto asigna columnas de su rejilla de página a esos elementos y rompe el diseño.
 
 ## Cómo renderizar aquí (lecciones del 15 oct 2026)
@@ -203,3 +203,9 @@ Nombre elegido por Anthony (15 oct 2026): **Consultorio estadístico**. Menú su
 - Menú (ícono), pie de página, enlaces del inicio y de Sobre mí, tarjeta «¿Te sirvió?» al final de cada entrada (dos botones), plantilla de portadas `images/marcas/tarjeta.html` y PDF del mapa de pruebas.
 - En el pie, la arroba va escapada (`\@`) para que Pandoc no la lea como cita.
 - Las portadas ya generadas conservan solo Instagram; las nuevas salen con ambas redes.
+
+## Usuario de Instagram nuevo (23 nov 2026)
+
+- Anthony cambió el usuario de Instagram a **@bioestadisticaenlinea** (igual que TikTok). El anterior, @bioestadistica.en.linea, ya no existe: Instagram no redirige usuarios antiguos.
+- Cambiado en menú, pie, inicio, Sobre mí, tarjeta de cierre, plantilla de portadas, PDF del mapa y todas las portadas ya generadas.
+- Al regenerar las portadas se corrigió `tarjeta.html`: la bajada se calculaba antes de que cargara la fuente del título, y en títulos de dos líneas quedaba encimada (pasaba en los casos 2, 9 y 11). Ahora carga las fuentes primero y `tarjeta.js` espera a que la página esté lista.
