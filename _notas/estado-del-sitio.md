@@ -190,3 +190,9 @@ Nombre elegido por Anthony (15 oct 2026): **Consultorio estadístico**. Menú su
   1. Todo lo que ejecute R en un contenedor corre con `LANG=C.UTF-8`.
   2. `render.js` se detiene si el JSON trae tildes dañadas, y tiene la opción `--solo-ficha`.
   3. `python3 _notas/revisar-descargables.py` revisa PDF (con pdftotext), `.R`, JSON, CSV, TXT y HTML; córrelo antes de cada commit que toque descargas o Prospecto R. Está incluido en la tarea programada de publicación.
+
+## Estadísticas de visitas: GoatCounter (23 nov 2026)
+
+- Cuenta de Anthony, código `anthonyromero`. Panel privado: https://anthonyromero.goatcounter.com
+- `_includes/goatcounter.html` (incluido en todas las páginas desde `_quarto.yml`) carga `count.js` solo en `anthonyromero.netlify.app`: no cuenta las vistas previas de Netlify ni las pruebas locales. No usa cookies.
+- **Decisión de Anthony:** al inicio las estadísticas son solo para él. **Cuando las lecturas pasen de 100, se hace público el contador** (discreto, junto al tiempo de lectura de cada entrada). Para activarlo: en GoatCounter, Settings → «Allow adding visitor counts on your website», y en el sitio llamar a `goatcounter.visit_count()` después de que cargue `count.js`. Las cifras públicas se guardan en caché hasta 4 horas.
