@@ -20,7 +20,7 @@ Estado: `pendiente` → `PR #N` (borrador abierto) → `publicada`. La tarea del
 
 | Miércoles | Serie | Entrada | Estado |
 |---|---|---|---|
-| 2026-12-02 | Vademécum, ficha n.º 5 | ANOVA y Kruskal-Wallis (tres o más grupos) | pendiente |
+| 2026-12-02 | Vademécum, ficha n.º 5 | ANOVA y Kruskal-Wallis (tres o más grupos) | PR #31 |
 | 2026-12-09 | Diseños, n.º 4 | El ensayo clínico | pendiente |
 | 2026-12-16 | Vademécum, ficha n.º 6 | Prueba t pareada y Wilcoxon (mismas personas, dos mediciones) | pendiente |
 | 2026-12-23 | Prospecto R, n.º 3 | Regresión logística y su interpretación (ENDES). Respaldo: Blog «Los errores que más observa el jurado en la sección de análisis» | pendiente |
