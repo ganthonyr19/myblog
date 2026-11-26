@@ -44,11 +44,11 @@ El Consultorio estadístico aún no tiene un módulo para tres o más grupos. En
 Calcúlalo en el Consultorio estadístico: [tamaño de muestra para comparar dos medias](../../herramientas/muestra/index.qmd#mod=med).
 :::
 
-Para Kruskal-Wallis vale la misma regla prudente que para la U de Mann-Whitney: calcula el tamaño del ANOVA y auméntalo alrededor de un 15 %.
+Para Kruskal-Wallis vale la misma regla prudente que para la U de Mann-Whitney: calcula el tamaño del ANOVA y auméntalo alrededor de un 15%.
 
 ## Interacciones
 
-- **Varias pruebas t en lugar de un ANOVA.** Con cuatro grupos hay seis comparaciones posibles. Si cada una se hace con un nivel de significación de 0,05, la probabilidad de al menos un falso positivo ([error tipo I](../../prospecto/diccionario.qmd#error-tipo-i-y-ii){.dic}) es mucho mayor que 5 %: cerca de 26 % si las comparaciones fueran independientes.
+- **Varias pruebas t en lugar de un ANOVA.** Con cuatro grupos hay seis comparaciones posibles. Si cada una se hace con un nivel de significación de 0,05, la probabilidad de al menos un falso positivo ([error tipo I](../../prospecto/diccionario.qmd#error-tipo-i-y-ii){.dic}) es mucho mayor que 5%: cerca de 26% si las comparaciones fueran independientes.
 - **Comparaciones múltiples.** Tras el ANOVA clásico, Tukey; si las varianzas difieren, Games-Howell (`rstatix::games_howell_test()`) o pruebas t de Welch entre pares con ajuste de Holm. Tras Kruskal-Wallis, la prueba de Dunn (`rstatix::dunn_test()`) o pruebas de Mann-Whitney entre pares, también con ajuste.
 - **Prueba de Levene como filtro.** Igual que con dos grupos, elegir entre el ANOVA clásico y el de Welch según una prueba previa de varianzas añade un paso innecesario. Delacre et al. (2019) recomiendan usar el de Welch por defecto. En R, `oneway.test()` lo aplica si no se indica otra cosa.
 - **La normalidad se evalúa en los residuos.** El supuesto es que los residuos del modelo son aproximadamente normales, no la variable en toda la muestra. Con grupos grandes, el ANOVA es robusto a desviaciones moderadas.
@@ -57,7 +57,7 @@ Para Kruskal-Wallis vale la misma regla prudente que para la U de Mann-Whitney: 
 
 ## Reacciones adversas frecuentes en las tesis
 
-- **Detenerse en el ANOVA significativo.** «Hubo diferencias entre los grupos» deja al jurado sin saber cuáles. Reporta las comparaciones múltiples.
+- **Detenerse en el ANOVA significativo.** "Hubo diferencias entre los grupos" deja al jurado sin saber cuáles. Reporta las comparaciones múltiples.
 - **Hacer comparaciones entre pares sin ajustar los valores p.** Es el mismo problema que hacer varias pruebas t.
 - **Reportar solo el valor p.** Faltan las medias (o medianas) de cada grupo y una medida de la magnitud: las diferencias entre grupos o el [tamaño del efecto](../../prospecto/diccionario.qmd#tamano-del-efecto){.dic}.
 - **Mezclar lenguajes.** Si usas Kruskal-Wallis, describe a los grupos con [mediana y RIC](../../prospecto/diccionario.qmd#mediana-y-ric){.dic}; si usas ANOVA, con media y [desviación estándar](../../prospecto/diccionario.qmd#desviacion-estandar){.dic}.
@@ -133,9 +133,9 @@ round(sc[1] / sum(sc), 3)                      # eta cuadrado
 3. `19.01` Es el F del ANOVA clásico. Difiere del de Welch (17,38) porque supone varianzas iguales; aquí ambos llevan a la misma conclusión.
 4. `2.45e-11` Es su valor p: p < 0,001.
 5. `46.26` Es la variabilidad dentro de los estadios, mucho mayor que la que hay entre ellos.
-6. `0.156` Es eta cuadrado: 8,57 ÷ (8,57 + 46,26). El estadio explica alrededor del 16 % de la variabilidad de la albúmina; el 84 % restante se debe a diferencias entre pacientes del mismo estadio.
+6. `0.156` Es eta cuadrado: 8,57 ÷ (8,57 + 46,26). El estadio explica alrededor del 16% de la variabilidad de la albúmina; el 84% restante se debe a diferencias entre pacientes del mismo estadio.
 
-**En una frase:** el estadio histológico explicó alrededor del 16 % de la variabilidad de la albúmina (eta cuadrado = 0,16).
+**En una frase:** el estadio histológico explicó alrededor del 16% de la variabilidad de la albúmina (eta cuadrado = 0,16).
 :::
 
 ```{r}
