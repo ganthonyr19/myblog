@@ -16,7 +16,9 @@ Instrucciones para redactar las entradas de la serie **Caso clínico estadístic
 - **No inventar nada:** ningún dato, cifra, cita ni referencia. Si no sabes algo o no puedes verificarlo, dilo.
 - **Rigor máximo:** cada afirmación estadística debe ser correcta y defendible ante un jurado de tesis.
 - **Configuración paso a paso:** si guías a Anthony en Git, RStudio u otra configuración, da un paso a la vez y espera su confirmación.
-- **Decimales con coma** en todo el texto (1,96; IC 95 %: 1,2 a 3,4). En el código R se usa punto.
+- **Decimales con coma** en todo el texto (1,96; IC 95%: 1,2 a 3,4). En el código R se usa punto.
+- **El símbolo % va pegado al número** ("15%", "IC 95%"), nunca con espacio (decisión de Anthony, 26/11/2026: es más humano). Aplica a todo lo nuevo; lo ya publicado se deja como está.
+- **Comillas rectas ""**, nunca comillas latinas «» (decisión de Anthony, 25/11/2026), en todo lo nuevo.
 - **Mensajes de WhatsApp** que pida: informales, como escritos desde el celular, sin guiones.
 
 ---
