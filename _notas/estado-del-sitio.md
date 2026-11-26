@@ -209,3 +209,8 @@ Nombre elegido por Anthony (15 oct 2026): **Consultorio estadístico**. Menú su
 - Anthony cambió el usuario de Instagram a **@bioestadisticaenlinea** (igual que TikTok). El anterior, @bioestadistica.en.linea, ya no existe: Instagram no redirige usuarios antiguos.
 - Cambiado en menú, pie, inicio, Sobre mí, tarjeta de cierre, plantilla de portadas, PDF del mapa y todas las portadas ya generadas.
 - Al regenerar las portadas se corrigió `tarjeta.html`: la bajada se calculaba antes de que cargara la fuente del título, y en títulos de dos líneas quedaba encimada (pasaba en los casos 2, 9 y 11). Ahora carga las fuentes primero y `tarjeta.js` espera a que la página esté lista.
+
+## Estilo de escritura para todo lo nuevo (25 y 26 nov 2026)
+
+- Decisiones de Anthony: el símbolo % va pegado al número ("15%", "IC 95%"), nunca "15 %"; comillas rectas "", nunca «». Decimales con coma.
+- Aplica a toda entrada, recuadro, portada o texto nuevo, y a las publicaciones de redes. El contenido ya publicado no se reescribe salvo que Anthony lo pida.

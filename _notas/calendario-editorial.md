@@ -1,5 +1,7 @@
 # Calendario editorial de la web (desde el 24 nov 2026)
 
+Estilo para todo lo nuevo (decisiones de Anthony): decimales con coma; el símbolo % pegado al número (15%, IC 95%); comillas rectas "", nunca «».
+
 Decisión de Anthony (24/11/2026): equilibrar las series según su complejidad para tener variedad.
 
 ## Ritmo semanal
