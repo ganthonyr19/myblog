@@ -1,0 +1,214 @@
+---
+title: "ANOVA y Kruskal-Wallis"
+description: "Vademécum estadístico: indicación, contraindicaciones, posología, interacciones y reacciones adversas del ANOVA de un factor (clásico y de Welch) y de la prueba de Kruskal-Wallis, con su código en R."
+date: 2026-12-02
+draft: true
+image: portada.png
+categories: [Vademécum estadístico, Pruebas estadísticas, Tesis]
+---
+
+[![](../../images/marcas/vademecum.svg)<span><b>Vademécum estadístico</b><em>Ficha n.º 5</em></span>](../index.qmd){.sello}
+
+::: {.en-una-frase}
+Comparan una variable numérica entre **tres o más** grupos de personas distintas: el ANOVA compara medias; Kruskal-Wallis, rangos. Un p pequeño dice que algún grupo difiere, no cuál: para eso hacen falta comparaciones múltiples.
+:::
+
+## Indicación
+
+Comparar tres o más grupos independientes en una variable numérica: la hemoglobina según el piso altitudinal, el índice de masa corporal según el nivel educativo o la estancia hospitalaria según el tipo de cirugía. Usa el ANOVA si la variable es razonablemente simétrica o la muestra es grande, y Kruskal-Wallis si es ordinal o muy asimétrica con grupos pequeños.
+
+## Mecanismo de acción
+
+El ANOVA (análisis de varianza) compara dos fuentes de variabilidad: la que hay **entre** las medias de los grupos y la que hay **dentro** de cada grupo. Su estadístico F es el cociente de ambas. Si la hipótesis nula de que todas las medias poblacionales son iguales fuera cierta, F estaría cerca de 1; cuanto mayor es, más se separan los grupos en relación con su dispersión interna.
+
+El ANOVA clásico supone que todos los grupos tienen la misma varianza. El ANOVA de Welch (1951) no lo supone, igual que la prueba t de Welch con dos grupos.
+
+Kruskal-Wallis (1952) reemplaza cada valor por su rango en el conjunto de todos los participantes y compara los rangos promedio de los grupos. Es la extensión de la [U de Mann-Whitney](../u-de-mann-whitney/index.qmd) a más de dos grupos.
+
+Ninguna de las dos pruebas dice **qué** grupos difieren. Eso lo dicen las comparaciones múltiples, que se hacen después, con valores p ajustados.
+
+## Contraindicaciones
+
+- **Solo dos grupos.** Corresponde la [prueba t de Welch](../t-de-welch/index.qmd) o la U de Mann-Whitney.
+- **Medidas repetidas.** Si son las mismas personas medidas en tres o más momentos, corresponden el ANOVA de medidas repetidas o la prueba de Friedman.
+- **ANOVA clásico con varianzas distintas y grupos de tamaño desigual.** Es la combinación en la que más falla: usa el ANOVA de Welch.
+- **Querer comparar medianas con Kruskal-Wallis.** Como la U de Mann-Whitney, compara medianas solo si las distribuciones de los grupos tienen la misma forma.
+
+## Posología
+
+El Consultorio estadístico aún no tiene un módulo para tres o más grupos. En R, `power.anova.test()` calcula el tamaño por grupo a partir de las medias que esperas en cada grupo y de la varianza dentro de los grupos. Otra opción es calcular el tamaño para la comparación entre dos grupos que más te importa:
+
+::: {.usa-calc}
+![](../../images/marcas/muestra.svg)
+
+Calcúlalo en el Consultorio estadístico: [tamaño de muestra para comparar dos medias](../../herramientas/muestra/index.qmd#mod=med).
+:::
+
+Para Kruskal-Wallis vale la misma regla prudente que para la U de Mann-Whitney: calcula el tamaño del ANOVA y auméntalo alrededor de un 15 %.
+
+## Interacciones
+
+- **Varias pruebas t en lugar de un ANOVA.** Con cuatro grupos hay seis comparaciones posibles. Si cada una se hace con un nivel de significación de 0,05, la probabilidad de al menos un falso positivo ([error tipo I](../../prospecto/diccionario.qmd#error-tipo-i-y-ii){.dic}) es mucho mayor que 5 %: cerca de 26 % si las comparaciones fueran independientes.
+- **Comparaciones múltiples.** Tras el ANOVA clásico, Tukey; si las varianzas difieren, Games-Howell (`rstatix::games_howell_test()`) o pruebas t de Welch entre pares con ajuste de Holm. Tras Kruskal-Wallis, la prueba de Dunn (`rstatix::dunn_test()`) o pruebas de Mann-Whitney entre pares, también con ajuste.
+- **Prueba de Levene como filtro.** Igual que con dos grupos, elegir entre el ANOVA clásico y el de Welch según una prueba previa de varianzas añade un paso innecesario. Delacre et al. (2019) recomiendan usar el de Welch por defecto. En R, `oneway.test()` lo aplica si no se indica otra cosa.
+- **La normalidad se evalúa en los residuos.** El supuesto es que los residuos del modelo son aproximadamente normales, no la variable en toda la muestra. Con grupos grandes, el ANOVA es robusto a desviaciones moderadas.
+- **Grupos ordenados.** Si los grupos tienen un orden natural (estadios, quintiles de riqueza), el ANOVA y Kruskal-Wallis no usan ese orden. Si tu pregunta es si la variable aumenta o disminuye a lo largo de las categorías, una prueba de tendencia o una regresión responde mejor.
+- **Confusión.** Ninguna de las dos ajusta por otras variables. Para eso necesitas una regresión lineal.
+
+## Reacciones adversas frecuentes en las tesis
+
+- **Detenerse en el ANOVA significativo.** «Hubo diferencias entre los grupos» deja al jurado sin saber cuáles. Reporta las comparaciones múltiples.
+- **Hacer comparaciones entre pares sin ajustar los valores p.** Es el mismo problema que hacer varias pruebas t.
+- **Reportar solo el valor p.** Faltan las medias (o medianas) de cada grupo y una medida de la magnitud: las diferencias entre grupos o el [tamaño del efecto](../../prospecto/diccionario.qmd#tamano-del-efecto){.dic}.
+- **Mezclar lenguajes.** Si usas Kruskal-Wallis, describe a los grupos con [mediana y RIC](../../prospecto/diccionario.qmd#mediana-y-ric){.dic}; si usas ANOVA, con media y [desviación estándar](../../prospecto/diccionario.qmd#desviacion-estandar){.dic}.
+
+## Presentación en R
+
+Con la base `pbc` comparamos la albúmina sérica, una variable bastante simétrica, entre los cuatro estadios histológicos de la enfermedad, con el ANOVA. Luego, la bilirrubina, muy asimétrica, con Kruskal-Wallis.
+
+```{r}
+#| echo: true
+library(survival)
+d <- pbc[!is.na(pbc$trt), ]                    # los 312 pacientes del ensayo
+d$estadio <- factor(d$stage, 1:4, paste("Estadio", 1:4))
+
+# 1. Albúmina según el estadio: n, media y desviación estándar
+aggregate(albumin ~ estadio, data = d,
+          FUN = function(x) round(c(n = length(x), media = mean(x), de = sd(x)), 2))
+```
+
+::: {.lee-salida}
+1. `albumin.n` Son las columnas: número de pacientes, media y desviación estándar de la albúmina (g/dL) en cada estadio.
+2. `16.00` El estadio 1 tiene solo 16 pacientes, frente a 120 del estadio 3: los grupos son de tamaño muy desigual.
+3. `3.74` Es la albúmina media del estadio 1 (3,74 g/dL). En los estadios 2 y 3 es de 3,63 g/dL.
+4. `0.30` La desviación estándar del estadio 1 es de 0,30 g/dL, y la del estadio 4, de 0,43 g/dL: la varianza del estadio 4 es unas dos veces la del estadio 1. Con grupos desiguales, es motivo para preferir el ANOVA de Welch.
+5. `3.30` En el estadio 4, la media baja a 3,30 g/dL.
+
+**En una frase:** la albúmina media fue de 3,74 g/dL (DE 0,30) en el estadio 1, 3,63 (0,36) en el 2, 3,63 (0,37) en el 3 y 3,30 (0,43) en el 4.
+:::
+
+```{r}
+#| echo: true
+oneway.test(albumin ~ estadio, data = d)       # ANOVA de Welch
+```
+
+::: {.lee-salida}
+1. `not assuming equal variances` Es el ANOVA de Welch: no supone varianzas iguales. Es lo que hace `oneway.test()` por defecto; con `var.equal = TRUE` haría el clásico.
+2. `F = 17.383` Es el estadístico F: la variabilidad entre los grupos es mucho mayor que la que se esperaría por la variabilidad dentro de ellos.
+3. `num df = 3.000, denom df = 68.859` Son los grados de libertad. El del numerador es el número de grupos menos 1. El del denominador tiene decimales porque Welch lo ajusta por las varianzas distintas.
+4. `p-value = 1.662e-08` Se reporta como p < 0,001: al menos un estadio tiene una albúmina media distinta de los demás. Todavía no sabemos cuál.
+
+**En una frase:** la albúmina media difirió según el estadio histológico (p < 0,001; ANOVA de Welch).
+:::
+
+```{r}
+#| echo: true
+# Comparaciones entre pares: t de Welch con valores p ajustados por Holm
+pairwise.t.test(d$albumin, d$estadio, pool.sd = FALSE, p.adjust.method = "holm")
+```
+
+::: {.lee-salida}
+1. `t tests with non-pooled SD` Son pruebas t entre cada par de estadios, sin suponer varianzas iguales (`pool.sd = FALSE`): pruebas t de Welch.
+2. `0.62` Cada celda es el valor p ajustado de un par. Estadio 2 frente a estadio 1: p = 0,62. Entre los estadios 1, 2 y 3 no hay diferencias claras.
+3. `7.9e-05` Estadio 4 frente a estadio 1: p < 0,001.
+4. `8.4e-07` Estadio 4 frente a estadio 2: p < 0,001.
+5. `8.8e-09` Estadio 4 frente a estadio 3: p < 0,001. La diferencia está en el estadio 4.
+6. `P value adjustment method: holm` Los valores p ya están ajustados por el método de Holm, que corrige el aumento de falsos positivos por hacer seis comparaciones. Se comparan directamente con 0,05.
+
+**En una frase:** la albúmina del estadio 4 fue menor que la de los estadios 1, 2 y 3 (p ajustado < 0,001 en los tres casos), sin diferencias claras entre los estadios 1 a 3.
+:::
+
+```{r}
+#| echo: true
+# ANOVA clásico, para obtener el tamaño del efecto (eta cuadrado)
+modelo <- aov(albumin ~ estadio, data = d)
+summary(modelo)
+sc <- summary(modelo)[[1]][["Sum Sq"]]
+round(sc[1] / sum(sc), 3)                      # eta cuadrado
+```
+
+::: {.lee-salida}
+1. `Sum Sq` Son las sumas de cuadrados: la variabilidad total de la albúmina se reparte entre la fila `estadio` (entre los grupos) y la fila `Residuals` (dentro de los grupos).
+2. `8.57` Es la variabilidad entre los estadios.
+3. `19.01` Es el F del ANOVA clásico. Difiere del de Welch (17,38) porque supone varianzas iguales; aquí ambos llevan a la misma conclusión.
+4. `2.45e-11` Es su valor p: p < 0,001.
+5. `46.26` Es la variabilidad dentro de los estadios, mucho mayor que la que hay entre ellos.
+6. `0.156` Es eta cuadrado: 8,57 ÷ (8,57 + 46,26). El estadio explica alrededor del 16 % de la variabilidad de la albúmina; el 84 % restante se debe a diferencias entre pacientes del mismo estadio.
+
+**En una frase:** el estadio histológico explicó alrededor del 16 % de la variabilidad de la albúmina (eta cuadrado = 0,16).
+:::
+
+```{r}
+#| echo: true
+# 2. Bilirrubina según el estadio: mediana y rango intercuartílico
+aggregate(bili ~ estadio, data = d, FUN = function(x) quantile(x, c(0.25, 0.5, 0.75)))
+```
+
+::: {.lee-salida}
+1. `bili.50%` Son los percentiles 25, 50 (la mediana) y 75 de la bilirrubina (mg/dL) en cada estadio.
+2. `0.700` Es la mediana del estadio 1: 0,70 mg/dL (RIC: 0,58 a 1,00).
+3. `2.800` Es la mediana del estadio 4: 2,80 mg/dL (RIC: 1,30 a 6,40), cuatro veces la del estadio 1. El percentil 75 (6,40) está mucho más lejos de la mediana que el 25: la distribución tiene una cola larga a la derecha.
+
+**En una frase:** la mediana de bilirrubina aumentó del estadio 1 (0,70 mg/dL; RIC: 0,58 a 1,00) al estadio 4 (2,80 mg/dL; RIC: 1,30 a 6,40).
+:::
+
+```{r}
+#| echo: true
+kruskal.test(bili ~ estadio, data = d)
+```
+
+::: {.lee-salida}
+1. `Kruskal-Wallis rank sum test` Es la prueba de Kruskal-Wallis, basada en la suma de rangos de cada grupo.
+2. `Kruskal-Wallis chi-squared = 48.254` Es su estadístico (H). Con muestras de tamaño moderado se compara con una distribución chi cuadrado; por eso R lo llama así, aunque no es una prueba de chi cuadrado de una tabla.
+3. `df = 3` Grados de libertad: número de grupos menos 1.
+4. `p-value = 1.88e-10` p < 0,001: la bilirrubina tiende a ser mayor en unos estadios que en otros.
+
+**En una frase:** la bilirrubina difirió según el estadio histológico (p < 0,001; prueba de Kruskal-Wallis).
+:::
+
+```{r}
+#| echo: true
+# Comparaciones entre pares: U de Mann-Whitney con valores p ajustados por Holm
+pairwise.wilcox.test(d$bili, d$estadio, p.adjust.method = "holm", exact = FALSE)
+```
+
+::: {.lee-salida}
+1. `Wilcoxon rank sum test` Son pruebas U de Mann-Whitney (R las llama de Wilcoxon) entre cada par de estadios. La prueba de Dunn es una alternativa que usa los rangos de Kruskal-Wallis.
+2. `0.16814` Estadio 2 frente a estadio 1: p ajustado = 0,17, sin diferencia clara.
+3. `0.00606` Estadio 3 frente a estadio 1: p ajustado = 0,006.
+4. `0.02391` Estadio 3 frente a estadio 2: p ajustado = 0,024.
+5. `5.9e-06` Estadio 4 frente a estadio 1: p ajustado < 0,001. Los otros dos pares con el estadio 4 también tienen p < 0,001.
+6. `P value adjustment method: holm` Igual que antes, los valores p ya están ajustados.
+
+**En una frase:** la bilirrubina fue mayor en el estadio 4 que en los demás (p ajustado < 0,001) y en el estadio 3 que en los estadios 1 y 2 (p ajustado = 0,006 y 0,024).
+:::
+
+## Cómo reportarlo
+
+::: {.reporte}
+> La albúmina sérica media difirió según el estadio histológico (p < 0,001; ANOVA de Welch): fue menor en el estadio 4 (3,30 g/dL; DE 0,43) que en los estadios 1 (3,74; DE 0,30), 2 (3,63; DE 0,36) y 3 (3,63; DE 0,37) (p < 0,001 en las tres comparaciones; pruebas t de Welch con ajuste de Holm). La bilirrubina también difirió según el estadio (p < 0,001; prueba de Kruskal-Wallis), con medianas de 0,70 mg/dL (RIC: 0,58 a 1,00) en el estadio 1 y de 2,80 mg/dL (RIC: 1,30 a 6,40) en el estadio 4.
+:::
+
+## Diagnóstico diferencial
+
+- **Prueba t de Welch y U de Mann-Whitney.** Para dos grupos.
+- **ANOVA de medidas repetidas y prueba de Friedman.** Para las mismas personas medidas tres o más veces.
+- **Regresión lineal.** Para comparar grupos ajustando por confusores; el ANOVA de un factor es una regresión lineal con una sola variable categórica.
+
+Revisa también la receta corta de estas pruebas en el [Triaje estadístico](../../blog/que-prueba-estadistica/index.qmd#haz-tu-triaje).
+
+## Referencias
+
+1. Kirkwood BR, Sterne JAC. *Essential Medical Statistics*. 2.ª ed. Oxford: Blackwell Science; 2003.
+2. Welch BL. On the comparison of several mean values: an alternative approach. *Biometrika*. 1951;38:330-6.
+3. Kruskal WH, Wallis WA. Use of ranks in one-criterion variance analysis. *J Am Stat Assoc*. 1952;47(260):583-621.
+4. Delacre M, Leys C, Mora YL, Lakens D. Taking parametric assumptions seriously: arguments for the use of Welch's F-test instead of the classical F-test in one-way ANOVA. *Int Rev Soc Psychol*. 2019;32(1). doi:10.5334/irsp.198
+5. Dickson ER, Grambsch PM, Fleming TR, Fisher LD, Langworthy A. Prognosis in primary biliary cirrhosis: model for decision making. *Hepatology*. 1989;10(1):1-7.
+
+::: {.cta}
+**¿Tres grupos o más en tu tesis?**
+
+Te ayudo a elegir, ejecutar y reportar la prueba correcta, con sus comparaciones múltiples.
+
+[Escríbeme por WhatsApp](https://api.whatsapp.com/send?phone=51955446754&text=Hola%2C%20le%C3%AD%20el%20vadem%C3%A9cum%20estad%C3%ADstico%20de%20tu%20web%20y%20quiero%20informaci%C3%B3n%20sobre%20asesor%C3%ADa%20para%20mi%20tesis)
+:::

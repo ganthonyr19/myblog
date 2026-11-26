@@ -352,7 +352,7 @@ ul.task-list li input[type="checkbox"] {
     <a class="nav-link" href="https://www.instagram.com/bioestadisticaenlinea/"> <i class="bi bi-instagram" role="img" aria-label="Instagram de Bioestadística en línea">
 </i> 
 <span class="menu-text"></span></a>
-  </li>
+  </li>  
   <li class="nav-item compact">
     <a class="nav-link" href="https://www.tiktok.com/@bioestadisticaenlinea"> <i class="bi bi-tiktok" role="img" aria-label="TikTok de Bioestadística en línea">
 </i> 
@@ -439,7 +439,7 @@ ul.task-list li input[type="checkbox"] {
     <span class="d">Una variable sesgada u ordinal en dos grupos.</span></a>
   <a class="serie-item" href="correlacion/index.html"><span class="n">Ficha n.º 4</span><strong>Correlación de Pearson y de Spearman</strong>
     <span class="d">Dos variables numéricas en las mismas personas.</span></a>
-  <div class="serie-item pronto"><span class="n">Próximamente</span><strong>ANOVA y Kruskal-Wallis</strong><span class="d">Tres o más grupos.</span></div>
+  <div class="serie-item pronto" data-slug="anova-y-kruskal-wallis"><span class="n">Ficha n.º 5 · 2 dic.</span><strong>ANOVA y Kruskal-Wallis</strong><span class="d">Una variable numérica en tres o más grupos.</span></div>
   <div class="serie-item pronto"><span class="n">Próximamente</span><strong>Prueba t pareada y Wilcoxon</strong><span class="d">Las mismas personas medidas dos veces.</span></div>
   <div class="serie-item pronto"><span class="n">Próximamente</span><strong>McNemar</strong><span class="d">Un desenlace categórico medido dos veces.</span></div>
   <div class="serie-item pronto"><span class="n">Próximamente</span><strong>Regresión de Poisson con varianza robusta</strong><span class="d">La razón de prevalencias ajustada.</span></div>
@@ -552,6 +552,59 @@ ul.task-list li input[type="checkbox"] {
     }, true);
   }
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", iniciar); else iniciar();
+})();
+</script>
+<script>
+/* Estadísticas de visitas con GoatCounter (panel privado: https://anthonyromero.goatcounter.com).
+   Solo cuenta en el sitio publicado: no en las vistas previas de Netlify ni en local.
+   Sin cookies. El contador visible en las páginas todavía NO está activado (ver _notas/estado-del-sitio.md). */
+(function () {
+  if (location.hostname !== "anthonyromero.netlify.app") return;
+  var s = document.createElement("script");
+  s.async = true;
+  s.src = "//gc.zgo.at/count.js";
+  s.setAttribute("data-goatcounter", "https://anthonyromero.goatcounter.com/count");
+  document.head.appendChild(s);
+})();
+</script>
+<script>
+/* «Cómo leer esta salida»: cada bloque ::: {.lee-salida} va justo después de un bloque de código de R.
+   Cada punto de su lista empieza con un fragmento `entre comillas invertidas` copiado de la salida.
+   Este script busca ese fragmento en la salida anterior y le pone el número del punto. */
+(function () {
+  function textos(nodo) {
+    var w = document.createTreeWalker(nodo, NodeFilter.SHOW_TEXT), t, r = [];
+    while ((t = w.nextNode())) r.push(t);
+    return r;
+  }
+  function marcar() {
+    document.querySelectorAll(".lee-salida").forEach(function (caja) {
+      var celda = caja.previousElementSibling;
+      while (celda && !celda.classList.contains("cell")) celda = celda.previousElementSibling;
+      if (!celda) return;
+      var salidas = celda.querySelectorAll(".cell-output pre, .cell-output-stdout pre, .cell-output-stderr pre, .cell-output-error pre");
+      var nodos = [];
+      salidas.forEach(function (s) { nodos = nodos.concat(textos(s)); });
+      var desde = 0, pos = 0;
+      caja.querySelectorAll(":scope > ol > li").forEach(function (li, i) {
+        var c = li.querySelector("code");
+        if (!c) return;
+        var frag = c.textContent;
+        for (var k = desde; k < nodos.length; k++) {
+          var n = nodos[k], j = n.nodeValue.indexOf(frag, k === desde ? pos : 0);
+          if (j < 0) continue;
+          var resto = n.splitText(j + frag.length);
+          var m = document.createElement("span");
+          m.className = "lee-n"; m.textContent = i + 1; m.setAttribute("aria-hidden", "true");
+          n.parentNode.insertBefore(m, resto);
+          nodos.splice(k + 1, 0, resto);
+          desde = k + 1; pos = 0;
+          break;
+        }
+      });
+    });
+  }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", marcar); else marcar();
 })();
 </script>
 <script>
@@ -1044,17 +1097,4 @@ License: <a href="https://creativecommons.org/licenses/by-nc-sa/4.0">CC BY NC SA
 
 
 
-<script>
-/* Estadísticas de visitas con GoatCounter (panel privado: https://anthonyromero.goatcounter.com).
-   Solo cuenta en el sitio publicado: no en las vistas previas de Netlify ni en local.
-   Sin cookies. El contador visible en las páginas todavía NO está activado (ver _notas/estado-del-sitio.md). */
-(function () {
-  if (location.hostname !== "anthonyromero.netlify.app") return;
-  var s = document.createElement("script");
-  s.async = true;
-  s.src = "//gc.zgo.at/count.js";
-  s.setAttribute("data-goatcounter", "https://anthonyromero.goatcounter.com/count");
-  document.head.appendChild(s);
-})();
-</script>
 </body></html>
