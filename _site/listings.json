@@ -17,6 +17,7 @@
   {
     "listing": "/blog.html",
     "items": [
+      "/casos/curva-roc/index.html",
       "/casos/falacia-ecologica/index.html",
       "/casos/itt-vs-protocolo/index.html",
       "/casos/error-tipo-i-y-ii/index.html",
@@ -39,6 +40,7 @@
   {
     "listing": "/index.html",
     "items": [
+      "/casos/curva-roc/index.html",
       "/casos/falacia-ecologica/index.html",
       "/casos/itt-vs-protocolo/index.html",
       "/casos/error-tipo-i-y-ii/index.html",
@@ -68,6 +70,7 @@
   {
     "listing": "/temas.html",
     "items": [
+      "/casos/curva-roc/index.html",
       "/casos/falacia-ecologica/index.html",
       "/casos/itt-vs-protocolo/index.html",
       "/casos/error-tipo-i-y-ii/index.html",
