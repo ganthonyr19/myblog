@@ -18,7 +18,7 @@
   </url>
   <url>
     <loc>https://anthonyromero.netlify.app/blog.html</loc>
-    <lastmod>2026-11-18T11:14:27.871Z</lastmod>
+    <lastmod>2026-11-25T11:13:40.573Z</lastmod>
   </url>
   <url>
     <loc>https://anthonyromero.netlify.app/about.html</loc>
@@ -26,7 +26,7 @@
   </url>
   <url>
     <loc>https://anthonyromero.netlify.app/index.html</loc>
-    <lastmod>2026-11-18T11:14:27.964Z</lastmod>
+    <lastmod>2026-11-25T11:13:40.631Z</lastmod>
   </url>
   <url>
     <loc>https://anthonyromero.netlify.app/prospecto/diccionario.html</loc>
@@ -78,7 +78,7 @@
   </url>
   <url>
     <loc>https://anthonyromero.netlify.app/temas.html</loc>
-    <lastmod>2026-11-18T11:14:28.026Z</lastmod>
+    <lastmod>2026-11-25T11:13:40.684Z</lastmod>
   </url>
   <url>
     <loc>https://anthonyromero.netlify.app/casos/rr-vs-or/index.html</loc>
@@ -90,7 +90,7 @@
   </url>
   <url>
     <loc>https://anthonyromero.netlify.app/casos/index.html</loc>
-    <lastmod>2026-11-24T16:18:36.325Z</lastmod>
+    <lastmod>2026-11-27T11:19:27.608Z</lastmod>
   </url>
   <url>
     <loc>https://anthonyromero.netlify.app/vademecum/index.html</loc>
@@ -139,5 +139,9 @@
   <url>
     <loc>https://anthonyromero.netlify.app/casos/falacia-ecologica/index.html</loc>
     <lastmod>2026-11-23T11:35:24.654Z</lastmod>
+  </url>
+  <url>
+    <loc>https://anthonyromero.netlify.app/casos/curva-roc/index.html</loc>
+    <lastmod>2026-11-27T11:19:27.603Z</lastmod>
   </url>
 </urlset>

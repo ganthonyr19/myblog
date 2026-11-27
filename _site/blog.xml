@@ -10,7 +10,329 @@
 <atom:link href="https://anthonyromero.netlify.app/blog.xml" rel="self" type="application/rss+xml"/>
 <description>Entradas para entender y hacer mejor la investigación en salud: diseños de estudio, elección de pruebas estadísticas y novedades del ecosistema R.</description>
 <generator>quarto-1.10.18</generator>
-<lastBuildDate>Mon, 23 Nov 2026 05:00:00 GMT</lastBuildDate>
+<lastBuildDate>Fri, 27 Nov 2026 05:00:00 GMT</lastBuildDate>
+<item>
+  <title>¿Qué punto de corte elijo para el PSA?</title>
+  <dc:creator>Anthony Romero-Cerdán, MD</dc:creator>
+  <link>https://anthonyromero.netlify.app/casos/curva-roc/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+
+<p><a href="../../casos/index.html" class="sello"><img src="https://anthonyromero.netlify.app/images/marcas/casos.svg" class="img-fluid"><span><b>Caso clínico estadístico</b><em>Caso n.º 10</em></span></a></p>
+<section id="el-caso" class="level2">
+<h2 class="anchored" data-anchor-id="el-caso">El caso</h2>
+<p><em>Estudio real: Prostate Cancer Prevention Trial, análisis publicado en 2005.</em></p>
+<p>En el grupo placebo de un gran ensayo de prevención del cáncer de próstata, los investigadores analizaron a los varones que tenían un PSA y un tacto rectal en el mismo año y a quienes, además, se les hizo al menos una biopsia. Fueron 5587 hombres, todos con un PSA inicial de 3,0 ng/mL o menos al entrar al ensayo. La biopsia, el patrón de referencia, encontró cáncer en 1225 (21,9 %).</p>
+<p>Con esos datos construyeron la <a href="../../prospecto/diccionario.html#curva-roc" class="dic">curva ROC</a> del PSA. El área bajo la curva (AUC) fue de <strong>0,678</strong> (IC 95 %: 0,666 a 0,689) para cualquier cáncer y de <strong>0,782</strong> para los cánceres con Gleason 7 o más.</p>
+<div style="overflow-x:auto">
+
+<table class="mapa caption-top table">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">Punto de corte (ng/mL)</th>
+<th data-quarto-table-cell-role="th">Sensibilidad</th>
+<th data-quarto-table-cell-role="th">Especificidad</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">1,1</th>
+<td>83,4 %</td>
+<td>38,9 %</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">2,1</th>
+<td>52,6 %</td>
+<td>72,5 %</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">3,1</th>
+<td>32,2 %</td>
+<td>86,7 %</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">4,1</th>
+<td>20,5 %</td>
+<td>93,8 %</td>
+</tr>
+</tbody>
+</table>
+
+<p class="cap">Detección de cualquier cáncer de próstata según el punto de corte del PSA.</p>
+</div>
+</section>
+<section id="cuáles-de-estas-afirmaciones-son-verdaderas" class="level2">
+<h2 class="anchored" data-anchor-id="cuáles-de-estas-afirmaciones-son-verdaderas">¿Cuáles de estas afirmaciones son verdaderas?</h2>
+<ol type="a">
+<li><p>Con un punto de corte de 4,1 ng/mL, el PSA no habría detectado casi 4 de cada 5 cánceres.</p></li>
+<li><p>Bajar el punto de corte a 1,1 ng/mL aumenta la sensibilidad sin pérdida de especificidad.</p></li>
+<li><p>Un AUC de 0,678 significa que el PSA clasifica correctamente al 67,8 % de los hombres.</p></li>
+<li><p>El PSA discriminó mejor los cánceres con Gleason 7 o más que el conjunto de todos los cánceres.</p></li>
+</ol>
+</section>
+<section id="pase-de-visita" class="level2">
+<h2 class="anchored" data-anchor-id="pase-de-visita">Pase de visita</h2>
+<div class="autoeval">
+<div class="pregunta">
+<p><strong>a) Con un punto de corte de 4,1 ng/mL, el PSA no habría detectado casi 4 de cada 5 cánceres.</strong></p>
+<details>
+<summary>
+Ver respuesta
+</summary>
+<strong>Verdadera.</strong> La <a href="../../prospecto/diccionario.html#sensibilidad" class="dic">sensibilidad</a> con ese corte fue de 20,5 %: de cada 100 hombres con cáncer, solo unos 20 tenían un PSA de 4,1 o más. Los otros 80 habrían sido falsos negativos. La alta <a href="../../prospecto/diccionario.html#especificidad" class="dic">especificidad</a> (93,8 %) tiene ese precio.
+</details>
+</div>
+<div class="pregunta">
+<p><strong>b) Bajar el punto de corte a 1,1 ng/mL aumenta la sensibilidad sin pérdida de especificidad.</strong></p>
+<details>
+<summary>
+Ver respuesta
+</summary>
+<strong>Falsa.</strong> Con una variable continua, mover el punto de corte siempre intercambia una por otra. Al bajar a 1,1, la sensibilidad sube a 83,4 %, pero la especificidad cae a 38,9 %: el 61 % de los hombres sin cáncer daría positivo y se expondría a una biopsia innecesaria. La curva ROC muestra justamente ese intercambio en todos los cortes posibles.
+</details>
+</div>
+<div class="pregunta">
+<p><strong>c) Un AUC de 0,678 significa que el PSA clasifica correctamente al 67,8 % de los hombres.</strong></p>
+<details>
+<summary>
+Ver respuesta
+</summary>
+<strong>Falsa.</strong> El AUC no depende de un punto de corte, así que no puede ser un porcentaje de aciertos. Si se elige al azar un hombre con cáncer y otro sin cáncer, el AUC es la probabilidad de que el primero tenga el PSA más alto. Un AUC de 0,5 equivale a lanzar una moneda y uno de 1,0 es una discriminación perfecta; 0,678 es una capacidad discriminativa modesta.
+</details>
+</div>
+<div class="pregunta">
+<p><strong>d) El PSA discriminó mejor los cánceres con Gleason 7 o más que el conjunto de todos los cánceres.</strong></p>
+<details>
+<summary>
+Ver respuesta
+</summary>
+<strong>Verdadera.</strong> El AUC fue de 0,782 para los cánceres con Gleason 7 o más, frente a 0,678 para cualquier cáncer. La capacidad de una prueba depende de qué desenlace se define como «enfermo». Por eso, en tu tesis, el patrón de referencia y la definición de caso deben quedar explícitos.
+</details>
+</div>
+</div>
+</section>
+<section id="rp" class="level2">
+<h2 class="anchored" data-anchor-id="rp">Rp/</h2>
+<div class="en-una-frase">
+<p>El AUC resume la prueba; el punto de corte decide qué errores aceptas: elígelo según el costo de un falso negativo frente a un falso positivo.</p>
+</div>
+</section>
+<section id="diagnóstico-diferencial" class="level2">
+<h2 class="anchored" data-anchor-id="diagnóstico-diferencial">Diagnóstico diferencial</h2>
+<ul>
+<li><strong>Valores predictivos.</strong> A diferencia de la sensibilidad y la especificidad, dependen de la <a href="../../prospecto/diccionario.html#prevalencia" class="dic">prevalencia</a> de la enfermedad en la población donde se usa la prueba.</li>
+<li><strong>Índice de Youden.</strong> Sensibilidad + especificidad − 1. Elige el corte que maximiza ambas por igual, lo que no siempre es lo clínicamente deseable.</li>
+</ul>
+</section>
+<section id="en-r" class="level2">
+<h2 class="anchored" data-anchor-id="en-r">En R</h2>
+<div class="cell">
+<details class="code-fold">
+<summary>Ver código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1">corte <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(<span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1.1</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2.1</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">3.1</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">4.1</span>)</span>
+<span id="cb1-2">sens  <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(<span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.834</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.526</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.322</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.205</span>)</span>
+<span id="cb1-3">esp   <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(<span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.389</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.725</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.867</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.938</span>)</span>
+<span id="cb1-4"></span>
+<span id="cb1-5"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">data.frame</span>(corte,</span>
+<span id="cb1-6">           <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">youden =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">round</span>(sens <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> esp <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">3</span>),   <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># índice de Youden</span></span>
+<span id="cb1-7">           <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">RV_pos =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">round</span>(sens <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span> (<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span> <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span> esp), <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span>), <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># razón de verosimilitud positiva</span></span>
+<span id="cb1-8">           <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">RV_neg =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">round</span>((<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span> <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span> sens) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span> esp, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span>)) <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># razón de verosimilitud negativa</span></span></code></pre></div></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>  corte youden RV_pos RV_neg
+1   1.1  0.223   1.36   0.43
+2   2.1  0.251   1.91   0.65
+3   3.1  0.189   2.42   0.78
+4   4.1  0.143   3.31   0.85</code></pre>
+</div>
+<details class="code-fold">
+<summary>Ver código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Los cuatro puntos sobre el espacio ROC</span></span>
+<span id="cb3-2"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">plot</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span> <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span> esp, sens, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">type =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"b"</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">xlim =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>), <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">ylim =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>),</span>
+<span id="cb3-3">     <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">xlab =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"1 - especificidad"</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">ylab =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Sensibilidad"</span>)</span>
+<span id="cb3-4"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">abline</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">lty =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span>)   <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># diagonal: prueba sin capacidad discriminativa</span></span></code></pre></div></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="https://anthonyromero.netlify.app/casos/curva-roc/index_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="lee-salida">
+<ol type="1">
+<li><code>youden</code> Es el índice de Youden: sensibilidad + especificidad − 1. Va de 0 (la prueba no discrimina mejor que el azar) a 1 (discrimina perfectamente).</li>
+<li><code>RV_pos</code> Es la razón de verosimilitud positiva: cuánto aumenta un resultado positivo la odds de tener la enfermedad. Cuanto más lejos de 1, más útil.</li>
+<li><code>RV_neg</code> Es la razón de verosimilitud negativa: cuánto la reduce un resultado negativo. Cuanto más cerca de 0, más útil.</li>
+<li><code>0.251</code> Es el mayor índice de Youden, en el punto de corte 2,1. Aun así es bajo, y sus razones de verosimilitud (1,91 y 0,65) apenas cambian la probabilidad de enfermedad.</li>
+</ol>
+<p><strong>En una frase:</strong> el mejor punto de corte según Youden es 2,1 (sensibilidad 52,6 %, especificidad 72,5 %), pero su capacidad para discriminar es modesta.</p>
+</div>
+<p>Con datos individuales, el paquete <code>pROC</code> dibuja la curva completa y calcula el AUC con su IC 95 %.</p>
+</section>
+<section id="para-profundizar" class="level2">
+<h2 class="anchored" data-anchor-id="para-profundizar">Para profundizar</h2>
+<ul>
+<li><a href="../../herramientas/muestra/index.html#mod=dx">Calcula el tamaño de muestra de tu estudio de prueba diagnóstica</a> en el Consultorio estadístico.</li>
+<li>¿Comparas dos pruebas? Haz el <a href="../../blog/que-prueba-estadistica/index.html#haz-tu-triaje">Triaje estadístico</a>.</li>
+</ul>
+</section>
+<section id="referencias" class="level2">
+<h2 class="anchored" data-anchor-id="referencias">Referencias</h2>
+<ol type="1">
+<li>Thompson IM, Ankerst DP, Chi C, Lucia MS, Goodman PJ, Crowley JJ, et al.&nbsp;Operating characteristics of prostate-specific antigen in men with an initial PSA level of 3.0 ng/ml or lower. <em>JAMA</em>. 2005;294(1):66-70.</li>
+<li>Hanley JA, McNeil BJ. The meaning and use of the area under a receiver operating characteristic (ROC) curve. <em>Radiology</em>. 1982;143(1):29-36.</li>
+</ol>
+<div class="cta">
+<p><strong>¿Te tocó un caso así en tu tesis?</strong></p>
+<p>Te ayudo a elegir e interpretar el análisis correcto.</p>
+<p><a href="https://api.whatsapp.com/send?phone=51955446754&amp;text=Hola%2C%20le%C3%AD%20un%20caso%20cl%C3%ADnico%20estad%C3%ADstico%20en%20tu%20web%20y%20quiero%20informaci%C3%B3n%20sobre%20asesor%C3%ADa%20para%20mi%20tesis">Escríbeme por WhatsApp</a></p>
+</div>
+
+
+</section>
+
+ ]]></description>
+  <category>Caso clínico estadístico</category>
+  <category>Epidemiología</category>
+  <category>Tesis</category>
+  <guid>https://anthonyromero.netlify.app/casos/curva-roc/</guid>
+  <pubDate>Fri, 27 Nov 2026 05:00:00 GMT</pubDate>
+  <media:content url="https://anthonyromero.netlify.app/casos/curva-roc/portada.png" medium="image" type="image/png" height="76" width="144"/>
+</item>
 <item>
   <title>¿Comer chocolate te acerca al Nobel?</title>
   <dc:creator>Anthony Romero-Cerdán, MD</dc:creator>
